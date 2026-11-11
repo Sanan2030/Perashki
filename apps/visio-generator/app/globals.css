@@ -40,48 +40,6 @@
   --mono: "DM Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
-/* Shared dark palette for the form, diagram and supporting panels. */
-.studio-header, .form-panel, .preview-panel, .modal, .toast {
-  color-scheme: dark;
-  --bg: #141a22;
-  --panel: #181e27;
-  --surface: #212936;
-  --surface-hover: #2a3545;
-  --ink: #e3e9f2;
-  --muted: #b3bfce;
-  --subtle: #98a8bc;
-  --line: #344052;
-  --control-line: #65778f;
-  --accent: #98b3ff;
-  --accent-hover: #adc3ff;
-  --accent-soft: #243858;
-  --success: #8dd5b0;
-  --success-soft: #21372d;
-  --danger: #f4a4a4;
-  --danger-soft: #402a30;
-  --warning: #e9bb8f;
-  --warning-soft: #3e3227;
-  --field-bg: #212936;
-  --control-hover: #8595ac;
-  --placeholder: #98a8bc;
-  --action: #4568e8;
-  --action-hover: #3755c8;
-  --danger-action: #ad3f43;
-  --danger-action-hover: #8d3036;
-  --focus-ring: rgb(152 179 255 / 16%);
-  --selection-bg: #354c78;
-  --selection-ink: #edf2ff;
-  --scrollbar: #536177;
-  --success-line: #476453;
-  --success-message: #b0cebd;
-  --warning-line: #745a40;
-  --warning-message: #d7bea7;
-  --branch-bg: #202a3d;
-  --accent-soft-hover: #354665;
-  --gateway-active-bg: #304569;
-  color: var(--ink);
-}
-
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
 body {
@@ -209,10 +167,10 @@ h1, h2, h3, p { margin: 0; }
 
 .studio-main { display: grid; grid-template-columns: min(var(--sidebar-width, 400px), max(280px, calc(100vw - 368px))) 8px minmax(0, 1fr); flex: 1; min-height: 0; overflow: hidden; }
 .form-panel { display: flex; flex-direction: column; min-width: 0; min-height: 0; background: var(--panel); container-type: inline-size; }
-.workspace-separator { position: relative; width: 8px; padding: 0; border: 0; background: #141a22; cursor: col-resize; touch-action: none; }
-.workspace-separator::after { position: absolute; top: calc(50% - 22px); left: 3px; width: 2px; height: 44px; border-radius: 2px; background: #536177; content: ""; }
-.workspace-separator:hover::after, .workspace-separator:focus-visible::after { background: #98b3ff; }
-.workspace-separator:focus-visible { outline: 2px solid #98b3ff; outline-offset: -2px; }
+.workspace-separator { position: relative; width: 8px; padding: 0; border: 0; background: var(--ws-soft); cursor: col-resize; touch-action: none; }
+.workspace-separator::after { position: absolute; top: calc(50% - 22px); left: 3px; width: 2px; height: 44px; border-radius: 2px; background: var(--ws-control-border); content: ""; }
+.workspace-separator:hover::after, .workspace-separator:focus-visible::after { background: var(--ws-accent); }
+.workspace-separator:focus-visible { outline: 2px solid var(--ws-accent); outline-offset: -2px; }
 .lane-creator { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
 .lane-creator .field-label { margin-bottom: 10px; }
 .lane-creator .secondary-button { width: 100%; }
@@ -343,7 +301,7 @@ h1, h2, h3, p { margin: 0; }
 .route-row > svg { color: var(--muted); }
 .route-row .icon-button { width: 28px; height: 40px; }
 .route-card .text-button { min-height: 36px; padding: 6px 0; color: var(--accent); font-size: 12px; }
-.gateway-tip { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 12px; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); color: #3d508b; font-size: 12px; line-height: 1.6; }
+.gateway-tip { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 12px; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--ws-accent); font-size: 12px; line-height: 1.6; }
 .gateway-tip svg { margin-top: 3px; }
 .form-panel .gateway-tip { color: var(--accent); }
 .gateway-selector { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; margin: 0 0 12px; padding: 3px; border-radius: 10px; background: var(--bg); }
@@ -411,33 +369,6 @@ h1, h2, h3, p { margin: 0; }
 
 .preview-panel {
   position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; background: var(--bg);
-  --diagram-surface: #181e27;
-  --diagram-header: #212936;
-  --diagram-node: #253044;
-  --diagram-ink: #e3e9f2;
-  --diagram-muted: #b3bfce;
-  --diagram-border: #65778f;
-  --diagram-shape-border: #7f91a9;
-  --diagram-gateway: #304569;
-  --diagram-gateway-border: #7f91a9;
-  --diagram-on-gateway: #e3e9f2;
-  --diagram-start: #8dd5b0;
-  --diagram-end: #f4a4a4;
-  --diagram-annotation: #98a8bc;
-  --diagram-annotation-ink: #98baff;
-  --diagram-accent: #98b3ff;
-  --diagram-accent-soft: #243858;
-  --diagram-on-accent: #141a22;
-  --diagram-edge: #98a8bc;
-  --diagram-feedback-edge: #e9bb8f;
-  --diagram-feedback-fill: #3e3227;
-  --diagram-feedback-border: #a78765;
-  --diagram-feedback-ink: #e9bb8f;
-  --diagram-approval-fill: #21372d;
-  --diagram-approval-border: #6a9e7f;
-  --diagram-approval-ink: #8dd5b0;
-  --diagram-chip: #212936;
-  --diagram-badge: #273448;
 }
 .preview-heading { position: absolute; top: 28px; right: 40px; left: 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 24px; pointer-events: none; z-index: 3; }
 .canvas-title { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
@@ -473,7 +404,7 @@ h1, h2, h3, p { margin: 0; }
 .canvas-shape-picker { min-width: 0; max-width: 150px; }
 .canvas-shape-picker select { font-size: 12px; }
 .diagram-editor-hint { position: absolute; bottom: 40px; left: 40px; max-width: 200px; color: var(--muted); font-size: 12px; line-height: 1.5; pointer-events: none; z-index: 3; }
-.diagram-viewport { position: relative; flex: 1; min-width: 0; min-height: 0; overflow: auto; background-color: var(--bg); background-image: radial-gradient(circle, #2a3444 1px, transparent 1.3px); background-size: 24px 24px; cursor: grab; touch-action: pan-x pan-y; overscroll-behavior: contain; }
+.diagram-viewport { position: relative; flex: 1; min-width: 0; min-height: 0; overflow: auto; background-color: var(--bg); background-image: radial-gradient(circle, var(--ws-border) 1px, transparent 1.3px); background-size: 24px 24px; cursor: grab; touch-action: pan-x pan-y; overscroll-behavior: contain; }
 .diagram-viewport.is-panning { cursor: grabbing; user-select: none; }
 .diagram-viewport:focus-visible { outline-offset: -3px; }
 .diagram-surface { display: grid; place-items: center; min-width: 100%; min-height: 100%; padding: 24px; }

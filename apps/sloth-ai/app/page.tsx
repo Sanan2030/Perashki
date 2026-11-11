@@ -22,6 +22,7 @@ import { downloadReviewCorpus, pickReviewFile, readReviewFile, saveReviewToFile,
 import { documentHTML, documentText, editableDocument, plainDocument, type RichDocument } from '@/lib/ui/rich-document';
 import { DRAFT_KEY, REVIEW_KEY, parseEditorDraft, type EditorDraft } from '@/lib/editor/workspace-storage';
 import { parseReviewCorpus } from '@/lib/editor/review-corpus';
+import { setWorkspaceTheme, subscribeWorkspaceTheme } from '../../../shared/theme.mjs';
 
 type ModuleId = 'text' | 'mail';
 type Theme = 'dark' | 'light';
@@ -136,21 +137,7 @@ export default function HomePage() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-    try {
-      const saved = localStorage.getItem('lazyai-theme');
-      const next: Theme = saved === 'light' || saved === 'dark'
-        ? saved
-        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      setTheme(next);
-      document.documentElement.dataset.theme = next;
-    } catch {
-      document.documentElement.dataset.theme = 'dark';
-    }
-    });
-    return () => cancelAnimationFrame(frame);
-  }, []);
+  useEffect(() => subscribeWorkspaceTheme(setTheme), []);
 
   const config = MODULES[activeModule];
   const inputValue = activeModule === 'text' ? textValue : mailValue;
@@ -215,11 +202,7 @@ export default function HomePage() {
 
   function toggleTheme() {
     const next: Theme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    try {
-      localStorage.setItem('lazyai-theme', next);
-    } catch {}
+    setWorkspaceTheme(next);
   }
 
   function persistPersonal(next: PersonalLexicon) {
@@ -433,6 +416,7 @@ export default function HomePage() {
             type="button"
             className="workspace-theme-toggle"
             aria-label="Açıq/tünd rejimi dəyiş"
+            aria-pressed={theme === 'dark'}
             onClick={toggleTheme}
           >
             <span className="workspace-toggle-track">

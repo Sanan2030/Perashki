@@ -1,0 +1,42 @@
+/* Holiday categories retain their meaning in both Overtimer themes. */
+html:root[data-theme] {
+  --holiday-color: var(--ws-success);
+  --holiday-bg: var(--ws-accent-soft);
+  --holiday-border: var(--ws-accent-border);
+  --holiday-glow: transparent;
+  --special-color: var(--ws-danger);
+  --special-bg: var(--ws-danger-soft);
+  --special-border: color-mix(in srgb, var(--ws-danger) 40%, transparent);
+  --special-glow: transparent;
+  --weekend-color: var(--ws-muted);
+  --weekend-bg: var(--ws-soft);
+  --weekend-border: var(--ws-border);
+  --workday-color: var(--ws-accent);
+  --workday-bg: var(--ws-surface);
+  --workday-border: var(--ws-border);
+  --today-color: var(--ws-accent);
+  --today-glow: transparent;
+}
+body { background-image: none; }
+header,.month-card,.legend,.popup-card { border-radius:12px; box-shadow:0 3px 14px var(--ws-shadow); backdrop-filter:none; }
+.brand-title,.month-name { background:none; -webkit-text-fill-color:var(--ws-ink); color:var(--ws-ink); }
+.year-display { color:var(--ws-accent); text-shadow:none; }
+.btn,.month-link,.popup-close { background:var(--ws-surface); color:var(--ws-ink); border:1px solid var(--ws-border); border-radius:7px; }
+.btn:hover,.month-link:hover,.popup-close:hover { background:var(--ws-soft); color:var(--ws-accent); border-color:var(--ws-accent); }
+.btn-primary { background:var(--ws-action); color:#fff; box-shadow:none; }
+.btn-primary:hover { background:var(--ws-action-hover); color:#fff; box-shadow:none; }
+.stats-bar,.month-header,.month-card:hover { border-color:var(--ws-border); }
+.month-number,.status-box { background:var(--ws-soft); border-color:var(--ws-border); }
+.month-header,.popup-title,.status-info strong { color:var(--ws-ink); }
+.day-cell { color:var(--ws-ink); }
+.day-cell.weekend,.popup-card.weekend .popup-badge { color:var(--ws-muted); }
+.day-cell.holiday { color:var(--ws-success); }
+.day-cell.special { color:var(--ws-danger); }
+.day-cell:not(.empty):hover { color:var(--ws-ink); background:var(--ws-soft); border-color:var(--ws-accent); box-shadow:none; }
+.popup-card { background:var(--ws-surface); border-color:var(--ws-border); }
+.popup-card.holiday .popup-header { background:var(--ws-accent-soft); }
+.popup-card.special .popup-header { background:var(--ws-danger-soft); }
+.popup-card.weekend .popup-header { background:var(--ws-soft); }
+.calendar-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); }
+.swatch-workday { border-color:var(--ws-border); }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important; animation:none!important; } }

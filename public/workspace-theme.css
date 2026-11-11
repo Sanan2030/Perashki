@@ -1,0 +1,153 @@
+/* The Overtimer palette is shared by the portal and every native app. */
+html:root {
+  --ws-bg: #fafbf9;
+  --ws-surface: #ffffff;
+  --ws-ink: #25322c;
+  --ws-muted: #6b766e;
+  --ws-accent: #28704f;
+  --ws-accent-hover: #205b40;
+  --ws-action: #28704f;
+  --ws-action-hover: #205b40;
+  --ws-border: #e3e8e2;
+  --ws-control-border: #c6d2c6;
+  --ws-soft: #f1f5ef;
+  --ws-accent-soft: #e5f1e9;
+  --ws-accent-border: #b2cdbb;
+  --ws-success: #28704f;
+  --ws-danger: #a43636;
+  --ws-danger-soft: #fbeaea;
+  --ws-warning: #8c591c;
+  --ws-warning-soft: #fbf0de;
+  --ws-shadow: rgb(25 45 35 / 8%);
+  --ws-hero: #205b40;
+  --ws-on-hero: #e5f1e9;
+  color-scheme: light;
+}
+html:root[data-theme='dark'] {
+  --ws-bg: #111622;
+  --ws-surface: #1b2232;
+  --ws-ink: #e4eaf5;
+  --ws-muted: #a4b1c2;
+  --ws-accent: #68dba9;
+  --ws-accent-hover: #85e4bc;
+  --ws-action: #00855d;
+  --ws-action-hover: #07966b;
+  --ws-border: #30394c;
+  --ws-control-border: #536277;
+  --ws-soft: #252e42;
+  --ws-accent-soft: #1e3431;
+  --ws-accent-border: #35554a;
+  --ws-success: #85e4bc;
+  --ws-danger: #f0a7a7;
+  --ws-danger-soft: #462c2b;
+  --ws-warning: #e1c184;
+  --ws-warning-soft: #3c3220;
+  --ws-shadow: rgb(0 0 0 / 24%);
+  --ws-hero: #1e3431;
+  --ws-on-hero: #c4e4d7;
+  color-scheme: dark;
+}
+/* Specificity keeps the shared palette stable across native CSS chunks. */
+html:root[data-theme] {
+  --bg: var(--ws-bg);
+  --bg-dark: var(--ws-bg);
+  --surface: var(--ws-surface);
+  --panel: var(--ws-surface);
+  --surface-2: var(--ws-soft);
+  --surface-hover: var(--ws-soft);
+  --soft: var(--ws-soft);
+  --ink: var(--ws-ink);
+  --text: var(--ws-ink);
+  --text-main: var(--ws-ink);
+  --muted: var(--ws-muted);
+  --text-soft: var(--ws-muted);
+  --text-muted: var(--ws-muted);
+  --subtle: var(--ws-muted);
+  --line: var(--ws-border);
+  --border: var(--ws-border);
+  --control-line: var(--ws-control-border);
+  --accent: var(--ws-accent);
+  --accent-hover: var(--ws-accent-hover);
+  --accent-soft: var(--ws-accent-soft);
+  --accent-soft-hover: var(--ws-soft);
+  --accent-ink: #ffffff;
+  --green: var(--ws-accent);
+  --green-dark: var(--ws-accent-hover);
+  --action: var(--ws-action);
+  --action-hover: var(--ws-action-hover);
+  --field-bg: var(--ws-surface);
+  --control-hover: var(--ws-accent);
+  --placeholder: var(--ws-muted);
+  --focus-ring: color-mix(in srgb, var(--ws-accent) 20%, transparent);
+  --selection-bg: var(--ws-accent-soft);
+  --selection-ink: var(--ws-ink);
+  --scrollbar: var(--ws-control-border);
+  --success: var(--ws-success);
+  --success-soft: var(--ws-accent-soft);
+  --success-line: var(--ws-accent-border);
+  --success-message: var(--ws-success);
+  --danger: var(--ws-danger);
+  --danger-soft: var(--ws-danger-soft);
+  --danger-action: #a43636;
+  --danger-action-hover: #882b2b;
+  --warning: var(--ws-warning);
+  --warning-soft: var(--ws-warning-soft);
+  --warning-line: var(--ws-warning);
+  --warning-message: var(--ws-warning);
+  --shadow: var(--ws-shadow);
+  --branch-bg: var(--ws-soft);
+  --gateway-active-bg: var(--ws-action);
+  --peach: var(--ws-accent-soft);
+  --sage: var(--ws-accent-soft);
+  --gold: var(--ws-warning-soft);
+  --lilac: var(--ws-soft);
+  --merhele-gold: #c3e8cf;
+  --merhele-dark: var(--ws-hero);
+  --card-bg: var(--ws-surface);
+  --card-border: var(--ws-border);
+  --diagram-surface: var(--ws-surface);
+  --diagram-header: var(--ws-soft);
+  --diagram-node: var(--ws-surface);
+  --diagram-ink: var(--ws-ink);
+  --diagram-muted: var(--ws-muted);
+  --diagram-border: var(--ws-border);
+  --diagram-shape-border: var(--ws-control-border);
+  --diagram-gateway: var(--ws-action);
+  --diagram-gateway-border: var(--ws-action);
+  --diagram-on-gateway: #ffffff;
+  --diagram-start: var(--ws-success);
+  --diagram-end: var(--ws-danger);
+  --diagram-annotation: var(--ws-muted);
+  --diagram-annotation-ink: var(--ws-accent);
+  --diagram-accent: var(--ws-accent);
+  --diagram-accent-soft: var(--ws-accent-soft);
+  --diagram-on-accent: var(--ws-bg);
+  --diagram-edge: var(--ws-muted);
+  --diagram-feedback-edge: var(--ws-warning);
+  --diagram-feedback-fill: var(--ws-warning-soft);
+  --diagram-feedback-border: var(--ws-warning);
+  --diagram-feedback-ink: var(--ws-warning);
+  --diagram-approval-fill: var(--ws-accent-soft);
+  --diagram-approval-border: var(--ws-accent-border);
+  --diagram-approval-ink: var(--ws-success);
+  --diagram-chip: var(--ws-soft);
+  --diagram-badge: var(--ws-soft);
+}
+html:root[data-app='sloth-ai'], html:root[data-app='level-up'] { --sidebar: var(--ws-surface); }
+html body { background-color: var(--ws-bg); color: var(--ws-ink); }
+::selection { background: var(--ws-accent-soft); color: var(--ws-ink); }
+input[type='checkbox'], input[type='radio'] { accent-color: var(--ws-accent); }
+html[data-app='sloth-ai'] :is(.workspace-run-btn,.workspace-brand-mark,.workspace-toggle-thumb,.workspace-feedback-save) { background:var(--ws-action); color:#fff; }
+html[data-app='level-up'] :is(.merhele-brand > span,.button-primary) { background:var(--ws-action); border-color:var(--ws-action); color:#fff; }
+html[data-app='level-up'] .button-primary:hover:not(:disabled) { background:var(--ws-action-hover); }
+html[data-app='level-up'] .certification-section { background:var(--ws-hero); }
+html[data-app='level-up'] .certification-grid button { background:color-mix(in srgb,var(--ws-hero) 85%,white); border-color:var(--ws-accent-border); }
+html[data-app='level-up'] :is(.recommended-card > p,.recommended-card .eyebrow,.certification-disclaimer,.certification-grid p,.certification-section .section-intro) { color:var(--ws-on-hero); }
+html[data-app='level-up'] :is(.button-gold,.certification-grid .iiba,.certification-grid .scrum) { background:#c3e8cf; border-color:#c3e8cf; color:#205b40; }
+html[data-app='level-up'] .daily-note { background:var(--ws-soft); border-color:var(--ws-border); }
+html[data-app='level-up'] :is(.daily-note > p,.note-signature) { color:var(--ws-ink); }
+html[data-app='level-up'] .pill-options button.selected { background:var(--ws-action); border-color:var(--ws-action); color:#fff; }
+html[data-app='level-up'] :is(.progress-track > div,.stepper-dots button.reached,.progress-bar > span) { background:var(--ws-accent); }
+html[data-app='level-up'] :is(.knowledge-option,.roadmap-skill,.practice-unseen) input { accent-color:var(--ws-accent); }
+html[data-app='overtimer'] .empty-state h3 { color:var(--ws-ink); }
+html[data-app='overtimer'] .empty-state p { color:var(--ws-muted); }

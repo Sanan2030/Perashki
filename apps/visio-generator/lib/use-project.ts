@@ -16,7 +16,13 @@ function setHash(id: string) {
 
 /** Editing stays synchronous; storage writes are batched and flushed on navigation. */
 export function useProject() {
-  const [project, setProject] = useState<Project>(() => createProject());
+  // The SSR placeholder must be identical during hydration. The ready effect
+  // restores or creates the real project with fresh IDs before editing starts.
+  const [project, setProject] = useState<Project>({
+    version: 1, id: 'loading', name: 'Yeni iş axını',
+    pools: [{ id: 'loading-pool', name: 'Təşkilat', lanes: [{ id: 'loading-lane', name: 'İştirakçı 1' }] }],
+    steps: [],
+  });
   const [ready, setReady] = useState(false);
   const [saveState, setSaveState] = useState<SaveState>("saving");
   const [undoCount, setUndoCount] = useState(0);

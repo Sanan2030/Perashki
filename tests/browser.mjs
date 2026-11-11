@@ -130,6 +130,7 @@ try {
   console.log('PASS StoryPointer generation, editable Azure DevOps fields, points and saved history');
 
   await calendar.locator('#nextYearBtn').evaluate(button => button.click());
+  await page.evaluate(() => window.PerashkiTheme.set('dark'));
   await page.evaluate(() => {
     localStorage.setItem('overtime-noter:v1', JSON.stringify({ version: 1, profile: { employee: 'Sanan', manager: '', customer: '', project: '', environment: 'ofis şəraiti' }, months: {}, entries: [{ id: 'backup-overtime', date: '2026-11-11', start: '18:00', end: '20:00', breakMinutes: 0, multiplier: 2, employee: 'Sanan', manager: '', customer: '', project: 'Perashki', dayStatus: 'qeyri-iş saatı', environment: 'ofis şəraiti', subject: 'Vahid backup işi', reason: '', rate: null }] }));
     localStorage.setItem('level-up.progress.v1', JSON.stringify({ version: 1, profiles: {}, activeTrack: 'ba', completedLessons: { 'sql-basics': '2026-11-11T08:00:00Z' }, bookmarks: ['sql-basics'], notes: { 'sql-basics': 'Ümumi fayldan gələn şəxsi qeyd' }, assessedSkills: [], attempts: [], reviews: [], activity: [], sessions: {} }));
@@ -145,6 +146,7 @@ try {
   const backup = JSON.parse(await readFile(backupPath, 'utf8'));
   assert.equal(backup.kind, 'perashki-backup');
   assert.equal(backup.preferences.locale, 'en');
+  assert.equal(backup.storage['perashki:theme:v1'], 'dark');
   assert.equal(backup.storage['unrelated-app'], undefined);
   for (const key of ['overtime-noter:v1', 'level-up.progress.v1', 'slothai-workspace-v1', 'slothai-personal-lexicon-v1', 'perashki:todos:v1', 'perashki:stories:v1', 'perashki:calendar:v1']) assert(backup.storage[key], key);
   assert(Object.keys(backup.storage).some(key => key.startsWith('visioflow:v1:')));
@@ -156,6 +158,7 @@ try {
   await restored.evaluate(() => localStorage.setItem('unrelated-app', 'keep'));
   await restored.getByLabel('Ümumi ehtiyat nüsxəsini seç').setInputFiles(backupPath);
   await expect(restored).toHaveURL(`${origin}/sprint-pointer`);
+  await expect(restored.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(restored.locator('.story-history-row')).toHaveCount(1);
   assert.deepEqual(await restored.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), Object.keys(backup.storage)), backup.storage);
   assert.equal(await restored.evaluate(() => localStorage.getItem('unrelated-app')), 'keep');

@@ -18,7 +18,9 @@
     "dev:portal": "node scripts/build-shared.mjs && next dev",
     "build:portal": "node scripts/build-shared.mjs && next build",
     "start:portal": "next start",
-    "dev:services": "vercel dev --local"
+    "dev:services": "vercel dev --local",
+    "test:theme": "node tests/browser-theme.mjs",
+    "sync:app": "node scripts/sync-app.mjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

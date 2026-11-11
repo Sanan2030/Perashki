@@ -2,24 +2,13 @@
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { Locale } from '@/lib/types';
+import { setWorkspaceTheme, subscribeWorkspaceTheme } from '../../../shared/theme.mjs';
 export function ThemeToggle({ locale }: { locale: Locale }) {
   const [dark, setDark] = useState(false);
-  useEffect(() => {
-    let selected = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    try {
-      const saved = localStorage.getItem('level-up.theme');
-      if (saved) selected = saved === 'dark';
-    } catch {}
-    document.documentElement.classList.toggle('dark', selected);
-    Promise.resolve().then(() => setDark(selected));
-  }, []);
+  useEffect(() => subscribeWorkspaceTheme(theme => setDark(theme === 'dark')), []);
   function toggle() {
     const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle('dark', next);
-    try {
-      localStorage.setItem('level-up.theme', next ? 'dark' : 'light');
-    } catch {}
+    setWorkspaceTheme(next ? 'dark' : 'light');
   }
   return (
     <button
@@ -27,6 +16,7 @@ export function ThemeToggle({ locale }: { locale: Locale }) {
       className="icon-button"
       onClick={toggle}
       aria-label={locale === 'az' ? 'Rəng mövzusunu dəyiş' : 'Toggle color theme'}
+      aria-pressed={dark}
     >
       {dark ? <Sun size={18} /> : <Moon size={18} />}
     </button>

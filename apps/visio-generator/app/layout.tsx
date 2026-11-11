@@ -6,6 +6,8 @@ import "@fontsource/dm-sans/700.css";
 import "@fontsource/dm-mono/400.css";
 import "@fontsource/dm-mono/500.css";
 import "./globals.css";
+import "../../../public/workspace-theme.css";
+import { themeScript } from "../../../shared/theme.mjs";
 
 export const metadata: Metadata = {
   title: "VisioFlow — İş axınını vizuallaşdır",
@@ -13,5 +15,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="az"><body>{children}</body></html>;
+  return <html lang="az" data-app="visio-generator" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body>{children}</body></html>;
 }

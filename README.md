@@ -1,6 +1,25 @@
 # Perashki
 
-Bir Vercel layihəsində işləyən şəxsi iş məkanı: solda ortaq menyu, daxilində Sloth AI, Visio Generator, Overtimer, Level Up, Azərbaycan təqvimi, to-do və StoryPointer. Mövcud tətbiqlərin dizaynları saxlanılıb. Verilənlər bazası və hesab tələb olunmur.
+Bir Vercel layihəsində işləyən şəxsi iş məkanı: solda ortaq menyu, daxilində Sloth AI, Visio Generator, Overtimer, Level Up, Azərbaycan təqvimi, to-do və StoryPointer. Dörd repozitoriyanın tam kodu `apps/` daxilindədir; tətbiqlər öz səhifələri, Worker-ləri və API-ləri ilə bu saytın daxilində işləyir. Verilənlər bazası və hesab tələb olunmur.
+
+## Ortaq light/dark tema
+
+Başlıqdakı rejim düyməsi bütün bölmələri birlikdə dəyişir. Overtimer-in açıq yaşıl/ağ və tünd lacivərd/yaşıl rəng palitrası ortaqdır. Tətbiqlərin funksiyaları və daxilindəki bölmələr saxlanılıb. Menyudan seçilən tətbiq iş məkanının daxilində açılır; ayrıca səhifə açmaq lazım deyil.
+
+Seçim bu brauzerdə saxlanır və ümumi JSON nüsxəsinə daxildir. Əvvəlki Overtimer, Level Up və Sloth AI tema seçimləri də oxunur. Seçim edilməyibsə sistemin light/dark rejimi izlənir. Tətbiqlərin öz tema düymələri də ortaq seçimi yeniləyir; dəyişiklik yazıları və qaralamaları yenidən yükləmir.
+
+## Mənbə repozitoriyalarından yeniləmə
+
+Məsələn, SlothAI-nin `main` branch-inə yenilik push etdikdən sonra Perashki-də **Actions → Sync imported app → Run workflow → sloth-ai** seç. Workflow yeni dəyişiklikləri ayrıca budağa birləşdirir, test/typecheck/build edir və pull request açır. PR-ni yoxlayıb `main`-ə merge etdikdə yenilik ümumi tətbiqə daxil olur. Bu əməliyyat hər mənbə push-undan sonra əl ilə başladılır.
+
+Lokal variant:
+
+```sh
+npm run sync:app -- sloth-ai --check
+npm run sync:app -- sloth-ai
+```
+
+Digər seçimlər: `visio-generator`, `overtimer`, `level-up`. Əmr ayrıca iş qovluğu/budaq yaradır, göstərilən qovluqda dəyişiklikləri yoxlamaq və commit/push etmək olur. Əsas qovluq dəyişmir. Tema və inteqrasiya dəyişiklikləri üçtərəfli Git birləşdirməsi ilə qorunur; eyni sətirlərə toxunulubsa konflikt əl ilə həll edilir. [Ətraflı təlimat](docs/upstream-sync.md).
 
 ## Bütün məlumatlar bir JSON-da
 
@@ -63,6 +82,7 @@ npm run typecheck
 npm run build
 # vercel dev işləyərkən, ayrı terminalda:
 npm run test:browser
+npm run test:theme
 ```
 
 `build:portal` yalnız ortaq brauzer yoxlayıcılarını və portalı build edir. O, digər servislərin quraşdırılmasından asılı deyil. `npm run build` lokal yoxlama üçün portalı və dörd tətbiqi ardıcıl build edir. Vercel hər servisi ayrıca build edir; əvvəlki müvəqqəti statik-export sistemi və əllə yazılmış funksiya adapterləri çıxarılıb.
@@ -75,4 +95,4 @@ Orijinal tətbiqlərin kodu, sənədləri, testləri, bildirişləri və lockfil
 
 Tətbiqlərin API-ləri və testləri öz servis qovluqlarında saxlanır. Hər tətbiq öz lockfile-ı ilə quraşdırılır. Ortaq JSON yoxlayıcıları portal build-i zamanı mənbə parserlərindən hazırlanır; portalın öz Zod asılılığı ayrıca sabitlənib.
 
-Təqvimin verilmiş məlumatları və dizaynı saxlanıb; görünüş vəziyyətinin ehtiyat nüsxəyə daxil edilməsi əlavə olunub. Bayram məlumatlarına ayrıca məzmun yoxlaması aparılmayıb.
+Təqvimin verilmiş bayram məlumatları və funksiyaları saxlanıb; görünüş vəziyyətinin ehtiyat nüsxəyə daxil edilməsi və ortaq tema əlavə olunub. Bayram məlumatlarına ayrıca məzmun yoxlaması aparılmayıb.

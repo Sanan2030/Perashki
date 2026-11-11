@@ -7,6 +7,8 @@ import { locales } from '@/lib/i18n';
 import { publicSiteUrl } from '@/lib/site-url';
 import '../globals.css';
 import '../merhele.css';
+import '../../../../public/workspace-theme.css';
+import { themeScript } from '../../../../shared/theme.mjs';
 const site = publicSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(site),
@@ -38,7 +40,8 @@ export default async function LocaleLayout({
   if (!parsed.success) notFound();
   const locale = parsed.data;
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} data-app="level-up" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body>
         <a href="#main-content" className="skip-link">
           {locale === 'az' ? 'Məzmuna keç' : 'Skip to content'}

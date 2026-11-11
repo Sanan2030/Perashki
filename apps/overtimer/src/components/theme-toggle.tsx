@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import { setWorkspaceTheme, subscribeWorkspaceTheme } from "../../../../shared/theme.mjs";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
-  useEffect(() => {
-    setDark(document.documentElement.dataset.theme === "dark");
-  }, []);
+  useEffect(() => subscribeWorkspaceTheme(theme => setDark(theme === "dark")), []);
   return (
     <button
       type="button"
@@ -17,13 +16,7 @@ export default function ThemeToggle() {
       title={dark ? "Açıq rejim" : "Tünd rejim"}
       onClick={() => {
         const next = !dark;
-        setDark(next);
-        document.documentElement.dataset.theme = next ? "dark" : "light";
-        try {
-          localStorage.setItem("artisaat:theme", next ? "dark" : "light");
-        } catch {
-          /* The selected theme still works for this visit. */
-        }
+        setWorkspaceTheme(next ? "dark" : "light");
       }}
     >
       {dark ? <Sun size={19} /> : <Moon size={19} />}

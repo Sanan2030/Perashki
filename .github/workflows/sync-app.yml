@@ -1,0 +1,67 @@
+name: Sync imported app
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: Which source repository should be updated?
+        required: true
+        type: choice
+        options:
+          - sloth-ai
+          - visio-generator
+          - overtimer
+          - level-up
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-app-${{ inputs.app }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SYNC_APP: ${{ inputs.app }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Merge the upstream changes in a separate branch
+        id: sync
+        run: node scripts/sync-app.mjs "$SYNC_APP" --worktree "$RUNNER_TEMP/perashki-source-update"
+      - name: Install and validate the complete workspace
+        if: steps.sync.outputs.changed == 'true'
+        working-directory: ${{ steps.sync.outputs.workspace }}
+        run: |
+          npm ci --include=dev --no-audit --no-fund
+          npm run setup
+          npm test
+          npm run typecheck
+          npm run build
+      - name: Open a pull request with the tested update
+        if: steps.sync.outputs.changed == 'true'
+        working-directory: ${{ steps.sync.outputs.workspace }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SYNC_BRANCH: ${{ steps.sync.outputs.branch }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git commit -m "Sync $SYNC_APP from upstream main"
+          git push origin "HEAD:$SYNC_BRANCH"
+          cat > "$RUNNER_TEMP/perashki-sync-pr.md" <<'BODY'
+          Imports the selected source repository's new commits into its app directory using a three-way merge, retaining the workspace integration and shared theme.
+
+          Validated with workspace unit tests, all application type checks and all production builds. Review the changes and merge this PR to deploy the update from main.
+          BODY
+          gh pr create --base main --head "$SYNC_BRANCH" --title "Update $SYNC_APP from upstream main" --body-file "$RUNNER_TEMP/perashki-sync-pr.md"

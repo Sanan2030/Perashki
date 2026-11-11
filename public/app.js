@@ -20,16 +20,25 @@ const paths = {
 };
 const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths[name] || paths.home}</svg>`;
 const tools = [
-  { id: 'sloth-ai', name: 'Sloth AI', icon: 'spark', description: 'Azərbaycan dilində mətnlərini düzəlt, fikirlərini daha aydın ifadə et.', category: 'Mətn və yazı', accent: '#7d729f', tint: '#f0edf8' },
-  { id: 'visio-generator', name: 'Visio Generator', icon: 'flow', description: 'İş axınlarını diaqrama çevir, proseslərini vizual şəkildə qur.', category: 'Proses və diaqram', accent: '#638cb4', tint: '#eaf2fa' },
-  { id: 'sprint-pointer', name: 'StoryPointer', icon: 'cards', description: 'Başlıqdan Azure DevOps üçün iş təsviri və story point təklifi hazırla.', category: 'İşlərin hazırlanması', accent: '#bd8b53', tint: '#faf1e3' },
-  { id: 'overtimer', name: 'Overtimer', icon: 'clock', description: 'Əlavə iş saatlarını qeyd et, vaxtını və qazancını izlə.', category: 'Vaxtın uçotu', accent: '#5d9584', tint: '#eaf4ee' },
-  { id: 'level-up', name: 'Level Up', icon: 'learn', description: 'BA və PO bacarıqlarını inkişaf etdir, öz yol xəritənlə öyrən.', category: 'Öyrənmə və inkişaf', accent: '#a27f97', tint: '#f6edf2' },
-  { id: 'calendar', name: 'Təqvim', icon: 'calendar', description: 'Azərbaycanın bayram və xüsusi günlərinə bir yerdən bax.', category: '2026–2027', accent: '#aa8e52', tint: '#f8f4e6' },
-  { id: 'todo', name: 'To-do list', icon: 'check', description: 'Tapşırıqlarını sırala, prioritetləri seç və gününü rahat planla.', category: 'Gündəlik planlama', accent: '#71895a', tint: '#eff4e7' },
+  { id: 'sloth-ai', name: 'Sloth AI', icon: 'spark', description: 'Azərbaycan dilində mətnlərini düzəlt, fikirlərini daha aydın ifadə et.', category: 'Mətn və yazı' },
+  { id: 'visio-generator', name: 'Visio Generator', icon: 'flow', description: 'İş axınlarını diaqrama çevir, proseslərini vizual şəkildə qur.', category: 'Proses və diaqram' },
+  { id: 'sprint-pointer', name: 'StoryPointer', icon: 'cards', description: 'Başlıqdan Azure DevOps üçün iş təsviri və story point təklifi hazırla.', category: 'İşlərin hazırlanması' },
+  { id: 'overtimer', name: 'Overtimer', icon: 'clock', description: 'Əlavə iş saatlarını qeyd et, vaxtını və qazancını izlə.', category: 'Vaxtın uçotu' },
+  { id: 'level-up', name: 'Level Up', icon: 'learn', description: 'BA və PO bacarıqlarını inkişaf etdir, öz yol xəritənlə öyrən.', category: 'Öyrənmə və inkişaf' },
+  { id: 'calendar', name: 'Təqvim', icon: 'calendar', description: 'Azərbaycanın bayram və xüsusi günlərinə bir yerdən bax.', category: '2026–2027' },
+  { id: 'todo', name: 'To-do list', icon: 'check', description: 'Tapşırıqlarını sırala, prioritetləri seç və gününü rahat planla.', category: 'Gündəlik planlama' },
 ];
 
 const main = document.querySelector('main');
+const themeButton = document.querySelector('#workspace-theme');
+window.PerashkiTheme.subscribe(theme => {
+  const label = theme === 'dark' ? 'Açıq rejim' : 'Tünd rejim';
+  themeButton.setAttribute('aria-label', `${label}ə keç`);
+  themeButton.setAttribute('aria-pressed', String(theme === 'dark'));
+  themeButton.title = label;
+  themeButton.querySelector('.theme-label').textContent = label;
+});
+themeButton.addEventListener('click', () => window.PerashkiTheme.set(window.PerashkiTheme.get() === 'dark' ? 'light' : 'dark'));
 const panels = new Map();
 let tasks = [];
 let storageNotice = '';
@@ -49,11 +58,11 @@ function dateLabel(value, short = false) {
 document.querySelector('#today').textContent = dateLabel(todayInBaku());
 document.querySelector('#navigation').innerHTML = `<a class="nav-link" href="/">${icon('home')}<span>İcmal</span></a><div class="nav-separator"></div>${tools.map(tool => `<a class="nav-link" href="/${tool.id}">${icon(tool.icon)}<span>${tool.name}</span></a>`).join('')}`;
 
-function toolSymbol(tool) { return `<span class="tool-symbol" style="--tint:${tool.tint};--accent:${tool.accent}">${icon(tool.icon)}</span>`; }
+function toolSymbol(tool) { return `<span class="tool-symbol">${icon(tool.icon)}</span>`; }
 function renderHome(panel) {
   panel.innerHTML = `<div class="eyebrow">SƏNİN ŞƏXSİ MƏKANIN</div><h1>Hər şey öz yerində.</h1><p class="intro">Yaz, planla, öyrən. Gününü asanlaşdıran alətlərin bir arada.</p>
   <div class="hero"><div class="hero-copy"><div class="hero-kicker">KİÇİK ADDIMLAR. BÖYÜK İRƏLİLƏYİŞ.</div><h2>Bu gün nəyə<br>fokuslanacaqsan?</h2><p>Fikrindəki işləri siyahıya al. Günün qalanını daha rahat planla.</p><a class="hero-link" href="/todo">Tapşırıqlarıma keç ${icon('arrow')}</a></div><div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="art-dot"></div><div class="art-card"><span class="art-line short"></span><span class="art-line"></span><span class="art-line"></span><span class="art-line short"></span><span class="art-check">✓</span></div></div></div>
-  <div class="section-heading"><h2>Sənin alətlərin</h2><span>${tools.length} bölmə</span></div><div class="tools-grid">${tools.map(tool => `<a class="tool-card" href="/${tool.id}" style="--accent:${tool.accent}"><div class="card-top">${toolSymbol(tool)}<span class="card-arrow">${icon('arrow')}</span></div><h3>${tool.name}</h3><p>${tool.description}</p><span class="card-category">${tool.category}</span></a>`).join('')}</div><p class="bottom-note">Bir məkan. Öz ritmin. Daha aydın bir gün.</p>`;
+  <div class="section-heading"><h2>Sənin alətlərin</h2><span>${tools.length} bölmə</span></div><div class="tools-grid">${tools.map(tool => `<a class="tool-card" href="/${tool.id}"><div class="card-top">${toolSymbol(tool)}<span class="card-arrow">${icon('arrow')}</span></div><h3>${tool.name}</h3><p>${tool.description}</p><span class="card-category">${tool.category}</span></a>`).join('')}</div><p class="bottom-note">Bir məkan. Öz ritmin. Daha aydın bir gün.</p>`;
 }
 
 function renderFrame(panel, tool) {
@@ -66,7 +75,7 @@ function renderFrame(panel, tool) {
       if (parsed.origin === location.origin && (parsed.pathname === `/tools/${tool.id}` || parsed.pathname.startsWith(`/tools/${tool.id}/`))) src = parsed.pathname + parsed.search + parsed.hash;
     }
   } catch {}
-  panel.innerHTML = `<div class="frame-heading"><div><h1>${tool.name}</h1><p class="intro">${tool.description}</p></div><a class="plain-link" href="${src}" target="_blank" rel="noopener noreferrer">Ayrıca aç ${icon('external')}</a></div>`;
+  panel.classList.add('embedded-panel');
   const iframe = document.createElement('iframe');
   iframe.className = 'app-frame';
   iframe.title = tool.name;
@@ -199,6 +208,7 @@ function showRoute() {
     else renderFrame(panel, tool);
   }
   panel.hidden = false;
+  main.classList.toggle('has-embedded-app', panel.classList.contains('embedded-panel'));
   panel.refresh?.();
   document.querySelector('#breadcrumb').textContent = tool?.name || 'İcmal';
   document.title = `${tool?.name || 'İş məkanın'} · Perashki`;

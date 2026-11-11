@@ -1,0 +1,2 @@
+# Keep the uploaded calendar's original CRLF lines without whitespace warnings.
+public/calendar.html whitespace=cr-at-eol

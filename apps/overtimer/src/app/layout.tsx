@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./fonts.css";
 import "./globals.css";
+import "../../../../public/workspace-theme.css";
+import { themeScript } from "../../../../shared/theme.mjs";
 
 export const metadata: Metadata = {
   title: "ArtıSaat — Əlavə iş saatları",
@@ -12,11 +14,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="az" suppressHydrationWarning>
+    <html lang="az" data-app="overtimer" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('artisaat:theme');document.documentElement.dataset.theme=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}})();`,
+            __html: themeScript,
           }}
         />
       </head>

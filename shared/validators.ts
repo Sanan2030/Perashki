@@ -14,12 +14,12 @@ const exactKeys = [
   'overtime-noter:v1', 'artisaat:theme', 'level-up.progress.v1', 'level-up.theme',
   'lazyai-theme', 'slothai-personal-lexicon-v1', 'slothai-transform-log-v1', 'slothai-expected-results-v1', 'slothai-reviewed-tests-v1', 'slothai-workspace-v1',
   'visioflow:diagram-clipboard:v1', 'visioflow:sidebar-width',
-  'perashki:todos:v1', 'perashki:stories:v1', 'perashki:calendar:v1', 'perashki:workspace:v1',
+  'perashki:todos:v1', 'perashki:stories:v1', 'perashki:calendar:v1', 'perashki:workspace:v1', 'perashki:theme:v1',
 ];
 export function ownedKey(key: string) { return exactKeys.includes(key) || /^visioflow:v1:[a-zA-Z0-9_-]{1,128}$/.test(key); }
 export function validateRecord(key: string, raw: string) {
   if (!ownedKey(key) || typeof raw !== 'string') throw new Error('Naməlum məlumat açarı.');
-  if (['artisaat:theme', 'level-up.theme', 'lazyai-theme'].includes(key)) {
+  if (['artisaat:theme', 'level-up.theme', 'lazyai-theme', 'perashki:theme:v1'].includes(key)) {
     if (!['light', 'dark'].includes(raw)) throw new Error('Tema uyğun deyil.');
     return;
   }

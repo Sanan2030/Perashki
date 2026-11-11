@@ -34,9 +34,9 @@
     "name": "calendar",
     "source": "uploaded calendar.html",
     "path": "public/calendar.html",
-    "sha256": "7f727db59e3867be35812ee8b4912de029684d346e585354dcd236dc3ce49b5e",
+    "sha256": "ad391b2179a066a9af45aaa9c0cae08b1651bacd6a4914e05b4978ffe15a7710",
     "modified": true,
     "original_sha256": "ddc904cb525ec32be2a885db5b959f96ec58e9d31732acd56faa481145c1c2bb",
-    "changes": "Added browser view-state persistence; original holiday data and presentation retained."
+    "changes": "Added browser view-state persistence and a shared Overtimer light/dark theme; original holiday data and calendar functions retained."
   }
 ]
