@@ -1,0 +1,145 @@
+---
+id: stakeholder-mapping
+locale: en
+title: 'Stakeholder mapping'
+objectives:
+  - 'Identify affected people and turn influence and needs into an engagement plan.'
+  - 'Apply the concept to a realistic case and explain a decision.'
+---
+
+## 1. Learning objectives
+
+After this lesson you can identify people affected by a change, distinguish influence from impact, select an engagement approach and check whose voice is missing.
+
+## 2. Why it matters
+
+A bank wants customers to track card-payment disputes in its app. The sponsor asks for a status screen. Support agents warn that the statuses mean different things in two systems. Customers need to know whether they must act, not just see an internal label. A useful stakeholder map helps discover this conflict before a misleading screen is built.
+
+A stakeholder is a person or group with an interest in, influence over, or exposure to a change. A stakeholder map is a working hypothesis about those relationships. It is not an organization chart or a permanent ranking of people.
+
+## 3. Core theory
+
+Start with the outcome and the boundary of the change. Ask who uses the service, performs work behind it, owns decisions, supplies dependencies, bears risk or is excluded by the proposed approach. Include people who do not have formal authority.
+
+Record four things for each group: its need, how the change affects it, the decisions it can influence and the best way to exchange information. Influence describes an ability to affect a decision. Impact describes how strongly the change affects someone. They are different: a customer with limited formal influence may bear a serious negative consequence.
+
+An influence–interest grid can help select a starting communication approach. It must not be used to dismiss low-influence people. Add an explicit impact and accessibility review. Revisit the map when evidence, scope or ownership changes.
+
+## 4. Worked example: dispute tracking
+
+| Group                        | Need or concern                                     | Engagement decision                                          |
+| ---------------------------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| Customers with open disputes | Know the next action and likely uncertainty         | Interview recent users, including assistive-technology users |
+| Support agents               | Explain status consistently                         | Observe calls and validate draft wording                     |
+| Dispute operations           | Avoid promising an outcome before investigation     | Map status transitions and review exceptions                 |
+| Compliance specialist        | Appropriate disclosures and access controls         | Review risky claims and information exposure                 |
+| App team                     | Reliable integration and error handling             | Run an API/status-mapping workshop                           |
+| Sponsor                      | Reduce avoidable status calls without harming trust | Agree a baseline and inspect outcome evidence                |
+
+Suppose the team first suggests “Resolved” for every closed record. An operations interview reveals that some closed records require the customer to submit new evidence. The analyst records the conflicting meanings and arranges a joint wording review. The solution changes because of evidence, not because one stakeholder outranks another.
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart LR; A[Define the change] --> B[Find affected people]; B --> C[Understand needs and impact]; C --> D[Choose engagement]; D --> E[Validate and learn]; E --> B;'
+  }
+/>
+
+Read the loop from left to right: establish the change, identify people, understand their situation, choose an engagement approach and update the map with what you learn.
+
+## 6. Interactive decision: whose voice is missing?
+
+The team has spoken only with the sponsor and app developers. Choose the next conversation before opening the explanation.
+
+<details>
+<summary>Interview a customer who recently needed dispute support</summary>
+
+This is a strong next step. It reveals what the customer was trying to learn, what they misunderstood and which actions were difficult. Include people with different access needs. This conversation complements rather than replaces operations and compliance input.
+
+</details>
+
+<details>
+<summary>Ask the sponsor to approve the screen immediately</summary>
+
+Approval alone does not resolve the evidence gap. The sponsor can authorize an investment, but may not understand customer interpretation or operational exceptions. First clarify the unresolved needs and risks.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Mistake:** list job titles only. **Improve:** record concrete decisions, needs and evidence sources.
+- **Mistake:** treat low influence as low importance. **Improve:** assess harm, accessibility and dependency separately.
+- **Mistake:** assume one representative speaks for every user. **Improve:** sample different situations and validate patterns.
+- **Mistake:** map once at kickoff. **Improve:** revisit after scope changes, new risks or surprising feedback.
+
+Keep personal information minimal. Record only what the project needs and use the organization’s privacy and access rules.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** A telecom company introduces self-service SIM replacement. List five stakeholder groups. For each, write one need, one possible risk and one engagement activity. Then identify an affected group with little formal authority.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+Customers need quick recovery but risk account takeover: interview recent replacement users. Store agents need consistent escalation rules: observe a shift and review exceptions. Fraud specialists need identity safeguards: run a threat-scenario workshop. Support agents need visibility of replacement status: test the support journey. Platform engineers need dependable identity integrations: examine failure and retry scenarios. Customers who cannot use a smartphone have little formal influence but high potential impact: include an accessible alternative-channel review. The map remains provisional until these groups confirm the analysis.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. A customer group has little decision authority but faces a major loss of access. What should you do?**
+
+A. Exclude it because influence is low. B. Include it and assess impact and engagement needs. C. Replace customer input with sponsor approval.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Impact matters independently of authority. A confuses influence with importance. C substitutes authorization for evidence about affected people.
+
+</details>
+
+**2. What is the best description of a stakeholder map?**
+
+A. A permanent ranking of importance. B. A complete list of executives. C. A revisable model of people, interests and relationships.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** The map changes as you learn. A freezes assumptions. B omits users, operators, partners and other affected groups.
+
+</details>
+
+**3. Two groups use the same status label differently. What is the most useful next action?**
+
+A. Select the senior group’s definition. B. Record the ambiguity and jointly examine real examples. C. Hide the status from all users indefinitely.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Examples expose meaning and consequences. A may preserve a harmful ambiguity. C avoids the decision without understanding the need.
+
+</details>
+
+**4. When should a stakeholder map be revisited?**
+
+A. Only after delivery. B. Whenever evidence, scope or ownership materially changes. C. Never after initial approval.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** The map supports ongoing analysis. A delays learning. C mistakes a model for a fixed truth.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**Purpose:** discover whose needs and decisions shape a change. **Inputs:** problem, outcome, scope and known dependencies. **Record:** group, need, influence, impact, evidence gap, engagement action and owner. **Review:** missing voices, access barriers, conflicting meanings and changed assumptions. **Output:** an actionable engagement plan, not merely a grid. **Success signal:** a decision improves because relevant people and evidence were included.
+
+## 11. Further reading
+
+- [IIBA: What is business analysis?](https://www.iiba.org/professional-development/career-centre/what-is-business-analysis/)
+- [GOV.UK Service Manual: user research](https://www.gov.uk/service-manual/user-research)
+- [W3C: involving users in evaluating web accessibility](https://www.w3.org/WAI/test-evaluate/involving-users/)
+
+This lesson is original educational material. It does not reproduce BABOK text or official examination questions.

@@ -1,0 +1,88 @@
+---
+id: pricing-gtm
+locale: az
+title: 'Qiymətləndirmə və bazara çıxış fərziyyələri'
+objectives:
+  - 'Pricing, packaging və revenue fərziyyəsini ayır.'
+  - 'Contribution və sadələşdirilmiş break-even hesabla.'
+  - 'Adoption və harm ölçüləri ilə launch experiment qur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Pricing, packaging və revenue fərziyyəsini ayır.
+- Contribution və sadələşdirilmiş break-even hesabla.
+- Adoption və harm ölçüləri ilə launch experiment qur.
+
+## Bu mövzu niyə vacibdir
+
+Product çox registration alıb dayanıqlı biznes qurmaya bilər. Pricing/go-to-market customer value, alternative, acquisition, delivery cost və retention-u bağlayır. Launch marketinq işi bitdiyinə görə demand sübutu deyil, fərziyyə testidir.
+
+## Əsas anlayışlar
+
+Pricing nə qədər və hansı şərtlə ödəniş alındığını seçir. Packaging capability, limit və service level-i offer-də birləşdirir. Revenue model zamanla pulun qazanılmasını təsvir edir. Qaçılmaz fee və restrictive term aydın deyilsə reklamda ucuz qiymət pis təcrübə yarada bilər.
+
+Customer vəziyyətini, alternativi və purchasing authority-ni anla. Real qərarverənlə danış, cari spending/trade-off-a bax. Hypothetical willingness to pay araşdırma sübutudur, zəmanətli purchase deyil. Experiment offer-i test edə bilər, amma availability/şərti dürüst göstərməlidir.
+
+Unit economics customer-month/completed transaction kimi vahiddə revenue və variable cost-u bağlayır. Contribution per unit = price - daxil edilmiş variable cost. Hansı cost-un daxilini göstər; support, payment processing, infrastruktur və refund nəticəni dəyişir. Contribution net profit deyil.
+
+Sadə single-product modeldə contribution müsbətdirsə və fərziyyə qalırsa break-even volume fixed cost / contribution per unit-dir. Real biznesdə capacity step, plan, discount, tax və retention dəyişə bilər. Gözəl formul ilə uncertain input-u gizlətmə.
+
+Go-to-market hypothesis target segment, value proposition, channel, purchasing process, onboarding/support ehtiyacını seçir. Qualified reach, trial, paid conversion, retained usage və guardrail müəyyən et. Campaign ucuz, amma uyğun customer-ə çevrilməyən lead verə bilər. Channel cost/retained value-nu birlikdə yoxla, incomplete follow-up cohort müqayisəsindən qaç.
+
+## İşlənmiş nümunə
+
+Orijinal subscription nümunəsində hər customer-month price 50, variable cost 20 vahiddir. Contribution `50 - 20 = 30` olur. Aylıq fixed cost 60000-dirsə sadə break-even `60000 / 30 = 2000` active paying customer-dir.
+
+Variable cost 35 olarsa contribution 15, sadə break-even ikiqat 4000 olur. Çox signup zəif contribution/retention-u düzəltmir. Komanda channel-i böyütməmiş şəffaf şərtlərlə kiçik offer sınağı edir, paid activation, tam retention window və support yükünü ölçür.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[Customer situation and alternatives] --> V[Offer and value hypothesis]\n V --> P[Price packaging and costs]\n P --> G[Channel and onboarding test]\n G --> E[Adoption retention and contribution]\n E --> D[Adjust scale or stop]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Ucuz acquisition channel daha çox signup verir. Budget avtomatik artmalıdırmı?</summary>
+
+Xeyr. Signup-ların uyğun customer olduğunu, activate/pay etdiyini və economics üçün yetərli qaldığını yoxla. Tam cohort və included cost müqayisə et. Support yükü, refund və early churn yüksəkdirsə ucuz signup baha başa gələ bilər.
+
+</details>
+
+## Tipik səhvlər
+
+- Bildirilən marağı purchase behavior saymaq.
+- Contribution-u net profit adlandırmaq.
+- Discount, refund və delivery cost-u nəzərə almamaq.
+- Natamam yeni cohort ilə üstün retention iddia etmək.
+
+## Praktik tapşırıq
+
+Customer-month price 40, variable cost 25, fixed cost 45000-dir. Contribution/break-even hesabla. Forecast-ı poza bilən iki assumption və iki launch metric göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Contribution 15, sadə break-even 3000 active paying customer-dir. Variable cost, plan mix, capacity və retention hesabı dəyişə bilər. Tam window-da defined paid activation/retained usage ölç, support/refund zərərini izlə. Acquisition cost-u ayrıca saxla; customer value ilə acquisition spending müqayisəsindən əvvəl time horizon seç.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Vəziyyət → dürüst offer → price/cost fərziyyəsi → channel experiment → tam adoption/retention sübutu. Contribution və signup net profit/retained demand deyil.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [The Professional Product Owner, McGreal and Jocham (2018)](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): təqdim edilmiş kitabın business model, marketplace, value hissələri.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): value measure və experiment; CC BY-SA 4.0, Scrum.org.
+- Pricing hesabı, cost və launch dizaynı orijinal əlavə nümunədir; rəsmi PSPO sualı və real bazar qiyməti iddiası deyil.

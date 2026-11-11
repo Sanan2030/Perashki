@@ -1,0 +1,105 @@
+---
+id: oauth-pkce-oidc
+locale: az
+title: 'OAuth authorization code, PKCE və OpenID Connect'
+objectives:
+  - 'Authorization code flow-u brauzer, client və authorization server arasında izlə.'
+  - 'Transaction-a məxsus verifier-dən S256 PKCE challenge yarat.'
+  - 'State, nonce, ID Token və access token-in məqsədini və validation-unu fərqləndir.'
+---
+
+## Öyrənmə məqsədləri
+
+- Authorization code flow-u brauzer, client və authorization server arasında izlə.
+- Transaction-a məxsus verifier-dən S256 PKCE challenge yarat.
+- State, nonce, ID Token və access token-in məqsədini və validation-unu fərqləndir.
+
+## Bu mövzu niyə vacibdir
+
+“Identity provider ilə daxil ol” bir neçə brauzer redirect-i və server çağırışından keçir. Yanlış browser transaction-a aid code qəbul edən tətbiq istifadəçini nəzərdə tutulmayan session-a daxil edə bilər. ID Token-i əlaqəsiz API-yə göndərən tətbiq identity sübutunu authorization ilə qarışdırır. Qayıdan bütün dəyərləri “token” adlandıran diaqram bu fərqli trust qərarlarını gizlədir.
+
+## Əsas anlayışlar
+
+OAuth delegated authorization verir. OpenID Connect client üçün ID Token daxil olmaqla identity layer əlavə edir. Authorization code client-in token endpoint-də dəyişdirdiyi qısamüddətli, birdəfəlik aralıq credential-dır. Code access token deyil və API credential-ı kimi qəbul edilməməlidir.
+
+Authorization code flow-da client transaction başladır, random PKCE verifier yaradır və authorization request-də onun S256 challenge-ını göndərir. Authorization server challenge-ı code-a bağlayır. Sonrakı token request verifier-i təqdim edir. Yalnız code-u oğurlayan şəxs həmin verifier olmadan onu dəyişə bilməməlidir. RFC 9700 public client üçün PKCE tələb edir, confidential client üçün tövsiyə edir. Bu dərs hər ikisində PKCE seçir. Brauzer client bundle-a yazılmış client secret-i məxfi saxlaya bilməz.
+
+| Dəyər                     | Nəyi bağlayır                                                             | Nəyi əvəz etmir                      |
+| ------------------------- | ------------------------------------------------------------------------- | ------------------------------------ |
+| code_verifier / challenge | Code redemption-u başladan client transaction-a bağlayır                  | Resource server token validation-unu |
+| state                     | Adi state əsaslı flow-da callback-i client/browser transaction-a bağlayır | Object-level API authorization-u     |
+| nonce                     | İstifadə ediləndə ID Token-i ilkin OpenID Connect transaction-a bağlayır  | Access token audience yoxlamasını    |
+| ID Token                  | OpenID Connect client üçün authentication sübutu verir                    | API access token-ini                 |
+
+State və nonce transaction-a məxsus olmalı və axını başladan transaction ilə yoxlanmalıdır. RFC 9700 düzgün qurulmuş PKCE və ya OpenID Connect mexanizmlərinin CSRF qorunması verdiyi halları təsvir edir; bunu identity library-nin transaction validation-unu keçmək icazəsi sayma. Dəqiq qeydiyyata alınmış redirect matching, sabit etibarlı issuer və provider-in dəstəklədiyi flow istifadə et. Allowlist və ya bərabər təhlükəsiz policy olmadan query string-dəki ixtiyari returnTo URL-inə yönəltmə.
+
+Callback-də client transaction-u yoxlayır, code-u TLS üzərindən dəyişir və qayıdan ID Token-i öz OpenID Connect profilinə uyğun yoxlayır: etibarlı issuer, client audience, validity və göndərilibsə gözlənilən nonce. API-lər öz access token və icazələrini ayrıca yoxlayır. Authentication uğuruna görə istifadəçinin ödəniş icazəsi olduğunu çıxarma.
+
+## İşlənmiş nümunə
+
+Brauzer server-side client vasitəsilə login başladır. Server verifier və transaction məlumatlarını qorunan session store-da saxlayır. Authorization request-də response_type=code, qeydiyyatlı redirect URI, scope=openid və PKCE challenge var. Dəqiq scope toplusu tətbiqdən asılıdır.
+
+```ts
+import { createHash, randomBytes } from 'node:crypto';
+
+const verifier = randomBytes(32).toString('base64url');
+const challenge = createHash('sha256').update(verifier, 'ascii').digest('base64url');
+```
+
+Bu üsulla kodlanan 32 random byte 43 simvolluq verifier yaradır. S256 challenge padding olmadan SHA-256 digest-in base64url formasıdır. Dərsin icra edilə bilən PKCE laboratoriyası RFC 7636 Appendix B vektorunu yoxlayır. Bu iki dəyərin yaradılması tam OAuth client-in yalnız bir hissəsidir; bütöv protokol və transaction lifecycle üçün davamlı dəstəklənən client library istifadə et.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'sequenceDiagram\n participant B as Browser\n participant C as Client\n participant A as Authorization server\n B->>C: Start login transaction\n C->>A: Redirect with challenge\n A->>B: Authenticate and return code\n B->>C: Callback code and state\n C->>A: Code and verifier over TLS\n A->>C: Tokens\n C->>C: Validate identity and bind session'
+  }
+/>
+
+Brauzer code-u redirect-lər arasında daşıyır. Client saxladığı verifier ilə onu başqa endpoint-də dəyişir. Resource API request-ləri yalnız tələb olunan token validation-dan sonra edilir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Access token-də aud=orders-api, ID Token-də isə aud=web-client var. Bu, mütləq xətadırmı?</summary>
+
+Xeyr. Nəzərdə tutulan alıcılar fərqlidir. Client ID Token-i web-client üçün yoxlayır. Orders API access token-i orders-api üçün yoxlayır. Hər ikisini eyni provider imzalasa da, rollarını dəyişmək xəta olardı.
+
+</details>
+
+## Tipik səhvlər
+
+- Bütün session-larda eyni verifier istifadə etmək transaction binding-i pozur.
+- Verifier-i hücumçunun idarə etdiyi callback parametrində saxlamaq onun saxlanmış secret rolunu ləğv edir.
+- Identity provider cavabını yoxlamadan ID Token payload-unu decode etmək təsdiqlənməmiş claim-lərə güvənir.
+- PKCE-ni oğurlanmış bütün access token-lərə qarşı qoruma saymaq code interception-u token replay ilə qarışdırır.
+- Uğurlu login-i verilmiş istənilən URL-ə yönəltmək open redirect yaradır.
+
+## Praktik tapşırıq
+
+Public mobile client-in client_id-si expense-mobile-dır və receipts-api çağırır. Authorization code, ID Token, access token və verilibsə refresh token-in alıcısını yaz. S256 input-larını seç; uyğun gəlməyən state və ya saxlanmış transaction-dan fərqli nonce ilə ID Token gələn callback-i necə idarə edəcəyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Code həmin transaction üçün yaradılmış verifier ilə etibarlı authorization server-in token endpoint-ində dəyişdirilir. ID Token-i öz audience-i kimi expense-mobile yoxlayır. Access token receipts-api üçündür; həmin API audience, issuer və authorization-u özü yoxlayır. Refresh token verilirsə, receipts-api-yə deyil, authorization server-ə aiddir.
+
+Seçilmiş library-nin tələbinə uyğun təzə random verifier/state/nonce yarat və ilkin flow-a təhlükəsiz bağlayıb saxla. Authorization request-də yalnız challenge, exchange zamanı verifier göndər. Transaction uyğunsuzluğunu rədd et, authenticated session yaratma; izahsız callback-i qəbul etmək əvəzinə yeni qanuni flow başlat. Diaqnostika zamanı code, verifier və token dəyərlərini log-a yazma.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Code dəyişdirilir; access token API çağırışına authorization verir; ID Token client-ə authentication sübutudur; refresh token girişi yeniləyir. PKCE code redemption-u qoruyur. State/nonce və client library başlanğıc transaction-u qoruyur. Hər alıcı özü üçün nəzərdə tutulan credential-ı yoxlayır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html): §§2.1.1, 2.1.2, 4.1 və 4.7.
+- [RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html): §4 və Appendix B.
+- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html): §3.1 və §3.1.3.7, ID Token Validation.
+
+Client quruluşu orijinal nümunədir. Tam OAuth server implementasiyası deyil və bütün client-lərin secret saxlaya bildiyini nəzərdə tutmur.

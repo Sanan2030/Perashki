@@ -1,0 +1,111 @@
+---
+id: devops-ci-cd-artifacts
+locale: az
+title: 'CI/CD pipeline, dəyişməz artifact və deployment etibarı'
+objectives:
+  - 'Integration yoxlamasını, delivery readiness-i və deployment qərarını fərqləndir.'
+  - 'Eyni dəyişməz artifact-ı test-dən promotion-a qədər izlə.'
+  - 'Third-party action, PR kodu və deployment credential-ları arasındakı təhlükəli trust keçidlərini tap.'
+---
+
+## Öyrənmə məqsədləri
+
+- Integration yoxlamasını, delivery readiness-i və deployment qərarını fərqləndir.
+- Eyni dəyişməz artifact-ı test-dən promotion-a qədər izlə.
+- Third-party action, PR kodu və deployment credential-ları arasındakı təhlükəli trust keçidlərini tap.
+
+## Bu mövzu niyə vacibdir
+
+Pull request testlərdən keçir, amma production source-u daha yeni dependency ilə yenidən build edib fərqli binary yerləşdirir. Başqa pipeline-da səlahiyyətli job deployment secret almamışdan əvvəl etibarsız PR kodunu checkout edir. Hər iki xəta yaşıl işarənin yoxluğu ilə deyil, trust və artifact identity-si ilə bağlıdır.
+
+## Əsas anlayışlar
+
+Continuous Integration avtomatik yoxlamalarla tez-tez integration feedback-i verir. Continuous Delivery seçilmiş proses daxilində release edilə bilən artifact-ı hazır saxlayır; Continuous Deployment isə şərtlər ödənəndə hədəf mühitə yerləşdirməni avtomatlaşdırır. Təkcə adlar nəyin test olunduğunu və production-u kimin dəyişə biləcəyini göstərmir.
+
+Faydalı pipeline source revision-u, həll edilmiş dependency-ləri, build mühitini, test nəticələrini və artifact digest-ini müəyyən edir. Mümkündürsə release artifact-ını bir dəfə build et, məhz onu uyğun üsulla test et və dəyişməz kimliyini irəlilət. Sonrakı rebuild ekvivalentliyi sübut tələb edən yeni artifact yaradır. Checksum byte-ları tanıdır; builder və ya dependency-nin etibarlılığını sübut etmir.
+
+Etibarsız validation job-larını səlahiyyətli release job-larından ayır. Etibarsız pull request mətni birbaşa interpolasiya edilərsə shell input-a çevrilə bilər. Eyni səlahiyyətli kontekstdə işlədilən etibarsız kod əlçatan credential-ları oxuya bilər. security-check kimi job adı onun real icazələrini dəyişmir.
+
+GitHub minimum GITHUB_TOKEN icazələrini və dəyişməz istinad üçün third-party action-ların tam commit SHA ilə sabitlənməsini tövsiyə edir. Seçilmiş istinadı yoxla və məqsədli yeniləmə prosesi saxla. Version tag dəyişə bilər. Yoxlanmamış mənbədən təsadüfi SHA köçürüb bunun action-u etibarlı etdiyini düşünmə.
+
+Dəstəklənən cloud integration-larda qısamüddətli federated credential-lar uzunömürlü secret asılılığını azalda bilər. Amma trust policy gözlənilən repository, workflow, branch/environment və audience-i bağlamalıdır. Təkcə OIDC-ni aktiv etmək permission modeli deyil. Release mühitlərini qoru və səlahiyyətli job-un məhz release üçün təsdiqlənmiş artifact-ı yerləşdirdiyini yoxla.
+
+## İşlənmiş nümunə
+
+Təklif olunan pipeline üç trust mərhələsindən ibarətdir: dəyişiklikləri səlahiyyətsiz validation ilə yoxlamaq, source/digest-i qeydə alan etibarlı build və məhz həmin artifact-ı məhdud səlahiyyətlə yerləşdirmək. Bu validation job hissəsi yoxlanmış, tam SHA ilə sabitlənmiş checkout action-un və Node.js 24 setup-ının artıq icra olunduğunu fərz edir. Repository-nin real yoxlama əmrlərini istifadə edir:
+
+```yaml
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate content and run tests
+        run: |
+          npm run validate:content
+          npm test
+      - name: Lint and build
+        run: |
+          npm run lint
+          npm run build
+```
+
+Bu hissə müstəqil workflow deyil: trigger, checkout və Node setup daxil deyil, heç nə deploy etmir. Release pipeline build-dən sonra yalnız source yoxlamaları deyil, artifact-a aid testlər də tələb edir. Dərs layihəyə placeholder workflow quraşdırmır. Deployment job-a əlavə səlahiyyət verməzdən əvvəl release authority-ni, artifact-ların saxlanmasını və rollback istinadlarını müzakirə et.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Proposed source"] --> B["Unprivileged checks"]\n B --> C["Trusted build and artifact identity"]\n C --> D["Artifact tests and release decision"]\n D --> E["Constrained deployment of same digest"]\n E --> F["Production evidence"]'
+  }
+/>
+
+İcazələr və artifact identity-si hər keçiddə qorunmalıdır. Bir artifact üzərində uğurlu test sonradan yenidən build edilmiş artifact-ı sübut etmir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Release job əl ilə təsdiqlənir, sonra sabitlənməmiş dependency-lərlə source-u yenidən build edir. Approval nəyin işləyəcəyini dəqiq müəyyən edibmi?</summary>
+
+Mütləq deyil. Rebuild baxılmış sübutdan sonra byte-ları dəyişə bilər. Qeydə alınmış artifact identity-sini təsdiqləyib irəlilət və ya yeni build-i release policy-yə uyğun ayrıca yoxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Bütün job-lara write icazəsi vermək etibarsız kodun təsirini böyüdür.
+- Dəyişə bilən action tag ilə tam supply-chain immutability iddiası qorunmanı şişirdir.
+- PR başlıqlarını birbaşa shell source-a ötürmək command injection yarada bilər.
+- Dəyişdirilmiş secret dəyərini çap etmək sadə log masking-dən yayına bilər.
+- Rollback hədəfi kimi yalnız branch adı saxlamaq dəqiq artifact identity-sini itirir.
+
+## Praktik tapşırıq
+
+Səlahiyyətli deployment job fork PR-dan test işlədir, cloud token-i açır, latest-i yenidən build edib deploy edir. Trust boundary-ləri yenidən layihələndir və production-un test edilmiş artifact-ı aldığını sübut etmək üçün lazım olan məlumatları sadala.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Etibarsız validation-u deployment credential-ları olmadan və minimum icazə ilə işlət. Build/release-i yalnız səlahiyyət verilmiş etibarlı kontekstdə apar. Action-ları yoxlayıb sabitlə, federated identity policy-ni məhdudlaşdır və environment dəyişikliklərini qoru. Source, dependency resolution, test sübutu, artifact digest-i və deployment identity-sini qeydə al.
+
+Artifact-ı səssizcə yenidən build etmək əvəzinə seçilmiş nüsxəni irəlilət. Əvvəlki məlum sağlam artifact-ı saxla, data uyğunluğunu da nəzərə alan rollback və ya forward recovery prosesi qur. Workflow run-un təsdiqini daxilindəki hər mümkün code path üçün icazə sayma.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+CI feedback ≠ release authority. Mümkündürsə bir dəfə build et, eyni artifact-ı test edib irəlilət. Etibarsız PR kodu release credential-larını almamalıdır. Action istinadlarını sabitlə və yoxla. OIDC məhdud trust policy tələb edir. Rollback üçün məlum artifact və uyğun state lazımdır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [GitHub Actions secure use](https://docs.github.com/en/actions/reference/security/secure-use): least privilege, etibarsız input/kod, action pinning və credential idarəsi.
+- [Docker build practices](https://docs.docker.com/build/building/best-practices/): content identity və image yeniləmələri.
+
+Pipeline nümunələri orijinal tədris sxemləridir; production dəyişiklikləri və ya uğurlu deployment sübutu deyil.

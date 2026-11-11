@@ -1,0 +1,74 @@
+{
+  "id": "ccba",
+  "name": "Certification of Capability in Business Analysis (CCBA)",
+  "format": "selected-response",
+  "questionCount": 130,
+  "durationMinutes": 180,
+  "passPercent": null,
+  "domains": [
+    {
+      "id": "planning-monitoring",
+      "title": {
+        "en": "Business Analysis Planning and Monitoring",
+        "az": "Təhlilin planlaşdırılması və izlənməsi"
+      },
+      "weight": 12
+    },
+    {
+      "id": "elicitation-collaboration",
+      "title": {
+        "en": "Elicitation and collaboration",
+        "az": "Tələblərin toplanması və əməkdaşlıq"
+      },
+      "weight": 20
+    },
+    {
+      "id": "requirements-life-cycle",
+      "title": {
+        "en": "Requirements life-cycle management",
+        "az": "Tələblərin həyat dövrünün idarəsi"
+      },
+      "weight": 18
+    },
+    {
+      "id": "strategy-analysis",
+      "title": {
+        "en": "Strategy analysis",
+        "az": "Strategiya təhlili"
+      },
+      "weight": 12
+    },
+    {
+      "id": "requirements-design",
+      "title": {
+        "en": "Requirements Analysis and Design Definition",
+        "az": "Tələblərin təhlili və dizayn"
+      },
+      "weight": 32
+    },
+    {
+      "id": "solution-evaluation",
+      "title": {
+        "en": "Solution evaluation",
+        "az": "Həllin qiymətləndirilməsi"
+      },
+      "weight": 6
+    }
+  ],
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-10-21",
+  "sources": [
+    {
+      "title": "Certification of Capability in Business Analysis (CCBA) — official certification page",
+      "url": "https://www.iiba.org/business-analysis-certifications/ccba/"
+    },
+    {
+      "title": "BABOK Guide — official IIBA resource",
+      "url": "https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/"
+    }
+  ],
+  "notes": {
+    "en": "Format, 130-question count, 180-minute duration and six BABOK knowledge-area weights verified against the official IIBA certification page on 2026-10-21. The consulted page does not give a numeric passing threshold: passPercent stays null (TODO: VERIFY passing policy). These are original practice questions. A full mock remains gated by the number of unique eligible questions and the configured domain allocation.",
+    "az": "Format, 130 sual, 180 dəqiqə və altı BABOK bilik sahəsinin çəkisi 2026-10-21 tarixində IIBA-nın rəsmi sertifikasiya səhifəsindən yoxlanılıb. Mənbədə rəqəmlə keçid həddi göstərilmir: passPercent null qalır (TODO: VERIFY keçid qaydası). Suallar orijinal məşq üçündür. 30 suallıq baza tam həcmli sınaq imtahanı üçün kifayət etmir."
+  }
+}

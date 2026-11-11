@@ -1,0 +1,148 @@
+---
+id: prioritization
+locale: en
+title: 'MoSCoW, Kano and RICE'
+objectives:
+  - 'Select a prioritization technique and make its assumptions visible.'
+  - 'Prioritize five checkout improvements and test how uncertainty changes the ranking.'
+---
+
+## 1. Learning objectives
+
+Choose between MoSCoW, Kano and RICE according to the decision. Explain a ranking with its assumptions, distinguish a constraint from a preference and check whether uncertainty changes the recommended order.
+
+## 2. Why it matters
+
+An e-commerce team has five plausible improvements and capacity for only two. Sales wants coupons, support wants clearer delivery promises, engineering wants payment reliability and compliance identifies a mandatory disclosure. Calling everything “high priority” creates a hidden competition for attention. A useful prioritization conversation makes choices and their consequences visible.
+
+A score does not remove judgment or accountability. It is a structured way to compare evidence and expose disagreements.
+
+## 3. Core theory
+
+**MoSCoW** helps discuss what must, should or could be included within an explicit boundary, and what will not be included this time. Agree the time horizon and what makes an item indispensable. A real legal or safety constraint may be a must; “my stakeholder wants it” is not enough. Keep a workable solution possible if optional work is removed.
+
+**Kano** explores how different capabilities relate to customer satisfaction. Some are expected basics, some produce increasing satisfaction as performance improves, and some are unexpected benefits. These are hypotheses about a customer segment, not labels the team can assign confidently without research. Expectations can change over time.
+
+**RICE** combines reach, impact, confidence and effort. A common expression is reach × impact × confidence ÷ effort. Use a shared reach period, consistent impact scale, confidence as a fraction and a comparable effort unit. The result is a heuristic, not a probability of success or a financial return.
+
+Use a constraint check before scoring. Then inspect data quality, dependencies, sequencing and risk. If plausible estimates change the order, the most valuable next step may be gathering evidence rather than implementing the top-scoring feature.
+
+## 4. Worked example: improve checkout
+
+These numbers are invented for learning. Reach means affected customers in one month, effort means team-weeks, and impact uses the same internal scale for all three options.
+
+| Option                 | Reach | Impact | Confidence | Effort | RICE score |
+| ---------------------- | ----- | ------ | ---------- | ------ | ---------- |
+| Clear delivery promise | 1,000 | 2      | 0.7        | 2      | 700        |
+| Coupon redesign        | 2,000 | 1      | 0.4        | 2      | 400        |
+| Address confirmation   | 800   | 2      | 0.8        | 2      | 640        |
+
+The delivery promise initially ranks first. But if its reach estimate is 600 rather than 1,000, its score becomes 420 and address confirmation ranks first. The team investigates delivery-promise reach before committing. A mandatory disclosure is handled as a constraint with compliance expertise rather than competing on this score.
+
+Kano-style interviews might reveal that reliable payment is an expected basic, while a gift-message option delights only one segment. MoSCoW can then clarify the scope of a safe release. The methods answer related but different questions; do not multiply their outputs into an unexplained “super-score.”
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart LR; A[Clarify outcome and horizon] --> B[Check constraints and dependencies]; B --> C[Choose comparison method]; C --> D[Expose estimates and uncertainty]; D --> E[Decide and communicate]; E --> F[Inspect results]; F --> A;'
+  }
+/>
+
+Read the flow as a decision process: define the outcome, respect constraints, choose a method, inspect assumptions, decide and learn from results. The score alone is only one input.
+
+## 6. Interactive decision
+
+A sponsor says that a coupon redesign must win because it reaches the most people. Choose a response before opening the explanation.
+
+<details>
+<summary>Rank it first immediately because reach is largest</summary>
+
+Reach is only one consideration. The benefit may be small, confidence may be weak or effort may be high. This action hides the other assumptions and confuses audience size with value.
+
+</details>
+
+<details>
+<summary>Clarify the outcome, compare impact and uncertainty, and inspect constraints</summary>
+
+This makes the reasoning visible. If the coupon proposal still provides the best supported contribution, it can be ordered first. If uncertainty dominates, a small experiment may be a better immediate investment.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Everything is a must:** agree the minimum workable outcome and the consequence of omission within the current boundary.
+- **Mixed units:** use the same reach horizon and effort unit throughout a comparison.
+- **False precision:** record estimate ranges and show how sensitive the order is to them.
+- **Unresearched Kano labels:** ask customers about their experience and validate patterns by segment.
+- **Ranking disconnected from a goal:** explain what business or customer outcome the options should improve.
+- **A permanent order:** revisit when new evidence, constraints or goals change.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** A bank can improve transfer confirmation, add decorative themes or investigate an intermittent duplicate-payment problem. Select a comparison approach and explain what must be checked before numerical ranking.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+First involve risk and engineering specialists to understand the duplicate-payment problem, customer harm and any obligations. Do not let a low-confidence benefit score bury a serious safety or reliability concern. Clarify the target outcome and horizon. For discretionary options, compare reach, expected impact, confidence and effort using consistent units. Treat the confirmation benefit as a hypothesis to test with customers. A MoSCoW discussion can define a safe release boundary; Kano-style research can explore whether themes provide meaningful benefit to the target segment. Record the decision owner, assumptions and evidence that would trigger a new decision.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. A RICE comparison mixes monthly reach for one option and yearly reach for another. What is the main issue?**
+
+A. The options use inconsistent units. B. Higher reach always proves higher value. C. All scoring should be abandoned permanently.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** The comparison needs a common horizon. B ignores impact, confidence, effort and context. C overreacts; correcting units and inspecting assumptions can restore a useful comparison.
+
+</details>
+
+**2. Which statement about Kano categories is most useful?**
+
+A. They are permanent facts chosen by the product team. B. They are hypotheses about satisfaction that should be explored with customers. C. Every unexpected feature is mandatory.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Evidence and segments matter, and expectations can change. A substitutes opinion for research. C confuses possible delight with an indispensable constraint.
+
+</details>
+
+**3. A small change in an uncertain estimate reverses the top two options. What should you consider?**
+
+A. Hide the range to preserve confidence. B. Treat the first score as a promise. C. Gather targeted evidence or run a small experiment before committing heavily.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** Sensitivity reveals a valuable learning opportunity. A conceals important uncertainty. B gives a heuristic more authority than the evidence supports.
+
+</details>
+
+**4. What is necessary before using MoSCoW well?**
+
+A. An agreed time or scope boundary and a meaning for “must.” B. A rule that every executive request is a must. C. A belief that priorities never change.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** Categories only guide choices when their context is clear. B makes the method unable to distinguish options. C prevents adaptation to evidence and constraints.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**MoSCoW:** scope and indispensability within an agreed boundary. **Kano:** customer satisfaction hypotheses by capability and segment. **RICE:** reach × impact × confidence ÷ effort, with consistent units and honest estimates. **Before ranking:** identify outcome, constraints, harm and dependencies. **After ranking:** inspect sensitivity, communicate trade-offs and name the decision owner. **Remember:** the method supports judgment; it does not replace it.
+
+## 11. Further reading
+
+- [Intercom: RICE prioritization framework](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/)
+- [Agile Business Consortium: MoSCoW prioritisation](https://www.agilebusiness.org/dsdm-project-framework/moscow-prioririsation.html)
+- [IIBA: business analysis resources](https://www.iiba.org/business-analysis-blogs/)
+
+The scenario and questions are original. Scores are illustrative and are not exam facts or universal benchmarks.

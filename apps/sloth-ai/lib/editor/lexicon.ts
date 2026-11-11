@@ -1,0 +1,770 @@
+import { isClosedFunctionForm } from './function-word-forms';
+import { restoreAttestedDiacritics, restoreAttestedSuffix, restoreRepeatedKey } from './wordlm/lexical-evidence';
+import type { MorphologyEngine } from './contracts/morphology';
+import boundedLexicalArtifact from './neural/bounded-model.json';
+import { SourceInflectionEngine, usesLexicalYBuffer } from './source-inflection';
+import { reviewedSpelling } from './reviewed-spelling';
+import { restoreReviewedVerb } from './reviewed-verb-forms';
+import { regularForms } from './morphology';
+import { narrativeWords } from './narrative';
+import { extendedNarrativeWords, extendedAliases } from './extended-narrative';
+import { expositoryWords, expositoryAliases } from './expository';
+import { businessWords, businessAliases } from './business';
+import { technicalWords, technicalAliases, technicalSpelling, isForeignTechnicalInflection } from './technical';
+import { dictionaryCandidates, foldLetters as fold, chooseSpelling } from './dictionary';
+import type { SpellingContext } from './contracts/spelling';
+import { chooseIndexedTypo } from './spelling-candidates';
+import { productiveMorphology } from './productive-morphology';
+import type { MorphologicalAnalysis } from './contracts/morphology';
+import documentArtifact from './neural/document-model.json';
+import logArtifact from './neural/log-model.json';
+const documentSurfaces = new Set([...Object.keys(documentArtifact.lexicon.words), ...Object.keys(logArtifact.lexicon.words)]);
+// Curated forms, not a language model. Unknown/ambiguous words stay unchanged.
+// Extend this list with reviewed Azerbaijani words; never blindly replace letters.
+const words = `
+parom heş sekmə sərt
+mən sən mənim sənin bizim sizin özü özüm özün özünüz özümüz
+mənə sənə bizə sizə məni səni bunu bunu belə elə nə necə niyə üçün
+yaxşı yaxşıyam yaxşıdır yaxşısan pisəm pisdir necəsən necəsiniz
+düşünmək düşünürəm düşünürsən düşünür düşünürük düşünürlər
+gəlmək gəlirəm gəlirsən gəlir gəlirik gəlirlər gələcəm gələcəyəm gələcəyik
+getmək gedirəm gedirsən gedir gedirik gedəcəyəm gedəcəyik
+istəyirəm istəyirsən istəyir istəyirik istəyirsiniz istəyirlər
+bilərəm bilərsən bilərik bilərsiniz edə bilər edək edəcək edəcəyəm edəcəyik
+edirəm edirsən edir edirik edirsiniz edirlər etmişəm etmişik
+olacağam olacaq olacağıq olmalıdır olmalı olmuş olmuşdur olmuşam
+yazıram yazırsan yazır yazırıq yazın yazdım yazdığın yazdığınız
+görmək görürəm görürsən görürük görünür görsənir görünəcək
+baxır baxıram baxırıq baxın baxdı baxdıq baxdılar
+eşitmək eşidirəm eşidir eşitdim danışmaq danışıram danışır danışın
+kömək zəhmət zəhmətiniz olmasa təşəkkür təşəkkürlər xahiş
+əlavə əlaqə əlaqədar uyğun müvafiq aidiyyəti üzrə haqqında barədə
+əvvəl əvvəlcə əvvəlki sonra artıq hazır hazırdır hazırıq hazırda
+səhər axşam gün günlər bugün bu gün bugünə sabah dünən həftə
+görüş görüşə görüşdə görüşün görüşümüz görüşümüzü görüşümüzdə
+iş işlər işləri işlərə işlərin işimiz işimizi işində işləyir işləyirik
+mətn mətni mətnə mətndə mətnin mətnlər mətnləri mətninizi
+səhv səhvlər səhvləri düzgün düzdür düzəliş düzəlişlər düzəlişləri
+düzəlt düzəltmək düzəldək düzəldin düzəldim düzəldilmiş düzəldilir
+qrammatika cümlə cümlələr cümlələri abzas durğu işarə işarələri
+layihə layihəni layihəyə layihədə layihənin layihələr layihələri layihəmiz
+məlumat məlumatı məlumatın məlumatlar məlumatları məlumatlarını məlumatlarıma
+sənəd sənədi sənədin sənədlər sənədləri sənədlərin sənədlərdə
+göndər göndərin göndərmək göndərirəm göndərdim göndərdik göndərildi göndərilmiş
+göndərəcəyəm göndərəcəyik göndərilməsini göndərilməsi
+məsələ məsələni məsələyə məsələlər məsələləri məsələlərin məsələdir
+birinci ikinci üçüncü dördüncü beşinci altıncı yeddinci səkkizinci
+əvvəla ikincisi üçüncüsü həm həmçinin ancaq çünki lakin bəlkə əgər
+bəli xeyr əlbəttə hə həmişə heç heçnə hər hərəsi hamısı hamısını
+çox azdır böyük kiçik gözəl çətin asan sürətli sürətlə sürət
+qəbul qərar qərarı qərarlar qərarları nəticə nəticəni nəticələr nəticələri
+sorğu sorğunu sorğuya sorğunun sorğular sorğuları sualı suallar sualları
+müraciət müraciəti müraciətlər müraciətin müraciətiniz müraciətinizə
+şirkət şirkəti şirkətin şirkətdə şirkətə şirkətlər şirkətlərdə
+əmək əməkdaş əməkdaşlar əməkdaşları əməkdaşlarımız əməkdaşlarımızın
+rəhbər rəhbəri rəhbərlik rəhbərliyə rəhbərliyin müdir müdiri
+müştəri müştərilər müştərinin müştərilərə istifadə istifadəçi istifadəçilər
+istifadəçinin istifadəçilərin istifadəçiyə istifadəçidən istifadəçilərə
+proqram təminatı proqramın proqramı sistemin sistemdə sistemə
+funksiya funksiyası funksiyanı funksionallıq funksionallığı funksionallığın
+səlahiyyət səlahiyyəti səlahiyyətli səlahiyyətləri səhifə səhifəni səhifədə
+xəta xətanı xətalar xətaları problemin problemi işləmə işləməsi
+işləyəcək işləmir işləmədi düzgünləşdirmək yoxlama yoxlayın yoxlayırıq
+planlaşdırmaq planlaşdıraq planlaşdırırıq dəqiq dəqiqləşdirmək dəqiqləşdirək
+bölüşdürmək bölüşdürək bölüşdürün başlamaq başlayırıq başlayaq başlaya bilərik
+vaxtı vaxtın vaxtınız vaxtınızın vaxtınızda tarixdə tarixi tarixə tarixini
+ödəniş ödənişi ödənişlər ödənişləri məbləğ məbləği manat qiymət qiyməti
+öyrənmək öyrənirəm öyrənirik məktəb məktəbdə məktəbə müəllim müəllimə
+tələbə tələbələr tələbənin təhsil təcrübə təcrübəsi təcrübəli bilikləri
+Azərbaycan azərbaycan Azərbaycanı Azərbaycana Azərbaycanda Azərbaycanın
+Bakı Bakıya Bakıda Bakının Gəncə Gəncədə Türkiyə Türkiyədə İstanbul
+Sənan Xədicə Əli Nərmin Aysel Günel Rəşad
+hörmət hörmətlə hörmətli salamlar günaydın sağ sağol sağolun mövzu müraciət
+sağlam sağlamlıq sağlamlığım özümü özünü özünüzü hiss edir hiss edirəm
+dərkənar hazırlanması hazırlanmasını hazırlanıb aktivləşdirildikdə
+göndərilməsi göndərilməsini qiymətləndirdi dəyərləndirdi qarşılaşdığınız
+vəziyyət vəziyyəti vəziyyətin prosesdə axınında dəyişiklik dəyişikliyi
+göstər göstərir göstərmək göstərilir açmaq açılır açın bağlayın
+gəldim getdim etdim bitdi gözləyirəm gələndə gedəndə məndədir deyirdi
+harada haraya haradan niyə nədir kimdir kimsən nə vaxt üçünsə
+işlədim işləyirəm işləyirsən işləyirsiniz işləyirlər işlədik
+qayıdıram qayıtdım görüşərik görüşənədək danışarıq danışdıq
+istədim istədik istədiyiniz istəyirdim istəyirdik
+heçnə hərşey birşey zəhmətinizə diqqətinizə təşəkkürümü
+hələ göndərilmədi sabahkı vaxtını dəqiqləşdirin hazırlayın hazırla
+gündür işlədiyini yalnız soruşdum gətirirəm getdin görüşdük
+manatdır Gəncəyə Gəncənin Bakını Bakıdan Türkiyəyə Türkiyənin
+görüşdülər oynayırdı nənəm əlyazmalar həyətində üç işıqlar oxumağı icraçıya çatışmır
+sevirlər başa cavablandırılır tarixçəsində kəsildikdə ölçüsü böyükdür
+yerə dərinliyində canlılar yaşayır şagirdlər təbiətşünaslar növü
+ekspertlər tərəfdaşlıq heyəti şöbə görünürdü görüşdüm düşdük
+sinfə önündə bağdakı həyətdə açıqlanacaq kəs qış tamaşa hamının
+xoşuna fotoşəkillərə saldıq sahilində musiqiçilər qoşdu interfeysdəki
+qurğunun ötürüldü yüklənərkən işə qaranquşlar qayıdırlar səmasında
+göründü tədqiqatçılar köçünü içindən gölün bitkilər hüceyrələr
+dərmanlar bəzi edənlərə məktubla bölüşdürdü mərkəzində açıqladı
+müəllimlə mənbəyi müşahidələrdir əsdi çiçəklər əkdi sözünə
+ziyarətçilərə mərkəzindədir bölməsinə yaranırmı əlavələrini nömrəsinin növünü növünün növlərdir növlərinə növündə növün hüquqi VÖEN üstündəki aşkarlananda yaradılmır yönləndiriləndə görünmür düşmür növbəsindəki yazdığı müddətlə məzuniyyətdəki loglarını meyarlarını məncə deyəsən əhsən diqqət əkdik
+davranış davranışıdır səlahiyyətiniz səlahiyyətinizin
+sahə mərhələsindədir icraçı
+`.trim().split(/\s+/);
+
+const candidates = new Map<string, Set<string>>();
+for (const word of [...words, ...regularForms(), ...narrativeWords, ...extendedNarrativeWords, ...expositoryWords, ...businessWords, ...technicalWords]) {
+  const key = fold(word);
+  const bucket = candidates.get(key) ?? new Set<string>();
+  bucket.add(word.toLocaleLowerCase('az-AZ'));
+  candidates.set(key, bucket);
+}
+// Known spelling errors that are not simple ASCII transliterations.
+const aliases: Record<string, string> = {
+  ...reviewedSpelling,
+  ...extendedAliases,
+  ...expositoryAliases,
+  ...businessAliases,
+  ...technicalAliases,
+  qelirem: 'gəlirəm', qelir: 'gəlir', qelirsen: 'gəlirsən',
+  duzewldim: 'düzəldim', duzeldim: 'düzəldim', komek: 'kömək',
+  hemise: 'həmişə', zehmet: 'zəhmət', sehv: 'səhv',
+  tesekkur: 'təşəkkür', tesekur: 'təşəkkür', teshekkur: 'təşəkkür',
+  xais: 'xahiş', xahis: 'xahiş', xayis: 'xahiş',
+  duzlet: 'düzəlt', duzeltmek: 'düzəltmək', duzeld: 'düzəlt',
+  azerbaycan: 'Azərbaycan', azerbeycan: 'Azərbaycan',
+  mellumat: 'məlumat', melmuat: 'məlumat', cumleni: 'cümləni',
+  ubuuntu: 'Ubuntu', ubuntu: 'Ubuntu', fastpiai: 'FastAPI', fastapi: 'FastAPI',
+  pydantic: 'Pydantic', linuxda: 'Linuxda', linux: 'Linux',
+  pdf: 'PDF', cv: 'CV', json: 'JSON', llm: 'LLM', srs: 'SRS',
+  nike: 'Nike', jordan: 'Jordan',
+  hamsi: 'hamısı', hamsini: 'hamısını', tevil: 'təhvil',
+  dushdu: 'düşdü', ashagi: 'aşağı', shey: 'şey', yaxshidir: 'yaxşıdır',
+  shahmat: 'şahmat', gunortan: 'günorta', yataqa: 'yatağa',
+  hemen: 'həmin', dedim: 'dedim', eledi: 'elədi', pointleri: 'pointləri',
+  xyir: 'xeyir', hardasan: 'haradasan', harda: 'harada', birazdan: 'birazdan',
+  gelecem: 'gələcəyəm', edecem: 'edəcəyəm', raziyam: 'razıyam',
+  vaxtim: 'vaxtım', movzunu: 'mövzunu', mesgulam: 'məşğulam',
+  orda: 'orada', illerdir: 'illərdir', demisdim: 'demişdim',
+  goturub: 'götürüb', donub: 'dönüb', serin: 'sərin',
+  sananam: 'Sananam', acilmir: 'açılmır', dayanacagina: 'dayanacağına',
+  tanisima: 'tanışıma', goruntusu: 'görüntüsü', xetasi: 'xətası',
+  testdir: 'testdir', teyin: 'təyin', narmin: 'Nərmin', emin: 'Emin',
+  muraciyet: 'müraciət',
+  mukavile: 'müqavilə',
+  olunmush: 'olunmuş',
+  huquqi: 'hüquqi',
+  voen: 'VÖEN',
+  mence: 'məncə',
+  deyesen: 'deyəsən',
+  ehsen: 'əhsən',
+  diqqet: 'diqqət',
+  destek: 'dəstək',
+  asgarlananda: 'aşkarlananda',
+  ugurludur: 'uğurludur',
+  derkenara: 'dərkənara',
+  yazdigi: 'yazdığı',
+  yekunu: 'yekunu',
+  qanuni: 'qanuni',
+  loglarini: 'loglarını',
+  neceyisen: 'necəsən',
+};
+const ambiguous = new Set(['et', 'el', 'un', 'uc', 'su', 'yag', 'gul', 'ali', 'sira', 'suret']);
+const properNames = new Map(['Azərbaycan', 'Bakı', 'Gəncə', 'Türkiyə', 'İstanbul',
+  'Azərbaycanı', 'Azərbaycana', 'Azərbaycanda', 'Azərbaycanın',
+  'Bakıya', 'Bakıda', 'Bakının', 'Bakını', 'Bakıdan',
+  'Gəncəyə', 'Gəncədə', 'Gəncənin', 'Türkiyəyə', 'Türkiyədə', 'Türkiyənin',
+  'Sənan', 'Xədicə', 'Nərmin', 'Aysel', 'Günel', 'Rəşad'].map(name => [fold(name), name]));
+
+const aliasSurfaces = new Set(Object.values(aliases).map(word => word.toLocaleLowerCase('az-AZ')));
+const establishedCache = new Map<string, boolean>();
+/** Recognition invariant shared by lexical and statistical spelling stages.
+ * The existing local curated lexicon is a dictionary too; technical names are
+ * explicitly admitted rather than guessed as native Azerbaijani words. */
+export function isEstablishedLegacySurface(word: string, services?: SpellingContext): boolean {
+  const lower = word.toLocaleLowerCase('az-AZ');
+  if (documentSurfaces.has(lower)) return true;
+  if (dictionaryCandidates(lower)?.has(lower) === true || candidates.get(fold(lower))?.has(lower) === true
+    || aliasSurfaces.has(lower) || (services?.morphology ?? productiveMorphology).isValidWordForm(lower)
+    || (services?.morphology ?? productiveMorphology).analyzeWord(lower).some(row => row.source === 'lexicon')
+    || technicalSpelling(word) === word || properNames.get(fold(lower))?.toLocaleLowerCase('az-AZ') === lower) return true;
+  if (services?.lemmaDictionary.findByFoldedForm(lower).entries.some(row => (row.surface ?? row.lemma).toLocaleLowerCase('az-AZ') === lower)) return true;
+  if (establishedCache.has(lower)) return establishedCache.get(lower)!;
+  const valid = analyzeEstablishedInflection(lower).length > 0;
+  if (establishedCache.size >= 4096) establishedCache.clear();
+  establishedCache.set(lower, valid);
+  return valid;
+}
+
+
+export function isEstablishedSurface(word: string, services?: SpellingContext): boolean {
+  return isClosedFunctionForm(word) || isEstablishedLegacySurface(word, services) || hasReviewedRuntimeNounSurface(word) || sourceInflections.analyze(word).length > 0;
+}
+
+const sourceInflections = new SourceInflectionEngine(surface => candidates.get(fold(surface))?.has(surface) === true || dictionaryCandidates(surface)?.has(surface) === true,
+  [{lemma:'aş',pos:'verb'},{lemma:'aşıl',pos:'verb'},{lemma:'oxuyucu',pos:'noun'},{lemma:'məsul',pos:'noun'}]);
+export const sourceSpellingCandidates = (word:string) => sourceInflections.candidates(word);
+export const hasExactLexicalSurface = (word:string) => {
+  const value=word.toLocaleLowerCase('az-AZ');
+  return dictionaryCandidates(value)?.has(value)===true||candidates.get(fold(value))?.has(value)===true
+    ||aliasSurfaces.has(value)||documentSurfaces.has(value)||runtimeNounCandidates(value).some(row=>row.surface===value)||sourceInflections.analyze(value).length>0;
+};
+// Reviewed regular nouns extend runtime morphology without entering the frozen
+// training feature vocabulary or treating every unknown token as a noun.
+const runtimeNounRoots = new Set(['parom', 'heş', 'sekmə', 'maket', 'palet', 'altyazı', 'pilləkən', 'çatdırılma', 'saxlanılma', 'bloklanma', 'indeksləşmə', 'qurğu', 'dəyişmə', 'hesablaşma', 'çəki', 'rampa']);
+const runtimeNouns = new SourceInflectionEngine(() => false, [...runtimeNounRoots].map(lemma => ({ lemma, pos: 'noun' as const })));
+const runtimeNounPrefixes = [...runtimeNounRoots].map(fold);
+const runtimeNounCandidates = (raw: string) => {
+  const key = fold(raw);
+  return runtimeNounPrefixes.some(prefix => key.startsWith(prefix))
+    ? runtimeNouns.candidates(raw).filter(row => runtimeNounRoots.has(row.lemma)) : [];
+};
+export const hasReviewedRuntimeNounSurface=(word:string)=>runtimeNounCandidates(word).some(row=>row.surface===word.toLocaleLowerCase('az-AZ'));
+export const analyzeSourceInflection = (word: string) => sourceInflections.analyze(word);
+
+function uniqueDictionaryCandidate(word: string, services?: SpellingContext): string | undefined {
+  const values = services
+    ? new Set(services.lemmaDictionary.findByFoldedForm(word).entries.map(entry => entry.surface ?? entry.lemma))
+    : dictionaryCandidates(word);
+  return chooseSpelling(word, values);
+}
+
+function lastVowel(word: string): string | undefined {
+  return word.toLocaleLowerCase('az-AZ').match(/[aıoueəiöü]/gu)?.at(-1);
+}
+
+function harmonyI(stem: string): string {
+  const vowel = lastVowel(stem);
+  if (vowel === 'a' || vowel === 'ı') return 'ı';
+  if (vowel === 'o' || vowel === 'u') return 'u';
+  if (vowel === 'ö' || vowel === 'ü') return 'ü';
+  return 'i';
+}
+
+function harmonyA(stem: string): string {
+  return /[eəiöü]/u.test(lastVowel(stem) ?? '') ? 'ə' : 'a';
+}
+
+type ProductiveSuffixRule = {
+  raw: string;
+  apply: (stem: string) => string | undefined;
+};
+
+const reviewedProductiveRoots = new Map<string, string>(Object.entries({
+  parom: 'parom', hes: 'heş', sekme: 'sekmə',
+  dovr: 'dövr', maket: 'maket', palet: 'palet', pilleken: 'pilləkən',
+  reqemsallasdir: 'rəqəmsallaşdır', catdirilma: 'çatdırılma', isiq: 'işıq',
+  gonder: 'göndər',
+  gozle: 'gözlə',
+  gor: 'gör',
+  gorus: 'görüş',
+  bolus: 'bölüş',
+  deyis: 'dəyiş',
+  yenilen: 'yenilən',
+  yerles: 'yerləş',
+  cix: 'çıx',
+  cat: 'çat',
+  calis: 'çalış',
+  baglan: 'bağlan',
+  qaytar: 'qaytar',
+  saxlan: 'saxlan',
+  tamamlan: 'tamamlan',
+  bloklan: 'bloklan',
+  silin: 'silin',
+  yoxlan: 'yoxlan',
+  baxil: 'baxıl',
+  unut: 'unut',
+  apar: 'apar',
+  qalx: 'qalx',
+  acil: 'açıl',
+  ac: 'aç',
+  cay: 'çay',
+  gel: 'gəl',
+  get: 'get',
+  danis: 'danış',
+  qayit: 'qayıt',
+  yukle: 'yüklə',
+  yenile: 'yenilə',
+  qaldir: 'qaldır',
+  arasdir: 'araşdır',
+  razilasdir: 'razılaşdır',
+  genislendir: 'genişləndir',
+  saxla: 'saxla',
+  tesdiqlen: 'təsdiqlən',
+  tesdiqle: 'təsdiqlə',
+  dey: 'dey',
+  qiymetlendir: 'qiymətləndir',
+  teyin: 'təyin',
+  verme: 'vermə',
+  deyisdir: 'dəyişdir',
+  et: 'et',
+  ed: 'ed',
+  sobe: 'şöbə',
+  server: 'server',
+  unvan: 'ünvan',
+  sehife: 'səhifə',
+  emr: 'əmr',
+  qal: 'qal',
+  kec: 'keç',
+  gotur: 'götür',
+  don: 'dön',
+  teles: 'tələs',
+  addimla: 'addımla',
+  qaral: 'qaral',
+  tanis: 'tanış',
+  bil: 'bil',
+  ver: 'ver',
+  tamamla: 'tamamla',
+  razilas: 'razılaş',
+  movzu: 'mövzu',
+  goruntu: 'görüntü',
+  dayan: 'dayan',
+  yorul: 'yorul',
+  ses: 'səs',
+  format: 'format',
+  kart: 'kart',
+  elave: 'əlavə',
+  nomre: 'nömrə',
+  nov: 'növ',
+  ust: 'üst',
+  askarlan: 'aşkarlan',
+  yonlendir: 'yönləndir',
+  mezuniyyet: 'məzuniyyət',
+  meyar: 'meyar',
+  yarat: 'yarat',
+  derkenar: 'dərkənar',
+  gorun: 'görün',
+  dus: 'düş',
+}).map(([raw, canonical]) => [fold(raw), canonical]));
+
+function recognizedStem(rawStem: string, services?: SpellingContext): string | undefined {
+  return reviewedProductiveRoots.get(fold(rawStem)) ?? uniqueDictionaryCandidate(rawStem, services);
+}
+
+const productiveSuffixRules: readonly ProductiveSuffixRule[] = [
+  { raw: 'deki', apply: stem => stem + 'd' + harmonyA(stem) + 'ki' },
+  { raw: 'daki', apply: stem => stem + 'd' + harmonyA(stem) + (harmonyA(stem) === 'ə' ? 'ki' : 'kı') },
+  { raw: 'indaki', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) + (harmonyA(stem) === 'ə' ? 'ki' : 'kı') },
+  { raw: 'undaki', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) + (harmonyA(stem) === 'ə' ? 'ki' : 'kı') },
+  { raw: 'indeki', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) + (harmonyA(stem) === 'ə' ? 'ki' : 'kı') },
+  { raw: 'undeki', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) + (harmonyA(stem) === 'ə' ? 'ki' : 'kı') },
+  { raw: 'lerini', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lərini' : 'larını') },
+  { raw: 'larini', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lərini' : 'larını') },
+  { raw: 'lerine', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lərinə' : 'larına') },
+  { raw: 'larina', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lərinə' : 'larına') },
+  { raw: 'sinin', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 's' + harmonyI(stem) + 'n' + harmonyI(stem) + 'n' : undefined },
+  { raw: 'unun', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) + 'n' },
+  { raw: 'inin', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) + 'n' },
+  { raw: 'unde', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) },
+  { raw: 'inde', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) },
+  { raw: 'unu', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) },
+  { raw: 'inu', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) },
+  { raw: 'un', apply: stem => stem === 'növ' ? 'növün' : undefined },
+  { raw: 'anda', apply: stem => stem + harmonyA(stem) + 'nda' },
+  { raw: 'ende', apply: stem => stem + harmonyA(stem) + 'ndə' },
+  { raw: 'ilende', apply: stem => stem + harmonyI(stem) + 'l' + harmonyA(stem) + 'ndə' },
+  { raw: 'ilanda', apply: stem => stem + harmonyI(stem) + 'l' + harmonyA(stem) + 'nda' },
+  { raw: 'ilsa', apply: stem => stem + harmonyI(stem) + 'ls' + harmonyA(stem) },
+  { raw: 'ilse', apply: stem => stem + harmonyI(stem) + 'ls' + harmonyA(stem) },
+  { raw: 'lerdir', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lərdir' : 'lardır') },
+  { raw: 'lardir', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lərdir' : 'lardır') },
+  { raw: 'ler', apply: stem => stem + (harmonyA(stem) === 'ə' ? 'lər' : 'lar') },
+  { raw: 'enden', apply: stem => stem === 'ed' ? 'edəndən' : undefined },
+  { raw: 'yirdilar', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'y' + harmonyI(stem) + 'rd' + harmonyI(stem) + (harmonyA(stem) === 'ə' ? 'lər' : 'lar') : undefined },
+  { raw: 'dilar', apply: stem => stem + 'd' + harmonyI(stem) + (harmonyA(stem) === 'ə' ? 'lər' : 'lar') },
+  { raw: 'diler', apply: stem => stem + 'd' + harmonyI(stem) + (harmonyA(stem) === 'ə' ? 'lər' : 'lar') },
+  { raw: 'lerinizden', apply: stem => stem + 'lərinizdən' },
+  { raw: 'larinizdan', apply: stem => stem + 'larınızdan' },
+  { raw: 'lerinizde', apply: stem => stem + 'lərinizdə' },
+  { raw: 'larinizda', apply: stem => stem + 'larınızda' },
+  { raw: 'lerinizle', apply: stem => stem + 'lərinizlə' },
+  { raw: 'larinizla', apply: stem => stem + 'larınızla' },
+  { raw: 'lerimizin', apply: stem => stem + 'lərimizin' },
+  { raw: 'larimizin', apply: stem => stem + 'larımızın' },
+  { raw: 'lerinizin', apply: stem => stem + 'lərinizin' },
+  { raw: 'larinizin', apply: stem => stem + 'larınızın' },
+  { raw: 'lerinize', apply: stem => stem + 'lərinizə' },
+  { raw: 'lariniza', apply: stem => stem + 'larınıza' },
+  { raw: 'lerinizi', apply: stem => stem + 'lərinizi' },
+  { raw: 'larinizi', apply: stem => stem + 'larınızı' },
+  { raw: 'lerimizi', apply: stem => stem + 'lərimizi' },
+  { raw: 'larimizi', apply: stem => stem + 'larımızı' },
+  { raw: 'lerimiz', apply: stem => stem + 'lərimiz' },
+  { raw: 'larimiz', apply: stem => stem + 'larımız' },
+  { raw: 'leriniz', apply: stem => stem + 'ləriniz' },
+  { raw: 'lariniz', apply: stem => stem + 'larınız' },
+  { raw: 'lerden', apply: stem => stem + 'lərdən' },
+  { raw: 'lardan', apply: stem => stem + 'lardan' },
+  { raw: 'lerin', apply: stem => stem + 'lərin' },
+  { raw: 'larin', apply: stem => stem + 'ların' },
+  { raw: 'leri', apply: stem => stem + 'ləri' },
+  { raw: 'lari', apply: stem => stem + 'ları' },
+
+  { raw: 'ilmelidir', apply: stem => stem + harmonyI(stem) + 'l' + (harmonyA(stem) === 'ə' ? 'məlidir' : 'malıdır') },
+  { raw: 'ilacaq', apply: stem => stem + harmonyI(stem) + 'l' + (harmonyA(stem) === 'ə' ? 'əcək' : 'acaq') },
+  { raw: 'ilecek', apply: stem => stem + harmonyI(stem) + 'l' + (harmonyA(stem) === 'ə' ? 'əcək' : 'acaq') },
+  { raw: 'ilmeyib', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 'y' + harmonyI(stem) + 'b' },
+  { raw: 'ilmayib', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 'y' + harmonyI(stem) + 'b' },
+  { raw: 'ilan', apply: stem => stem + harmonyI(stem) + 'l' + harmonyA(stem) + 'n' },
+  { raw: 'ilen', apply: stem => stem + harmonyI(stem) + 'l' + harmonyA(stem) + 'n' },
+  { raw: 'ilmasi', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 's' + harmonyI(stem) },
+  { raw: 'ilmesi', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 's' + harmonyI(stem) },
+  { raw: 'ilmelidir', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 'lidir' },
+  { raw: 'ilmalidir', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 'lıdır' },
+  { raw: 'ilmesin', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 's' + harmonyI(stem) + 'n' },
+  { raw: 'ilmasin', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyA(stem) + 's' + harmonyI(stem) + 'n' },
+  { raw: 'ilmir', apply: stem => stem + harmonyI(stem) + 'lm' + harmonyI(stem) + 'r' },
+  { raw: 'ilir', apply: stem => stem + harmonyI(stem) + 'l' + harmonyI(stem) + 'r' },
+  { raw: 'ilib', apply: stem => stem + harmonyI(stem) + 'l' + harmonyI(stem) + 'b' },
+  { raw: 'ildi', apply: stem => stem + harmonyI(stem) + 'ld' + harmonyI(stem) },
+  { raw: 'ilsin', apply: stem => stem + harmonyI(stem) + 'ls' + harmonyI(stem) + 'n' },
+
+  { raw: 'mishem', apply: stem => stem + 'm' + harmonyI(stem) + 'ş' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'misham', apply: stem => stem + 'm' + harmonyI(stem) + 'ş' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'misam', apply: stem => stem + 'm' + harmonyI(stem) + 'ş' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'musam', apply: stem => stem + 'm' + harmonyI(stem) + 'ş' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'musdum', apply: stem => stem + 'm' + harmonyI(stem) + 'şd' + harmonyI(stem) + 'm' },
+  { raw: 'misdim', apply: stem => stem + 'm' + harmonyI(stem) + 'şd' + harmonyI(stem) + 'm' },
+  { raw: 'mush', apply: stem => stem + 'm' + harmonyI(stem) + 'ş' },
+  { raw: 'mish', apply: stem => stem + 'm' + harmonyI(stem) + 'ş' },
+  { raw: 'meyib', apply: stem => stem + 'm' + harmonyA(stem) + 'y' + harmonyI(stem) + 'b' },
+  { raw: 'mayib', apply: stem => stem + 'm' + harmonyA(stem) + 'y' + harmonyI(stem) + 'b' },
+  { raw: 'medik', apply: stem => stem + 'm' + harmonyA(stem) + 'd' + harmonyI(stem) + 'k' },
+  { raw: 'madik', apply: stem => stem + 'm' + harmonyA(stem) + 'd' + harmonyI(stem) + 'k' },
+  { raw: 'mir', apply: stem => stem + 'm' + harmonyI(stem) + 'r' },
+  { raw: 'mur', apply: stem => stem + 'm' + harmonyI(stem) + 'r' },
+  { raw: 'mirem', apply: stem => stem + 'm' + harmonyI(stem) + 'r' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'mirik', apply: stem => stem + 'm' + harmonyI(stem) + 'r' + harmonyI(stem) + 'k' },
+  { raw: 'muruk', apply: stem => stem + 'm' + harmonyI(stem) + 'r' + harmonyI(stem) + 'k' },
+  { raw: 'murduk', apply: stem => stem + 'm' + harmonyI(stem) + 'rd' + harmonyI(stem) + 'k' },
+  { raw: 'mirdik', apply: stem => stem + 'm' + harmonyI(stem) + 'rd' + harmonyI(stem) + 'k' },
+  { raw: 'mamalidir', apply: stem => stem + 'm' + harmonyA(stem) + 'm' + harmonyA(stem) + 'lıdır' },
+  { raw: 'memelidir', apply: stem => stem + 'm' + harmonyA(stem) + 'm' + harmonyA(stem) + 'lidir' },
+  { raw: 'meden', apply: stem => stem + 'm' + harmonyA(stem) + 'd' + harmonyA(stem) + 'n' },
+  { raw: 'madan', apply: stem => stem + 'm' + harmonyA(stem) + 'd' + harmonyA(stem) + 'n' },
+  { raw: 'melidir', apply: stem => stem + 'm' + harmonyA(stem) + 'lidir' },
+  { raw: 'malidir', apply: stem => stem + 'm' + harmonyA(stem) + 'lıdır' },
+  { raw: 'me', apply: stem => stem + 'm' + harmonyA(stem) },
+  { raw: 'ma', apply: stem => stem + 'm' + harmonyA(stem) },
+
+  { raw: 'eceyiniz', apply: stem => harmonyA(stem) === 'ə' ? stem + 'əcəyiniz' : undefined },
+  { raw: 'acaginiz', apply: stem => harmonyA(stem) === 'a' ? stem + 'acağınız' : undefined },
+  { raw: 'eceyik', apply: stem => harmonyA(stem) === 'ə' ? stem + 'əcəyik' : undefined },
+  { raw: 'acagiq', apply: stem => harmonyA(stem) === 'a' ? stem + 'acağıq' : undefined },
+  { raw: 'ecem', apply: stem => harmonyA(stem) === 'ə' ? stem + 'əcəyəm' : undefined },
+  { raw: 'acam', apply: stem => harmonyA(stem) === 'a' ? stem + 'acağam' : undefined },
+  { raw: 'esiniz', apply: stem => stem + harmonyA(stem) + 's' + harmonyI(stem) + 'n' + harmonyI(stem) + 'z' },
+  { raw: 'asiniz', apply: stem => stem + harmonyA(stem) + 's' + harmonyI(stem) + 'n' + harmonyI(stem) + 'z' },
+  { raw: 'ek', apply: stem => stem + harmonyA(stem) + 'k' },
+  { raw: 'ecek', apply: stem => harmonyA(stem) === 'ə' ? stem + 'əcək' : undefined },
+  { raw: 'acaq', apply: stem => harmonyA(stem) === 'a' ? stem + 'acaq' : undefined },
+
+  { raw: 'deyem', apply: stem => stem + 'd' + harmonyA(stem) + 'y' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'dedir', apply: stem => stem + 'd' + harmonyA(stem) + 'dir' },
+  { raw: 'dadir', apply: stem => stem + 'd' + harmonyA(stem) + 'dır' },
+  { raw: 'den', apply: stem => stem + 'dən' },
+  { raw: 'dan', apply: stem => stem + 'dan' },
+  { raw: 'de', apply: stem => stem + 'd' + harmonyA(stem) },
+  { raw: 'da', apply: stem => stem + 'da' },
+
+  { raw: 'imizi', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'm' + harmonyI(stem) + 'z' + harmonyI(stem) },
+  { raw: 'inizi', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) + 'z' + harmonyI(stem) },
+  { raw: 'imize', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'm' + harmonyI(stem) + 'z' + harmonyA(stem) },
+  { raw: 'inize', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) + 'z' + harmonyA(stem) },
+  { raw: 'imiz', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'm' + harmonyI(stem) + 'z' : stem + harmonyI(stem) + 'm' + harmonyI(stem) + 'z' },
+  { raw: 'iniz', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'n' + harmonyI(stem) + 'z' : stem + harmonyI(stem) + 'n' + harmonyI(stem) + 'z' },
+  { raw: 'nuza', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'n' + harmonyI(stem) + 'z' + harmonyA(stem) : undefined },
+  { raw: 'niza', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'n' + harmonyI(stem) + 'z' + harmonyA(stem) : undefined },
+  { raw: 'sini', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 's' + harmonyI(stem) + 'n' + harmonyI(stem) : undefined },
+  { raw: 'ni', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'n' + harmonyI(stem) : undefined },
+  { raw: 'nu', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'n' + harmonyI(stem) : undefined },
+  { raw: 'ine', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyA(stem) },
+  { raw: 'ima', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'm' + harmonyA(stem) },
+  { raw: 'ini', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyI(stem) },
+  { raw: 'inda', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'nd' + harmonyA(stem) },
+  { raw: 'ina', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' + harmonyA(stem) },
+  { raw: 'imi', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'm' + harmonyI(stem) },
+  { raw: 'nin', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'n' + harmonyI(stem) + 'n' : undefined },
+  { raw: 'in', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) + 'n' },
+  { raw: 'i', apply: stem => /[aıoueəiöü]$/u.test(stem) ? undefined : stem + harmonyI(stem) },
+  { raw: 'si', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 's' + harmonyI(stem) : undefined },
+  { raw: 'ye', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'y' + harmonyA(stem) : undefined },
+  { raw: 'e', apply: stem => stem + harmonyA(stem) },
+
+  { raw: 'yirdim', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'y' + harmonyI(stem) + 'rd' + harmonyI(stem) + 'm' : undefined },
+  { raw: 'irdim', apply: stem => stem + harmonyI(stem) + 'rd' + harmonyI(stem) + 'm' },
+  { raw: 'irdi', apply: stem => stem + harmonyI(stem) + 'rd' + harmonyI(stem) },
+  { raw: 'yib', apply: stem => /[aıoueəiöü]$/u.test(stem) ? stem + 'y' + harmonyI(stem) + 'b' : undefined },
+  { raw: 'ub', apply: stem => stem + harmonyI(stem) + 'b' },
+  { raw: 'mek', apply: stem => stem + 'm' + harmonyA(stem) + 'k' },
+  { raw: 'mak', apply: stem => stem + 'm' + harmonyA(stem) + 'k' },
+  { raw: 'maya', apply: stem => stem + 'm' + harmonyA(stem) + 'y' + harmonyA(stem) },
+  { raw: 'irem', apply: stem => stem + harmonyI(stem) + 'r' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'iram', apply: stem => stem + harmonyI(stem) + 'r' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'uram', apply: stem => stem + harmonyI(stem) + 'r' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'urem', apply: stem => stem + harmonyI(stem) + 'r' + (harmonyA(stem) === 'ə' ? 'əm' : 'am') },
+  { raw: 'irsen', apply: stem => stem + harmonyI(stem) + 'rs' + (harmonyA(stem) === 'ə' ? 'ən' : 'an') },
+  { raw: 'ir', apply: stem => stem + harmonyI(stem) + 'r' },
+  { raw: 'dir', apply: stem => stem + 'd' + harmonyI(stem) + 'r' },
+  { raw: 'dim', apply: stem => stem + 'd' + harmonyI(stem) + 'm' },
+  { raw: 'din', apply: stem => stem + 'd' + harmonyI(stem) + 'n' },
+  { raw: 'dıq', apply: stem => stem + 'd' + harmonyI(stem) + 'q' },
+  { raw: 'diq', apply: stem => stem + 'd' + harmonyI(stem) + 'q' },
+  { raw: 'di', apply: stem => stem + 'd' + harmonyI(stem) },
+  { raw: 'ib', apply: stem => stem + harmonyI(stem) + 'b' },
+];
+
+function restoreProductiveSuffix(word: string, services?: SpellingContext): string | undefined {
+  const lower = word.toLocaleLowerCase('az-AZ');
+  if (!/^[a-zəçğıöşü]+$/u.test(lower) || lower.length < 5) return undefined;
+
+  for (const rule of productiveSuffixRules) {
+    if (!lower.endsWith(rule.raw) || lower.length <= rule.raw.length + 1) continue;
+    const rawStem = lower.slice(0, -rule.raw.length);
+    let stem = recognizedStem(rawStem, services);
+
+    // Azerbaijani k -> y before a vowel is productive in words such as
+    // "kömək" -> "köməyin". Only use it when the underlying k-stem is a
+    // uniquely recognized dictionary form.
+    if (!stem && rawStem.endsWith('y')) {
+      const underlying = recognizedStem(rawStem.slice(0, -1) + 'k', services);
+      if (underlying?.endsWith('k')) stem = underlying.slice(0, -1) + 'y';
+    }
+    if (!stem && rawStem.endsWith('g')) {
+      const underlying = recognizedStem(rawStem.slice(0, -1) + 'q', services);
+      if (underlying?.endsWith('q')) stem = underlying.slice(0, -1) + 'ğ';
+    }
+    if (!stem && rawStem.endsWith('d')) {
+      const underlying = recognizedStem(rawStem.slice(0, -1) + 't', services);
+      if (underlying?.endsWith('t')) stem = underlying.slice(0, -1) + 'd';
+    }
+    if (!stem) continue;
+
+    const result = rule.apply(stem);
+    if (result) return result;
+  }
+  return undefined;
+}
+
+const inflectionCache = new Map<string, readonly MorphologicalAnalysis[]>();
+/** Parse the established suffix inventory instead of calling an inflected
+ * surface its own lemma. Short unknown stems cannot license guessed suffixes
+ * (ab + ide was the source of the unattested abıdə regression).
+ * POS is left unknown when the dictionary supplies no lexical POS evidence. */
+export function analyzeEstablishedInflection(word: string): readonly MorphologicalAnalysis[] {
+  const surface = word.toLocaleLowerCase('az-AZ');
+  if (inflectionCache.has(surface)) return inflectionCache.get(surface)!;
+  const records: MorphologicalAnalysis[] = [];
+  if (/^[a-zəçğıöşü]{4,40}$/u.test(surface)) for (const rule of productiveSuffixRules) {
+    const key = fold(surface);
+    const ending = rule.raw.replace(/sh/gu, 's').replace(/ch/gu, 'c').replace(/gh/gu, 'g');
+    if (!key.endsWith(ending)) continue;
+    const rawStem = surface.slice(0, -ending.length);
+    if (rawStem.length < 3 && !reviewedProductiveRoots.has(fold(rawStem))
+      && !productiveMorphology.analyzeWord(rawStem).some(row => row.pos === 'noun' || row.pos === 'verb')) continue;
+    let stem = recognizedStem(rawStem) ?? productiveMorphology.findByFoldedForm(rawStem);
+    let underlying: string | undefined;
+    if (!stem && /[ygd]$/u.test(fold(rawStem))) {
+      const originalEnd = { y: 'k', g: 'q', d: 't' }[fold(rawStem).at(-1)! as 'y' | 'g' | 'd'];
+      underlying = recognizedStem(rawStem.slice(0, -1) + originalEnd)
+        ?? productiveMorphology.findByFoldedForm(rawStem.slice(0, -1) + originalEnd);
+      if (underlying) stem = underlying.slice(0, -1) + ({ k: 'y', q: 'ğ', t: 'd' }[originalEnd as 'k' | 'q' | 't']);
+    }
+    if (!stem || rule.apply(stem) !== surface) continue;
+    const base = productiveMorphology.analyzeWord(underlying ?? stem);
+    if (base.length) for (const row of base) records.push({ surface, lemma: row.lemma, pos: row.pos,
+      features: { derivation: ['established-suffix:' + surface.slice(stem.length)] }, source: 'rule' });
+    else records.push({ surface, lemma: underlying ?? stem, features: { derivation: ['established-suffix:' + surface.slice(stem.length)] }, source: 'rule' });
+  }
+  if (inflectionCache.size >= 4096) inflectionCache.clear();
+  inflectionCache.set(surface, records);
+  return records;
+}
+
+/** A reviewed root, rather than any coincidental dictionary stem, licenses
+ * this extra protection against structural spelling proposals. */
+export function hasReviewedInflection(word: string): boolean {
+  return analyzeEstablishedInflection(word).some(row => reviewedProductiveRoots.get(fold(row.lemma)) === row.lemma);
+}
+
+function restoreDigraphTransliteration(word: string, services?: SpellingContext): string | undefined {
+  if (!/(?:sh|ch|gh)/i.test(word)) return undefined;
+  const variant = word
+    .replace(/sh/gi, match => match[0] === 'S' ? 'Ş' : 'ş')
+    .replace(/ch/gi, match => match[0] === 'C' ? 'Ç' : 'ç')
+    .replace(/gh/gi, match => match[0] === 'G' ? 'Ğ' : 'ğ');
+  const candidate = services?.morphology.findByFoldedForm?.(variant) ?? chooseSpelling(variant, candidates.get(fold(variant)))
+    ?? uniqueDictionaryCandidate(variant, services) ?? restoreProductiveSuffix(variant, services);
+  return candidate && isEstablishedLegacySurface(candidate, services) ? candidate : undefined;
+}
+
+function restoreEstablishedWord(word: string, services?: SpellingContext): string {
+  const technical = technicalSpelling(word);
+  if (technical !== undefined) return technical;
+  // Preserve camelCase identifiers and acronyms. Title case remains editable.
+  if (word.length > 1 && word === word.toLocaleUpperCase('az-AZ')) return word;
+  if (/[a-zəçğıöşü][A-ZƏÇĞIİÖŞÜ]/.test(word)) return word;
+  if (runtimeNounCandidates(word).some(row => row.surface === word.toLocaleLowerCase('az-AZ'))) return word;
+  // Explicit, morphologically valid diacritics encode the author's chosen meaning.
+  if (/[əçğıöşü]/iu.test(word) && services?.morphology.isValidWordForm(word)) return word;
+  const key = fold(word);
+  // Imported whole-word evidence outranks speculative malformed suffix repair.
+  // Explicit accents identify the author's lexical choice; folding does not.
+  if (/[əçğıöşü]/iu.test(word) && dictionaryCandidates(word)?.has(word.toLocaleLowerCase('az-AZ'))) {
+    return properNames.get(key) ?? word;
+  }
+  if (ambiguous.has(key)) return word;
+  const values = candidates.get(key);
+  const imported = word.length > 2 ? (services
+    ? new Set(services.lemmaDictionary.findByFoldedForm(word).entries.map(entry => entry.surface ?? entry.lemma))
+    : dictionaryCandidates(word)) : undefined;
+  // Reviewed common-word choices keep their established behavior (necə, sən,
+  // üçün). Imported candidates are conservative fallback, not frequency data.
+  const alias = Object.hasOwn(aliases, key) ? aliases[key] : undefined;
+  const morphologyCandidates = services?.morphology.analyzeWord(word).map(analysis => analysis.surface);
+  // A unique explicitly accented dictionary spelling is stronger evidence
+  // than decomposing a whole lexical word into a coincidental suffix.
+  const accentedDictionary = chooseSpelling(word, imported);
+  // Prefer reviewed productive Azerbaijani morphology before the imported
+  // dictionary fallback. The Hunspell source may contain ASCII/Turkic surface
+  // forms that are valid dictionary entries but are not the intended
+  // Azerbaijani spelling in informal input (for example qaldirilib,
+  // gonderilib, saxlanilir). Reviewed roots + bounded suffix rules are safer
+  // than accepting such raw forms unchanged.
+  const replacement = alias ?? properNames.get(key) ?? chooseSpelling(word, values)
+    ?? (key === 'qalib' ? 'qalib' : undefined)
+    ?? (key === 'testi' ? 'testi' : undefined)
+    ?? (key === 'sistme' ? chooseIndexedTypo(word) : undefined)
+    ?? services?.morphology.correctMalformedForm?.(word)
+    ?? (() => {
+      const value = restoreProductiveSuffix(word, services);
+      // Whole-word dictionary evidence wins when a suffix guess changes even
+      // the ASCII vowel skeleton, rather than restoring missing diacritics.
+      return value && isEstablishedLegacySurface(value, services)
+        && (!accentedDictionary || fold(value) === fold(word)) ? value : undefined;
+    })()
+    ?? chooseSpelling(word, imported)
+    ?? chooseSpelling(word, new Set(morphologyCandidates))
+    ?? ((imported?.size ?? 0) > 1 ? undefined : services?.morphology.findByFoldedForm?.(word))
+    ?? chooseIndexedTypo(word)
+    ?? restoreDigraphTransliteration(word, services);
+  if (!replacement || !isEstablishedLegacySurface(replacement, services)) return word;
+  // Explicit diacritics are evidence: do not replace a correctly accented letter
+  // with another candidate merely because both fold to the same ASCII spelling.
+  if (!alias && [...word.toLocaleLowerCase('az-AZ')].some((letter, index) =>
+    /[əçğıöşü]/.test(letter) && replacement[index] !== letter)) return word;
+  if (properNames.has(key)) return properNames.get(key)!;
+  return /^[A-ZƏÇĞIİÖŞÜ]/.test(word)
+    ? replacement[0].toLocaleUpperCase('az-AZ') + replacement.slice(1) : replacement;
+}
+
+const originalServices = new WeakMap<SpellingContext, SpellingContext>();
+function beforeSourceExpansion(services?: SpellingContext): SpellingContext | undefined {
+  if (!services) return undefined;
+  const cached = originalServices.get(services); if (cached) return cached;
+  const morphology = Object.hasOwn(services.morphology, 'analyzeWord') ? services.morphology : ((services.morphology as MorphologyEngine & { legacyEngine?: MorphologyEngine }).legacyEngine ?? services.morphology);
+  const value = morphology === services.morphology ? services : { ...services, morphology };
+  originalServices.set(services, value); return value;
+}
+/** Source-only analyses are plausible candidates, not proof of the sentence's
+ * intended meaning. Retain contextual models when the prior lexical path abstained. */
+export function sourceRepairNeedsContext(word: string, services?: SpellingContext): boolean {
+  const prior = beforeSourceExpansion(services);
+  return !isClosedFunctionForm(word) && !isEstablishedLegacySurface(word, prior) && restoreEstablishedWord(word, prior) === word;
+}
+export function restorePriorWord(word: string, services?: SpellingContext): string {
+  return restoreEstablishedWord(word, beforeSourceExpansion(services));
+}
+export function restoreWord(word: string, services?: SpellingContext): string {
+  const protectedTechnical = technicalSpelling(word);
+  if (protectedTechnical !== undefined) return protectedTechnical;
+  // An explicitly accented I-initial spelling is the author's casing evidence.
+  // The ASCII-only title-case heuristic must not rewrite Işıq into İşıq.
+  if (/^I[a-zəçğıöşü]*[əçğıöşü]/u.test(word)) return word;
+  // ASCII title-case I does not encode Azerbaijani dotless ı. Resolve the
+  // lowercase lexical spelling first; only attested i-initial native words
+  // may receive dotted İ. Explicit diacritics, acronyms and foreign terms win.
+  if (/^I[a-z]+$/u.test(word) && technicalSpelling(word) === undefined) {
+    const base = 'i' + word.slice(1), canonical = restoreWord(base, services);
+    if (/^[iİ]/u.test(canonical) && technicalSpelling(base) === undefined && isEstablishedSurface(canonical, services))
+      return 'İ' + canonical.slice(1);
+  }
+  if (isClosedFunctionForm(word) || ambiguous.has(fold(word)) || fold(word) === 'seher') return word;
+  const compound=word.split('-');
+  if(compound.length===2){
+    const right=sourceInflections.candidates(compound[1]).filter(row=>row.pos==='verb'&&row.features.polarity==='negative'&&row.features.derivation?.includes('participle'));
+    const matched=sourceInflections.candidates(compound[0]).filter(row=>row.pos==='verb'&&row.features.tense==='perfect'&&row.features.polarity==='positive'&&right.some(other=>other.lemma===row.lemma));
+    const pairs=[...new Set(matched.flatMap(left=>right.filter(r=>r.lemma===left.lemma).map(r=>left.surface+'-'+r.surface)))];
+    if(pairs.length===1)return /^\p{Lu}/u.test(word)?pairs[0][0].toLocaleUpperCase('az-AZ')+pairs[0].slice(1):pairs[0];
+  }
+  const verb = restoreReviewedVerb(word);
+  if (verb) return verb;
+  if (!isReviewedSpelling(word) && !isForeignTechnicalInflection(word) && !/[\p{Ll}][\p{Lu}]/u.test(word) && !/^[\p{Lu}]+$/u.test(word)) {
+    const nounForms = new Set(runtimeNounCandidates(word).map(row => row.surface));
+    if (nounForms.size === 1) {
+      const noun = [...nounForms][0];
+      return /^\p{Lu}/u.test(word) ? noun[0].toLocaleUpperCase('az-AZ')+noun.slice(1) : noun;
+    }
+  }
+  // Prefer a same-skeleton attested repair to a later edit-distance guess,
+  // while retaining explicitly reviewed aliases and valid whole spellings.
+  if (!Object.hasOwn(aliases, fold(word)) && !isReviewedSpelling(word) && !isForeignTechnicalInflection(word)) {
+    const suffix = restoreAttestedSuffix(word);
+    if (suffix) return suffix;
+  }
+  const prior = beforeSourceExpansion(services);
+  const sourceRows = sourceInflections.candidates(word);
+  const existing = restoreEstablishedWord(word, prior);
+  // Whole classified forms outrank malformed-suffix guesses. Preserve the
+  // legacy feature extractor in restorePriorWord; this is runtime-only.
+  if(!Object.hasOwn(aliases,fold(word))&&!isReviewedSpelling(word)&&!isForeignTechnicalInflection(word)){
+    if(sourceRows.some(row=>row.surface===word.toLocaleLowerCase('az-AZ'))&&fold(existing)!==fold(word))return word;
+    const forms=[...new Set(sourceRows.map(row=>row.surface))];
+    if(word.length>=4&&forms.length===1&&(!isEstablishedLegacySurface(existing,prior)||fold(existing)!==fold(word)))return /^\p{Lu}/u.test(word)?forms[0][0].toLocaleUpperCase('az-AZ')+forms[0].slice(1):forms[0];
+  }
+  // Lexically classified exceptions outrank regular suffix guesses. This
+  // preserves their entire paradigm, including longer possessed case chains.
+  if (sourceRows.some(row => row.surface === word.toLocaleLowerCase('az-AZ') && usesLexicalYBuffer(row.lemma))) return word;
+  if (existing === word && !isEstablishedLegacySurface(word, prior) && !isForeignTechnicalInflection(word)) {
+    const attested = restoreAttestedDiacritics(word)
+      ?? restoreRepeatedKey(word, value => isEstablishedLegacySurface(value, prior)
+        || runtimeNounCandidates(value).some(row => row.surface === value)
+        || sourceInflections.analyze(value).length > 0);
+    if (attested) return attested;
+  }
+  const wholeSurface = chooseSpelling(word, dictionaryCandidates(word));
+  // Only the established long homograph families veto a forced default sense.
+  // Closed grammatical words cannot inherit a coincidental short noun analysis.
+  if (!/[əçğıöşü]/iu.test(word) && new Set(sourceRows.map(row => row.surface)).size > 1
+    && !wholeSurface
+    && sourceRows.some(row => row.lemma.length >= 4 && ambiguous.has(fold(row.lemma)) && !row.features.derivation?.includes('adjectival'))) return word;
+  if (existing !== word || isForeignTechnicalInflection(word) || isEstablishedLegacySurface(word, prior) || word.length < 3
+    || technicalSpelling(word) !== undefined || /\p{Ll}\p{Lu}/u.test(word) || /^[\p{Lu}]+$/u.test(word)) return existing;
+  // Source expansion may fill a prior abstention, but must not replace an
+  // already valid source inflection with a different folded lemma (suyu/şüyü).
+  if (sourceRows.some(row => row.surface === word.toLocaleLowerCase('az-AZ'))) return word;
+  // Whole-lemma attestation in the existing source-trained vocabulary is lexical
+  // evidence only. It cannot decide an inflected lexical homograph's sense.
+  const attested = chooseSpelling(word, new Set(sourceRows.filter(row => row.surface === row.lemma
+    && (boundedLexicalArtifact.lexicon.words[row.surface as keyof typeof boundedLexicalArtifact.lexicon.words]?.count ?? 0) >= 3).map(row => row.surface)));
+  const replacement = attested ?? sourceInflections.restore(word) ?? sourceInflections.restoreVowelConfusion(word);
+  if (!replacement || !isEstablishedSurface(replacement, services)) return word;
+  return /^\p{Lu}/u.test(word) ? replacement[0].toLocaleUpperCase('az-AZ') + replacement.slice(1) : replacement;
+}
+
+/** Revalidate a generated guess only after contextual spelling had its turn.
+ * The caller must restrict this to ASCII input changed by lexical correction. */
+export function validatedGeneratedSpelling(word: string): string | undefined {
+  const lower = word.toLocaleLowerCase('az-AZ');
+  if (isReviewedSpelling(lower) || productiveMorphology.isValidWordForm(lower) || technicalSpelling(lower) !== undefined || isForeignTechnicalInflection(lower) || dictionaryCandidates(lower)?.has(lower) || sourceInflections.analyze(lower).length) return undefined;
+  const whole = chooseSpelling(fold(lower), dictionaryCandidates(lower)) ?? sourceInflections.restore(fold(lower));
+  // Only reverse an unattested stem-softening guess. A new dictionary entry
+  // alone is insufficient evidence to add a different lexical consonant.
+  const undoSoftening = whole && [...lower].some((letter, at) =>
+    ({ 'ğ': 'gq', y: 'k', d: 't' } as Record<string, string>)[letter]?.includes(whole[at]));
+  return whole && undoSoftening && sourceInflections.analyze(whole).some(row => row.pos === 'noun') ? whole : undefined;
+}
+
+/** Canonical reviewed spellings win over later speculative statistical repairs. */
+export function isReviewedSpelling(word: string): boolean {
+  const canonical = word.toLocaleLowerCase('az-AZ'), key = fold(canonical);
+  return aliases[key] === canonical || candidates.get(key)?.has(canonical) === true
+    || properNames.get(key)?.toLocaleLowerCase('az-AZ') === canonical;
+}

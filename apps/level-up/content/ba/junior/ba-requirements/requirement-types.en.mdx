@@ -1,0 +1,158 @@
+---
+id: requirement-types
+locale: en
+title: 'Business, stakeholder and solution requirements'
+objectives:
+  - 'Distinguish business, stakeholder, functional, quality and transition requirements.'
+  - 'Classify six requirements for moving a customer portal to a new provider.'
+---
+
+## 1. Learning objectives
+
+Distinguish business, stakeholder, functional, quality and transition requirements. Connect each requirement to its purpose, choose observable acceptance evidence and recognize when one sentence mixes several levels of detail.
+
+## 2. Why it matters
+
+A bank is replacing its customer portal. The request “make the new portal faster and move all customers” mixes a quality concern with a transition activity, while saying little about the business outcome. If the team treats it as one complete requirement, it may migrate records successfully while customers still cannot complete their work.
+
+Classification helps the analyst ask the next useful question. It is a thinking aid, not a contest about labels. One initiative will usually need requirements from several categories linked together.
+
+## 3. Core theory
+
+**Business requirements** express why a change is needed and the outcome it should support. They give direction for evaluating value. “Reduce repeat calls about missing statements” is an outcome direction; it still needs a baseline, scope and agreed evidence.
+
+**Stakeholder requirements** describe what a person or group needs to achieve or experience. “A customer needs to access a previous statement without contacting support” explains a need from a stakeholder perspective without requiring a particular screen design.
+
+**Solution requirements** describe the capabilities and qualities the solution must provide. **Functional requirements** concern behavior: finding a statement by account and period, for example. **Quality requirements**, commonly discussed under non-functional requirements, concern how well the solution operates or constraints on it: accessibility, reliability, security or performance. “Fast” and “secure” alone are not testable quality criteria.
+
+**Transition requirements** concern temporary capabilities or conditions needed to move from the current state to the future state. Examples include reconciling migrated balances, training support staff and running an agreed cutover rehearsal. A permanent audit log remains a solution requirement even if it is first delivered during migration.
+
+A good requirement also needs context, boundaries, a source or rationale, a decision owner and suitable acceptance evidence. Classification cannot compensate for missing agreement or an unsupported assumption.
+
+## 4. Worked example: replacing the statement portal
+
+The following targets are fictional learning data, not banking standards.
+
+| Category    | Example                                                                                                                               | Evidence or follow-up                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Business    | Reduce statement-related repeat calls in the pilot group from 20 to 12 per 1,000 active customers over the agreed evaluation period   | Confirm call categories, baseline reliability and other changes affecting calls    |
+| Stakeholder | A customer needs to retrieve a statement for a selected account and month without contacting support                                  | Observe customers attempting the task, including people using assistive technology |
+| Functional  | For an authorized account, provide the available statements matching the selected period                                              | Check authorized, unavailable-period and unauthorized-account examples             |
+| Quality     | At the agreed load and test conditions, 95% of statement-list requests complete within two seconds                                    | Agree load, measurement location, dataset and error treatment                      |
+| Transition  | Before cutover, reconcile migrated statement counts against the source and resolve discrepancies through the agreed exception process | Retain reconciliation results and obtain the designated decision owner's sign-off  |
+
+The analyst links the functional and quality criteria to the stakeholder need, and the stakeholder need to the business outcome. Migration evidence is necessary, but it does not prove the business outcome was achieved. Post-release evaluation is still required.
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart TD; A[Business outcome] --> B[Stakeholder need]; B --> C[Functional behavior]; B --> D[Quality conditions]; E[Transition conditions] --> F[Move safely to future state]; C --> G[Acceptance evidence]; D --> G; F --> G; G --> H[Evaluate actual outcome]; H --> A;'
+  }
+/>
+
+The branches show different questions: why change, who needs what, what the solution does, how well it operates and how the move is made safely. Evidence connects them without making them interchangeable.
+
+## 6. Interactive classification
+
+A requirement says, “For the first four weeks after launch, run the old and new statement totals in parallel and investigate mismatches.” Choose a category, then reveal the reasoning.
+
+<details>
+<summary>Transition requirement</summary>
+
+This is the strongest primary classification because it defines a temporary condition for moving between states. Clarify ownership, the comparison rules and the exit condition. If parallel reconciliation becomes an ongoing operational capability, that permanent capability should be modeled separately.
+
+</details>
+
+<details>
+<summary>Business requirement</summary>
+
+The activity may reduce migration risk, but it does not directly express the business outcome. Link it to the reason the transition matters rather than replacing the business goal with an activity.
+
+</details>
+
+<details>
+<summary>Functional requirement only</summary>
+
+The comparison may require software behavior, but “only functional” hides its temporary purpose and exit criteria. A related functional requirement can describe how the reconciliation works while the transition requirement explains when it is needed.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Vague quality language:** replace “quick” with an agreed condition, measure and threshold.
+- **A solution assumed too early:** ask what the stakeholder needs before committing to a screen or vendor.
+- **One sentence containing several requirements:** split it when ownership, acceptance evidence or change control differs.
+- **Transition mistaken for permanent behavior:** agree when temporary arrangements end and who verifies readiness.
+- **Labels without links:** connect requirements to needs, sources, decisions and tests.
+
+Treat numbers as decisions requiring evidence. A precise but arbitrary threshold can still be the wrong requirement.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** An online retailer is moving its returns service. Classify these statements, improve one vague statement and identify evidence needed: reduce avoidable support contacts; a customer needs to see return progress; display the last confirmed return event; the service must be reliable; transfer open returns before cutover.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+Reducing avoidable contacts is a business outcome direction. Seeing return progress is a stakeholder need. Displaying a confirmed event is functional behavior. “Reliable” is an incomplete quality requirement: agree availability conditions, failure treatment and a suitable measurement window. Transferring open returns is a transition requirement; define record completeness, reconciliation and exception handling. Test examples must include missing events and unauthorized access. Verify support-contact measurement after launch rather than assuming successful migration proves value.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. Which statement is primarily a stakeholder requirement?**
+
+A. “A support agent needs to understand why a refund was declined.” B. “Use a blue status badge.” C. “Run a one-time data reconciliation before cutover.”
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** It describes what a stakeholder needs. B is a proposed design choice whose rationale is not yet established. C is a temporary transition condition.
+
+</details>
+
+**2. What is missing from “the search must be fast”?**
+
+A. A vendor name. B. An agreed measure, threshold and operating conditions. C. More adjectives.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Acceptance needs observable conditions and evidence. A does not define acceptable performance. C preserves the ambiguity.
+
+</details>
+
+**3. Which requirement is most clearly transitional?**
+
+A. Retain an ongoing audit record for every refund. B. Let an authorized user download a receipt. C. Reconcile all migrated open refunds before switching systems.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** It supports a specific move between states. A is an ongoing solution capability. B describes permanent functional behavior.
+
+</details>
+
+**4. The portal passes all acceptance tests. Has the business outcome necessarily been achieved?**
+
+A. Yes, because test completion proves value. B. No; inspect actual outcome evidence and relevant limitations. C. Yes, if the requirements were categorized correctly.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Conformance and realized value are different questions. A assumes a causal result from test completion. C gives classification more power than it has.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**Business:** why change and what outcome matters? **Stakeholder:** who needs what? **Functional:** what behavior must the solution provide? **Quality:** under what conditions and how well? **Transition:** what temporary condition enables the move? **For every category:** record rationale, boundaries, owner and acceptance evidence. **Final check:** can someone observe the intended result, and is the requirement connected to a genuine need?
+
+## 11. Further reading
+
+- [IIBA: What is business analysis?](https://www.iiba.org/professional-development/career-centre/what-is-business-analysis/)
+- [IIBA: Business Analysis Standard](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/business-analysis-standard/)
+- [W3C: WCAG overview](https://www.w3.org/WAI/standards-guidelines/wcag/)
+
+This lesson and its examples are original educational material. They do not reproduce BABOK text or official examination questions.

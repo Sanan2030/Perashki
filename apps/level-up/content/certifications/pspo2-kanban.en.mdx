@@ -1,0 +1,76 @@
+---
+id: pspo2-kanban
+locale: en
+title: 'Flow of value with Kanban'
+objectives:
+  - 'Calculate and distinguish the four flow metrics and SLE.'
+  - 'Apply WIP limits and pull within Scrum events.'
+---
+
+## Concept
+
+The uploaded document is specifically The Kanban Guide for Scrum Teams, January 2021. It complements Scrum and introduces no additional required events. Its four practices are visualizing workflow, limiting WIP, actively managing work in progress, and inspecting and adapting the Definition of Workflow. Make start/finish points, work items, states and movement policies explicit.
+
+## Why it matters
+
+WIP counts started but unfinished items. Cycle Time is elapsed time from start to finish. Work Item Age is elapsed time from start until now for unfinished work. Throughput counts items finished per unit of time, not summed story points. WIP is an observation; a WIP limit is a policy. Pull means starting work when capacity becomes available.
+
+## Decision principles
+
+An SLE combines elapsed time and probability, for example 85% of items finish within eight days. It is a forecast based on historical Cycle Time, not a guarantee for every item. Without history, start with a guess and adapt. Little’s Law relates average Cycle Time to average WIP divided by average Throughput; consistent boundaries and stable long-run flow assumptions matter. It is not an individual-item deadline calculator.
+
+### Turn flow information into a decision
+
+A queue of items in one state may be a signal to stop starting, not start more. Inspect what prevents completion: scarce expertise, external approval or large batches may be involved. The Kanban Guide suggests considering lower WIP first; writing a limit alone does not replace active management. Comparing age with SLE can prompt investigation without assuming every aging item has the same cause. Inspecting throughput alongside quality helps avoid hiding rework while optimizing speed.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n  A["Backlog"] --> B["Active: WIP limit"]\n  B --> C["Done"]\n  B -. "Age / SLE" .-> B\n  A -. "Pull when capacity exists" .-> B'
+  }
+/>
+
+This is a teaching summary, not a reproduction of a source figure.
+
+## Worked scenario
+
+The WIP limit is four and four items are open. One is nine days old; SLE is eight days at 85%. Another team asks you to start more work.
+
+## Decision reasoning
+
+Inspect the aging and blocked item and help finish work before starting more. Do not automatically raise the WIP limit. At Daily, discuss the flow risk to the Sprint Goal and an unblocking action. Inspect policies and the limit’s effect in Retrospective, adapting earlier when needed.
+
+## Common pitfalls
+
+Applying age to finished work; treating SLE as a guarantee; raising WIP limits whenever work stalls; abolishing Sprints because Kanban is used.
+
+## Application exercise
+
+An item starts on day 2 and finishes on day 7. Another starts on day 3 and is unfinished on day 9. Ten items finished last week. Identify the metrics.
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+Using elapsed-time differences, the first item’s Cycle Time is five days and the second’s Age six days. Throughput is ten items per week. Total WIP cannot be calculated without all open items. Use consistent start/finish timestamps and day conventions.
+
+</details>
+
+## Check understanding and remember
+
+WIP: open-item count; Cycle Time: finished-item duration; Age: unfinished-item age; Throughput: finished items/time; SLE: time + probability.
+
+<LessonCheck />
+
+## Sources and scope
+
+Kanban Guide for Scrum Teams 2021: pp. 3–8; metrics p. 4, SLE p. 6.
+
+- [The Kanban Guide for Scrum Teams — Scrum.org, Daniel Vacanti & Yuval Yeret (January 2021)](https://www.scrum.org/resources/kanban-guide-scrum-teams)
+- [The Scrum Guide — Ken Schwaber & Jeff Sutherland (November 2020)](https://scrumguides.org/scrum-guide.html)
+
+Explanations and examples are original teaching material. Official test questions are not reproduced. Exam formats are verified separately; these topic groups are not an official blueprint.
+
+Additional scope reference: [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies). The user-supplied text was read; the competency taxonomy does not establish official exam weights.

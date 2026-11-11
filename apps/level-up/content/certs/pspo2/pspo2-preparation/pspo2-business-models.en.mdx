@@ -1,0 +1,87 @@
+---
+id: pspo2-business-models
+locale: en
+title: 'Vision, business model and strategic trade-offs'
+objectives:
+  - Connect vision, Product Goal and the assumptions in a business model.
+  - Compare segments and competitor signals without substituting feature count for value.
+  - Expose incentive conflicts and propose a bounded business experiment.
+---
+
+## Learning objectives
+
+Explain the chain from product direction to customer behavior and organizational sustainability. Identify the next assumption to test when delivery improves but value does not.
+
+## Why it matters
+
+A team can deliver every Sprint while its commercial model rewards one-off customization and discourages adoption. More features cannot reliably resolve a conflict between the intended customer experience and how the organization earns money.
+
+## Core theory
+
+A product vision describes a desired direction and the people who benefit. Scrum defines the Product Goal as a future state of the product, the commitment for the Product Backlog. Vision is a useful complementary practice, not an additional mandatory Scrum artifact. The Scrum Team must fulfill or abandon one Product Goal before taking on the next. Evidence may lead the team to abandon a goal; changing it casually every Sprint undermines focus.
+
+A business model connects customer segments, value propositions, channels, relationships, revenue and costs. A canvas can expose assumptions; completing it does not validate them. A user, buyer and budget holder may be different people. Study the task and purchasing context before treating expressed enthusiasm as demand.
+
+Revenue model, pricing and packaging are related but distinct. Subscription is not automatically better than licensing, usage-based pricing or another model. Compare what fits the customer need, adoption, costs, risk and incentives. Test an offer honestly, including its availability and terms. A pilot can test behavior without pretending an unfinished product is fully available.
+
+Competitor evidence informs strategy; it does not determine it. High retention and trusted reliability may matter more to a target segment than matching every competitor feature. Compare relevant cohorts and alternatives. A small profitable segment may deserve investment, but concentration and unmet needs elsewhere still deserve investigation.
+
+A strategic pivot changes an important assumption about audience, problem or approach. Make the evidence and new direction transparent to stakeholders and Developers. PO authority over ordering does not justify secrecy. If a Product Goal is abandoned, explain why and agree the next focus; examine the current Sprint Goal separately before proposing disruption.
+
+## Worked example
+
+A document service promises reliable recurring improvements, but sales incentives reward bespoke integrations for single accounts. Standard users delay upgrades because each customized deployment is expensive. Current revenue looks healthy while support burden grows and adoption of useful changes falls.
+
+The PO exposes the conflicting incentives and compares options with leadership: standardize a reusable integration boundary, change packaging, or test an offer that supports easier upgrades. A subscription is one hypothesis, not the required answer. Inspect retained usage, customer costs, revenue and support burden before scaling the change.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n V[Vision and audience] --> G[Product Goal]\n V --> M[Business model assumptions]\n M --> T[Transparent offer test]\n G --> T\n T --> E[Adoption outcomes and economics]\n E --> A[Adapt model goal or approach]\n A --> V'
+  }
+/>
+
+This teaching model connects direction and economic evidence without adding artifacts to Scrum.
+
+## Inspect a decision
+
+<details>
+<summary>A competitor launches ten features. Must the roadmap change immediately?</summary>
+
+No. Investigate which needs those features serve, whether those needs matter to the target segment and what switching or buying behavior shows. Preserve the product's strategic strengths while testing relevant threats. Ignoring competitors and copying everything are both poor substitutes for evidence.
+
+</details>
+
+## Common mistakes
+
+- Calling a list of sold features a product vision.
+- Treating a filled canvas or interview promise as validated revenue.
+- Assuming every product needs the same pricing model.
+- Hiding a pivot because the PO is accountable for ordering.
+
+## Practice exercise
+
+An internal HR product's vision is “build what HR asks for.” Payroll staff want fewer corrections; managers want faster approvals. Propose a more useful direction, one Product Goal and a business-model assumption worth checking even though the product has no external sales.
+
+## Worked solution
+
+<details>
+<summary>Show the reasoning</summary>
+
+Direction: help staff and managers complete accurate employment changes with less rework. A possible goal is a specific improvement in correct first-time submissions for a defined group; choose an observation period and guardrails. Investigate whether reduced handling effort exceeds the ongoing service and change cost. Internal products create value through outcomes and avoided costs too. These examples are optional product techniques, not wording required by Scrum.
+
+</details>
+
+## Mini-quiz and cheat sheet
+
+Vision gives direction; Product Goal focuses the next future state; the model explains how value can be sustained. Buyer ≠ user. Model ≠ validated fact. Feature count ≠ strategic advantage. Share the evidence behind changing direction.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Goal and transparent Product Backlog management.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): selected Vision, Value and Validation material, chapters 2–4.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): outcomes, impacts and experiments; adapted explanations CC BY-SA 4.0, Scrum.org.
+- [ExamDeck vision/business-strategy examples](https://examdeck.pro/pspo2-practice-questions/product-vision-and-business-strategy): supplementary topic input. The scenarios and questions here are original; no business model is presented as mandatory Scrum practice.

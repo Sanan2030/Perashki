@@ -1,0 +1,38 @@
+{
+  "architecture": "Candidate and agreement tanh MLPs plus frozen lexical anchor for previously learned errors; CPU-only deterministic SGD",
+  "epochs": {
+    "lexical": 120,
+    "agreement": 24
+  },
+  "parameters": 795,
+  "corpusSha256": "a86c67bc3c60cb97d78ae6e185df2282dfc834f0dfedc0946c747fc8728e98cd",
+  "seedSha256": "f9d085b70bb569b8a68b30496c788540ac329cd552c38715b7aa80ca06e991c6",
+  "artifactSha256": "d48c0571f9646d1ee33f85743a48a70dbab41692dac29efea9426495c55f15c3",
+  "artifactBytes": 142215,
+  "lexical": {
+    "trainExamples": 233,
+    "updateExamples": 230,
+    "hiddenMemorizationFeature": 2,
+    "validationExamples": 49,
+    "testExamples": 90,
+    "validationLoss": 0.1423967759277765,
+    "threshold": 0.6,
+    "calibration": {
+      "threshold": 0.6,
+      "margin": 0.15,
+      "accepted": 25,
+      "groups": 27
+    }
+  },
+  "agreement": {
+    "trainExamples": 141,
+    "validationExamples": 25,
+    "testExamples": 50,
+    "validationLoss": 0.0018718059017573299,
+    "threshold": 0.6
+  },
+  "source": "Assistant-authored natural-context exercises; synthetic errors; no human certification or real-user provenance",
+  "seedCommit": "a5d7c00f9a45de8cb06f5b8271f303ea9a2cbd36",
+  "evaluationCaveat": "Current holdout excludes new updates; v1 may have learned the word forms, error channels and grammar features. Not a cold-start unseen-lemma test.",
+  "limitations": "Synthetic, morphology-assisted specialized correction networks; no general semantic understanding or calibrated probability guarantee."
+}

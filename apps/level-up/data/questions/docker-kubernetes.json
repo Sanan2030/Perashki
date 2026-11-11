@@ -1,0 +1,218 @@
+[
+  {
+    "id": "docker-kubernetes-masterclass-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A Deployment requests three Pods. One managed Pod is deleted. What happens if resources and configuration permit?",
+      "az": "Deployment üç Pod tələb edir. İdarə olunan Pod-lardan biri silinir. Resurs və konfiqurasiya imkan verirsə nə baş verir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The ReplicaSet creates a replacement Pod; desired replicas remain three.",
+          "az": "ReplicaSet əvəzedici Pod yaradır; hədəf say üç qalır."
+        },
+        "explanation": {
+          "en": "Deleting a Pod changes observed state, not the Deployment replica target.",
+          "az": "Pod-u silmək müşahidə olunan vəziyyəti dəyişir, Deployment-in hədəf sayını yox."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The image is rebuilt and the same Pod identity is restored.",
+          "az": "Image yenidən qurulur və eyni Pod kimliyi bərpa edilir."
+        },
+        "explanation": {
+          "en": "Kubernetes uses an existing image and creates a different Pod identity.",
+          "az": "Kubernetes mövcud image-dən istifadə edib başqa kimliyə sahib Pod yaradır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The Deployment permanently lowers its replica target to two.",
+          "az": "Deployment hədəf sayını daimi olaraq ikiyə endirir."
+        },
+        "explanation": {
+          "en": "Scaling changes desired replicas; deleting a managed Pod does not.",
+          "az": "Hədəf sayı scale əməliyyatı dəyişir; idarə olunan Pod-u silmək dəyişmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Deleting a Pod changes observed state, not the Deployment replica target.",
+      "az": "Pod-u silmək müşahidə olunan vəziyyəti dəyişir, Deployment-in hədəf sayını yox."
+    },
+    "lessonId": "docker-kubernetes-masterclass",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-core-objects", "kubernetes-deployments"]
+  },
+  {
+    "id": "docker-kubernetes-masterclass-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "Ready Pods in demo have app: orders. A selector-based Service in production uses app: order. What must change to select those Pods?",
+      "az": "demo namespace-ində hazır Pod-ların app: orders etiketi var. production namespace-indəki Service app: order seçir. Bu Pod-ları seçmək üçün nə dəyişməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Only restart the ready Pods.",
+          "az": "Yalnız hazır Pod-ları yenidən başlatmaq."
+        },
+        "explanation": {
+          "en": "Restarting fixes neither a selector typo nor namespace scope.",
+          "az": "Restart nə selector yazılışını, nə də namespace əhatəsini düzəldir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Use the Service in demo and correct its selector to app: orders.",
+          "az": "Service-i demo daxilində istifadə etmək və selector-u app: orders kimi düzəltmək."
+        },
+        "explanation": {
+          "en": "Both namespace scope and exact label matching matter for a normal selector-based Service.",
+          "az": "Adi selector əsaslı Service üçün həm namespace, həm də etiketin dəqiq uyğunluğu vacibdir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Rename the Deployment to order while keeping the Service unchanged.",
+          "az": "Service-i dəyişmədən Deployment-in adını order etmək."
+        },
+        "explanation": {
+          "en": "An object name is not a Pod label, and the namespace mismatch remains.",
+          "az": "Obyektin adı Pod etiketi deyil və namespace uyğunsuzluğu qalır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Both namespace scope and exact label matching matter for a normal selector-based Service.",
+      "az": "Adi selector əsaslı Service üçün həm namespace, həm də etiketin dəqiq uyğunluğu vacibdir."
+    },
+    "lessonId": "docker-kubernetes-masterclass",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-core-objects"]
+  },
+  {
+    "id": "docker-kubernetes-masterclass-practice-03",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "LOG_LEVEL is injected from a ConfigMap as an environment variable. The ConfigMap changes from info to debug. How do existing Pods receive the new environment value?",
+      "az": "LOG_LEVEL ConfigMap-dən environment kimi verilir. Dəyər info-dan debug-a dəyişir. Mövcud Pod-lar yeni environment dəyərini necə alır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Base64-encode debug to make it reload automatically.",
+          "az": "debug dəyərini base64 ilə kodlayıb avtomatik yeniləmək."
+        },
+        "explanation": {
+          "en": "Encoding does not update process environment or provide secrecy.",
+          "az": "Kodlama prosesin environment dəyərini yeniləmir və məxfilik vermir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Wait: all environment variables are continuously synchronized.",
+          "az": "Gözləmək: bütün environment dəyərləri daim sinxronlaşdırılır."
+        },
+        "explanation": {
+          "en": "Environment variables are startup snapshots; file projection is a different mechanism.",
+          "az": "Environment dəyərləri başlanğıc anının surətidir; fayl proyeksiyası başqa mexanizmdir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Replace the Pods through a controlled rollout and verify the new value.",
+          "az": "Nəzarətli rollout ilə Pod-ları əvəz edib yeni dəyəri yoxlamaq."
+        },
+        "explanation": {
+          "en": "New Pods take the updated environment snapshot; the ConfigMap edit alone does not trigger that rollout.",
+          "az": "Yeni Pod-lar yenilənmiş dəyərləri götürür; tək ConfigMap dəyişikliyi bu rollout-u başlatmır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "New Pods take the updated environment snapshot; the ConfigMap edit alone does not trigger that rollout.",
+      "az": "Yeni Pod-lar yenilənmiş dəyərləri götürür; tək ConfigMap dəyişikliyi bu rollout-u başlatmır."
+    },
+    "lessonId": "docker-kubernetes-masterclass",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-configmaps"]
+  },
+  {
+    "id": "docker-kubernetes-masterclass-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "Vault Agent renders a rotated database password into a shared file. The app cached its password at startup. What completes rotation for the app?",
+      "az": "Vault Agent yenilənmiş verilənlər bazası parolunu paylaşılan fayla yazır. Tətbiq parolu başlanğıcda yaddaşa alıb. Tətbiq üçün rotasiyanı nə tamamlayır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Reload the credential and renew affected database connections using the supported application mechanism.",
+          "az": "Tətbiqin dəstəklədiyi üsulla credential-ı yenidən oxumaq və uyğun DB bağlantılarını yeniləmək."
+        },
+        "explanation": {
+          "en": "Agent file delivery and application consumption are separate; cached credentials and connections may stay stale.",
+          "az": "Agent-in faylı çatdırması və tətbiqin onu istifadə etməsi ayrıdır; keşdəki credential və bağlantılar köhnə qala bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Nothing: an updated file automatically rewrites application memory.",
+          "az": "Heç nə: fayl yenilənəndə tətbiqin yaddaşı avtomatik dəyişir."
+        },
+        "explanation": {
+          "en": "File updates do not overwrite the application cache.",
+          "az": "Fayl dəyişikliyi tətbiqin keşini yenidən yazmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Commit a permanent Vault root token to the ConfigMap.",
+          "az": "Daimi Vault root token-ini ConfigMap-ə yazmaq."
+        },
+        "explanation": {
+          "en": "A root token grants excessive privilege and does not solve credential reload behavior.",
+          "az": "Root token həddindən artıq səlahiyyət verir və credential yeniləmə davranışını həll etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Agent file delivery and application consumption are separate; cached credentials and connections may stay stale.",
+      "az": "Agent-in faylı çatdırması və tətbiqin onu istifadə etməsi ayrıdır; keşdəki credential və bağlantılar köhnə qala bilər."
+    },
+    "lessonId": "docker-kubernetes-masterclass",
+    "practiceOnly": true,
+    "sourceIds": ["vault-agent-injector", "vault-kubernetes-auth"]
+  }
+]

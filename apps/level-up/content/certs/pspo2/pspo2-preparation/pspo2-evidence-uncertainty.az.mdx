@@ -1,0 +1,97 @@
+---
+id: pspo2-evidence-uncertainty
+locale: az
+title: 'Ehtimal, eksperimentlər və sübutun keyfiyyəti'
+objectives:
+  - Simulyasiya percentilini zəmanətə çevirmədən şərh et.
+  - Zərəri də əhatə edən intervalın niyə müsbət təsiri təsdiqləmədiyini izah et.
+  - Fərziyyə testi seç və məhsula ayrılan vaxtı innovasiyadan fərqləndir.
+---
+
+## Öyrənmə məqsədləri
+
+Sübutun nəyi dəstəklədiyini, nəyin qeyri-müəyyən qaldığını və növbəti qərarı nəyin dəyişəcəyini izah et. Rəqəmli nəticədən uydurma əminlik yaratmadan istifadə et.
+
+## Niyə vacibdir
+
+Maraqlı tərəf proqnoz aralığından ən erkən tarixi və ya eksperimentdən yalnız müsbət təxmini seçə bilər. Hər ikisi riski gizlədir. Mürəkkəb hesablamalar da müqayisə edilən müşahidə, uyğun dizayn və dürüst şərhdən asılıdır.
+
+## Əsas nəzəriyyə
+
+### Ehtimallı çatdırılma proqnozu
+
+Throughput-a əsaslanan **Monte Carlo** proqnozu keçmiş tamamlanmış iş saylarından təkrar seçmə aparır və müəyyən əhatənin nə vaxta bitə biləcəyini simulyasiya edir. Nəticə mümkün tamamlanma vaxtlarının paylanmasıdır. Percentil bu paylanmanı ümumiləşdirir: fərziyyəvi 1000 sınaqdan 850-si 40-cı günədək bitirsə, həmin tarix simulyasiya daxilində 85% tamamlanma tezliyinə malikdir. Bu, model və girişlərdən asılıdır; real dünyaya 85% zəmanət və ya eksperimentin statistik etibar intervalı deyil.
+
+İşlərin ölçüsünü, tamamlanma meyarını, komandanın mövcudluğunu, asılılıqları və proses dəyişikliyini yoxla. Qərəzli və ya müqayisəyə uyğun olmayan tarixçə aldadıcı dəqiqlik yaradır. Müstəqil təkrar seçmə mövsümiliyi, əlaqələri və nadir pozuntunu nəzərdən qaçıra bilər. Çox simulyasiya zəif girişi düzəltmir. Əhatə və sübut dəyişdikcə yenidən proqnoz ver. Risk səviyyəsini seçməzdən əvvəl gecikmənin nəticəsini müzakirə et; nə median, nə ən yavaş keçmiş Sprint universal düzgün seçimdir. Scrum Monte Carlo, story point və ya xüsusi percentil tələb etmir.
+
+### Eksperiment təxmini və interval
+
+Uyğun təhlil edilmiş testdə tamamlanma faizi dəyişikliyi **+2 faiz bəndi**, bildirilən confidence interval isə **−2 ilə +6 faiz bəndi** arasındadır. Interval dəyişməməni və mümkün zərəri əhatə edir. Müsbət point estimate təkbaşına yaxşılaşmanı təsdiqləmir. Bu həm də təsirin sıfır olduğunu və ya dizaynın mütləq səhv olduğunu sübut etmir. Əlavə sübut toplamağın dəyərini seçməzdən əvvəl nümunə ölçüsünü, randomization-u, müşahidə müddətini, praktik təsiri və qoruyucu göstəriciləri yoxla. Faiz bəndi ilə nisbi faiz fərqli kəmiyyətlərdir.
+
+Confidence interval tək istifadəçinin faydalanma ehtimalı deyil. Şərhi statistik üsul və fərziyyələrdən asılıdır. Uyğun analiz planı olmadan nəticəni təkrar-təkrar yoxlayıb ilk əlverişli rəqəmdə dayanma.
+
+### Vacib fərziyyəni yoxla
+
+**Riskiest-assumption test** yanlış çıxsa qərarı sarsıdacaq inancı hədəfləyir. Yalnız asan ölçüləni deyil, nəticəsi ciddi və qeyri-müəyyən olanı seç. Ödəniş istəyini yoxlamaq üçün şəffaf təklif və ya məhdud ödənişli pilot istifadə edilə bilər; müsahibə problemi anlamağa kömək edir, amma alış davranışını sübut etmir. MVP məhdud investisiya ilə öyrənmə yoludur; keyfiyyətdən keçmək və ya əvvəl bütün əsas funksiyaları qurmaq göstərişi deyil. Bu adların heç biri məcburi Scrum artifact-ı deyil.
+
+### İmkan müştəri dəyəri deyil
+
+**On-product index** vaxtın başqa öhdəliklərə deyil, məhsul işinə ayrılan hissəsini göstərən A2I nümunə ölçüsüdür. Sərhəd aydındırsa 40 mövcud saatın 24-ü məhsul işinə sərf ediləndə nümunə nisbət 60%-dir. Məhsul işi maintenance də ola bilər: 60% “60% innovasiya”, məhsuldarlıq və ya CV demək deyil. Onu maintenance/defect yükü və yaşanan nəticə ilə birlikdə istifadə et. EBM sabit məcburi scorecard deyil, nümunə ölçülər təqdim edir.
+
+## İşlənmiş nümunə
+
+Komandanın ölçüsü dəyişib və yeni xarici asılılıq yaranıb. Köhnə simulyasiyanın 85-ci percentil tarixi müqavilə təqdimatında qalıb. Kiçik müştəri testinin point estimate-i müsbətdir, interval isə zərəri də əhatə edir. Rəhbərlik əmin launch vədi istəyir.
+
+Çatdırılma fərziyyələrini yenidən yoxla və proqnozu yenilə. Testin qeyri-müəyyənliyini ayrıca izah et: çatdırılma əminliyi və fayda sübutu fərqli suallara cavab verir. Öyrənmə xərcə dəyirsə daha kiçik istifadə edilə bilən release və ya başqa məhdud test seç. Keyfiyyəti qoru, uğur elan etmək üçün sonradan meyar dəyişmə.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Qerar ve ferziyyeler] --> D[Uyqun melumat ve test dizayni]\n D --> R[Araliq ve mehdudiyyetler]\n R --> C[Neticeler ve secimler]\n C --> T[Kicik faydali addim]\n T --> E[Yeni subut]\n E --> Q'
+  }
+/>
+
+Dövr öyrənmə qərarına aiddir; çatdırılma simulyasiyası ilə eksperiment təhlilinin eyni üsul olduğunu göstərmir.
+
+## Qərarı yoxla
+
+<details>
+<summary>100000 dəfə işlədilən simulyasiya yeni təchizatçının yaratdığı qeyri-müəyyənliyi aradan qaldırırmı?</summary>
+
+Xeyr. Seçilmiş modelin nəticəsi sabitləşə bilər, amma model yeni məhdudiyyəti yenə nəzərə almaya bilər. Dəqiq tarix deməzdən əvvəl təchizatçını araşdır və fərziyyəni və ya modeli yenilə.
+
+</details>
+
+## Tipik səhvlər
+
+- Proqnoz percentilini zəmanətli müqavilə tarixi kimi təqdim etmək.
+- Interval zərəri əhatə etdiyi halda müsbət point estimate-i sübut saymaq.
+- Məhsula ayrılan maintenance vaxtını innovasiya və ya müştəri faydası adlandırmaq.
+- Qeyd edilmiş məhdudiyyəti düzəltmək üçün deyil, istənilən cavabı almaq üçün yenidən test etmək.
+
+## Praktik tapşırıq
+
+2000 fərziyyəvi simulyasiyanın 1800-ü 9-cu həftəyədək bitir. Ayrı müştəri eksperimentində təxmin +3 faiz bəndi, interval −1 ilə +7 arasındadır. Çatdırılma məlumatını dəyər sübutundan ayıran iki cümlə yaz, hər biri üçün yoxlanmalı bir fərziyyə seç.
+
+## İzah edilmiş həll
+
+<details>
+<summary>Qərarın izahını aç</summary>
+
+“Bu modeldə sınaqların 90%-i 9-cu həftəyədək bitib; bu, throughput, əhatə və asılılıqların uyğunluğundan asılıdır, zəmanət deyil. Müştəri testi müsbət dəyişikliyi təsdiqləməyib, çünki interval həm zərəri, həm dəyişməməni əhatə edir.” Çatdırılma tarixçəsinin cari sistemə uyğunluğunu və testin kifayət qədər müşahidə ilə uyğun təhlilə malik olduğunu yoxla. Ssenaridə interval hesablanmır və statistik üsulun etibarlılığı təsdiqlənmir.
+
+</details>
+
+## Mini-test və yaddaş vərəqi
+
+Simulyasiya percentili ≠ zəmanət. Eksperiment təxmini ≠ təsdiqlənmiş fayda. Məhsula ayrılan vaxt ≠ innovasiya. Vacib fərziyyəni yoxla, məhdudiyyəti açıq de və qərarı yenilə.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Kanban Guide for Scrum Teams 2021](https://www.scrum.org/resources/kanban-guide-scrum-teams): throughput, tarixi sübut və ehtimallı xidmət gözləntisi; uyğunlaşdırılmış izahlar CC BY-SA 4.0.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): eksperiment dövrü, A2I və on-product index daxil olmaqla nümunə ölçülər; uyğunlaşdırılmış izahlar CC BY-SA 4.0, Scrum.org.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): 4 və 8-ci fəsillərdən seçilmiş Validation və Forecasting materialı.
+- [Kwestio PSPO II](https://kwestio.jad2advisory.com/certifications/pspo-ii/practice): açıq Monte Carlo, fərziyyə testi və qeyri-müəyyən interval mövzuları bu əlavəyə səbəb olub. Statistik izahlar və rəqəmli ssenarilər orijinal tədrisdir, Scrum və EBM-in məcburi qaydası deyil.

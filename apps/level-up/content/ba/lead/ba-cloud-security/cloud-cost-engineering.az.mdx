@@ -1,0 +1,89 @@
+---
+id: cloud-cost-engineering
+locale: az
+title: 'Cloud xərcləri və vahid başına xərc'
+objectives:
+  - 'Aydın unit cost hesabla və scale dəyişikliyini şərh et.'
+  - 'Allocation-u, budget-i və real spending control-u ayır.'
+  - 'Cost seçimlərini reliability və performance nəticələri ilə müqayisə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Aydın unit cost hesabla və scale dəyişikliyini şərh et.
+- Allocation-u, budget-i və real spending control-u ayır.
+- Cost seçimlərini reliability və performance nəticələri ilə müqayisə et.
+
+## Bu mövzu niyə vacibdir
+
+Hər faydalı transaction-un xərci düşərkən aylıq hesab arta bilər. Xidmət əlçatmaz olduğuna görə də hesab azala bilər. Cost engineering hər kiçik hesabı uğur saymaq deyil, workload və outcome konteksti tələb edir.
+
+## Əsas anlayışlar
+
+İnfrastrukturun dəstəklədiyi biznes vahidindən başla: uğurlu booking, active tenant-month, processed gigabyte və ya başqa müəyyən outcome. Time window, numerator xərcləri və denominator uyğunluğunu göstər. Uğursuz iş də xərc yarada bilər; useful-unit efficiency-ni şərh edərkən onu ümumi spending-də nəzərə al.
+
+Direct cost-u service/komandaya ayır, shared cost bölgüsünü sənədləşdir. Tag-lər ardıcıl tətbiq edilib uyğun billing funksiyasında aktivləşdirilsə allocation-a kömək edə bilər. Bütün historical/shared charge-ı avtomatik bölmür. Dəqiq görünən ixtiyari bölgü əvəzinə unallocated cost-u açıq saxla.
+
+Əsas cost driver-ləri yoxla: compute forması və utilization, storage class/retention, network transfer, managed service istifadəsi, logging həcmi və support ehtiyacı. Region, commitment, architecture və pricing şərtləri nəticəyə təsir edir. Tədris nümunəsindəki rate cari cloud qiymət təklifi deyil.
+
+Variantları təmsilçi workload-la müqayisə et. Rightsizing, vacib olmayan environment-ləri cədvəllə işlətmək və lifecycle policy israfı azalda bilər, amma tələb olunan tutum və recovery-ni qoru. Uzunmüddətli commitment endirim müqabilində çevikliyi azalda bilər; forecast dəqiq göründüyü üçün öhdəlik götürmə. Data egress və operational labor komponent köçürməsindən görünən qənaəti tərsinə çevirə bilər.
+
+Budget və alert görünürlük və action trigger verir. Budget notification avtomatik sərt xərc həddi deyil. Sahibi, response vaxtını və təhlükəsiz avtomatik control-u müəyyən et. Threshold keçiləndə production DB-ni kor-koranə dayandırmaq daha böyük biznes itkisi yarada bilər.
+
+Cost-u reliability, latency, security və customer outcome ilə birlikdə yoxla. Baseline, təklif, gözlənilən fayda, risk və rollback şərtini qeydə al. Əlaqəsiz hesabları deyil, eyni scope/time əsasında realized saving ölç.
+
+## İşlənmiş nümunə
+
+Orijinal aylıq nümunədə scope daxilində cost 12000 vahid, uyğun uğurlu booking 200000-dir. Unit cost `12000 / 200000 = 0.06` olur. Sonra cost 24000, uyğun booking 800000 olur: hər booking `0.03`.
+
+Total cost ikiqat artdı, unit cost yarıya düşdü. Bu, profitability və məqbul quality sübutu deyil; revenue, kənarda qalan cost və reliability-ni yoxla. Storage deletion policy 500 qənaət edib lazım olan recovery data-sını silirsə, tək hesab azalması ilə əsaslandırılmır. Məbləğlər sünidir, cari provider rate iddiası yoxdur.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n B[Business unit and scope] --> A[Allocated and shared costs]\n A --> U[Unit cost and workload trend]\n U --> O[Optimization options]\n O --> R[Reliability security and performance review]\n R --> M[Measure realized effects]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Alert aylıq budget-in keçildiyini deyir. Provider sonrakı xərci mütləq dayandırıbmı?</summary>
+
+Xeyr. Alert və enforcement ayrı mexanizmdir. Qurulmuş action və service davranışını yoxla. Sahib təyin et, customer və recovery təsirini nəzərə alan mütənasib cavab seç.
+
+</details>
+
+## Tipik səhvlər
+
+- Scope və observation window-u fərqli hesabları müqayisə etmək.
+- Tag-i tam historical allocation saymaq.
+- Xidmət az faydalı iş gördüyü halda az spending-i uğur saymaq.
+- Egress, commitment və operational labor-u nəzərə almamaq.
+
+## Praktik tapşırıq
+
+Xidmət əvvəl 300000 faydalı transaction-a 9000, sonra 500000-ə 11000 xərcləyir. Unit cost-ları hesabla, profitability üçün çatışmayan məlumatı tap və təhlükəsiz ölçülən bir optimizasiya təklif et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Unit cost müvafiq olaraq 0.03 və 0.022-dir. Profitability üçün revenue, excluded/shared cost və quality outcome hələ lazımdır. Mümkün experiment kritik olmayan komponenti reala uyğun load altında capacity, latency və recovery guardrail-ləri ilə rightsizing etməkdir. Real cost-u eyni allocation/workload tərifi ilə müqayisə et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Cost scope / faydalı vahid / time window. Şəffaf allocation et. Budget alert ≠ hard cap. Workload, reliability, security və flexibility sübutu ilə optimizasiya et.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [AWS Well-Architected Cost Optimization pillar](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html): cost-aware arxitektura və operations icmalı. Yalnız seçilmiş icmal materialının oxunduğu bildirilir.
+- [AWS: Cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html): activation və allocation konteksti. Hesab və tövsiyələr orijinal tədris nümunəsidir; konkret deployment üçün pricing/maliyyə məsləhəti deyil.

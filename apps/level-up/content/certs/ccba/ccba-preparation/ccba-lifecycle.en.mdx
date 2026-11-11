@@ -1,0 +1,77 @@
+---
+id: ccba-lifecycle
+locale: en
+title: 'Manage requirement changes'
+objectives:
+  - 'Use requirement relationships to assess change impacts.'
+  - 'Manage maintenance, prioritization, impact analysis and approval as distinct decisions.'
+---
+
+## Core concept
+
+The life of requirement information does not end when a statement is written. BABOK v3 addresses alignment of requirements and designs from the representation of a need through retirement. Traceability, maintenance, prioritization, change assessment and approval support one another throughout that life. The purpose is not to stop change, but to make informed decisions about value, relationships and consequences.
+
+## Why it matters
+
+A seemingly small field change may affect a data model, business rule, test and customer message. Without relationships, the team sees only the cost of editing a screen. At the other extreme, linking every item indiscriminately creates maintenance burden without improving decisions. Useful traceability captures meaningful connections. Maintained requirements and rules can continue to support operations, compliance and future change after a solution is released.
+
+## Theory and distinctions
+
+**Trace:** Make meaningful links between needs, requirements, designs and solution components visible. Backward and forward traceability can reveal missing coverage or functionality without a supporting need. **Maintain:** Keep information accurate, consistent and usable with appropriate attributes over time. Reuse still requires checking suitability in the new context.
+
+**Prioritize:** Compare benefit, consequences of omission, cost, risk, dependencies and time sensitivity. A priority is not a permanent label; context changes. Investigating feasibility early can be valuable for a high-risk option. The source does not prescribe one universal mandatory ranking formula for every initiative.
+
+**Assess changes:** Examine a proposed change against need, strategy, value, related requirements, cost, timing and risk. Include rework and opportunity cost rather than merely the direct edit. **Approve:** Obtain appropriate authorized agreement and communicate the decision. Formality depends on context. Producing analysis does not automatically make the analyst the sole approver; governance determines responsibility and authority.
+
+## Worked example
+
+A courier service requests an “entrance code” field. It looks like a small text edit. Traceability reveals effects on driver notifications, retention, support procedures and test data. Users also need a way to change or remove the code.
+
+The analyst compares benefits and alternatives: a new persistent field, a temporary order note, or a driver call. Relevant specialists investigate effects and applicable constraints. If the authorized decision owner selects a smaller, time-limited option, related requirements, designs, tests and communications are updated together. The example does not claim that this option is universally correct; it demonstrates what the decision needs to consider.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n N["Business need"] --> R["Requirement"]\n R --> D["Design and data"]\n R --> T["Tests and operations"]\n C["Proposed change"] --> R\n D --> A["Assess value, cost, risk and timing"]\n T --> A\n A --> G["Authorized decision"]\n G --> M["Maintain related versions"]'
+  }
+/>
+
+The model follows a proposed change through affected relationships and an authorized decision. Maintaining consistent versions afterwards supports the next change as well.
+
+## Decision practice
+
+The sponsor says the request is only one line and needs no analysis. Statement length does not establish low impact. Perform a proportionate review of existing relationships and expose the impact and uncertainty. If that review genuinely indicates little risk, a lightweight decision process may be sufficient. The usefulness of change assessment does not depend on the length of its form.
+
+## Common mistakes and better practice
+
+- An identifier alone is not meaningful traceability; describe the relationship.
+- Do not automatically preserve an old priority in new circumstances.
+- Approval does not make information permanently immutable.
+- Include maintenance and support effects as well as construction cost.
+- Update related versions and inform affected stakeholders after a decision.
+
+## Application exercise and explained answer
+
+**Exercise:** Write a minimum impact record for replacing a persistent code field with a temporary order note: need, two relationships, alternative, risk and decision authority.
+
+**Explained answer:** The need is to reduce failed access. Relationships may include driver messaging and information lifetime. Compare persistent storage with a temporary note; losing useful information and retaining it too long are different risks. Decision authority comes from governance. If accepted, rules, interface behavior and tests must be made consistent. A recommendation should also explain uncertainty or missing information rather than conceal it.
+
+## Mini-quiz
+
+In a scenario, maintenance, change assessment and approval are distinct activities. Identify the needed output to choose the task that most directly addresses the question.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Find relationships → assess impact → compare priority → obtain an authorized decision → maintain consistent information. These activities remain useful during development, operation and retirement.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: §5.1, pp. 79–83; §5.2, pp. 83–86; §5.3, pp. 86–91; §5.4, pp. 91–95; §5.5, pp. 95–97. Decision authority: §3.3, pp. 37–42. Principal explanations consulted: 79, 83, 87–88, 91–93, 95–96.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

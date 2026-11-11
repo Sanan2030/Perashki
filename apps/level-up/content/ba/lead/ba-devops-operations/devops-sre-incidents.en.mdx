@@ -1,0 +1,95 @@
+---
+id: devops-sre-incidents
+locale: en
+title: 'Reliability engineering: SLOs, incidents and recovery tests'
+objectives:
+  - 'Define a user-centered SLI and calculate a request-based error budget.'
+  - 'Separate incident command, mitigation and communication responsibilities.'
+  - 'Distinguish RTO/RPO targets from demonstrated restore capability.'
+---
+
+## Learning objectives
+
+- Define a user-centered SLI and calculate a request-based error budget.
+- Separate incident command, mitigation and communication responsibilities.
+- Distinguish RTO/RPO targets from demonstrated restore capability.
+
+## Why this matters
+
+An availability dashboard is green because it counts only the public homepage, while checkout fails. Backups run nightly, yet the team has never restored them. A reliable service needs measurements and recovery evidence tied to the user journey, not just successful infrastructure tasks.
+
+## Core theory
+
+A service level indicator measures an aspect of service behavior. A service level objective sets a target for an indicator over a defined window. State what counts as a valid event, what counts as good, the population and the observation window. Request-based success, time-based availability and latency objectives are related but not interchangeable.
+
+An error budget is the tolerated bad fraction under the objective. For 100,000 eligible requests and a 99.9% success objective, the permitted bad-request count is 100. If 80 were bad, 20 remain under that simplified fixed population calculation. This does not mean 20 minutes of downtime; units and denominator matter. A rolling window can change both counts over time.
+
+The budget informs a policy for balancing change and reliability. Exhaustion is evidence for defined action, such as reducing risky releases and addressing the cause, rather than a magical permission to ignore users until an arbitrary reset. Choose alerting that reflects material user impact and actionable burn, not every isolated transient error.
+
+During an incident, make command, operational mitigation and communication explicit. The commander coordinates priorities and information; responders investigate and execute bounded actions; communication provides a coherent, time-stamped picture. Mitigation may precede complete root-cause understanding. Preserve evidence and consider the risks of each action rather than coordinating many unrelated changes at once.
+
+RTO is a recovery-time target; RPO expresses tolerated data loss in time terms relative to recovery. A backup schedule can contribute to a design but does not prove either target is achievable. Test restoration, integrity, credentials, dependencies and the actual user journey. Recovery also requires knowing who can act and which data/state is authoritative.
+
+A useful post-incident review reconstructs the timeline, contributing conditions, detection/mitigation gaps and verifiable follow-up work. Blaming the last operator usually misses the system conditions that made the action dangerous.
+
+## Worked example
+
+A checkout SLI counts authorized purchase attempts with a documented success definition. A synthetic 30-day report has 100,000 eligible attempts and 80 failures, leaving 20 failures within a 99.9% request-based budget. The next decision considers burn speed and impact, not only that arithmetic.
+
+Separately, the team's recovery targets are RTO 60 minutes and RPO 15 minutes. In a restore exercise, the newest usable snapshot is 40 minutes old and service restoration takes 95 minutes. The test misses both targets even if the backup job previously reported success. Record the failed assumptions and improve the design, then retest.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["User journey and SLI"] --> B["SLO and budget policy"]\n B --> C["Detect material impact"]\n C --> D["Coordinate and mitigate"]\n D --> E["Verify recovery and data"]\n E --> F["Review conditions and retest improvements"]'
+  }
+/>
+
+Reliability is a feedback process linking user impact, operational action and learning. Backup creation is not the same checkpoint as validated recovery.
+
+## Inspect the decision
+
+<details>
+<summary>A request-based SLO has 20 bad requests left in its budget. Is that equivalent to 20 minutes of allowed outage?</summary>
+
+No. The units differ. A time-based downtime allowance needs a time-based indicator/window; converting requires an explicit model and relevant evidence rather than reusing the same number.
+
+</details>
+
+## Common mistakes
+
+- Counting only healthy endpoints can exclude the failed user journey.
+- Averages can hide slow-tail latency and harmed segments.
+- Many uncoordinated mitigations can make cause and effect harder to establish.
+- A completed backup does not prove a readable, timely restore.
+- A postmortem without owners and verification criteria does not establish improvement.
+
+## Practice exercise
+
+Draft an incident plan for checkout failures after a deployment. Include the SLI, alert meaning, three response roles, mitigation evidence, user communication and a restore test that checks RTO/RPO rather than just backup-job success.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Define eligible checkout attempts and the successful outcome. Alert on actionable failure/latency evidence with scope and burn context. Assign command, operations and communication so actions and updates share a timeline. Compare the deployed artifact and affected journey, choose a bounded mitigation and verify actual purchases/status afterward.
+
+For restore testing, measure elapsed time until the required service is usable and the age/integrity of recovered data. Include credentials and downstream dependencies. Compare observations with the targets, capture gaps and assign follow-up work with a concrete retest. Do not claim a target is met from a backup schedule alone.
+
+</details>
+
+## Check understanding and cheat sheet
+
+SLI measures; SLO targets; budget units matter. Coordinate command, operations and communication. Mitigate user impact while learning. RTO/RPO are targets; tested restore evidence establishes capability. Verify improvement after the incident.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Google SRE, Implementing SLOs](https://sre.google/workbook/implementing-slos/): indicators, objectives and error budgets.
+- [Google SRE, Incident Response](https://sre.google/workbook/incident-response/): coordination and mitigation.
+- [Microsoft reliability metrics](https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics): recovery targets and evidence.
+
+All counts, durations and policies are original teaching examples, not production measurements or certification rules.

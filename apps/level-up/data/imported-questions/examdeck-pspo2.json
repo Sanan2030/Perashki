@@ -1,0 +1,3017 @@
+[
+  {
+    "id": "examdeck-pspo2-examdeck-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 1,
+    "text": {
+      "az": "Scrum Guide (2020) və Scrum.org-nin Product Owner Öyrənmə Yoluna əsasən, product vision və Product Goal arasındakı əlaqəni ən dəqiq şəkildə hansı ifadə təsvir edir?",
+      "en": "According to the Scrum Guide (2020) and Scrum.org's Product Owner Learning Path, which statement most accurately describes the relationship between the product vision and the Product Goal?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Product Backlog Sprint Planning üçün kifayət qədər yetkinliyə çatdıqdan sonra Product Goal product vision-ni lazımsız edir və onu ləğv etmək olar.",
+          "en": "Once the Product Backlog reaches sufficient maturity for Sprint Planning, the Product Goal makes the product vision unnecessary and it can be discarded."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "product vision başlanğıcda bir dəfə təyin edilir, halbuki Product Goal-un hər bir Sprint-in sonunda dəyişməsi gözlənilir.",
+          "en": "The product vision is fixed once set at inception, whereas the Product Goal is expected to change at the end of every single Sprint."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "product vision və Product Goal eyni artefaktdır; Scrum Guide 2020 bütün Scrum Team-dan həm layihənin başlanğıcında həmmüəllif olmasını və heç vaxt onlara yenidən baxmamasını tələb edir.",
+          "en": "The product vision and the Product Goal are the same artifact; the Scrum Guide 2020 requires the entire Scrum Team to co-author both at project kickoff and never revise them."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "product vision məhsulun uzunmüddətli, arzulanan gələcək vəziyyətidir, Product Goal isə Scrum Team-nin həmin visiona doğru addım daş kimi üzərinə götürdüyü növbəti konkret, ortamüddətli məqsəddir.",
+          "en": "The product vision is the long-term, aspirational future state of the product, while the Product Goal is the next concrete, mid-term objective the Scrum Team commits to as a stepping stone toward that vision."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Scrum Guide 2020, Product Goal-u Scrum Team-nin planlarını və növbəti birinə keçməzdən əvvəl öhdəlik götürdüyü gələcək vəziyyət kimi təqdim etdi. O, daha geniş, daha həvəsli product vision-ə gedən yolda bir mərhələni təmsil edir, sübutlar toplandıqca zamanla təkamül edəcəyi gözlənilir.",
+      "en": "The Scrum Guide 2020 introduced the Product Goal as a future state the Scrum Team plans toward and commits to before taking on the next one. It represents a milestone on the path to the broader, more aspirational product vision, which itself is expected to evolve over time as evidence accumulates."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 1,
+    "text": {
+      "az": "Evidence-Based Management (EBM) Bələdçisinə əsasən, təşkilatların daha yaxşı dəyər çatdırılması istiqamətində irəliləyişləri ölçmək üçün istifadə etdikləri “Key Value Areas”nı birlikdə hansı dörd sahə təşkil edir?",
+      "en": "According to the Evidence-Based Management (EBM) Guide, which four areas together make up the 'Key Value Areas' that organizations use to measure progress toward better value delivery?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Velocity, Yanma dərəcəsi, Sprint Goal tamamlama və Definition of Done uyğunluq",
+          "en": "Velocity, Burn-down Rate, Sprint Goal completion, and Definition of Done conformance"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Return on Investment, Net Promoter Score, Çatılma dərəcəsi və Müştərinin Ömür Boyu Dəyəri",
+          "en": "Return on Investment, Net Promoter Score, Churn Rate, and Customer Lifetime Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Xərc, Cədvəl, Scope və Keyfiyyət",
+          "en": "Cost, Schedule, Scope, and Quality"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Current Value, Unrealized Value, Time-to-Market və Ability to Innovate",
+          "en": "Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "EBM Bələdçisi dəyər ölçülməsini dörd Key Value Areas olaraq təşkil edir: Current Value, Unrealized Value, Time-to-Market və Ability to Innovate. Hər bir sahənin təşkilatın seçə və uyğunlaşdıra biləcəyi nümunə ölçüləri var, lakin dörd sahənin özü təməl strukturdur.",
+      "en": "The EBM Guide organizes value measurement into four Key Value Areas: Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate. Each area has example measures an organization can select and adapt, but the four areas themselves are the foundational structure."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 1,
+    "text": {
+      "az": "Scrum Guide (2020)-a görə Scrum Team Product Goal-a irəliləyişi izləyərkən burn-down charts, burn-up charts və cumulative flow diagrams kimi forecasting üsullarının düzgün rolu nədir?",
+      "en": "According to the Scrum Guide (2020), what is the correct role of forecasting techniques such as burn-down charts, burn-up charts, or cumulative flow diagrams when a Scrum Team monitors progress toward a Product Goal?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Onlar Sprint Review ehtiyacını əvəz edirlər, çünki onlar artıq stakeholders nə qədər iş qaldığını və done olacağını göstərirlər.",
+          "en": "They replace the need for a Sprint Review, since they already show stakeholders how much work remains and when it will be done."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Onlar forecasting irəliləyiş üçün faydalı təcrübələrdir, lakin onlar empiricism-i əvəz etmir, çünki mürəkkəb mühitdə gələcəyə hesablanmış qərarların qəbulu üçün yalnız artıq baş vermiş hadisələrdən istifadə edilə bilər.",
+          "en": "They are useful practices for forecasting progress, but they do not replace empiricism, because only what has already happened may be used for forward-looking decision-making in a complex environment."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Onlar yalnız Developers tərəfindən daxili olaraq istifadə olunur və Product Owner daxil olmaqla, Scrum Team xaricində heç kimlə paylaşılmamalıdır.",
+          "en": "They are used only by the Developers internally and must never be shared with anyone outside the Scrum Team, including the Product Owner."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Bunlar transparency sütununu təmin etmək üçün Product Owner-nin hər Sprint-də stakeholders-da dərc etməli olduğu Scrum artefaktlardır.",
+          "en": "They are mandatory Scrum artifacts that the Product Owner must publish to stakeholders every Sprint to satisfy the transparency pillar."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Scrum Guide (2020) forecast irəliləyiş üçün müxtəlif təcrübələrin (yanma, yanma, məcmu axın) mövcud olduğunu bildirir və faydalı olduğu sübut edilsə də, onlar empiricism əhəmiyyətini əvəz etmir, çünki mürəkkəb mühitlərdə nələrin baş verəcəyi naməlumdur və yalnız əvvəlcədən nə baş verdiyi barədə məlumat verilə bilər.",
+      "en": "The Scrum Guide (2020) states that various practices exist to forecast progress (burn-downs, burn-ups, cumulative flow), and while proven useful, they do not replace the importance of empiricism, since in complex environments what will happen is unknown and only what has already happened can inform forward-looking decisions."
+    },
+    "lessonId": "pspo2-forecasting",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 1,
+    "text": {
+      "az": "Scrum Guide-a (2020) əsasən, Product Backlog-un şəffaf, görünən və stakeholders tərəfindən başa düşülməsinə əmin olmaq da daxil olmaqla, effektiv Product Backlog idarəetməsi üçün kim cavabdehdir?",
+      "en": "According to the Scrum Guide (2020), who is ultimately accountable for effective Product Backlog management, including making sure the Product Backlog is transparent, visible, and understood by stakeholders?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Biznes bölmələrinin nümayəndələrindən ibarət fırlanan komitə, beləliklə, prioritetləşdirmə şöbələr arasında ədalətli qalır.",
+          "en": "A rotating committee of business unit representatives, so prioritization stays fair across departments."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Product Owner, hətta xüsusi Product Backlog fəaliyyətlər Scrum Team-də başqalarına həvalə edildikdə belə.",
+          "en": "The Product Owner, even when specific Product Backlog activities are delegated to others on the Scrum Team."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Developers birlikdə, çünki onlar Increment-i qururlar ki, stakeholders nəticədə qiymətləndirirlər.",
+          "en": "The Developers collectively, since they build the Increment that stakeholders ultimately evaluate."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Scrum Master, çünki onlar Scrum Team-nin ümumi proses uyğunluğuna və məşqinə cavabdehdirlər.",
+          "en": "The Scrum Master, because they are responsible for the Scrum Team's overall process compliance and coaching."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Scrum Guide (2020) açıq şəkildə göstərir ki, Product Owner effektiv Product Backlog idarəetmə üçün cavabdehdir, bura Product Goal-un işlənib hazırlanması və ötürülməsi və Product Backlog-un şəffaf, görünən və aydın olmasını təmin etmək daxildir. Tapşırıqların həvalə edilməsi (məsələn, refinement zamanı Developers-ə) kimin məsuliyyət daşıdığını dəyişmir. Bunu ortaq və ya komitə məsuliyyəti kimi qəbul etmək Scrum üçün mərkəzi olan tək səsli hesabatlılıq modelini sarsıdır.",
+      "en": "The Scrum Guide (2020) is explicit that the Product Owner is accountable for effective Product Backlog management, which includes developing and communicating the Product Goal and ensuring the Product Backlog is transparent, visible, and understood. Delegating tasks (e.g., to Developers during refinement) does not change who holds accountability. Treating this as a shared or committee responsibility undermines the single-voice accountability model central to Scrum."
+    },
+    "lessonId": "pspo2-facilitation",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 1,
+    "text": {
+      "az": "Evidence-Based Management (EBM) modelində hansı Key Value Area (KVA) məhsulun hazırda müştərilərə və biznesə nə qədər dəyər verdiyini ölçmək üçün istifadə olunur?",
+      "en": "In the Evidence-Based Management (EBM) model, which Key Value Area (KVA) is primarily used to measure how much value a product is delivering to customers and the business right now?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Current Value",
+          "en": "Current Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Unrealized Value",
+          "en": "Unrealized Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Time-to-Market",
+          "en": "Time-to-Market"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Ability to Innovate",
+          "en": "Ability to Innovate"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "EBM Bələdçisi Current Value-ni adətən məmnunluq, istifadə və gəlirə əsaslanan ölçülər vasitəsilə bu gün məhsulun müştərilərə və təşkilata təqdim etdiyi dəyər ölçüsü kimi müəyyən edir. O, potensiala, sürətə və dəyişiklik qabiliyyətinə diqqət yetirən digər üç KVAs-dən fərqlənir.",
+      "en": "The EBM Guide defines Current Value as the measure of value the product delivers to customers and the organization today, typically via satisfaction, usage, and revenue-based measures. It is distinct from the other three KVAs, which focus on potential, speed, and capacity for change."
+    },
+    "lessonId": "pspo2-value",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q6",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q6",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 1,
+    "text": {
+      "az": "Product Owner üç məhsul üçün cavabdehdir və növbəti sərmayəni hara yatırmağa qərar verməzdən əvvəl hər bir məhsulun əslində nə qədər dəyər verdiyini müqayisə etmək üçün vahid sübuta əsaslanan çərçivə istəyir. Evidence-Based Management (EBM) Təlimatına əsasən, bu müqayisə hansı dörd ölçüyə əsaslanmalıdır?",
+      "en": "A Product Owner is accountable for three products and wants a single evidence-based framework to compare how much value each product is actually delivering before deciding where to invest next. According to the Evidence-Based Management (EBM) Guide, which four measures should this comparison be based on?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Xərc, Cədvəl, Scope və Keyfiyyət",
+          "en": "Cost, Schedule, Scope, and Quality"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Current Value, Unrealized Value, Time-to-Market və Ability to Innovate",
+          "en": "Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Return on Investment, Xalis İndiki Dəyər, Ödəniş Müddəti və Daxili Gəlir dərəcəsi",
+          "en": "Return on Investment, Net Present Value, Payback Period, and Internal Rate of Return"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Velocity, Yanma dərəcəsi, Cycle Time və Lead Time",
+          "en": "Velocity, Burndown rate, Cycle Time, and Lead Time"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "EBM Bələdçi Current Value, Unrealized Value, Time-to-Market və Ability to Innovate-ni bir-birini tamamlayan Key Value Areas kimi müəyyən edir, beləliklə təşkilat bu günün dəyərini, sabahın baxış imkanını, çatdırılma sürətini, digər imkanları və tarazlığı saxlamağa imkan vermir. dəstləri təmin edir.",
+      "en": "The EBM Guide defines Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate as complementary Key Value Areas so an organization can see today's value, tomorrow's opportunity, speed of delivery, and capacity to keep improving — a balanced view none of the other metric sets provide."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q7",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q7",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 1,
+    "text": {
+      "az": "Evidence-Based Management (EBM) Bələdçisinə əsasən, təşkilat cari vəziyyətini və impact təkmilləşdirmə səylərini başa düşmək üçün dörd Key Value Areas (KVAs) istifadə edir. Hansı dörd KVAs bu modeli təşkil edir?",
+      "en": "According to the Evidence-Based Management (EBM) Guide, an organization uses four Key Value Areas (KVAs) to understand its current position and the impact of improvement efforts. Which four KVAs make up this model?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Current Value, Unrealized Value, Time-to-Market və Ability to Innovate.",
+          "en": "Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Xərc, Scope, Cədvəl və Keyfiyyət.",
+          "en": "Cost, Scope, Schedule, and Quality."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Müştəri Məmnuniyyəti, Bazar Payı, İşçilərin İşə cəlb edilməsi və Gəlir artımı.",
+          "en": "Customer Satisfaction, Market Share, Employee Engagement, and Revenue Growth."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Velocity, Sprint Yanma, Komanda Xoşbəxtliyi və Qüsurların Sayı.",
+          "en": "Velocity, Sprint Burndown, Team Happiness, and Defect Count."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "EBM Bələdçi dörd Key Value Areas — Current Value, Unrealized Value, Time-to-Market və Ability to Innovate ətrafında ölçmə təşkil edir – beləliklə, liderlər təşkilati çevikliyi qiymətləndirə və sübuta əsaslanan qərarlar qəbul edə bilərlər. velocity və ya ənənəvi xərc/scope/cədvəl üçbucağı kimi output ölçüləri.",
+      "en": "The EBM Guide organizes measurement around four Key Value Areas — Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate — so leaders can evaluate organizational agility and make evidence-based investment decisions rather than relying on output metrics like velocity or the traditional cost/scope/schedule triangle."
+    },
+    "lessonId": "pspo2-organization",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q8",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q8",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 1,
+    "text": {
+      "az": "Aşağıdakılardan hansı Evidence-Based Management (EBM) Key Value Area ilə faktiki fokusuna uyğun gəlir?",
+      "en": "Which of the following correctly matches an Evidence-Based Management (EBM) Key Value Area with its actual focus?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Current Value (CV) — hər bir mümkün bazar seqmentini tam doyurarsa, təşkilatın çata biləcəyi nəzəri gəlir tavanı.",
+          "en": "Current Value (CV) — the theoretical revenue ceiling the organization could reach if it fully saturated every possible market segment."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Time-to-Market (T2M) — təşkilatın müştərilərə və istifadəçilərə yeni imkanlar, xidmətlər və ya məhsulları tez çatdırmaq qabiliyyəti.",
+          "en": "Time-to-Market (T2M) — the organization's ability to quickly deliver new capabilities, services, or products to customers and users."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Ability to Innovate (A2I) — son tamamlanan maliyyə ili ərzində məhsulun əldə etdiyi ümumi gəlir.",
+          "en": "Ability to Innovate (A2I) — the total revenue the product generated during the last completed fiscal year."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Unrealized Value (UV) — özəllik ideyasının yaranması ilə onun müştərilərin əlinə verilməsi arasında keçən vaxt.",
+          "en": "Unrealized Value (UV) — the elapsed time between when a feature idea is conceived and when it is placed in customers' hands."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "EBM dörd Key Value Areas müəyyən edir: Current Value (bu gün təslim edilən dəyər), Unrealized Value (potensial gələcək dəyərə olan boşluq), Time-to-Market (dəyərin çatdırılma sürəti) və Ability to Innovate çatdırılma qabiliyyəti (yeni imkanlar). Yalnız B variantı Key Value Area-nı düzgün tərifi ilə cütləşdirir.",
+      "en": "EBM defines four Key Value Areas: Current Value (value delivered today), Unrealized Value (the gap to potential future value), Time-to-Market (speed of delivering value), and Ability to Innovate (capacity to deliver new capabilities). Only option B pairs the Key Value Area with its correct definition."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q9",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q9",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "az": "EBM ölçülərindən istifadə etməklə, Product Owner tapıntısı Current Value müəyyən edilmiş, aşağı inkişaf edən bazar seqmentində güclüdür, Unrealized Value isə sürətlə böyüyən rəqibin hələ dominantlıq əldə etmədiyi qonşu seqmentdə çox yüksəkdir. Rəhbərlik \"ən təhlükəsiz olduğu üçün\" tamamilə müəyyən edilmiş seqmentə sərmayə qoymağa davam etmək istəyir. Product Owner-nin ən müdafiə olunan tövsiyəsi hansıdır?",
+      "en": "Using EBM measures, a Product Owner finds Current Value is strong in an established, low-growth market segment, while Unrealized Value is very high in an adjacent segment where a fast-growing competitor has not yet gained dominance. Leadership wants to keep investing entirely in the established segment 'because it's safest.' What is the Product Owner's most defensible recommendation?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Product Backlog xaricində öz backlog-dan işləyən bitişik seqment üçün ayrıca, daimi olaraq bloklanmış komanda yaratmağı tövsiyə edin, beləliklə, mövcud Scrum Team cari gəliri qorumağa davam edir, yeni komanda isə Unrealized Value-i təkbaşına araşdırır.",
+          "en": "Recommend spinning up a separate, permanently siloed team for the adjacent segment that works from its own backlog outside the Product Backlog, so the existing Scrum Team keeps protecting current revenue while the new team explores the Unrealized Value on its own."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "EBM investisiyanı yalnız ən təhlükəsiz cari gəliri qorumaq üçün deyil, ən böyük potensial dəyər qazancına yönəltmək üçün nəzərdə tutulduğundan, bitişik yüksək reallaşdırılmamış dəyər seqmentində kiçik, sübut toplayan təcrübələr üçün bəzi sərmayələri yenidən balanslaşdırmağı tövsiyə edin.",
+          "en": "Recommend rebalancing some investment toward small, evidence-gathering experiments in the adjacent high-Unrealized-Value segment, since EBM is meant to direct investment toward the greatest potential value gain, not solely to protect the safest current revenue."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Yalnız müəyyən edilmiş seqmentə sərmayə qoymağa razılaşın, çünki onun Current Value bu gün bitişik seqmentinkindən obyektiv yüksəkdir, çünki EBM investisiyanı artıq sübut edilmiş dəyərə yönəldir və Unrealized Value hər hansı büdcəni əsaslandırmaq üçün çox spekulyativ hesab edir.",
+          "en": "Agree to invest solely in the established segment because its Current Value is objectively higher today than the adjacent segment's, since EBM directs investment toward value already proven and treats Unrealized Value as too speculative to justify any budget."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "EBM investisiyanı ən etibarlı cari gəliri qorumaq əvəzinə ən böyük potensial dəyər qazancına yönəltmək üçün mövcud olduğundan, qurulmuş seqmentdən tamamilə imtina etməyi və bütün resursları birdən-birə qonşu yüksək reallaşdırılmamış dəyər seqmentinə köçürməyi tövsiyə edin.",
+          "en": "Recommend abandoning the established segment entirely and shifting all resources at once into the adjacent high-Unrealized-Value segment, since EBM exists to steer investment toward the largest potential value gain rather than guard the safest current revenue."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Qonşu seqmentdə yüksək Unrealized Value, Current Value başqa yerlərdə sağlam qaldığı halda belə, EBM-in səthə çıxması üçün nəzərdə tutulmuş əhəmiyyətli istifadə olunmamış fürsətdən xəbər verir. Müdafiə edilə bilən cavab investisiyanın ölçülmüş, artımlı eksperimentə əsaslanan yenidən balanslaşdırılmasıdır, tamamilə təhlükəsiz qalmamaq, hər şeyə sıçramaq və ya Product Backlog-dən yan keçmək deyil.",
+      "en": "High Unrealized Value in the adjacent segment signals substantial untapped opportunity that EBM is designed to surface, even while Current Value remains healthy elsewhere. The defensible response is a measured, incremental experiment-based rebalancing of investment, not staying entirely safe, jumping all-in, or bypassing the Product Backlog with a siloed effort."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-q10",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck:q10",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "az": "Şirkət məhsulunu birdəfəlik perpetual licenses ilə satır. Product vision komandanın hər Sprint verilən davamlı yaxşılaşdırmalarla müştəriləri sevindirəcəyini bildirir. EBM məlumatına görə, ödənişi artıq etmiş müştərilərin yeni increments-i istifadəyə keçirməyə həvəsi az olduğu üçün Current Value artımı dayanıb; böyük müştərilərin birdəfəlik xüsusi işləri artdığından Ability to Innovate də azalır. Product Owner kimi ən əsaslı strateji tövsiyə hansıdır?",
+      "en": "A company sells its product through one-time perpetual licenses. Its product vision states the team will 'continuously delight customers with ongoing improvements delivered every Sprint.' EBM data shows Current Value plateauing because already-paid customers have little incentive to adopt new increments, while Ability to Innovate is dropping as effort shifts to one-off custom work for large accounts. As Product Owner, what is the most strategically sound recommendation?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "business model-dən asılı olmayaraq daha çox Sprint increments göndərilməsini davam etdirin, inanın ki, şəffaf funksiya həcmi nəhayət mənimsəməyə məcbur olacaq.",
+          "en": "Keep shipping more Sprint increments regardless of the business model, trusting that sheer feature volume will eventually force adoption."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Rəhbərliyə bildirmədən böyük müştərilərin xüsusi istəklərinin prioritetini sakitcə aşağı salmağı mühəndislikdən istəmək və bunu biznesə aid olmayan sırf texniki məsələ saymaq.",
+          "en": "Ask engineering to quietly deprioritize the large accounts' custom requests without informing leadership, treating this as purely a technical, non-business issue."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Əsas dəyər durğunluğuna toxunmadan, sadəcə olaraq “satılan funksiyaları çatdırın” demək üçün vision yenidən yazın.",
+          "en": "Rewrite the vision to simply say 'deliver whatever features are sold' so it matches the current perpetual-license reality, without addressing the underlying value stagnation."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Lisenziya business model davamlı artan dəyər çatdırılması vision ilə ziddiyyət təşkil etdiyini rəhbərliyə çatdırın və təşviqləri vision ilə daha yaxşı uyğunlaşdıran abunəlik kimi business model-ni kəşf etməyi təklif edin.",
+          "en": "Raise with leadership that the perpetual-license business model conflicts with a vision of continuous incremental value delivery, and propose exploring a business model, such as subscription, that better aligns incentives with the vision."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "EBM məlumatı perpetual-license business model-in davamlı dəyər çatdırılması barədə vision vədinə zidd işlədiyini göstərir: Current Value artmır, xüsusi işlərin yükü Ability to Innovate-ni zəiflədir. Peşəkar yanaşma daha çox output vermək, problemi gizlətmək və ya vision-u pozulmuş modelə uyğun zəiflətmək əvəzinə bu sistemli uyğunsuzluğu rəhbərliyə göstərmək və vision-u dəstəkləyən business model dəyişikliyi təklif etməkdir.",
+      "en": "The EBM data reveals that the perpetual-license business model actively works against the vision's promise of continuous delivered value, plateauing Current Value and eroding Ability to Innovate through custom-work drag. The professionally sound move is to surface this systemic misalignment to leadership and propose a business-model change that supports the vision, rather than pushing more output, hiding the issue, or diluting the vision to fit a broken model."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-evidence-based-management-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-evidence-based-management:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 1,
+    "text": {
+      "az": "Product Owner ideyanın çatdırılan müştəri dəyərinə nə qədər tez çevrilə biləcəyini əks etdirən bir metrik istəyir. Bu metrik hansı Key Value Area-ə aiddir?",
+      "en": "A Product Owner wants a metric reflecting how quickly an idea can be turned into delivered customer value. Which Key Value Area does this metric belong to?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Current Value",
+          "en": "Current Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Ability to Innovate",
+          "en": "Ability to Innovate"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Unrealized Value",
+          "en": "Unrealized Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Time-to-Market",
+          "en": "Time-to-Market"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Time-to-Market EBM Key Value Area təşkilatın reaksiyası ilə əlaqədardır – onun ideyanı nə qədər sürətlə işlək, buraxılmış funksionallığa çevirə bilməsi. O, adətən cycle time, lead time və release tezlik ölçüləri ilə izlənilir.",
+      "en": "Time-to-Market is the EBM Key Value Area concerned with an organization's responsiveness — how fast it can convert an idea into working, released functionality. It is commonly tracked with cycle time, lead time, and release frequency measures."
+    },
+    "lessonId": "pspo2-value",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-evidence-based-management-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-evidence-based-management:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "az": "Komanda ötən rübdə 40 hekayə və 320 story points göndərdiyini qürurla bildirir, lakin Product Owner müştəri retention, istifadəyə keçid və ya gəlirdə heç bir dəyişiklik göstərə bilməz. EBM-nin output üzərindən outcomes vurğulamasına uyğun olaraq, Product Owner bundan sonra nə etməlidir?",
+      "en": "A team proudly reports it shipped 40 stories and 320 story points last quarter, but the Product Owner cannot show any change in customer retention, adoption, or revenue. Consistent with EBM's emphasis on outcomes over output, what should the Product Owner do next?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Məhsulun dəyərinin artdığının sübutu kimi hekayəni və ümumi xalları stakeholders-a təqdim edin",
+          "en": "Present the story and point totals to stakeholders as evidence the product's value is growing"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Scrum Master-dan daha sərt velocity izləmə tətbiq etməsini xahiş edin ki, komanda ardıcıl olaraq hər Sprint nöqtə hədəflərini vursun.",
+          "en": "Ask the Scrum Master to enforce stricter velocity tracking so the team consistently hits its point targets each Sprint"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hekayə sayını və velocity hesabatını Key Value Areas ilə əlaqəli kiçik outcome əsaslı tədbirlər dəsti ilə əvəz edin və Product Backlog-u yenidən sıralamaq üçün əldə edilən sübutlardan istifadə edin.",
+          "en": "Replace story-count and velocity reporting with a small set of outcome-based measures tied to the Key Value Areas, and use the resulting evidence to re-order the Product Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Növbəti rübdə daha çox hekayənin çatdırılması üçün komandanın öhdəlik götürmə qabiliyyətini artırın",
+          "en": "Increase the team's committed capacity so even more stories can be delivered next quarter"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Çoxlu hekayələr və ya xallar çatdırmaq müştərilərin daha yaxşı olub-olmaması barədə heç nə demir. EBM-nin əsas prinsipi ondan ibarətdir ki, təşkilatlar Product Backlog-u həmin sübuta əsaslanaraq uyğunlaşdıraraq output deyil, dörd Key Value Areas həcmində ələ keçirilən outcomes-ni ölçməli və idarə etməlidirlər.",
+      "en": "Delivering many stories or points says nothing about whether customers are better off. EBM's core premise is that organizations should measure and manage toward outcomes captured in the four Key Value Areas rather than output volume, adapting the Product Backlog based on that evidence."
+    },
+    "lessonId": "pspo2-value",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-evidence-based-management-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-evidence-based-management:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "az": "stakeholder Product Owner-a on funksiya sorğusunun siyahısını e-poçt göndərir. Product Owner hər bir elementi müzakirə və təhlil etmədən alınan sıra ilə Product Backlog-un yuxarı hissəsinə əlavə edir və Developers-ə onları növbəti Sprint-də yaratmağa başlamasını bildirir. Bu hansı anti-naxışı ən yaxşı şəkildə göstərir?",
+      "en": "A stakeholder emails the Product Owner a list of ten feature requests. The Product Owner adds each item to the top of the Product Backlog in the order received, without discussion or analysis, and tells the Developers to start building them next Sprint. What anti-pattern does this best illustrate?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Müvafiq stakeholder əməkdaşlıq, çünki Product Owner şəffaf şəkildə bütün stakeholder input-ni Product Backlog-a daxil edir.",
+          "en": "Appropriate stakeholder collaboration, since the Product Owner is transparently incorporating all stakeholder input into the Product Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Etibarlı Time-to-Market təkmilləşdirmə, çünki funksiyalar gecikmədən inkişafa keçir",
+          "en": "A valid Time-to-Market improvement, because the features move into development without delay"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Ability to Innovate KVA-nin düzgün tətbiqi, çünki məhsula yeni funksiyalar sürətlə əlavə olunur",
+          "en": "Correct application of the Ability to Innovate KVA, since new features are being added to the product quickly"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Product Owner \"backlog katib\" kimi fəaliyyət göstərir, dəyər sübutu əvəzinə stakeholder sorğusu ilə Backlog sıralama verir və məhsulun dəyərini maksimuma çatdırmaq üçün məsuliyyətdən imtina edir",
+          "en": "The Product Owner acting as a 'backlog secretary,' ordering the Backlog by stakeholder request rather than evidence of value, and abdicating accountability for maximizing product value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Scrum Guide (2020) Product Owner-ni yalnız məhsulun dəyərini artırmaq və müvafiq olaraq Product Backlog sıralamaq üçün cavabdeh edir. Sadəcə olaraq stakeholder sorğuları üçün kanal rolunu oynayaraq, onları dəyər sübutu ilə qiymətləndirmədən, bəzən “backlog katiblik” adlandırılan məşhur anti-nümunədir.",
+      "en": "The Scrum Guide (2020) makes the Product Owner solely accountable for maximizing the value of the product and for ordering the Product Backlog accordingly. Acting merely as a conduit for stakeholder requests, without evaluating them against evidence of value, is a well-known anti-pattern sometimes called being a 'backlog secretary.'"
+    },
+    "lessonId": "pspo2-value",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-evidence-based-management-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-evidence-based-management:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "az": "Hansı fikir Product Owner-in tətbiq etdiyi Scrum.org Evidence-Based Management (EBM) çərçivəsinin əsas məqsədini daha düzgün izah edir?",
+      "en": "Which statement best describes the primary purpose of Scrum.org's Evidence-Based Management (EBM) framework as applied by a Product Owner?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Təşkilatın məhsul investisiyası ilə bağlı sübuta əsaslanan qərarlar qəbul etməsinə və outcomes və təşkilati çevikliyi davamlı olaraq təkmilləşdirməyə kömək edən Key Value Areas və tamamlayıcı tədbirləri təmin etmək",
+          "en": "To provide Key Value Areas and complementary measures that help an organization make evidence-based decisions about product investment and continuously improve outcomes and organizational agility"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Product Backlog-u stakeholders tərəfindən təsdiqlənmiş sabit, prioritetləşdirilmiş layihə planı ilə əvəz etmək; beləliklə investisiya qərarları əvvəlcədən dondurulur və komandalar hər Sprint outcomes-u yoxlamağı dayandırır",
+          "en": "To replace the Product Backlog with a fixed, prioritized project plan validated by stakeholders, so investment decisions are locked in up front and teams stop inspecting outcomes every Sprint"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Rəhbərliyin hər bir elementi təsdiq etməsinə və ya rədd etməsinə imkan verən və komandaları vəd edilmiş outcome üçün cavabdeh tutmağa imkan verən maliyyə tədbirləri istifadə edərək, tikilməzdən əvvəl hər Product Backlog item üçün xüsusi return on investment təmin etmək.",
+          "en": "To guarantee a specific return on investment for every Product Backlog item before it is built, using financial measures that let leadership approve or reject each item and hold teams accountable for the promised outcome"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Scrum Teams hər Sprint Review-dən əvvəl tamamlamalı, Scrum hadisələri və artefaktları nə qədər yaxından izlədiklərini qiymətləndirmək üçün uyğunluq yoxlama siyahısını təqdim etmək üçün onların təşkilati çeviklikləri yoxlanılsın və sertifikatlaşdırıla bilsin.",
+          "en": "To provide a compliance checklist that Scrum Teams must complete before each Sprint Review, scoring how closely they followed Scrum events and artifacts so that their organizational agility can be audited and certified"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "EBM dörd Key Value Areas və əlaqəli tədbir təqdim edir ki, təşkilatlar hara investisiya edəcəkləri barədə sübuta əsaslanan qərarlar qəbul etsinlər, bu investisiyaların outcomes-ni davamlı olaraq yoxlasınlar və zamanla dəyərin çatdırılması və təşkilati çevikliyi təkmilləşdirmək üçün istiqaməti uyğunlaşdırsınlar.",
+      "en": "EBM provides four Key Value Areas and associated measures so organizations can make evidence-based decisions about where to invest, continuously inspect the outcomes of those investments, and adapt direction to improve value delivery and organizational agility over time."
+    },
+    "lessonId": "pspo2-value",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-evidence-based-management-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-evidence-based-management:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "az": "Böyük UI yenidən dizaynının üçüncü ayında output göstəriciləri komandanın hər Sprint əvvəlkindən daha çox Product Backlog items çatdırdığını göstərir. Amma dizayn başlayandan Current Value göstəricilərinin hər ikisi — müştəri məmnuniyyəti balı və məhsuldan istifadə indeksi — azalıb, Time-to-Market isə yaxşılaşıb. Product Owner üçün EBM-ə ən uyğun növbəti addım hansıdır?",
+      "en": "Three months into a major UI redesign, output metrics show the team delivering more Product Backlog items per Sprint than ever, but Current Value measures (customer satisfaction score, product usage index) have both declined since the redesign began, while Time-to-Market has improved. What is the most appropriate EBM-aligned next step for the Product Owner?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Cari planı dəyişmədən davam etdirin, çünki Time-to-Market yaxşılaşdı və komandanın Sprint üçün output-dən Product Backlog items rəqəmi yenidən dizaynın uğurlu olduğunu göstərir, Current Value-də geriləməni nəzərə alaraq, müştərilər yeni istifadəçi interfeysinə tezliklə uyğunlaşacaqlar.",
+          "en": "Continue the current plan unchanged because Time-to-Market has improved and the team's output of Product Backlog items per Sprint shows the redesign is succeeding, treating the dip in Current Value as a normal adjustment period that customers will soon get past once they adjust to the new UI"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Azalan Current Value-nu daha vacib siqnal saymaq, səbəbi tapmaq üçün dizayn dəyişikliklərini Developers və müştərilərlə yoxlamaq və yalnız output ilə Time-to-Market yaxşı göründüyünə görə davam etmək əvəzinə Product Backlog-u uyğunlaşdırmaq; lazım gələrsə bəzi dəyişiklikləri geri qaytarmaq və ya yenidən işləmək",
+          "en": "Treat the declining Current Value as the more important signal, inspect the redesign changes with the Developers and customers to identify the cause, and adapt the Product Backlog, potentially rolling back or revising elements, rather than continuing solely because output and Time-to-Market look favorable"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Növbəti Sprint Review-da stakeholders-ə yalnız Time-to-Market və output yaxşılaşmalarını bildirmək, çünki bunlar ən əlverişli göstəricilərdir; Product Backlog-dakı dizayn işləri bitənədək azalan Current Value məlumatını Scrum Team daxilində saxlamaq",
+          "en": "Report only the Time-to-Market and output improvements to stakeholders at the next Sprint Review, since these are the most favorable metrics, and keep the declining Current Value data inside the Scrum Team until the redesign items in the Product Backlog are finished"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Yenidən dizayn tam başa çatana qədər Current Value-nin ölçülməsinə fasilə verin, çünki yenidən dizayn zamanı aralıq müştəri məmnuniyyəti məlumatları etibarsızdır və bu arada Product Backlog-u output və Time-to-Market sıralama etməyə davam edin, bu da ən etibarlı irəliləyişin siqnalı olaraq qalır.",
+          "en": "Pause measurement of Current Value until the redesign is fully complete, since interim customer satisfaction data during a redesign is inherently unreliable, and in the meantime keep ordering the Product Backlog by output and Time-to-Market, which remain the most trustworthy signals of progress until launch"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Key Value Areas ziddiyyətlər üzrə sübutlar, EBM faktiki müştəri və biznes dəyərinə ən uyğun olan siqnala üstünlük verilməsini tələb edir, burada azalan Current Value, əlverişli, lakin daha az birbaşa əlaqəli metriklər üzərində. Product Owner komanda və müştərilərlə səbəbi yoxlamalı və Scrum-in empirik sütunlarına uyğun olaraq Product Backlog-u uyğunlaşdırmalıdır.",
+      "en": "When evidence across Key Value Areas conflicts, EBM calls for prioritizing the signal most relevant to actual customer and business value, here declining Current Value, over favorable but less directly relevant metrics. The Product Owner should inspect the cause with the team and customers and adapt the Product Backlog accordingly, consistent with Scrum's empirical pillars."
+    },
+    "lessonId": "pspo2-value",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-forecasting-and-release-strategy-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-forecasting-and-release-strategy:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 1,
+    "text": {
+      "az": "Evidence-Based Management (EBM) Bələdçisinə əsasən, hansı Key Value Area (KVA) təşkilatın Product Backlog item-ni müştərilərin əlində dəyər yaradan funksiyaya tez bir zamanda çevirmək qabiliyyətini birbaşa ölçür?",
+      "en": "Under the Evidence-Based Management (EBM) Guide, which Key Value Area (KVA) most directly measures an organization's ability to quickly turn a Product Backlog item into a working feature that generates value in customers' hands?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Ability to Innovate",
+          "en": "Ability to Innovate"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Time-to-Market",
+          "en": "Time-to-Market"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Unrealized Value",
+          "en": "Unrealized Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Current Value",
+          "en": "Current Value"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "EBM Guide Time-to-Market-ı dörd Key Value Areas-dən biri kimi müəyyən edir: təşkilatın Product Backlog item-ı müştərinin istifadə edə bildiyi çatdırılmış imkana nə qədər tez çevirdiyini ölçür. Bu, onu Current Value, Unrealized Value və Ability to Innovate-dən fərqləndirir.",
+      "en": "The EBM Guide defines Time-to-Market as one of four Key Value Areas, measuring the organization's ability to quickly turn a Product Backlog item into a delivered capability that customers can use, distinguishing it from Current Value, Unrealized Value, and Ability to Innovate."
+    },
+    "lessonId": "pspo2-forecasting",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-forecasting-and-release-strategy-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-forecasting-and-release-strategy:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "az": "Müəssisə HR proqram məhsulu müştərilərin daxili təlim qruplarından hər bir yeni imkan işə düşməzdən əvvəl materiallar hazırlamağı tələb edir və stakeholders gözlənilməz buraxılışların onların dəyişikliklərin idarə edilməsi cədvəlini pozduğunu dəfələrlə bildirib. Hansı release strategiyası bu kontekstə ən uyğun gəlir?",
+      "en": "An enterprise HR software product requires customers' internal training teams to prepare materials before each new capability goes live, and stakeholders have repeatedly said unpredictable releases disrupt their change-management schedule. Which release strategy best fits this context?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Sabit scope və sabit tarix \"böyük partlayış\" release ildə bir dəfə, pozulmaları minimuma endirmək üçün Sprint Review rəydən asılı olmayaraq bütün işləri birləşdirir.",
+          "en": "A fixed scope and fixed date \"big-bang\" release once a year, bundling all work regardless of Sprint Review feedback, to minimize disruption."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Release hər tamamlanan Product Backlog item üçün tələb üzrə, çünki Scrum həmişə stakeholder kontekstindən asılı olmayaraq hazır olan kimi dəyərin buraxılmasına üstünlük verir.",
+          "en": "Release on demand for every completed Product Backlog item, since Scrum always prefers releasing value as soon as it is ready regardless of stakeholder context."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Sabit release kadans, beləliklə, stakeholders fərdi funksiyalar növbəti planlaşdırılan release üçün gözləsə də, proqnozlaşdırıla bilən, məlum release tarixlər ətrafında təlim və ünsiyyəti planlaşdıra bilər.",
+          "en": "A fixed release cadence, so stakeholders can plan training and communications around predictable, known release dates even though individual features may wait for the next scheduled release."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "release strategiyası ümumiyyətlə yoxdur; hostinq infrastruktur komandası buraxılışlara Scrum Team-dən asılı olmayaraq qərar versin, çünki release vaxtı yalnız əməliyyatlara aiddir.",
+          "en": "No release strategy at all; let the hosting infrastructure team decide releases independently of the Scrum Team, since release timing is an operations concern only."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Nə Scrum Guide, nə də EBM tək düzgün release strategiyasını təyin etmir; Product Owner kontekstdə dəyəri maksimuma çatdıran strategiyanı seçir. Burada, planlaşdırılmış təlim üzrə stakeholders' dependency, illik böyük partlayışın release ifrata varmadan, tələb üzrə buraxılmasındansa, proqnozlaşdırıla bilən sabit kadansı daha uyğun edir.",
+      "en": "Neither the Scrum Guide nor EBM prescribes a single correct release strategy; the Product Owner chooses the strategy that maximizes value in context. Here, stakeholders' dependency on scheduled training makes a predictable fixed cadence more appropriate than releasing on demand, without going to the extreme of an annual big-bang release."
+    },
+    "lessonId": "pspo2-forecasting",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-forecasting-and-release-strategy-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-forecasting-and-release-strategy:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "az": "Bir məhsul dörd Scrum Teams tələb edəcək qədər böyüdü. Rəhbərlik hər bir komandaya öz ayrıca Product Backlog və öz Product Owner verməyi təklif edir ki, hər bir komanda müstəqil şəkildə daha sürətli hərəkət edə bilsin. Scrum Guide (2020) üzrə bu təkliflə bağlı narahatlıq nədir?",
+      "en": "A product has grown to require four Scrum Teams. Leadership proposes giving each team its own separate Product Backlog and its own Product Owner so that each team can move faster independently. Per the Scrum Guide (2020), what is the concern with this proposal?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Developers-ın komandalar arasında ixtisaslaşmasına icazə verilmir, buna görə də hər hansı çox komandalı struktur backlog design-dən asılı olmayaraq Scrum Guide-i pozur; Product Owner işlərini sıralama etməzdən əvvəl bir məhsul üzrə dörd komanda əvvəlcə bir böyük Scrum Team-da birləşdirilməlidir.",
+          "en": "Developers are not allowed to specialize across teams, so any multi-team structure violates the Scrum Guide regardless of backlog design; four teams on one product must first be merged into one large Scrum Team before a Product Owner can order their work."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Narahatlıq yalnız texniki xarakter daşıyır (kodda ziddiyyətləri birləşdirin) və Scrum Guide-nin birdən çox komanda üçün Product Backlog strukturunda mövqeyi yoxdur, buna görə də komandalar hər Sprint kodlarını inteqrasiya etdikcə, hər birinin özünəməxsus Product Owner olan ayrı-ayrı gecikmələr məqbuldur.",
+          "en": "The concern is only technical (merge conflicts in code), and the Scrum Guide has no position on Product Backlog structure for multiple teams, so separate backlogs, each with its own Product Owner, are acceptable as long as the teams integrate their code every Sprint."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Birdən çox Scrum Teams eyni məhsulda işlədikdə, onlar bir Product Backlog və bir Product Goal-u paylaşmalıdırlar və bu Backlog sıralamasına cavabdeh olan tək Product Owner ilə dəyər və prioritetlər ardıcıl olaraq qalır; Arxa planların bölünməsi təkrarlanan iş və yanlış uyğunlaşdırılmış prioritetlər riski daşıyır.",
+          "en": "When multiple Scrum Teams work on the same product, they should share one Product Backlog and one Product Goal, with a single Product Owner accountable for ordering that Backlog, so value and priorities remain coherent; splitting Backlogs risks duplicated work and misaligned priorities."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Narahatlıq yoxdur; Scrum Guide, məhsul üç Scrum Teams-i keçdikdə komanda üçün ayrıca Product Backlog və ayrıca Product Owner tələb edir ki, hər bir Product Goal komandalararası asılılıqlar və ya paylaşılan prioritetlər olmadan bir komandanın çatdırılması üçün kifayət qədər kiçik qalır.",
+          "en": "There is no concern; the Scrum Guide requires a separate Product Backlog and a separate Product Owner per team once a product exceeds three Scrum Teams, so that each Product Goal stays small enough for one team to deliver without any cross-team dependencies or shared priorities to negotiate."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Scrum Guide (2020) bildirir ki, eyni məhsul üzərində bir neçə Scrum Team işləyirsə, onlar eyni Product Backlog və Product Goal-u paylaşmalı, Product Backlog üçün bir Product Owner cavabdeh qalmalıdır. Ayrı backlogs və Product Owners yaratmaq təkrar səy və ziddiyyətli prioritetlər riski ilə ardıcıl release forecasting-i poza bilər.",
+      "en": "The Scrum Guide (2020) states that when several Scrum Teams work together on one product, they should share the same Product Backlog and Product Goal, and that a single Product Owner remains accountable for the Product Backlog; splitting into separate backlogs and Product Owners risks duplicated effort and conflicting priorities that undermine coherent release forecasting."
+    },
+    "lessonId": "pspo2-forecasting",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-forecasting-and-release-strategy-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-forecasting-and-release-strategy:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "az": "Uzunmüddətli müqavilə öhdəliklərini yerinə yetirmək üçün Product Owner növbəti üç buraxılışı sabit scope-və tarix roadmap ilə bağladı. Nəticədə, Developers hesabatında onların yeni texniki yanaşmaları araşdırmaq, spikes işə salmaq və ya Sprint Reviews-də aşkar edilmiş yeni fürsətlərə cavab vermək üçün heç bir ləngiməsi yoxdur. Hansı EBM Key Value Area bu təcrübə ilə daha çox aşınır və niyə?",
+      "en": "A Product Owner has locked the next three releases into a fixed scope-and-date roadmap to satisfy long-term contractual commitments. As a result, the Developers report they have no slack to explore new technical approaches, run spikes, or respond to emerging opportunities uncovered in Sprint Reviews. Which EBM Key Value Area is most directly being eroded by this practice, and why?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Time-to-Market, çünki tərifinə görə sabit yol xəritələri planlaşdırılmamış yanaşma ilə müqayisədə həmişə hər bir release sürətini yavaşlatır.",
+          "en": "Time-to-Market, because fixed roadmaps by definition always slow down every single release compared to an unplanned approach."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Current Value, çünki scope və tarixin kilidlənməsi həmişə nə çatdırılmasından asılı olmayaraq dərhal müştəri məmnuniyyətinin azalmasına səbəb olur.",
+          "en": "Current Value, because locking scope and date always causes immediate customer satisfaction to drop regardless of what is delivered."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Ability to Innovate, çünki bütünlüklə sabit, əvvəlcədən qəbul edilmiş scope tərəfindən istehlak edilən tutum yeni məlumatlara cavab olaraq sınaq, öyrənmə və ya pivot üçün yer qoymur, bu da təşkilatın irəlidə yeni dəyər təqdim etmək qabiliyyətini sarsıdır.",
+          "en": "Ability to Innovate, because capacity consumed entirely by fixed, pre-committed scope leaves no room to experiment, learn, or pivot in response to new information, undermining the organization's capacity to deliver new value going forward."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Key Value Areas-dan heç biri təsirlənmir, çünki EBM texniki kəşfiyyat kimi daxili komanda təcrübələrini deyil, yalnız müştərilərə artıq çatdırılmış dəyəri ölçür.",
+          "en": "None of the Key Value Areas are affected, since EBM only measures value already delivered to customers, not internal team practices like technical exploration."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Ability to Innovate texniki xidmət/technical debt/sabit öhdəliklərlə müqayisədə yeni iş üçün mövcud potensialın faizini ölçür; roadmap, əvvəlcədən təyin edilmiş sabit scope-də bütün gücü istehlak edir və tarixlər sınaq üçün boşluq qoymur və ya Sprint Review öyrənməyə cavab verir və bu Key Value Area-i birbaşa aşındırır.",
+      "en": "Ability to Innovate measures the percentage of capacity available for new work versus maintenance/technical debt/fixed obligations; a roadmap that consumes all capacity in pre-committed fixed scope and dates leaves no slack for experimentation or responding to Sprint Review learning, directly eroding this Key Value Area."
+    },
+    "lessonId": "pspo2-forecasting",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-forecasting-and-release-strategy-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-forecasting-and-release-strategy:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "az": "B2C mobil tətbiq komandası texniki olaraq gündə bir neçə dəfə production-a deploy edə bilir. Hər release üçün Definition of Done-dakı keyfiyyət və dəyər meyarlarının qorunduğunu fərz etsək, sabit release dövrü əvəzinə release-on-demand strategiyası hansı EBM outcome-u daha birbaşa dəstəkləyər?",
+      "en": "A B2C mobile app team can technically deploy to production multiple times per day. Adopting a release-on-demand strategy rather than a fixed release cadence would most directly support which EBM outcome, assuming quality and value criteria in the Definition of Done are still met for each release?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Təkmilləşdirilmiş Time-to-Market, çünki dəyərli, Done increments, planlaşdırılmış release pəncərəsini gözləmək əvəzinə, hazır olan kimi istifadəçilərə çata bilər, dəyəri tamamlamaq və onun həyata keçirilməsi arasındakı gecikməni qısaldır.",
+          "en": "Improved Time-to-Market, because valuable, Done increments can reach users as soon as they are ready rather than waiting for a scheduled release window, shortening the delay between completing value and realizing it."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Definition of Done ehtiyacının aradan qaldırılması, çünki tələb üzrə buraxılması komandaya natamam işi tez buraxıldığı müddətcə göndərməyə imkan verir.",
+          "en": "Elimination of the need for a Definition of Done, since releasing on demand allows the team to ship incomplete work as long as it is released quickly."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Current Value artımına zəmanət verilir, çünki tərkibində nə olmasından asılı olmayaraq hər hansı release həmişə müştərilərə çatdırılan dəyəri artırır.",
+          "en": "Guaranteed increase in Current Value, because any release, regardless of what it contains, always raises the value currently being delivered to customers."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Təkmilləşdirilmiş Ability to Innovate, çünki daha tez-tez buraxılış avtomatik olaraq yeni ideyaların sayını artırır Developers hər Sprint yaradır.",
+          "en": "Improved Ability to Innovate, because releasing more frequently automatically increases the number of new ideas the Developers generate each Sprint."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Release on demand increment-in Done olması ilə istifadəçiyə çatması arasındakı müddəti qısaldır; Time-to-Market Key Value Area məhz bunu ölçür. Şərt odur ki, sürət naminə yan keçmək əvəzinə hər release-də Definition of Done-un keyfiyyət sərhədi qorunsun.",
+      "en": "Release on demand shortens the gap between an increment being Done and reaching users, which is precisely what the Time-to-Market Key Value Area measures, provided the Definition of Done's quality bar is still respected for every release rather than being bypassed for speed."
+    },
+    "lessonId": "pspo2-forecasting",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-organizational-design-and-culture-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-organizational-design-and-culture:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 1,
+    "text": {
+      "az": "Böyük bir müəssisə bir məhsulu bir neçə funksiya komandası arasında genişləndirir. Scrum Guide (2020) üzrə Product Owner hesabatlılıq haqqında hansı ifadə təşəbbüsün nə qədər böyük və ya mürəkkəb böyüməsindən asılı olmayaraq doğru qalmalıdır?",
+      "en": "A large enterprise is scaling a single product across several feature teams. Per the Scrum Guide (2020), which statement about Product Owner accountability must remain true no matter how large or complex the initiative grows?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Hər bir funksiya komandası öz yerli prioritetlərini əks etdirən öz Product Backlog-u saxlamalıdır.",
+          "en": "Each feature team should maintain its own Product Backlog reflecting its own local priorities."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Product Owner rəhbər komitəsi yaradılmalıdır ki, hər stakeholder qrup Product Backlog sıralama verməkdə bərabər söz sahibi olsun.",
+          "en": "A Product Owner steering committee should be formed so every stakeholder group has equal say in ordering the Product Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Product Owner rolu iş yükünü yaymaq üçün hər həftə yüksək səviyyəli biznes analitikləri arasında dəyişdirilə bilər.",
+          "en": "The Product Owner role can be rotated weekly among senior business analysts to spread the workload."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Product Owner, Scrum Team(lər)in işi nəticəsində məhsulun dəyərini maksimuma çatdırmaq üçün məsuliyyət daşıyan komitə deyil, bir şəxsdir.",
+          "en": "The Product Owner is one person, not a committee, who remains accountable for maximizing the value of the product resulting from the work of the Scrum Team(s)."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Scrum Guide (2020) bildirir ki, Product Owner effektiv Product Backlog idarəsinə cavabdehdir və komitə deyil, bir şəxsdir. Təşkilat Product Owner-ə dəstək verə, məsələn, məzmunun refinement işini həvalə edə bilər, amma miqyas artdıqda belə bu tək şəxsin cavabdehliyini bölüşdürə bilməz.",
+      "en": "The Scrum Guide (2020) states the Product Owner is accountable for effective Product Backlog management and 'is one person, not a committee' — the organization may support the Product Owner (e.g., delegating content refinement), but it cannot dilute this single-person accountability, even at scale."
+    },
+    "lessonId": "pspo2-organization",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-organizational-design-and-culture-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-organizational-design-and-culture:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "az": "Product Owner bir məhsul üçün cavabdehdir, lakin təşkilat üç daimi komponent komandası (UI, xidmətlər və məlumat) üzrə strukturlaşdırılmış işlərə malikdir və onların hər birinə həmin komandanın prioritetlərini müstəqil olaraq təyin edən funksional menecer rəhbərlik edir. Product Owner istifadə edilə bilən Increment ən çox Sprints əldə edə bilmir, çünki üç komandanın outputs nadir hallarda təmiz inteqrasiya olunur. Hansı hərəkət Scrum Guide-nin çeviklik üçün təşkilati design baxışına ən uyğundur?",
+      "en": "A Product Owner is accountable for one product, but the organization has structured work across three permanent component teams (UI, services, and data), each led by a functional manager who sets that team's priorities independently. The Product Owner cannot get a usable Increment most Sprints because the three teams' outputs rarely integrate cleanly. Which action is most consistent with the Scrum Guide's view of organizational design for agility?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Əlavə komandalararası status görüşlərini hər Sprint planlaşdırın ki, hər bir funksional menecer müstəqil olaraq prioritetləri təyin edərkən üç komponent komandası bir-birinə tərəqqi barədə hesabat versin və inteqrasiya olunmuş, istifadəyə yararlı bir Increment-ə doğru təhvil verilməsi barədə razılığa gələ bilsin.",
+          "en": "Schedule additional cross-team status meetings each Sprint so the three component teams can report progress to each other and agree on hand-offs toward one integrated, usable Increment, while each functional manager keeps setting priorities independently."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Hər funksional menecerdən komandasının velocity-sini artırmağı istəmək ki, Sprint Review-dan əvvəl daha çox komponent işi bitsin; üç komandanın outputs-unu məhsul üçün done Increment-ə inteqrasiya etmək üçün hər Sprint-in son günlərini ayırmaq.",
+          "en": "Ask each functional manager to increase their team's velocity so more component work is finished before the Sprint Review, leaving the last days of every Sprint for the three teams to integrate their outputs into a done Increment for the product."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər bir komponent komandası üçün ayrıca Product Backlog yaradın ki, hər bir funksional menecer müstəqil olaraq yerli prioritetləri təyin etməyə davam edə bilsin və üç komandanın outputs-ni istifadəyə yararlı Increment hər Sprint-a inteqrasiya etmək üçün bir Scrum Master təyin edin.",
+          "en": "Create a separate Product Backlog for each component team so each functional manager can continue setting local priorities independently, and appoint one Scrum Master to integrate the three teams' outputs into a usable Increment each Sprint."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "İnteqrasiya dəyəri və cycle time haqqında məlumatlardan istifadə edərək, funksional menecerlərə prioritet təyin etməkdənsə, məhsul üçün müstəqil olaraq done, inteqrasiya olunmuş Increment istehsal edə bilən çarpaz funksional Scrum Team(lər) ətrafında yenidən təşkil etmək üçün müdafiə edin.",
+          "en": "Advocate, using data on integration cost and cycle time, for reorganizing around cross-functional Scrum Team(s) able to independently produce a done, integrated Increment for the product, rather than leaving priority-setting with functional managers."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Texniki səviyyə tərəfindən təşkil edilən komponent komandaları çevikliyə tanınmış maneədir, çünki heç bir komanda tək başına done, qiymətli Increment çatdıra bilməz; Scrum Guide-nin çarpaz funksional Developers gözləntisi Product Owner-nin yalnız koordinasiya həlləri və ya daha yüksək yerli velocity deyil, struktur dəyişikliyinə təkan verməli olduğunu nəzərdə tutur.",
+      "en": "Component teams organized by technical layer are a well-known impediment to agility because no single team can deliver a done, valuable Increment alone; the Scrum Guide's expectation of cross-functional Developers implies the Product Owner should push for structural change, not just coordination workarounds or higher local velocity."
+    },
+    "lessonId": "pspo2-organization",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-organizational-design-and-culture-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-organizational-design-and-culture:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "az": "Product Owner stakeholders və developers-dən Product Backlog-a daxil olan hər sorğunu qeyd edir və hər hansı dəyərə əsaslanan prioritetləşdirmə tətbiq etmədən ən son və ya ən yüksək səslə soruşan şəxs tərəfindən maddələr sifariş edir. Bu davranışın ən dəqiq səciyyəsi nədir və nəyi dəyişdirmək lazımdır?",
+      "en": "A Product Owner records every request from stakeholders and developers into the Product Backlog and orders items strictly by whoever asked most recently or most loudly, without applying any value-based prioritization. What is the most accurate characterization of this behavior, and what should change?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Texniki asılılıqları ən yaxşı başa düşdüyü üçün sıralama tamamilə Developers-ə həvalə edilməlidir.",
+          "en": "Ordering should instead be delegated entirely to the Developers, since they best understand technical dependencies."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Bu məqbuldur, çünki Product Owner neytral yazıçı olaraq qalmalı və ən yüksək stakeholder səslərinin təbii olaraq ən yüksək dəyərli işi üzə çıxarmasına icazə verməlidir.",
+          "en": "This is acceptable because the Product Owner should remain a neutral scribe and let the loudest stakeholder voices naturally surface the highest-value work."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Sıralama Scrum prosesinin ümumi sağlamlığına cavabdeh olan Scrum Master-ə həvalə edilməlidir.",
+          "en": "Ordering should be delegated to the Scrum Master, who is accountable for the overall health of the Scrum process."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Bu, 'backlog katib' anti-naxışıdır; Product Owner, sorğuları transkripsiya etmək əvəzinə, trade-off söhbətlərində stakeholders cəlb edərək dəyər sübutuna əsaslanaraq Product Backlog-u aktiv şəkildə sıralama etməlidir.",
+          "en": "This is the 'backlog secretary' anti-pattern; the Product Owner must actively order the Product Backlog based on evidence of value, engaging stakeholders in trade-off conversations rather than transcribing requests."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Sırf sorğuların passiv qeydçisi kimi çıxış etmək — 'backlog katib' anti-naxışı — Product Owner-in dəyərin artırılması üçün əsas məsuliyyətindən imtina edir; həlli stakeholders-ni trade-off söhbətlərində aktiv şəkildə cəlb etmək və backlog-ni ən son və ya sorğuların həcminə deyil, dəyər sübutuna əsaslanaraq sıralamaqdir.",
+      "en": "Acting purely as a passive recorder of requests — the 'backlog secretary' anti-pattern — abdicates the Product Owner's core accountability for maximizing value; the fix is to actively engage stakeholders in trade-off conversations and order the backlog based on evidence of value, not recency or volume of requests."
+    },
+    "lessonId": "pspo2-organization",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-organizational-design-and-culture-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-organizational-design-and-culture:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "az": "Product Owner, EBM Bələdçisinə uyğun olaraq təşkilatın Ability to Innovate-ni əks etdirən ölçü istəyir, beləliklə, rəhbərlik təşkilatın struktur olaraq yeni dəyər əldə etməkdə sərbəst olub-olmadığını və ya artıq mövcud olanı saxlamaqla tələyə düşdüyünü görə bilsin. Aşağıdakılardan hansı bu məqsədə ən yaxşı xidmət edir?",
+      "en": "A Product Owner wants a measure reflecting the organization's Ability to Innovate, per the EBM Guide, so leadership can see whether the organization is structurally free to pursue new value or is trapped maintaining what already exists. Which of the following best serves that purpose?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Təşkilatın mövcud məhsullarını qoruyarkən yeni imkanları maliyyələşdirmək üçün kifayət qədər artıb-böyümədiyini göstərmək üçün maliyyə ili üçün ümumi şirkət gəliri (“ən yüksək səviyyəli artım” üslubu ölçüsü), əvvəlki illə müqayisədə.",
+          "en": "Total company revenue for the fiscal year (a 'top-line growth' style measure), compared with the prior year to show whether the organization has grown enough to fund new capabilities while maintaining its existing products."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Keçən rübdə bildirilmiş istehsal qüsurlarının ümumi sayı ciddilik dərəcəsinə və hər bir qüsurun aşkar edildiyi komponentə görə bölünür, beləliklə, rəhbərlik məhsulun keyfiyyətinin harada zəif olduğunu görə bilsin.",
+          "en": "The total number of production defects reported last quarter, broken down by severity and by the component in which each defect was found, so leadership can see where product quality is weakest."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Mövcud funksionallığın saxlanması və ya dəstəklənməsinə qarşı yeni imkanlara xərclənən komanda potensialının və ya büdcənin nisbəti (“quraşdırılmış gücə qarşı innovasiya qabiliyyəti” üslubu ölçüsü).",
+          "en": "The proportion of team capacity or budget spent on new capabilities versus maintaining or supporting existing functionality (an 'installed capacity vs. innovation capacity' style measure)."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Hal-hazırda məhsul üzərində işləyən Scrum Teams sayı təşkilatın mövcud olanı saxlamaqdan başqa nə qədər imkana malik olduğunun ölçüsü kimi hər rübdə izlənilir.",
+          "en": "The number of Scrum Teams currently working on the product, tracked each quarter as a measure of how much capacity the organization has available beyond maintaining what already exists."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Ability to Innovate, output, keyfiyyət və ya sırf maliyyə göstəriciləri ilə deyil, mövcud imkanları (məsələn, technical debt, köhnə dəstək yükü) davam etdirməklə müqayisədə yeni iş üçün nə qədər təşkilati potensialın həqiqətən mövcud olduğuna dair ölçülərlə ən yaxşı sübut olunur.",
+      "en": "Ability to Innovate is best evidenced by measures of how much organizational capacity is genuinely available for new work versus tied up sustaining existing capability (e.g., technical debt, legacy support load), rather than by output, quality, or purely financial indicators."
+    },
+    "lessonId": "pspo2-organization",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-organizational-design-and-culture-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-organizational-design-and-culture:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "az": "Product Owner aşkar edir ki, Scrum Team xaricindəki departamentə məxsus olan məcburi hüquqi imzalanma addımı, dəyişiklik ölçüsündən asılı olmayaraq hər release-ə altı həftə əlavə edir və Time-to-Market-ə maddi ziyan vurur. Scrum Master təşkilati hərəkət olmadan artıq iki rüb ərzində retrospektivlərdə bu maneəni qaldırdı. Product Owner olaraq, burada dəyişiklik etmək üçün Scrum Guide (2020) və EBM Bələdçisinə uyğun olaraq ən uyğun əlavə fəaliyyət hansıdır?",
+      "en": "The Product Owner discovers that a mandatory legal sign-off step, owned by a department outside the Scrum Team, adds six weeks to every release regardless of change size, materially harming Time-to-Market. The Scrum Master has already raised this impediment in retrospectives for two quarters with no organizational movement. As Product Owner, what is the most appropriate additional action, consistent with the Scrum Guide (2020) and EBM Guide, to drive change here?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Dəyər baxımından gecikmənin impact biznesini kəmiyyətləndirin (məsələn, itirilmiş Unrealized Value, daha yavaş Time-to-Market) və bu sübutları birbaşa stakeholders-ə və ya hüquqi prosesi dəyişə biləcək rəhbərlərə çatdırın.",
+          "en": "Quantify the business impact of the delay in value terms (e.g., lost Unrealized Value, slower Time-to-Market) and bring that evidence directly to the stakeholders or executives who can change the legal process."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Definition of Done-ni qanuni imzalanmanı istisna etmək üçün yenidən təyin edin ki, Increment onsuz 'Done' adlandırıla bilsin.",
+          "en": "Redefine the Definition of Done to exclude legal sign-off so the Increment can be called 'Done' without it."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Development Team-a Time-to-Market-i qorumaq üçün kiçik dəyişikliklər üçün hüquqi işarədən keçməyi tapşırın, çünki Product Owner release qərarlarına malikdir.",
+          "en": "Instruct the Development Team to bypass the legal sign-off for small changes to protect Time-to-Market, since the Product Owner owns release decisions."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Əlavə heç nə etməyin, çünki Scrum Team hüdudlarından kənar təşkilati maneələri aradan qaldırmaq yalnız Scrum Master-in məsuliyyətidir və Product Owner bu işə qarışmamalıdır.",
+          "en": "Do nothing further, since removing organizational impediments outside the Scrum Team is solely the Scrum Master's accountability and the Product Owner should not get involved."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Maneə Scrum Team-in nəzarətindən kənardadırsa və Scrum Master-in proses səviyyəsində eskalasiyası nəticəsiz qalıbsa, Product Owner gecikməni rəqəmlə ifadə olunan dəyər itkisinə çevirib vəziyyəti onu dəyişmək səlahiyyəti olan stakeholders-ə təqdim etməklə əlavə təsir yarada bilər. Compliance-dan yan keçməkdən və ya Definition of Done ilə manipulyasiyadan fərqli olaraq, bu, Product Owner-in dəyəri maksimumlaşdırmaq cavabdehliyinin əsaslı tətbiqidir.",
+      "en": "When an impediment sits outside the Scrum Team's control and the Scrum Master's process-level escalation has stalled, the Product Owner can add complementary pressure by translating the delay into quantified value terms and taking that case to the stakeholders with authority to change it — a legitimate use of the Product Owner's value-maximizing accountability, unlike bypassing compliance or gaming the Definition of Done."
+    },
+    "lessonId": "pspo2-organization",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-portfolio-planning-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-portfolio-planning:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "az": "Product Owner eyni məhdud mühəndislik qabiliyyəti üçün rəqabət aparan iki məhsulu idarə edir. A məhsulu sabit, yüksək təkrarlanan gəlir əldə edir, lakin onun bazarı yetkindir və artımı yastılaşıb. B məhsulu yenidir, hazırda az gəlir gətirir, lakin ilkin siqnallar böyük ünvanlı bazarı göstərir. Stakeholders demək olar ki, bütün tutumu A Məhsuluna köçürmək üçün itələyin, çünki \"bu, artıq ROI-i sübut edir.\" EBM əsaslandırmadan istifadə edərək Product Owner nə etməlidir?",
+      "en": "A Product Owner manages two products competing for the same limited engineering capacity. Product A generates steady, high recurring revenue but its market is mature and growth has flattened. Product B is new, currently generates little revenue, but early signals suggest a large addressable market. Stakeholders push to shift almost all capacity to Product A because 'it already proves the ROI.' Using EBM reasoning, what should the Product Owner do?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Current Value ən etibarlı Key Value Area olduğundan və gələcək potensialı maliyyələşdirmək üçün çox spekulyativ olduğundan, böyük potensialı dərhal A Məhsuluna köçürün.",
+          "en": "Shift most capacity to Product A immediately, since Current Value is the most reliable Key Value Area and future potential is too speculative to fund."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "A Məhsulu artıq dəyərini təsdiqlədiyi üçün B Məhsulunun backlog-ni tamamilə dondurun və onun Product Owner vaxtını A Məhsulunun roadmap-ə təyin edin.",
+          "en": "Since Product A already proves value, freeze Product B's backlog entirely and reassign its Product Owner's time to Product A's roadmap."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Cari tutum bölgüsünü qeyri-müəyyən müddətə dəyişmədən saxlayın ki, heç bir məhsulun stakeholders prioritetsiz olduğunu hiss etməsin və yalnız növbəti illik büdcələşdirmə dövründə yenidən nəzərdən keçirin.",
+          "en": "Keep the current capacity split unchanged indefinitely so neither product's stakeholders feel deprioritized, and revisit only at the next annual budgeting cycle."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Məhsul B-nin Unrealized Value və Time-to-Market siqnalları daxil olmaqla, bütün dörd Key Value Areas üzrə sübutlardan istifadə edin, B Məhsulunda məhdud, qiymətləndirilən investisiya təcrübəsini həyata keçirin, sonra əlavə imkanlar tətbiq etməzdən əvvəl nəticələri yoxlayın.",
+          "en": "Use evidence across all four Key Value Areas — including Product B's Unrealized Value and Time-to-Market signals — to run a bounded, evaluable investment experiment in Product B, then inspect results before committing further capacity."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "EBM dörd Key Value Areas-ni bir-birini tamamlayan, əvəz edə bilməyən kimi qəbul edir – tək Current Value-nin arxasınca qaçmaq Unrealized Value və Ability to Innovate-u ac qoyur. Dəlillərə əsaslanan cavab, geri dönməz potensial dəyişikliyi etmək və ya siyasi qərarları dondurmaq əvəzinə, məhdud bir təcrübəni maliyyələşdirmək, sübut toplamaq və yenidən yoxlamaqdır.",
+      "en": "EBM treats the four Key Value Areas as complementary, not substitutable — chasing Current Value alone starves Unrealized Value and Ability to Innovate. The evidence-based response is to fund a bounded experiment, gather evidence, and re-inspect, rather than making an irreversible capacity shift or freezing decisions politically."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-portfolio-planning-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-portfolio-planning:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "az": "Daxili alətlər portfoliosuna cavabdeh Product Owner bütün backlogs üzrə növbəti funksiyaları səsvermə ilə seçən stakeholder nümayəndələrindən ibarət portfolio prioritization committee yaradır; özü isə qalib işləri səs sırasına uyğun hər Product Backlog-a daxil edir. Scrum Guide-a görə bu yanaşmanın ən ciddi problemi nədir?",
+      "en": "A Product Owner accountable for a portfolio of internal tools sets up a 'portfolio prioritization committee' made up of stakeholder representatives who vote on which features across all backlogs should be built next; the Product Owner simply enters the winning items into each Product Backlog in vote order. What is the most significant problem with this arrangement, per the Scrum Guide?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Bu, pozuntudur, çünki yalnız Scrum Masters stakeholders ilə prioritetləşdirmə müzakirələrini asanlaşdıra bilər.",
+          "en": "It is a violation because only Scrum Masters may facilitate prioritization discussions with stakeholders."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Bu, Scrum Guide-i pozur, çünki komitələrə Product Backlog-də hər hansı input olmasına icazə verilmir.",
+          "en": "It violates the Scrum Guide because committees are not allowed to have any input into a Product Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Komitə Sprint Review zamanı topladığı müddətcə yaxşıdır ki, onun qərarları Scrum Team tərəfindən nəzərdən keçirilə bilsin.",
+          "en": "It is fine as long as the committee meets during the Sprint Review so its decisions can be reviewed by the Scrum Team."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Product Owner məhsulun dəyərini maksimuma çatdırmaq üçün məsuliyyəti effektiv şəkildə komitənin səslərinin sayılmasına həvalə etdi, rolu qərarlara sahib olmaqdansa, onları qeyd etmək üçün azaltdı.",
+          "en": "The Product Owner has effectively delegated accountability for maximizing product value to the committee's vote count, reducing the role to recording decisions rather than owning them."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Scrum Guide, Product Owner ilə məhsulun dəyərini maksimuma çatdırmaq üçün yeganə məsuliyyəti qoyur. Sıralamai sadəcə olaraq transkripsiya edilmiş stakeholder səsinə çevirmək klassik 'backlog katib' əleyhinə modeldir: Product Owner dəyər mühakimələrini dayandırır və başqasının qərarlarının inzibatçısı olur.",
+      "en": "The Scrum Guide places sole accountability for maximizing the value of the product with the Product Owner. Turning ordering into a stakeholder vote that is simply transcribed is the classic 'backlog secretary' anti-pattern: the Product Owner stops making value judgments and becomes an administrator of someone else's decisions."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-portfolio-planning-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-portfolio-planning:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "az": "Maliyyə ili üçün üç məhsula nəzarət edən bir Product Owner maliyyə tərəfindən scope funksiyanıni və hər üçünün çatdırılma tarixlərini bağlamaq xahiş olunur ki, büdcələr on iki ay üçün təsdiq olunsun. Product Owner bilir ki, Sprint Reviews, müştərinin hər bir neçə Sprints yerdəyişməsinə ehtiyacı olduğuna dair dəfələrlə sübut yaratmışdır. Scrum Guide və EBM verildikdə ən müdafiə edilə bilən cavab hansıdır?",
+      "en": "A Product Owner overseeing three products for the fiscal year is asked by finance to lock in exact feature scope and delivery dates for all three so budgets can be approved for twelve months. The Product Owner knows Sprint Reviews have repeatedly generated evidence that customer needs shift every few Sprints. What is the most defensible response given the Scrum Guide and EBM?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Məhsulların nisbi Current Value, Unrealized Value, Time-to-Market və Ability to Innovate göstəricilərinə əsasən maliyyələşdirmə istiqaməti vermək, yenidən yoxlama nöqtələri olan maliyyələşdirmə üfüqləri təklif etmək və scope-u tarixlə birlikdə dondurmaq əvəzinə dəyişən kimi razılaşdırmaq.",
+          "en": "Provide funding guidance based on the products' relative Current Value, Unrealized Value, Time-to-Market, and Ability to Innovate, propose funding horizons with checkpoints for re-inspection, and negotiate scope as a variable rather than fixing it alongside date."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Scrum Product Owners-nin maliyyə stakeholders ilə büdcələri müzakirə etməsini açıq şəkildə qadağan etdiyi üçün hər hansı forecast təmin etməkdən ümumiyyətlə imtina edin.",
+          "en": "Decline to provide any forecast at all, since Scrum explicitly prohibits Product Owners from discussing budgets with finance stakeholders."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Sabit scope və tarixlərlə razılaşın, çünki hər hansı bir investisiyanı təsdiqləmək üçün maliyyə üçün möhkəm illik plan lazımdır.",
+          "en": "Agree to the fixed scope and dates, since a firm annual plan is necessary for finance to approve any investment at all."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Sabit tarixlər təklif edin, lakin maliyyənin plana olan inamını qorumaq üçün scope və digər ikisi üçün tarixi kilidləyərkən, yalnız ən aşağı dəyərli məhsul üçün scope-ni çevik buraxın.",
+          "en": "Offer fixed dates but leave scope flexible only for the lowest-value product, while locking scope and date for the other two to protect finance's confidence in the plan."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "EBM investisiya qərarlarını illik scope və tarix dondurulması ilə deyil, dörd Key Value Areas və dövri təkrar yoxlama ilə istiqamətləndirir. Scrum Guide-ın empirik prinsipləri ehtiyacların dəyişdiyinə sübut varsa uzun müddət üçün həm scope-u, həm tarixi dondurmağa qarşıdır. Peşəkar yanaşma yoxlama nöqtələri ilə maliyyələşdirmək və scope-u çevik dəyişən kimi qəbul etməkdir.",
+      "en": "EBM guides investment decisions using the four Key Value Areas with periodic re-inspection rather than annual scope-and-date lock-in, and the Scrum Guide's empirical pillars argue against fixing both scope and date over a long horizon when evidence shows needs change. The professional response funds with checkpoints and treats scope as the flexible variable."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-portfolio-planning-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-portfolio-planning:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "az": "Yeni Product Owner soruşur: Scrum Guide (2020) təşkilatın çoxlu məhsul üzrə investisiya qərarları üçün Portfolio Backlog və ya Portfolio Owner kimi xüsusi struktur tələb edirmi? Scrum Guide əslində nə deyir?",
+      "en": "A newly hired Product Owner asks whether the Scrum Guide (2020) prescribes a specific structure — such as a Portfolio Backlog or Portfolio Owner role — for managing investment decisions across many products in an organization. What does the Scrum Guide actually say?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Scrum Guide portfolio səviyyəli strukturlarda səssizdir; o, bir məhsul üçün Product Owner, Scrum Master, Developers və artefaktları müəyyən edir, çoxlu məhsul koordinasiyasını təşkilatın öz təcrübələri və ya miqyaslaşdırma təlimatı vasitəsilə həll etmək üçün tərk edir.",
+          "en": "The Scrum Guide is silent on portfolio-level structures; it defines the Product Owner, Scrum Master, Developers, and artifacts for a single product, leaving multi-product coordination to be addressed through the organization's own practices or scaling guidance."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Scrum Guide hər bir məhsulun Product Backlog-dən yuxarıda yer alan və məcburi rüblük Portfolio Baxışı tədbiri zamanı dəqiqləşdirilən Backlog Portfelini müəyyən edir.",
+          "en": "The Scrum Guide defines a Portfolio Backlog that sits above each product's Product Backlog and is refined during a mandatory quarterly Portfolio Review event."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Scrum Guide məhsullar arasında sərmayəni arbitraj etmək üçün fərdi Product Owners-dən yuxarı olan Portfolio Owner-in hesabatlılığını müəyyən edir.",
+          "en": "The Scrum Guide defines a Portfolio Owner accountability that sits above individual Product Owners to arbitrate investment across products."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Scrum Guide uyğun qalmaq üçün birdən çox məhsulu idarə edən təşkilatlardan Nexus çərçivəsini qəbul etməyi tələb edir.",
+          "en": "The Scrum Guide requires organizations managing more than one product to adopt the Nexus framework to remain compliant."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Scrum Guide (2020) Scrum vasitəsilə dəyər çatdırmaq üçün minimum rollar, hadisələr və artefaktlar toplusunu qəsdən müəyyən edir və heç bir portfolio səviyyəli rol, backlog və ya hadisəni təyin etmir; açıq çox komandalı və ya çox məhsullu strukturlar istəyən təşkilatlar Nexus Bələdçisi və ya öz təcrübələri kimi tamamlayıcı təlimatlara müraciət edirlər.",
+      "en": "The Scrum Guide (2020) intentionally defines a minimal set of roles, events, and artifacts for delivering value through Scrum and does not prescribe any portfolio-level role, backlog, or event; organizations wanting explicit multi-team or multi-product structures look to complementary guidance such as the Nexus Guide or their own practices."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-portfolio-planning-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-portfolio-planning:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "az": "Dörd Scrum Teams-dən ibarət Nexus-da Nexus Daily Scrum hər komandanın nümayəndələri ilə keçirilir. Hər komandanın öz Daily Scrum-undan fərqli olaraq onun əsas məqsədi nədir?",
+      "en": "In a Nexus of four Scrum Teams, the Nexus Daily Scrum is held with representatives from each team. What is the primary purpose of this event, distinct from each team's own Daily Scrum?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Hər bir nümayəndənin öz komandasının fərdi tapşırıq statusunu qrupa bildirməsinə icazə verin ki, birləşmiş yanma cədvəli hazırlansın.",
+          "en": "To let each representative report their team's individual task status to the group so a combined burndown chart can be produced."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Bir komanda təkbaşına geridə qaldıqda komandalar arasında Developers təyin etmək üçün Sprint Backlog.",
+          "en": "To reassign Developers between teams whenever one team is behind on its own Sprint Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Həmin günün stakeholder rəyinə əsasən Product Owner Product Backlog-u yenidən sıralamaq üçün.",
+          "en": "To let the Product Owner re-order the Product Backlog based on that day's stakeholder feedback."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Nexus Sprint Goal-a doğru irəliləyişi yoxlamaq və cari Sprint-dən əvvəl və ya ərzində həll edilməli olan komandalararası inteqrasiya problemlərinin və ya asılılıqların olub olmadığını müəyyən etmək.",
+          "en": "To inspect progress toward the Nexus Sprint Goal and identify whether cross-team integration issues or dependencies exist that need to be resolved before or during the current Sprint."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Nexus Daily Scrum iştirak edən Scrum Teams arasında inteqrasiya problemləri və asılılıqları üzə çıxarmaq və həll etmək üçündür ki, birgə iş vahid inteqrasiya olunmuş done Increment istiqamətində davam etsin. Məqsəd komanda səviyyəsində status hesabatı, resurs bölgüsü və ya backlog ordering deyil.",
+      "en": "The Nexus Daily Scrum exists to surface and address integration issues and dependencies across the participating Scrum Teams so the combined work stays on track toward a single integrated, done Increment — not to serve as team-level status reporting, a resourcing mechanism, or backlog ordering."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-value-and-backlog-management-at-scale-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-value-and-backlog-management-at-scale:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 1,
+    "text": {
+      "az": "Evidence-Based Management Bələdçisində Key Value Area 'Unrealized Value' ən yaxşı ölçü kimi təsvir edilmişdir:",
+      "en": "In the Evidence-Based Management Guide, the Key Value Area 'Unrealized Value' is best described as measuring:"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Təşkilatın bazar rəyi əsasında öyrənmə və uyğunlaşmanı dəstəkləyən yeni imkanlar təqdim etmək qabiliyyəti",
+          "en": "The organization's capacity to deliver new capabilities that support learning and adapting based on market feedback"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Bu gün mövcud olduğu kimi məhsulun artıq müştərilərə çatdırdığı dəyər",
+          "en": "The value already delivered to customers by the product as it exists today"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Tək bir fikrin təsəvvür olunmaqdan müştərilərə çatdırılma sürəti",
+          "en": "The speed at which a single idea moves from being conceived to being delivered to customers"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Təşkilat ideal və ya ümumi ünvanlı bazara nisbətən cari və gələcək müştərilərin ehtiyaclarını daha yaxşı ödədiyi təqdirdə əldə edilə biləcək potensial gələcək dəyər",
+          "en": "The potential future value that could be captured if the organization better met the needs of current and future customers, relative to an ideal or total addressable market"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Unrealized Value EBM-in dörd Key Value Areas-dən biridir və hazırda çatdırılan dəyərlə müştəri ehtiyaclarını daha dolğun ödəməklə əldə oluna biləcək ümumi potensial dəyər arasındakı boşluğa baxır. Bu, onu Current Value, Time-to-Market və Ability to Innovate-dən fərqləndirir.",
+      "en": "Unrealized Value is one of EBM's four Key Value Areas and focuses on the gap between current delivered value and the total potential value obtainable by serving customer needs more fully, distinguishing it from Current Value, Time-to-Market, and Ability to Innovate."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-value-and-backlog-management-at-scale-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-value-and-backlog-management-at-scale:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Mürəkkəb məhsul üçün Product Owner, yeni scope əlavə edilməsə də, üç buraxılışda velocity azaldığını bildirir; Tədqiqat yığılmış technical debt-un səbəb olduğu qüsur dərəcələrinin yüksəldiyini və reqressiya dövrlərinin uzandığını göstərir. Stakeholders yeni funksiyalar əlavə etmək üçün Product Owner-a təzyiq edin və 'müştərilər borc işinə görə pul ödəmir' iddiasını irəli sürün. Hansı cavab dəyəri artırmaqla bağlı EBM və Scrum təlimatlarına ən yaxşı uyğun gəlir?",
+      "en": "A Product Owner for a complex product notices velocity declining across three releases even though no new scope has been added; investigation shows rising defect rates and lengthening regression cycles caused by accumulated technical debt. Stakeholders pressure the Product Owner to keep adding new features, arguing 'customers don't pay for debt work.' Which response best aligns with EBM and Scrum guidance on maximizing value?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Ability to Innovate EBM dəyər sahələri xaricində daxili mühəndislik problemi olduğundan və backlog sıralama ilə əlaqəsi olmadığından yalnız müştəri ilə bağlı funksiyaları prioritetləşdirməyə davam edin",
+          "en": "Continue prioritizing only customer-facing features since Ability to Innovate is an internal engineering concern outside the EBM value areas and irrelevant to backlog ordering"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Qərarı Scrum Master-a çatdırın, çünki Scrum Master Product Owner adından technical debt mübadilələrə görə cavabdehdir",
+          "en": "Escalate the decision to the Scrum Master, since the Scrum Master is accountable for technical debt trade-offs on behalf of the Product Owner"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Developers-ə technical debt-a Sprints-dan kənarda, öz vaxtlarında müraciət etməyi tapşırın, çünki Product Backlog yalnız müştəri dəyəri elementlərini ehtiva etməlidir.",
+          "en": "Instruct the Developers to address the technical debt entirely outside of Sprints, on their own time, since the Product Backlog should contain only customer-value items"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Azalan çatdırılma imkanı və artan plansız iş kimi sübutlarla technical debt-in impact-ini görünən etmək, sonra funksiyalarla yanaşı borcun azaldılmasına backlog imkanı ayırmağı razılaşdırmaq; çünki zəifləyən Ability to Innovate gələcək dəyərin çatdırılmasını təhlükəyə atır",
+          "en": "Make the impact of technical debt visible using evidence such as declining delivery capability and rising unplanned work, then negotiate backlog capacity for debt reduction alongside features, since eroding Ability to Innovate threatens future value delivery"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Yenilik etmək bacarığının azalması davamlı dəyər çatdırılması üçün təhlükə siqnalları verir. EBM, təzyiq göstərmək və ya Product Backlog xaricində zəruri işi gizlətməkdənsə, balanslaşdırılmış backlog sıralama ilə danışıqlar aparmaq üçün bu cür sübutlardan istifadə etməyi təşviq edir.",
+      "en": "Declining Ability to Invnovate signals a threat to sustained value delivery. EBM encourages using such evidence to negotiate balanced backlog ordering rather than deferring entirely to feature pressure or hiding necessary work outside the Product Backlog."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-value-and-backlog-management-at-scale-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-value-and-backlog-management-at-scale:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Üç Scrum Team-in hazırladığı mürəkkəb məhsulda hər komandaya təyin edilmiş PO Proxy bütün stakeholder istəklərini birbaşa ortaq Product Backlog-a yazır və dəyəri qiymətləndirmədən, cavabdeh Product Owner ilə məsləhətləşmədən işləri yalnız gəlmə tarixinə görə sıralayır. Bu, hansı anti-pattern-dir?",
+      "en": "In a complex product built by three Scrum Teams, a 'PO Proxy' assigned to each team logs every stakeholder request directly into the shared Product Backlog and orders items strictly by the date the request was received, without evaluating value or consulting the accountable Product Owner. What anti-pattern does this describe?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Bu, birdən çox komanda tərəfindən hazırlanmış məhsullar üçün Scrum Guide tərəfindən açıq şəkildə tövsiyə olunan paylanmış Məhsul-Sahibi modelidir",
+          "en": "This is a distributed-Product-Owner model explicitly recommended by the Scrum Guide for products built by more than one team"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "'backlog katib' anti-naxış; Product Owner, hətta refinement tapşırıqlar həvalə edilmiş olsa belə, dəyəri maksimuma çatdırmaq üçün Product Goal-un işlənib hazırlanması və ötürülməsi və Product Backlog sıralamasına cavabdeh olaraq qalır.",
+          "en": "The 'backlog secretary' anti-pattern; the Product Owner remains accountable for developing and communicating the Product Goal and ordering the Product Backlog to maximize value, even if refinement tasks are delegated"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Bu məqbuldur, çünki Scrum Guide istənilən stakeholder-ə öz sorğusunun aktuallığına uyğun olaraq Product Backlog-u birbaşa yenidən sıralamağa imkan verir.",
+          "en": "This is acceptable because the Scrum Guide allows any stakeholder to directly reorder the Product Backlog according to the urgency of their own request"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Bu düzgün təcrübədir, çünki Product Backlog sıralamanı həmişə stakeholders-a uyğunluğu təmin etmək üçün ilk gələn-ilk çıxaran ardıcıllığa əməl etməlidir.",
+          "en": "This is correct practice, since Product Backlog ordering should always follow first-in-first-out sequencing to ensure fairness to stakeholders"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Product Backlog-u Product Owner-in aktiv idarə etdiyi, dəyərə görə sıralanan artifact əvəzinə gəlmə tarixinə görə sıralanmış passiv istək jurnalı saymaq klassik backlog secretary anti-pattern-idir. Scrum Guide-dakı Product Owner cavabdehlikləri məhz bunun qarşısını almaq üçündür.",
+      "en": "Treating the Product Backlog as a passive intake log ordered by arrival date, rather than a value-ordered artifact actively managed by the Product Owner, is the classic 'backlog secretary' anti-pattern the Scrum Guide's Product Owner accountabilities are designed to prevent."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-value-and-backlog-management-at-scale-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-value-and-backlog-management-at-scale:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Mürəkkəb məhsulun Product Owner-i növbəti Sprint-də eyni iki komandanın imkanı üçün rəqabət aparan, təxminən eyni səyli iki iş arasında seçim edir. X işi gecikdikcə həftəlik artan maliyyə cəriməli hüquqi requirement-i təmin edir, amma davamlı müştəri dəyəri azdır. Y işi xarici son tarix olmadan yüksək davamlı müştəri dəyəri yaradır. Ən əsaslı sıralama qərarı hansıdır?",
+      "en": "A Product Owner for a complex product must choose between two roughly equal-effort items competing for the same two teams' capacity next Sprint. Item X unlocks a regulatory requirement carrying a financial penalty that escalates weekly if delayed, but has modest ongoing customer value. Item Y offers high ongoing customer value with no external deadline. What is the most defensible ordering decision?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Developers-in əksəriyyəti texniki cəhətdən daha maraqlı göründüyündən asılı olmayaraq sıralayın, çünki motivasiya sıralamadan asılı olmayaraq daha keyfiyyətli olur.",
+          "en": "Order by whichever item the majority of Developers find more technically interesting, since motivation drives better quality regardless of order"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Hər iki komandanı bölün ki, hər bir element paralel olaraq hər iki riskdən bərabər şəkildə qorunmaq üçün tutumun yarısını alsın",
+          "en": "Split both teams so each item receives half capacity in parallel to hedge against both risks equally"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Product Backlog-dan bəri ilk olaraq Y bəndini sıralama edin, həmişə uzunmüddətli müştəri dəyərinə görə sıralama verilməlidir və tənzimləyici cəzalar Product Backlog sıralamanındən ayrı hüquqi məsələdir",
+          "en": "Order Item Y first since the Product Backlog should always be ordered strictly by long-term customer value, and regulatory penalties are a legal matter separate from Product Backlog ordering"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Əvvəlcə X elementini sıralama edin: Y bəndi daha yüksək sabit dəyər təklif etsə də, X bəndinin cost of delay zaman keçdikcə kəskin surətdə sürətlənir və artan risk təşkilatın Y bəndinin dəyərini daha sonra cəriməsiz tutmaq qabiliyyətini qoruyur.",
+          "en": "Order Item X first: although Item Y offers higher steady-state value, Item X's cost of delay accelerates sharply over time, and containing that escalating risk protects the organization's ability to capture Item Y's value later without penalty"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Gecikmə dəyərinin əsaslandırılması, bir məhsulun çatdırılmamasının dəyərinin zamanla necə dəyişdiyini hesablayır. Kəskin artan cəzası olan maddə hətta daha yüksək sabit qiymətli maddəyə qarşı daha müdafiə oluna bilən prioritet ola bilər, çünki artan risk dəyərini ehtiva etmək təşkilatın gələcək dəyəri reallaşdırmaq üçün ümumi qabiliyyətini qoruyur.",
+      "en": "Cost-of-delay reasoning accounts for how the cost of not delivering an item changes over time. An item with a sharply escalating penalty can be the more defensible priority even against a higher steady-state-value item, because containing the escalating risk protects the organization's overall ability to realize future value."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-value-and-backlog-management-at-scale-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-value-and-backlog-management-at-scale:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 3,
+    "text": {
+      "az": "Çox mürəkkəb məhsul altı Scrum Teams tərəfindən qurulur. Rəhbərlik hər bir komandaya öz müstəqil Product Backlog və öz Product Owner-ni verməyi təklif edir, hər biri 'daha sürətli hərəkət etmək' üçün dəyəri müəyyən etməkdə və işi yalnız öz komponenti üçün sıralamaqdə azaddır. Scrum Guide-nin çoxsaylı komandalar arasında tətbiq edilən Scrum-ə münasibəti baxımından hansı risk burada ən əhəmiyyətlidir?",
+      "en": "A very complex product is built by six Scrum Teams. Leadership proposes giving each team its own independent Product Backlog and its own Product Owner, each free to define value and order work purely for their own component, in order to 'move faster.' Which risk is most significant here from the Scrum Guide's perspective on Scrum applied across multiple teams?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Əsas risk odur ki, altı Product Owners əmək haqqını artırır, bu da Scrum ilə əlaqəli olmayan büdcə problemidir.",
+          "en": "The main risk is that six Product Owners increases payroll cost, which is a budgeting concern unrelated to Scrum"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Paylaşılan Product Goal və komponent geriləmələri arasında əlaqələndirilmiş sıralama olmadan, komandalar öz komponentlərinin dəyərini yerli olaraq optimallaşdıra bilər, eyni zamanda inteqrasiya olunmuş increments-dən asılı olan ümumi məhsulun dəyəri maksimuma çatmaz və ya hətta istifadə edilə bilməz.",
+          "en": "Without a shared Product Goal and coordinated ordering across the component backlogs, teams may locally optimize their own component's value while the overall product's value, which depends on integrated increments, is not maximized or may not even be usable"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər bir komandanın hələ də öz Sprint Review-ni saxladığı müddətcə risk yoxdur, çünki Sprint Reviews müstəqil sıralanmış komponentlər arasında inteqrasiyanı təmin edir.",
+          "en": "There is no risk as long as each team still holds its own Sprint Review, since Sprint Reviews alone guarantee integration across independently ordered component backlogs"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Yoxdur; Scrum Guide, birdən çox komanda tərəfindən qurulan hər hansı məhsul üçün komanda başına bir müstəqil Product Backlog və bir Product Owner olan bu strukturu açıq şəkildə tələb edir.",
+          "en": "None; the Scrum Guide explicitly requires exactly this structure of one independent Product Backlog and one Product Owner per team for any product built by more than one team"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Bir mürəkkəb məhsul bir neçə komanda tərəfindən qurulduqda, komponentlərin bütün məhsulun dəyərinə inteqrasiyası üçün paylaşılan Product Goal və əlaqələndirilmiş sıralama tələb olunur; hər komanda üçün tam müstəqil geriləmələr və ümumi məhsul dəyəri hesabına Product Owners risk yerli optimallaşdırma.",
+      "en": "When one complex product is built by multiple teams, a shared Product Goal and coordinated ordering are needed so components integrate into value for the whole product; fully independent per-team backlogs and Product Owners risk local optimization at the expense of overall product value."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-vision-and-business-strategy-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-vision-and-business-strategy:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 1,
+    "text": {
+      "az": "Daxili HR aləti üçün yeni təyin olunmuş Product Owner bu baxış ifadəsini təklif edir: 'Biz HR-nin istədiyi proqram təminatı yaradacağıq.' Həmkarları bunun istiqamətsiz hiss etdiyini söyləyirlər. Hansı yenidən işlənmiş baxış PO Öyrənmə Yolunda öyrədilmiş cəlbedici product vision keyfiyyətlərini ən yaxşı şəkildə əks etdirir?",
+      "en": "A newly appointed Product Owner for an internal HR tool proposes this vision statement: 'We will build software that HR wants.' Colleagues say it feels directionless. Which revised vision best reflects the qualities of a compelling product vision as taught in the PO Learning Path?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Hər menecerin performans qiymətləndirməsini 10 dəqiqədən az müddətdə bitirməsini mümkün etmək, HR komandalarını sənədləşmədən azad edib coaching-ə fokuslandırmaq və orta ölçülü şirkətlər üçün ən etibarlı people-operations platformasına çevrilmək.",
+          "en": "Empower every manager to complete performance reviews in under 10 minutes, freeing HR teams to focus on coaching rather than paperwork, and become the most trusted people-ops platform for mid-market companies."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "İlkin mətni saxlamaq, çünki sadə və ümumi ifadə komandanı konkret istiqamətə həddən artıq bağlamır.",
+          "en": "Keep the original wording because a simple, generic statement avoids over-committing the team to any particular direction."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "HR stakeholders-in indiyədək tələb etdiyi hər bir funksiyanın tam siyahısı kimi vision yenidən yazın.",
+          "en": "Rewrite the vision as an exhaustive list of every feature HR stakeholders have requested so far, to demonstrate responsiveness."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Bazar gözləntiləri ilə uyğunluğu təmin etmək üçün bazarda lider rəqibin ictimai marketinq səhifəsindən vision bəyanatını sözbəsöz kopyalayın.",
+          "en": "Copy the vision statement word-for-word from the market-leading competitor's public marketing page to ensure consistency with market expectations."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Cazibədar product vision qeyri-müəyyən bəyanat, funksiya siyahısı və ya borc götürülmüş rəqib iddiası deyil, spesifik, outcome-yə yönəldilmiş və fərqləndiricidir. Variant A komandaya aydın gələcək vəziyyəti və varlıq səbəbi verir, alternativlərdən daha yaxşı prioritet qərarlar qəbul etməyə imkan verir.",
+      "en": "A compelling product vision is specific, outcome-focused, and differentiating rather than a vague statement, a feature list, or a borrowed competitor claim. Option A gives the team a clear future state and a reason for being, enabling better prioritization decisions than the alternatives."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-vision-and-business-strategy-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-vision-and-business-strategy:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "az": "Hansı ifadə Scrum.org Product Owner Öyrənmə Yolunun product vision və business model arasındakı əlaqəni necə qurduğunu ən yaxşı şəkildə əks etdirir?",
+      "en": "Which statement best reflects how the Scrum.org Product Owner Learning Path frames the relationship between product vision and business model?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Business model hər Sprint cari Sprint Goal-a uyğun yenidən müəyyən edilməlidir, çünki PO Learning Path business model-i Product Owner-in hər yeni Sprint Backlog ilə yenidən yazdığı taktiki, Sprint səviyyəli artifact sayır.",
+          "en": "The business model should be redefined every Sprint to match whatever the current Sprint Goal happens to be, because the PO Learning Path treats the business model as a tactical, Sprint-level artifact that the Product Owner rewrites alongside each new Sprint Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Product vision və business model Scrum-də eyni anlayışı təsvir edən bir-birini əvəz edən terminlərdir; PO Öyrənmə Yolu məhsulun hara getdiyinə dair bir ifadə üçün hər iki addan istifadə edir, beləliklə, onlar arasında uyğunluğun yoxlanılması Product Owner-nin strateji işinə heç nə əlavə etmir.",
+          "en": "Product vision and business model are interchangeable terms describing the same concept in Scrum; the PO Learning Path uses both names for one statement of where the product is heading, so checking coherence between them adds nothing to the Product Owner's strategic work."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "business model - təşkilatın dəyəri necə yaratması, çatdırması və ələ keçirməsi - product vision ilə əlaqəli olmalıdır; PO onlar arasında uyğunsuzluğu qeyd etdikdə, PO-nun ümumi korporativ strategiyası olmasa da, üzə çıxmağa dəyər strateji risk olur.",
+          "en": "The business model - how the organization creates, delivers, and captures value - must be coherent with the product vision; when the PO notices misalignment between them, it is a strategic risk worth surfacing even though the PO doesn't own overall corporate strategy."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "PO-nun yeganə məsuliyyəti bəyan edilmiş vision yerinə yetirməkdir; business model - təşkilatın dəyəri necə yaradır, çatdırır və ələ keçirir - yalnız Product Backlog sıralamasına və ya PO-nun səthi risklərinə aidiyyatı olmayan maliyyə və satış məsələsidir.",
+          "en": "The PO's only responsibility is fulfilling the stated vision; the business model - how the organization creates, delivers, and captures value - is exclusively a finance and sales concern with no bearing on Product Backlog ordering or on the risks the PO surfaces."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Vizyon məhsulun hara getdiyini təsvir edir, business model isə təşkilatın yol boyu dəyəri necə yaradacağını, çatdıracağını və ələ keçirəcəyini təsvir edir. PO Öyrənmə Yolu PO-dan ikisi arasında uyğunsuzluğun fərqinə varmasını və səthi uyğunlaşmasını gözləyir, çünki bu, məhsulun nəzərdə tutulan dəyərini reallaşdırmaq qabiliyyətinə xələl gətirir.",
+      "en": "The vision describes where the product is heading, while the business model describes how the organization will create, deliver, and capture value along the way. The PO Learning Path expects the PO to notice and surface misalignment between the two, since it undermines the product's ability to realize its intended value."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-vision-and-business-strategy-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-vision-and-business-strategy:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "az": "Product Owner məhsulu üç rəqiblə müqayisə edir və onun xam funksiyaların sayında geridə qaldığını aşkar edir, lakin onun Net Promoter Score və yenilənmə dərəcəsi bütün rəqibləri əhəmiyyətli dərəcədə üstələyir. Böyük stakeholder, vision-un \"iki rüb ərzində hər bir rəqib funksiyasına uyğunlaşmağa\" dəyişməli olduğunu təkid edir. Sübut əsaslı düşüncəni tətbiq etməklə, Product Owner necə cavab verməlidir?",
+      "en": "A Product Owner benchmarks the product against three competitors and finds it lags in raw feature count, but its Net Promoter Score and renewal rate significantly exceed all competitors. A senior stakeholder insists the vision must shift to 'match every competitor feature within two quarters.' Applying evidence-based thinking, how should the Product Owner respond?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "stakeholder-ı razı salmaq üçün son tarixə qədər bütün rəqib funksiyalarini uyğunlaşdıracağına açıq şəkildə söz verin, eyni zamanda cari planı dəyişməz olaraq davam etdirin.",
+          "en": "Publicly promise to match all competitor features by the deadline to placate the stakeholder, while privately continuing the current plan unchanged."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "retention və məmnunluq dəlillərini stakeholder ilə paylaşın və vision və ya backlog-ni dəyişdirmək qərarına gəlməzdən əvvəl funksiya-paritet yarışına girmək əvəzinə, həqiqətən təqdim edilən dəyər əsasında rəqabətli mövqeləşdirmənin qiymətləndirilməsini təklif edin.",
+          "en": "Share the retention and satisfaction evidence with the stakeholder, and propose evaluating competitive positioning based on the value actually delivered rather than committing to a feature-parity race before deciding whether to change the vision or backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "stakeholder-nin narahatlığını tamamilə rədd edin və əsaslandırmanı izah etməyə və ya dəstəkləyici məlumatları paylaşmağa heç bir cəhd göstərməyin.",
+          "en": "Dismiss the stakeholder's concern outright and make no attempt to explain the reasoning or share supporting data."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Dərhal riayət edin və roadmap-ni funksiya paritetinə uyğunlaşdırın, çünki stakeholder-nin iş stajı Product Owner-nin öz mülahizəsini üstələməlidir.",
+          "en": "Comply immediately and commit the roadmap to feature parity because the stakeholder's seniority should override the Product Owner's own judgment."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Yüksək NPS və daha az funksiya sayına baxmayaraq yenilənmə məhsulun value proposition rezonans doğurduğunu göstərir; funksiya-paritet yarışı output-yə əsaslanan yayındırmadır və investisiyanı əslində işləyəndən yayındıra bilər. Dəlillərə əsaslanan cavab stakeholder ilə sadəcə itaət etmək, məhəl qoymamaq və ya saxta uyğunluq göstərmək deyil, məlumatları bölüşmək və yerləşdirməni birgə yenidən qiymətləndirməkdir.",
+      "en": "High NPS and renewal despite lower feature count indicate the product's value proposition is resonating; a feature-parity race is an output-driven distraction that could divert investment from what's actually working. The evidence-based response is to share the data and jointly reassess positioning, not to simply obey, ignore, or fake compliance with the stakeholder."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-vision-and-business-strategy-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-vision-and-business-strategy:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "az": "Yeni funksiya istiqamətini bir neçə increments sınaqdan keçirdikdən sonra rəy qarışıq olur: erkən tətbiq edən kiçik bir seqment həvəslidir, lakin daha geniş müştəri bazası heç bir əlaqə artımı göstərmir və Ability to Innovate yeni technical debt sayəsində azalıb. pivot, səbr və ya dayanmaq qərarına gəlməzdən əvvəl Product Owner üçün ən uyğun növbəti addım hansıdır?",
+      "en": "After several increments testing a new feature direction, feedback is mixed: a small early-adopter segment is enthusiastic, but the broader customer base shows no engagement lift, and Ability to Innovate has decreased due to new technical debt. What is the most appropriate next step for the Product Owner before deciding whether to pivot, persevere, or stop?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "İnvestisiyanı dərhal ikiqat artırın, çünki bir seqment technical debt siqnalını tamamilə nəzərə almadan həvəslidir.",
+          "en": "Immediately double the investment because one segment is enthusiastic, disregarding the technical debt signal entirely."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Dərhal yeni istiqamətdən pivot uzaqda, çünki tam müştəri bazası üzrə ümumi nişan düzdür.",
+          "en": "Immediately pivot away from the new direction because overall engagement across the full customer base is flat."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Həvəsli seqmentin həyat qabiliyyətli, böyük bir bazarı və ya dar bir yeri təmsil etdiyini müəyyən etmək üçün daha çox məqsədyönlü sübut toplayın və bir istiqamətə getməzdən əvvəl onu Ability to Innovate-a qədər quraşdırma dəyəri ilə ölçün.",
+          "en": "Gather more targeted evidence to determine whether the enthusiastic segment represents a viable, sizable market or a narrow niche, and weigh that against the mounting cost to Ability to Innovate, before committing to a direction."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Yeni sübutlardan asılı olmayaraq sabit əlavə altı ay ərzində cari istiqaməti davam etdirin, çünki o, artıq stakeholders ilə bağlı idi.",
+          "en": "Continue the current direction for a fixed additional six months regardless of new evidence, because it was already committed to stakeholders."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Qarışıq siqnallar - daha geniş nişanlanma və yüksələn technical debt ilə yanaşı dar həvəsli seqment - dərhal, birtərəfli pivot, eskalasiya və ya sabit vaxt qrafiki öhdəliyindən daha çox məqsədyönlü sübutların toplanmasına çağırır. EBM-nin Ability to Innovate ölçüsü kritik input-dir və qərar verməzdən əvvəl istifadəyə keçid sübutları ilə birlikdə ölçülməlidir.",
+      "en": "Mixed signals — a narrow enthusiastic segment alongside flat broader engagement and rising technical debt — call for further targeted evidence-gathering rather than an immediate, unilateral pivot, escalation, or a fixed-timeline commitment. EBM's Ability to Innovate measure is a critical input that must be weighed alongside adoption evidence before deciding."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-product-vision-and-business-strategy-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-product-vision-and-business-strategy:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "az": "Bazar siqnalları pivot-un lazım olduğunu güclü şəkildə göstərir. Məlumata güvənən Product Owner əsas stakeholders ilə müzakirə etmədən və sübutu paylaşmadan iki Sprints ərzində Product Backlog-u gizlicə yeni istiqamətə yönəldir: PO Product Backlog-un sahibidir və icazəyə ehtiyacı yoxdur. Scrum Guide (2020) prinsiplərinə görə bu yanaşmanın əsas riski nədir?",
+      "en": "Market signals strongly suggest a pivot is warranted. Confident in the data, the Product Owner quietly redirects the Product Backlog toward the new direction over two Sprints without discussing it with key stakeholders or sharing the underlying evidence, reasoning that 'the PO owns the Product Backlog and doesn't need permission.' What is the primary risk with this approach, per Scrum Guide (2020) principles?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Əsas risk odur ki, Scrum Guide 2020-a görə texniki olaraq Product Backlog-un sahibi Product Owner deyil, Developers-dir; buna görə onların razılığı olmadan backlog-u pivot-a yönəltmək Developers-in sonradan özləri geri çevirə biləcəyi səlahiyyət həddinin aşılmasıdır.",
+          "en": "The primary risk is that Developers, not the Product Owner, technically own the Product Backlog under the Scrum Guide 2020, so redirecting it toward a pivot without their consent is an overreach of authority that the Developers could later reverse on their own."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Product Owner Product Backlog məzmun və sıralama üzərində yeganə səlahiyyətə malik olsa da, Scrum Guide Backlog və onun əsaslandırılmasının görünən və başa düşülməsini gözləyir; stakeholders-dən yan keçmək, hətta pivot-in özü dəlillərə əsaslandıqda belə, etibarı itirmək və səhv icraya səbəb olmaq riski daşıyır.",
+          "en": "While the Product Owner does have sole authority over Product Backlog content and ordering, the Scrum Guide expects that Backlog and its rationale to be visible and understood; bypassing stakeholders risks losing trust and causing misaligned execution, even when the pivot itself is evidence-based."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Heç bir risk yoxdur, çünki Scrum Guide 2020 Product Owner-ə Product Backlog məzmunu və ordering üzərində şəffaflıq gözləntisi olmadan təkbaşına səlahiyyət verir; buna görə pivot release edilmiş Increment-də görünənədək stakeholders yeni istiqaməti görməyə bilər.",
+          "en": "There is no risk at all, since the Scrum Guide 2020 gives the Product Owner sole authority over Product Backlog content and ordering with no expectation of transparency, so stakeholders need not see the new direction until the pivot shows up in a released Increment."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Əsas risk odur ki, hər hansı pivot Product Backlog dəyişdirilməzdən əvvəl Scrum Master-dən əvvəlcədən təsdiq tələb edir; bu təsdiq addımını atlayaraq, Product Owner Scrum Guide 2020-in dəyişməyə nəzarət qaydasını pozur və Developers ilə artıq planlaşdırılan Sprints-nin Sprint Goals-nı etibarsız edir.",
+          "en": "The primary risk is that any pivot requires prior approval from the Scrum Master before the Product Backlog can be changed; by skipping that approval step, the Product Owner breaks a change-control rule of the Scrum Guide 2020 and invalidates the Sprint Goals of the Sprints already planned with the Developers."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "az": "Product Owner həqiqətən Product Backlog məzmunu və ordering üçün təkbaşına cavabdehdir, amma bu səlahiyyət Backlog və səbəblərinin Scrum Team və stakeholders üçün şəffaf və anlaşılan olması gözləntisi ilə birlikdədir. Əhəmiyyətli, sübuta əsaslanan pivot-u gizlətmək məlumat düzgün olsa belə etimadı zəiflədə və icranı fərqli istiqamətlərə yönəldə bilər.",
+      "en": "The Product Owner is indeed solely accountable for Product Backlog content and ordering, but that authority coexists with the expectation that the Backlog and the reasoning behind it remain transparent and understood by the Scrum Team and stakeholders. Making a significant, evidence-based pivot in secret risks eroding trust and causing misaligned execution, regardless of whether the underlying data was sound."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-stakeholder-and-customer-engagement-q1",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-stakeholder-and-customer-engagement:q1",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 1,
+    "text": {
+      "az": "Baş VP dəfələrlə hər Sprint Review-dən əvvəl Scrum Team və stakeholders-ın qalan hissəsini keçərək şəxsi, ad hoc demoları xahiş edir ki, o, “ilk bilən” ola bilsin. Hansı cavab Scrum Guide (2020) ilə daha uyğundur?",
+      "en": "A senior VP repeatedly asks for private, ad hoc demos before every Sprint Review, bypassing the rest of the Scrum Team and stakeholders, so she can be 'first to know.' Which response is most consistent with the Scrum Guide (2020)?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Hər Sprint Review-dan əvvəl şəxsi demo-nu bir Developer-ə həvalə etmək ki, Product Owner Product Backlog refinement-ə fokuslansın; VP hər Increment-i yenə birinci görsün, qalan stakeholders isə tədbiri gözləsin.",
+          "en": "Delegate the private demos to a Developer before each Sprint Review so the Product Owner can stay focused on Product Backlog refinement, while the VP still sees every Increment first and the rest of the stakeholders wait for the event."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Sprint Review kimi rəsmi Scrum tədbirlərindən kənarda onunla bütün ünsiyyəti rədd etmək, çünki Scrum Product Owner-in stakeholders ilə söhbətlərini yalnız tədbirlərlə məhdudlaşdırır; buna görə o da hamı kimi Sprint Review-u gözləməlidir.",
+          "en": "Decline any contact with her outside formal Scrum events such as the Sprint Review, since Scrum confines Product Owner conversations with stakeholders to its events, so she has to wait for the Sprint Review like everyone else."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Sprint Review-nin Scrum Team və stakeholders-nin Increment-i birlikdə yoxladığı, onu iştirak etməyə və orada iştirak etməyə dəvət etdiyi və lazım gələrsə, ümumi Product Goal yeniləmələri üçün başqa kanal təklif etdiyi birgə tədbir olduğunu izah edin.",
+          "en": "Explain that the Sprint Review is the collaborative event where the Scrum Team and stakeholders inspect the Increment together, invite her to attend and engage there, and offer another channel for general Product Goal updates if needed."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Hər Sprint Review-dan əvvəl şəxsi demo-ya razılaşmaq, çünki nüfuzlu stakeholder-i razı saxlamaq roadmap-in siyasi dəstəyini qoruyur; Sprint Review isə sonra Scrum Team və qalan stakeholders üçün yenə keçirilir.",
+          "en": "Agree to the private demo before each Sprint Review, since keeping a powerful stakeholder satisfied protects the roadmap's political support, and the Sprint Review itself still happens afterwards for the Scrum Team and the remaining stakeholders."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Sprint Review dəqiq mövcuddur, ona görə də Scrum Team və stakeholders Sprint-nin outcome-ni birlikdə yoxlaya və birgə növbəti addımları müəyyən edə bilər. Anlayışı paylaşan və uyğun olmayan gözləntilər yarada bilən tək stakeholder fraqmentinə xüsusi ad hoc demolar. Product Owner-ın rolu stakeholder engagement-i şəffaf, kollektiv forumlara kanallaşdırmaqdır, xüsusi arxa kanala giriş vermək deyil.",
+      "en": "The Sprint Review exists precisely so the Scrum Team and stakeholders can inspect the outcome of the Sprint together and collaboratively determine next steps. Private ad hoc demos to a single stakeholder fragment that shared understanding and can create inconsistent expectations. The Product Owner's role is to channel stakeholder engagement into transparent, collective forums, not to grant special back-channel access."
+    },
+    "lessonId": "pspo2-facilitation",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-stakeholder-and-customer-engagement-q2",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-stakeholder-and-customer-engagement:q2",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "az": "Müəssisənin əsas müştərisi altı aydan sonra müəyyən edilmiş tarixə qədər on iki adlandırılmış funksiyaə dair yazılı öhdəlik tələb edir və əks halda müqaviləni ləğv etməklə hədələyir. Hansı cavab Scrum-in empirik yanaşmasına ən yaxşı uyğun gəlir?",
+      "en": "A key enterprise customer demands a written commitment to exactly twelve named features by a fixed date six months out, threatening to cancel the contract otherwise. Which response best aligns with Scrum's empirical approach?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Böyük müqavilələr əminlik tələb etdiyi üçün öhdəliyi yazılı şəkildə imzalayın və tarixi təmin etmək üçün komandanı iş vaxtından artıq işləməyə yönəldin.",
+          "en": "Sign the commitment as written, since large contracts require certainty, and direct the team to work overtime to guarantee the date."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Danışıqları tamamilə Scrum Master-a həvalə edin, çünki stakeholder münaqişəsini idarə etmək Product Owner-dən çox Scrum Master cavabdehlikdir.",
+          "en": "Hand the negotiation entirely to the Scrum Master, since managing stakeholder conflict is a Scrum Master accountability rather than the Product Owner's."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Komandanın fəaliyyət məlumatına əsaslanan cari empirik forecast-ı paylaşmaq, Product Goal ətrafında razılaşmaq, ən yüksək dəyərli işlər üçün forecast aralığı vermək və scope-un yeni sübuta uyğunlaşması üçün hər Sprint irəliləyişə yenidən baxmağı razılaşdırmaq.",
+          "en": "Share the current empirical forecast based on team performance data, negotiate around the Product Goal, offer a forecast range for the highest-value items, and agree to revisit progress each Sprint so scope can adapt to new evidence."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Scrum tarixə əsaslanan öhdəlikləri qadağan etdiyindən və yalnız Sprint etibarlı planlaşdırma vahidi olduğu üçün hər hansı vaxt qrafikini müzakirə etməkdən ümumiyyətlə imtina edin.",
+          "en": "Refuse to discuss any timelines at all, since Scrum prohibits date-based commitments and only the Sprint is a valid unit of planning."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "EBM, spekulyativ sabit öhdəliklər götürmək əvəzinə, ehtimal olunan Time-to-Market haqqında dürüst söhbətlər aparmaq üçün tarixi velocity və forecast diapazonları kimi empirik sübutlardan istifadə etməyi vurğulayır. outcomes və Product Goal ətrafında danışıqlar aparmaq, hər Sprint re-forecasting kadansı ilə həm müştəri etibarını, həm də komandanın yeni məlumatlara uyğunlaşma qabiliyyətini qoruyur.",
+      "en": "EBM emphasizes using empirical evidence — such as historical velocity and forecast ranges — to have honest conversations about likely Time-to-Market rather than making speculative fixed commitments. Negotiating around outcomes and the Product Goal, with a cadence of re-forecasting each Sprint, protects both customer trust and the team's ability to adapt to new information."
+    },
+    "lessonId": "pspo2-facilitation",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-stakeholder-and-customer-engagement-q3",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-stakeholder-and-customer-engagement:q3",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "az": "Sprint-in ortalarında, Product Owner, Development Team-nin cari Sprint Goal (ödənişin yenidən dizaynı) istiqamətindəki işi ilə paralel olaraq müştəri kəşfi müsahibələri keçirir. Erkən, məhdud siqnallar cari yanaşmanın optimal olmaya biləcəyini göstərir, lakin sübutlar hələ qəti deyil və stakeholders increment-ni cədvəl üzrə gözləyir. Ən uyğun hərəkət hansıdır?",
+      "en": "Mid-Sprint, the Product Owner is running customer discovery interviews in parallel with the Development Team's work toward the current Sprint Goal (a checkout redesign). Early, limited signals suggest the current approach may not be optimal, but the evidence is not yet conclusive, and stakeholders expect the increment on schedule. What is the most appropriate action?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Development Team orta-Sprint-ni dərhal yeni yanaşmaya yönləndirin, çünki müştəri sübutları həmişə mövcud Sprint planını ləğv etməlidir.",
+          "en": "Immediately redirect the Development Team mid-Sprint to the new approach, since customer evidence should always override an existing Sprint plan."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Scrum Master Scrum Team təcrübələrinin effektivliyinə görə cavabdeh olduğu üçün istiqaməti dəyişdirib-dəyişdirməmək barədə qərar verməsini Scrum Master-dan soruşun.",
+          "en": "Ask the Scrum Master to decide whether to change direction, since the Scrum Master is accountable for the effectiveness of the Scrum Team's practices."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Cari Sprint öz Sprint Goal-ə doğru davam etsin, paralel olaraq kəşfi davam etdirsin və gələcək Product Backlog items və Sprint Goals sıralamasını və məzmununu məlumatlandırmaq üçün əldə edilən sübutlardan istifadə edin.",
+          "en": "Let the current Sprint continue toward its Sprint Goal, continue discovery in parallel, and use the resulting evidence to inform the ordering and content of future Product Backlog items and Sprint Goals."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Bütün release tamamlanana qədər kəşf tapıntılarına tamamilə məhəl qoymayın, beləliklə Development Team-in planı və stakeholder gözləntiləri pozulmaz.",
+          "en": "Ignore the discovery findings entirely until the whole release finishes, so the Development Team's plan and stakeholder expectations remain undisturbed."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "az": "Sprint Goal Sprint ahəngdarlığı və diqqəti vermək üçün mövcuddur və Scrum komandadan hər erkən, nəticəsiz siqnalda pivot gözləmir. Müvafiq empirik cavab Sprint-in davam etməsinə icazə vermək, kəşfi paralel olaraq davam etdirmək və daha güclü dəlillərin qarşıdan gələn Product Backlog sıralamanıni və gələcək Sprint Goals-nı formalaşdırmasına imkan verməkdir — Sprint Goal silinməsi üçün ehtiyat Sprint ləğv etməkdir.",
+      "en": "The Sprint Goal exists to give the Sprint coherence and focus, and Scrum does not expect the team to pivot on every early, inconclusive signal. The appropriate empirical response is to let the Sprint proceed, keep discovery running in parallel, and let stronger evidence shape upcoming Product Backlog ordering and future Sprint Goals — reserving Sprint cancellation for when the Sprint Goal is truly obsolete."
+    },
+    "lessonId": "pspo2-facilitation",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-stakeholder-and-customer-engagement-q4",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-stakeholder-and-customer-engagement:q4",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "az": "Həm daxili əməliyyatlar biznes bölməsi, həm də xarici müştəri seqmenti tərəfindən istifadə edilən bir məhsulun iki Scrum Teams pay sahibliyi. Əməliyyat rəhbəri təkid edir ki, onların istəkləri həmişə birinci yerdə olmalıdır, çünki onlar “komandanı maliyyələşdirir”, müştəri seqmenti liderləri isə xarici gəlirin həmişə üstünlük təşkil etməli olduğunu iddia edirlər. Bu məhsul üçün yeganə Product Owner olaraq, Scrum altında ən müdafiə edilə bilən yanaşma hansıdır?",
+      "en": "Two Scrum Teams share ownership of a single product used by both an internal operations business unit and an external customer segment. The operations leader insists their requests must always rank first because they 'fund the team,' while customer segment leads argue external revenue should always dominate. As the sole Product Owner for this product, what is the most defensible approach under Scrum?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Hər bir biznes bölməsi üçün biri, Product Owner səlahiyyəti müvafiq bölmə rəhbərinə həvalə edilmiş iki ayrı Məhsul ehtiyatı qeyd edin və Sprint Planning-də iki sifarişi tutuşdurun ki, əməliyyatlar lideri və müştəri seqmentinin rəhbərləri öz prioritetlərinə nəzarət etsinlər.",
+          "en": "Maintain two separate Product Backlogs, one per business unit, each with Product Owner authority delegated to the respective unit leader, and reconcile the two orderings at Sprint Planning so that the operations leader and the customer segment leads both keep control of their own priorities."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Hansı bölmənin daha çox birbaşa gəlir gətirdiyinə daimi üstünlük verin (bu gün xarici müştəri seqmenti, onun maliyyələşməsi artarsa əməliyyat bölməsi), çünki Current Value ciddi şəkildə yalnız gəlir rəqəmləri ilə müəyyən edilir və gəlir EBM-nin ən obyektiv hesab etdiyi sübutdur.",
+          "en": "Give standing priority to whichever unit generates more direct revenue (the external customer segment today, the operations unit if its funding grows), since Current Value is defined strictly by revenue figures alone and revenue is the evidence EBM treats as most objective."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər iki bölmənin sorğuları arasında alternativ sıralama Sprint, beləliklə, təsir gözlənilən dəyərdən asılı olmayaraq balanslı qalır və fırlanmanı hər iki qrupa şəffaf şəkildə izah edin ki, nə əməliyyat rəhbəri, nə də müştəri seqmenti rəhbərləri digər qrupun sorğuları üzərində hər hansı daimi prioritet iddia edə bilməsinlər.",
+          "en": "Alternate ordering between the two units' requests every other Sprint so influence remains balanced regardless of expected value, and explain the rotation transparently to both groups so that neither the operations leader nor the customer segment leads can claim any standing priority over the other group's requests."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Vahid sıralanmış Product Backlog saxlamaq, mövcud sübutlarla (Current Value, Unrealized Value və Time-to-Market-a gözlənilən impact kimi) işləri Product Goal-a ümumi dəyər töhfəsinə görə sıralamaq və heç bir qrupa daimi üstünlük vermədən səbəbi hər iki qrupa şəffaf izah etmək.",
+          "en": "Maintain a single ordered Product Backlog, order items by expected overall value toward the Product Goal using available evidence (such as expected impact on Current Value, Unrealized Value, and Time-to-Market), and transparently explain the rationale to both groups rather than granting either standing priority."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "az": "Scrum birdən çox biznes bölməsi prioritetlik uğrunda rəqabət aparsa belə, bir cavabdeh olan Product Owner tərəfindən idarə olunan tək sıralamali Product Backlog gözləyir. EBM-nin Key Value Areas, Product Owner-a siyasi rıçaqlara, rotasiya sxemlərinə və ya həddən artıq sadələşdirilmiş tək maliyyə göstəricilərinə qarşı defolt olmaqdansa, sıralama qərarlarını şəffaf şəkildə izah etmək üçün sübuta əsaslanan, dəyəri artıran əsas verir.",
+      "en": "Scrum expects a single ordered Product Backlog managed by one accountable Product Owner, even when multiple business units compete for priority. EBM's Key Value Areas give the Product Owner an evidence-based, value-maximizing rationale to explain ordering decisions transparently, rather than defaulting to political leverage, rotation schemes, or an oversimplified single financial metric."
+    },
+    "lessonId": "pspo2-facilitation",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  },
+  {
+    "id": "examdeck-pspo2-examdeck-stakeholder-and-customer-engagement-q5",
+    "providerId": "examdeck-pspo2",
+    "sourceQuestionId": "examdeck-stakeholder-and-customer-engagement:q5",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "az": "Sprint-in ortasında bazar şərtləri kəskin şəkildə dəyişir və Sprint Goal açıq şəkildə köhnəlir; əsas müştəri tamamilə fərqli bir funksiya dəstinin dərhal başlamasını tələb edir. İrəli Scrum-ardıcıl yol nədir?",
+      "en": "Midway through a Sprint, market conditions shift dramatically and the Sprint Goal becomes clearly obsolete; a major customer is demanding an entirely different feature set start immediately. What is the Scrum-consistent path forward?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Product Owner Sprint-i ləğv etmək səlahiyyətinə malikdir, çünki Sprint Goal köhnəlmişdir, sonra Scrum Team ilə işləyir və yenilənmiş prioritetləri əks etdirən Sprint Goal ilə yeni Sprint planlaşdırır.",
+          "en": "The Product Owner has the authority to cancel the Sprint because the Sprint Goal is obsolete, then works with the Scrum Team to plan a new Sprint with a Sprint Goal reflecting updated priorities."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Scrum Master Sprint-i ləğv etməlidir, çünki onlar Scrum prosesi və onun hadisələrinin sahibidirlər.",
+          "en": "The Scrum Master should cancel the Sprint, since they own the Scrum process and its events."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Developers birtərəfli qaydada cari Sprint Backlog-dən imtina etməli və Sprint-ni rəsmi şəkildə bitirmədən müştərinin yeni sorğusuna başlamalıdır.",
+          "en": "The Developers should unilaterally abandon the current Sprint Backlog and start the customer's new request without formally ending the Sprint."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "az": "Scrum Team, köhnəlmiş Sprint Goal-dan asılı olmayaraq cari Sprint-i tamamlamalıdır, çünki yalnız Sprint-nin təbii sonu yenidən planlaşdırmanı işə sala bilər.",
+          "en": "The Scrum Team must complete the current Sprint regardless of the obsolete Sprint Goal, since only a Sprint's natural end can trigger replanning."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Scrum Guide (2020) bu dəqiq ssenariyə müraciət edir: Sprint Goal köhnəlsə və yalnız Product Owner bunu etmək səlahiyyətinə malik olarsa, Sprint ləğv edilə bilər. Bu, Scrum Team-ə yeni reallığı əks etdirən Sprint Goal ətrafında yenidən planlaşdırmağa imkan verərkən hesabatlılığı qoruyur.",
+      "en": "The Scrum Guide (2020) explicitly addresses this exact scenario: a Sprint can be cancelled if the Sprint Goal becomes obsolete, and only the Product Owner holds the authority to do so. This preserves accountability while allowing the Scrum Team to replan around a Sprint Goal that reflects the new reality."
+    },
+    "lessonId": "pspo2-facilitation",
+    "practiceOnly": true,
+    "sourceIds": ["examdeck-pspo2"]
+  }
+]

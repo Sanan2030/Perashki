@@ -1,0 +1,120 @@
+---
+id: data-sql-windows-cohorts
+locale: az
+title: 'Qabaqcıl SQL: window funksiyaları, retention və cohort-lar'
+objectives:
+  - 'Grouped aggregation-u window hesablamasından ayır.'
+  - 'Running total üçün aydın frame və sabit ordering seç.'
+  - 'Müşahidə olunmamış period-u sıfır fəaliyyətdən ayıraraq cohort retention hesabla.'
+---
+
+## Öyrənmə məqsədləri
+
+- Grouped aggregation-u window hesablamasından ayır.
+- Running total üçün aydın frame və sabit ordering seç.
+- Müşahidə olunmamış period-u sıfır fəaliyyətdən ayıraraq cohort retention hesabla.
+
+## Bu mövzu niyə vacibdir
+
+Yeni user-in qayıtmağa vaxtı olmadığı üçün dashboard retention-da kəskin düşmə göstərə bilər. Advanced SQL bu fərqi saxlayanda faydalıdır. Window function və cohort əvvəlki SQL dərsini genişləndirir, amma tərifləri yenə grain, time və population-dan asılıdır.
+
+## Əsas anlayışlar
+
+Window function hər input row-u saxlayaraq əlaqəli row-lar üzrə hesablayır. `PARTITION BY` customer kimi müstəqil group müəyyən edir. Window `ORDER BY` group daxilində sıra yaradır. Ekran sırasını isə son query-nin `ORDER BY` hissəsi idarə edir.
+
+`ROW_NUMBER` sıra nömrəsi verir; bir record seçərkən bərabərliyə deterministic secondary key əlavə et. `LAG` əvvəlki ordered row-u alır, mütləq əvvəlki təqvim ayını yox. Fevral yoxdursa martın əvvəlki row-u yanvar ola bilər. Biznes sualı hər ayı tələb edirsə calendar spine qur.
+
+Ordered aggregate window-un frame-i var. PostgreSQL default frame cari ordering value-dək peer-ləri də daxil edir; bərabər timestamp cumulative nəticəni paylaşa bilər. Row-by-row running total lazımdırsa aydın `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` və uyğun tie-breaker seç. Frame biznes ordering-ə uyğun gəlməlidir.
+
+Window expression row/group filtering-dən sonra hesablanır. Hesablanmış row number-i outer query və ya CTE-də filtrlə. Window alias-ının eyni səviyyənin `WHERE` hissəsində hazır olduğunu fərz etmə.
+
+Cohort insanları ortaq entry event və period-a görə birləşdirir. Signup cohort yeni account, first-paid cohort yeni paying customer sualına cavab verir. Denominator fərqlidir. Month-one retention “növbəti təqvim ayında ən az bir paid order” kimi tərif, sabit cohort size və tam observation window tələb edir.
+
+**Right censoring** sonrakı outcome hələ müşahidə edilə bilməyəndə yaranır. Data yalnız martadək tamdırsa mart cohort-unun aprel davranışı naməlumdur. Sıfır yox, müşahidə olunmamış göstər. Müşahidə edilən cohort denominator-undan inactive user-i çıxarma.
+
+## İşlənmiş nümunə
+
+Query hər paid order-i və customer-in cumulative paid cent məbləğini qaytarır:
+
+```sql
+SELECT order_id, customer_id, ordered_at, amount_cents,
+       SUM(amount_cents) OVER (
+         PARTITION BY customer_id
+         ORDER BY ordered_at, order_id
+         ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) AS customer_running_cents
+FROM orders
+WHERE status = 'paid'
+ORDER BY customer_id, ordered_at, order_id;
+```
+
+`u1` üçün cumulative dəyərlər `1000`, sonra `3000`; `u3` üçün `4000`, sonra `10000`-dir. Order ID eyni timestamp-də sabit tie-breaker verir; production contract bunun əvəzinə event sequence tələb edə bilər.
+
+First-paid-month cohort və martadək tam data ilə:
+
+| Cohort | Customer sayı | Növbəti təqvim ayında active | Month-one retention |
+| ------ | ------------: | ---------------------------: | ------------------- |
+| Yanvar |             2 |                            1 | 50%                 |
+| Fevral |             1 |                            1 | 100%                |
+| Mart   |             1 |           Müşahidə olunmayıb | Müşahidə olunmayıb  |
+
+`u2`-nin fevralda yalnız cancelled order-i var; paid-active sayılmır. `u5` heç ödəniş etməyib: signup population-a daxildir, first-paid cohort-a yox. Kiçik süni cohort-lar məntiqi göstərir; etibarlı bazar estimate-i deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n E[Choose cohort entry event] --> B[Build one row per customer]\n B --> A[Map paid activity to calendar month]\n A --> O{Next month fully observed?}\n O -->|Yes| R[Active customers divided by fixed cohort size]\n O -->|No| U[Report unobserved]'
+  }
+/>
+
+Observation completeness hesablamada ayrı budaqdır. Çatışmayan gələcək period səssizcə churn sübutuna çevrilməməlidir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>LAG(monthly_revenue) həmişə keçən ayın revenue-sunu qaytarırmı?</summary>
+
+Xeyr. Ordered partition-da əvvəlki row-u qaytarır. Ay yoxdursa əvvəlki row bir neçə ay əvvələ aid ola bilər. Calendar comparison-dan əvvəl lazımi ay seriyasını qurub müşahidələri join et. Absent observation-un məlum zero, yoxsa naməlum ingestion gap olduğunu seç.
+
+</details>
+
+## Tipik səhvlər
+
+- Window ordering-in final output sırasına zəmanət verdiyini düşünmək.
+- Təkrar ordering value-nu nəzərə almadan implicit frame istifadə etmək.
+- Signup və first-paid cohort faizini eyni population kimi müqayisə etmək.
+- Retained customer-i yalnız qayıdan customer sayına bölmək.
+- Gələcək period-u zero göstərib churn adlandırmaq.
+
+## Praktik tapşırıq
+
+Data martın 31-dək tamdır. Yanvar, fevral, mart üçün month-one first-paid retention hesabla. Sonra ayrı suala cavab ver: fevral signup-larının hansı payı fevralda paid order edib? İki fevral faizinin fərqini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Yanvar first-paid retention `1/2=50%`, fevral `1/1=100%`-dir. Mart month-one retention müşahidə olunmayıb: aprel window-dan kənardır. Fevral signup activation `1/2=50%`-dir: `u3` ödəyib, `u5` yox. 100% və 50% ayrı entry event/denominator istifadə edir; ziddiyyət deyil.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Tələb                              | Texnika                                   |
+| ---------------------------------- | ----------------------------------------- |
+| Total hesablayarkən row-u saxlamaq | Window aggregate                          |
+| Sabit row-by-row yığım             | Aydın ROWS frame və tie-breaker           |
+| Əvvəlki təqvim period-u            | LAG-dan əvvəl calendar spine              |
+| Entity üzrə ilk record             | CTE-də ROW_NUMBER, outer filter           |
+| Yeni cohort üçün dürüst nəticə     | Observation cutoff və unobserved state    |
+| Müqayisə edilən retention          | Eyni entry event, activity və denominator |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [PostgreSQL 18: Window functions](https://www.postgresql.org/docs/18/tutorial-window.html): partitioning, ordering, default frame və subquery filter.
+- [PostgreSQL 18: Joins](https://www.postgresql.org/docs/18/tutorial-join.html): uyğun gəlməyən record-u saxlamaq.
+- [Data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab): icra edilən orijinal cohort/running-total tapşırığı. Cohort qaydası PostgreSQL tələbi deyil, dərsin tərifidir.

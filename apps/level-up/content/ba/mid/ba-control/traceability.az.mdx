@@ -1,0 +1,88 @@
+---
+id: traceability
+locale: az
+title: 'Tələblərin izlənilməsi'
+objectives:
+  - 'Qərarı dəstəkləyən trace relationship seç.'
+  - 'Dəyişikliyi requirement, design və test boyunca izlə.'
+  - 'Coverage link-i correctness sübutundan ayır.'
+---
+
+## Öyrənmə məqsədləri
+
+- Qərarı dəstəkləyən trace relationship seç.
+- Dəyişikliyi requirement, design və test boyunca izlə.
+- Coverage link-i correctness sübutundan ayır.
+
+## Bu mövzu niyə vacibdir
+
+Regulation refund deadline-ını dəyişir. Document-də refund axtarmaq qaydadan asılı report, customer message və delayed job-u qaçıra bilər. Traceability əlaqəni görünən edir və komandanın dəyişiklik öhdəliyindən əvvəl impact qiymətləndirməsinə kömək edir.
+
+## Əsas anlayışlar
+
+Traceability business analysis məlumatını əlaqəli məlumatla bağlayır. Faydalı link requirement source-u, dəstəklədiyi need, onu reallaşdıran design, digər requirement asılılığı və verification testidir. Relationship sözlüyü təşkilatın qərarına uyğun olmalıdır; hər record cütünü bağlamaq lazım deyil.
+
+Forward tracing need-i nəyin reallaşdırdığını və necə yoxlanacağını soruşur. Backward tracing component, requirement və test-in niyə mövcudluğunu soruşur. İkisi missing work və əsaslandırılmamış scope tapır. Source-u məlum olmayan feature yenə dəyərli ola bilər; avtomatik qəbul/silmək əvəzinə rationale araşdırılmalıdır.
+
+Relation-u sübutdan ayır. Requirement-in test-ə bağlanması coverage əlaqəsidir. Test-in işləyib-işləmədiyi, təmsilçi şəraitdə keçməsi və düzgün qaydanı yoxlaması ayrıca sualdır. Coverage faizi zəif və köhnəlmiş testi gizlədə bilər.
+
+Sabit identifier, aydın link type, version və ownership istifadə et. Baseline qərar/release üçün istifadə edilmiş information state-i göstərir. Requirement/design dəyişəndə tarixi əlaqələri saxla ki, əvvəlki release anlaşılsın. Bütün keçmiş test nəticəsini səssiz yeni requirement version-a yönəltmə.
+
+İdarəolunmaz matrix yaratmadan impact analysis üçün yetərli detal saxla. Yüksək riskli rule, regulated behavior və shared interface çox vaxt müvəqqəti experiment-dən güclü sübut tələb edir. Orphan record, broken link və dependency dəyişikliyinə bax. Traceability mühakiməyə kömək edir; change-in dəyərini avtomatik seçmir.
+
+## İşlənmiş nümunə
+
+`OBJ-2` objective-i qarşısı alınan duplicate refund-u azaltmaqdır. `REF-014` refund-u remaining amount-la məhdudlaşdırır. `API-9` design authorization/deduplication sərhədini implement edir. `T-31`/`T-32` normal və repeated request yoxlayır; `OPS-7` support proseduru unknown provider outcome-u idarə edir.
+
+Partial refund təklifi amount calculation, API schema, customer communication və reconciliation-a toxunur. Analyst link-ləri izləyib sahiblərdən impact istəyir, dəyişəcək test version-larını qeydə alır. Full refund üçün keçən test tarixi sübut kimi qalır; partial refund correctness sübutu kimi verilmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n O[Business objective] --> R[Versioned requirement]\n R --> D[Design and interface]\n R --> P[Operational procedure]\n D --> T[Tests and execution evidence]\n R --> C[Change impact review]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Hər requirement-ə ən az bir test bağlıdır. Solution mütləq verify olunubmu?</summary>
+
+Xeyr. Link nəzərdə tutulan coverage-i göstərir, uğurlu execution və yetərli assertion-u yox. Test-in nəyi yoxladığını, requirement version-u, environment-i və actual nəticəni araşdır. Risk tələb etdikdə mənfi/istisna path əlavə et.
+
+</details>
+
+## Tipik səhvlər
+
+- Yalnız link sayını ölçmək.
+- Müvafiq requirement-i göstərmədən document-ə bağlamaq.
+- Qayda dəyişəndə historical relationship silmək.
+- Traceability alətini qərarın sahibi saymaq.
+
+## Praktik tapşırıq
+
+Maximum transfer qaydası üçün kiçik trace chain qur: objective, requirement, API design, negative test və support procedure. Limit artımının iki təsirini tap.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Objective-i sabit transfer limit requirement-inə, sonra server-side validation, boundary value test və escalation proseduruna bağla. Limit artımı risk policy, authorization, transaction monitoring, client message və test-i dəyişə bilər. Aidiyyəti sahiblərdən qiymətləndirmə istə; approved requirement version və verification sübutunu saxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Source → need → requirement → design → test evidence → delivered version. Həm “bu niyə var?”, həm “qayda dəyişsə nə dəyişir?” soruş.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Təqdim edilmiş kitabın seçilmiş bölmələri orijinal izah və ssenariləri dəstəkləyir; mənbə mətni və üzvlər üçün PDF yayılmır.
+
+Seçilmiş bölmələr: §5.1 Trace Requirements, §5.2 Maintain Requirements, §5.4 Assess Requirements Changes və §3.4 Plan Business Analysis Information Management.

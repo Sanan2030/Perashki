@@ -1,0 +1,87 @@
+---
+id: messaging-rabbitmq
+locale: az
+title: 'RabbitMQ: təsdiq, retry və dead-letter növbələri'
+objectives:
+  - 'Confirm və acknowledgement-in ayrı-ayrılıqda nəyi təsdiqlədiyini izah et.'
+  - 'Davamlı business effect-i təkrarlamadan redelivery idarə et.'
+  - 'Dead-letter route və sahibi olan recovery prosesi müəyyən et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Confirm və acknowledgement-in ayrı-ayrılıqda nəyi təsdiqlədiyini izah et.
+- Davamlı business effect-i təkrarlamadan redelivery idarə et.
+- Dead-letter route və sahibi olan recovery prosesi müəyyən et.
+
+## Bu mövzu niyə vacibdir
+
+Publisher confirm alır, amma müştəri notification-u almır. Confirm broker-in publication-u idarə etməsinə aiddir, bütün downstream biznes addımlarının tamamlanmasına yox. Etibarlı messaging hər sərhəddə sübut və təkrar uğursuz iş üçün cavab tələb edir.
+
+## Əsas anlayışlar
+
+Publisher confirm və consumer acknowledgement məsuliyyətin fərqli istiqamətləridir. Publisher confirm broker-in queue/durability konfiqurasiyasına uyğun publication-u qəbul etməsini bildirir. Consumer acknowledgement çatdırılmış message-in application contract-a görə işləndiyini broker-ə deyir. Heç biri müştərinin external outcome-unu avtomatik sübut etmir.
+
+Manual acknowledgement-da lazım olan davamlı processing sərhədindən sonra ack et. Processing-dən sonra, acknowledgement-dan əvvəl crash redelivery yarada bilər; consumer uyğun duplicate handling tələb edir. Delivery tag channel scope-undadır; başqa channel-də ack etmək və ya tag-i qlobal business identifier saymaq yanlışdır.
+
+Negative acknowledgement/rejection requeue və ya discard/dead-letter davranışı istəyə bilər. Şərt dəyişməyibsə ani təkrar requeue bahalı loop yaradır. Transient və permanent failure ayır, məhdud delay/retry policy tətbiq et, cəhdləri bitmiş iş üçün faydalı sübut saxla.
+
+Dead-letter exchange requeue-siz rejection və ya expiration kimi dəstəklənən hallarda dead letter olmuş message-i yönəldir. O, exchange-dir; avtomatik son queue deyil. Uyğun dead-letter queue bağla, routing key və policy-ni yoxla, məzmunu kimin izləyib həll etdiyini müəyyən et. Policy-ni dəyişmək hardcoded declaration argument-dən asan ola bilər.
+
+Dead-lettering şərtsiz itkisizlik zəmanəti deyil. Təhlükəsizlik queue type, configuration, permission və destination availability-dən asılıdır. Cycle, çatışmayan route və retry limit ayrıca baxış tələb edir. Sabit business identifier-i saxla və replay qərarını audit et; poison message-i düzəlişsiz əsas queue-ya qaytarmaq eyni failure-ı təkrarlayar.
+
+## İşlənmiş nümunə
+
+Worker `invoice-generated:evt-81` alır. Event ID ilə key-lənmiş davamlı notification request yazır, sonra ack edir. Write-dan sonra crash olarsa redelivery mövcud record-u tapır və ikinci request yaratmır. Real email provider outcome-u ayrıca izlənir.
+
+Yanlış recipient format permanent validation failure sayılıb sonsuz ani requeue əvəzinə review-a yönəlir. Müvəqqəti provider outage məhdud retry policy-ni izləyir. Dead-letter queue-nun sahibi, reason code-u, alert-i və correction/replay proseduru var. Böyüyən queue uğurlu tamamlanma metric-i deyil, həll edilməmiş işdir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n P[Publisher] --> B[Broker publication]\n B --> C[Consumer delivery]\n C --> E[Durable effect]\n E --> A[Acknowledge on delivery channel]\n C --> F[Failure classification]\n F --> R[Bounded retry]\n F --> D[Dead-letter route and owner]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Message dead-letter queue-dadır. Biznes problemi həll olunubmu?</summary>
+
+Xeyr. Message failure handling yoluna keçirilib. Kimsə səbəbi araşdırmalı, partial effect olub-olmadığını müəyyən etməli, səbəbi düzəltməli, təhlükəsiz replay və ya başqa qərara icazə verməlidir. Identifier və recovery sübutunu saxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Publisher confirm-i customer outcome təsdiqi saymaq.
+- Lazım olan davamlı effect-dən əvvəl ack etmək.
+- Ani requeue-nu limitsiz retry strategiyası saymaq.
+- İstifadə edilə bilən binding və sahib olmadan dead-letter exchange yaratmaq.
+
+## Praktik tapşırıq
+
+Malformed event, müvəqqəti DB failure və committed update-dən sonrakı crash ilə qarşılaşan inventory consumer üçün idarəetmə qur. Acknowledgement, retry və replay qaydalarını göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Malformed event-i aydın permanent failure policy ilə rədd et və ya quarantine-ə al. Temporary DB failure üçün məhdud delay ilə retry et. Ack-dən əvvəl crash-in təhlükəsiz replay-i üçün sabit event identifier-i inventory effect ilə atomik saxla. Yalnız lazım olan davamlı nəticədən sonra ack et. Cəhdləri bitmiş işi izlə, düzəldilmiş event-i replay etməzdən əvvəl partial effect yoxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Confirm ≠ consumer ack ≠ external outcome. Tag channel scope-undadır. Davamlı duplicate handling. Məhdud retry. Dead-letter route + monitoring + cavabdehi olan recovery.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [RabbitMQ: Consumer acknowledgements and publisher confirms](https://www.rabbitmq.com/docs/confirms): istiqamət, delivery tag, redelivery və requeue loop.
+- [RabbitMQ: Dead-letter exchanges](https://www.rabbitmq.com/docs/dlx): policy, routing, cycle və təhlükəsizlik məhdudiyyəti. Ssenari orijinaldır; deploy olunmuş broker və universal itkisiz konfiqurasiya iddiası yoxdur.

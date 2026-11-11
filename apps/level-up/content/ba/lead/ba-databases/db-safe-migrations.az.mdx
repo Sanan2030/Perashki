@@ -1,0 +1,100 @@
+---
+id: db-safe-migrations
+locale: az
+title: 'Təhlükəsiz verilənlər bazası miqrasiyaları'
+objectives:
+  - 'Expand-migrate-contract ardıcıllığı qur.'
+  - 'Lock-ları və concurrent index creation məhdudiyyətlərini qiymətləndir.'
+  - 'Application rollback-i data restoration-dan ayır.'
+---
+
+## Öyrənmə məqsədləri
+
+- Expand-migrate-contract ardıcıllığı qur.
+- Lock-ları və concurrent index creation məhdudiyyətlərini qiymətləndir.
+- Application rollback-i data restoration-dan ayır.
+
+## Bu mövzu niyə vacibdir
+
+Rolling deployment müvəqqəti olaraq köhnə və yeni tətbiq versiyasını birlikdə işlədir. Köhnə reader istifadəni bitirməmiş sütunu adlandırmaq və ya silmək migration sintaktik uğurlu olsa da release-i poza bilər. DB dəyişikliyi application test-ləri ilə yanaşı compatibility və recovery sübutu tələb edir.
+
+## Əsas anlayışlar
+
+Expand-contract uyğun yeni strukturun əlavə edilməsini köhnənin silinməsindən ayırır. Əvvəl mövcud client-i pozmadan yeni representation əlavə et. Sonra data və application davranışını köçür, consistency-ni yoxla, reader-i məqsədli dəyiş. Yalnız compatibility və recovery pəncərəsi ödənəndə contraction et.
+
+Köhnə və yeni writer-in birgə işləməsini müəyyən et. Dual writing avtomatik təhlükəsiz deyil: əsas representation-u, atomicity sərhədini və conflict detection-u seç. Yalnız bir representation-un partial update-i gizli uyğunsuzluq yarada bilər. Sadə eyni-row keçidində bir DB transaction iki field-i də yeniləyə bilər; başqa quruluş ayrıca davamlı coordination tələb edir.
+
+Backfill-i sabit key, checkpoint və restart davranışı ilə məhdud batch-lərdə et. Load, lock və recovery xərci ölçülməyən limitsiz əməliyyatdan qaç. Job completion-u düzgünlük saymaq əvəzinə row count, null rate və value reconciliation müqayisə et. Backfill zamanı concurrent write-ları nəzərə al.
+
+Hər DDL operation-un engine/version-a aid lock davranışını yoxla. PostgreSQL `CREATE INDEX CONCURRENTLY` index qurularkən adi write-ın bloklanmasını azaldır, amma xərc və məhdudiyyəti var. Adi transaction block daxilində işləyə bilməz; failure zamanı invalid index qoya bilər. Concurrent lock-free, ani və ya əməliyyat baxımından zərərsiz demək deyil.
+
+Dağıdıcı addımdan əvvəl recovery planlaşdır. Application code-u geri qaytarmaq dropped/transformed data-nı bərpa etmir. Lazımdırsa uyğun schema və məlum restore proseduru saxla; backup recovery-ni razılaşdırılmış hədəflə sına. Reverse migration itki yarada və ya mümkünsüz ola bilər. Cutover-a kimin icazə verdiyini, hansı metric-in dayandırdığını və recovery vaxtı sistemin necə işləyəcəyini müəyyən et.
+
+## İşlənmiş nümunə
+
+Order məbləğinin `amount_cents`-dən daha ümumi `amount_minor` field-inə keçdiyini düşün. Tədris expansion-u belədir:
+
+```sql
+ALTER TABLE orders ADD COLUMN amount_minor bigint;
+```
+
+Köhnə reader `amount_cents` istifadə edir. Yoxlanmış writer eyni currency contract ilə iki field-i doldurur. Məhdud backfill yeni çatışmayan dəyərləri tamamlayır, reconciliation uyğun record-ları müqayisə edir. Yalnız compatibility şərti ödənəndə yeni reader keçir. Köhnə binary və recovery ehtiyacları həll olunandan sonra ayrıca səlahiyyətli dəyişikliklə köhnə sütun silinir.
+
+Index nümunəsi qəsdən ayrıdır:
+
+```sql
+CREATE INDEX CONCURRENTLY orders_customer_time_idx
+ON orders (customer_id, ordered_at);
+```
+
+Migration alətinin dəstəyini yoxlamadan həmin statement-i onun default transaction-una salma. Dərs schema dəyişikliyi tətbiq etmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n E[Expand compatible schema] --> W[Compatible readers and writers]\n W --> B[Bounded restartable backfill]\n B --> V[Reconcile and observe]\n V --> S[Controlled reader switch]\n S --> C[Contract after recovery window]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Yeni kod staging-də işləyir. Eyni rolling release-də köhnə sütun silinə bilərmi?</summary>
+
+Tək bu sübuta görə yox. Köhnə nüsxə, gecikmiş job, report və recovery proseduru hələ asılı ola bilər. Bütün reader/writer-ləri, deployment sırasını və rollback window-u yoxla. Asılılıqlar çıxarılana və ya açıq idarə edilənədək contraction-u təxirə sal.
+
+</details>
+
+## Tipik səhvlər
+
+- Hər DDL operation-u zero downtime adlandırmaq.
+- Concurrent update-i nəzərə almadan backfill etmək.
+- Source rollback-in silinmiş data-nı qaytardığını düşünmək.
+- Uğursuz concurrent build-dən sonra invalid index-i nəzərə almamaq.
+
+## Praktik tapşırıq
+
+Required text status-dan nəzarət olunan status representation-a migration qur. Expansion, writer davranışı, backfill yoxlaması, cutover sübutu və rollback-in nəyi qoruya biləcəyini göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Əvvəl uyğun yeni struktur əlavə et, mapping müəyyənləşdir, naməlum legacy value-nu status uydurmaq əvəzinə review üçün saxla. Writer-lər ardıcıl representation saxlasın; restart edilən batch-lərlə backfill et, distribution və unmatched value-nu yoxla. Müşahidə olunan şərtlərlə reader-i keçir, rollback window boyunca köhnə representation-u saxla. Yalnız köhnə client, job və restoration ehtiyaclarına baxdıqdan sonra sil.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Expand → coexist → backfill → reconcile → switch → contract. Compatibility, lock davranışı və data recovery uğurlu migration exit code-dan artıq sübut tələb edir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [PostgreSQL 18: CREATE INDEX](https://www.postgresql.org/docs/18/sql-createindex.html): concurrent build, transaction məhdudiyyəti və invalid index recovery.
+- [PostgreSQL 18: Explicit locking](https://www.postgresql.org/docs/18/explicit-locking.html): lock davranışı. Expand-contract compatibility və operational reasoning-in orijinal tətbiqidir; avtomatik zero downtime vədi deyil.

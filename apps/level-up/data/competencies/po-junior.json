@@ -1,0 +1,141 @@
+{
+  "id": "po-junior",
+  "trackId": "po",
+  "level": "junior",
+  "title": {
+    "az": "Junior məhsul sahibi",
+    "en": "Junior Product Owner"
+  },
+  "responsibilities": [
+    {
+      "az": "Məhsul istiqamətini komandaya aydın et.",
+      "en": "Make a product direction understandable to a team."
+    },
+    {
+      "az": "Dəstək və geribildirimlə fokuslu iş siyahısını sırala.",
+      "en": "Order a focused backlog with support and feedback."
+    },
+    {
+      "az": "İstifadəçiləri anla və çatdırılan nəticələri yoxla.",
+      "en": "Understand users and inspect delivered outcomes."
+    }
+  ],
+  "hardSkills": [
+    {
+      "az": "Scrum məsuliyyətləri, tədbirləri, artifact-ları və öhdəlikləri",
+      "en": "Scrum accountabilities, events, artifacts and commitments"
+    },
+    {
+      "az": "Product Goal və aydın backlog elementləri",
+      "en": "Product Goal and clear Product Backlog Items"
+    },
+    {
+      "az": "İlkin kəşf müsahibələri və hekayə xəritəsi",
+      "en": "Basic discovery interviews and story mapping"
+    }
+  ],
+  "softSkills": [
+    {
+      "az": "Aydın kontekst paylaşma və fəal dinləmə",
+      "en": "Clear context sharing and active listening"
+    },
+    {
+      "az": "Maraq və fərziyyələri yeniləməyə hazırlıq",
+      "en": "Curiosity and willingness to revise assumptions"
+    }
+  ],
+  "tools": [
+    {
+      "az": "İş siyahısı aləti və əməkdaşlıq lövhəsi",
+      "en": "Backlog tool and collaborative whiteboard"
+    },
+    {
+      "az": "Sadə məhsul analitikası və müsahibə qeydləri",
+      "en": "Simple product analytics and interview notes"
+    }
+  ],
+  "deliverables": [
+    {
+      "az": "Product Goal və sıralanmış backlog",
+      "en": "Product Goal and ordered backlog"
+    },
+    {
+      "az": "Kəşf qeydləri və qəbul nümunələri",
+      "en": "Discovery notes and acceptance examples"
+    },
+    {
+      "az": "Kiçik nəticə baxışı",
+      "en": "Small outcome review"
+    }
+  ],
+  "changes": {
+    "az": "Tapşırıq izləməkdən mentorluqla şəffaf məhsul seçimlərinə keçirsən.",
+    "en": "You move from tracking tasks to making transparent product choices with coaching."
+  },
+  "checklist": [
+    {
+      "id": "po-junior-skill-1",
+      "text": {
+        "az": "Məhsul nəticəsini funksiyadan ayıra bilirəm.",
+        "en": "I can distinguish a product outcome from a feature."
+      }
+    },
+    {
+      "id": "po-junior-skill-2",
+      "text": {
+        "az": "Növbəti iş elementinin niyə vacib olduğunu izah edə bilirəm.",
+        "en": "I can explain why the next backlog item matters."
+      }
+    },
+    {
+      "id": "po-junior-skill-3",
+      "text": {
+        "az": "Hər Scrum məsuliyyətini izah edə bilirəm.",
+        "en": "I can describe each Scrum accountability."
+      }
+    },
+    {
+      "id": "po-junior-skill-4",
+      "text": {
+        "az": "Yönləndirməyən kəşf sualları verə bilirəm.",
+        "en": "I can ask non-leading discovery questions."
+      }
+    },
+    {
+      "id": "po-junior-skill-5",
+      "text": {
+        "az": "Qəbul nümunələrini istifadəçi dəyərinə bağlaya bilirəm.",
+        "en": "I can connect acceptance examples to user value."
+      }
+    },
+    {
+      "id": "po-junior-skill-6",
+      "text": {
+        "az": "Buraxılışdan sonra sübutu yoxlaya bilirəm.",
+        "en": "I can inspect evidence after a release."
+      }
+    }
+  ],
+  "interviews": [
+    {
+      "question": {
+        "az": "Product Backlog-u kim sıralayır?",
+        "en": "Who orders the Product Backlog?"
+      },
+      "answer": {
+        "az": "Product Owner sıralama daxil olmaqla iş siyahısının səmərəli idarəsinə cavabdehdir. Başqaları töhfə verə və həvalə olunan işi görə bilər, amma cavabdehlik Product Owner-də qalır.",
+        "en": "The Product Owner is accountable for effective Product Backlog management, including ordering. Others can contribute or do delegated work, while accountability remains with the Product Owner."
+      }
+    },
+    {
+      "question": {
+        "az": "Faydalı Product Goal necə olur?",
+        "en": "What makes a useful Product Goal?"
+      },
+      "answer": {
+        "az": "Gələcək məhsul vəziyyətini aydın edir və seçimlərə istiqamət verir. İrəliləyiş üçün mənalı sübut əlavə edər, funksiyalar siyahısını məqsəd saymaram.",
+        "en": "It makes a future product state understandable and guides choices. I add meaningful evidence of progress and avoid treating a list of features as the goal."
+      }
+    }
+  ]
+}

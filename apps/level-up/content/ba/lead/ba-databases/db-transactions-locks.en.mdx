@@ -1,0 +1,98 @@
+---
+id: db-transactions-locks
+locale: en
+title: 'Transactions, isolation, locks and deadlocks'
+objectives:
+  - 'Distinguish atomicity from isolation and durability.'
+  - 'Explain PostgreSQL statement snapshots and row-lock behavior.'
+  - 'Handle deadlocks and serialization failures without replaying unsafe side effects.'
+---
+
+## Learning objectives
+
+- Distinguish atomicity from isolation and durability.
+- Explain PostgreSQL statement snapshots and row-lock behavior.
+- Handle deadlocks and serialization failures without replaying unsafe side effects.
+
+## Why this matters
+
+Two requests both read that one seat remains and both attempt to sell it. Every individual SQL statement can be valid while the combined outcome violates the business rule. Concurrency correctness requires a defined invariant and a transaction strategy, not only a transaction keyword.
+
+## Core theory
+
+A transaction groups work into a commit or rollback boundary. Atomicity concerns all-or-nothing transactional changes; isolation concerns interactions with concurrent work; durability concerns committed data under the database's configured guarantees. ACID is not a promise that arbitrary application workflows or external services share one transaction.
+
+PostgreSQL's default Read Committed level uses a new snapshot for each ordinary statement. Two reads inside one transaction can therefore see different committed data. Repeatable Read provides a transaction-level snapshot with PostgreSQL-specific guarantees, but snapshot consistency alone does not establish every multi-row business invariant. Serializable detects incompatible concurrent behavior and can require a transaction to abort and retry.
+
+Prefer expressing simple invariants in constraints or an atomic conditional update where appropriate. A read-then-write application sequence can race if the condition is checked only in memory. A returned row count is part of the result: zero qualifying updates must not be reported as a successful reservation.
+
+Row locks such as `FOR UPDATE` coordinate conflicting writers and lockers. They do not generally block ordinary snapshot reads of the old committed version. Keep transactions short, avoid waiting on user input or remote calls while holding locks, and acquire shared resources in a consistent order.
+
+A deadlock is a cycle of incompatible waits. PostgreSQL detects deadlocks and aborts a participant; the application must handle the failure. A lock wait by itself is not necessarily a deadlock. Serialization failures likewise need a deliberate whole-transaction retry policy. Use bounded retries and keep external effects outside unsafe replay, or coordinate them through a suitable durable pattern such as an outbox.
+
+## Worked example
+
+For a single inventory row, an original PostgreSQL example reserves only if stock remains:
+
+```sql
+BEGIN;
+UPDATE inventory
+SET available = available - 1
+WHERE sku = 'seat-A' AND available > 0
+RETURNING available;
+COMMIT;
+```
+
+The application treats one returned row as a reservation and zero rows as unavailable. The database still needs appropriate schema constraints and a clear business contract.
+
+For a transfer affecting two accounts, transaction A locking account 1 then 2 can deadlock with transaction B locking 2 then 1. Consistent ordering reduces that risk. If an attempt aborts, restart the transaction under the retry policy; do not send another payment notification blindly. These statements are teaching examples, not executed database operations.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n I[Business invariant] --> T[Transaction and isolation choice]\n T --> L[Constraints conditional writes or locks]\n L --> C{Commit succeeds?}\n C -->|Yes| E[Publish reliable outcome]\n C -->|Retryable abort| R[Bounded whole-transaction retry]\n R --> T'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A transaction runs at Serializable. Can the application omit failure handling?</summary>
+
+No. Serializable can reject executions that cannot safely commit together. The application needs to recognize retryable errors, retry the whole unit under bounded policy and avoid duplicating external effects. Stronger isolation changes the failure model; it does not eliminate it.
+
+</details>
+
+## Common mistakes
+
+- Assuming BEGIN alone prevents every race.
+- Using a zero-row conditional update as proof of success.
+- Holding locks across slow network calls.
+- Retrying only the last statement after a transaction abort.
+
+## Practice exercise
+
+Two buyers compete for the last unit. Describe a safe single-row reservation contract, the unavailable result and how you would test the invariant with concurrent requests.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use a database-enforced condition or equivalent locking strategy inside an appropriate transaction. Return an explicit unavailable result when no row qualifies. Run concurrent attempts against a real representative database and verify that successful reservations never exceed stock, available never becomes negative and retryable failures are handled. A sequential unit test cannot establish real lock behavior.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Define the invariant first. Atomicity ≠ isolation. Snapshot reads ≠ writer locks. Inspect affected rows. Consistent lock order and bounded whole-transaction retries matter.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [PostgreSQL 18: Transaction isolation](https://www.postgresql.org/docs/18/transaction-iso.html): snapshots, anomalies and retry requirements.
+- [PostgreSQL 18: Explicit locking](https://www.postgresql.org/docs/18/explicit-locking.html): table/row locks, deadlocks and consistent acquisition order. PostgreSQL behavior is not generalized to every database engine.

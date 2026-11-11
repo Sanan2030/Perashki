@@ -1,0 +1,89 @@
+---
+id: scope-change
+locale: en
+title: 'Scope boundaries and change control'
+objectives:
+  - 'Define scope boundaries and decision authority.'
+  - 'Assess a proposed change with alternatives and impacts.'
+  - 'Preserve the approved decision and update related evidence.'
+---
+
+## Learning objectives
+
+- Define scope boundaries and decision authority.
+- Assess a proposed change with alternatives and impacts.
+- Preserve the approved decision and update related evidence.
+
+## Why this matters
+
+A small request to add a new customer type changes eligibility, billing, privacy, reporting and support. Calling it “just another dropdown option” hides the real scope. Good change control makes the trade-off visible without assuming that every change is bad or that every request must be accepted.
+
+## Core theory
+
+Scope describes the boundaries of the change or solution, including intended outcomes, included capabilities and exclusions. Record assumptions and interfaces because an apparently external dependency can determine feasibility. A baseline is a reference state for assessment, not a promise that learning can never alter it.
+
+Capture the requested change, rationale, source, urgency and affected requirement versions. Determine whether it changes a need, business rule, design, constraint or implementation detail. The category influences who should participate, but the actual risk and governance determine authority.
+
+Assess potential value, cost, timing, risk, dependencies and impact on existing users and operations. Follow trace links into data, interfaces, tests, training and support. Compare options: accept now, defer, split, experiment, use another approach or decline with a reason. An estimate should state assumptions and uncertainty rather than disguise itself as a guarantee.
+
+Separate recommendation from decision. The analyst can organize evidence and propose an option; approval belongs to the authorized role under the agreed governance. Record the outcome, conditions, owner and communication. Update requirements, baselines, plans and verification activities consistently.
+
+Adaptive delivery still requires explicit trade-offs. In Scrum, the Product Owner orders the Product Backlog, while Sprint scope may be clarified and renegotiated with Developers as more is learned without endangering the Sprint Goal. A stakeholder request does not automatically authorize extra Sprint work, and a generic change board should not be invented as a mandatory Scrum event.
+
+## Worked example
+
+A checkout team is asked to support business accounts during an active Sprint. The current Sprint Goal is to improve payment completion for individual customers. The analyst identifies new tax fields, invoicing rules and support needs. The Product Owner and Developers examine whether any small clarification fits the goal; the full business-account capability is assessed separately.
+
+The decision defers the broader work for discovery and retains a narrow correction that supports the current goal. The record states the value hypothesis, affected rules, assumptions and next review point. No one calls the new account type “free” because a UI field looks small.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Change request and rationale] --> B[Baseline and scope]\n B --> I[Value risk cost and dependencies]\n I --> O[Compare options]\n O --> D[Authorized decision]\n D --> U[Update links plans and evidence]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>The requester is senior and says the change is tiny. Can impact assessment be skipped?</summary>
+
+Seniority and a size claim do not establish the effect on shared rules or interfaces. Use a proportionate assessment, identify the actual authority and make critical dependencies visible. A brief review can be sufficient for a low-risk clarification, but the reason must follow evidence.
+
+</details>
+
+## Common mistakes
+
+- Equating every change with failure of planning.
+- Accepting new commitments without considering displaced work.
+- Treating analysis recommendations as authorized approval.
+- Updating the backlog while leaving tests and operational procedures inconsistent.
+
+## Practice exercise
+
+A new refund rule is requested two days before release. Compare accept-now, defer and limited-experiment options, and identify the evidence needed for an authorized decision.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Map the rule to payment behavior, data, reporting, tests and customer communication. Estimate the impact and uncertainty, identify any mandatory deadline and ask what work would be displaced. Accept-now needs credible verification and recovery evidence; defer needs an agreed consequence and next decision point; an experiment must respect policy and limit exposure. Record who decides and update the controlled requirement and related artifacts.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Request → rationale → baseline → impact and options → authority → recorded decision → consistent updates. Scale review to risk while preserving explicit trade-offs.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the supplied book support original explanations and scenarios; source prose and the member PDF are not distributed.
+
+- BABOK §3.3 governance, §5.4 change assessment and §5.5 approval.
+- [Scrum Guide, November 2020](https://scrumguides.org/scrum-guide.html): Sprint Goal, Product Backlog and Sprint scope. Scrum-derived adaptations: CC BY-SA 4.0, Ken Schwaber and Jeff Sutherland.

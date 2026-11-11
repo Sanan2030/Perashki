@@ -1,0 +1,89 @@
+---
+id: uat
+locale: en
+title: 'Test cases and UAT'
+objectives:
+  - 'Distinguish acceptance testing from technical checks and sign-off.'
+  - 'Design normal, boundary and exception cases from business criteria.'
+  - 'Record results, unresolved issues and release authority.'
+---
+
+## Learning objectives
+
+- Distinguish acceptance testing from technical checks and sign-off.
+- Design normal, boundary and exception cases from business criteria.
+- Record results, unresolved issues and release authority.
+
+## Why this matters
+
+An API passes its unit tests, but staff cannot reconcile a refund at the end of the day. User acceptance testing examines whether a solution supports agreed business use in representative conditions. It complements technical testing; the two kinds of evidence answer different questions.
+
+## Core theory
+
+Begin with acceptance criteria linked to the business need and requirement versions. Identify users or representatives, the environment, data, access, business rules and dependencies needed for meaningful execution. A demonstration by the development team can inform acceptance, but it is not automatically equivalent to users performing the work.
+
+A test case states preconditions, data, action and expected observable result. Include ordinary success, invalid inputs, boundaries, authorization, exceptions and recovery where relevant. Expected results must be specific enough to distinguish a pass from a persuasive explanation. Do not change an expected result after observing the system merely to obtain a green status.
+
+Use appropriate synthetic or approved data. An environment that bypasses a critical external dependency cannot prove the complete production journey; label that limitation and obtain separate evidence. Check role permissions and accessibility needs, not only the happy path performed by an administrator.
+
+Record actual results, evidence references, defects and retest status. Severity describes impact, while priority describes when to act; an organization may use its own scales. A business representative can identify a serious issue without having unilateral release authority. The release decision should consider outstanding defects, risk acceptance, operational readiness and rollback or recovery constraints.
+
+Acceptance criteria, verification, validation and approval remain distinct. A test can pass its written criterion while revealing that the criterion missed an important need. Escalate the gap and update the controlled information through the agreed process. Do not represent a signature as evidence that every relevant behavior was exercised.
+
+## Worked example
+
+A refund UAT case begins with a settled 100-unit payment and an authorized operator. Request a 40-unit partial refund, confirm the provider outcome and expect a remaining refundable amount of 60. Repeat the same operation identifier and expect no additional refund. A new request for 70 should be rejected under the stated policy.
+
+A timeout case expects a visible unresolved status and a reconciliation path. If the test environment always returns a mock success, it cannot establish that timeout behavior works. Record that limitation and arrange controlled evidence for the missing path before claiming complete acceptance coverage.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n N[Business needs and criteria] --> P[People environment and data]\n P --> C[Cases and expected results]\n C --> E[Execution evidence]\n E --> I[Issues and retests]\n I --> D[Authorized acceptance decision]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A user approves a screen after watching a demonstration. Has every exception path passed UAT?</summary>
+
+No. The observation supports only the demonstrated behavior under those conditions. Identify the planned cases, what was actually executed and which paths remain untested. Separate stakeholder feedback from an accountable acceptance or release decision.
+
+</details>
+
+## Common mistakes
+
+- Testing only with administrator permissions.
+- Writing expected results as “works correctly.”
+- Concealing mocks and missing integrations.
+- Treating all open defects as either automatic blockers or automatically acceptable.
+
+## Practice exercise
+
+Write three UAT cases for a booking cancellation: successful cancellation, unauthorized caller and unknown payment-provider outcome. State the evidence and owner needed for each.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Define the booking state, caller role and payment preconditions. Success should yield the agreed final state and customer message; an unauthorized caller must not change the booking or obtain protected data. An unknown provider outcome should remain explicitly pending with reconciliation ownership. Retain request identifiers, redacted responses and resulting states, then have the authorized decision-maker assess unresolved risks.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Criterion + preconditions + action + observable result + evidence + accountable decision. A technical pass, a user observation and release approval are different records.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the supplied book support original explanations and scenarios; source prose and the member PDF are not distributed.
+
+- BABOK §10.1 Acceptance and Evaluation Criteria, §§7.2–7.3 verification/validation and chapter 8 solution evaluation.
+- [The Practical Test Pyramid, Ham Vocke](https://martinfowler.com/articles/practical-test-pyramid.html): complementary levels of automated test evidence.

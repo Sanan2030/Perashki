@@ -1,0 +1,74 @@
+---
+id: pspo2-forecasting
+locale: az
+title: 'Proqnoz, buraxılış və qeyri-müəyyənlik'
+objectives:
+  - 'Tarixi məlumatın hansı şəraitdə müqayisə edilə bildiyini yoxla.'
+  - 'Buraxılış proqnozunu nəticə dəyərindən və Sprint vaxtından ayır.'
+---
+
+## Anlayış
+
+Proqnoz mövcud sübut və fərziyyələrlə gələcəyi qiymətləndirməkdir. Öhdəliklərin və müqavilələrin mövcudluğu gələcəyin tam məlum olması demək deyil. The Professional Product Owner kitabının Forecasting Basics bölməsi Done iş tarixçəsindən istifadə etməyi və qeyri-müəyyənliyi göstərməyi tövsiyə edir. Scrum Guide özü burndown, burnup və cumulative flow kimi üsulların faydalı ola biləcəyini deyir, amma bunların empiricism-i əvəz etmədiyini vurğulayır. Scrum müəyyən diaqramı məcburi etmir.
+
+## Niyə vacibdir
+
+Tarixçənin uyğunluğunu yoxlamadan sadə orta rəqəmi tarixə çevirmək təhlükəlidir. İşlərin ölçüsü, komanda tərkibi, asılılıqlar, təqvim və Definition of Done dəyişibsə əvvəlki sürət müqayisə üçün zəif ola bilər. Kanban Throughput-u vaxt vahidində bitən iş sayı kimi müəyyən edir. Story point cəmi ilə eyni deyil. Bir komandanın point-lərini başqa komandanın point-lərinə əlavə edib universal məhsuldarlıq ölçüsü yaratma. Proqnozda hansı məlumatdan, hansı sistem sərhədindən və hansı məhdudiyyətlərdən istifadə etdiyini açıq göstər.
+
+## Qərar qaydaları
+
+Sabit tarix varsa daha kiçik faydalı əhatəni, asılılıq riskini və alternativ buraxılışları müqayisə et. Keyfiyyəti azaltmaq və ya yarımçıq işi Done saymaq proqnozu yaxşılaşdırmır. Sprint Review dəyəri buraxmağa icazə verən qapı deyil: Done və uyğun əməliyyat şərtləri olan Increment Sprint bitmədən də təqdim edilə bilər. Əksinə, sadəcə tez-tez buraxmaq müştərinin fayda gördüyünü sübut etmir. Çatdırılma etibarlılığı və istifadəçi nəticəsi üçün ayrıca sübut lazımdır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Done tarixçəsi"] --> B["Müqayisə və məhdudiyyət"]\n B --> C["Əhatə variantları"]\n C --> D["Proqnoz"]\n E["Yeni sübut"] --> B'
+  }
+/>
+
+## Praktik vəziyyət
+
+Tədbirə 6 həftə qalıb. Son dörd müqayisə oluna bilən həftədə komanda 3, 4, 3 və 6 element bitirib. İndi 24 element qalıb; bunlardan biri xarici provayderdən asılıdır və əvvəlkilərdən daha böyükdür. Sponsor “4 iş/həftə, deməli dəqiq 6 həftə” deyir.
+
+## Qərarın əsaslandırılması
+
+Orta 4 iş/həftə planlaşdırma söhbəti üçün başlanğıcdır, zəmanət deyil. Dörd müşahidə məhdud tarixçədir; böyük asılı iş müqayisəni pozur. Tədbir üçün vacib olan ən kiçik end-to-end nəticəni seç, asılılığın tarixini yoxla və digər əhatəni alternativ buraxılışa ayır. İrəliləyiş haqqında Done məlumatı gəldikcə proqnozu yenilə. Rəqəmlər bu məşqin fərziyyəsidir; burada statistiki etibar intervalı hesablandığı iddia edilmir.
+
+## Yayılmış səhvlər
+
+Orta göstəricini dəqiq son tarix saymaq; tamamlanmış komponentləri inteqrasiya olunmuş işlə qarışdırmaq; velocity-ni komandalara verilən mükafat hədəfi etmək; buraxılış sürətini məhsul dəyəri saymaq; proqnozu yalnız rəhbər soruşanda yeniləmək. SLE də fərdi işə zəmanət deyil və bütöv backlog-un bitmə tarixini avtomatik vermir.
+
+## Tətbiq məşqi
+
+Sponsor üçün dörd cümlə yaz: mövcud tarixçə, qeyri-müəyyənlik, əhatə seçimi və növbəti yenilənmə. Sonra “daha çox point bitirib” və “istifadəçi rezervasiyanı özü tamamlayır” ifadələrindən hansının məhsul nəticəsi olduğunu ayır.
+
+## İzahlı həll
+
+<details>
+<summary>İzahlı həlli aç</summary>
+
+“Müqayisə olunan tarixçədə orta 4 iş/həftə görürük. Böyük element və xarici asılılıq səbəbindən 24 işin altı həftəyə bitməsinə zəmanət vermirik. Tədbir üçün vacib rezervasiya axınını əvvəl buraxmaq, qalan hesabatları sonra etmək variantını qiymətləndiririk. Növbəti Done nəticədən və provayder məlumatından sonra proqnozu yeniləyəcəyik.” Point həcmi planlaşdırma siqnalıdır; istifadəçinin işini uğurla bitirməsi nəticəyə daha yaxındır.
+
+</details>
+
+## Özünü yoxla və yadda saxla
+
+Tarixçə + müqayisə şərtləri + məhdudiyyət + alternativ + yenilənmə. Proqnoz dəyər sübutu deyil; Done və keyfiyyət sərhədi dəyişmir.
+
+### Release strategiyası istifadəyə keçid şəraitindən asılıdır
+
+Done olmaq bütün istifadəçilərə dərhal açılmağı tələb etmir. Razılaşdırılmış təlim və ya əməliyyat keçidi lazım olan müştəri üçün əvvəlcədən bilinən release dövrü faydalı ola bilər. Başqa məhsul üçün tələbə görə release daha uyğun ola bilər. Gözləmə xərcini, istifadəyə hazırlığı, keyfiyyəti və feedback sürətini yoxla. Sprint Review məcburi release icazəsi deyil, yoxlama və uyğunlaşdırma tədbiridir. Scrum nə davamlı ictimai release, nə də rüblük release pəncərəsi təyin edir.
+
+Simulyasiya percentili, qeyri-müəyyən eksperiment intervalı və sübut məhdudiyyəti üçün [Ehtimal, eksperimentlər və sübutun keyfiyyəti](/az/lessons/pspo2-evidence-uncertainty) dərsinə keç.
+
+<LessonCheck />
+
+## Mənbələr və əhatə
+
+The Professional Product Owner: fəsil 8, Forecasting Basics və Forecasting Across Multiple Products; fəsil 3, Perversion of Metrics. Scrum Guide 2020: The Sprint, səh. 7–8; Increment, səh. 11–12. Kanban Guide for Scrum Teams 2021: Basic Metrics, səh. 4; SLE, səh. 6. Kompetensiyalar: Forecasting & Release Planning, Product Value, Optimizing Flow. Kitabın köhnə Development Team termini qaydalarda Developers ilə yenilənir.
+
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [Scrum Guide](https://scrumguides.org/scrum-guide.html)
+- [Kanban Guide for Scrum Teams](https://www.scrum.org/resources/kanban-guide-scrum-teams)
+- [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies)

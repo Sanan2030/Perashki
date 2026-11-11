@@ -1,0 +1,118 @@
+---
+id: api-contracts-evolution
+locale: en
+title: 'OpenAPI contracts, pagination and compatible API evolution'
+objectives:
+  - 'Read OpenAPI 3.1.1 schemas and operation-level security requirements.'
+  - 'Explain why optional, nullable and absent are different contract decisions.'
+  - 'Assess compatibility, pagination stability and machine-readable failure behavior.'
+---
+
+## Learning objectives
+
+- Read OpenAPI 3.1.1 schemas and operation-level security requirements.
+- Explain why optional, nullable and absent are different contract decisions.
+- Assess compatibility, pagination stability and machine-readable failure behavior.
+
+## Why this matters
+
+An API team adds a mandatory fraudReason request field and calls it a harmless enhancement. Older clients now fail validation. Another team adds a response enum value that an old mobile client handles with an exhaustive switch and no fallback. Compatibility is a relationship between provider behavior, documented promises and consumer assumptions; a bigger schema alone does not guarantee it.
+
+## Core theory
+
+OpenAPI describes paths, operations, parameters, request bodies, responses and security requirements. A useful contract includes unsuccessful outcomes and behavioral rules, not only a generated 200 response. The specification describes an interface; a server and its tests must actually enforce it.
+
+OpenAPI 3.1.1 uses a JSON Schema 2020-12 based dialect. A property's presence is governed by required. A nullable string can be expressed using type: [string, 'null']. Null is an actual JSON value; absence means a property was not sent. Defaults, deletion and partial-update semantics require explicit behavior. Do not copy the old 3.0 nullable keyword into a 3.1 schema and assume every validator will enforce the intended meaning.
+
+```yaml
+openapi: 3.1.1
+info:
+  title: Example Orders API
+  version: 1.0.0
+paths:
+  /orders:
+    get:
+      security:
+        - oauth: [orders:read]
+      responses:
+        '200':
+          description: A page of authorized orders
+components:
+  securitySchemes:
+    oauth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://identity.example.invalid/authorize
+          tokenUrl: https://identity.example.invalid/token
+          scopes:
+            orders:read: Read permitted orders
+```
+
+All URLs are placeholders. Operation-level security can override a global declaration. Separate Security Requirement Objects in the list represent alternatives; multiple schemes in one object must all be satisfied. An empty object can make anonymous access an alternative. A documentation edit can therefore create a serious mismatch if implementers interpret it incorrectly.
+
+For pagination, define ordering, tie-breaking, filters, page-size limits and cursor validity. A cursor based on createdAt plus a unique ID can establish a stable traversal order; a timestamp alone cannot order equal timestamps. Concurrent inserts, deletes and mutable sort keys still require a consistency policy. Snapshot-based traversal and best-effort live traversal make different promises. An opaque cursor is not an authorization credential: every page must reapply the authenticated resource policy.
+
+Review request and response changes separately. Adding a required request field breaks old clients. Removing a response field can break readers. Adding an enum value may break a consumer that assumed the set was closed. A new optional field is often compatible with tolerant readers, but actual consumer contracts must support that assumption.
+
+## Worked example
+
+A reconciliation client pages through settled orders while new orders arrive. Offset pagination can repeat or skip records as earlier positions shift. The team chooses immutable settlement time plus order ID as its ordering key, binds cursors to the same filters and caps page size at 100. If a consistent snapshot is required for accounting, it also creates a server-side snapshot or equivalent supported boundary; a cursor alone does not create one.
+
+For errors, the API returns application/problem+json with a stable type and a safe detail. Human-readable detail can change or be localized without becoming a parsing API. A cursor belonging to a different tenant must not reveal that tenant's data, even if its structure decodes successfully.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Consumer need"] --> B["Schema and behavior contract"]\n B --> C["Provider implementation"]\n C --> D["Consumer and negative tests"]\n D --> E["Compatibility evidence"]\n E --> F["Version or migrate when needed"]'
+  }
+/>
+
+A contract becomes reliable through behavior and compatibility evidence. Generating an OpenAPI file is one step, not proof that a running provider satisfies every promise.
+
+## Inspect the decision
+
+<details>
+<summary>A new response field is optional. Is the change guaranteed to be harmless?</summary>
+
+Not universally. Tolerant consumers will usually ignore it, but strict validators, signatures over representations or brittle deserializers may reject it. State the compatibility assumptions and test important consumers before claiming safety.
+
+</details>
+
+## Common mistakes
+
+- Allowing `security: [{}]` accidentally can advertise anonymous access.
+- Treating bearerFormat: JWT as executable verification logic leaves the API unprotected.
+- Allowing an unbounded page size creates predictable resource-exhaustion pressure.
+- Reusing a cursor with different filters can produce incorrect or confusing results.
+- Returning raw database exceptions exposes implementation information and forces unstable error parsing.
+
+## Practice exercise
+
+Review four proposed changes: require a new request field, add a response enum value, change default ordering, and increase a page-size maximum. Classify the consumer risks and propose a migration/test plan. Include a test for a cursor obtained before a tenant's permission was revoked.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+The required request field breaks older requests unless a compatible default or a new version/migration is supplied. The new enum needs tolerant-consumer or explicit versioning evidence. Changing default ordering can invalidate navigation assumptions and stored cursors; announce a new ordering parameter or invalidate/version the cursor contract deliberately. Raising the maximum can affect cost and latency even when it is schema-compatible.
+
+Run consumer examples against both old and proposed behavior, validate positive and negative schemas, and test security alternatives. Every page request rechecks permissions, so a previously valid cursor must not preserve revoked access. Document expiry, filter binding and consistency level. Publish a deprecation/migration plan for genuinely incompatible changes rather than silently changing the promise.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Presence ≠ nullability. Schema ≠ runtime enforcement. Security list alternatives differ from combined schemes. Cursor ≠ snapshot or permission. Compatibility depends on real consumers. Stable problem types are for machines; detail text is for people.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): Schema, Security Scheme and Security Requirement objects.
+- [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457.html): §3.1, problem fields and their semantics.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): representation and status semantics.
+
+Pagination, compatibility categories and migration decisions here are original engineering guidance. OpenAPI 3.1.1 is the selected teaching edition, not a claim about the latest specification.

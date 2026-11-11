@@ -1,0 +1,88 @@
+---
+id: requirements-documents
+locale: az
+title: 'Təkrarsız BRD, FRD və SRS'
+objectives:
+  - 'Biznes outcome-u, behavior və solution constraint-i ayır.'
+  - 'Auditoriya və qərar üçün document view seç.'
+  - 'Verification sübutu ilə trace edilən requirement yaz.'
+---
+
+## Öyrənmə məqsədləri
+
+- Biznes outcome-u, behavior və solution constraint-i ayır.
+- Auditoriya və qərar üçün document view seç.
+- Verification sübutu ilə trace edilən requirement yaz.
+
+## Bu mövzu niyə vacibdir
+
+BRD biznes outcome vəd edir, FRD workflow təsvir edir, SRS performance constraint verir. Eyni refund qaydası üçünə köçürülüb sonra yalnız birində dəyişsə üç ziddiyyətli vəd yaranır. Document structure qərarı və controlled change-i dəstəkləməlidir.
+
+## Əsas anlayışlar
+
+Document adları təşkilatdan asılıdır. BABOK hər təşəbbüsdə BRD, FRD və SRS tələb etmir. Template seçməzdən əvvəl analysis approach, required approval və information architecture razılaşdır.
+
+Business Requirements Document çox vaxt problem, objective, scope, stakeholder, expected value və constraint göstərir. Functional requirements görünüşü adi/istisna axını daxil observable capability və behavior təsvir edir. Software/System Requirements Specification konkret solution sərhədində behavior, interface, data, quality attribute və constraint-i təşkil edə bilər. Məzmun üst-üstə düşə bilər; purpose və ownership aydın olmalıdır.
+
+Requirement-ə sabit ID, source, rationale, status və acceptance/verification meyarı ver. Need-i proposed design-dan ayır. “Manual reconciliation əməyini azaltmaq” outcome-dur; “sağ yuxarıda düymə göstərmək” əsas tələb edən design seçimidir. Design ehtiyacı ödəməyin yeganə yolu kimi təqdim edilmədən də sənədləşdirilə bilər.
+
+Ölçülən dil istifadə et. “Sürətli və təhlükəsiz” yoxlanılan contract deyil. Əsas varsa operation, condition, uyğun population, metric və threshold göstər. Template dolsun deyə performance target uydurma; təsdiqsiz target-i açıq qərar kimi yaz.
+
+Mümkündürsə bir controlled requirement record saxla, document view-ları ona bağla. Konkret review üçün baseline version yarat, dəyişiklikləri saxla, kimin approval verəcəyini müəyyən et. Verification requirement keyfiyyətini, validation onun ehtiyaca xidmətini yoxlayır; approval səlahiyyətli qərarı saxlayır. İmzalı document həllin value yaradacağını avtomatik sübut etmir.
+
+## İşlənmiş nümunə
+
+`REF-014` uyğun settled payment-in təsdiqlənmiş policy daxilində remaining refundable amount həddinədək bir dəfə refund oluna bildiyini deyir. Business view duplicate refund itkisinin azalmasına bağlayır. Functional view request, authorization, provider interaction və unresolved outcome path-i təsvir edir. Solution view API contract və reconciliation sübutunu göstərir.
+
+Amount qaydasını üç müstəqil abzasda köçürmək əvəzinə hər view `REF-014` və cari baseline-a istinad edir. Eligibility dəyişəndə policy, interface, test, support proseduru və mövcud customer üçün impact analysis başlanır. Reviewer nə dəyişdiyini və hansı sübutun davranışı təsdiqləyəcəyini görür.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n N[Business need] --> R[Controlled requirement record]\n R --> B[Business view]\n R --> F[Functional view]\n R --> S[Solution and interface view]\n R --> T[Acceptance and verification evidence]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Stakeholder BRD-ni imzalayır. Bu, API-nin latency tələbini ödədiyini sübut edirmi?</summary>
+
+Xeyr. İmza razılaşdırılmış authority/scope-da approval-u qeydə alır. Latency tələbinin ödənməsi operational definition və təmsilçi measurement sübutu tələb edir. Approval qərarını, requirement quality review-u və solution verification-u ayrı saxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Document adını universal standart deliverable saymaq.
+- Sabit ID və ownership olmadan requirement köçürmək.
+- Status label olmadan confirmed rule ilə assumption qarışdırmaq.
+- Tamamlanmış template-i business value sübutu saymaq.
+
+## Praktik tapşırıq
+
+Refund xidməti üçün bir business objective, bir functional requirement və bir ölçülən quality requirement yaz. Hansı value-nun stakeholder confirmation tələb etdiyini və üç record-un əlaqəsini göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Objective müəyyən population-da qarşısı alınan reconciliation əməyini azaltmaq ola bilər. Functional requirement unknown provider outcome üçün visible pending state-li icazəli refund request verə bilər. Quality requirement konkret operation, workload, metric və agreed threshold müəyyən etməlidir; təsdiqsiz threshold açıq qərar qalsın. Universal response time uydurmaq əvəzinə source və acceptance evidence-ə bağla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Əvvəl purpose və auditoriya. Sabit ID, bir controlled record. Need, design, quality, assumption və approval-u ayır. Requirement-i sübuta bağla.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Təqdim edilmiş kitabın seçilmiş bölmələri orijinal izah və ssenariləri dəstəkləyir; mənbə mətni və üzvlər üçün PDF yayılmır.
+
+Seçilmiş bölmələr: §3.4 information management, §5.1 traceability, §7.1 specification/modelling, §§7.2–7.3 verification/validation. BRD/FRD/SRS quruluşu təşkilati document view üçün orijinal nümunədir; məcburi BABOK template deyil.

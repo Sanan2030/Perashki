@@ -1,0 +1,77 @@
+---
+id: ccba-planning
+locale: az
+title: 'Real təşəbbüs üçün analizi planlaşdır'
+objectives:
+  - 'Analiz yanaşmasını qeyri-müəyyənliyə və qərar riskinə uyğunlaşdır.'
+  - 'Əməkdaşlıq, qərar səlahiyyəti və məlumat idarəsini əlaqəli planlaşdır.'
+---
+
+## Əsas anlayış
+
+Business Analysis Planning and Monitoring işin necə təşkil ediləcəyini müəyyən edir və həmin təşkilin faydalı olub-olmadığını yoxlayır. Plan yalnız tarix siyahısı deyil: hansı nəticəyə ehtiyac olduğunu, kimin iştirak edəcəyini, qərarın necə veriləcəyini, məlumatın harada yaşayacağını və nə zaman yanaşmanın dəyişəcəyini açır. BABOK v3 bu işi beş əlaqəli tapşırıqla izah edir. Planı təşkilatın ölçüsünə və riskinə uyğunlaşdırmaq lazımdır.
+
+## Niyə vacibdir
+
+Qəbul qaydasının sahibi bilinməyəndə düzgün tələb də qərarsız qala bilər. Eyni məlumat üç yerdə saxlananda komanda səhv versiyanı hazırlaya bilər. Digər tərəfdən kiçik dəyişiklik üçün həddən artıq sənəd tələb etmək vaxtı və diqqəti azaldır. Yaxşı plan bu qiymətləri görünən edir: kifayət qədər sübut, müvafiq iştirak və aydın məsuliyyət; lazımsız koordinasiya yükü olmadan. Sonradan əldə edilən bilik planı yeniləmək üçün səbəbdir.
+
+## Nəzəriyyə və fərqlər
+
+**Analiz yanaşması:** Məqsədi, iş ardıcıllığını, çıxışları və ilkin üsulları müəyyən et. BABOK proqnozlaşdırıcı və adaptiv yanaşmaları davamlı spektr kimi izah edir. Tələbin əvvəlcədən aydın olduğu və səhvin qiymətinin yüksək olduğu hissə ilə kəşf tələb edən hissə eyni üsulla idarə edilməyə bilər. İterativ işdə də planlaşdırma var.
+
+**Əməkdaşlıq yanaşması:** Dəyişikliyin kimə təsir etdiyini, onların biliyini, mövqeyini, təsirini və iştirak imkanını araşdır. Ən yüksək vəzifəli şəxs bütün istifadəçiləri əvəz etmir. **Governance:** Kim məsləhət verir, kim məlumatı yoxlayır, kim təsdiq edir, fikir ayrılığı hara eskalasiya olunur? Bunu əvvəlcədən aydınlaşdır.
+
+**Məlumat idarəsi:** Təkcə tələbləri deyil, qeydləri, modelləri, variantları və qərar əsaslarını da təşkil et. Versiya, çıxış hüququ, lazımi detal, izlənilmə və saxlama müddəti məlum olsun. Əlaqələrin sayı onların faydasını keçməsin. **Performansın təkmilləşdirilməsi:** Analiz işinin gözlənilən nəticəsini və uyğun ölçüləri razılaşdır. Sənəd sayı təkbaşına qərar keyfiyyətini sübut etmir; gec aşkar edilən yanlış anlaşma kimi kontekstli məlumat daha faydalı ola bilər.
+
+## İşlənmiş nümunə
+
+Sığorta şirkəti zərər müraciəti xidmətini dəyişir. Hüquqi qaydalar məlumdur, amma mobil istifadəçilərin məlumatı niyə yarımçıq qoyduğu bilinmir. Analitik hüquqi şərtləri uyğun ekspertlə təsdiqlənən qərar axınına bağlayır, istifadəçi problemi üçün isə qısa müşahidə və prototype sınaqları planlaşdırır.
+
+Əməliyyat, hüquq və rəqəmsal xidmət nümayəndələrinin rolu fərqləndirilir. Məlumat bir reyestrdə saxlanır; həssas qeydlərə çıxış ayrıca məhdudlaşdırılır. Hər qərarın hansı versiyaya aid olduğu görünür. Yeni məlumat mobil problemin səbəbini dəyişərsə araşdırma planı yenilənir. Bu, təşkilata uyğunlaşdırılmış bir nümunədir, BABOK-un məcburi sənəd paketi deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n N["Need and uncertainty"] --> A["Analysis approach"]\n A --> E["Engagement"]\n A --> G["Decision governance"]\n G --> I["Information and traceability"]\n E --> I\n I --> P["Assess analysis performance"]\n P --> A'
+  }
+/>
+
+Model planın dörd qərarını və təkmilləşdirmə geribildirimini göstərir. Bir seçimdə dəyişiklik digərlərinə təsir edə bilər.
+
+## Qərar məşqi
+
+Hüquq eksperti iki həftə əlçatan deyil. Təhlükəsizlik və uyğunluq qərarını qeyri-səlahiyyətli iştirakçıya həvalə etmə. Hansı işi mövcud məlumatla davam etdirməyin mümkün olduğunu müəyyən et, qərar sahibinə maneəni çatdır və cədvəli yaxud əhatəni razılaşdır. Alternativ ekspertin səlahiyyəti varsa ondan istifadə oluna bilər. Əlçatanlıq problemi qaydanı avtomatik ləğv etmir.
+
+## Səhvlər və düzgün yanaşma
+
+- Bütün təşəbbüsə eyni detal və formallıq tətbiq etmə.
+- “Agile işləyirik” deyib qərar və məlumat idarəsini atlama.
+- İştirak etməyən maraqlı tərəfi ehtiyacı olmayan tərəf sayma.
+- Göndərilmiş sənədi anlaşılmış və təsdiqlənmiş məlumatla eyniləşdirmə.
+- Analizin effektivliyini yalnız sərf edilən saatla ölçmə.
+
+## Tətbiq tapşırığı və izahlı həll
+
+**Tapşırıq:** Sığorta nümunəsi üçün bir səhifəlik plan yaz: araşdırma məqsədi, iki iştirakçı qrupu, qərar sahibi, məlumat yeri, bir yeniləmə səbəbi və bir performans göstəricisi.
+
+**İzahlı həll:** Məqsəd yarımçıq müraciətin səbəbini anlamaqdır. Mobil istifadəçi və müraciəti emal edən əməkdaş ayrı bilik verir; hüquq müvafiq qaydanı yoxlayır. Təsdiq səlahiyyəti governance ilə seçilir. Qərar reyestri versiyanı saxlayır. Yeni seqmentdə fərqli maneə aşkar edilərsə yanaşma dəyişir. Gec tapılan anlaşılmaz tələblərin tezliyi yaxşılaşdırma üçün siqnal ola bilər, amma bunu fərdi cəza hədəfinə çevirmək lazım deyil.
+
+## Mini-quiz
+
+Ssenaridə yanaşma seçərkən məqsədi, səhvin qiymətini və qeyri-müəyyənliyi birlikdə qiymətləndir. Təkcə “proqnozlaşdırıcı” və ya “adaptiv” sözünü tanımaq kifayət deyil.
+
+<LessonCheck />
+
+## Xülasə
+
+Yanaşma işi, əməkdaşlıq insanları, governance qərarları, məlumat idarəsi sübutu təşkil edir. Performans analizi bunların necə işlədiyini yoxlayır. Plan yeni ehtiyac və faktlar yarananda yenilənir.
+
+## Mənbələr və əhatə
+
+BABOK Guide v3, 2015: §3.1, səh. 24–30; §3.2, səh. 31–36; §3.3, səh. 37–42; §3.4, səh. 42–47; §3.5, səh. 47–51. Əsasən tapşırıqların məqsəd, description və elements izahları işlənib; qaydalar kontekstə uyğun tətbiq edilir.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Yüklənmiş üzv PDF-i saytda yayımlanmır. Buradakı suallar orijinal tədris məşqidir və rəsmi imtahan sualları deyil.

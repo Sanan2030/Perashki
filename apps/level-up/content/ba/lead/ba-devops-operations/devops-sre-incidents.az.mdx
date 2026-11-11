@@ -1,0 +1,95 @@
+---
+id: devops-sre-incidents
+locale: az
+title: 'Etibarlılıq mühəndisliyi: SLO, insident və bərpa sınaqları'
+objectives:
+  - 'İstifadəçiyə yönələn SLI müəyyən et və request əsaslı error budget hesabla.'
+  - 'Incident command, mitigation və kommunikasiya vəzifələrini ayır.'
+  - 'RTO/RPO hədəflərini real sınaqla göstərilmiş restore imkanından fərqləndir.'
+---
+
+## Öyrənmə məqsədləri
+
+- İstifadəçiyə yönələn SLI müəyyən et və request əsaslı error budget hesabla.
+- Incident command, mitigation və kommunikasiya vəzifələrini ayır.
+- RTO/RPO hədəflərini real sınaqla göstərilmiş restore imkanından fərqləndir.
+
+## Bu mövzu niyə vacibdir
+
+Availability dashboard yalnız açıq ana səhifəni saydığı üçün yaşıl görünür, amma checkout işləmir. Backup hər gecə işləyir, lakin komanda onu heç vaxt restore etməyib. Etibarlı xidmətə təkcə uğurlu infrastruktur tapşırığı deyil, user journey-yə bağlı ölçmə və recovery sübutu lazımdır.
+
+## Əsas anlayışlar
+
+Service Level Indicator xidmət davranışının bir aspektini ölçür. Service Level Objective müəyyən zaman pəncərəsində indikator üçün hədəf qoyur. Hansı event-in uyğun, hansının yaxşı sayıldığını, population-u və müşahidə pəncərəsini göstər. Request əsaslı success, zaman əsaslı availability və latency hədəfləri əlaqəlidir, amma bir-birini əvəz etmir.
+
+Error budget hədəf çərçivəsində yol verilən pis nəticə payıdır. 100 000 uyğun request və 99,9% success hədəfi üçün icazə verilən uğursuz request sayı 100-dür. 80-i uğursuz olubsa, bu sadələşdirilmiş sabit population hesabında 20 qalır. Bu, 20 dəqiqə downtime demək deyil; vahid və denominator vacibdir. Rolling window zaman keçdikcə hər iki sayı dəyişə bilər.
+
+Budget dəyişikliklə reliability arasında balans policy-sini istiqamətləndirir. Onun tükənməsi riskli release-ləri azaltmaq və səbəbi aradan qaldırmaq kimi müəyyən tədbir üçün sübutdur; ixtiyari sıfırlanma vaxtınadək istifadəçiləri görməzdən gəlmək icazəsi deyil. Hər təcrid olunmuş keçici xəta üçün deyil, əhəmiyyətli istifadəçi təsirini və tədbir görülə bilən burn-u göstərən alert seç.
+
+Incident zamanı command, əməliyyat mitigation-u və kommunikasiya rollarını aydın et. Commander prioritet və məlumatı əlaqələndirir; responder-lər araşdırır və məhdud tədbirlər görür; kommunikasiya ardıcıl, timestamp-li vəziyyət yaradır. Mitigation tam root cause anlayışından əvvəl gələ bilər. Bir anda çox əlaqəsiz dəyişiklik etmək əvəzinə sübutu saxla və hər addımın riskini düşün.
+
+RTO recovery vaxtı hədəfidir; RPO recovery anına görə zaman vahidi ilə qəbul olunan data loss-u ifadə edir. Backup cədvəli dizayna kömək edə bilər, amma heç bir hədəfin mümkünlüyünü sübut etmir. Restore-u, bütövlüyü, credential-ları, asılılıqları və real user journey-ni sına. Recovery üçün kimin tədbir görə biləcəyini və hansı data/state-in əsas mənbə olduğunu da bilmək lazımdır.
+
+Faydalı post-incident review timeline-ı, təsir edən şərtləri, detection/mitigation boşluqlarını və yoxlanıla bilən follow-up işlərini bərpa edir. Son operatoru günahlandırmaq adətən həmin addımı təhlükəli edən sistem şərtlərini nəzərdən qaçırır.
+
+## İşlənmiş nümunə
+
+Checkout SLI sənədləşdirilmiş success tərifi ilə icazə verilmiş alış cəhdlərini sayır. Süni 30 günlük hesabatda 100 000 uyğun cəhd və 80 xəta var; 99,9%-lik request əsaslı budget daxilində 20 xəta payı qalır. Növbəti qərarda yalnız hesab deyil, burn sürəti və təsir də nəzərə alınır.
+
+Ayrıca, komandanın recovery hədəfləri RTO 60 dəqiqə və RPO 15 dəqiqədir. Restore sınağında ən yeni istifadə edilə bilən snapshot 40 dəqiqə köhnədir, xidmətin bərpası isə 95 dəqiqə çəkir. Backup job əvvəllər uğur bildirsə də, test hər iki hədəfi qaçırır. Yanlış fərziyyələri qeydə al, dizaynı yaxşılaşdır və yenidən sına.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["User journey and SLI"] --> B["SLO and budget policy"]\n B --> C["Detect material impact"]\n C --> D["Coordinate and mitigate"]\n D --> E["Verify recovery and data"]\n E --> F["Review conditions and retest improvements"]'
+  }
+/>
+
+Reliability istifadəçi təsirini, əməliyyat addımını və öyrənməni bağlayan feedback prosesidir. Backup yaratmaq və təsdiqlənmiş recovery eyni yoxlama mərhələsi deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Request əsaslı SLO budget-ində 20 uğursuz request payı qalıb. Bu, 20 dəqiqə outage icazəsinə bərabərdirmi?</summary>
+
+Xeyr. Vahidlər fərqlidir. Zaman əsaslı downtime payı zaman əsaslı indikator və pəncərə tələb edir; çevirmə üçün eyni rəqəmi təkrarlamaq deyil, aydın model və uyğun sübut lazımdır.
+
+</details>
+
+## Tipik səhvlər
+
+- Yalnız sağlam endpoint-ləri saymaq nasaz user journey-ni ölçüdən kənarda saxlaya bilər.
+- Orta göstəricilər tail latency-ni və zərər görən segment-ləri gizlədə bilər.
+- Çoxsaylı əlaqələndirilməmiş mitigation səbəb-nəticəni müəyyənləşdirməyi çətinləşdirir.
+- Tamamlanmış backup oxuna bilən və vaxtında restore-u sübut etmir.
+- Sahibi və yoxlama meyarı olmayan postmortem yaxşılaşmanı təsdiqləmir.
+
+## Praktik tapşırıq
+
+Deployment-dən sonra checkout xətaları üçün incident planı hazırla. SLI-ni, alert mənasını, üç response rolunu, mitigation sübutunu, istifadəçi kommunikasiyasını və təkcə backup job uğurunu deyil, RTO/RPO-nu yoxlayan restore testini daxil et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Uyğun checkout cəhdlərini və uğurlu outcome-u müəyyən et. Təsir əhatəsi və burn konteksti ilə tədbir görülə bilən failure/latency sübutuna alert qur. Command, operations və communication rollarını ayır ki, addımlar və yeniləmələr ortaq timeline-da olsun. Yerləşdirilmiş artifact-ı və təsirlənmiş journey-ni müqayisə et, məhdud mitigation seç, sonra real alışları və status-u yoxla.
+
+Restore testində xidmətin istifadəyə yararlı olmasına qədər keçən vaxtı, bərpa olunan datanın yaşını və bütövlüyünü ölç. Credential və downstream asılılıqları daxil et. Müşahidələri hədəflərlə tutuşdur, boşluqları qeydə al və konkret retest ilə follow-up işləri təyin et. Tək backup cədvəli ilə hədəfin ödəndiyini demə.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+SLI ölçür; SLO hədəf qoyur; budget vahidləri vacibdir. Command, operations və communication-u əlaqələndir. Öyrənərkən istifadəçiyə təsiri azalt. RTO/RPO hədəfdir; sınaqdan keçirilmiş restore sübutu real imkanı göstərir. Incident-dən sonra yaxşılaşmanı yoxla.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Google SRE, Implementing SLOs](https://sre.google/workbook/implementing-slos/): indikator, hədəf və error budget.
+- [Google SRE, Incident Response](https://sre.google/workbook/incident-response/): coordination və mitigation.
+- [Microsoft reliability metrics](https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics): recovery hədəfləri və sübutları.
+
+Bütün say, müddət və policy-lər orijinal tədris nümunələridir; production ölçmələri və ya certification qaydaları deyil.

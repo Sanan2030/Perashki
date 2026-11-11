@@ -1,0 +1,141 @@
+{
+  "id": "ba-lead",
+  "trackId": "ba",
+  "level": "lead",
+  "title": {
+    "az": "Lead biznes analitik",
+    "en": "Lead Business Analyst"
+  },
+  "responsibilities": [
+    {
+      "az": "Komandalararası analizi strateji nəticələrə uyğunlaşdır.",
+      "en": "Align analysis across teams with strategic outcomes."
+    },
+    {
+      "az": "Uyğun idarəetmə qur və analitiklərə mentorluq et.",
+      "en": "Set proportionate governance and coach analysts."
+    },
+    {
+      "az": "Yüksək təsirli təşkilati qərarlarda qeyri-müəyyənliyi həll et.",
+      "en": "Resolve ambiguity in high-impact organizational decisions."
+    }
+  ],
+  "hardSkills": [
+    {
+      "az": "Müəssisə analizi və dəyişiklik strategiyası",
+      "en": "Enterprise analysis and change strategy"
+    },
+    {
+      "az": "Kontekstdə BABOK bilik sahələri, üsullar və perspektivlər",
+      "en": "BABOK knowledge areas, techniques and perspectives in context"
+    },
+    {
+      "az": "Analiz keyfiyyəti, qərar səlahiyyəti və fayda qiymətləndirməsi",
+      "en": "Analysis quality, decision rights and benefit evaluation"
+    }
+  ],
+  "softSkills": [
+    {
+      "az": "Sübut və qeyri-müəyyənliklə rəhbərliyə təqdimat",
+      "en": "Executive storytelling with evidence and uncertainty"
+    },
+    {
+      "az": "Mentorluq, danışıqlar və münaqişə fasilitasiyası",
+      "en": "Coaching, negotiation and conflict facilitation"
+    }
+  ],
+  "tools": [
+    {
+      "az": "Ortaq qərar qeydləri və analiz standartları",
+      "en": "Shared decision records and analysis standards"
+    },
+    {
+      "az": "Portfel və imkan xəritələmə məkanları",
+      "en": "Portfolio and capability mapping workspaces"
+    }
+  ],
+  "deliverables": [
+    {
+      "az": "Analiz strategiyası və idarəetmə razılaşması",
+      "en": "Analysis strategy and governance agreement"
+    },
+    {
+      "az": "İmkan boşluğu və dəyişiklik seçimi qiymətləndirməsi",
+      "en": "Capability gap and change-option assessment"
+    },
+    {
+      "az": "Mentorluq planı və sübut əsaslı keyfiyyət baxışı",
+      "en": "Coaching plan and evidence-based quality review"
+    }
+  ],
+  "changes": {
+    "az": "Bir təşəbbüsü çatdırmaqdan təşkilatın analiz qərarlarını necə verməsini yaxşılaşdırmağa keçirsən.",
+    "en": "You move from delivering one initiative to improving how the organization makes analysis decisions."
+  },
+  "checklist": [
+    {
+      "id": "ba-lead-skill-1",
+      "text": {
+        "az": "İmkan boşluqlarını strateji seçimlərlə əlaqələndirə bilirəm.",
+        "en": "I can connect capability gaps to strategic choices."
+      }
+    },
+    {
+      "id": "ba-lead-skill-2",
+      "text": {
+        "az": "Riskə uyğun idarəetmə qura bilirəm.",
+        "en": "I can design governance that fits risk."
+      }
+    },
+    {
+      "id": "ba-lead-skill-3",
+      "text": {
+        "az": "Qərarı ələ almadan mentorluq edə bilirəm.",
+        "en": "I can coach without taking over decisions."
+      }
+    },
+    {
+      "id": "ba-lead-skill-4",
+      "text": {
+        "az": "Ortaq sübut ətrafında münaqişəni idarə edə bilirəm.",
+        "en": "I can facilitate conflict around shared evidence."
+      }
+    },
+    {
+      "id": "ba-lead-skill-5",
+      "text": {
+        "az": "Rəhbərliyə seçimlərin təsirini izah edə bilirəm.",
+        "en": "I can communicate trade-offs to executives."
+      }
+    },
+    {
+      "id": "ba-lead-skill-6",
+      "text": {
+        "az": "Analiz standartlarının nəticəni yaxşılaşdırıb-yaxşılaşdırmadığını yoxlaya bilirəm.",
+        "en": "I can inspect whether analysis standards improve outcomes."
+      }
+    }
+  ],
+  "interviews": [
+    {
+      "question": {
+        "az": "Bürokratiya yaratmadan analizi necə standartlaşdırarsan?",
+        "en": "How do you standardize analysis without bureaucracy?"
+      },
+      "answer": {
+        "az": "Riskə görə minimum qərar sübutunu razılaşdıraram, uyğun üsulu komandaya buraxaram, dövr vaxtı və təkrar işi yoxlayaram, qərarı yaxşılaşdırmayan yoxlamaları ləğv edərəm.",
+        "en": "I agree minimum decision evidence based on risk, let teams choose suitable techniques, inspect cycle time and rework, and remove checks that do not improve decisions."
+      }
+    },
+    {
+      "question": {
+        "az": "İki biznes sahəsi dəyərdə razılaşmır. Necə davam edərsən?",
+        "en": "Two business areas disagree on value. How do you proceed?"
+      },
+      "answer": {
+        "az": "Zidd maraqları üzə çıxararam, ortaq nəticə və sərhədləri müəyyən edərəm, variantları sübutla müqayisə edib qərar səlahiyyətini və yenidən baxış şərtini qeyd edərəm.",
+        "en": "I surface competing interests, define a shared outcome and constraints, compare options against evidence, identify decision authority, and record what would trigger reconsideration."
+      }
+    }
+  ]
+}

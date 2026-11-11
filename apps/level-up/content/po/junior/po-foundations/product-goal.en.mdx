@@ -1,0 +1,142 @@
+---
+id: product-goal
+locale: en
+title: 'From product vision to Product Goal'
+objectives:
+  - 'Turn a broad direction into a measurable next product outcome.'
+  - 'Apply the concept to a realistic case and explain a decision.'
+---
+
+## 1. Learning objectives
+
+Distinguish a vision, a Product Goal, a Sprint Goal and a backlog item. Frame an outcome with useful evidence and use it to choose between plausible product investments.
+
+## 2. Why it matters
+
+A grocery delivery product has many requests: live driver maps, more coupons, a new checkout and easier rescheduling. Completing all four might consume months without solving the main customer problem. A shared goal helps the team decide what to learn and what to defer.
+
+In this lesson, a product vision is a broad direction. A Product Goal describes a future product state that can guide planning. The Scrum Guide defines its role in Scrum; the measurable wording used below is an educational technique, not a required template.
+
+## 3. Core theory
+
+Begin with a customer problem and the product boundary. State the desired change, who should benefit and why it matters. Add a baseline, an evidence source and safeguards where useful. Do not invent precise targets merely to make a goal look measurable.
+
+A Product Goal is associated with the Product Backlog. A Sprint Goal gives a coherent objective for one Sprint. Backlog items describe possible work; they are options for achieving a goal, not the goal itself. In Scrum, the team fulfills or abandons one Product Goal before taking on the next one.
+
+A meaningful target supports inspection. A feature list reports outputs; evidence about successful customer behavior helps reveal outcomes. An outcome is not automatically proof of causation: seasonality, segment changes or operations may affect the metric.
+
+## 4. Worked example: fewer failed deliveries
+
+The fictional product team finds that 12 of every 100 deliveries fail on the first attempt. Customer interviews suggest people cannot change their delivery window after checkout. Operations data also shows address quality problems.
+
+**Proposed Product Goal:** help customers in the pilot area receive their grocery order on the first planned attempt. For this educational scenario, the team uses a working target of reducing failed first attempts from 12% to 8% over eight weeks, without increasing support contacts per order or excluding customers who need phone assistance.
+
+The numbers are invented scenario data, not industry benchmarks. The team must validate measurement before using them for decisions.
+
+| Option                    | Assumption                                | Evidence to seek                                                                |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------- |
+| Self-service rescheduling | Unavailable customers cause many failures | Reasons for failed delivery; task-based usability evidence                      |
+| Address confirmation      | Unclear addresses cause many failures     | Driver reports and address-error rates                                          |
+| More coupons              | More ordering improves the outcome        | Weak connection to first-attempt success; defer unless new evidence supports it |
+
+A possible Sprint Goal is “enable pilot customers to change a delivery window before dispatch.” The team chooses an achievable slice and inspects whether customers use it and whether failures change. A later experiment may address address quality instead.
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart TD; A[Vision: dependable grocery delivery] --> B[Product Goal: improve first-attempt success]; B --> C[Product Backlog options]; C --> D[Sprint Goal and selected work]; D --> E[Usable Increment]; E --> F[Inspect customer and operational evidence]; F --> B;'
+  }
+/>
+
+The arrows connect direction to options, delivery and evidence. Feedback can change the backlog or reveal that the current goal should be reconsidered.
+
+## 6. Interactive explainer
+
+Step through the cycle below. At each inspection point, ask which observation would support or challenge the grocery-delivery hypothesis.
+
+<ConceptStepper />
+
+<details>
+<summary>What if rescheduling is used but failures do not decline?</summary>
+
+First validate measurement and compare segments. Then investigate whether the feature serves the customers experiencing failures, whether dispatch receives updates, and whether the original cause hypothesis was wrong. Do not declare success solely because the feature was delivered or clicked.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Feature disguised as a goal:** “launch a rescheduling button.” Explain the customer or product change it should enable.
+- **Too many simultaneous goals:** competing goals make every request look urgent. Make the current focus explicit.
+- **A target without evidence:** validate the baseline and measurement source before interpreting movement.
+- **A metric without safeguards:** inspect effects on support load, fairness, accessibility and reliability.
+- **A fixed solution:** keep multiple options open until evidence warrants narrowing them.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** A telecom app wants to “add a chatbot.” Draft a product outcome, one evidence source, two possible backlog options and a guardrail. Explain how a Sprint Goal could contribute.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+**Outcome:** customers can resolve common billing questions without repeating their problem across channels. **Evidence:** successful resolution by question type, checked against follow-up contacts. **Options:** improve bill explanations or run a constrained assistant pilot; investigate which addresses the actual difficulty. **Guardrail:** do not increase unresolved complaints or block access to a human. **Possible Sprint Goal:** help a small pilot group understand one common billing adjustment and inspect whether repeat contacts decline. No arbitrary target is required before a reliable baseline exists.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. Which statement best expresses an outcome?**
+
+A. Deliver five dashboard screens. B. Help support agents resolve a customer query with fewer hand-offs. C. Complete every item requested by sales.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** It describes a changed capability or experience. A counts output without showing benefit. C treats demand volume as value.
+
+</details>
+
+**2. Which relationship is correct?**
+
+A. A Product Goal and every backlog item are identical. B. A Sprint Goal replaces the Product Goal permanently. C. A Sprint Goal can contribute to the Product Goal through a coherent short-term objective.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** The goals operate at different horizons. A confuses an objective with work options. B removes the longer product direction without a reasoned decision.
+
+</details>
+
+**3. A feature is popular but the target outcome does not improve. What should the Product Owner inspect?**
+
+A. Only the number of clicks. B. Measurement, segments, assumptions and the causal link to the outcome. C. Whether the team can add unrelated features faster.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Inspection should challenge the underlying reasoning. A measures use rather than the intended result. C adds work without resolving the evidence gap.
+
+</details>
+
+**4. Why include a guardrail?**
+
+A. To observe harms that a primary metric may hide. B. To guarantee causation. C. To remove the need for user research.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** A guardrail exposes side effects and unacceptable trade-offs. B promises more than measurement can establish. C ignores qualitative evidence and context.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**Vision:** broad direction. **Product Goal:** a future product state that guides planning. **Sprint Goal:** one coherent Sprint objective. **Backlog:** ordered options for work. **Good evidence:** trustworthy baseline, relevant behavior, appropriate segments and explicit limitations. **Guardrails:** measures of unacceptable side effects. **Decision test:** why does this option help the current goal, and what evidence could show it does not?
+
+## 11. Further reading
+
+- [The Scrum Guide, official 2020 guide](https://scrumguides.org/scrum-guide.html)
+- [Scrum.org: Evidence-Based Management Guide](https://www.scrum.org/resources/evidence-based-management-guide)
+- [GOV.UK: measuring service success](https://www.gov.uk/service-manual/measuring-success)
+
+Scenario data and questions are original practice material, not official exam content.

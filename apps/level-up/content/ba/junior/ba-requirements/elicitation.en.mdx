@@ -1,0 +1,89 @@
+---
+id: elicitation
+locale: en
+title: 'Interviews, workshops and observation'
+objectives:
+  - 'Choose elicitation techniques for a specific uncertainty.'
+  - 'Ask non-leading questions about actual work.'
+  - 'Separate findings, interpretations, open issues and approval decisions.'
+---
+
+## Learning objectives
+
+- Choose elicitation techniques for a specific uncertainty.
+- Ask non-leading questions about actual work.
+- Separate findings, interpretations, open issues and approval decisions.
+
+## Why this matters
+
+A stakeholder asks for an export button, but support staff describe repeated reconciliation failures. Building the requested button immediately could preserve the real problem. Elicitation uncovers needs, rules, constraints and evidence before a proposed solution becomes an assumed requirement. The analyst also needs to know whose experience is missing.
+
+## Core theory
+
+Start with the decision the information will support. Identify participants, relevant documents, terminology, access constraints and expected outputs. Select a combination of techniques rather than assuming one workshop can answer everything.
+
+Interviews provide depth about an individual's actual experience. Ask “Walk me through the last failed reconciliation” before asking for opinions about a future feature. Leading prompts such as “Would our excellent dashboard solve this?” suggest the answer and provide weak evidence. Ask permission before recording and avoid collecting unnecessary personal information.
+
+Observation reveals workarounds and differences between documented and actual processes. Ask what a step means instead of assuming intent from a screen action. The observer can influence behavior, and one observed shift may not represent every operating condition.
+
+Workshops help people compare knowledge, resolve terms and explore options together. Define an outcome, agenda, facilitation roles and decision authority. Invite quieter participants and capture dissent; a loud majority does not replace legal, security or business authority.
+
+Record source, date, context, examples and confidence. Separate a direct observation from an interpretation and an unresolved assumption. Confirming elicitation results checks whether the captured information accurately represents the source. It does not automatically authorize a solution or approve every derived requirement. Verification, business validation and approval remain distinct activities.
+
+## Worked example
+
+A delivery company reports “orders disappear.” A dispatcher means an order disappears from their filtered queue after reassignment; finance means a settled order is absent from a daily export. These are different events.
+
+The analyst interviews both roles using recent examples, observes reassignment and compares export timestamps. The shared log records two findings: queue visibility changes by assignment, and the export cutoff excludes late settlements. Participants confirm those descriptions. A proposed change to the export window then receives impact assessment and an authorized decision; confirmation of interview notes is not treated as permission to alter financial policy.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n D[Decision and uncertainty] --> P[Prepare people and evidence]\n P --> E[Interview observe workshop]\n E --> F[Findings and open questions]\n F --> C[Confirm accuracy]\n C --> A[Separate analysis and approval]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>An interviewee says the notes are accurate but rejects the proposed feature. Is that inconsistent?</summary>
+
+No. The person confirmed how their experience was represented, not necessarily the proposed investment or solution. Ask which need or trade-off the proposal fails to address, retain the confirmed evidence and review alternatives through the agreed decision process.
+
+</details>
+
+## Common mistakes
+
+- Treating a requested feature as the underlying need.
+- Generalizing one expert’s account to every user.
+- Recording sensitive cases without appropriate consent and access.
+- Calling silence in a workshop approval.
+
+## Practice exercise
+
+Prepare a 30-minute interview about the last failed refund. Write three non-leading questions, one observation activity and a method to confirm the captured findings. State who may approve a policy change.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Ask what triggered the refund, which steps occurred and where the expected result differed from the actual result. Request a redacted recent example and observe the current workflow if authorized. Summarize the sequence, terms and unresolved issues back to the participant. Record corrections and send a concise confirmation request. Identify the policy owner separately; the interview facilitator is not automatically the approver.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Decision → participants and technique → evidence → confirmed findings → analysis → authorized decision. Preserve source and uncertainty at every step.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the user-supplied book support these original explanations; the PDF and source prose are not republished.
+
+- BABOK §§4.1–4.5; interviews §10.25, observation §10.31 and workshops §10.50.
+- [GOV.UK: Using in-depth interviews](https://www.gov.uk/service-manual/user-research/using-in-depth-interviews): preparation, open questions and participant experience.

@@ -1,0 +1,145 @@
+---
+id: stakeholder-mapping
+locale: az
+title: 'Stakeholder mapping'
+objectives:
+  - 'Təsirə məruz qalan insanları tap və təsir gücü ilə ehtiyacları əlaqə planına çevir.'
+  - 'Anlayışı real ssenariyə tətbiq et və qərarı izah et.'
+---
+
+## 1. Öyrənmə məqsədləri
+
+Bu dərsdən sonra dəyişiklikdən təsirlənən insanları tapa, təsir gücünü məruz qalınan təsirdən ayıra, əlaqə yanaşması seçə və kimin səsinin çatışmadığını yoxlaya biləcəksən.
+
+## 2. Niyə vacibdir
+
+Bank müştərilərin kart ödənişi mübahisələrini tətbiqdən izləməsini istəyir. Sponsor status ekranı tələb edir. Dəstək əməkdaşları eyni statusun iki sistemdə fərqli mənalar verdiyini deyir. Müştəri isə daxili etiketi deyil, özünün addım atmalı olub-olmadığını bilmək istəyir. Faydalı maraqlı tərəf xəritəsi yanlış ekran qurulmazdan əvvəl bu ziddiyyəti tapmağa kömək edir.
+
+Maraqlı tərəf dəyişikliklə marağı, ona təsir gücü və ya ondan təsirlənməsi olan insan və ya qrupdur. Maraqlı tərəf xəritəsi bu əlaqələr haqqında işlək fərziyyədir. O, təşkilati struktur və ya insanların daimi vaciblik sırası deyil.
+
+## 3. Sadə dildə əsas nəzəriyyə
+
+Nəticədən və dəyişikliyin sərhədindən başla. Xidmətdən kim istifadə edir, arxada kim işləyir, qərarı kim verir, asılılığı kim təmin edir, riskə kim məruz qalır və yeni yanaşma kimi kənarda saxlayır? Rəsmi səlahiyyəti olmayan insanları da daxil et.
+
+Hər qrup üçün dörd şeyi yaz: ehtiyacı, dəyişikliyin ona təsiri, təsir edə bildiyi qərarlar və məlumat mübadiləsinin uyğun yolu. Təsir gücü qərarı dəyişmək imkanını bildirir. Məruz qalınan təsir dəyişikliyin həmin insana nə qədər toxunduğunu göstərir. Bunlar fərqlidir: rəsmi təsir gücü az olan müştəri ciddi mənfi nəticə ilə üzləşə bilər.
+
+Təsir gücü–maraq matrisi ilkin əlaqə yanaşmasını seçməyə kömək edə bilər. O, az təsir gücü olan insanları görməzdən gəlmək üçün istifadə edilməməlidir. Təsir və əlçatanlıq baxışını ayrıca əlavə et. Sübut, əhatə və ya sahiblik dəyişəndə xəritəni yenilə.
+
+## 4. İşlənmiş nümunə: mübahisənin izlənməsi
+
+| Qrup                            | Ehtiyac və ya narahatlıq                       | Əlaqə qərarı                                                                  |
+| ------------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------- |
+| Açıq mübahisəsi olan müştərilər | Növbəti addımı və qeyri-müəyyənliyi anlamaq    | Köməkçi texnologiya istifadəçiləri daxil olmaqla son istifadəçilərlə müsahibə |
+| Dəstək əməkdaşları              | Statusu vahid qaydada izah etmək               | Zəngləri müşahidə etmək və mətnləri təsdiqləmək                               |
+| Mübahisə əməliyyatları          | Araşdırmadan əvvəl nəticə vəd etməmək          | Status keçidlərini xəritələmək və istisnaları yoxlamaq                        |
+| Uyğunluq mütəxəssisi            | Düzgün açıqlama və giriş nəzarəti              | Riskli iddiaları və məlumat ifşasını yoxlamaq                                 |
+| Tətbiq komandası                | Etibarlı inteqrasiya və xəta emalı             | API və status uyğunluğu seminarı                                              |
+| Sponsor                         | Etimadı zədələmədən lazımsız zəngləri azaltmaq | Başlanğıc göstəricisini razılaşdırmaq və nəticəni yoxlamaq                    |
+
+Tutaq ki, komanda hər bağlanmış qeyd üçün “Həll edildi” yazmağı təklif edir. Əməliyyat müsahibəsi bəzi bağlı qeydlərdə müştərinin yeni sübut təqdim etməli olduğunu göstərir. Analitik fərqli mənaları qeyd edir və birgə mətn baxışı təşkil edir. Həll kimin daha yüksək vəzifədə olduğuna görə deyil, sübuta görə dəyişir.
+
+## 5. Diaqram
+
+<Diagram
+  chart={
+    'flowchart LR; A[Dəyişikliyi müəyyən et] --> B[Təsirlənən insanları tap]; B --> C[Ehtiyac və təsiri anla]; C --> D[Əlaqə üsulunu seç]; D --> E[Təsdiqlə və öyrən]; E --> B;'
+  }
+/>
+
+Dövrü soldan sağa oxu: dəyişikliyi müəyyən et, insanları tap, vəziyyətlərini anla, əlaqə üsulunu seç və öyrəndiklərinlə xəritəni yenilə.
+
+## 6. İnteraktiv seçim: kimin səsi çatışmır?
+
+Komanda yalnız sponsor və tətbiq Developers-i ilə danışıb. İzahı açmazdan əvvəl növbəti söhbəti seç.
+
+<details>
+<summary>Bu yaxınlarda mübahisə dəstəyinə ehtiyacı olmuş müştəri ilə müsahibə</summary>
+
+Bu, güclü növbəti addımdır. Müştərinin nə öyrənmək istədiyini, nəyi yanlış anladığını və hansı addımın çətin olduğunu göstərir. Fərqli əlçatanlıq ehtiyacı olan insanları daxil et. Bu söhbət əməliyyat və uyğunluq rəyini tamamlayır, əvəz etmir.
+
+</details>
+
+<details>
+<summary>Sponsordan ekranı dərhal təsdiqləməsini istəmək</summary>
+
+Təsdiq sübut boşluğunu həll etmir. Sponsor sərmayəyə icazə verə bilər, amma müştəri yozumunu və əməliyyat istisnalarını bilməyə bilər. Əvvəl açıq ehtiyacları və riskləri aydınlaşdır.
+
+</details>
+
+## 7. Tipik səhvlər və yaxşı təcrübələr
+
+- **Səhv:** yalnız vəzifələri yazmaq. **Yaxşılaşdır:** konkret qərarları, ehtiyacları və sübut mənbələrini qeyd et.
+- **Səhv:** az təsir gücünü az vaciblik saymaq. **Yaxşılaşdır:** zərəri, əlçatanlığı və asılılığı ayrıca qiymətləndir.
+- **Səhv:** bir nümayəndənin hamını təmsil etdiyini fərz etmək. **Yaxşılaşdır:** fərqli vəziyyətləri araşdır və nümunələri təsdiqlə.
+- **Səhv:** yalnız başlanğıcda xəritə qurmaq. **Yaxşılaşdır:** əhatə, risk və geribildirim dəyişəndə yenidən bax.
+
+Şəxsi məlumatı minimum saxla. Yalnız layihəyə lazım olanı yaz və təşkilatın məxfilik və giriş qaydalarına əməl et.
+
+## 8. Praktik tapşırıq və nümunə həll
+
+**Tapşırıq:** Telekom şirkəti özünəxidmət SIM dəyişdirməsini təqdim edir. Beş maraqlı tərəf qrupu yaz. Hər biri üçün ehtiyac, risk və əlaqə fəaliyyəti göstər. Sonra rəsmi gücü az, təsiri yüksək olan qrupu tap.
+
+<details>
+<summary>Nümunə həlli aç</summary>
+
+Müştərilər sürətli bərpa istəyir, amma hesabın ələ keçirilməsi riski var: son SIM dəyişdirənlərlə müsahibə apar. Mağaza əməkdaşlarına vahid eskalasiya qaydası lazımdır: iş növbəsini müşahidə et və istisnalara bax. Fırıldaqçılıq mütəxəssisinə kimlik qoruması lazımdır: təhlükə ssenarisi seminarı keçir. Dəstəyə dəyişmə statusu lazımdır: dəstək səyahətini yoxla. Platforma mühəndislərinə etibarlı kimlik inteqrasiyası lazımdır: xəta və təkrar cəhdləri araşdır. Smartfondan istifadə edə bilməyən müştərilərin rəsmi gücü az, təsiri yüksəkdir: əlçatan alternativ kanal baxışı əlavə et. Qruplar analizi təsdiqləyənə qədər xəritə ilkin olaraq qalır.
+
+</details>
+
+## 9. Mini-test
+
+**1. Qrupun qərar səlahiyyəti azdır, amma ciddi giriş itkisi riski var. Nə etməlisən?**
+
+A. Gücü az olduğu üçün çıxar. B. Daxil et, təsirini və əlaqə ehtiyacını qiymətləndir. C. Müştəri rəyini sponsor təsdiqi ilə əvəz et.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Təsir səlahiyyətdən asılı deyil. A təsir gücünü vacibliklə qarışdırır. C təsirlənən insanlar haqqında sübutu icazə ilə əvəz edir.
+
+</details>
+
+**2. Maraqlı tərəf xəritəsinin ən düzgün təsviri hansıdır?**
+
+A. Daimi vaciblik sırası. B. Tam rəhbər siyahısı. C. İnsan, maraq və əlaqələrin yenilənən modeli.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**C.** Öyrəndikcə xəritə dəyişir. A fərziyyələri dondurur. B istifadəçi, əməliyyatçı, tərəfdaş və digər təsirlənənləri kənarda qoyur.
+
+</details>
+
+**3. İki qrup eyni statusu fərqli mənada işlədir. Ən faydalı addım nədir?**
+
+A. Daha yüksək vəzifəli qrupun mənasını seç. B. Qeyri-müəyyənliyi yaz və real nümunələri birlikdə araşdır. C. Statusu həmişəlik gizlət.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Nümunələr mənanı və nəticəni açır. A zərərli qeyri-müəyyənliyi saxlaya bilər. C ehtiyacı anlamadan qərardan qaçır.
+
+</details>
+
+**4. Xəritəyə nə vaxt yenidən baxmaq lazımdır?**
+
+A. Yalnız çatdırılmadan sonra. B. Sübut, əhatə və ya sahiblik əhəmiyyətli dəyişəndə. C. İlkin təsdiqdən sonra heç vaxt.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Xəritə davamlı analizi dəstəkləyir. A öyrənməni gecikdirir. C modeli dəyişməz həqiqət sayır.
+
+</details>
+
+## 10. Bir səhifəlik yaddaş vərəqi
+
+**Məqsəd:** dəyişikliyi kimin ehtiyac və qərarlarının formalaşdırdığını tap. **Giriş:** problem, nəticə, əhatə və məlum asılılıqlar. **Qeyd:** qrup, ehtiyac, təsir gücü, məruz qalınan təsir, sübut boşluğu, əlaqə addımı və sahib. **Yoxla:** çatışmayan səslər, giriş maneələri, fərqli mənalar və dəyişmiş fərziyyələr. **Çıxış:** yalnız matris deyil, tətbiq olunan əlaqə planı. **Uğur əlaməti:** uyğun insan və sübut daxil edildiyi üçün qərar yaxşılaşır.
+
+## 11. Əlavə oxu
+
+- [IIBA: Biznes analizi nədir?](https://www.iiba.org/professional-development/career-centre/what-is-business-analysis/)
+- [GOV.UK Service Manual: istifadəçi araşdırması](https://www.gov.uk/service-manual/user-research)
+- [W3C: veb əlçatanlıq qiymətləndirməsinə istifadəçilərin cəlbi](https://www.w3.org/WAI/test-evaluate/involving-users/)
+
+Bu dərs orijinal tədris materialıdır. BABOK mətni və ya rəsmi imtahan suallarını təkrarlamır.

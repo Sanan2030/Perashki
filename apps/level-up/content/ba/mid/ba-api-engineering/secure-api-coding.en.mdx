@@ -1,0 +1,121 @@
+---
+id: secure-api-coding
+locale: en
+title: 'TypeScript API coding lab: validation, authorization and safe updates'
+objectives:
+  - 'Separate untrusted request data from a trusted authenticated actor.'
+  - 'Implement strict input validation and per-object authorization before changing state.'
+  - 'Demonstrate duplicate and stale-request behavior with executable negative tests.'
+---
+
+## Learning objectives
+
+- Separate untrusted request data from a trusted authenticated actor.
+- Implement strict input validation and per-object authorization before changing state.
+- Demonstrate duplicate and stale-request behavior with executable negative tests.
+
+## Why this matters
+
+A TypeScript type annotation disappears at runtime. A client can send quantity="2", add tenantId="another-company", or replay a creation request even when the editor says the request type has only two fields. Correct API behavior needs runtime checks and an explicit state boundary. This lab focuses on those decisions in code that can actually be run.
+
+## Core theory
+
+The lab has three modules: order-service.ts, pkce.ts and webhook.ts. It creates no live HTTP endpoint and makes no external calls. The order service is a synchronous, in-memory teaching model. It is deliberately unsuitable for durable payments, multiple API instances or restart recovery; those require real transaction and persistence facilities.
+
+The authentication adapter is outside the model. It must validate actual credentials and construct a trusted Principal. A Principal supplied directly from request JSON would bypass the entire authorization boundary. TypeScript cannot establish trust in a value merely because it has the right interface.
+
+The request schema accepts only sku and an integer quantity from 1 to 100. It rejects unknown properties rather than letting a client assign tenantId, ownerId or version. These numeric limits are lab business rules, not security standards.
+
+```ts
+const createInput = z
+  .object({
+    sku: z.enum(['BOOK', 'COURSE']),
+    quantity: z.number().int().min(1).max(100),
+  })
+  .strict();
+```
+
+After authentication, the service checks the required scope. Access to an existing order additionally requires matching trusted tenant and owner. A uniform 404 policy conceals objects outside that boundary. The actor is derived from authentication, while requestedId and request body remain untrusted input.
+
+Creation deduplicates a scoped operation key and a fingerprint of validated input. The model stores a snapshot of the original result. An identical retry still returns that creation outcome after the order has been edited, while GET returns current state. A different payload for the same key produces 409. Updates compare the expected version and return 412 on stale state without applying a change.
+
+Returning a mutable reference to an internal object would let a caller alter state without checks. The lab returns structured copies. This is an in-process boundary concern; an HTTP adapter also needs safe serialization and appropriate representations.
+
+## Worked example
+
+From the repository root, run the existing project test runner against the lab:
+
+```sh
+npm ci
+npm test -- tests/api-lab.test.ts
+```
+
+Read [the lab source and instructions](https://github.com/Sanan2030/level_up/tree/main/examples/api-lab). The tests include the RFC 7636 S256 vector, GitHub's published webhook signature vector, cross-tenant and cross-owner rejection, mass assignment, duplicate payload conflicts and stale writes.
+
+```ts
+const service = createOrderService();
+const first = service.create(actor, { sku: 'BOOK', quantity: 2 }, 'checkout-81');
+const edited = service.updateQuantity(actor, first.id, 1, { quantity: 4 });
+// edited.version is 2; an update expecting version 1 now fails with 412.
+```
+
+The actor variable here must be a trusted authentication result. The lab's test fixtures are synthetic users, not a replacement for a real authentication system. Passing unit tests for maps does not establish multi-process database correctness.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Untrusted input"] --> B["Runtime schema"]\n C["Trusted actor"] --> D["Scope and object policy"]\n B --> E["Deduplication or version check"]\n D --> E\n E --> F["State change and copied result"]'
+  }
+/>
+
+Input shape and actor authority come from different sources. Both must meet the operation's rules before state is changed.
+
+## Inspect the decision
+
+<details>
+<summary>The body contains a valid tenantId and the caller has orders:write. Should the service use that tenantId?</summary>
+
+No. The caller does not choose their security boundary through input. Derive the tenant from trusted context and supported membership policy. This lab rejects tenantId in the creation body entirely and checks object ownership independently of the broad write scope.
+
+</details>
+
+## Common mistakes
+
+- Using “as Principal” on decoded JSON changes the compiler's view, not the runtime trust level.
+- Validating only in the browser leaves direct API clients unrestricted.
+- Adding await between a process-local key check and insertion introduces another race even before multiple instances are considered.
+- Returning internal object references can bypass later validations in an in-process API.
+- Deploying this lab as a payment service would discard persistence, real authentication, audit and recovery requirements.
+
+## Practice exercise
+
+Before reading the tests, implement or deliberately break one invariant and observe the failure: reject another tenant's order, reject an injected ownerId, preserve the original idempotent result, and prevent a stale update. Then design a production adapter: where do token verification, HTTP body limits, ETag parsing, session CSRF controls, durable transactions and safe error mapping belong?
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Keep schemas strict and obtain the actor only from validated authentication. Check scope plus tenant/owner for each existing object. Bind operation keys to the actor, tenant and operation; compare validated payload fingerprints; do not overwrite the initial creation snapshot when an order changes. Compare and update versions within the same atomic boundary.
+
+In production, use a durable scoped uniqueness constraint and an appropriate database transaction rather than the maps. An HTTP adapter authenticates requests, applies body/transport limits and browser-specific integrity checks, parses the selected ETag/version contract and maps LabHttpError-like domain failures into safe response types. A 401 adapter response needs the appropriate authentication challenge. Add integration tests for concurrent database workers and crash recovery because these unit tests cannot establish those guarantees.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Runtime schema validates input. Authentication establishes actor context. Scope plus object policy controls access. Idempotency preserves one operation; version checks reject stale edits. Copies protect in-process state boundaries. Lab tests demonstrate model behavior; production guarantees require the real storage, protocol and failure boundaries.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Lab source](https://github.com/Sanan2030/level_up/tree/main/examples/api-lab) and tests/api-lab.test.ts in this repository.
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): least privilege and per-object checks.
+- [OWASP REST Security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html): input validation and access control.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): If-Match and 412.
+- [RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html): Appendix B test vector.
+- [GitHub webhook validation](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries): published HMAC test vector.
+
+The source code and exercises are original educational implementations. The public webhook vector is a documentation fixture, not a platform credential.

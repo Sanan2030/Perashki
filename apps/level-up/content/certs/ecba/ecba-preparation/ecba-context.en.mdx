@@ -1,0 +1,75 @@
+---
+id: ecba-context
+locale: en
+title: 'Business analysis concepts and context'
+objectives:
+  - 'Identify the six BACCM concepts and their relationships in a scenario.'
+  - 'Distinguish business, stakeholder, solution and transition requirements.'
+---
+
+## Core concept
+
+Business analysis helps people understand a need for change and recommend a solution capable of delivering value in that context. Analysis is not limited to writing software specifications: it can concern processes, rules, services, information or organizational change. People with different job titles may perform analysis tasks. This lesson explains BABOK v3 concepts through original examples; it is not a reproduction of a current exam blueprint.
+
+## Why it matters
+
+When a stakeholder says “we need a mobile app,” they are already proposing a solution. A team can build a polished interface without understanding the problem it should solve. Separating need, solution and value exposes assumptions and preserves alternatives. Value is not necessarily money: safety, trust, easier work and reduced exposure can matter. Stakeholders may value different outcomes, so their perspectives and the enterprise’s objectives must be made explicit rather than assumed.
+
+## Theory and distinctions
+
+BACCM supplies six connected concepts: **Need**, **Change**, **Solution**, **Stakeholder**, **Value** and **Context**. They are neither a priority ranking nor six sequential project phases. A need is a problem or opportunity; change transforms an existing situation; a solution addresses needs under particular circumstances. Stakeholders have a relationship with that change, need or solution. Value concerns what matters to a stakeholder, while context contains relevant circumstances. A change in one concept should prompt reconsideration of the others.
+
+Requirement classification offers a different view. A **business requirement** explains why the change matters. A **stakeholder requirement** expresses a group’s needs. **Solution requirements** describe functional capabilities and qualities needed for effectiveness. **Transition requirements** describe temporary capabilities or conditions needed to move between states. One-time migration is different from ongoing search capability. A requirement represents a need, whereas a design represents a solution. The same representation may serve different purposes for different audiences, and elaborating a design may reveal more requirements.
+
+## Worked example
+
+A clinic network receives frequent calls from patients who cannot finish booking online. A sponsor requests a new mobile app. Analysis first investigates why calls occur: available slots are inaccurate on the existing website, while some patients prefer assisted service.
+
+The need is reliable booking. The change may involve self-service and reception processes. Options include fixing the website, improving staff tools or building an app. Patients, reception staff and the service owner are stakeholders. Context includes different branch hours and privacy constraints. Value should be assessed through successful bookings and avoidable repeat calls rather than app downloads alone. These measures are scenario choices, not mandatory BABOK KPIs. Keeping assisted service may protect value for a group that would be excluded by an app-only approach.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n A["Need: reliable booking"] --> B["Change: booking service"]\n B --> C["Options: site, staff tool, app"]\n D["Patients and reception"] --> A\n E["Context: branch hours and privacy"] --> C\n C --> F["Value: successful bookings"]\n F --> A'
+  }
+/>
+
+The model connects questions in this scenario. It does not declare a solution correct in advance; it keeps options connected to a need and evidence of value.
+
+## Decision practice
+
+The sponsor says the app is already selected and no investigation is needed. Compare immediately listing screens with clarifying the decision, its constraints and the underlying need. The second response supports useful analysis: establish whether the decision really is fixed, identify the problem the app must solve, and agree how success will be assessed. Respecting a constraint does not require treating its value as proven. Record assumptions that need further evidence.
+
+## Common mistakes and better practice
+
+- Do not automatically classify a requested feature as the business need; investigate its purpose.
+- Do not assess value only from the sponsor’s financial perspective; hear affected groups.
+- Do not turn BACCM concepts into project phases.
+- Separate ongoing quality requirements from temporary transition work.
+- Remember that design decisions may expose additional needs and risks.
+
+## Application exercise and explained answer
+
+**Exercise:** Classify four statements: “reduce repeat calls,” “reception staff need to see available slots,” “the system must prevent double booking,” and “existing appointments must be migrated once.” Then suggest an option that does not require a new app.
+
+**Explained answer:** These respectively express a business outcome, stakeholder need, functional solution requirement and temporary transition requirement. Correcting availability on the existing website is a possible alternative. It is not automatically superior: compare cost, risk, user impact and constraints. The point is to preserve a defensible choice, not to replace one unsupported solution with another.
+
+## Mini-quiz
+
+Before answering, identify which concept the question concerns. Do not invent legal rules or organizational authority absent from the scenario.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Need asks why; solution asks which approach; value asks whose benefit; context asks under what circumstances. Consider change and stakeholders together with them. Classify a requirement by its purpose rather than its position in a document.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: §§1.2–1.3, p. 2; §§2.1–2.5, pp. 12–20. Page numbers refer to the printed book. Check the current ECBA blueprint separately against official IIBA information.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

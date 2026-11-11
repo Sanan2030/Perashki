@@ -1,0 +1,1396 @@
+[
+  {
+    "id": "pspo2-platforms-backlog-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 3,
+    "text": {
+      "en": "A payment correction avoids a verified daily penalty starting next week. A similarly sized dashboard offers a larger benefit over two years. What should inform their order?",
+      "az": "Ödəniş düzəlişi gələn həftədən başlayacaq, yoxlanmış gündəlik cəriməni önləyir. Eyni ölçülü dashboard iki ildə daha böyük fayda verə bilər. Sıranı nə müəyyənləşdirməlidir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Always choose the largest total projected benefit.",
+          "az": "Həmişə ümumi proqnoz faydası ən böyük olanı seçmək."
+        },
+        "explanation": {
+          "en": "Total benefit alone omits the timing of loss and uncertainty.",
+          "az": "Ümumi fayda təkbaşına itkinin vaxtını və qeyri-müəyyənliyi nəzərə almır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Compare delay consequences, value, dependencies and effort with the confirmed obligation.",
+          "az": "Təsdiqlənmiş öhdəliklə birlikdə gecikmə nəticəsini, dəyəri, asılılığı və səyi müqayisə etmək."
+        },
+        "explanation": {
+          "en": "A time-sensitive consequence can change ordering; verify the obligation and compare useful scope rather than applying a universal formula.",
+          "az": "Vaxta həssas nəticə sıranı dəyişə bilər; universal düstur tətbiq etmək əvəzinə öhdəliyi yoxla və faydalı əhatəni müqayisə et."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Ask the sponsor to waive required quality so both fit.",
+          "az": "Hər ikisini sığışdırmaq üçün sponsordan məcburi keyfiyyəti ləğv etməsini istəmək."
+        },
+        "explanation": {
+          "en": "Lowering mandatory quality creates risk rather than resolving the economic trade-off.",
+          "az": "Məcburi keyfiyyəti azaltmaq iqtisadi seçimi həll etmək əvəzinə risk yaradır."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "A time-sensitive consequence can change ordering; verify the obligation and compare useful scope rather than applying a universal formula.",
+      "az": "Vaxta həssas nəticə sıranı dəyişə bilər; universal düstur tətbiq etmək əvəzinə öhdəliyi yoxla və faydalı əhatəni müqayisə et."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "professional-po-2018", "kwestio-pspo2", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-backlog-02",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "An insurance backlog contains years of unexamined requests. Which TWO actions improve it without pretending every request is a promise?",
+      "az": "Sığorta backlog-unda illərlə yoxlanmamış istəklər var. Hansı İKİ addım hər istəyi vəd saymadan backlog-u yaxşılaşdırar?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Write full acceptance details for every distant request now.",
+          "az": "Bütün uzaq istəklərin acceptance detallarını indi tam yazmaq."
+        },
+        "explanation": {
+          "en": "Speculative detail creates maintenance cost before the need is understood.",
+          "az": "Ehtiyac anlaşılmadan ehtimallı detallar maintenance xərci yaradır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Review relevance to the current goal and record reasons for archiving stale requests.",
+          "az": "Cari məqsədə uyğunluğu yoxlayıb köhnə istəkləri arxivləmə səbəbini yazmaq."
+        },
+        "explanation": {
+          "en": "Transparent renewal removes obsolete options while retaining important evidence and obligations.",
+          "az": "Şəffaf yenilənmə vacib sübut və öhdəliyi saxlayaraq köhnəlmiş seçimləri çıxarır."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Report archived requests as delivered value.",
+          "az": "Arxivlənmiş istəkləri çatdırılmış dəyər göstərmək."
+        },
+        "explanation": {
+          "en": "Removing a request is not delivering its intended capability or proving an outcome.",
+          "az": "İstəyi çıxarmaq nəzərdə tutulan imkanı çatdırmaq və ya nəticəni sübut etmək deyil."
+        },
+        "id": "c"
+      },
+      {
+        "text": {
+          "en": "Refine near-term useful slices more deeply than uncertain distant options.",
+          "az": "Yaxın faydalı hissələri qeyri-müəyyən uzaq seçimlərdən daha ətraflı dəqiqləşdirmək."
+        },
+        "explanation": {
+          "en": "Detail should support the next decisions; Scrum sets no universal refinement horizon.",
+          "az": "Detal növbəti qərarı dəstəkləməlidir; Scrum universal refinement üfüqü təyin etmir."
+        },
+        "id": "d"
+      }
+    ],
+    "correct": ["b", "d"],
+    "explanation": {
+      "en": "Transparent renewal removes obsolete options while retaining important evidence and obligations. Detail should support the next decisions; Scrum sets no universal refinement horizon.",
+      "az": "Şəffaf yenilənmə vacib sübut və öhdəliyi saxlayaraq köhnəlmiş seçimləri çıxarır. Detal növbəti qərarı dəstəkləməlidir; Scrum universal refinement üfüqü təyin etmir."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "professional-po-2018", "kwestio-pspo2", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-backlog-03",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "Developers reorder implementation tasks inside the Sprint without changing its goal or agreed scope. What does PO accountability require?",
+      "az": "Developers Sprint-in məqsədini və razılaşdırılmış əhatəsini dəyişmədən implementasiya tapşırıqlarını yenidən sıralayır. PO cavabdehliyi nə tələb edir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "The PO must approve every task sequence because they order the Product Backlog.",
+          "az": "Product Backlog-u sıraladığı üçün PO hər tapşırıq ardıcıllığını təsdiqləməlidir."
+        },
+        "explanation": {
+          "en": "Product Backlog accountability does not make the PO the owner of the Developers’ work plan.",
+          "az": "Product Backlog cavabdehliyi PO-nu Developers-in iş planının sahibi etmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "A Scrum Master must freeze task order until the next Sprint.",
+          "az": "Scrum Master növbəti Sprint-ədək tapşırıq sırasını dondurmalıdır."
+        },
+        "explanation": {
+          "en": "The plan is adapted as Developers learn; freezing it is not required by Scrum.",
+          "az": "Developers öyrəndikcə plan uyğunlaşdırılır; Scrum onu dondurmağı tələb etmir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Respect the Developers’ ownership of the Sprint plan while collaborating on any scope implications.",
+          "az": "Əhatəyə təsiri birlikdə müzakirə edərək Developers-in Sprint planı üzərində sahibliyinə hörmət etmək."
+        },
+        "explanation": {
+          "en": "Developers manage the Sprint Backlog plan; PO and Developers collaborate when learning affects scope or product choices.",
+          "az": "Sprint Backlog planını Developers idarə edir; öyrənmə əhatə və məhsul seçiminə təsir edəndə PO ilə əməkdaşlıq edir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Developers manage the Sprint Backlog plan; PO and Developers collaborate when learning affects scope or product choices.",
+      "az": "Sprint Backlog planını Developers idarə edir; öyrənmə əhatə və məhsul seçiminə təsir edəndə PO ilə əməkdaşlıq edir."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "professional-po-2018", "kwestio-pspo2", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-backlog-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "A proposed loan journey depends on an untested supplier capability. A one-day probe could reveal that the whole approach is infeasible. Why consider it early?",
+      "az": "Təklif olunan kredit yolu yoxlanmamış təchizatçı imkanından asılıdır. Bir günlük yoxlama bütün yanaşmanın mümkün olmadığını göstərə bilər. Niyə onu erkən nəzərdən keçirmək lazımdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Its result can change investment choices before substantial irreversible effort.",
+          "az": "Böyük geri qaytarılmayan səy qoyulmadan nəticəsi investisiya seçimini dəyişə bilər."
+        },
+        "explanation": {
+          "en": "Early learning can avoid expensive downstream commitment; the probe still needs a clear question and decision consequence.",
+          "az": "Erkən öyrənmə bahalı sonrakı öhdəliyi önləyə bilər; yoxlamanın aydın sualı və qərara təsiri olmalıdır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "All uncertain work must always precede every valuable feature.",
+          "az": "Bütün qeyri-müəyyən iş həmişə bütün dəyərli funksiyalardan əvvəl gəlməlidir."
+        },
+        "explanation": {
+          "en": "Risk reduction competes with other value and timing constraints; it is not an absolute ordering rule.",
+          "az": "Riskin azalması başqa dəyər və vaxt məhdudiyyəti ilə müqayisə edilir; mütləq sıra qaydası deyil."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "It will make the supplier delivery date certain.",
+          "az": "Bu, təchizatçının çatdırılma tarixini qəti edəcək."
+        },
+        "explanation": {
+          "en": "A feasibility probe does not eliminate all delivery or external-dependency uncertainty.",
+          "az": "Mümkünlük yoxlaması bütün çatdırılma və xarici asılılıq qeyri-müəyyənliyini aradan qaldırmır."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Early learning can avoid expensive downstream commitment; the probe still needs a clear question and decision consequence.",
+      "az": "Erkən öyrənmə bahalı sonrakı öhdəliyi önləyə bilər; yoxlamanın aydın sualı və qərara təsiri olmalıdır."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "professional-po-2018", "kwestio-pspo2", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-backlog-05",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "A claims feature is split into database, API and screen batches, none usable alone. What alternative better supports early learning?",
+      "az": "Sığorta tələbi funksiyası ayrı database, API və ekran paketlərinə bölünüb; heç biri tək istifadə edilmir. Erkən öyrənmə üçün hansı alternativ daha faydalıdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Declare each layer Done even though the shared quality definition requires integration.",
+          "az": "Ortaq keyfiyyət tərifi inteqrasiya tələb etsə də hər qatı Done elan etmək."
+        },
+        "explanation": {
+          "en": "Local completion cannot waive the product’s Definition of Done.",
+          "az": "Yerli tamamlanma məhsulun Definition of Done tələbini ləğv etmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Keep all layers separate and postpone feedback until every claim type is supported.",
+          "az": "Bütün qatları ayrı saxlayıb feedback-i bütün tələb növləri hazır olanadək təxirə salmaq."
+        },
+        "explanation": {
+          "en": "That postpones integrated evidence and increases the cost of discovering mistakes.",
+          "az": "Bu, inteqrasiya sübutunu gecikdirib səhv tapma xərcini artırır."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Build a small end-to-end path for one suitable claim type that satisfies Done.",
+          "az": "Uyğun bir tələb növü üçün Done-u ödəyən kiçik end-to-end yol qurmaq."
+        },
+        "explanation": {
+          "en": "A usable vertical slice can expose customer and integration evidence earlier without lowering quality.",
+          "az": "İstifadə edilən vertical slice keyfiyyəti azaltmadan müştəri və inteqrasiya sübutunu erkən verə bilər."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "A usable vertical slice can expose customer and integration evidence earlier without lowering quality.",
+      "az": "İstifadə edilən vertical slice keyfiyyəti azaltmadan müştəri və inteqrasiya sübutunu erkən verə bilər."
+    },
+    "lessonId": "pspo2-backlog-economics",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "professional-po-2018", "kwestio-pspo2", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-portfolio-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 3,
+    "text": {
+      "en": "A stable service has strong renewals; an adjacent service has little revenue but credible unmet needs. How should the next capacity decision be framed?",
+      "az": "Sabit xidmətin yenilənmələri güclüdür; yaxın xidmətin gəliri azdır, amma ödənməmiş ehtiyaca inandırıcı sübut var. Növbəti imkan qərarı necə verilməlidir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Give everything to today’s revenue leader indefinitely.",
+          "az": "Hər şeyi müddətsiz bugünkü gəlir liderinə vermək."
+        },
+        "explanation": {
+          "en": "Current revenue alone does not compare the benefit of the next investment or future opportunity.",
+          "az": "Cari gəlir təkbaşına növbəti investisiyanın faydasını və gələcək imkanı müqayisə etmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Compare marginal benefit and uncertainty, protect current service and bound exploration.",
+          "az": "Əlavə fayda və qeyri-müəyyənliyi müqayisə edib cari xidməti qorumaq və araşdırmanı məhdudlaşdırmaq."
+        },
+        "explanation": {
+          "en": "CV and UV inform different questions; a bounded experiment can test opportunity without abandoning existing users.",
+          "az": "CV və UV fərqli suallara məlumat verir; məhdud eksperiment cari istifadəçini tərk etmədən imkanı yoxlaya bilər."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Move everything to the new service because potential is always more important.",
+          "az": "Potensial həmişə vacib olduğu üçün hər şeyi yeni xidmətə köçürmək."
+        },
+        "explanation": {
+          "en": "Unrealized Value is not guaranteed demand and does not erase transition costs or current obligations.",
+          "az": "Unrealized Value zəmanətli tələb deyil, keçid xərcini və cari öhdəliyi silmir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "CV and UV inform different questions; a bounded experiment can test opportunity without abandoning existing users.",
+      "az": "CV və UV fərqli suallara məlumat verir; məhdud eksperiment cari istifadəçini tərk etmədən imkanı yoxlaya bilər."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "kwestio-pspo2",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-portfolio-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "A failed product experiment has already cost 500000. Which fact should weigh most in a continuation decision?",
+      "az": "Uğursuz məhsul eksperimenti artıq 500000-ə başa gəlib. Davam qərarında hansı fakt daha vacibdir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Whether expected future benefits justify future costs compared with alternatives.",
+          "az": "Gözlənilən gələcək faydanın alternativlərlə müqayisədə gələcək xərcə dəyib-dəyməməsi."
+        },
+        "explanation": {
+          "en": "Past spending is sunk; future benefits, exit obligations, costs and opportunity cost still matter.",
+          "az": "Keçmiş xərc sunk cost-dur; gələcək fayda, çıxış öhdəliyi, xərc və alternativ dəyəri vacib qalır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Whether another release can make the past expense disappear.",
+          "az": "Başqa release-in keçmiş xərci yox edə bilib-bilməməsi."
+        },
+        "explanation": {
+          "en": "Continuing cannot reverse an already incurred cost.",
+          "az": "Davam etmək artıq çəkilmiş xərci geri çevirmir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Whether cancelling would look inconsistent with the original announcement.",
+          "az": "Dayandırmanın ilkin elanla zidd görünməsi."
+        },
+        "explanation": {
+          "en": "Reputation requires honest communication, not preserving a disproved direction regardless of future value.",
+          "az": "Etibar dürüst ünsiyyət tələb edir, gələcək dəyərdən asılı olmayaraq yanlış istiqaməti saxlamağı deyil."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Past spending is sunk; future benefits, exit obligations, costs and opportunity cost still matter.",
+      "az": "Keçmiş xərc sunk cost-dur; gələcək fayda, çıxış öhdəliyi, xərc və alternativ dəyəri vacib qalır."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "kwestio-pspo2",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-portfolio-03",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "en": "A little-used export is expensive to maintain. Which TWO checks belong before retirement?",
+      "az": "Az istifadə olunan export-u saxlamaq bahadır. Dayandırmadan əvvəl hansı İKİ yoxlama lazımdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Only the percentage of users who clicked it yesterday.",
+          "az": "Yalnız dünən klik edənlərin faizi."
+        },
+        "explanation": {
+          "en": "Rare use may still serve critical periodic tasks; one day is not sufficient context.",
+          "az": "Nadir istifadə kritik dövri tapşırığa xidmət edə bilər; bir gün kifayət qədər kontekst deyil."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Whether affected customers have contractual duties and a viable replacement.",
+          "az": "Təsirlənən müştərilərin müqavilə öhdəliyinin və işlək alternativinin olub-olmaması."
+        },
+        "explanation": {
+          "en": "Critical dependencies and obligations can change the transition plan or retirement decision.",
+          "az": "Kritik asılılıq və öhdəlik keçid planını və ya dayandırma qərarını dəyişə bilər."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Whether hiding the button will remove security and support costs automatically.",
+          "az": "Düyməni gizlətməyin təhlükəsizlik və dəstək xərcini avtomatik silib-silməyəcəyi."
+        },
+        "explanation": {
+          "en": "Hiding is not removal and does not establish that operating costs disappear.",
+          "az": "Gizlətmək çıxarmaq deyil, əməliyyat xərcinin yox olduğunu sübut etmir."
+        },
+        "id": "c"
+      },
+      {
+        "text": {
+          "en": "Migration, notice, data-retention needs and ongoing harm measures.",
+          "az": "Migration, xəbərdarlıq, data retention ehtiyacı və davamlı zərər göstəriciləri."
+        },
+        "explanation": {
+          "en": "A responsible transition accounts for user impact and continuing duties, not only savings.",
+          "az": "Məsuliyyətli keçid yalnız qənaəti deyil, istifadəçi təsirini və davam edən öhdəliyi nəzərə alır."
+        },
+        "id": "d"
+      }
+    ],
+    "correct": ["b", "d"],
+    "explanation": {
+      "en": "Critical dependencies and obligations can change the transition plan or retirement decision. A responsible transition accounts for user impact and continuing duties, not only savings.",
+      "az": "Kritik asılılıq və öhdəlik keçid planını və ya dayandırma qərarını dəyişə bilər. Məsuliyyətli keçid yalnız qənaəti deyil, istifadəçi təsirini və davam edən öhdəliyi nəzərə alır."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "kwestio-pspo2",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-portfolio-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "Finance wants a Portfolio Owner role added because it believes Scrum requires one above all Product Owners. What is accurate?",
+      "az": "Maliyyə bütün Product Owner-lərdən yuxarı Portfolio Owner əlavə etmək istəyir, çünki Scrum-un bunu tələb etdiyini düşünür. Hansı fikir doğrudur?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Scrum requires that role whenever more than two products exist.",
+          "az": "İkidən çox məhsul olduqda Scrum bu rolu tələb edir."
+        },
+        "explanation": {
+          "en": "The Scrum Guide defines no such product-count rule or portfolio accountability.",
+          "az": "Scrum Guide belə məhsul sayı qaydası və portfolio cavabdehliyi müəyyən etmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Scrum prohibits organizations from discussing portfolio investment.",
+          "az": "Scrum təşkilata portfolio investisiyasını müzakirə etməyi qadağan edir."
+        },
+        "explanation": {
+          "en": "Portfolio practices can complement Scrum; absence from the framework is not prohibition.",
+          "az": "Portfolio təcrübəsi Scrum-u tamamlaya bilər; çərçivədə olmaması qadağa demək deyil."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Portfolio governance is an organizational choice; Scrum does not prescribe that role.",
+          "az": "Portfolio idarəetməsi təşkilati seçimdir; Scrum bu rolu təyin etmir."
+        },
+        "explanation": {
+          "en": "Keep additional governance distinct from Scrum and preserve clear Product Owner accountability.",
+          "az": "Əlavə idarəetməni Scrum-dan fərqləndir və Product Owner cavabdehliyini aydın saxla."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Keep additional governance distinct from Scrum and preserve clear Product Owner accountability.",
+      "az": "Əlavə idarəetməni Scrum-dan fərqləndir və Product Owner cavabdehliyini aydın saxla."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "kwestio-pspo2",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-portfolio-05",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 2,
+    "text": {
+      "en": "A replacement costs 60 hours once and saves an expected 10 support hours per month. What does a six-month simple payback establish?",
+      "az": "Alternativ bir dəfə 60 saat tələb edir və ayda gözlənilən 10 dəstək saatına qənaət edir. Altı aylıq sadə geriödəmə nəyi göstərir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "The product must retire the old capability immediately.",
+          "az": "Məhsul köhnə imkanı dərhal dayandırmalıdır."
+        },
+        "explanation": {
+          "en": "The arithmetic does not establish obligations, adoption or transition safety.",
+          "az": "Hesab öhdəliyi, istifadəyə keçidi və keçid təhlükəsizliyini təsdiqləmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "A conditional cost comparison, with user impact and opportunity cost still to assess.",
+          "az": "İstifadəçi təsiri və alternativ dəyəri hələ yoxlanmalı olan şərti xərc müqayisəsini."
+        },
+        "explanation": {
+          "en": "Simple payback depends on the assumed savings and excludes other material costs and benefits.",
+          "az": "Sadə geriödəmə fərz edilən qənaətdən asılıdır və başqa mühüm xərc və faydanı daxil etmir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "A verified forecast of increased customer satisfaction.",
+          "az": "Müştəri məmnuniyyətinin artmasına təsdiqlənmiş proqnozu."
+        },
+        "explanation": {
+          "en": "Support-hour savings are not direct evidence of customer satisfaction.",
+          "az": "Dəstək saatına qənaət müştəri məmnuniyyətinin birbaşa sübutu deyil."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Simple payback depends on the assumed savings and excludes other material costs and benefits.",
+      "az": "Sadə geriödəmə fərz edilən qənaətdən asılıdır və başqa mühüm xərc və faydanı daxil etmir."
+    },
+    "lessonId": "pspo2-portfolio-decisions",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "kwestio-pspo2",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-model-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "A service promises effortless updates, but each customer contract pays for permanent bespoke forks. Adoption falls as support cost rises. What should the PO investigate?",
+      "az": "Xidmət rahat yeniləmə vəd edir, amma hər müqavilə daimi xüsusi fork üçün ödəniş gətirir. İstifadə azalır, dəstək xərci artır. PO nəyi araşdırmalıdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Only how to increase the number of features per Sprint.",
+          "az": "Yalnız Sprint başına funksiya sayını artırmağı."
+        },
+        "explanation": {
+          "en": "Output does not address the incentive and adoption conflict.",
+          "az": "Çıxış həcmi təşviq və istifadəyə keçid ziddiyyətini həll etmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Whether a subscription is mandatory under Scrum.",
+          "az": "Scrum-da subscription-un məcburi olub-olmamasını."
+        },
+        "explanation": {
+          "en": "Scrum prescribes no revenue model.",
+          "az": "Scrum gəlir modeli təyin etmir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "How incentives and the offer conflict with the vision, then test feasible model changes.",
+          "az": "Təşviq və təklifin vision-la ziddiyyətini, sonra mümkün model dəyişikliklərinin testini."
+        },
+        "explanation": {
+          "en": "Surface the economic hypothesis with leadership and customers; compare options rather than assuming one revenue model fixes everything.",
+          "az": "İqtisadi fərziyyəni rəhbərlik və müştəri ilə görünən et; bir gəlir modelinin hər şeyi düzəltdiyini fərz etmək əvəzinə seçimləri müqayisə et."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Surface the economic hypothesis with leadership and customers; compare options rather than assuming one revenue model fixes everything.",
+      "az": "İqtisadi fərziyyəni rəhbərlik və müştəri ilə görünən et; bir gəlir modelinin hər şeyi düzəltdiyini fərz etmək əvəzinə seçimləri müqayisə et."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "professional-po-2018", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-model-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "en": "How should a product vision and a Product Goal be related?",
+      "az": "Product vision və Product Goal necə əlaqələndirilməlidir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "The vision provides direction; the Product Goal focuses a future product state without becoming a mandatory second vision artifact.",
+          "az": "Vision istiqamət verir; Product Goal əlavə məcburi vision artifact-ı yaratmadan məhsulun gələcək vəziyyətinə fokuslanır."
+        },
+        "explanation": {
+          "en": "Scrum defines the Product Goal commitment; a broader vision is a complementary practice rather than an additional required artifact.",
+          "az": "Scrum Product Goal commitment-ini müəyyən edir; daha geniş vision əlavə məcburi artifact deyil, tamamlayıcı təcrübədir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "A new Product Goal must replace the previous one at every Sprint boundary.",
+          "az": "Hər Sprint sərhədində əvvəlki Product Goal yenisi ilə əvəz edilməlidir."
+        },
+        "explanation": {
+          "en": "The team must fulfill or abandon one Product Goal before the next; no fixed Sprint cadence is mandated.",
+          "az": "Komanda növbəti Product Goal-dan əvvəl carini yerinə yetirməli və ya tərk etməlidir; sabit Sprint dövrü tələb olunmur."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Both must be frozen permanently once customers see them.",
+          "az": "Müştəri gördükdən sonra hər ikisi həmişəlik dondurulmalıdır."
+        },
+        "explanation": {
+          "en": "Evidence can justify adaptation; transparency matters more than preserving an invalid assumption.",
+          "az": "Sübut uyğunlaşdırmaya əsas verə bilər; yanlış fərziyyəni saxlamaqdan şəffaflıq vacibdir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Scrum defines the Product Goal commitment; a broader vision is a complementary practice rather than an additional required artifact.",
+      "az": "Scrum Product Goal commitment-ini müəyyən edir; daha geniş vision əlavə məcburi artifact deyil, tamamlayıcı təcrübədir."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "professional-po-2018", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-model-03",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 3,
+    "text": {
+      "en": "A competitor has more features, but the target segment renews because your service is reliable. What is the strongest next step?",
+      "az": "Rəqibin funksiyası çoxdur, amma hədəf seqment sənin xidmətini etibarlılığına görə yeniləyir. Ən əsaslı növbəti addım nədir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Copy every competitor feature before checking customer needs.",
+          "az": "Müştəri ehtiyacını yoxlamadan rəqibin hər funksiyasını köçürmək."
+        },
+        "explanation": {
+          "en": "Feature parity can consume capacity without improving the chosen value proposition.",
+          "az": "Funksiya bərabərliyi seçilmiş dəyər təklifini yaxşılaşdırmadan imkanı sərf edə bilər."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Investigate relevant unmet needs and switching behavior while protecting the strategic strength.",
+          "az": "Strateji üstünlüyü qoruyaraq uyğun ödənməmiş ehtiyacı və keçid davranışını araşdırmaq."
+        },
+        "explanation": {
+          "en": "Competitor signals should inform an evidence-based segment decision, not replace it.",
+          "az": "Rəqib siqnalı sübuta əsaslanan seqment qərarına məlumat verməlidir, onu əvəz etməməlidir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Ignore all competitor evidence because current renewals are high.",
+          "az": "Cari yenilənmə yüksək olduğu üçün rəqibin bütün sübutunu nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "Strong current value does not eliminate future threats or new unmet needs.",
+          "az": "Güclü cari dəyər gələcək təhlükəni və yeni ödənməmiş ehtiyacı aradan qaldırmır."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Competitor signals should inform an evidence-based segment decision, not replace it.",
+      "az": "Rəqib siqnalı sübuta əsaslanan seqment qərarına məlumat verməlidir, onu əvəz etməməlidir."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "professional-po-2018", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-model-04",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "en": "Evidence supports changing the target customer segment. Which TWO actions preserve accountability and trust?",
+      "az": "Sübut hədəf müştəri seqmentini dəyişməyi dəstəkləyir. Hansı İKİ addım cavabdehliyi və etimadı qoruyur?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Share the evidence and trade-offs with stakeholders and Developers.",
+          "az": "Sübutu və seçimlərin nəticəsini maraqlı tərəflər və Developers ilə paylaşmaq."
+        },
+        "explanation": {
+          "en": "Transparent reasoning lets people understand the product direction and challenge assumptions.",
+          "az": "Şəffaf əsaslandırma insanlara istiqaməti anlamaq və fərziyyəni sorğulamaq imkanı verir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Quietly redirect the backlog to avoid difficult conversations.",
+          "az": "Çətin söhbətdən yayınmaq üçün backlog-u gizlicə yönləndirmək."
+        },
+        "explanation": {
+          "en": "PO authority does not remove the obligation to make the backlog and direction understood.",
+          "az": "PO səlahiyyəti backlog və istiqamətin anlaşılması tələbini silmir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Require unanimous stakeholder voting for each item before ordering it.",
+          "az": "Sıralamadan əvvəl hər iş üçün maraqlı tərəflərin yekdil səsverməsini tələb etmək."
+        },
+        "explanation": {
+          "en": "Collaboration does not turn the PO accountability into a mandatory committee.",
+          "az": "Əməkdaşlıq PO cavabdehliyini məcburi komitəyə çevirmir."
+        },
+        "id": "c"
+      },
+      {
+        "text": {
+          "en": "Clarify whether the Product Goal is being abandoned and inspect the current Sprint Goal separately.",
+          "az": "Product Goal-dan imtina edilib-edilmədiyini aydınlaşdırıb cari Sprint Goal-u ayrıca yoxlamaq."
+        },
+        "explanation": {
+          "en": "A strategic change does not automatically obsolete the current Sprint Goal; explain each decision explicitly.",
+          "az": "Strateji dəyişiklik cari Sprint Goal-u avtomatik köhnəltmir; hər qərarı açıq izah et."
+        },
+        "id": "d"
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Transparent reasoning lets people understand the product direction and challenge assumptions. A strategic change does not automatically obsolete the current Sprint Goal; explain each decision explicitly.",
+      "az": "Şəffaf əsaslandırma insanlara istiqaməti anlamaq və fərziyyəni sorğulamaq imkanı verir. Strateji dəyişiklik cari Sprint Goal-u avtomatik köhnəltmir; hər qərarı açıq izah et."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "professional-po-2018", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-model-05",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "en": "A hospital employee likes a proposed tool, but a procurement committee buys it and clinicians use it. What needs testing before claiming demand?",
+      "az": "Xəstəxana əməkdaşı təklif olunan aləti bəyənir, amma onu satınalma komitəsi alır, klinisistlər istifadə edir. Tələbi təsdiqləmədən əvvəl nə yoxlanmalıdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Only whether the enthusiastic employee likes the interface colors.",
+          "az": "Yalnız həvəsli əməkdaşın interfeys rənglərini bəyənib-bəyənməməsi."
+        },
+        "explanation": {
+          "en": "A preference from one participant does not establish user benefit or purchasing feasibility.",
+          "az": "Bir iştirakçının zövqü istifadəçi faydasını və alış mümkünlüyünü təsdiqləmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Whether a complete Business Model Canvas has been filled in.",
+          "az": "Business Model Canvas-ın tam doldurulub-doldurulmaması."
+        },
+        "explanation": {
+          "en": "A completed template records assumptions rather than validating behavior.",
+          "az": "Doldurulmuş şablon davranışı təsdiqləmir, fərziyyələri qeyd edir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "The user need, purchasing authority, adoption conditions and a credible offer response.",
+          "az": "İstifadəçi ehtiyacı, alış səlahiyyəti, istifadəyə keçid şərtləri və real təklifə cavab."
+        },
+        "explanation": {
+          "en": "Users, advocates and buyers can differ; test the links between benefit, adoption and payment honestly.",
+          "az": "İstifadəçi, dəstəkçi və alıcı fərqli ola bilər; fayda, istifadə və ödəniş əlaqəsini dürüst yoxla."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Users, advocates and buyers can differ; test the links between benefit, adoption and payment honestly.",
+      "az": "İstifadəçi, dəstəkçi və alıcı fərqli ola bilər; fayda, istifadə və ödəniş əlaqəsini dürüst yoxla."
+    },
+    "lessonId": "pspo2-business-models",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "professional-po-2018", "examdeck-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-evidence-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "In a hypothetical delivery simulation, 900 of 1000 runs finish within eight weeks. What can you responsibly say?",
+      "az": "Fərziyyəvi çatdırılma simulyasiyasının 1000 sınağından 900-ü səkkiz həftəyə bitir. Məsuliyyətlə nə demək olar?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "The real release is guaranteed to finish within eight weeks.",
+          "az": "Real release səkkiz həftəyə mütləq bitəcək."
+        },
+        "explanation": {
+          "en": "A simulation is conditional on its model and assumptions, not a guarantee.",
+          "az": "Simulyasiya model və fərziyyələrdən asılıdır, zəmanət deyil."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "90% of simulated runs met that date under these inputs; test whether the history remains comparable.",
+          "az": "Bu girişlərlə simulyasiyaların 90%-i tarixi tutub; tarixçənin uyğunluğunu yoxlamaq lazımdır."
+        },
+        "explanation": {
+          "en": "A simulation percentile summarizes modeled outcomes; changes in scope, dependencies or capacity can invalidate its use.",
+          "az": "Simulyasiya percentili modelləşdirilmiş nəticəni ümumiləşdirir; əhatə, asılılıq və imkan dəyişikliyi istifadəsini etibarsız edə bilər."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Each backlog item has a 90% probability of delivering customer benefit.",
+          "az": "Hər backlog işinin müştəri faydası vermə ehtimalı 90%-dir."
+        },
+        "explanation": {
+          "en": "Delivery-time simulation does not estimate an item’s customer impact.",
+          "az": "Çatdırılma vaxtı simulyasiyası işin müştəri təsirini hesablamır."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "A simulation percentile summarizes modeled outcomes; changes in scope, dependencies or capacity can invalidate its use.",
+      "az": "Simulyasiya percentili modelləşdirilmiş nəticəni ümumiləşdirir; əhatə, asılılıq və imkan dəyişikliyi istifadəsini etibarsız edə bilər."
+    },
+    "lessonId": "pspo2-evidence-uncertainty",
+    "practiceOnly": true,
+    "sourceIds": ["kanban-2021", "ebm-2024", "professional-po-2018", "kwestio-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-evidence-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "A well-analyzed trial estimates +4 percentage points with an interval from −2 to +10. Which interpretation is justified?",
+      "az": "Uyğun təhlil edilmiş testdə təxmin +4 faiz bəndi, interval −2 ilə +10 arasındadır. Hansı şərh əsaslıdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Improvement is established because the point estimate is positive.",
+          "az": "Point estimate müsbət olduğu üçün yaxşılaşma təsdiqlənib."
+        },
+        "explanation": {
+          "en": "That ignores the interval’s inclusion of no change and harm.",
+          "az": "Bu, intervalın dəyişməmə və zərəri əhatə etməsini nəzərə almır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "The true effect is certainly zero.",
+          "az": "Həqiqi təsir mütləq sıfırdır."
+        },
+        "explanation": {
+          "en": "Inconclusive evidence is not proof of no effect.",
+          "az": "Qeyri-müəyyən sübut təsirin olmamasının sübutu deyil."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "The result has not established improvement; inspect uncertainty, practical effects and the cost of further evidence.",
+          "az": "Nəticə yaxşılaşmanı təsdiqləməyib; qeyri-müəyyənliyi, praktik təsiri və əlavə sübut xərcini yoxla."
+        },
+        "explanation": {
+          "en": "An interval including harm and no change does not justify declaring a positive effect; it also does not automatically invalidate the design.",
+          "az": "Zərər və dəyişməməni əhatə edən interval müsbət təsir elanına əsas vermir; bu, dizaynı da avtomatik etibarsız etmir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "An interval including harm and no change does not justify declaring a positive effect; it also does not automatically invalidate the design.",
+      "az": "Zərər və dəyişməməni əhatə edən interval müsbət təsir elanına əsas vermir; bu, dizaynı da avtomatik etibarsız etmir."
+    },
+    "lessonId": "pspo2-evidence-uncertainty",
+    "practiceOnly": true,
+    "sourceIds": ["kanban-2021", "ebm-2024", "professional-po-2018", "kwestio-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-evidence-03",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "A lending concept depends on whether customers will share a document, but the team first wants to build a full portal. What is a better first learning step?",
+      "az": "Kredit ideyası müştərinin sənəd paylaşmağa razı olmasından asılıdır, amma komanda əvvəl tam portal qurmaq istəyir. Daha yaxşı ilk öyrənmə addımı nədir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Test the consequential sharing assumption with a small, transparent and safe pilot.",
+          "az": "Vacib paylaşma fərziyyəsini kiçik, şəffaf və təhlükəsiz pilotla yoxlamaq."
+        },
+        "explanation": {
+          "en": "An assumption test can avoid unnecessary build cost while respecting consent and applicable quality constraints.",
+          "az": "Fərziyyə testi razılığı və uyğun keyfiyyət məhdudiyyətini qoruyaraq lazımsız qurma xərcini önləyə bilər."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Build all planned portal features before asking users.",
+          "az": "İstifadəçidən soruşmadan portalın bütün funksiyalarını qurmaq."
+        },
+        "explanation": {
+          "en": "This defers the potentially fatal assumption until investment is much larger.",
+          "az": "Bu, ideyanı dayandıra biləcək fərziyyəni böyük investisiyadan sonraya saxlayır."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Treat stakeholders’ enthusiasm as proof that users will share documents.",
+          "az": "Maraqlı tərəfin həvəsini istifadəçinin sənəd paylaşacağına sübut saymaq."
+        },
+        "explanation": {
+          "en": "Stakeholder interest does not demonstrate the target users’ behavior.",
+          "az": "Maraqlı tərəfin marağı hədəf istifadəçinin davranışını göstərmir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "An assumption test can avoid unnecessary build cost while respecting consent and applicable quality constraints.",
+      "az": "Fərziyyə testi razılığı və uyğun keyfiyyət məhdudiyyətini qoruyaraq lazımsız qurma xərcini önləyə bilər."
+    },
+    "lessonId": "pspo2-evidence-uncertainty",
+    "practiceOnly": true,
+    "sourceIds": ["kanban-2021", "ebm-2024", "professional-po-2018", "kwestio-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-evidence-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 2,
+    "text": {
+      "en": "A team records 30 of 50 available hours on its product, much of it maintenance. What does a 60% on-product index mean?",
+      "az": "Komanda 50 mövcud saatın 30-unu məhsula ayırır, bunun çoxu maintenance-dir. 60% on-product index nə deməkdir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "60% of users experienced more value.",
+          "az": "İstifadəçilərin 60%-i daha çox dəyər yaşayıb."
+        },
+        "explanation": {
+          "en": "A time-allocation measure does not establish customer outcomes.",
+          "az": "Vaxt bölgüsü ölçüsü müştəri nəticəsini təsdiqləmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "60% of measured available time was product work, not necessarily innovation.",
+          "az": "Ölçülmüş mövcud vaxtın 60%-i məhsul işidir, mütləq innovasiya deyil."
+        },
+        "explanation": {
+          "en": "State the boundary; combine this A2I example measure with maintenance burden and value evidence rather than treating it as an innovation score.",
+          "az": "Sərhədi göstər; bu A2I nümunə ölçüsünü innovasiya balı saymaq əvəzinə maintenance yükü və dəyər sübutu ilə birləşdir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "60% of all future backlog items can be promised this month.",
+          "az": "Gələcək backlog işlərinin 60%-nə bu ay üçün vəd vermək olar."
+        },
+        "explanation": {
+          "en": "Time allocation is not a scope forecast or promise.",
+          "az": "Vaxt bölgüsü əhatə proqnozu və ya vəd deyil."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "State the boundary; combine this A2I example measure with maintenance burden and value evidence rather than treating it as an innovation score.",
+      "az": "Sərhədi göstər; bu A2I nümunə ölçüsünü innovasiya balı saymaq əvəzinə maintenance yükü və dəyər sübutu ilə birləşdir."
+    },
+    "lessonId": "pspo2-evidence-uncertainty",
+    "practiceOnly": true,
+    "sourceIds": ["kanban-2021", "ebm-2024", "professional-po-2018", "kwestio-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-evidence-05",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "Which TWO checks matter before reusing a throughput simulation after a major process change?",
+      "az": "Böyük proses dəyişikliyindən sonra throughput simulyasiyasını yenidən istifadə etməzdən əvvəl hansı İKİ yoxlama vacibdir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Whether item granularity and Done criteria still match the historical data.",
+          "az": "İş ölçüsü və Done meyarının tarixçəyə hələ uyğun olub-olmaması."
+        },
+        "explanation": {
+          "en": "Completion counts are meaningful only with a sufficiently comparable system boundary and work definition.",
+          "az": "Tamamlanma sayı kifayət qədər uyğun sistem sərhədi və iş tərifi ilə mənalıdır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Whether the number of simulation runs is large enough to remove every external risk.",
+          "az": "Simulyasiya sayının bütün xarici riski aradan qaldıracaq qədər böyük olub-olmaması."
+        },
+        "explanation": {
+          "en": "More runs do not remove omitted constraints or repair non-comparable inputs.",
+          "az": "Daha çox sınaq nəzərə alınmayan məhdudiyyəti silmir və uyğunsuz girişi düzəltmir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Whether all stakeholders prefer the earliest date.",
+          "az": "Bütün maraqlı tərəflərin ən erkən tarixi istəyib-istəməməsi."
+        },
+        "explanation": {
+          "en": "A preference is not evidence that the model is valid.",
+          "az": "İstək modelin etibarlı olmasına sübut deyil."
+        },
+        "id": "c"
+      },
+      {
+        "text": {
+          "en": "Whether current dependencies and available capacity differ from the sampled history.",
+          "az": "Cari asılılıq və mövcud imkanın seçilmiş tarixçədən fərqlənib-fərqlənməməsi."
+        },
+        "explanation": {
+          "en": "New dependencies and capacity changes can alter the modeled completion distribution.",
+          "az": "Yeni asılılıq və imkan dəyişikliyi modelləşdirilmiş tamamlanma paylanmasını dəyişə bilər."
+        },
+        "id": "d"
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Completion counts are meaningful only with a sufficiently comparable system boundary and work definition. New dependencies and capacity changes can alter the modeled completion distribution.",
+      "az": "Tamamlanma sayı kifayət qədər uyğun sistem sərhədi və iş tərifi ilə mənalıdır. Yeni asılılıq və imkan dəyişikliyi modelləşdirilmiş tamamlanma paylanmasını dəyişə bilər."
+    },
+    "lessonId": "pspo2-evidence-uncertainty",
+    "practiceOnly": true,
+    "sourceIds": ["kanban-2021", "ebm-2024", "professional-po-2018", "kwestio-pspo2"]
+  },
+  {
+    "id": "pspo2-platforms-scaling-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "Three Scrum Teams work on one clearly bounded product. Which arrangement preserves product-level direction?",
+      "az": "Üç Scrum Team sərhədi aydın olan eyni məhsulda işləyir. Hansı quruluş məhsul səviyyəsində istiqaməti qoruyur?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Independent component backlogs with unrelated goals and competing PO authority.",
+          "az": "Əlaqəsiz məqsəd və rəqabətli PO səlahiyyəti olan müstəqil komponent backlog-ları."
+        },
+        "explanation": {
+          "en": "Local component priorities can undermine one product’s direction and integrated results.",
+          "az": "Yerli komponent prioriteti məhsulun vahid istiqamətini və inteqrasiya nəticəsini poza bilər."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "One shared Product Goal, Product Backlog and Product Owner, with integrated quality.",
+          "az": "İnteqrasiya keyfiyyəti ilə birlikdə ortaq Product Goal, Product Backlog və Product Owner."
+        },
+        "explanation": {
+          "en": "The Scrum Guide specifies this shared product focus when multiple Scrum Teams work on the same product.",
+          "az": "Scrum Guide eyni məhsul üzərində işləyən bir neçə Scrum Team üçün bu ortaq məhsul fokusunu göstərir."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "A requirement to combine all teams into one team regardless of size.",
+          "az": "Ölçüdən asılı olmayaraq bütün komandaları bir komandaya birləşdirmək tələbi."
+        },
+        "explanation": {
+          "en": "Scrum explicitly permits multiple teams on one product with shared product commitments and accountability.",
+          "az": "Scrum ortaq məhsul commitment-i və cavabdehliklə bir məhsulda çox komandaya açıq imkan verir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "The Scrum Guide specifies this shared product focus when multiple Scrum Teams work on the same product.",
+      "az": "Scrum Guide eyni məhsul üzərində işləyən bir neçə Scrum Team üçün bu ortaq məhsul fokusunu göstərir."
+    },
+    "lessonId": "pspo2-shared-quality",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "scrum-competencies-2026",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-scaling-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "In the supplementary Nexus example, what is the purpose of the Nexus Daily Scrum?",
+      "az": "Əlavə Nexus nümunəsində Nexus Daily Scrum-un məqsədi nədir?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Replace each team’s Daily Scrum with a management reporting meeting.",
+          "az": "Hər komandanın Daily Scrum-unu rəhbərlik üçün hesabatla əvəz etmək."
+        },
+        "explanation": {
+          "en": "The cross-team inspection does not replace the teams’ own daily planning purpose.",
+          "az": "Komandalararası yoxlama komandaların öz gündəlik planlaşdırma məqsədini əvəz etmir."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Let the PO allocate all technical tasks to individuals each morning.",
+          "az": "PO-nun hər səhər bütün texniki tapşırıqları şəxslərə bölməsi."
+        },
+        "explanation": {
+          "en": "It is not a task-assignment event and does not remove self-management.",
+          "az": "Bu, tapşırıq bölgüsü tədbiri deyil və özünüidarəni aradan qaldırmır."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Inspect progress toward the Nexus Sprint Goal and expose cross-team integration issues and dependencies.",
+          "az": "Nexus Sprint Goal-a irəliləyişi yoxlamaq və komandalararası inteqrasiya problemi ilə asılılığı görünən etmək."
+        },
+        "explanation": {
+          "en": "The reviewed public ExamDeck example describes this integration focus. Nexus is optional; this event is not required by the Scrum Guide.",
+          "az": "Oxunmuş açıq ExamDeck nümunəsi bu inteqrasiya fokusunu izah edir. Nexus əlavə seçimdir; bu tədbiri Scrum Guide tələb etmir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "The reviewed public ExamDeck example describes this integration focus. Nexus is optional; this event is not required by the Scrum Guide.",
+      "az": "Oxunmuş açıq ExamDeck nümunəsi bu inteqrasiya fokusunu izah edir. Nexus əlavə seçimdir; bu tədbiri Scrum Guide tələb etmir."
+    },
+    "lessonId": "pspo2-shared-quality",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "scrum-competencies-2026",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-scaling-03",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "A provider needs customer training before public exposure of a Done capability. What is consistent with Scrum?",
+      "az": "Təchizatçı Done imkanı hamıya açmazdan əvvəl müştəri təlimi tələb edir. Hansı yanaşma Scrum-a uyğundur?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Choose a suitable release cadence while preserving Done and inspecting adoption needs.",
+          "az": "Done-u qoruyaraq və istifadəyə keçid ehtiyacını yoxlayaraq uyğun release dövrü seçmək."
+        },
+        "explanation": {
+          "en": "Done permits release but does not force immediate public exposure; release timing should reflect value and operational constraints.",
+          "az": "Done release-ə imkan verir, amma dərhal hamıya açılmanı tələb etmir; vaxt dəyər və əməliyyat məhdudiyyətinə uyğun olmalıdır."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "Treat Sprint Review as mandatory permission from stakeholders to release.",
+          "az": "Sprint Review-u release üçün maraqlı tərəfin məcburi icazəsi saymaq."
+        },
+        "explanation": {
+          "en": "Sprint Review is not a mandatory release gate.",
+          "az": "Sprint Review məcburi release icazəsi deyil."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Claim Scrum requires public release after every deployment.",
+          "az": "Scrum-un hər deployment-dan sonra ictimai release tələb etdiyini demək."
+        },
+        "explanation": {
+          "en": "Scrum does not prescribe that release policy.",
+          "az": "Scrum belə release siyasəti təyin etmir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Done permits release but does not force immediate public exposure; release timing should reflect value and operational constraints.",
+      "az": "Done release-ə imkan verir, amma dərhal hamıya açılmanı tələb etmir; vaxt dəyər və əməliyyat məhdudiyyətinə uyğun olmalıdır."
+    },
+    "lessonId": "pspo2-shared-quality",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "scrum-competencies-2026",
+      "examdeck-pspo2"
+    ]
+  },
+  {
+    "id": "pspo2-platforms-scaling-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "en": "A PO delegates backlog research to representatives in four teams. What must remain true?",
+      "az": "PO backlog araşdırmasını dörd komandadakı nümayəndələrə həvalə edir. Nə qüvvədə qalmalıdır?"
+    },
+    "options": [
+      {
+        "text": {
+          "en": "Each representative independently overrides the shared product ordering.",
+          "az": "Hər nümayəndə ortaq məhsul sırasını müstəqil ləğv edir."
+        },
+        "explanation": {
+          "en": "Competing independent authority undermines effective single-product backlog management.",
+          "az": "Rəqabətli müstəqil səlahiyyət vahid məhsul backlog-unun effektiv idarəsini pozur."
+        },
+        "id": "a"
+      },
+      {
+        "text": {
+          "en": "The PO remains accountable while collaboration and direct user contact can continue.",
+          "az": "Əməkdaşlıq və birbaşa istifadəçi ünsiyyəti davam edə bilər, PO cavabdeh qalır."
+        },
+        "explanation": {
+          "en": "Delegation can broaden input without creating multiple accountable Product Owners for the same product.",
+          "az": "Delegation eyni məhsula bir neçə cavabdeh Product Owner yaratmadan məlumat mənbələrini genişləndirə bilər."
+        },
+        "id": "b"
+      },
+      {
+        "text": {
+          "en": "Only the PO may ever talk to customers or update item descriptions.",
+          "az": "Müştəri ilə yalnız PO danışa və iş təsvirini yalnız PO yeniləyə bilər."
+        },
+        "explanation": {
+          "en": "Single accountability does not require a communication or editing bottleneck.",
+          "az": "Vahid cavabdehlik ünsiyyət və redaktə darboğazı tələb etmir."
+        },
+        "id": "c"
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Delegation can broaden input without creating multiple accountable Product Owners for the same product.",
+      "az": "Delegation eyni məhsula bir neçə cavabdeh Product Owner yaratmadan məlumat mənbələrini genişləndirə bilər."
+    },
+    "lessonId": "pspo2-shared-quality",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "professional-po-2018",
+      "scrum-competencies-2026",
+      "examdeck-pspo2"
+    ]
+  }
+]

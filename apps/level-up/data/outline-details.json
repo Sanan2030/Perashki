@@ -1,0 +1,652 @@
+{
+  "ba-role": {
+    "focus": {
+      "az": "Biznes ehtiyacını, təklif edilən həlli və ölçülə bilən dəyəri ayır.",
+      "en": "Separate a business need, a proposed solution and measurable value."
+    },
+    "exercise": {
+      "az": "“İdarə paneli qur” sorğusunu başlanğıc göstəricisi və nəticəsi olan problem bəyanatına çevir.",
+      "en": "Rewrite “build a dashboard” as a problem statement with a baseline and outcome."
+    }
+  },
+  "sdlc": {
+    "focus": {
+      "az": "Analiz fəaliyyətlərini kəşf, hazırlama, buraxılış və dəstəyə uyğunlaşdır.",
+      "en": "Adapt analysis activities to discovery, delivery, release and support."
+    },
+    "exercise": {
+      "az": "Mobil bankçılıq dəyişikliyinin həyat dövründə beş analiz qərarını xəritələ.",
+      "en": "Map five analysis decisions across the lifecycle of a mobile banking change."
+    }
+  },
+  "stakeholder-mapping": {
+    "focus": {
+      "az": "Təsirə məruz qalan insanları tap və təsir gücü ilə ehtiyacları əlaqə planına çevir.",
+      "en": "Identify affected people and turn influence and needs into an engagement plan."
+    },
+    "exercise": {
+      "az": "Bankın mübahisə izləmə funksiyası üçün əlaqə planı hazırla.",
+      "en": "Build an engagement plan for a bank’s dispute-tracking feature."
+    }
+  },
+  "elicitation": {
+    "focus": {
+      "az": "Lazım olan sübut üçün müsahibə, seminar, sorğu, sənəd analizi və müşahidəni seç.",
+      "en": "Choose interviews, workshops, surveys, document analysis and observation for the evidence needed."
+    },
+    "exercise": {
+      "az": "Müştərilərin telekom qeydiyyatını niyə yarımçıq qoyduğunu araşdırmaq üçün seminar planlaşdır.",
+      "en": "Plan a workshop to understand why customers abandon a telecom sign-up flow."
+    }
+  },
+  "requirement-types": {
+    "focus": {
+      "az": "Biznes, maraqlı tərəf, funksional, keyfiyyət və keçid tələblərini fərqləndir.",
+      "en": "Distinguish business, stakeholder, functional, quality and transition requirements."
+    },
+    "exercise": {
+      "az": "Müştəri portalının yeni provayderə köçürülməsi üçün altı tələbi təsnif et.",
+      "en": "Classify six requirements for moving a customer portal to a new provider."
+    }
+  },
+  "stories-gherkin": {
+    "focus": {
+      "az": "İstifadəçi ehtiyacını xəta yolları daxil olmaqla müşahidə edilən qəbul nümunələrinə bağla.",
+      "en": "Connect a user need to observable acceptance examples, including failure paths."
+    },
+    "exercise": {
+      "az": "Unudulmuş şifrənin bərpası üçün hekayə və Given/When/Then nümunələri yaz.",
+      "en": "Write a story and Given/When/Then examples for resetting a forgotten password."
+    }
+  },
+  "use-cases": {
+    "focus": {
+      "az": "Aktorları, başlanğıc hadisəsini, ilkin şərtləri, əsas və alternativ axınları təsvir et.",
+      "en": "Describe actors, triggers, preconditions, main flow and alternatives."
+    },
+    "exercise": {
+      "az": "Onlayn geri ödənişin uğurlu və rədd edilən yollarını modelləşdir.",
+      "en": "Model the successful and declined paths for an online refund."
+    }
+  },
+  "requirements-documents": {
+    "focus": {
+      "az": "Sənədin dərinliyini və sahibliyini auditoriya və riskə uyğun seç.",
+      "en": "Choose document depth and ownership according to audience and risk."
+    },
+    "exercise": {
+      "az": "Elektron ticarət qaytarma funksiyası üçün bir səhifəlik tələb sənədi planı qur.",
+      "en": "Create a one-page requirements document outline for an e-commerce returns feature."
+    }
+  },
+  "bpmn-process": {
+    "focus": {
+      "az": "Hadisə, tapşırıq, qərar və ötürmələri aydın başlanğıc və sonla modelləşdir.",
+      "en": "Model events, tasks, decisions and hand-offs with a clear start and end."
+    },
+    "exercise": {
+      "az": "Sifarişin qaytarılma prosesini çək, qərar nöqtələrini və sahiblərini qeyd et.",
+      "en": "Draw an order-refund process and mark its decision points and owners."
+    }
+  },
+  "uml-models": {
+    "focus": {
+      "az": "İstifadə halı, fəaliyyət, ardıcıllıq, sinif və vəziyyət diaqramlarını müqayisə et.",
+      "en": "Compare use case, activity, sequence, class and state diagrams."
+    },
+    "exercise": {
+      "az": "Ödəniş vaxt aşımı üçün UML görünüşü seç və onun nəyi göstərdiyini izah et.",
+      "en": "Choose a UML view for a payment timeout, then explain what it reveals."
+    }
+  },
+  "wireframes": {
+    "focus": {
+      "az": "Fərziyyəni aşağı detallı axına və istifadəyə yararlılıq sualına çevir.",
+      "en": "Turn an assumption into a low-fidelity flow and a usability question."
+    },
+    "exercise": {
+      "az": "Üç ekranlı görüş sifarişi axını çək və tapşırıq əsaslı test müəyyən et.",
+      "en": "Sketch a three-screen appointment booking flow and define a task-based test."
+    }
+  },
+  "prioritization": {
+    "focus": {
+      "az": "Prioritetləşdirmə üsulu seç və fərziyyələrini görünən et.",
+      "en": "Select a prioritization technique and make its assumptions visible."
+    },
+    "exercise": {
+      "az": "Beş ödəniş təkmilləşdirməsini sıralayıb qeyri-müəyyənliyin nəticəni necə dəyişdiyini yoxla.",
+      "en": "Prioritize five checkout improvements and test how uncertainty changes the ranking."
+    }
+  },
+  "traceability": {
+    "focus": {
+      "az": "Ehtiyac, tələb, dizayn, test və dəyər sübutunu əlaqələndir.",
+      "en": "Link needs, requirements, designs, tests and evidence of value."
+    },
+    "exercise": {
+      "az": "İki faktorlu autentifikasiya tələbi üçün izlənilmə cədvəli qur.",
+      "en": "Build a traceability table for a two-factor authentication requirement."
+    }
+  },
+  "scope-change": {
+    "focus": {
+      "az": "Əhatə dəyişikliyini qəbul etməzdən əvvəl təsiri və qərar sahibini qiymətləndir.",
+      "en": "Assess impact and decision ownership before accepting a scope change."
+    },
+    "exercise": {
+      "az": "Buraxılışdan əvvəl qonaq ödənişinin əlavə edilməsinə təsir qiymətləndirməsi hazırla.",
+      "en": "Prepare an impact assessment for adding guest checkout before a release."
+    }
+  },
+  "gap-root-cause": {
+    "focus": {
+      "az": "Əlamətləri səbəblərdən ayır, cari və arzuolunan imkanları müqayisə et.",
+      "en": "Separate symptoms from causes and compare current and desired capabilities."
+    },
+    "exercise": {
+      "az": "Uzun zəng mərkəzi gözləməsini səbəb ağacı və ölçülən boşluq ilə araşdır.",
+      "en": "Investigate long call-centre wait times with a cause tree and a measurable gap."
+    }
+  },
+  "data-modeling": {
+    "focus": {
+      "az": "ERD-də obyektləri, açarları, əlaqə sayını və keyfiyyət məhdudiyyətlərini müəyyən et.",
+      "en": "Define entities, keys, cardinality and quality constraints in an ERD."
+    },
+    "exercise": {
+      "az": "Müştəri məlumatını təkrarlamadan müştəri, sifariş və geri qaytarma müraciətlərini modelləşdir.",
+      "en": "Model customers, orders and refund requests without duplicating customer data."
+    }
+  },
+  "sql-basics": {
+    "focus": {
+      "az": "Sübutu yoxlamaq üçün SELECT, filtr, birləşdirmə, qruplaşdırma və null emalından istifadə et.",
+      "en": "Use SELECT, filters, joins, grouping and null handling to inspect evidence."
+    },
+    "exercise": {
+      "az": "Ay üzrə qaytarma dərəcəsi sorğusunu yaz və təkrar sayılma riskini müəyyən et.",
+      "en": "Write a query outline for refund rates by month, identifying possible double-counting."
+    }
+  },
+  "rest-apis": {
+    "focus": {
+      "az": "Postman üslubunda nümunələrlə metod, status kodu, məlumat paketi və OpenAPI spesifikasiyasını oxu.",
+      "en": "Read methods, status codes, payloads and OpenAPI specifications using Postman-style examples."
+    },
+    "exercise": {
+      "az": "Geri ödəniş API sorğusunu, cavabını və üç xəta ssenarisini müəyyən et.",
+      "en": "Define a refund API request, response and three error scenarios."
+    }
+  },
+  "integration-basics": {
+    "focus": {
+      "az": "Təkrar cəhd, dublikat və idempotentlik daxil olmaqla sinxron çağırışları və hadisələri müqayisə et.",
+      "en": "Compare synchronous calls and events, including retries, duplicates and idempotency."
+    },
+    "exercise": {
+      "az": "Ödəniş vaxt aşımından sonra müştəridən iki dəfə pul tutulmasının qarşısını izah et.",
+      "en": "Explain how to avoid charging a customer twice after a payment timeout."
+    }
+  },
+  "uat": {
+    "focus": {
+      "az": "Qəbul meyarlarını real biznes qəbul ssenarilərinə çevir.",
+      "en": "Translate acceptance criteria into realistic business acceptance scenarios."
+    },
+    "exercise": {
+      "az": "Kredit limiti dəyişikliyi üçün uğurlu, mənfi və sərhəd halları olan UAT paketi hazırla.",
+      "en": "Prepare a UAT pack with positive, negative and boundary cases for a credit limit change."
+    }
+  },
+  "agile-analysis": {
+    "focus": {
+      "az": "Universal çərçivə təyin etmədən analiz işini iterasiya, axın və çoxkomandalı əlaqələndirməyə uyğunlaşdır.",
+      "en": "Adapt analysis work to iteration, flow and multi-team coordination without prescribing a universal framework."
+    },
+    "exercise": {
+      "az": "Kanban xidmət komandası və Scrum məhsul komandasında analiz işinin fərqini təsvir et.",
+      "en": "Describe how analysis work changes between a Kanban service team and a Scrum product team."
+    }
+  },
+  "jira-confluence": {
+    "focus": {
+      "az": "Sahiblik, dəyişiklik tarixçəsi və faydalı keçidlərlə əlçatan əsas mənbə qur.",
+      "en": "Design an accessible source of truth with ownership, change history and useful links."
+    },
+    "exercise": {
+      "az": "Qərarları, hekayələri və qəbul sübutunu əlaqələndirən layihə məkanı quruluşu təklif et.",
+      "en": "Propose a project space structure that links decisions, stories and acceptance evidence."
+    }
+  },
+  "solution-evaluation": {
+    "focus": {
+      "az": "Məhdudiyyət və yan təsirləri nəzərə alaraq faktiki nəticəni gözlənilən fayda ilə müqayisə et.",
+      "en": "Compare actual outcomes to intended benefits while considering limitations and side effects."
+    },
+    "exercise": {
+      "az": "Başlanğıc göstəricisi və qoruyucu ölçülərlə özünəxidmət qaytarma funksiyasının qiymətləndirmə planını qur.",
+      "en": "Create an evaluation plan for a self-service returns feature with baseline and guardrails."
+    }
+  },
+  "babok-map": {
+    "focus": {
+      "az": "Planlama, ehtiyac toplama, həyat dövrü idarəsi, strategiya, müəyyənləşdirmə və qiymətləndirməni əlaqələndir.",
+      "en": "Connect planning, elicitation, lifecycle management, strategy, definition and evaluation activities."
+    },
+    "exercise": {
+      "az": "Bir layihə qərarını bir neçə analiz fəaliyyəti ilə əlaqələndir və asılılıqları izah et.",
+      "en": "Map one project decision to several analysis activities and explain the dependencies."
+    }
+  },
+  "ba-techniques-perspectives": {
+    "focus": {
+      "az": "Kontekstə görə üsul seç və əsas səriştələri qiymətləndir.",
+      "en": "Select techniques for context and reflect on underlying competencies."
+    },
+    "exercise": {
+      "az": "Tənzimlənən miqrasiya üçün analiz üsulları seç və onları kəşf layihəsi ilə müqayisə et.",
+      "en": "Choose analysis techniques for a regulated migration and compare them to a discovery project."
+    }
+  },
+  "analysis-governance": {
+    "focus": {
+      "az": "Uyğun qərar səlahiyyəti, keyfiyyət yoxlaması və mentorluq təcrübələri qur.",
+      "en": "Set proportionate decision rights, quality checks and coaching practices."
+    },
+    "exercise": {
+      "az": "Müştəri platformasını paylaşan üç komanda üçün sadə baxış qaydası hazırla.",
+      "en": "Draft a lightweight review policy for three teams sharing a customer platform."
+    }
+  },
+  "facilitation-conflict": {
+    "focus": {
+      "az": "Maraqları mövqelərdən ayır və məlumatlı qərarlar üçün şərait yarat.",
+      "en": "Separate interests from positions and create conditions for informed decisions."
+    },
+    "exercise": {
+      "az": "Uyğunluq və satışın qeydiyyat çətinliyi barədə razılaşmadığı seminarı apar.",
+      "en": "Facilitate a workshop where compliance and sales disagree on onboarding friction."
+    }
+  },
+  "storytelling-time": {
+    "focus": {
+      "az": "Qeyri-müəyyənliyi izah et, diqqəti idarə et və müstəqil analiz üçün başqalarına mentorluq et.",
+      "en": "Communicate uncertainty, manage attention and coach others toward independent analysis."
+    },
+    "exercise": {
+      "az": "Mübahisəli göstəricini rəhbərliyə qərar sorğusu və aydın məhdudiyyətlərlə təqdim et.",
+      "en": "Present a disputed metric to executives with a decision request and explicit limitations."
+    }
+  },
+  "product-goal": {
+    "focus": {
+      "az": "Geniş istiqaməti ölçülə bilən növbəti məhsul nəticəsinə çevir.",
+      "en": "Turn a broad direction into a measurable next product outcome."
+    },
+    "exercise": {
+      "az": "Uğursuz ərzaq çatdırılmalarını azaltmaq üçün Məhsul Məqsədi müəyyən et.",
+      "en": "Define a Product Goal for reducing failed grocery deliveries."
+    }
+  },
+  "scrum-framework": {
+    "focus": {
+      "az": "Şəffaflıq, yoxlama və uyğunlaşmanı məsuliyyət, tədbir və artefaktlarla əlaqələndir.",
+      "en": "Relate transparency, inspection and adaptation to accountabilities, events and artifacts."
+    },
+    "exercise": {
+      "az": "Yeni sübut çatdırılma fərziyyələrinə zidd olduqda komandanın reaksiyasını izah et.",
+      "en": "Explain how a team should respond when new evidence challenges its delivery assumptions."
+    }
+  },
+  "product-backlog": {
+    "focus": {
+      "az": "İşi Məhsul Məqsədinə uyğun sırala və əməkdaşlıqla dəqiqləşdir.",
+      "en": "Order work toward a Product Goal and refine it collaboratively."
+    },
+    "exercise": {
+      "az": "Dəstək sübutu ciddi müştəri saxlama problemini göstərdikdə iş siyahısını yenidən sırala.",
+      "en": "Reorder a backlog when support evidence reveals a severe retention problem."
+    }
+  },
+  "good-pbis": {
+    "focus": {
+      "az": "İş elementlərini başadüşülən, müzakirə üçün yetərincə kiçik və istifadəçi dəyəri ilə bağlı et.",
+      "en": "Make backlog items understandable, small enough to discuss and connected to user value."
+    },
+    "exercise": {
+      "az": "“Ödənişi yaxşılaşdır” işini qəbul nümunələri olan öyrənmə yönümlü hissələrə ayır.",
+      "en": "Split “improve checkout” into learning-oriented slices with acceptance examples."
+    }
+  },
+  "jtbd-research": {
+    "focus": {
+      "az": "Müştərinin vəziyyətini, istədiyi irəliləyişi və mövcud alternativləri araşdır.",
+      "en": "Explore a customer’s situation, desired progress and existing alternatives."
+    },
+    "exercise": {
+      "az": "Müştərinin son ərzaq sifarişi haqqında beş müsahibə sualı yaz.",
+      "en": "Write five interview prompts about the last time a customer ordered groceries."
+    }
+  },
+  "personas": {
+    "focus": {
+      "az": "Stereotipləri araşdırma ilə əvəz etmədən əhəmiyyətli davranış nümunələrini ümumiləşdir.",
+      "en": "Summarize meaningful behavior patterns without substituting stereotypes for research."
+    },
+    "exercise": {
+      "az": "İlkin persona qur və hansı iddiaların hələ araşdırma tələb etdiyini qeyd et.",
+      "en": "Create a provisional persona and mark which claims still need research."
+    }
+  },
+  "story-mapping": {
+    "focus": {
+      "az": "İstifadəçi səyahətini xəritələ və riskli fərziyyəni yoxlamaq üçün kiçik hissə seç.",
+      "en": "Map a user journey and choose a thin slice to test a risky assumption."
+    },
+    "exercise": {
+      "az": "Dəstəyə zəng etmədən çatdırılma vaxtını dəyişmək üçün başdan-sona kiçik həll hissəsi qur.",
+      "en": "Create an end-to-end slice for rescheduling a delivery without calling support."
+    }
+  },
+  "product-strategy": {
+    "focus": {
+      "az": "Harada rəqabət aparılacağını, hansı ehtiyaclara xidmət ediləcəyini və hansı seçimlərin təxirə salınacağını izah et.",
+      "en": "Explain where to compete, which needs to serve and which choices to defer."
+    },
+    "exercise": {
+      "az": "Nəticə və fərziyyələrə əsaslanan indi/sonra/daha sonra yol xəritəsi qur.",
+      "en": "Build a now/next/later roadmap organized around outcomes and assumptions."
+    }
+  },
+  "okrs": {
+    "focus": {
+      "az": "Məqsədləri, ölçülən nəticələri və təşəbbüsləri ayır.",
+      "en": "Separate objectives, measurable results and initiatives."
+    },
+    "exercise": {
+      "az": "Funksiya sayı hədəfini nəticə əsaslı açar nəticələr və qoruyucu göstəricilərlə əvəz et.",
+      "en": "Replace a feature-count target with outcome-based key results and safeguards."
+    }
+  },
+  "product-metrics": {
+    "focus": {
+      "az": "Səthi artım yerinə müştəri davranışını və dəyərini göstərən ölçülər seç.",
+      "en": "Choose metrics that reveal customer behavior and value rather than vanity growth."
+    },
+    "exercise": {
+      "az": "Öyrənmə məhsulu üçün əsas istiqamət göstəricisi və iki qoruyucu ölçü seç.",
+      "en": "Select a North Star metric and two guardrails for a learning product."
+    }
+  },
+  "ebm": {
+    "focus": {
+      "az": "Cari dəyəri, reallaşmamış dəyəri, bazara çıxma vaxtını və innovasiya qabiliyyətini yoxla.",
+      "en": "Inspect current value, unrealized value, time to market and ability to innovate."
+    },
+    "exercise": {
+      "az": "Məhsulun ən böyük sübut boşluğunu azalda biləcək bir eksperiment təklif et.",
+      "en": "Propose one experiment that could reduce a product’s largest evidence gap."
+    }
+  },
+  "po-prioritization": {
+    "focus": {
+      "az": "Məhdudiyyətlər daxilində fürsətləri müqayisə et və iş sırasının səbəbini izah et.",
+      "en": "Compare opportunities under constraints and communicate why work is ordered."
+    },
+    "exercise": {
+      "az": "Uyğunluq dəyişikliyi, etibarlılıq düzəlişi və yeni seqment eksperimentini aydın fərziyyələrlə sırala.",
+      "en": "Rank a compliance change, reliability fix and new segment experiment with explicit assumptions."
+    }
+  },
+  "forecast-release": {
+    "focus": {
+      "az": "Proqnozu vəd kimi qəbul etmək əvəzinə axın sübutu və qeyri-müəyyənlik aralığından istifadə et.",
+      "en": "Use throughput evidence and uncertainty ranges instead of treating forecasts as promises."
+    },
+    "exercise": {
+      "az": "Tarixi axın göstəricisi və risk aralığı ilə buraxılış proqnozunu izah et.",
+      "en": "Explain a release forecast using historical throughput and a risk range."
+    }
+  },
+  "po-teamwork": {
+    "focus": {
+      "az": "Məhsul kontekstini paylaşarkən və qərar gecikməsini azaldarkən məsuliyyətlərə hörmət et.",
+      "en": "Respect accountabilities while sharing product context and removing decision delays."
+    },
+    "exercise": {
+      "az": "Maraqlı tərəf təcili işi birbaşa tərtibatçıya verdikdə necə cavab veriləcəyini hazırla.",
+      "en": "Respond when a stakeholder tries to assign urgent work directly to one developer."
+    }
+  },
+  "pricing-gtm": {
+    "focus": {
+      "az": "Müştəri seqmentini, ödəmə istəyini, kanalları və buraxılışdan öyrənməni əlaqələndir.",
+      "en": "Connect customer segments, willingness to pay, channels and launch learning."
+    },
+    "exercise": {
+      "az": "Aydın etik və gəlir sərhədləri olan kiçik qiymət eksperimentini qur.",
+      "en": "Design a small pricing experiment with clear ethical and revenue guardrails."
+    }
+  },
+  "scaling-products": {
+    "focus": {
+      "az": "Komandaları ortaq məqsədlər, inteqrasiya və aydın məhsul sərhədləri ətrafında əlaqələndir.",
+      "en": "Coordinate teams around shared goals, integration and clear product boundaries."
+    },
+    "exercise": {
+      "az": "Üç komandanın rəqabətli məqsədlər yaratmadan məhsul prioritetlərini necə paylaşacağını təsvir et.",
+      "en": "Describe how three teams can share product priorities without creating competing goals."
+    }
+  },
+  "portfolio-lifecycle": {
+    "focus": {
+      "az": "Sübut və fürsət xərcinə əsasən sərmayə, davam və dayandırma qərarları ver.",
+      "en": "Make investment, continuation and retirement decisions using evidence and opportunity cost."
+    },
+    "exercise": {
+      "az": "Yetkin məhsula sərmayəni qeyri-müəyyən yeni fürsətin araşdırılması ilə müqayisə et.",
+      "en": "Compare investing in a mature product with exploring an uncertain new opportunity."
+    }
+  },
+  "product-ethics": {
+    "focus": {
+      "az": "Aldadıcı nümunələri, məxfilik risklərini, əlçatanlıq boşluqlarını və zidd stimulları tanı.",
+      "en": "Recognize deceptive patterns, privacy risks, accessibility gaps and conflicting incentives."
+    },
+    "exercise": {
+      "az": "Ləğvetmə axınında məcburetməni yoxla və ölçülən təkmilləşdirmələr təklif et.",
+      "en": "Review a cancellation flow for coercion and propose measurable improvements."
+    }
+  },
+  "po-negotiation": {
+    "focus": {
+      "az": "Rəhbərlər məhsul dəyərində razılaşmadıqda qərar aydınlığı yarat.",
+      "en": "Create decision clarity when executives disagree about product value."
+    },
+    "exercise": {
+      "az": "Müştəri saxlama, genişlənmə və əməliyyat davamlılığı arasında seçim müzakirəsini apar.",
+      "en": "Facilitate a trade-off discussion between retention, expansion and operational resilience."
+    }
+  },
+  "ecba-context": {
+    "focus": {
+      "az": "Ssenaridə dəyişiklik, ehtiyac, həll, maraqlı tərəf, dəyər və konteksti əlaqələndir.",
+      "en": "Relate change, need, solution, stakeholder, value and context in a scenario."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "ecba-knowledge-areas": {
+    "focus": {
+      "az": "Kiçik dəyişiklik boyunca analiz fəaliyyətlərinin bir-birini necə məlumatlandırdığını izah et.",
+      "en": "Explain how analysis activities inform each other across a small change."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "ecba-techniques": {
+    "focus": {
+      "az": "Ehtiyac toplama və modelləşdirmə üsullarını qərara və mövcud sübuta uyğunlaşdır.",
+      "en": "Match elicitation and modeling techniques to the decision and available evidence."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "ccba-planning": {
+    "focus": {
+      "az": "Maraqlı tərəf əlaqəsini, məlumat idarəsini və qərar yanaşmasını layihə riskinə uyğunlaşdır.",
+      "en": "Adapt stakeholder engagement, information management and decision approaches to project risk."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "ccba-elicitation": {
+    "focus": {
+      "az": "Məlumat toplamağı onun mənasını təsirə məruz qalanlarla təsdiqləməkdən ayır.",
+      "en": "Distinguish gathering information from confirming its meaning with affected people."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "ccba-lifecycle": {
+    "focus": {
+      "az": "İzlənilmə, saxlanma, prioritetləşdirmə və təsir analizindən birlikdə istifadə et.",
+      "en": "Use traceability, maintenance, prioritization and impact analysis together."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "cbap-strategy": {
+    "focus": {
+      "az": "Cari vəziyyət məhdudiyyətlərini, gələcək seçimləri və dəyişiklik strategiyalarını müqayisə et.",
+      "en": "Compare current-state constraints, future-state options and change strategies."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "cbap-design": {
+    "focus": {
+      "az": "Qarşılıqlı asılı tələblər üzrə uyğunluğu, tamlığı, dəyəri və riski qiymətləndir.",
+      "en": "Assess consistency, completeness, value and risk across interdependent requirements."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "cbap-evaluation": {
+    "focus": {
+      "az": "Həll məhdudiyyətlərini təşkilati məhdudiyyətlərdən ayır və tədbir tövsiyə et.",
+      "en": "Separate solution limitations from organizational constraints and recommend action."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "scrum-accountabilities": {
+    "focus": {
+      "az": "Məhsul Sahibi, Scrum Master və Tərtibatçıları qərarlar və əməkdaşlıqla fərqləndir.",
+      "en": "Distinguish Product Owner, Scrum Master and Developers through decisions and collaboration."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo1-events": {
+    "focus": {
+      "az": "Hər Scrum tədbirinin niyə yoxlama və uyğunlaşma imkanı yaratdığını izah et.",
+      "en": "Explain why each Scrum event creates a chance to inspect and adapt."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo1-artifacts": {
+    "focus": {
+      "az": "Məhsul İş Siyahısını, Sprint İş Siyahısını və İnkrementi ortaq öhdəliklərlə əlaqələndir.",
+      "en": "Relate the Product Backlog, Sprint Backlog and Increment to shared commitments."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo2-strategy": {
+    "focus": {
+      "az": "Prioritetlər toqquşduqda məhsul məqsədləri, eksperimentlər və sübutlardan istifadə et.",
+      "en": "Use product goals, experiments and evidence when priorities conflict."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo2-value": {
+    "focus": {
+      "az": "Maraqlı tərəf tələblərini, riski, keyfiyyəti və nəticə sübutunu tarazlaşdır.",
+      "en": "Balance stakeholder demands, risk, quality and outcome evidence."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo2-facilitation": {
+    "focus": {
+      "az": "Qərar sahibliyini aydın et və konstruktiv fikir ayrılığına yer ver.",
+      "en": "Make decision ownership explicit and invite constructive disagreement."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo3-written-case": {
+    "focus": {
+      "az": "Kontekst, seçim, qərar və yoxlamanı bağlayan aydın cavab yaz.",
+      "en": "Write a clear response that connects context, options, decision and inspection."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo3-complexity": {
+    "focus": {
+      "az": "Məhsul məsuliyyətindən imtina etmədən sübut dəyişdikcə qərarları uyğunlaşdır.",
+      "en": "Adapt decisions as evidence changes without abandoning product accountability."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  },
+  "pspo3-reflection": {
+    "focus": {
+      "az": "Öz əsaslandırmanı tənqid et, fərziyyələri tap və növbəti mənalı sübutu təklif et.",
+      "en": "Critique your own reasoning, identify assumptions and propose meaningful next evidence."
+    },
+    "exercise": {
+      "az": "Mövzunu müştəri özünəxidmət dəyişikliyinə tətbiq et; qərarı əsaslandır və çatışmayan sübutu müəyyən et.",
+      "en": "Apply the topic to a customer self-service change; justify the decision and identify missing evidence."
+    }
+  }
+}

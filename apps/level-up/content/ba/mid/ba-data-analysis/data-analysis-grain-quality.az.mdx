@@ -1,0 +1,109 @@
+---
+id: data-analysis-grain-quality
+locale: az
+title: 'Data analizi: sual, sətir səviyyəsi, məxrəc və keyfiyyət'
+objectives:
+  - 'Metric-in population, grain, time window və denominator-unu müəyyən et.'
+  - 'Absent, zero, duplicate və invalid müşahidəni fərqləndir.'
+  - 'Join və population dəyişikliyinin customer behavior dəyişmədən nəticəni necə dəyişdirdiyini izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Metric-in population, grain, time window və denominator-unu müəyyən et.
+- Absent, zero, duplicate və invalid müşahidəni fərqləndir.
+- Join və population dəyişikliyinin customer behavior dəyişmədən nəticəni necə dəyişdirdiyini izah et.
+
+## Bu mövzu niyə vacibdir
+
+Komanda “activation 80%-ə qalxıb” deyir. Nəticədən əvvəl soruş: kim uyğun idi, hansı addım activation sayılırdı, user-ə nə qədər vaxt verilmişdi, hansı record çıxarılmışdı? Detalsız dəqiq faiz yanlış suala cavab verə bilər. Analiz əvvəl qərar və tərifdən, sonra dataset və query-dən başlayır.
+
+Dərs SQL və Python dərsləri ilə ortaq süni customer/order məlumatı istifadə edir. Məqsəd fərqi inamlı dashboard iddiasına çevrilməmiş row səviyyəsində görünən etməkdir.
+
+## Əsas anlayışlar
+
+**Grain** bir row-un nəyi təmsil etdiyini deyir: customer, order, item və ya event. Key həmin elan edilmiş grain-də row-u tanımalıdır. Order-in iki item-i varsa header-i item table-a join etmək iki row yaradır. Sonra header amount-u cəmləmək eyni order-i iki dəfə sayır.
+
+Measurement contract sualı, sahibini, uyğun population-u, numerator/denominator-u, event tərifini, observation window-u, timezone-u, exclusion-u, source-u və refresh vaxtını qeydə alır. Activation rate “yeddi tam gün müşahidə olunan fevral signup-larından yeddi gündə ilk paid order edənlər / yeddi tam gün müşahidə olunan fevral signup-ları” ola bilər. Bu, “bütün paying customer / bütün account” ilə fərqlidir.
+
+Quality-nin müxtəlif ölçüləri var. Completeness lazımi müşahidənin mövcudluğunu soruşur. Validity icazəli type və range-i, uniqueness key-i, consistency ziddiyyətli fact-ı, timeliness isə qərar üçün datanın kifayət qədər yeni olmasını yoxlayır. Type check-dən keçmək biznes düzgünlüyünü təsdiqləmir.
+
+Missing value-nu açıq idarə et. Missing amount naməlumdur, zero isə düzgün ölçülmüş məbləğ ola bilər. Absent order alış olmaması, ingestion gecikməsi və ya extraction problemi demək ola bilər. Mövcud data-nın hansını ayırdığını sənədləşdir. Chart görünsün deyə səssizcə zero yazma.
+
+Bir channel-in tam dataset-i bütün customer-ları təmsil etməyə bilər. Coverage-i time, device, region və acquisition channel üzrə müqayisə et. Descriptive association product change-in outcome-a səbəb olduğunu sübut etmir; controlled experiment ayrıca dizayn tələb edir.
+
+## İşlənmiş nümunə
+
+Fevralda iki signup var: `u3` və `u5`. Fevralda yalnız `u3` paid order edir. Açıq calendar-month activation ölçüsündə nəticə `1 / 2 = 50%`-dir. Paid order-dən başlayıb distinct customer saymaq `u5`-i çıxarar və çaşdırıcı `1 / 1 = 100%` verər.
+
+Ortaq raw order faylında doqquz row var: yeddi valid unique order, `o3`-ün tam duplicate-i və amount-u olmayan bir row. Cleaning policy exact duplicate-i çıxarır, invalid row-u quarantine edir, hər ikisini bildirir. Saxlanmış yeddi order-in altısı `paid`-dir; cancelled order başqa sual üçün qalır, paid revenue-ya daxil deyil.
+
+Record reconciliation:
+
+| Mərhələ                       | Row sayı | İzah                                        |
+| ----------------------------- | -------: | ------------------------------------------- |
+| Raw input                     |        9 | Duplicate və invalid row daxildir           |
+| Exact deduplication-dan sonra |        8 | Bir duplicate çıxarılıb                     |
+| Saxlanılan valid order        |        7 | Missing amount-lu bir row quarantine edilib |
+| Paid order                    |        6 | Cancelled order paid revenue-dan çıxarılıb  |
+
+Bu policy orijinal tədris nümunəsidir; record silmək üçün universal qayda deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Decision and question] --> C[Measurement contract]\n C --> G[Grain and keys]\n G --> V[Quality checks]\n V --> R[Reconciled result]\n R --> D[Decision with limitations]'
+  }
+/>
+
+Quality mərhələsi analizi tərifə geri qaytara bilər. Çatışmayan population daha gözəl chart ilə bərpa olunmur.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Order-to-item join-dən sonra revenue niyə arta bilər?</summary>
+
+Join output grain-i dəyişir. İki item-li order iki dəfə görünür, header amount təkrarlanır. Join-dən əvvəl/sonra order ID üzrə count müqayisə et. Item amount-u order grain-də aggregate et və ya one-to-many join-dən əvvəl header revenue hesabla.
+
+</details>
+
+## Tipik səhvlər
+
+- Denominator-u artıq hədəf addımı edənlərdən qurmaq.
+- Nəzərdə tutulan grain-ə baxmadan hər duplicate-i xəta saymaq.
+- Cleaning nəticəsi input-la uzlaşdırılmasın deyə exclusion-u gizlətmək.
+- Qismən müşahidə olunan cohort-u tam müşahidə olunanla müqayisə etmək.
+- Correlation-u release-in yaxşılaşmaya səbəb olduğunun sübutu kimi vermək.
+
+## Praktik tapşırıq
+
+Report-da 120 signup row, amma yalnız 100 unique uyğun account var. Altmışı activation edir. Ayrı paid-orders extract-də 60 customer var. Hər uyğun account-un observation window-u tamdır. Activation rate-i, düzgün population-u və publication-dan əvvəl iki yoxlamanı göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Account grain-də rate `60 / 100 = 60%`-dir. 120-row signup table 120 uyğun account deyil, təkrar müşahidə saxlayır. Paid-orders extract full denominator verə bilməz: non-paying account-lar yoxdur. Activation tərifinin account-a bir dəfə tətbiqini və join-in 100 uyğun account-u saxlamasını yoxla. Duplicate handling-i reconcile et, observation window-ların tamlığını təsdiqlə.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Sual                       | Saxlanmalı sübut                         |
+| -------------------------- | ---------------------------------------- |
+| Bir row nəyi göstərir?     | Grain və unique key                      |
+| Kim uğurlu ola bilərdi?    | Uyğun denominator                        |
+| Nə çıxarılıb?              | Exclusion və quarantine sayı             |
+| Müqayisə ədalətlidirmi?    | Eyni tərif və tam window                 |
+| Nəticə təkrarlana bilərmi? | Versioned query, source və refresh vaxtı |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [GOV.UK: Measuring performance](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): service qərarına bağlı faydalı ölçü seçmək.
+- [GOV.UK: Measuring the success of your service](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): measurement konteksti və user outcome.
+- [PostgreSQL 18: Joins between tables](https://www.postgresql.org/docs/18/tutorial-join.html): joined row və unmatched record.
+- Orijinal icra edilən tapşırıq: repository-dəki [data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab); bütün customer ID və məbləğ sünidir.

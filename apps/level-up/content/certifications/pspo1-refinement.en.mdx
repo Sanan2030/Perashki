@@ -1,0 +1,67 @@
+---
+id: pspo1-refinement
+locale: en
+title: 'Refinement, sizing and valuable slices'
+objectives:
+  - 'Apply refinement as ongoing collaboration.'
+  - 'Combine value, risk, size and dependency in ordering decisions.'
+---
+
+## Concept
+
+Product Backlog refinement is ongoing work to make items smaller and more precise. The Scrum Guide mentions description, order and size as example attributes; it prescribes neither a tool, a user-story format nor a separate refinement event. Items that can become Done within one Sprint are ready for selection in Planning. Ready does not turn an item into an immutable requirements contract: learning can still occur.
+
+## Why it matters
+
+Clarification is not merely adding text. People need shared understanding of the user’s intended outcome, exceptions, quality constraints and how results will be observed. Chapter 7 of The Professional Product Owner discusses sizing and a Ready mindset. A team can use a working checklist, but that is not a fourth Scrum artifact or a gate that removes every uncertainty.
+
+## Decision principles
+
+Developers doing the work are responsible for sizing. The Product Owner can influence trade-offs by explaining outcomes, but should not impose a smaller estimate. Ordering is not a contest for the smallest item: value, risk, cost and dependencies matter too. A small test of a risky assumption may be valuable before a large solution. A functional slice lets a user complete a meaningful task; building only a database or a screen layer often delays that feedback. This slicing approach is a teaching technique, not a universal Scrum mandate.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Large need"] --> B["Conversation and risk"]\n B --> C["Small valuable slice"]\n C --> D["Developers size"]\n D --> E["Product Owner orders"]'
+  }
+/>
+
+## Worked scenario
+
+A clinic wants to replace its booking system. The initial item is “new booking platform.” Sales labels it five points, while Developers do not know how the existing calendar integration works. The request includes room selection, payment, reminders and reporting.
+
+## Decision reasoning
+
+Clarify the problem and user segment first: which booking fails today? Developers investigate the integration risk and a smaller option. If selecting a slot for one room type and receiving confirmation is meaningful, clarify its quality conditions and exceptions together. Developers size it. The Product Owner compares that option with other work and orders accordingly. Avoid a long phase in which no learning can occur until the entire system is specified.
+
+## Common pitfalls
+
+Treating story points as a Scrum rule; calling an imposed estimate refinement; stopping judgment because an item lacks a Ready label; confusing technical layers with user value; favoring every tiny item over strategic needs. Do not add documentation without asking which decision it improves.
+
+## Application exercise
+
+Split “payment system for all users” into two smaller alternatives. For each, state a user outcome, key risk, acceptance criterion and shared Done condition. Identify information Developers need before sizing.
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+One option supports one currency through an existing provider; another lets a limited user segment reliably see payment status. The first investigates provider errors and duplicate payment risk, the second stale status. Acceptance criteria describe specific behavior; Done covers integration and required quality checks. Developers size after examining the technical evidence; the Product Owner orders around outcomes and risk.
+
+</details>
+
+## Check understanding and remember
+
+Refinement continues; Developers own sizing; the Product Owner manages value and ordering. User stories, story points and Ready checklists are optional techniques. Explain why a small item is valuable too.
+
+<LessonCheck />
+
+## Sources and scope
+
+Scrum Guide 2020: Product Backlog, pp. 10–11; Sprint Planning, pp. 8–9; Definition of Done, p. 12. The Professional Product Owner: chapter 7, Product Backlog Ordering, Done, and Ready Is a Mindset. Competencies: Product Backlog Management and Emergent Software Development. Optional techniques do not become mandatory Scrum rules.
+
+- [Scrum Guide](https://scrumguides.org/scrum-guide.html)
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies)

@@ -1,0 +1,109 @@
+---
+id: rest-apis
+locale: az
+title: 'HTTP API-ləri, resurs müqavilələri və xəta semantikası'
+objectives:
+  - 'HTTP method semantikasını tətbiqə məxsus biznes qaydasından ayır.'
+  - 'Validation, authorization, concurrency və error əhatə edən API contract yaz.'
+  - 'Stale client-in yeni dəyişikliyi əvəz etməməsi üçün conditional request istifadə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- HTTP method semantikasını tətbiqə məxsus biznes qaydasından ayır.
+- Validation, authorization, concurrency və error əhatə edən API contract yaz.
+- Stale client-in yeni dəyişikliyi əvəz etməməsi üçün conditional request istifadə et.
+
+## Bu mövzu niyə vacibdir
+
+Komanda düymə barədə razılaşıb uğursuz request-in mənasında ayrı düşünə bilər. Booking sistemində confirmation-dan sonrakı timeout booking-in fail olduğunu sübut etmir. Client ikinci booking yaratsa user-dən iki dəfə pul tutula bilər. API contract yalnız URL və happy-path JSON deyil, observable state transition və recovery təsvir etməlidir.
+
+## Əsas anlayışlar
+
+API trust və process sərhədində operation təqdim edir. HTTP method, status code, header və representation qaydası verir. REST arxitektura üslubudur; HTTP üzərindən JSON təkbaşına bütün REST constraint-lərinin ödənməsi deyil. JSON/XML representation formatıdır, authentication mexanizmi deyil.
+
+| Operation | Nəzərdə tutulan semantika                    | Contract sualı                                 |
+| --------- | -------------------------------------------- | ---------------------------------------------- |
+| GET       | Representation almaq; safe                   | Hansı filter, permission, cache qaydası var?   |
+| POST      | Representation emal etmək, çox vaxt yaratmaq | Duplicate submission necə tanınır?             |
+| PUT       | Hədəf resource yaratmaq/əvəz etmək           | Tam replacement representation lazımdırmı?     |
+| PATCH     | Təsvir edilmiş partial modification          | Hansı patch format və concurrency qaydası var? |
+| DELETE    | Hədəf URI-də association-u çıxarmaq          | Artıq absent olanda nə baş verir?              |
+
+Safe client-in state change istəməməsidir; server access log yaza bilər. Idempotent eyni request təkrarının nəzərdə tutulan server effect-inin bir cəhdlə eyni olmasıdır. Eyni response body tələb etmir: təkrar DELETE başqa status qaytarıb idempotent qala bilər. PUT/DELETE idempotent tərif edilib; POST öz-özlüyündə deyil. Tətbiq konkret POST üçün sənədləşmiş deduplication policy əlavə edə bilər.
+
+Transport failure, authentication failure, authorization failure, invalid input və business conflict-i ayır. Creation operation-a uyğundursa resource location ilə 201 istifadə et; 202 processing-in qəbuludur, tamamlanması deyil. 204 content daşımır. 401 missing/invalid authentication-a aiddir və uyğun challenge verir; 403 başa düşülmüş request-in rəddidir. 404 başqa tenant object-ini qəsdən gizlədə bilər. If-Match precondition xətası adətən 412 verir.
+
+RFC 9457 application/problem+json müəyyən edir. Client human-readable detail parse etmək əvəzinə sabit problem identifier və ya documented extension-a görə seçim etməlidir. Error-da stack trace, token və DB credential qaytarma.
+
+## İşlənmiş nümunə
+
+İki analyst B-42 booking-in version 7-sini açır. A travel date dəyişib version 8 yaradır. B köhnə version-la passenger name dəyişir. Concurrency şərti yoxdursa B update-i köhnə date-i səssiz qaytara bilər.
+
+```http
+PATCH /bookings/B-42 HTTP/1.1
+Content-Type: application/merge-patch+json
+If-Match: "booking-B-42-v7"
+
+{"passengerName":"Ayla"}
+```
+
+Xidmət state change-dən əvvəl strong ETag-i cari representation version-la müqayisə edir. Cari version 8-dirsə 412 verir. Client yenidən oxuyub user-dən dəyişiklikləri uzlaşdırmağı istəyir. ETag representation validator-udur, access icazəsi deyil; object-level check qalır. Seçilmiş merge-patch davranışı sənədləşdirilib implement edilməli application contract-dır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Request"] --> B["Authenticate and authorize"]\n B --> C["Validate body and preconditions"]\n C --> D["Apply one state transition"]\n D --> E["Success or stable problem response"]'
+  }
+/>
+
+Hər request state transition-dan əvvəl validation və permission sərhədi keçir. Diaqram application pipeline xülasəsidir; bütün HTTP response-lar üçün məcburi sıra deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Təkrar DELETE əvvəl 204, sonra 404 qaytarır. Idempotency mütləq pozulubmu?</summary>
+
+Xeyr. Response byte-ını deyil, nəzərdə tutulan resource effect-i müqayisə et. Hədəf iki request-dən sonra da absent-dirsə effect idempotent qala bilər. Contract client-ə ikinci response-u şərh etməyə kömək etməlidir.
+
+</details>
+
+## Tipik səhvlər
+
+- Refund approve etmək üçün GET işlətmək safe operation ilə state dəyişir, prefetch/CSRF riski yaradır.
+- Hər timeout-u business failure saymaq duplicate submission yaradır.
+- Hər failure-a 200 vermək client-i sənədsiz error parsing uydurmağa məcbur edir.
+- Client tenant ID-sini permission sübutu saymaq başqa tenant resource-unu açır.
+- Media type vermədən partial update-i PATCH adlandırmaq deletion, null və array davranışını qeyri-müəyyən qoyur.
+
+## Praktik tapşırıq
+
+Simulated order request göndərmək, response-a baxmaq və tapşırığı yoxlamaq üçün [aşağıdakı API laboratoriyasını](#practice-lab) istifadə et. Contract panel fixture identity/limit-i izah edir.
+
+Subscription address update operation təsvir et: authentication, ownership, accepted field, stale edit, success response və machine-readable error. İki user eyni subscription-u paralel dəyişə bilər. Tester üçün üç mənfi hal yaz.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Validated session/access token və server-side ownership check tələb et. Yalnız documented address field qəbul et, length/country qaydasını yoxla; cari version-a uyğun strong If-Match tələb et. Success-də updated representation və yeni ETag qaytar. Stale validator üçün https://example.invalid/problems/stale-version kimi problem type ilə 412 ver; example.invalid placeholder-dir, canlı endpoint deyil. Unauthorized error-da cari private address göstərmə.
+
+Unknown field, stale ETag və başqasının subscription-unu istəyən authenticated user-i test et. Commit-dən sonra timeout da yoxla: client əlaqəsiz change-i kor-koranə replay etmək deyil, state-ni müəyyən etmək üçün resource-u reload etməlidir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Resource + method + representation + permission + precondition + success + failure + recovery = faydalı contract. Safe/idempotent intended semantics-dir. Timeout yoxlanana qədər business outcome-u naməlum saxlayır. ETag yalnız server comparison-u tətbiq edəndə stale write-ı önləyir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): §§9.2, 9.3, 13.1.1 və 15.
+- [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457.html): §§3–3.1 və 5.
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): Operation, Schema, Response object-ləri.
+
+Nümunə və error policy seçimləri orijinal tədris materialıdır; mövcud bank API-sini təsvir etmir.

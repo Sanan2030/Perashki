@@ -1,0 +1,105 @@
+---
+id: browser-bff-csrf-cors
+locale: az
+title: 'Brauzer sessiyası, BFF, cookie, CORS və CSRF'
+objectives:
+  - 'Browser origin-i, site-ı və server-side authorization-u fərqləndir.'
+  - 'HttpOnly, Secure və SameSite-ın nəyi qoruduğunu və nəyi qorumadığını izah et.'
+  - 'State dəyişən browser request-ləri üçün aydın CSRF və CORS policy-ləri qur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Browser origin-i, site-ı və server-side authorization-u fərqləndir.
+- HttpOnly, Secure və SameSite-ın nəyi qoruduğunu və nəyi qorumadığını izah et.
+- State dəyişən browser request-ləri üçün aydın CSRF və CORS policy-ləri qur.
+
+## Bu mövzu niyə vacibdir
+
+Xərc portalı refresh token-ləri JavaScript-in oxuya bildiyi browser storage-da saxlayır. Developer onları server-side BFF-ə keçirməyi və session cookie istifadə etməyi təklif edir. Bu, token-lərin page script-lərə birbaşa ifşasını azaldır, amma avtomatik əlavə edilən cookie başqa risk yaradır: zərərli sayt brauzeri state dəyişən request göndərməyə sövq edə bilər. Cookie seçmək arxitektura dəyişikliyidir, təhlükəsizlik dizaynının sonu deyil.
+
+## Əsas anlayışlar
+
+Backend for Frontend server davranışını client növünə uyğunlaşdırır. Buradakı BFF dizaynında OAuth token-ləri server-də qalır, brauzer opaque session cookie saxlayır. Bu, dizayn seçimidir; nə Scrum, nə OAuth hər tətbiqdən BFF tələb edir. Session xidməti saxlanmış credential-ları qorumalı, lazım olduqda session state-i rotation etməli və API icazələrini yoxlamalıdır.
+
+| Control                               | Verdiyi qoruma                                                                        | Məhdudiyyət                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Secure cookie                         | Cookie-ni yalnız təhlükəsiz connection ilə göndərir                                   | Same-origin zərərli script-i dayandırmır                |
+| HttpOnly cookie                       | JavaScript-in cookie-ni birbaşa oxumasını önləyir                                     | Script-in authenticated request göndərməsini önləmir    |
+| SameSite                              | Bəzi cross-site cookie göndərişlərini məhdudlaşdırır                                  | Site origin deyil; qonşu origin-lər same-site ola bilər |
+| CORS policy                           | Brauzerdə hansı origin-in uyğun cross-origin response-u oxuya biləcəyini müəyyən edir | API authentication və ya universal CSRF müdafiəsi deyil |
+| CSRF token / yoxlanmış request policy | State dəyişən request-i icazəli browser interaction-a bağlayır                        | Düzgün server verification və XSS müdafiəsi tələb edir  |
+
+Origin scheme, host və port-dan ibarətdir. İki subdomain fərqli origin olsa da same-site qala bilər. Buna görə SameSite tətbiqi bütün qonşu subdomain-lərdən avtomatik ayırmır. Host-only cookie və uyğun cookie prefix bəzi scope xətalarını azaldır; dəqiq attribute-ları deployment və dəstəklənən login flow üçün seç.
+
+Same-origin BFF flow-da fetch default olaraq same-origin cookie-ləri göndərir. State dəyişən əməliyyat custom header-də session-a bağlı anti-CSRF token, server-side origin yoxlaması və uyğun client-lər üçün sənədləşdirilmiş fallback tələb edə bilər. GET ilə state dəyişmə. OWASP bir neçə dəstəklənən CSRF strategiyası təsvir edir; yarımçıq hissələri qarışdırmaq əvəzinə ardıcıl birini seç.
+
+Credential-lı cross-origin request aydın CORS konfiqurasiyası tələb edir. Brauzer credential-lı response girişi üçün wildcard Access-Control-Allow-Origin qəbul etmir. İstənilən Origin-i kor-koranə əks etdirmək də təhlükəlidir. Origin-ləri məlum client-lərlə məhdudlaşdır, allowed method/header-ləri göstər, origin-dən asılı response üçün Vary: Origin-i nəzərə al. CLI client brauzerin CORS qaydaları ilə məhdudlaşmır; server həmişə authentication və authorization tətbiq etməlidir.
+
+## İşlənmiş nümunə
+
+https://expenses.example.invalid ünvanındakı brauzer same-origin BFF-ini çağırır. BFF OAuth credential-larını saxlayır və yalnız session scope-una aid tətbiq məlumatı qaytarır.
+
+```http
+Set-Cookie: __Host-session=opaque-example; Path=/; Secure; HttpOnly; SameSite=Lax
+```
+
+Nümunə cookie \_\_Host- prefix-in tələb etdiyi kimi Domain göstərmir. Dəyər placeholder-dir. SameSite=Lax adi top-level GET login callback-lərinə uyğun ola bilər, amma seçilmiş identity flow yenə transaction validation və CSRF qorunması tələb edir.
+
+POST /expenses/E-4/submit üçün BFF state-i dəyişməzdən əvvəl session-u, anti-CSRF dəyərini, allowed request origin-i və xərc ownership-ini yoxlayır. Brauzerin cookie göndərməsi istifadəçinin məhz bu əməliyyatı qəsdən başlatdığını göstərmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Browser with session cookie"] --> B["BFF session and CSRF checks"]\n B --> C["Object authorization"]\n C --> D["Resource API with server-held token"]\n E["Untrusted origin"] --> F["Rejected state-changing request"]'
+  }
+/>
+
+Server-də saxlanan OAuth token brauzerə keçməməlidir. Həm browser request integrity-si, həm resource authorization ayrıca sərhəd olaraq qalır.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Zərərli same-origin script HttpOnly cookie-ni oxuya bilmir. Yenə istifadəçi adından xərc göndərə bilərmi?</summary>
+
+Səhifədə əlçatan tətbiq məlumatından da istifadə edərək authenticated request göndərə bilər. HttpOnly birbaşa cookie oğurluğunu azaldır, amma XSS-i zərərsiz etmir. XSS müdafiəsini saxla və bir cookie attribute-unu tam session security dizaynı sayma.
+
+</details>
+
+## Tipik səhvlər
+
+- Token vaxtı bitdiyinə görə localStorage-ı öz-özünə təhlükəsiz saymaq script exposure-u və refresh token lifetime-ını nəzərə almır.
+- CORS ilə bloklanan response-a görə server-in request-i almadığını və işləmədiyini düşünmək cavabı oxumağı sorğu göndərməklə qarışdırır.
+- Login callback-i sınamadan SameSite=Strict tətbiq etmək qanuni cross-site giriş axınını poza bilər.
+- Parent-domain cookie-ni etibarsız subdomain-lərlə paylaşmaq trust boundary-ni genişləndirir.
+- Adi feature flag və ya gizli düyməni authorization saymaq birbaşa API çağırışına yol açır.
+
+## Praktik tapşırıq
+
+Portal first-party web UI, native mobile app və provider webhook dəstəkləməlidir. Hər biri üçün ayrıca request integrity qaydası yaz. Bütün endpoint-lərdə browser CSRF token tələb edən ümumi qaydanın qanuni non-browser integration-u niyə rədd edə biləcəyini və istisnaların necə qorunacağını izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+First-party cookie-authenticated UI üçün ardıcıl session/CSRF dizaynı, ciddi origin gözləntisi və object icazələri istifadə et. Native client üçün dəstəklənən OAuth profilinə uyğun access token və icazələri yoxla; təmin edə bilməyəcəyi browser origin sübutu uydurma. Webhook üçün browser session cookie əvəzinə provider signature verification, schema yoxlaması və replay/deduplication policy istifadə et.
+
+Endpoint kateqoriyalarını və authentication qaydalarını aydın sənədləşdir. Brauzerə məxsus CSRF yoxlamasından istisna security yoxlamalarından istisna demək deyil. Credential-lı disallowed origin, same-site qonşu origin, çatışmayan CSRF, adi non-browser çağırış, login redirect və signed duplicate webhook-ları test et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Cookie attribute-ları fərqli təhlükələri qoruyur. Same-site ≠ same-origin. CORS authorization-u deyil, browser response girişini idarə edir. BFF token custody-ni server-ə keçirir, amma yenə session, CSRF qorunması və resource icazələri tələb edir. Browser və non-browser integration policy-lərini ayrıca göstər.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [OWASP CSRF Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html): synchronizer token, custom header/CORS və SameSite məhdudiyyətləri.
+- [OWASP REST Security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html): CORS və access control.
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): Backends for Frontends.
+
+Token custody quruluşu və cookie nümunəsi orijinal arxitektura tövsiyəsidir. Bütün brauzer və mobile tətbiqlər üçün universal storage tələbi deyil.

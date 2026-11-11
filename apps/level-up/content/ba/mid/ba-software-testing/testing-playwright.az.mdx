@@ -1,0 +1,117 @@
+---
+id: testing-playwright
+locale: az
+title: 'Playwright E2E testləri və etibarlı geribildirim'
+objectives:
+  - 'Kritik journey üçün user-facing locator seç.'
+  - 'İxtiyari sleep və shared state asılılığından qaç.'
+  - 'Failure araşdırmaq üçün trace və fokuslu assertion istifadə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Kritik journey üçün user-facing locator seç.
+- İxtiyari sleep və shared state asılılığından qaç.
+- Failure araşdırmaq üçün trace və fokuslu assertion istifadə et.
+
+## Bu mövzu niyə vacibdir
+
+Üçüncü div-ə klikləyib beş saniyə gözləyən browser test layout və maşın sürəti dəyişəndə fail ola bilər. Etibarlı test user-visible mənanı izləyir və gözlənilən state-i gözləyir. Davranış yanlış olanda fail olmalıdır, uğursuz vaxt təxmininə görə yox.
+
+## Əsas anlayışlar
+
+Aydın başlanğıc state və müşahidə edilən outcome ilə mənalı journey test et. Playwright cookie/storage-ın təsadüfən testlər arasında sızmaması üçün isolated browser context verir. Server-side fixture və shared service ayrıca isolation tələb edir; təzə brauzer DB-ni sıfırlamır.
+
+Accessible role, label və sabit user-facing məna verən locator seç. Start practicing adlı button üçün role locator uzun CSS yolundan anlaşıqlıdır. Locator nəzərdə tutulan control-u tək müəyyən etməlidir. User-facing identifier uyğun olmayanda test ID faydalıdır, amma məqsədli contract olmalıdır.
+
+Playwright action-ları actionability yoxlayır; web assertion gözlənilən şərt yaranarkən retry edə bilər. İxtiyari sleep əvəzinə `await expect(locator).toBeVisible()` və ya uyğun value assertion istifadə et. Auto-waiting bütün biznes şərtini bilmir: əməliyyatın tamamlandığını göstərən mənalı state-i gözlə.
+
+Test məqsədindən kənar sərhədləri idarə et. Route stub xarici outage-i təkrarlana bilən edir, amma test canlı service-i yoxlamır. Ayrı integration sübutu saxla. Nəzarət olunan contract sərhədi daha faydalıdırsa məhsula aid kritik path-də third-party UI testindən qaç.
+
+Adlı addım, trace və uyğun screenshot ilə failure diaqnostikasını asanlaşdır. Secret və şəxsi fixture data-sını tutma. Retry intermittent davranışı tapmağa kömək edir, amma retry-dən sonra pass təkrarlanan flakiness-i araşdırmaq ehtiyacını silməməlidir. Risk tələb edəndə həm success, həm failure path istifadə et.
+
+Automated accessibility check keyboard və assistive technology review-u tamamlayır. Browser suite focus, label və interaction-u yoxlaya bilər, amma yaşıl automated report tam usability və uyğunluq sübutu deyil.
+
+## İşlənmiş nümunə
+
+Bu orijinal test cari öyrənmə tətbiqinin açıq interface-ini istifadə edir:
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('opens a filtered data collection', async ({ page }) => {
+  await page.goto('/en/lessons?subject=data');
+  await expect(
+    page.getByRole('combobox', {
+      name: 'Subject',
+      exact: true,
+    }),
+  ).toHaveValue('data');
+  await page.getByRole('searchbox').fill('SQL for business questions');
+  await page
+    .getByRole('link', {
+      name: 'SQL for business questions',
+      exact: true,
+    })
+    .click();
+  await expect(
+    page.getByRole('heading', {
+      level: 1,
+      name: 'SQL for business questions',
+      exact: true,
+    }),
+  ).toBeVisible();
+});
+```
+
+İşləyən tətbiqə yönələn Playwright base URL nəzərdə tutulur. Assertion sabit millisaniyə gözləmək əvəzinə nəticə səhifəsini yoxlayır. Repository browser test-ləri eyni funksional collection path-i sınaqdan keçirir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n S[Isolated starting state] --> L[User-facing locator]\n L --> A[Action with actionability checks]\n A --> E[Retrying outcome assertion]\n E --> T[Trace evidence if failure]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>On saniyə sleep əlavə olunandan sonra test keçir. Reliability problemi həll olunubmu?</summary>
+
+Mütləq deyil. Sleep çatışmayan şərti gizlədə bilər; ləng sistemdə yenə fail olar, sürətlidə vaxt itirər. Müşahidə olunan business state-i tap, onu açıq gözlə və əsas timing/state leak səbəbini araşdır.
+
+</details>
+
+## Tipik səhvlər
+
+- Müstəqil testlər arasında mutable fixture state paylaşmaq.
+- Adi label-li control üçün kövrək CSS ancestry istifadə etmək.
+- Mocked dependency-ni canlı integration sübutu saymaq.
+- Təkrarlanan failure-ı görməzdən gəlmək üçün retry istifadə etmək.
+
+## Praktik tapşırıq
+
+Onlayn termin axtarışı xətası üçün test qur. Stub olunan sərhədi, user-in görəcəyi nəticəni və yoxlanacaq bir keyboard interaction-u müəyyən et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Tətbiqin konkret lookup request-ini nəzərdə tutulan unavailable response və ya network failure ilə stub et. Curated olmayan termin yaz, göndər, görünən unavailable vəziyyəti və istifadə edilə bilən retry/alternativ addımı yoxla. Dialog-un Escape ilə bağlandığını və focus-un uyğun qayıtdığını yoxla. Bunun external provider uptime-ını deyil, tətbiqin failure handling-ini test etdiyini göstər.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+State-i ayır. Məna ilə locate et. Action və web assertion-ları await et. Stub-u məqsədli et. Trace-i araşdır. Automated accessibility daha geniş review daxilində faydalı sübutdur.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Playwright: Best practices](https://playwright.dev/docs/best-practices): user-visible behavior, isolation, locator, web-first assertion və debugging.
+- Nümunə orijinaldır və repository-nin cari role/label contract-larını istifadə edir. Yerli tədris testidir; production deployment və bütün browser engine-ləri barədə iddia deyil.

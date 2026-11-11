@@ -1,0 +1,97 @@
+---
+id: pspo1-sprint-goal-changes
+locale: en
+title: 'Sprint Goal, mid-Sprint changes and release decisions'
+objectives:
+  - 'Distinguish a change in selected work from a change that endangers the Sprint Goal.'
+  - 'Identify the Product Owner’s authority when a Sprint Goal becomes obsolete.'
+  - 'Explain why a Done Increment can be delivered before the Sprint Review.'
+---
+
+## Learning objectives
+
+- Distinguish a change in selected work from a change that endangers the Sprint Goal.
+- Identify the Product Owner’s authority when a Sprint Goal becomes obsolete.
+- Explain why a Done Increment can be delivered before the Sprint Review.
+
+## Why this matters
+
+A sponsor requests a new reporting feature halfway through a Sprint. One Product Owner says all changes are forbidden; another immediately tells Developers to replace their work. Both responses skip the same questions: what is the Sprint Goal, what has been learned, and what change preserves the ability to achieve a useful outcome? PSPO reasoning should connect a rule to its purpose and the stated circumstances.
+
+## Core theory
+
+The Sprint Goal is the single objective for the Sprint. It creates coherence and flexibility about the exact work needed. Developers create the Sprint Backlog as their plan; the Product Owner clarifies product direction, value and Product Backlog ordering. The Scrum Team collaborates rather than treating a plan as either an unchangeable contract or a list the Product Owner can rewrite unilaterally.
+
+During a Sprint, no changes are made that would endanger the Sprint Goal and quality does not decrease. Scope may be clarified and renegotiated with the Product Owner as more is learned. This permits useful adaptation; it does not permit ignoring the goal, replacing the Developers' plan by command or reducing the Definition of Done to squeeze in extra work.
+
+A Sprint can be cancelled if its Sprint Goal becomes obsolete, and only the Product Owner has the authority to cancel it. “An item is harder than expected,” “a stakeholder is disappointed,” and “new information makes the objective pointless” are different situations. The first two do not automatically mean the goal is obsolete. A severe operational incident needs transparent handling, but Scrum does not prescribe a universal incident workflow or one automatic cancellation rule for every incident.
+
+The Agile Manifesto's principles support responsiveness, collaboration and technical excellence. They do not replace the Scrum Guide's specific commitments and accountabilities. Welcoming change does not mean every new request must interrupt ongoing work regardless of consequences.
+
+An Increment must be usable and meet the Definition of Done. Multiple Increments may be created within a Sprint. The Sprint Review is an inspection/adaptation event, not a required approval gate for releasing value. Delivery can occur before the Review. Releasing a usable Increment and holding the Review are different decisions; neither a stakeholder demo nor reaching the Sprint's final day turns unfinished work into Done.
+
+## Worked example
+
+A team has the Sprint Goal “customers can securely recover access without a support call.” Developers selected three recovery improvements. Mid-Sprint research shows one proposed screen confuses users, while a smaller change could achieve the same goal. The Product Owner and Developers inspect the evidence and renegotiate selected scope. Developers adapt their plan; the quality boundary remains.
+
+Next, a legal change permanently prohibits the planned recovery mechanism. The team investigates whether the existing goal is still meaningful. If the goal is obsolete, the Product Owner may cancel the Sprint. This is a different decision from replacing one screen while preserving the goal.
+
+If the recovery capability is usable and Done on day seven, the team does not need to wait for day ten's Sprint Review merely because it is the scheduled inspection event. Real security, regulatory and operational constraints still matter; they should not be invented as requirements imposed by Scrum itself.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n A["New information during Sprint"] --> B{"Goal still valuable and achievable?"}\n B -->|Yes| C["Collaborate and adapt scope or plan"]\n C --> D["Preserve quality and Sprint Goal"]\n B -->|Obsolete| E["Product Owner may cancel"]\n D --> F["Usable Done Increment"]\n F --> G["Release when appropriate; inspect at Review"]'
+  }
+/>
+
+The question is the effect of new information on the goal and quality, not simply whether someone has requested a change.
+
+## Inspect the decision
+
+<details>
+<summary>A stakeholder accepts three unfinished items at the Sprint Review. Are they now an Increment?</summary>
+
+No. Stakeholder acceptance does not replace the Definition of Done. Work that does not meet it cannot be considered part of an Increment. Inspect the actual state transparently and adapt the Product Backlog rather than changing labels to create an appearance of progress.
+
+</details>
+
+## Common mistakes
+
+- Treating selected Product Backlog Items as a frozen scope commitment removes useful flexibility.
+- Saying the Product Owner can assign all Developers' tasks confuses product accountability with control of implementation.
+- Cancelling solely because a forecast changed ignores whether the goal is obsolete.
+- Describing Sprint Review as mandatory release approval adds a gate Scrum does not require.
+- Lowering quality to meet a requested date hides risk rather than producing usable value.
+
+## Practice exercise
+
+Classify three cases and explain the next conversation: a new tax rule makes the current Sprint Goal irrelevant; a selected item is too large but a smaller slice can meet the same goal; and a Done improvement is ready three days before the Sprint Review. Identify who owns the key decision and what evidence matters.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+For the obsolete tax-related goal, make the legal evidence transparent and let the Product Owner decide whether to cancel the Sprint. Do not confuse cancellation authority with the team being forbidden from discussing consequences.
+
+For the oversized item, the Product Owner and Developers clarify and renegotiate scope while preserving the Sprint Goal and quality. Developers adapt the Sprint Backlog plan. For the early Done improvement, a release may occur before the Review when appropriate to the product's constraints. The Review still inspects the Sprint's outcome and changed circumstances. There is no requirement to wait for a final-day acceptance meeting.
+
+A defensible selected answer should mention the applicable goal, accountability and quality boundary; a vague instruction to “be agile” is insufficient.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Sprint Goal = single objective. Selected work can be clarified and renegotiated. Developers own their plan; Product Owner owns product value and ordering. Only the Product Owner can cancel when the goal becomes obsolete. Done is a quality boundary. Sprint Review is not a release gate.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Scrum Guide, November 2020](https://scrumguides.org/scrum-guide.html): The Sprint; Sprint Planning; Sprint Backlog; Increment; Definition of Done.
+- [Agile Manifesto principles](https://agilemanifesto.org/principles.html): responsiveness, daily collaboration and technical excellence.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): supplied book, Sprint and release-related discussions; Scrum Guide 2020 controls current Scrum terminology.
+
+Scenarios and questions are original practice, not official exam items. No current assessment format or required topic weighting is inferred from these supplementary readings.

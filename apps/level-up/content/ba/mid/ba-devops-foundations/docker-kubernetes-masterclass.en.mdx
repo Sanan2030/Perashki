@@ -1,0 +1,508 @@
+---
+id: docker-kubernetes-masterclass
+locale: en
+title: 'Docker & Kubernetes: from containers to Vault'
+objectives:
+  - Build and run a Docker image, then explain how Kubernetes runs that artifact.
+  - Trace the control plane, node, Deployment, ReplicaSet, Pod and container relationships.
+  - Predict Service selection using labels, readiness and namespace scope.
+  - Separate non-secret ConfigMaps from Kubernetes Secrets and Vault-managed credentials.
+  - Read a complete manifest, diagnose a broken selector and explain rollout and configuration updates.
+---
+
+## Your route through this lesson
+
+This is one complete lesson, from a Dockerfile to a running Kubernetes application. Start with the visual map, experiment in the explorer, then work through a small storefront deployment. Allow around two hours including the exercises. No previous Kubernetes experience is required; basic terminal and HTTP knowledge helps.
+
+By the end, you should be able to draw **Dockerfile → image → registry → Deployment → ReplicaSet → Pod → container**, explain who does each job, and decide where application settings and credentials belong.
+
+## Why containers and orchestration matter
+
+An online shop has an orders application that works on a developer's laptop. The test server uses a different dependency version, so the application fails there. After packaging it into a container image, the team can run the same artifact in both places. But someone still has to start enough copies, replace failed copies, connect traffic, update versions and distribute configuration.
+
+**Docker** supplies tools for packaging and running containers. **Kubernetes** coordinates containerized workloads across a cluster using declared desired state. **Vault** manages sensitive credentials and access policies. These solve related problems at different layers.
+
+A useful analogy: an image is a packaged recipe and ingredients; a container is one preparation of that recipe; Kubernetes coordinates many preparations and keeps the requested capacity available. The analogy stops at storage and security: applications still need deliberate data management, permissions and recovery plans.
+
+## The complete visual map
+
+![Dockerfile builds an image stored in a registry. Kubernetes control plane manages Deployments, ReplicaSets and Pods; Services select ready Pods, ConfigMaps supply settings and Vault Agent supplies credential files.](/lessons/docker-kubernetes/architecture.svg)
+
+Read the picture as three relationships: **ownership** goes from Deployment to ReplicaSet to Pod; **traffic** goes from Service to matching ready Pods; **configuration** reaches the application through environment variables or files. A namespace is a logical scope across nodes. It is not a physical machine.
+
+<Diagram
+  chart={
+    'flowchart TB\n  F[Dockerfile] -->|build| I[Container image]\n  I --> R[Registry]\n  R -->|node pulls image| C[Container in Pod]\n  D[Deployment] -->|manages| RS[ReplicaSet]\n  RS -->|maintains count| P[Pods]\n  P --> C\n  S[Service] -->|same namespace and matching labels and ready| P\n  CM[ConfigMap] -->|settings| C\n  V[Vault] -->|scoped credentials| A[Vault Agent]\n  A -->|shared file| C'
+  }
+/>
+
+## Interactive explorer: change the system
+
+Use the four views below. In **Image to cluster**, step through the delivery flow or play its animation. In **Pods & rollout**, change replica count, delete a Pod, and advance a v2 rollout. In **Labels & namespaces**, deliberately introduce a selector typo. In **ConfigMap & Vault**, change configuration and rotate a simulated credential.
+
+Predict the result before each click: will the desired count change, will a Service find any backends, and will the running process see the new value?
+
+<KubernetesExplorer />
+
+The explorer is a teaching simulation in your browser. It does not start Docker, connect to Kubernetes or contact Vault. Animation respects reduced-motion preferences; all steps remain available through buttons.
+
+## Docker: Dockerfile, image, container and registry
+
+| Concept      | What it is                                                   | Storefront example                           |
+| ------------ | ------------------------------------------------------------ | -------------------------------------------- |
+| Dockerfile   | Instructions used to build an image                          | Choose a web server and copy a page          |
+| Image        | A packaged filesystem plus runtime metadata                  | `orders-web:1.0`                             |
+| Container    | A running instance of an image with its own writable layer   | One web-server process                       |
+| Registry     | A service for storing and retrieving images                  | An internal registry or Docker Hub           |
+| Volume       | Storage managed separately from a container's writable layer | Persistent application data                  |
+| Port mapping | Forward a host port to a container port                      | `8080:80` forwards host 8080 to container 80 |
+
+Linux containers share the kernel of their execution host; they are not full virtual machines. Docker Desktop commonly runs Linux containers inside a Linux VM. A container bundles userspace dependencies, not an independent kernel.
+
+Create a folder with `index.html`, `Dockerfile` and `.dockerignore`:
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Orders demo</title>
+  </head>
+  <body>
+    <h1>Orders storefront v1</h1>
+  </body>
+</html>
+```
+
+```dockerfile
+FROM nginx:stable-alpine
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+```
+
+```text
+# .dockerignore
+.git
+.env
+.env.*
+node_modules
+```
+
+Build, run and inspect it:
+
+```bash
+docker build -t orders-web:1.0 .
+docker run --name orders-local --rm -d -p 8080:80 orders-web:1.0
+curl http://localhost:8080
+docker logs orders-local
+docker stop orders-local
+```
+
+`EXPOSE 80` documents the container port; it does not publish it to the host. `-p 8080:80` supplies the port mapping. The `--rm` option removes this container when it stops. Rebuilding an image does not update containers already running from the old image.
+
+A tag is a convenient label that can be moved. A digest identifies an exact artifact. The demo uses a tag for readability; reviewed production releases should use a verified digest, minimal trusted base images, appropriate non-root execution, resource limits and image scanning. Never bake passwords into `COPY`, `ARG`, `ENV` or image layers. Removing a file in a later layer does not erase it from an earlier one.
+
+For a shared cluster, tag and push the image to an accessible registry; replace `REGISTRY` with your own registry address and configure image-pull access. The local lab below uses Minikube's image-loading mechanism instead.
+
+```bash
+docker tag orders-web:1.0 REGISTRY/orders-web:1.0
+docker push REGISTRY/orders-web:1.0
+```
+
+## Inside Kubernetes: cluster, control plane and nodes
+
+A **cluster** contains a control plane and worker nodes. A node is a machine, physical or virtual, that can run Pods. The control plane coordinates the cluster; application containers execute on nodes.
+
+| Component          | Responsibility                                                           | What it does not do                                  |
+| ------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------- |
+| API server         | Validates and exposes the Kubernetes API                                 | Does not build your application image                |
+| etcd               | Stores Kubernetes API state                                              | Is not your application's general-purpose database   |
+| Scheduler          | Chooses an eligible node for an unscheduled Pod                          | Does not itself start container processes            |
+| Controller manager | Runs controllers that reconcile actual and desired state                 | Does not make failed application logic correct       |
+| kubelet            | Node agent that works to run the assigned Pods                           | Does not decide the global application replica count |
+| Container runtime  | Runs containers through the Container Runtime Interface (CRI)            | Does not interpret a Deployment rollout strategy     |
+| Cluster networking | Connects Pods and implements Service routing with appropriate components | Is not secured simply by creating a namespace        |
+
+`kubectl apply` sends an object to the API server. Controllers observe stored state and act on differences. The scheduler assigns new Pods to nodes; kubelet coordinates their execution using a CRI-compatible runtime such as containerd or CRI-O. An OCI-compatible image built with Docker can run there: **Kubernetes does not require Docker Engine on every node**.
+
+<Diagram
+  chart={
+    'sequenceDiagram\n  participant U as kubectl\n  participant API as API server\n  participant CT as Controllers\n  participant SC as Scheduler\n  participant K as Node kubelet\n  participant RT as CRI runtime\n  U->>API: Apply Deployment with replicas 3\n  CT->>API: Create ReplicaSet and Pods\n  SC->>API: Bind unscheduled Pods to nodes\n  K->>API: Watch assigned Pods\n  K->>RT: Pull image and start containers\n  K->>API: Report Pod status'
+  }
+/>
+
+The sequence describes responsibilities, not a synchronous chain where `kubectl` waits for each action. `apply` returning successfully means the API accepted the object; check rollout and readiness separately.
+
+## Pod: the smallest deployable unit
+
+A **Pod** groups one or more containers that are scheduled together. Its containers share a network namespace, including the Pod IP and port space. They can communicate over `localhost`; two containers cannot both bind the same port on that network namespace. Containers can share a declared volume when each mounts it, but do not automatically share all filesystem paths.
+
+Most application Pods have one main container. A supporting **sidecar**, such as Vault Agent, can perform a closely related task in the same Pod. Do not put unrelated services together merely because both use containers: they would share scheduling and lifecycle constraints and could not scale independently.
+
+If a container crashes, kubelet can restart it within the same Pod according to its restart policy. If a Pod is deleted or lost, its controller can create a **different Pod with a new identity**. Its IP may change. Data in a container's writable layer is not durable; an `emptyDir` survives individual container restarts in that Pod but is removed with the Pod. Use the appropriate PersistentVolume design or external data service for durable data.
+
+`Running` does not guarantee `Ready`. Readiness determines whether a Pod should receive normal Service traffic. Liveness detects conditions that should trigger a container restart. A startup probe allows slow initialization before liveness and readiness begin checking.
+
+## Deployment and ReplicaSet: desired state and updates
+
+A **ReplicaSet** maintains a desired number of Pods matching its selector. A **Deployment** manages ReplicaSets and declarative application updates. Normally you create a Deployment and let it create the ReplicaSets.
+
+For `replicas: 3`, the ReplicaSet observes the count and creates or removes Pods to converge on three. Deleting one managed Pod does not lower desired state: the controller creates a replacement. Scaling the Deployment to two changes desired state, so two becomes the target. Insufficient node capacity, missing images or invalid configuration can prevent convergence.
+
+When the Pod template changes, such as its image, the Deployment creates or reuses an appropriate ReplicaSet and shifts replicas toward it. A typical rolling update gradually increases the new ReplicaSet and decreases the old one.
+
+<Diagram
+  chart={
+    'flowchart LR\n  D[Deployment orders] --> O[Old ReplicaSet v1]\n  D --> N[New ReplicaSet v2]\n  O -->|scale down| P1[Old Pods]\n  N -->|scale up| P2[New ready Pods]\n  S[Stable Service] --> P1\n  S --> P2'
+  }
+/>
+
+With `maxSurge: 1` and `maxUnavailable: 0`, the controller can add an extra Pod before removing an available old Pod. The cluster must have room for that surge. Terminating Pods can make observed resource use exceed this simplified picture. A failing readiness probe can stall a rollout; Kubernetes does not automatically repair the application or undo database migrations.
+
+Changing replicas alone does not create a new application revision. Updating a ConfigMap also does not, by itself, change the Deployment's Pod template or trigger a rollout.
+
+## Labels and selectors: how objects find one another
+
+A **label** is a key/value attached to an object's metadata. A **selector** is a query for labels. A name identifies an object; it is not automatically a label or a selection rule.
+
+```yaml
+# Labels on the Pods created from the template:
+metadata:
+  labels:
+    app: orders
+    tier: frontend
+```
+
+A Service with the following selector finds Pods whose labels match **both** requirements in the Service's namespace:
+
+```yaml
+selector:
+  app: orders
+  tier: frontend
+```
+
+For a Deployment, `.spec.selector.matchLabels` must match the Pod template's `.spec.template.metadata.labels`. Labels on the top-level Deployment are separate from labels on its Pods. In `apps/v1`, a Deployment's selector is immutable after creation, so choose it carefully.
+
+The Deployment's generated ReplicaSets also use a `pod-template-hash` label to distinguish revisions. Do not edit it manually. The Service usually selects a stable application label so it can route to ready Pods from both revisions during rollout. Avoid overlapping workload-controller selectors.
+
+Useful read-only checks:
+
+```bash
+kubectl -n demo get pods --show-labels
+kubectl -n demo get pods -l app=orders,tier=frontend
+kubectl -n demo get service orders -o yaml
+kubectl -n demo get endpointslices -l kubernetes.io/service-name=orders
+```
+
+A selector typo can leave a healthy Deployment with a Service that has no matching backends. Check spelling, namespace and readiness before restarting anything.
+
+## Namespace: a logical scope
+
+A **namespace** scopes namespaced resources inside a cluster. `demo/orders` and `production/orders` can be different Deployments with the same name. Namespaces do not contain nodes; Pods from different namespaces may run on the same node.
+
+Pods, Deployments, ReplicaSets, Services, ConfigMaps, Secrets and ServiceAccounts are namespaced. Nodes, PersistentVolumes and Namespace objects themselves are cluster-scoped. A standard selector-based Service selects Pods within its own namespace.
+
+```bash
+kubectl get namespaces
+kubectl -n demo get pods
+kubectl -n production get pods
+kubectl get pods --all-namespaces
+```
+
+Use `-n demo` consistently in the lab. A wrong namespace often explains a misleading “not found” result. A Pod normally references its ConfigMaps and Secrets in the same namespace. Service DNS names can address another namespace, such as `orders.demo.svc.cluster.local`; cross-namespace DNS access is different from a Service selector reaching into another namespace.
+
+Namespaces alone do not enforce network or permission isolation. Use RBAC, quotas and NetworkPolicies supported by your networking implementation, as appropriate.
+
+## ConfigMap, Secret and Vault: choose the right place
+
+| Mechanism         | Appropriate data                                                                        | How an application consumes it                           | Important limitation                                                                 |
+| ----------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| ConfigMap         | Non-confidential settings such as log level or feature configuration                    | Environment variables, arguments or mounted files        | Provides no secrecy or encryption                                                    |
+| Kubernetes Secret | Passwords, tokens or keys managed as Kubernetes objects                                 | Environment variables or mounted files                   | Base64 is encoding; encryption at rest and least-privilege access need configuration |
+| HashiCorp Vault   | Centrally controlled secrets and, with a configured secrets engine, dynamic credentials | An Agent, CSI integration, operator or direct API access | Requires authentication, policy, availability and application refresh design         |
+
+A ConfigMap decouples configuration from the image. Kubernetes limits an individual ConfigMap's data to 1 MiB. For example, the same image can receive `LOG_LEVEL=info` in production and `LOG_LEVEL=debug` in a disposable debugging environment.
+
+**Environment variables are startup snapshots.** Changing a ConfigMap does not rewrite the environment of an existing process. Recreate the Pods, often through a controlled rollout. A ConfigMap mounted as a volume is eventually updated by kubelet, except for a `subPath` mount; the application must still re-read the file. Neither path guarantees an application automatically reloads its settings.
+
+Vault is a separate product, not a built-in Kubernetes object kind. A ConfigMap can hold non-secret Vault Agent settings, but never the credentials those settings retrieve. A Kubernetes Secret can be part of an integration; it does not become Vault merely because its name includes `vault`.
+
+## Worked lab: deploy an orders storefront
+
+This optional lab requires Docker, `kubectl`, Minikube, and a working local container/VM driver. It creates a local learning cluster, not a production setup. The browser simulation above works without these tools. The commands below are instructional; they have not been executed against a cluster as part of this lesson's publication.
+
+Start Minikube, build the Docker example from earlier, and load the resulting image into its nodes:
+
+```bash
+minikube start
+docker build -t orders-web:1.0 .
+minikube image load orders-web:1.0
+```
+
+Save this complete manifest as `orders.yaml`. Its four documents create a namespace, ConfigMap, Deployment and Service:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orders-config
+  namespace: demo
+data:
+  LOG_LEVEL: 'info'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: orders
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: orders
+        tier: frontend
+    spec:
+      containers:
+        - name: web
+          image: orders-web:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: orders-config
+                  key: LOG_LEVEL
+          resources:
+            requests:
+              cpu: '50m'
+              memory: '32Mi'
+            limits:
+              cpu: '250m'
+              memory: '128Mi'
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders
+  namespace: demo
+spec:
+  selector:
+    app: orders
+    tier: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+```
+
+The Deployment selector matches `app: orders` on the template; the Service additionally requires `tier: frontend`. The ConfigMap reference works because it and the Pod are in `demo`. The image is locally loaded, so `IfNotPresent` allows nodes to use it. For a remote cluster, use a real accessible registry and appropriate image-pull credentials instead.
+
+This Nginx example receives `LOG_LEVEL` as an environment variable solely to demonstrate injection. Nginx does not change its log level based on this variable without additional configuration. The static page is not an order-processing backend.
+
+```bash
+kubectl apply -f orders.yaml
+kubectl -n demo rollout status deployment/orders
+kubectl -n demo get deployment,replicaset,pods,service
+kubectl -n demo get pods -l app=orders --show-labels
+kubectl -n demo exec deployment/orders -- printenv LOG_LEVEL
+kubectl -n demo port-forward service/orders 8080:80
+```
+
+Open `http://localhost:8080` while port-forward runs. Stop it with Ctrl+C before continuing. Port-forward provides local access for the demo; it is not an external LoadBalancer or a proof of production Service traffic distribution.
+
+### Observe replacement and scaling
+
+```bash
+# Copy ONE Pod name from the output, replacing POD_NAME below.
+kubectl -n demo get pods -l app=orders
+kubectl -n demo delete pod POD_NAME
+kubectl -n demo get pods -w
+# Ctrl+C stops watching; the ReplicaSet keeps reconciling.
+kubectl -n demo scale deployment/orders --replicas=2
+```
+
+Expect a replacement with a different Pod name after deletion. Scaling changes the desired count to two. Applying the original manifest later will restore its declared `replicas: 3`.
+
+### Observe configuration and an image rollout
+
+```bash
+kubectl -n demo patch configmap orders-config --type merge -p '{"data":{"LOG_LEVEL":"debug"}}'
+kubectl -n demo exec deployment/orders -- printenv LOG_LEVEL
+# Existing Pods still report info.
+kubectl -n demo rollout restart deployment/orders
+kubectl -n demo rollout status deployment/orders
+kubectl -n demo exec deployment/orders -- printenv LOG_LEVEL
+# New Pods report debug.
+```
+
+Change the page text to `Orders storefront v2`, then build and load a different image tag:
+
+```bash
+docker build -t orders-web:2.0 .
+minikube image load orders-web:2.0
+kubectl -n demo set image deployment/orders web=orders-web:2.0
+kubectl -n demo rollout status deployment/orders
+kubectl -n demo get replicasets
+kubectl -n demo rollout history deployment/orders
+```
+
+The new template causes a rollout. If you need to return to the prior template, inspect history and use `kubectl -n demo rollout undo deployment/orders`, then check rollout status. This does not undo the ConfigMap patch or application data changes. A rollout restart also creates a revision; know which revision you intend to restore.
+
+To remove only these demo resources, delete `orders.yaml`'s resources with `kubectl delete -f orders.yaml`. Deleting its `demo` namespace also deletes any other resources you placed there, so keep that namespace dedicated to this exercise.
+
+## Vault integration: identity, policy and files
+
+Consider a real orders API that needs database credentials. The goal is to authenticate using workload identity, allow access only to the required secret path, and avoid embedding a long-lived Vault root token in a manifest.
+
+With Vault's Kubernetes auth method, a workload uses its **ServiceAccount JWT** to authenticate. Vault validates that identity through its configured Kubernetes integration, including TokenReview. A Vault role binds permitted ServiceAccount names and namespaces to Vault policies. The issued Vault token is scoped by those policies. Authentication identifies the caller; policy controls what it can read.
+
+<Diagram
+  chart={
+    'sequenceDiagram\n  participant P as Pod ServiceAccount\n  participant A as Vault Agent\n  participant V as Vault\n  participant K as Kubernetes API\n  participant APP as Application\n  P->>A: Workload JWT\n  A->>V: Login with JWT and role\n  V->>K: TokenReview\n  K-->>V: Validated identity\n  V-->>A: Policy-scoped Vault token\n  A->>V: Read permitted credentials\n  V-->>A: Secret data\n  A->>APP: Render shared file\n  Note over A,APP: Application must reload updated credentials'
+  }
+/>
+
+The **Vault Agent Injector** is an admission webhook. With suitable annotations on a Deployment's **Pod template**, it adds Agent init/sidecar containers. The init container can render secrets before the app starts; the sidecar can continue authenticating and refreshing rendered files according to the secret type and Agent configuration. Files are commonly shared through a memory-backed volume at `/vault/secrets`.
+
+An illustrative extension to an application Deployment looks like this. It is a **Pod-template fragment**, not a complete runnable manifest:
+
+```yaml
+spec:
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'orders-demo'
+        vault.hashicorp.com/agent-inject-secret-db.json: 'secret/data/demo/orders'
+        vault.hashicorp.com/agent-inject-template-db.json: |
+          {{- with secret "secret/data/demo/orders" -}}
+          {{ .Data.data | toJSON }}
+          {{- end }}
+    spec:
+      serviceAccountName: orders-app
+```
+
+This assumes the Injector is installed; Vault's Kubernetes auth is configured with trusted TLS and reviewer permissions; the `orders-app` ServiceAccount exists in `demo`; the `orders-demo` Vault role binds that identity; a KV v2 engine is mounted at `secret`; the path contains a suitable secret; and a least-privilege policy permits reading `secret/data/demo/orders`. The application must deliberately read `/vault/secrets/db.json`. Adding these annotations to the static Nginx demo does not turn it into a database application.
+
+An example policy for that KV v2 path is:
+
+```hcl
+path "secret/data/demo/orders" {
+  capabilities = ["read"]
+}
+```
+
+A stored KV password is not automatically a dynamically generated database credential. A configured database secrets engine can issue leased credentials, with renewal/revocation behavior dependent on the engine and role. Design rotation end to end: a refreshed file does not refresh the application's cached password or existing database connections. Plan what happens when Vault is unavailable, a credential expires, or initialization cannot fetch a required secret. Never put a root token in an image, ConfigMap or committed YAML.
+
+## Common mistakes and better decisions
+
+| Mistake                                              | Consequence                                              | Better decision                                               |
+| ---------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
+| Treating an image as a running container             | A new build is mistaken for a deployed release           | Verify image identity and running workload separately         |
+| Creating bare Pods for an always-on web app          | Deleted Pods have no workload controller to replace them | Use a Deployment for this stateless workload                  |
+| Editing generated ReplicaSets manually               | Deployment reconciliation can override the change        | Change the Deployment template or replica count               |
+| Adding labels only to Deployment metadata            | The Service still cannot find the Pods                   | Put workload labels under template metadata                   |
+| Including `version: v1` in a stable Service selector | New v2 Pods receive no traffic                           | Select stable app labels unless version routing is deliberate |
+| Treating namespace as a firewall                     | Unexpected cross-namespace access remains possible       | Design RBAC and supported NetworkPolicies                     |
+| Putting a password in ConfigMap                      | Secrets become readable as ordinary configuration        | Choose a properly protected Secret or Vault integration       |
+| Assuming a file update refreshes the process         | The application uses stale configuration or credentials  | Implement and test reload/reconnect behavior                  |
+| Using a container's writable layer for orders        | Replacement loses business data                          | Use a database or deliberate persistent storage               |
+| Assuming rollback repairs database state             | A restored image can still face incompatible data        | Plan compatible migrations and recovery separately            |
+
+## Practice exercise: repair the storefront
+
+Your team reports: “Three Pods are ready, but the orders Service cannot reach them. We changed logging to debug, yet the app still reports info. Vault Agent has rendered a new credential file, but the application keeps using the old password.”
+
+The Deployment creates Pods in `demo` with `app: orders` and `tier: frontend`. The Service is in `production` with `app: order`. `LOG_LEVEL` comes from a ConfigMap environment variable. The application reads its credential file only at startup.
+
+1. Identify both independent Service discovery problems and propose a corrected Service.
+2. Explain why changing the ConfigMap did not update the running process. Choose a safe way to apply the value.
+3. Explain why credential rotation is incomplete and what the application needs to do.
+4. Describe the ownership chain and predict what happens if one managed Pod is deleted.
+5. Use the explorer to reproduce the typo, environment snapshot and credential reload behavior.
+
+<details>
+<summary>Sample solution and reasoning</summary>
+
+The Service namespace must match the target Pods for this normal selector-based design, so place it in `demo`. Fix `app: order` to `app: orders`; optionally also select `tier: frontend` if that is part of the routing contract. A Pod being ready does not overcome the namespace or spelling mismatch.
+
+The environment is a startup snapshot. Restart through a controlled Deployment rollout and verify new Pods receive `debug`. Updating the ConfigMap alone neither rewrites the environment nor triggers a rollout.
+
+Agent rendering and application consumption are separate steps. The app needs a supported reload mechanism or a controlled restart, plus connection renewal if its database client caches credentials. Verify the credential works before retiring the prior one, according to the engine's rotation policy.
+
+The ownership chain is Deployment → ReplicaSet → Pods → containers. Deleting one managed Pod leaves the desired count at three; the ReplicaSet creates a replacement if the cluster can satisfy the specification. It does not restore ephemeral application data.
+
+</details>
+
+## Mini-quiz: check your mental model
+
+Answer these four original, explained questions. They also appear in this lesson's practice session.
+
+<LessonCheck />
+
+## Cheat sheet
+
+| Question                                            | Remember                                                                         |
+| --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| What does Docker build?                             | An image; running it creates a container                                         |
+| What does Kubernetes schedule?                      | Pods, onto nodes                                                                 |
+| Who owns what?                                      | Deployment → ReplicaSet → Pod; kubelet/runtime execute containers                |
+| What maintains replica count?                       | The ReplicaSet controller, using desired state                                   |
+| What triggers a Deployment rollout?                 | A change to its Pod template                                                     |
+| How does a Service find backends?                   | Matching labels and ready Pods within its namespace                              |
+| What does namespace isolate?                        | Object names and resource scope; networking needs separate controls              |
+| What belongs in ConfigMap?                          | Non-confidential configuration                                                   |
+| Does Secret base64 encrypt?                         | No; encoding and encryption are different                                        |
+| What does Vault add?                                | Identity-based policy, secret delivery and engine-dependent lifecycle management |
+| Does environment update automatically?              | No; replace Pods to take a new snapshot                                          |
+| Does a refreshed credential file update app memory? | Only if the application reloads it                                               |
+
+```bash
+kubectl -n demo get deploy,rs,pods,svc
+kubectl -n demo describe deployment orders
+kubectl -n demo get pods --show-labels
+kubectl -n demo describe pod POD_NAME
+kubectl -n demo logs POD_NAME -c web
+kubectl -n demo get events --sort-by=.metadata.creationTimestamp
+kubectl -n demo rollout status deployment/orders
+```
+
+## Further reading and next steps
+
+Use these official documents to deepen the exact concepts covered here:
+
+- [Docker build best practices](https://docs.docker.com/build/building/best-practices/): build context, base images, layers and reproducibility.
+- [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/): shared resources and Pod lifecycle.
+- [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/): desired state, ReplicaSets, rolling updates and rollback.
+- [Kubernetes ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/): ownership, selectors and maintaining replica count.
+- [Labels and selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/): equality/set selectors and workload matching.
+- [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/): namespaced and cluster-scoped resources.
+- [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/): consumption methods and update behavior.
+- [Container probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/): startup, readiness and liveness.
+- [Vault Kubernetes authentication](https://developer.hashicorp.com/vault/docs/auth/kubernetes): identity, TokenReview and role bindings.
+- [Vault Agent Injector](https://developer.hashicorp.com/vault/docs/platform/k8s/injector): annotations, shared files and Agent containers.
+
+Kubernetes core-object documentation was read from the official website repository; Vault concepts were checked against its official v1.19.0 documentation source. Verify version-specific defaults against your installed versions before using an integration. For deeper follow-up, read [Docker images and secure builds](/en/lessons/devops-docker-containers) and [Kubernetes delivery and probes](/en/lessons/devops-kubernetes-delivery).

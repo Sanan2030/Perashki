@@ -1,0 +1,32 @@
+{
+  "total": 240,
+  "passed": 240,
+  "failed": 0,
+  "categories": {
+    "diacritic": {
+      "passed": 5,
+      "failed": 0
+    },
+    "punctuation": {
+      "passed": 41,
+      "failed": 0
+    },
+    "typo": {
+      "passed": 21,
+      "failed": 0
+    },
+    "context": {
+      "passed": 100,
+      "failed": 0
+    },
+    "technical": {
+      "passed": 43,
+      "failed": 0
+    },
+    "morphology": {
+      "passed": 30,
+      "failed": 0
+    }
+  },
+  "failures": []
+}

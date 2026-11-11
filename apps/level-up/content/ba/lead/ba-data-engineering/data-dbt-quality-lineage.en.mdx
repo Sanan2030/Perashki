@@ -1,0 +1,113 @@
+---
+id: data-dbt-quality-lineage
+locale: en
+title: 'dbt: transformations, lineage and data quality tests'
+objectives:
+  - 'Explain the dependency and relation behavior of ref.'
+  - 'Choose built-in and custom tests for a data contract.'
+  - 'Distinguish passing checks from complete source correctness.'
+---
+
+## Learning objectives
+
+- Explain the dependency and relation behavior of ref.
+- Choose built-in and custom tests for a data contract.
+- Distinguish passing checks from complete source correctness.
+
+## Why this matters
+
+A model changes an order identifier and several reports fail later. Another model contains null customer keys but passes a relationship check. Transformations need explicit dependencies and complementary assertions so change impact and data assumptions are visible before publication.
+
+## Core theory
+
+dbt models express transformations, commonly as SQL select statements materialized through an adapter. The materialization determines how results are built or updated. A model name alone does not tell consumers whether it is a view, table or incremental relation; document the contract and supported refresh behavior.
+
+Use `ref` to refer to another model rather than hardcoding its physical schema. It resolves the relation for the configured environment and records a dependency used to build the graph. That graph helps order work and inspect downstream impact. A declared graph is useful lineage, but cannot automatically capture every external consumer or undocumented manual query.
+
+Data tests query for records that violate an assertion. The built-in unique, not_null, accepted_values and relationships tests cover common assumptions. Choose them from the model grain and business rules. A relationship test does not replace an explicit non-null test: null values can be outside the relationship check while still violating a required-key contract.
+
+Write a singular SQL test for a domain invariant that built-in checks do not express, such as negative remaining refundable amounts. Passing means no failing rows were found under that test and data state, not that every possible business rule is correct. Review sample coverage and source completeness separately.
+
+Build and test intentionally. A model run and a data-test run are distinct operations; a configured build can combine selected models and tests. Selection, severity and dependency behavior affect whether downstream publication should proceed. Preserve failure records and decide who owns investigation rather than suppressing a test solely to keep the pipeline green.
+
+Incremental models need a stable key, update and late-arrival policy. `ref` does not itself deduplicate source data or make every rerun safe. Compare changed schemas, downstream dependencies and consumer expectations before altering a published column.
+
+## Worked example
+
+A teaching fact model refers to its staging relation:
+
+```sql
+select order_id, customer_id, amount_cents
+from {{ ref('stg_orders') }}
+where status = 'paid'
+```
+
+A model property fragment declares complementary checks:
+
+```yaml
+version: 2
+models:
+  - name: fct_paid_orders
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+```
+
+The nested arguments syntax follows the selected documentation; verify support in the installed dbt version. The fragment assumes a configured project and dimension model. It does not claim an executed adapter deployment. If an order has a null customer key, the not_null check addresses it explicitly instead of relying on relationship coverage.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n S[Source and staging contract] --> R[ref dependency graph]\n R --> M[Fact and dimension models]\n M --> T[Complementary data tests]\n T --> G{Quality gate passes?}\n G -->|Yes| P[Publish with freshness evidence]\n G -->|No| I[Investigate owned failures]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>All unique and relationship tests pass. Is data completeness proven?</summary>
+
+No. The tested keys may be consistent within a dataset that is missing an entire source interval. Add reconciliation and freshness/completeness checks suited to the source contract. State exactly which assertions passed and which properties remain unverified.
+
+</details>
+
+## Common mistakes
+
+- Hardcoding environment schemas instead of intentional model references.
+- Assuming relationships also guarantees required non-null keys.
+- Suppressing failures without understanding affected consumers.
+- Treating the model graph as every possible external dependency.
+
+## Practice exercise
+
+A paid-orders fact must have one row per order, a valid customer and nonnegative amounts. Specify checks, a downstream impact review and evidence that yesterday’s source interval is present.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use unique and not_null on order ID, not_null plus relationships on required customer ID and an appropriate custom negative-amount test. Inspect ref-based downstream models and known external reports before a schema change. Reconcile the expected source interval and record its completeness; key tests alone cannot establish that every source record arrived.
+
+</details>
+
+## Check understanding and cheat sheet
+
+ref = relation resolution and graph dependency. Tests = explicit assertions over current data. Keys, relationships, domain rules and completeness need complementary evidence.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [dbt: Data tests](https://docs.getdbt.com/docs/build/data-tests): failing-row assertions and built-in tests.
+- [dbt: ref function](https://docs.getdbt.com/reference/dbt-jinja-functions/ref): environment relation resolution and dependency graph. Examples are original project fragments and should be checked against the installed adapter/Core/Fusion version.

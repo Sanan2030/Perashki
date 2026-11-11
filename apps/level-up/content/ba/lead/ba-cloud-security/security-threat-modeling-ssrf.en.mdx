@@ -1,0 +1,89 @@
+---
+id: security-threat-modeling-ssrf
+locale: en
+title: 'Threat modeling, trust boundaries and SSRF defenses'
+objectives:
+  - 'Create a threat model tied to assets and flows.'
+  - 'Explain why a server-side URL feature creates an SSRF boundary.'
+  - 'Choose layered destination, DNS, redirect and egress controls.'
+---
+
+## Learning objectives
+
+- Create a threat model tied to assets and flows.
+- Explain why a server-side URL feature creates an SSRF boundary.
+- Choose layered destination, DNS, redirect and egress controls.
+
+## Why this matters
+
+A feature that imports a document from a URL makes the server an HTTP client on the user's behalf. That server may have network access the user does not. Without a destination contract, a harmless-looking import can become a route to internal services or sensitive infrastructure.
+
+## Core theory
+
+Threat modelling identifies what is being built, what can go wrong, how risks will be addressed and whether the result is adequate. Start with assets, actors, data flows, entry points and trust boundaries. A diagram should expose where authority changes, not merely show deployment boxes.
+
+Use structured prompts such as spoofing, tampering, repudiation, information disclosure, denial of service and elevation of privilege to explore risks. Categories help coverage but do not supply a complete assessment or choose acceptable risk. Record the scenario, impact, relevant assumptions, mitigation and verification owner.
+
+Server-side request forgery occurs when an attacker can influence requests made by a server beyond the intended authority. The risk depends on what destinations, protocols, methods, headers and credentials the fetching component can use. A URL parser and HTTPS alone do not establish a safe destination.
+
+Prefer a narrow allowlist where the feature can be limited to known trusted destinations. Parse and normalize deliberately, constrain schemes and ports, reject unwanted userinfo and assess DNS resolution. Disable redirects when unnecessary; otherwise revalidate every hop. A hostname check before a later independent resolution can leave a time-of-check/time-of-use gap.
+
+Network egress controls provide an additional boundary. Prevent access to disallowed private, loopback, link-local or metadata destinations as appropriate, accounting for address representations and IPv6. A production design needs a robust implementation that binds validation to the actual connection and preserves expected TLS host verification. Do not copy a simplistic string-prefix check and call it complete SSRF protection.
+
+Bound response size, time, content handling and concurrency to reduce resource abuse. Avoid forwarding ambient credentials to untrusted destinations. Record safe diagnostic evidence without storing imported private content unnecessarily. Test rejected destinations, redirect behavior, DNS changes and operational failure states under authorized conditions.
+
+## Worked example
+
+A document-import service only needs a specific partner's HTTPS export endpoint. The team chooses a dedicated fetcher with constrained host, port and method, no arbitrary caller-supplied headers, bounded size/time and network egress limited to the approved path.
+
+The threat model identifies credential leakage, access to internal endpoints and oversized responses. A generic full-URL input is replaced with a partner document identifier where practical. Tests verify that unexpected destinations and redirects fail safely. The lesson deliberately provides a policy design rather than an unreviewed universal URL-validation function.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n U[Untrusted import request] --> P[Restricted destination contract]\n P --> D[Validated resolution and connection]\n D --> E[Constrained network egress]\n E --> R[Bounded response processing]\n T[Threat scenarios and tests] --> P'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>The input starts with https and contains an approved domain string. Is the fetch safe?</summary>
+
+No. A substring is not a parsed authority check, and scheme alone does not prevent internal destinations, unsafe redirects or resolution changes. Enforce the complete destination and connection policy with defense in depth.
+
+</details>
+
+## Common mistakes
+
+- Treating HTTPS as authorization to every destination.
+- Validating a hostname but following unrestricted redirects.
+- Relying on a denylist without reviewing alternate representations and DNS behavior.
+- Forwarding service credentials to a caller-selected URL.
+
+## Practice exercise
+
+Threat-model a preview feature that fetches a user-provided link. State the asset, trust boundary, three abuse scenarios and a narrower product design that reduces authority.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Assets include internal network access, credentials and service capacity. The boundary is between an untrusted caller and a privileged server-side HTTP client. Consider internal destination access, secret forwarding and resource exhaustion. Limit the feature to approved providers or opaque identifiers where feasible, constrain credentials and egress, bound processing and verify the actual connection/redirect behavior with an owned security review.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Asset → flow → trust boundary → abuse scenario → layered mitigation → verification. URL syntax validation is only one part of server-side fetch security.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [OWASP Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html): modelling questions, flows and review.
+- [OWASP SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html): allowlist/denylist cases, DNS, redirects and network defenses. Examples are defensive design exercises and do not probe any real service.

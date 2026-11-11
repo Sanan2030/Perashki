@@ -1,0 +1,101 @@
+---
+id: devops-linux-git-networking
+locale: en
+title: 'DevOps foundations: Linux, Git and network diagnosis'
+objectives:
+  - 'Distinguish source-control state, deployed artifact and running process.'
+  - 'Diagnose DNS, transport, TLS and HTTP failures as separate layers.'
+  - 'Use read-only observations to form a testable incident hypothesis.'
+---
+
+## Learning objectives
+
+- Distinguish source-control state, deployed artifact and running process.
+- Diagnose DNS, transport, TLS and HTTP failures as separate layers.
+- Use read-only observations to form a testable incident hypothesis.
+
+## Why this matters
+
+A developer says the service is healthy because the latest commit passed CI. A user still receives a timeout. Passing tests, deploying the intended artifact, starting a process and serving successful requests are different observations. DevOps connects these boundaries so a team can investigate safely and reproduce the result.
+
+## Core theory
+
+A Linux process has an identity, environment, working directory, open resources and exit behavior. A service can be running while listening on the wrong address or port. A container adds namespaces and resource isolation, but does not remove the need to understand the process inside it. Binding only to loopback inside a container is different from listening on the intended container interface.
+
+A shell command has output and an exit status. Capture both: an empty output is not automatically success. Shell pipelines need deliberate failure handling because the visible status can otherwise represent only the last command. Never turn a failed security or test command into success merely by appending an unconditional fallback.
+
+Git records snapshots and parent relationships. A branch is a movable reference to a commit; HEAD identifies the current checkout context. A branch name is not an immutable release identity. A dirty working tree can contain changes absent from the commit. Record a commit identifier and artifact digest when establishing what was actually deployed.
+
+Investigate networking in layers. DNS resolves a name, a route reaches an address, TCP connects to a port, TLS establishes the expected encrypted peer identity, and HTTP carries application semantics. A 401 response proves a different condition from a connection refusal: the former reached an HTTP responder that challenged authentication; the latter did not establish that application response. A successful TLS handshake does not prove a database transaction can complete.
+
+Start with bounded, read-only observations and an explicit question. Avoid dumping the entire environment, credentials or private request bodies into logs. A correlation identifier can help link a user failure to server records, but it is not proof of authorization.
+
+## Worked example
+
+In a synthetic staging incident, the service process is present but the hostname returns 503. Check what artifact is running, whether the process listens on the expected port, whether the proxy can reach it, and whether readiness depends on a failed downstream service.
+
+```sh
+git status --short
+git rev-parse HEAD
+ps -eo pid,comm
+ss -ltn
+curl --fail --max-time 5 https://service.example.invalid/healthz
+```
+
+These are illustrative diagnostics; example.invalid is a placeholder and command availability varies. Do not paste secrets into command arguments. The observed commit in a checkout does not, by itself, prove that the same revision is the running binary. Compare deployment metadata and the immutable artifact identity.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Commit"] --> B["Built artifact"]\n B --> C["Running process"]\n C --> D["Listening port"]\n D --> E["DNS transport TLS"]\n E --> F["HTTP and business behavior"]'
+  }
+/>
+
+Each arrow is a boundary that requires evidence. A green observation on the left cannot establish every condition to its right.
+
+## Inspect the decision
+
+<details>
+<summary>The endpoint returns 401 instead of timing out. Should the first hypothesis remain “DNS is broken”?</summary>
+
+Not without other evidence. An HTTP responder was reached. Inspect the expected authentication and routing behavior rather than treating a received application response as the same symptom as name-resolution failure.
+
+</details>
+
+## Common mistakes
+
+- Assuming a branch name identifies an immutable release makes incident reproduction ambiguous.
+- Reading only the final pipeline exit code can hide a failed earlier command.
+- Disabling TLS verification to make a request succeed removes evidence about peer identity.
+- Restarting every service before recording observations can destroy useful incident evidence.
+- Printing all environment variables may expose credentials unrelated to the diagnosis.
+
+## Practice exercise
+
+A release is reported healthy in CI, but users see connection refusals. Write a five-step investigation distinguishing the built commit, running process, bind address, proxy route and application response. Include what you would record before considering a mutation.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Identify the deployed artifact and associated commit rather than trusting the branch label. Observe process status and bounded relevant logs, then the actual listening address/port. Check the intended route from the caller or proxy and inspect DNS/TLS only where the failure evidence points. Finally, check an appropriate application response and business dependency.
+
+Record timestamps, artifact identity, the failing path, redacted error and affected scope. Do not infer a successful business operation from a health endpoint alone. Choose a narrowly justified mitigation only after identifying the relevant boundary.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Checkout ≠ artifact ≠ process ≠ reachable service ≠ correct outcome. Inspect output and exit status. Distinguish DNS/TCP/TLS/HTTP evidence. Use immutable release identity and bounded observations. Preserve credentials and useful incident evidence.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Pro Git, Branches in a Nutshell](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell): commit references, branches and HEAD.
+- [Linux man-pages intro(1)](https://man7.org/linux/man-pages/man1/intro.1.html): scope of user commands; consult each installed tool's manual for platform-specific flags.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): HTTP authentication and response semantics.
+
+The diagnosis sequence and shell examples are original teaching material. They were not run against a production service.

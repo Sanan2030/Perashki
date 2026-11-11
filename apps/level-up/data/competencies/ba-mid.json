@@ -1,0 +1,141 @@
+{
+  "id": "ba-mid",
+  "trackId": "ba",
+  "level": "mid",
+  "title": {
+    "az": "Mid səviyyəli biznes analitik",
+    "en": "Mid-level Business Analyst"
+  },
+  "responsibilities": [
+    {
+      "az": "Çoxsaylı maraqlı tərəfi olan təşəbbüsün analizinə sahib çıx.",
+      "en": "Own analysis for an initiative with multiple stakeholders."
+    },
+    {
+      "az": "Tələb əlaqələrini, asılılıqları və dəyişiklik təsirini idarə et.",
+      "en": "Manage requirement relationships, dependencies and change impact."
+    },
+    {
+      "az": "Çatdırılma qərarlarını həll nəticələri ilə bağla.",
+      "en": "Connect delivery decisions to solution outcomes."
+    }
+  ],
+  "hardSkills": [
+    {
+      "az": "İzlənilmə, prioritetləşdirmə və əhatə nəzarəti",
+      "en": "Traceability, prioritization and scope control"
+    },
+    {
+      "az": "Məlumat modelləri, SQL oxuma və API müqavilələri",
+      "en": "Data models, SQL reading and API contracts"
+    },
+    {
+      "az": "Əsas səbəb analizi, boşluq analizi və UAT planlaması",
+      "en": "Root cause analysis, gap analysis and UAT planning"
+    }
+  ],
+  "softSkills": [
+    {
+      "az": "Seminar fasilitasiyası və konstruktiv sorğulama",
+      "en": "Workshop facilitation and constructive challenge"
+    },
+    {
+      "az": "Fərqli stimullar arasında danışıqlar",
+      "en": "Negotiation across differing incentives"
+    }
+  ],
+  "tools": [
+    {
+      "az": "Jira/Confluence və ya uyğun əlaqəli iş məkanları",
+      "en": "Jira/Confluence or equivalent linked workspaces"
+    },
+    {
+      "az": "Postman/OpenAPI alətləri və yalnız oxuma SQL proqramları",
+      "en": "Postman/OpenAPI tools and read-only SQL clients"
+    }
+  ],
+  "deliverables": [
+    {
+      "az": "Tələb modeli və izlənilmə xəritəsi",
+      "en": "Requirements model and traceability map"
+    },
+    {
+      "az": "Dəyişiklik təsiri qiymətləndirməsi və qərar jurnalı",
+      "en": "Change impact assessment and decision log"
+    },
+    {
+      "az": "UAT paketi və nəticə qiymətləndirmə planı",
+      "en": "UAT pack and outcome evaluation plan"
+    }
+  ],
+  "changes": {
+    "az": "Fərdi tapşırıqlardan analiz qərarlarının və nəticələrinin müstəqil sahibliyinə keçirsən.",
+    "en": "You move from individual tasks to independent ownership of analysis decisions and their consequences."
+  },
+  "checklist": [
+    {
+      "id": "ba-mid-skill-1",
+      "text": {
+        "az": "Prioritet qərarını fərziyyələrlə əsaslandıra bilirəm.",
+        "en": "I can justify a prioritization decision with assumptions."
+      }
+    },
+    {
+      "id": "ba-mid-skill-2",
+      "text": {
+        "az": "Ehtiyacı dizayn və testlərə qədər izləyə bilirəm.",
+        "en": "I can trace a need through design and tests."
+      }
+    },
+    {
+      "id": "ba-mid-skill-3",
+      "text": {
+        "az": "API xətası və təkrar cəhd tələblərini tapa bilirəm.",
+        "en": "I can identify API error and retry requirements."
+      }
+    },
+    {
+      "id": "ba-mid-skill-4",
+      "text": {
+        "az": "ERD-ni izah edib qeyri-müəyyən əlaqə sayını tapa bilirəm.",
+        "en": "I can explain an ERD and detect ambiguous cardinality."
+      }
+    },
+    {
+      "id": "ba-mid-skill-5",
+      "text": {
+        "az": "Əhatə dəyişikliyini təsirlənən komandalar üzrə qiymətləndirə bilirəm.",
+        "en": "I can assess a scope change across affected teams."
+      }
+    },
+    {
+      "id": "ba-mid-skill-6",
+      "text": {
+        "az": "Buraxılışı başlanğıc göstəricisi ilə qiymətləndirə bilirəm.",
+        "en": "I can evaluate a release against a baseline."
+      }
+    }
+  ],
+  "interviews": [
+    {
+      "question": {
+        "az": "Gec gələn tələb dəyişikliyini necə qiymətləndirərsən?",
+        "en": "How would you assess a late requirement change?"
+      },
+      "answer": {
+        "az": "Ehtiyacı və təcililiyi aydınlaşdıraram, təsirlənən qayda, interfeys və testləri izləyərəm, komanda ilə seçimləri qiymətləndirib fayda, risk və qərar sahibini təqdim edərəm.",
+        "en": "I clarify the need and urgency, trace impacted rules, interfaces and tests, estimate options with the team, then present benefits, risks and the decision owner."
+      }
+    },
+    {
+      "question": {
+        "az": "Funksiya buraxılıb, amma göstərici yaxşılaşmayıb. Növbəti nədir?",
+        "en": "The feature shipped but the metric did not improve. What next?"
+      },
+      "answer": {
+        "az": "Ölçməni təsdiqləyərəm, istifadə və seqment fərqlərini yoxlayaram, fərziyyələri faktiki davranışla müqayisə edib əlavə funksiya yazmazdan əvvəl ən kiçik araşdırmanı tövsiyə edərəm.",
+        "en": "I validate measurement, inspect adoption and segment differences, compare assumptions with actual behavior, and recommend the next smallest investigation before adding more features."
+      }
+    }
+  ]
+}

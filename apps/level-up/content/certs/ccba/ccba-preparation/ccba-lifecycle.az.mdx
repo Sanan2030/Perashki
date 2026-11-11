@@ -1,0 +1,77 @@
+---
+id: ccba-lifecycle
+locale: az
+title: 'Tələb dəyişikliklərini idarə et'
+objectives:
+  - 'Tələblərin əlaqələrini dəyişiklik təsirinin qiymətləndirilməsində istifadə et.'
+  - 'Saxlanma, prioritet, təsir analizi və təsdiqi ayrı qərarlar kimi idarə et.'
+---
+
+## Əsas anlayış
+
+Tələb məlumatının həyatı tələbin yazılması ilə bitmir. BABOK v3 tələblərin və dizaynların ehtiyacın ifadəsindən istifadədən çıxmaya qədər uyğun saxlanmasını izah edir. İzlənilmə, məlumatın saxlanması, prioritetləşdirmə, dəyişikliklərin qiymətləndirilməsi və təsdiq bu həyat boyunca bir-birinə kömək edir. Məqsəd hər dəyişikliyi dayandırmaq deyil; dəyəri və əlaqələri anlayaraq qərar verməkdir.
+
+## Niyə vacibdir
+
+Kiçik görünən sahə dəyişməsi məlumat modelinə, qaydaya, testə və müştəri bildirişinə təsir edə bilər. Əlaqələr məlum deyilsə komanda yalnız ekrandakı dəyişiklik qiymətini görər. Digər tərəfdən bütün elementləri səbəbsiz bir-birinə bağlamaq işi ağırlaşdırır. Faydalı izlənilmə qərara aid əlaqəni göstərir. Məhsul buraxıldıqdan sonra saxlanan tələb və qaydalar dəstək, uyğunluq və sonrakı dəyişiklik üçün də dəyər verə bilər.
+
+## Nəzəriyyə və fərqlər
+
+**Trace Requirements:** Ehtiyacdan tələbə, dizayna və həll hissələrinə əlaqəni görünən et. Geri və irəli izlənilmə itmiş əhatəni və ehtiyaca bağlanmayan funksiyanı aşkar edə bilər. **Maintain Requirements:** Məlumatın düzgünlüyünü, ardıcıllığını və uyğun atributlarını zamanla saxla. Yenidən istifadə edilən tələb yeni kontekstdə də yoxlanmalıdır.
+
+**Prioritize:** Fayda, yerinə yetirilməmənin nəticəsi, xərc, risk, asılılıq və vaxt həssaslığını müqayisə et. Prioritet daimi etiket deyil; kontekst dəyişə bilər. Yüksək riskli variant üçün əvvəl kiçik mümkünlük yoxlaması etmək bəzən faydalıdır. Mənbə bütün təşəbbüslər üçün vahid məcburi hesab düsturu vermir.
+
+**Assess Changes:** Təklif olunan dəyişikliyin ehtiyac, strategiya, dəyər, digər tələblər, xərc, vaxt və risklə əlaqəsini yoxla. Fürsət xərci və yenidən iş də əhəmiyyətlidir. **Approve:** Müvafiq səlahiyyətli tərəflərin razılığını əldə et və qərarı çatdır. Formallıq kontekstdən asılıdır. Məlumatı hazırlamaq analitiki avtomatik yeganə təsdiq edən etmir; bu, əvvəl razılaşdırılmış governance ilə müəyyən edilir.
+
+## İşlənmiş nümunə
+
+Kuryer xidmətində ünvan üçün yeni “giriş kodu” sahəsi istənir. Bu, sadə mətn sahəsi kimi görünür. İzləniş göstərir ki, kod sürücüyə göndərilən bildirişə, saxlanma müddətinə, dəstək prosesinə və test məlumatına təsir edir. İstifadəçinin kodu silmək və ya dəyişmək ehtiyacı da var.
+
+Analitik faydanı və alternativi müqayisə edir: yeni saxlanan sahə, müvəqqəti sifariş qeydi, yaxud sürücünün zəngi. Aidiyyəti mütəxəssislər təsiri və uyğun məhdudiyyətləri araşdırır. Razılaşdırılmış qərar sahibi daha kiçik, müddəti məhdud variantı seçərsə əlaqəli tələb, dizayn, test və bildiriş yenilənir. Bu qərarın hər vəziyyətdə doğru olduğu iddia edilmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n N["Business need"] --> R["Requirement"]\n R --> D["Design and data"]\n R --> T["Tests and operations"]\n C["Proposed change"] --> R\n D --> A["Assess value, cost, risk and timing"]\n T --> A\n A --> G["Authorized decision"]\n G --> M["Maintain related versions"]'
+  }
+/>
+
+Model təklif olunan dəyişiklikdən təsir olunan əlaqələrə və qərara gedən yolu göstərir. Qərardan sonra uyğun versiyaların saxlanması növbəti dəyişiklik üçün də məlumat verir.
+
+## Qərar məşqi
+
+Sponsor “bir sətrdir, analiz lazım deyil” deyir. Bir sətir olması təsirin kiçik olduğunu sübut etmir. Mövcud əlaqələr üzrə qısa yoxlama apar, təsirin həcmini və qeyri-müəyyənliyini görünən et. Yoxlama həqiqətən az risk göstərirsə yüngül qərar axını kifayət edə bilər. Dəyişiklik qiymətləndirilməsinin faydası formanın uzunluğundan asılı deyil.
+
+## Səhvlər və düzgün yanaşma
+
+- Sadəcə sıra nömrəsini izlənilmə hesab etmə; əlaqənin mənasını göstər.
+- Əvvəlki prioriteti yeni şəraitdə avtomatik saxlama.
+- Təsdiqlənmiş məlumatı heç vaxt dəyişməz sayma.
+- Yalnız qurma xərcini hesablayıb dəstək və saxlanmanı unutma.
+- Qərar veriləndə əlaqəli versiyaları və maraqlı tərəfləri yenilə.
+
+## Tətbiq tapşırığı və izahlı həll
+
+**Tapşırıq:** Kod sahəsinin müvəqqəti sifariş qeydi ilə əvəz edilməsi üçün minimum təsir qeydi yaz: ehtiyac, iki əlaqə, alternativ, risk və qərar sahibi.
+
+**İzahlı həll:** Ehtiyac qapıya çatma problemini azaltmaqdır. Əlaqələr sürücü bildirişi və məlumatın həyat müddəti ola bilər. Daimi sahə ilə müvəqqəti qeydi müqayisə et; qeydin itməsi və həddən artıq saxlanması fərqli risklərdir. Hansı səlahiyyətli şəxsin qərar verəcəyi governance-dən gəlir. Qəbul edilərsə həm qayda, həm interfeys, həm test uyğun yenilənməlidir.
+
+## Mini-quiz
+
+Ssenari sualında tələbin saxlanması, dəyişiklik təsiri və təsdiq ayrı işlərdir. Hansı çıxışa ehtiyac olduğunu tapmaq düzgün tapşırığı seçməyə kömək edir.
+
+<LessonCheck />
+
+## Xülasə
+
+Əlaqəni tap → təsiri qiymətləndir → prioriteti müqayisə et → səlahiyyətli qərarı əldə et → məlumatı uyğun saxla. Bu iş həm inkişaf, həm əməliyyat, həm də istifadədən çıxma zamanı faydalıdır.
+
+## Mənbələr və əhatə
+
+BABOK Guide v3, 2015: §5.1, səh. 79–83; §5.2, səh. 83–86; §5.3, səh. 86–91; §5.4, səh. 91–95; §5.5, səh. 95–97. Qərar səlahiyyəti üçün §3.3, səh. 37–42. Əsas istifadə olunan izahlar: 79, 83, 87–88, 91–93, 95–96.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Yüklənmiş üzv PDF-i saytda yayımlanmır. Buradakı suallar orijinal tədris məşqidir və rəsmi imtahan sualları deyil.

@@ -1,0 +1,121 @@
+---
+id: secure-api-coding
+locale: az
+title: 'TypeScript API laboratoriyası: validasiya, icazə və təhlükəsiz yeniləmə'
+objectives:
+  - 'Etibarsız request məlumatını trusted authenticated actor-dan ayır.'
+  - 'State dəyişməzdən əvvəl strict input validation və per-object authorization tətbiq et.'
+  - 'İcra edilə bilən mənfi testlərlə duplicate və stale request davranışını göstər.'
+---
+
+## Öyrənmə məqsədləri
+
+- Etibarsız request məlumatını trusted authenticated actor-dan ayır.
+- State dəyişməzdən əvvəl strict input validation və per-object authorization tətbiq et.
+- İcra edilə bilən mənfi testlərlə duplicate və stale request davranışını göstər.
+
+## Bu mövzu niyə vacibdir
+
+TypeScript type annotation runtime-da yox olur. Redaktorda request type yalnız iki field göstərsə də, client quantity="2" göndərə, tenantId="another-company" əlavə edə və create request-i təkrarlaya bilər. Düzgün API davranışı runtime yoxlaması və aydın state sərhədi tələb edir. Bu laboratoriya real işlədilə bilən kodda həmin qərarlara diqqət verir.
+
+## Əsas anlayışlar
+
+Laboratoriyada üç module var: order-service.ts, pkce.ts və webhook.ts. Canlı HTTP endpoint yaratmır, xarici çağırış etmir. Orders service sinxron, in-memory tədris modelidir. Davamlı payment, bir neçə API nüsxəsi və restart recovery üçün qəsdən uyğun deyil; bunlar real transaction və persistence tələb edir.
+
+Authentication adapter modeldən kənardadır. Real credential-ı yoxlayıb trusted Principal yaratmalıdır. Request JSON-dan birbaşa alınan Principal bütün authorization sərhədini keçərdi. TypeScript dəyərin düzgün interface-ə sahib olmasına görə onun etibarlı olduğunu müəyyən etmir.
+
+Request schema yalnız sku və 1–100 aralığında integer quantity qəbul edir. Client-in tenantId, ownerId və version təyin etməsinə imkan vermək əvəzinə unknown property-ləri rədd edir. Bu rəqəm hədləri security standartı deyil, laboratoriyanın biznes qaydasıdır.
+
+```ts
+const createInput = z
+  .object({
+    sku: z.enum(['BOOK', 'COURSE']),
+    quantity: z.number().int().min(1).max(100),
+  })
+  .strict();
+```
+
+Authentication-dan sonra xidmət tələb olunan scope-u yoxlayır. Mövcud order-ə giriş üçün trusted tenant və owner da uyğun olmalıdır. Vahid 404 policy həmin sərhəddən kənar object-ləri gizlədir. Actor authentication-dan alınır; requestedId və request body isə etibarsız input olaraq qalır.
+
+Creation scope-lu operation key və validated input fingerprint-i üzrə deduplication edir. Model ilkin nəticənin snapshot-ını saxlayır. Order dəyişdiriləndən sonra eyni retry yenə ilkin creation outcome qaytarır, GET isə cari state-i göstərir. Eyni key ilə başqa payload 409 yaradır. Update gözlənilən version-u müqayisə edir, köhnə state-də dəyişiklik etmədən 412 qaytarır.
+
+Daxili object-ə mutable reference qaytarmaq caller-ə yoxlamasız state dəyişmək imkanı verərdi. Laboratoriya structured copy qaytarır. Bu, in-process sərhəd məsələsidir; HTTP adapter təhlükəsiz serialization və uyğun representation da tələb edir.
+
+## İşlənmiş nümunə
+
+Repository root-dan layihənin mövcud test runner-ini laboratoriya üçün işlət:
+
+```sh
+npm ci
+npm test -- tests/api-lab.test.ts
+```
+
+[Laboratoriyanın source və təlimatını](https://github.com/Sanan2030/level_up/tree/main/examples/api-lab) oxu. Testlər RFC 7636 S256 vektorunu, GitHub-un açıq webhook signature vektorunu, cross-tenant/cross-owner rəddini, mass assignment-i, duplicate payload conflict-i və stale write-ı əhatə edir.
+
+```ts
+const service = createOrderService();
+const first = service.create(actor, { sku: 'BOOK', quantity: 2 }, 'checkout-81');
+const edited = service.updateQuantity(actor, first.id, 1, { quantity: 4 });
+// edited.version is 2; an update expecting version 1 now fails with 412.
+```
+
+Buradakı actor dəyişəni trusted authentication nəticəsi olmalıdır. Test fixture-ləri süni istifadəçilərdir; real authentication sistemini əvəz etmir. Map-lar üçün unit test-in keçməsi multi-process DB düzgünlüyünü təsdiqləmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Untrusted input"] --> B["Runtime schema"]\n C["Trusted actor"] --> D["Scope and object policy"]\n B --> E["Deduplication or version check"]\n D --> E\n E --> F["State change and copied result"]'
+  }
+/>
+
+Input forması və actor authority-si fərqli mənbələrdən gəlir. State dəyişməzdən əvvəl hər ikisi operation qaydalarını ödəməlidir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Body-də düzgün tenantId var və caller orders:write scope-una malikdir. Xidmət həmin tenantId-ni istifadə etməlidirmi?</summary>
+
+Xeyr. Caller öz security boundary-sini input ilə seçmir. Tenant-ı trusted context və dəstəklənən membership policy-dən çıxar. Laboratoriya creation body-də tenantId-ni tam rədd edir və geniş write scope-dan ayrıca object ownership yoxlayır.
+
+</details>
+
+## Tipik səhvlər
+
+- Decoded JSON-a “as Principal” yazmaq compiler-in baxışını dəyişir, runtime trust səviyyəsini yox.
+- Yalnız brauzerdə validation etmək birbaşa API client-i məhdudiyyətsiz qoyur.
+- Process-local key check ilə insertion arasına await əlavə etmək bir neçə nüsxə olmadan belə race yaradır.
+- Internal object reference qaytarmaq in-process API-də sonrakı yoxlamaları keçməyə imkan verə bilər.
+- Laboratoriyanı payment service kimi deploy etmək persistence, real authentication, audit və recovery tələblərini kənarlaşdırır.
+
+## Praktik tapşırıq
+
+Testləri oxumamış bir invariant-ı qur və ya qəsdən pozub xətanı müşahidə et: başqa tenant-ın order-ini rədd etmək, injected ownerId-ni rədd etmək, ilkin idempotent nəticəni saxlamaq və stale update-i önləmək. Sonra production adapter quruluşunu planlaşdır: token verification, HTTP body limit, ETag parsing, session CSRF control, davamlı transaction və təhlükəsiz error mapping harada olmalıdır?
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Schema-nı strict saxla, actor-u yalnız yoxlanmış authentication-dan al. Mövcud hər object üçün scope ilə tenant/owner yoxla. Operation key-i actor, tenant və operation-a bağla; validated payload fingerprint-lərini müqayisə et; order dəyişəndə ilkin creation snapshot-ını əvəz etmə. Version müqayisəsini və update-i eyni atomik sərhəddə et.
+
+Production-da map əvəzinə davamlı scoped uniqueness constraint və uyğun DB transaction istifadə et. HTTP adapter request-i authenticate edir, body/transport limit və browser-specific integrity yoxlamaları tətbiq edir, seçilmiş ETag/version contract-ını parse edir, LabHttpError tipli domain xətalarını təhlükəsiz response-a çevirir. 401 adapter cavabı uyğun authentication challenge tələb edir. Unit test bu zəmanətləri vermədiyindən concurrent DB worker və crash recovery üçün integration test əlavə et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Runtime schema input-u validate edir. Authentication actor context yaradır. Scope və object policy girişi idarə edir. Idempotency bir operation-u qoruyur; version check köhnə edit-i rədd edir. Copy in-process state sərhədini qoruyur. Lab test model davranışını göstərir; production zəmanəti real storage, protocol və failure sərhədləri tələb edir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Lab source](https://github.com/Sanan2030/level_up/tree/main/examples/api-lab) və repository-də tests/api-lab.test.ts.
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): least privilege və per-object check.
+- [OWASP REST Security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html): input validation və access control.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): If-Match və 412.
+- [RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html): Appendix B test vektoru.
+- [GitHub webhook validation](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries): açıq HMAC test vektoru.
+
+Source code və tapşırıqlar orijinal tədris implementasiyasıdır. Açıq webhook vektoru documentation fixture-idir, platforma credential-ı deyil.

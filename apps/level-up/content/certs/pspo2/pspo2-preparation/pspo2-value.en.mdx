@@ -1,0 +1,76 @@
+---
+id: pspo2-value
+locale: en
+title: 'Value decisions in difficult situations'
+objectives:
+  - 'Interpret CV, UV, T2M and A2I.'
+  - 'Separate metric growth from customer outcomes.'
+---
+
+## Concept
+
+EBM 2024 defines four Key Value Areas. Current Value examines value delivered today. Unrealized Value examines potential arising from the gap between desired and current experience. High current revenue does not imply high UV; if users are satisfied, another investment may be more useful. Low CV with high UV may indicate an opportunity worth investigating.
+
+## Why it matters
+
+Time-to-Market examines how quickly potential value can be delivered and feedback learned from. Ability to Innovate examines effectiveness in delivering new capabilities. Long release queues prompt T2M discussion; maintenance of old versions and technical debt prompt A2I discussion. One metric does not explain all value, and an observation may inform multiple areas.
+
+## Decision principles
+
+The book’s Value chapter examines negative value and distorted metrics. More sign-ups with rapid churn may conceal weak value. Turning a proxy metric into a reward or punishment target can distort behavior. Inspect customer benefit, organizational impact and the capability to improve the product together. EBM 2024 offers example measures, not a universal mandatory score formula.
+
+### Inspect the side effect of a metric too
+
+EBM 2024 explains that outcomes may be negative and short-term organizational impact may not represent sustainable benefit. In a teaching example, hiding payment details raises purchases while refunds and complaints rise too. Conversion alone is insufficient evidence of user benefit. Define an outcome measure and guardrail first, then inspect comparable users and measurement quality. This is experiment-design guidance, not a claim that EBM mandates a percentage threshold or A/B testing method.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n  A["Goal"] --> B["Evidence and choice"]\n  B --> C["Small step"]\n  C --> D["Inspect and adapt"]\n  D --> B'
+  }
+/>
+
+This is a teaching summary, not a reproduction of a source figure.
+
+## Worked scenario
+
+A campaign doubles sign-ups while weekly return usage falls. The team spends half its time supporting old versions and waits three weeks for releases.
+
+## Decision reasoning
+
+Examine experienced benefit and retention for CV, and unmet needs for UV. Inspect version-maintenance burden through A2I and release waiting through T2M. Change one constraint and measure the outcome; do not declare success on sign-ups alone.
+
+## Common pitfalls
+
+Treating UV as a precise revenue forecast; presenting higher velocity as CV; collapsing the four areas into a mechanical total score.
+
+## Application exercise
+
+For your product, write one question and observation per KVA. State what each observation does not prove.
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+CV: can users complete their task? UV: which desired outcome is unmet? T2M: how long from idea to learning? A2I: what prevents new value? Release frequency can indicate speed without proving customer benefit.
+
+</details>
+
+## Check understanding and remember
+
+CV: now; UV: unmet potential; T2M: delivery and learning speed; A2I: capability to create new value.
+
+<LessonCheck />
+
+## Sources and scope
+
+EBM 2024: Key Value Areas, pp. 8–11, Appendix pp. 13–16. Book: chapter 3, Value.
+
+- [Evidence-Based Management Guide — Scrum.org (2024)](https://www.scrum.org/resources/evidence-based-management-guide)
+- [The Professional Product Owner — Don McGreal & Ralph Jocham (2018), ISBN 9780134686479](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+
+Explanations and examples are original teaching material. Official test questions are not reproduced. Exam formats are verified separately; these topic groups are not an official blueprint.
+
+Additional scope reference: [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies). The user-supplied text was read; the competency taxonomy does not establish official exam weights.

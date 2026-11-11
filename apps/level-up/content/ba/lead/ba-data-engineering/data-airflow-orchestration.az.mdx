@@ -1,0 +1,96 @@
+---
+id: data-airflow-orchestration
+locale: az
+title: 'Airflow: interval, retry və idempotent tapşırıqlar'
+objectives:
+  - 'DAG dependency və data interval identity-sini izah et.'
+  - 'Duplicate output yaratmadan retry edilən task qur.'
+  - 'Məhdud catchup, backfill və operational recovery planlaşdır.'
+---
+
+## Öyrənmə məqsədləri
+
+- DAG dependency və data interval identity-sini izah et.
+- Duplicate output yaratmadan retry edilən task qur.
+- Məhdud catchup, backfill və operational recovery planlaşdır.
+
+## Bu mövzu niyə vacibdir
+
+Scheduled job output-un yarısını yazıb fail olur. Retry eyni record-u yenə append edir, növbəti task çaşdırıcı total publish edir. Orchestrator işi yenidən başlada bilər, amma idempotent output contract uydura bilməz. Task və data sərhədi birlikdə qurulmalıdır.
+
+## Əsas anlayışlar
+
+Airflow DAG task və dependency-ləri təsvir edir. Uğurlu dependency state konfiqurasiya olunmuş trigger rule ilə downstream işə imkan verir; biznes dataset-inin düzgünlüyünü özü sübut etmir. Lazım olan validation/publication gate-i workflow-a açıq daxil et.
+
+Scheduled run-un logical scheduling context-i və data interval-ı var. Interval əsaslı emalda source partition-u icra anının wall clock-undan deyil, həmin kontekstdən çıxar. Gecikmiş/retry edilmiş task yenə nəzərdə tutulan intervalı işləməlidir. Timezone və schedule dəyişəndə seçilən data dəyişdiyindən review lazımdır.
+
+Task-a tam output verən restartable unit kimi bax. Şərtsiz repeated insert əvəzinə sabit key, upsert və ya nəzarətli partition replacement istifadə et. Intermediate data-nı ayrı yaz; storage dəstəkləyirsə atomik publish et. Remote API call side effect yaradırsa retry provider operation identity və recovery contract da tələb edir.
+
+Dependency əvvəlki worker-də güman edilmiş local file-a deyil, durable output-a istinad etməlidir. Distributed executor növbəti task-ı başqa yerdə işlədə bilər. Uyğun shared store istifadə et; XCom-u bulk warehouse kimi işlətmək əvəzinə kiçik reference/metadata ötür.
+
+Retry policy üzrə seçilmiş failure-ları qarşılayır; hamısının transient olduğuna zəmanət deyil. Attempt, delay, concurrency və notification-u məhdudlaşdır. Permanent failure səbəbini saxla; invalid input-a təkrar tutum sərf etmə.
+
+Catchup/backfill məqsədli scope və resurs planı tələb edir. Output versioned/idempotent deyilsə historical interval source-u yükləyə və əvvəlki data-nı əvəz edə bilər. Replay-i kimin başladacağını, təsirlənən period-un necə işarələndiyini və republish-dən əvvəl hansı quality sübutunun lazım olduğunu göstər.
+
+## İşlənmiş nümunə
+
+Gündəlik warehouse DAG-da dörd task var:
+
+| Task      | Input identity            | Durable output           | Retry qaydası                          |
+| --------- | ------------------------- | ------------------------ | -------------------------------------- |
+| Extract   | Scheduled source interval | Raw interval artifact-ı  | Eyni interval, duplicate batch olmadan |
+| Transform | Raw artifact version-u    | Staged partition         | Stable-key merge və ya replacement     |
+| Validate  | Staged partition          | Check nəticələri         | Eyni version-u yenidən qiymətləndir    |
+| Publish   | Validated partition       | Consumer-visible version | Nəzarətli atomic switch                |
+
+Yanvarın 10-u başlayan interval üçün yanvarın 12-də gecikmiş run yenə 10 yanvarın nəzərdə tutulan data-sını işləyir. Task cari tarixlə səssizcə 12 yanvarı seçməməlidir. Source completeness policy late record-u yenə nəzərə almalıdır. Bu, orijinal workflow dizaynıdır; Airflow scheduler quraşdırılmır və production-a qoşulmur.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n I[Scheduled data interval] --> E[Extract durable artifact]\n E --> T[Retry-safe transform]\n T --> V[Validate specific version]\n V --> P[Publish complete result]\n P --> O[Freshness monitoring and owned recovery]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Üç retry aktiv etmək task-ın append-only write-larını təhlükəsiz edərmi?</summary>
+
+Xeyr. Cəhd fail olmamış qismən append edirsə növbəti cəhd duplicate yarada bilər. Output sərhədini sabit key, transactional və ya partition publication policy və reconciliation ilə yenidən qur. Retry sayı cəhdi idarə edir, effect uniqueness-i yox.
+
+</details>
+
+## Tipik səhvlər
+
+- Kritik partition seçmək üçün now istifadə etmək.
+- Downstream worker-lərin local filesystem paylaşdığını fərz etmək.
+- Böyük dataset-i XCom-dan ötürmək.
+- Capacity/publication review olmadan limitsiz historical backfill başlatmaq.
+
+## Praktik tapşırıq
+
+Transform bir günlük record-un yarısını yazıb fail olur. Restart davranışını qur; nəticəni açmazdan əvvəl validate/publish task-ının nəyi yoxlamalı olduğunu göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Nəzərdə tutulan interval və source version-u saxla. Təcrid edilmiş staging target-ə yaz və ya təhlükəsiz re-execution verən transaction/upsert policy istifadə et. Expected count, key və uyğun total-ı reconcile et, əvvəlki yarımçıq output-un qaldığını yoxla. Yalnız tam validated version-u publish et; switch-ədək əvvəlki consumer-visible nəticəni saxla. Replay-i məhdudlaşdır, düzələn period-u işarələ.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+DAG = dependency orchestration. Interval = nəzərdə tutulan data identity-si. Retry safety output dizaynından gəlir. Durable reference, validation gate və məhdud replay consumer-i qoruyur.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Apache Airflow: DAGs](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html): task dependency və workflow anlayışları.
+- [Apache Airflow: Best practices](https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html): transaction-like task, UPSERT, konkret partition və kritik hesablamada now-dan qaçmaq. Stable sənədlərin seçilmiş hissələri source register tarixində oxunub; API sintaksisi versiyadan asılıdır.

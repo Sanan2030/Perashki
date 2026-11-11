@@ -1,0 +1,142 @@
+---
+id: product-goal
+locale: az
+title: 'Məhsul vizyonundan Product Goal-a'
+objectives:
+  - 'Geniş istiqaməti ölçülə bilən növbəti məhsul nəticəsinə çevir.'
+  - 'Anlayışı real ssenariyə tətbiq et və qərarı izah et.'
+---
+
+## 1. Öyrənmə məqsədləri
+
+Vizyonu, Product Goal-u, Sprint Goal-u və backlog item-i fərqləndir. Nəticəni faydalı sübutla qur və mümkün məhsul sərmayələri arasında seçim etmək üçün istifadə et.
+
+## 2. Niyə vacibdir
+
+Ərzaq çatdırılma məhsulunda çox sorğu var: sürücünün canlı xəritəsi, daha çox kupon, yeni ödəniş və asan vaxt dəyişmə. Dördünü də hazırlamaq əsas müştəri problemini həll etmədən aylar ala bilər. Ortaq məqsəd komandaya nəyi öyrənmək və nəyi təxirə salmaq qərarında kömək edir.
+
+Bu dərsdə məhsul vizyonu geniş istiqamətdir. Product Goal planlamaya istiqamət verən gələcək məhsul vəziyyətini təsvir edir. Scrum Guide onun Scrum-dakı rolunu müəyyən edir; aşağıdakı ölçülə bilən ifadə tədris üsuludur, məcburi şablon deyil.
+
+## 3. Sadə dildə əsas nəzəriyyə
+
+Müştəri problemindən və məhsul sərhədindən başla. Arzuolunan dəyişikliyi, kimin faydalanacağını və niyə vacib olduğunu yaz. Uyğun olduqda başlanğıc göstəricisi, sübut mənbəyi və qoruyucu ölçülər əlavə et. Məqsəd ölçülən görünsün deyə dəqiq rəqəmlər uydurma.
+
+Product Goal Product Backlog ilə bağlıdır. Sprint Goal bir Sprint üçün vahid istiqamət verir. İş elementləri mümkün işi təsvir edir; onlar məqsədə çatmaq üçün seçimlərdir, məqsədin özü deyil. Scrum-da komanda növbəti Product Goal-u götürməzdən əvvəl əvvəlkini yerinə yetirir və ya ondan imtina edir.
+
+Mənalı hədəf yoxlamanı dəstəkləyir. Funksiyalar siyahısı çıxışları göstərir; uğurlu müştəri davranışı haqqında sübut nəticəni anlamağa kömək edir. Nəticə avtomatik səbəb sübutu deyil: mövsümilik, seqment dəyişikliyi və əməliyyatlar da göstəriciyə təsir edə bilər.
+
+## 4. İşlənmiş nümunə: daha az uğursuz çatdırılma
+
+Xəyali məhsul komandası hər 100 çatdırılmadan 12-sinin ilk cəhddə uğursuz olduğunu görür. Müsahibələr göstərir ki, insanlar ödənişdən sonra çatdırılma vaxtını dəyişə bilmir. Əməliyyat məlumatında ünvan keyfiyyəti problemləri də var.
+
+**Təklif edilən Product Goal:** pilot ərazidə müştərilərin ərzaq sifarişini ilk planlaşdırılmış cəhddə almasına kömək etmək. Bu tədris ssenarisində komanda səkkiz həftədə uğursuz ilk cəhdi 12%-dən 8%-ə endirməyi işçi hədəf seçir; sifarişə düşən dəstək müraciəti artmamalı və telefon dəstəyinə ehtiyacı olan müştəri kənarda qalmamalıdır.
+
+Rəqəmlər uydurulmuş ssenari məlumatıdır, sənaye standartı deyil. Qərardan əvvəl ölçmə təsdiqlənməlidir.
+
+| Seçim                    | Fərziyyə                                           | Axtarılacaq sübut                                             |
+| ------------------------ | -------------------------------------------------- | ------------------------------------------------------------- |
+| Özünəxidmət vaxt dəyişmə | Müştərinin yerində olmaması çox uğursuzluq yaradır | Uğursuz çatdırılma səbəbləri və tapşırıq üzrə istifadə testi  |
+| Ünvan təsdiqi            | Qeyri-dəqiq ünvan çox uğursuzluq yaradır           | Sürücü qeydləri və ünvan xətası dərəcəsi                      |
+| Daha çox kupon           | Daha çox sifariş nəticəni yaxşılaşdırır            | İlk cəhd uğuru ilə zəif əlaqə; yeni sübut yoxdursa təxirə sal |
+
+Mümkün Sprint Goal: “pilot müştərilərin göndərişdən əvvəl çatdırılma vaxtını dəyişməsinə imkan yaratmaq”. Komanda həyata keçirilə bilən hissə seçir, istifadəyə və uğursuzluğa baxır. Sonrakı eksperiment ünvan keyfiyyətini araşdıra bilər.
+
+## 5. Diaqram
+
+<Diagram
+  chart={
+    'flowchart TD; A[Vizyon: etibarlı ərzaq çatdırılması] --> B[Product Goal: ilk cəhd uğurunu artır]; B --> C[Backlog-da seçimlər]; C --> D[Sprint Goal və seçilmiş iş]; D --> E[İstifadə olunan Increment]; E --> F[Müştəri və əməliyyat sübutunu yoxla]; F --> B;'
+  }
+/>
+
+Oxlar istiqaməti seçimə, çatdırılmaya və sübuta bağlayır. Geribildirim backlog-u dəyişə və ya hazırkı məqsədə yenidən baxılmalı olduğunu göstərə bilər.
+
+## 6. İnteraktiv izah
+
+Aşağıdakı dövrü addım-addım keç. Hər yoxlama nöqtəsində hansı müşahidənin ərzaq çatdırılması fərziyyəsini dəstəkləyəcəyini və ya sorğulayacağını düşün.
+
+<ConceptStepper />
+
+<details>
+<summary>Vaxt dəyişmə istifadə olunur, amma uğursuzluq azalmırsa?</summary>
+
+Əvvəl ölçməni təsdiqlə və seqmentləri müqayisə et. Sonra funksiyanın uğursuzluq yaşayan müştərilərə çatmasını, göndərişə yenilənmənin ötürülməsini və ilkin səbəb fərziyyəsinin yanlış olmasını araşdır. Yalnız funksiya buraxıldığına və ya klikləndiyinə görə uğur elan etmə.
+
+</details>
+
+## 7. Tipik səhvlər və yaxşı təcrübələr
+
+- **Məqsəd kimi göstərilən funksiya:** “vaxt dəyişmə düyməsini burax”. Onun hansı müştəri və ya məhsul dəyişikliyini yaratmalı olduğunu izah et.
+- **Eyni anda çox məqsəd:** zidd məqsədlər hər sorğunu təcili göstərir. Cari fokusu aydın et.
+- **Sübutsuz hədəf:** nəticəni yozmazdan əvvəl başlanğıc göstəricisini və ölçmə mənbəyini yoxla.
+- **Qoruyucu ölçüsüz göstərici:** dəstək yükü, ədalət, əlçatanlıq və etibarlılığa təsiri yoxla.
+- **Sabit həll:** sübut daraltmağa əsas verənə qədər bir neçə seçimi açıq saxla.
+
+## 8. Praktik tapşırıq və nümunə həll
+
+**Tapşırıq:** Telekom tətbiqi “çatbot əlavə etmək” istəyir. Məhsul nəticəsi, bir sübut mənbəyi, iki mümkün iş elementi və qoruyucu ölçü yaz. Sprint Goal-un töhfəsini izah et.
+
+<details>
+<summary>Nümunə həlli aç</summary>
+
+**Nəticə:** müştəri problemini kanallar arasında təkrar etmədən adi hesab sualını həll edə bilir. **Sübut:** sonrakı əlaqələrlə yoxlanılmış sual növü üzrə uğurlu həll. **Seçim:** hesab izahını yaxşılaşdırmaq və ya məhdud köməkçi pilotu; hansının real çətinliyi həll etdiyini araşdır. **Qoruyucu ölçü:** açıq şikayətləri artırmamaq və insana çıxışı bağlamamaq. **Mümkün Sprint Goal:** kiçik pilot qrupun yayğın hesab düzəlişini anlamasına kömək etmək və təkrar müraciətin azalıb-azalmadığını yoxlamaq. Etibarlı başlanğıc göstəricisi yoxdursa əsassız rəqəm lazım deyil.
+
+</details>
+
+## 9. Mini-test
+
+**1. Hansı ifadə nəticəni daha yaxşı təsvir edir?**
+
+A. Beş panel ekranı çatdır. B. Dəstəyin müştəri sualını daha az ötürmə ilə həll etməsinə kömək et. C. Satışın istədiyi hər işi bitir.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Dəyişən imkan və ya təcrübəni göstərir. A faydanı göstərmədən çıxışı sayır. C tələb sayını dəyər sayır.
+
+</details>
+
+**2. Hansı əlaqə düzgündür?**
+
+A. Product Goal və hər iş elementi eynidir. B. Sprint Goal Product Goal-u həmişəlik əvəz edir. C. Sprint Goal vahid qısamüddətli istiqamətlə Product Goal-a töhfə verə bilər.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**C.** Məqsədlər fərqli zaman üfüqlərindədir. A məqsədi iş seçimi ilə qarışdırır. B əsaslandırılmış qərar olmadan uzun istiqaməti silir.
+
+</details>
+
+**3. Funksiya populyardır, amma hədəf nəticə yaxşılaşmır. Product Owner nəyi yoxlamalıdır?**
+
+A. Yalnız klik sayını. B. Ölçməni, seqmenti, fərziyyələri və nəticə ilə səbəb əlaqəsini. C. Əlaqəsiz funksiyaların daha sürətli əlavə edilməsini.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Yoxlama əsas düşüncəni sorğulamalıdır. A istənilən nəticə yerinə istifadəni ölçür. C sübut boşluğunu həll etmədən iş artırır.
+
+</details>
+
+**4. Qoruyucu ölçü niyə əlavə olunur?**
+
+A. Əsas göstəricinin gizlətdiyi zərəri görmək üçün. B. Səbəbi zəmanət etmək üçün. C. İstifadəçi araşdırmasını əvəz etmək üçün.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**A.** Qoruyucu ölçü yan təsir və qəbuledilməz seçimi göstərir. B ölçmənin verə bilməyəcəyi vəd verir. C keyfiyyət sübutunu və konteksti nəzərə almır.
+
+</details>
+
+## 10. Bir səhifəlik yaddaş vərəqi
+
+**Vizyon:** geniş istiqamət. **Product Goal:** planlamaya istiqamət verən gələcək məhsul vəziyyəti. **Sprint Goal:** vahid Sprint istiqaməti. **Backlog:** sıralanmış iş seçimləri. **Yaxşı sübut:** etibarlı başlanğıc, uyğun davranış, düzgün seqment və aydın məhdudiyyət. **Qoruyucu ölçü:** qəbuledilməz yan təsirin göstəricisi. **Qərar testi:** bu seçim hazırkı məqsədə niyə kömək edir və hansı sübut etmədiyini göstərə bilər?
+
+## 11. Əlavə oxu
+
+- [Scrum Guide, rəsmi 2020 bələdçisi](https://scrumguides.org/scrum-guide.html)
+- [Scrum.org: Evidence-Based Management Guide](https://www.scrum.org/resources/evidence-based-management-guide)
+- [GOV.UK: xidmət uğurunun ölçülməsi](https://www.gov.uk/service-manual/measuring-success)
+
+Ssenari məlumatları və suallar orijinal məşq materialıdır, rəsmi imtahan məzmunu deyil.

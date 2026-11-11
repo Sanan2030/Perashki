@@ -1,0 +1,96 @@
+---
+id: api-resilience-observability
+locale: en
+title: 'API timeouts, retries, circuit breakers and observability'
+objectives:
+  - 'Allocate an end-to-end time budget across attempts and downstream calls.'
+  - 'Distinguish retrying a transient fault from breaking a failing dependency circuit.'
+  - 'Choose telemetry that explains user impact without recording credentials or private payloads.'
+---
+
+## Learning objectives
+
+- Allocate an end-to-end time budget across attempts and downstream calls.
+- Distinguish retrying a transient fault from breaking a failing dependency circuit.
+- Choose telemetry that explains user impact without recording credentials or private payloads.
+
+## Why this matters
+
+An app has a two-second user-response budget. Its gateway, order service and payment client each independently retry three times with two-second timeouts. The call graph can multiply requests and hold resources far beyond the user's budget. More retries can make a partial outage worse. Recovery policies must be designed together with operation semantics and capacity.
+
+## Core theory
+
+A timeout bounds how long a caller waits; it does not prove that the callee did not commit. Propagate deadlines where supported, leave room for response processing and ensure downstream attempts fit inside the remaining budget. Aborting a local request does not automatically cancel remote work that has already started.
+
+Retry only when the failure may be transient and replay is safe under the operation's contract. Invalid input and missing permission do not improve through repetition. An uncertain payment outcome needs operation identity and reconciliation, not an uncontrolled new submission. A provider's Retry-After or documented throttling policy influences scheduling; it does not authorize ignoring the caller's overall deadline.
+
+Exponential backoff increases delays between attempts. Jitter spreads clients' retries so they do not all return simultaneously. Specify maximum attempts, maximum elapsed time, per-attempt deadlines and a shared retry owner. Nested libraries may already retry: inventory these policies before adding another outer loop.
+
+A circuit breaker monitors a dependency's recent failures. Closed allows normal calls. Open rejects or degrades calls promptly while the dependency recovers. Half-open permits a limited number of probes; successful probes can close the breaker, while failed probes reopen it. A breaker does not repair the dependency. It protects resource capacity and limits repeated likely failures.
+
+Bulkheads isolate resources so a slow recommendation service cannot exhaust the connections needed by checkout. Graceful degradation must be truthful: showing an unavailable recommendation panel can be acceptable, while reporting a payment as successful without evidence is not.
+
+Observability connects technical symptoms to a business operation. Useful signals include request volume, error rate, latency percentiles, saturation, retries per original operation, breaker state, queue age and pending business outcomes. A trace/correlation identifier links work across boundaries; it is not an authentication credential. Do not log bearer tokens, refresh tokens, session cookies or full sensitive request bodies. Define sampling, access controls and retention for telemetry.
+
+## Worked example
+
+Assume a teaching budget of 2,000 ms. The service reserves 200 ms for local work and response serialization, leaving at most 1,800 ms for the downstream interaction. It might allow one 700 ms attempt, a bounded randomized delay and one final attempt that fits the remaining deadline. The exact values require measured latency and dependency behavior; the example is not a universal retry policy.
+
+If the downstream operation is not replay-safe or the remaining budget is insufficient, fail or return a documented pending result rather than force another call. If a circuit is open, return a truthful degraded experience or appropriate failure. Track the original business operation once and its attempts separately, so retries do not inflate transaction volume.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Original operation and deadline"] --> B{"Circuit permits call?"}\n B -->|No| C["Truthful failure or degradation"]\n B -->|Yes| D["Bounded attempt"]\n D --> E{"Transient and safe with budget?"}\n E -->|Yes| F["Backoff with jitter"]\n F --> D\n E -->|No| G["Return outcome or reconcile"]'
+  }
+/>
+
+Retry is conditional on semantics, dependency state and remaining time. It is not a fixed loop around every exception.
+
+## Inspect the decision
+
+<details>
+<summary>A payment call times out and the circuit opens. Does this prove the payment failed?</summary>
+
+No. A timeout and breaker state describe the caller's interaction with a dependency, not the authoritative payment state. Preserve the operation identity and reconcile the result. Do not tell the customer either “paid” or “not charged” without adequate evidence.
+
+</details>
+
+## Common mistakes
+
+- Retrying at every layer multiplies work during an outage.
+- Using only mean latency hides slow-tail requests that break user expectations.
+- Treating a correlation ID as proof of the caller's identity permits spoofing assumptions.
+- An unbounded queue moves an outage into delayed work and memory pressure rather than resolving it.
+- Testing retries only against immediate failures misses slow calls, lost responses and partially committed operations.
+
+## Practice exercise
+
+A shipping API returns 429 for overload and occasionally times out after accepting a label request. The UI has a three-second budget. Propose a retry/breaker policy, a user-visible pending state and five telemetry signals. Include a load test where the dependency becomes slow instead of failing immediately.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use one identified retry owner with a total three-second budget and room for local processing. Respect documented throttling and Retry-After only when a permitted retry fits the remaining budget. Reuse a stable label-operation identity if the provider supports it, and reconcile an accepted-but-unknown result instead of buying another label.
+
+Open the breaker on a measured failure/overload policy, permit limited recovery probes and isolate shipping resources from unrelated requests. Show a truthful “label processing/pending confirmation” state when the business contract supports it. Track latency percentiles, request/attempt counts, 429 rate, pending-operation age and breaker transitions. Test slow responses, recovery probes, concurrent retries, queue pressure and completion after client timeout. Thresholds are product/operations decisions supported by evidence, not universal constants.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Timeout ≠ remote failure. Retry = transient + replay-safe + remaining budget. Backoff + jitter + bounded attempts reduce synchronized overload. Circuit breaker = fail fast during likely failure and probe recovery. Observe original operations separately from attempts. Never trade truthful business state for a misleading success screen.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Microsoft Retry pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry): strategies, performance, idempotency and nested retry considerations.
+- [Microsoft Circuit Breaker](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker): closed/open/half-open states and recovery.
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): Bulkhead and communication concerns.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): method semantics and Retry-After.
+
+Budgets, telemetry selections and threshold examples are original operational design guidance. Validate them with workload evidence.

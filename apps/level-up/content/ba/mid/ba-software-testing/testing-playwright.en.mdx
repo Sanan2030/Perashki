@@ -1,0 +1,117 @@
+---
+id: testing-playwright
+locale: en
+title: 'Playwright E2E testing: isolation, locators and reliable feedback'
+objectives:
+  - 'Choose user-facing locators for a critical journey.'
+  - 'Avoid arbitrary sleeps and shared-state dependencies.'
+  - 'Use traces and focused assertions to investigate failures.'
+---
+
+## Learning objectives
+
+- Choose user-facing locators for a critical journey.
+- Avoid arbitrary sleeps and shared-state dependencies.
+- Use traces and focused assertions to investigate failures.
+
+## Why this matters
+
+A browser test that clicks the third div and waits five seconds can fail when the layout or machine speed changes. A reliable test follows user-visible meaning and waits for the expected state. It should fail when the behavior is wrong, not because a timing guess was unlucky.
+
+## Core theory
+
+Test a meaningful journey with a clear starting state and observable outcome. Playwright provides isolated browser contexts so cookies and storage do not leak unintentionally between tests. Server-side fixtures and shared services still need their own isolation; a fresh browser alone does not reset a database.
+
+Prefer locators that reflect accessible roles, labels and stable user-facing meaning. A role locator for a button named Start practicing is more understandable than a long CSS path. Locators should uniquely identify the intended control. Test IDs are useful where a user-facing identifier is unsuitable, but should be a deliberate contract.
+
+Playwright actions perform actionability checks, and web assertions can retry while the expected condition settles. Use `await expect(locator).toBeVisible()` or an appropriate value assertion rather than an arbitrary sleep. Auto-waiting does not know every business condition: wait for the meaningful state that proves the intended operation completed.
+
+Control boundaries that are outside the test's purpose. A route stub can make an external outage reproducible, but then the test does not verify the live service. Retain separate integration evidence. Avoid testing third-party UI in a product-owned critical path when a controlled contract boundary is more useful.
+
+Make failures diagnosable with named steps, traces and relevant screenshots. Avoid capturing secrets or personal fixture data. Retries can help identify intermittent behavior, but a pass after retry should not erase the need to investigate recurring flakiness. Use both successful and failure paths where risk justifies them.
+
+Automated accessibility checks supplement keyboard and assistive-technology review. A browser suite can verify focus, labels and interaction behavior, but a green automated report does not establish complete usability or conformance.
+
+## Worked example
+
+This original test uses the current learning application's public interface:
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('opens a filtered data collection', async ({ page }) => {
+  await page.goto('/en/lessons?subject=data');
+  await expect(
+    page.getByRole('combobox', {
+      name: 'Subject',
+      exact: true,
+    }),
+  ).toHaveValue('data');
+  await page.getByRole('searchbox').fill('SQL for business questions');
+  await page
+    .getByRole('link', {
+      name: 'SQL for business questions',
+      exact: true,
+    })
+    .click();
+  await expect(
+    page.getByRole('heading', {
+      level: 1,
+      name: 'SQL for business questions',
+      exact: true,
+    }),
+  ).toBeVisible();
+});
+```
+
+It assumes a Playwright base URL pointing to a running app. The assertion checks the resulting page instead of waiting a fixed number of milliseconds. Browser tests in this repository exercise this same functional collection path.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n S[Isolated starting state] --> L[User-facing locator]\n L --> A[Action with actionability checks]\n A --> E[Retrying outcome assertion]\n E --> T[Trace evidence if failure]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A test passes after adding a ten-second sleep. Is the reliability problem resolved?</summary>
+
+Not necessarily. The sleep may hide a missing condition and still fail on a slower system while wasting time on faster ones. Identify the observable business state, wait for it explicitly and investigate the underlying timing or state leak.
+
+</details>
+
+## Common mistakes
+
+- Sharing mutable fixture state between independent tests.
+- Using brittle CSS ancestry for ordinary labeled controls.
+- Treating a mocked dependency as live integration evidence.
+- Using retries to ignore a recurring failure pattern.
+
+## Practice exercise
+
+Design a test for an online terminology lookup failure. Define which boundary is stubbed, what the user should see and one keyboard interaction to verify.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Stub the application’s explicit lookup request with the intended unavailable response or network failure. Enter a non-curated term, submit and assert the visible unavailable state and usable retry or alternative action. Verify that the dialog can close with Escape and focus returns appropriately. State that this tests the app’s failure handling, not the external provider’s uptime.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Isolate state. Locate by meaning. Await actions and web assertions. Stub intentionally. Inspect traces. Automated accessibility is useful evidence within a larger review.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Playwright: Best practices](https://playwright.dev/docs/best-practices): user-visible behavior, isolation, locators, web-first assertions and debugging.
+- The sample is original and uses the repository’s current role/label contracts. It is a local learning test, not a claim about a production deployment or every browser engine.

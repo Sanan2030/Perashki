@@ -1,0 +1,78 @@
+---
+id: cbap-evaluation
+locale: en
+title: 'Evaluate enterprise solution value'
+objectives:
+  - 'Collect and interpret solution measures before attributing a performance gap to a cause.'
+  - 'Distinguish solution limitations from enterprise limitations and recommend proportionate action.'
+---
+
+## Core concept
+
+Solution Evaluation examines an actual solution, interprets its performance and identifies what prevents value from being realized. A solution can be an operating component, pilot, prototype or broader release; evaluation is not reserved for the end of a project. BABOK v3 distinguishes measuring performance, analyzing measures, assessing solution limitations, assessing enterprise limitations and recommending actions. These tasks concern observed value, not only the promise contained in a business case.
+
+## Why it matters
+
+A feature may satisfy its specification while users cannot benefit from it. Slow processing might come from an internal component, but it might also come from an organizational approval rule, lack of skills or a handoff outside the solution boundary. A dramatic metric change may even come from an inaccurate measure. Recommending more software before examining these alternatives can waste investment while preserving the actual constraint. Evaluation should connect the evidence with the business outcome and an actionable response.
+
+## Theory and distinctions
+
+**Measure:** Identify quantitative or qualitative information appropriate to the desired value. Check existing measures for relevance and accuracy. Consider sample volume, timing, frequency and currency, and agree the assessment criteria with authorized stakeholders. A number on a dashboard is not automatically a suitable measure.
+
+**Analyze:** Interpret measures against objectives, expected value and risk tolerance. Examine trends and variances and investigate whether data is reproducible and trustworthy. Avoid a strong conclusion from a small or unrepresentative observation window. **Assess solution limitations:** Investigate factors within the solution, such as problematic components, defects and internal dependencies. **Assess enterprise limitations:** Examine factors outside the solution boundary, such as culture, operations, skills, organizational structure and stakeholder concerns. “Enterprise” does not merely mean outside the company.
+
+**Recommend action:** Combine the assessments. Options can include enhancing the solution, reducing interface complexity, changing processes or responsibilities, improving information access, removing redundant work, or replacing or retiring a solution. Immediate correction is not always justified: compare severity, recurrence, impact, cost and available alternatives. Recommendations should explain how the action addresses a demonstrated limitation and how improvement will be checked.
+
+## Worked example
+
+A supplier portal is expected to reduce invoice approval time. The pilot has more submissions, but suppliers still receive payment late. Before proposing a larger portal, the analyst checks whether “approval time” is measured from submission, receipt or a later status. The measures are corrected and segmented by relevant operating conditions.
+
+Some delays come from duplicate notifications inside the portal, a solution limitation. Others come from a finance rule requiring a weekly authorization meeting, an enterprise limitation relative to the portal boundary. Training gaps in one location add another influence. A defensible recommendation may combine a portal correction with a change to authorization and training, subject to the organization’s real controls. More submissions alone do not establish faster payment.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n O["Business objective and expected value"] --> M["Collect relevant measures"]\n M --> A["Check accuracy and analyze variance"]\n A --> S["Assess solution limitations"]\n A --> E["Assess enterprise limitations"]\n S --> R["Recommend proportionate action"]\n E --> R\n R --> F["Check realized improvement"]\n F --> M'
+  }
+/>
+
+The model separates a trustworthy observation from a diagnosis and a recommendation. Two branches show that solution and enterprise assessments may proceed together. The boundary should be explicit before classifying a limitation.
+
+## Decision practice
+
+A manager asks for an immediate success announcement because the portal’s submission count doubled. Explain the limited conclusion the measure supports: more submissions were recorded. It does not by itself establish the expected payment benefit. Compare reliable outcome measures, inspect delays and communicate both improvement and unresolved limitations. Recognizing an incomplete result supports a better next action; it does not require ignoring genuine gains or blaming participants.
+
+## Common mistakes and better practice
+
+- Do not confuse deployed functionality with realized benefit.
+- Do not treat a proxy metric as the objective without checking the connection.
+- Verify accuracy and observation conditions before diagnosing a sudden variance.
+- Define the solution boundary before classifying an internal or external limitation.
+- Avoid assuming that every performance problem requires additional code.
+- Include recurring operating costs and implications of retirement when comparing actions.
+
+## Application exercise and explained answer
+
+**Exercise:** A case-management system produces correct results, but staff print every case for a separate signature. A new tracking release also appears to show a large speed improvement. Identify two investigations and two possible actions.
+
+**Explained answer:** First check the measure before accepting the improvement: confirm event definitions, timing and comparable observations. Separately investigate the printing and signature step and why it exists. It may be an enterprise limitation relative to the system, while an integration problem within the solution could require a different diagnosis. Possible actions include a justified change to authorization practice or a solution improvement that supports a necessary control. Select actions from evidence and actual constraints; do not invent permission to remove a control merely because it introduces delay.
+
+## Mini-quiz
+
+When practicing, separate collecting a measure, interpreting it, diagnosing a limitation and choosing an action. The scenario may not yet support the requested conclusion. An evidence-gathering action can be stronger than confidently recommending a fix for an unconfirmed cause.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Objective → relevant reliable measures → interpreted gap → solution and enterprise assessment → proportionate recommendation → follow-up measurement. Potential value is an expectation; evaluation investigates what is actually realized and what prevents more value.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: knowledge-area introduction, pp. 163–164; §8.1, pp. 166–170; §8.2, pp. 170–173; §8.3, pp. 173–177; §8.4, pp. 177–182; §8.5, pp. 182–186. Principal explanations consulted: 163, 167–168, 170–172, 173–175, 177–179, 182–184. Examples and response structures are original teaching material.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

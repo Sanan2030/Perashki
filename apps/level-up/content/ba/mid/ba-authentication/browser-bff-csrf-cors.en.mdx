@@ -1,0 +1,105 @@
+---
+id: browser-bff-csrf-cors
+locale: en
+title: 'Browser sessions, BFF, cookies, CORS and CSRF'
+objectives:
+  - 'Distinguish browser origin, site and server-side authorization.'
+  - 'Explain what HttpOnly, Secure and SameSite do and do not protect.'
+  - 'Design state-changing browser requests with explicit CSRF and CORS policies.'
+---
+
+## Learning objectives
+
+- Distinguish browser origin, site and server-side authorization.
+- Explain what HttpOnly, Secure and SameSite do and do not protect.
+- Design state-changing browser requests with explicit CSRF and CORS policies.
+
+## Why this matters
+
+An expense portal stores refresh tokens in JavaScript-readable browser storage. A developer proposes moving them to a server-side BFF and using a session cookie. This reduces direct exposure of tokens to page scripts, but automatically attached cookies introduce a different risk: a malicious site may cause the browser to send a state-changing request. Choosing cookies is an architectural change, not the end of the security design.
+
+## Core theory
+
+A backend for frontend tailors server behavior to a client type. In the BFF arrangement used here, OAuth tokens stay on the server and the browser holds an opaque session cookie. This is a design choice; neither Scrum nor OAuth requires every app to use a BFF. The session service must protect stored credentials, rotate session state as appropriate and enforce API permissions.
+
+| Control                               | Protection it provides                                                       | Limitation                                                       |
+| ------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Secure cookie                         | Restricts cookie transport to secure connections                             | Does not stop a same-origin malicious script                     |
+| HttpOnly cookie                       | Prevents direct JavaScript cookie reads                                      | Does not prevent script from issuing authenticated requests      |
+| SameSite                              | Restricts some cross-site cookie sending                                     | Site is not the same as origin; sibling origins can be same-site |
+| CORS policy                           | Controls which origins can read permitted cross-origin responses in browsers | Is not API authentication or a universal CSRF defense            |
+| CSRF token / validated request policy | Binds a state-changing request to an authorized browser interaction          | Requires correct server verification and XSS defenses            |
+
+Origin combines scheme, host and port. Two subdomains can have different origins while remaining the same site. Therefore, SameSite does not automatically isolate an app from every sibling subdomain. A host-only cookie and an appropriate cookie prefix reduce some scoping mistakes; choose the exact attributes for the deployment and supported login flow.
+
+In a same-origin BFF flow, fetch sends same-origin cookies by default. State-changing operations can require a session-bound anti-CSRF token in a custom header, together with server-side origin checks and a documented fallback for relevant clients. Do not mutate state through GET. OWASP describes multiple supported CSRF strategies; choose one coherently rather than mixing incomplete pieces.
+
+Cross-origin credentialed requests need explicit CORS configuration. A browser does not allow wildcard Access-Control-Allow-Origin with credentialed response access. Blindly reflecting any Origin is also unsafe. Restrict origins to known clients, specify allowed methods/headers and consider Vary: Origin for origin-dependent responses. A command-line client is not constrained by the browser's CORS rules, so the server must enforce authentication and authorization regardless.
+
+## Worked example
+
+The browser at https://expenses.example.invalid calls its same-origin BFF. The BFF retains OAuth credentials and returns only session-scoped application data.
+
+```http
+Set-Cookie: __Host-session=opaque-example; Path=/; Secure; HttpOnly; SameSite=Lax
+```
+
+This illustrative cookie omits Domain, as required by the \_\_Host- prefix. Its value is a placeholder. SameSite=Lax can support common top-level GET login callbacks, but the chosen identity flow still needs transaction validation and CSRF protection.
+
+For POST /expenses/E-4/submit, the BFF checks the session, anti-CSRF value, allowed request origin and expense ownership before changing state. The fact that a browser sent a cookie does not show that the user intentionally initiated this particular operation.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Browser with session cookie"] --> B["BFF session and CSRF checks"]\n B --> C["Object authorization"]\n C --> D["Resource API with server-held token"]\n E["Untrusted origin"] --> F["Rejected state-changing request"]'
+  }
+/>
+
+The server-held OAuth token does not need to enter the browser. Both browser-request integrity and resource authorization remain explicit boundaries.
+
+## Inspect the decision
+
+<details>
+<summary>A malicious same-origin script cannot read an HttpOnly cookie. Can it still submit an expense as the user?</summary>
+
+It may be able to issue authenticated requests from the page, including using application data available to that page. HttpOnly reduces direct cookie theft but does not make XSS harmless. Maintain XSS defenses and do not treat one cookie attribute as a complete session-security design.
+
+</details>
+
+## Common mistakes
+
+- Calling localStorage inherently safe because the token expires ignores script exposure and refresh-token lifetime.
+- Believing a blocked CORS response means the server never received or acted on the request confuses reading a response with sending a request.
+- Applying SameSite=Strict without testing login callbacks can break a legitimate cross-site entry flow.
+- Sharing a parent-domain cookie across untrusted subdomains expands the trust boundary.
+- Treating an ordinary feature flag or hidden button as authorization permits direct API calls.
+
+## Practice exercise
+
+Your portal must support a first-party web UI, a native mobile app and provider webhooks. Draft separate request-integrity rules for each. Explain why a blanket rule requiring browser CSRF tokens on every endpoint may reject legitimate non-browser integrations, and how exceptions remain protected.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+For the first-party cookie-authenticated UI, use a coherent session/CSRF design, strict origin expectations and object permissions. For the native client, validate its access token and permissions under the supported OAuth profile; do not invent browser-origin evidence it cannot supply. For webhooks, use provider signature verification, schema checks and replay/deduplication policy rather than a browser session cookie.
+
+Document explicit endpoint categories and their authentication rules. An exception to a browser-specific CSRF check is not an exception to security checks. Test credentialed disallowed origins, same-site sibling origins, missing CSRF values, ordinary non-browser calls, login redirects and signed duplicate webhooks.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Cookie attributes protect different threats. Same-site ≠ same-origin. CORS governs browser response access, not authorization. A BFF moves token custody to the server but still needs sessions, CSRF protection and resource permissions. Specify browser and non-browser integration policies separately.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [OWASP CSRF Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html): synchronizer tokens, custom headers/CORS and SameSite limitations.
+- [OWASP REST Security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html): CORS and access controls.
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): Backends for Frontends.
+
+The token-custody arrangement and cookie example are original architecture guidance. They do not constitute a universal storage prescription for every browser or mobile application.

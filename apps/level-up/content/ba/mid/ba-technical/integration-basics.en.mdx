@@ -1,0 +1,104 @@
+---
+id: integration-basics
+locale: en
+title: 'Asynchronous integration, webhooks and transactional outbox'
+objectives:
+  - 'Explain why a database commit and a message publish can disagree.'
+  - 'Design outbox publishing and consumer deduplication around explicit transaction boundaries.'
+  - 'Specify signature verification, replay handling and reconciliation for a webhook.'
+---
+
+## Learning objectives
+
+- Explain why a database commit and a message publish can disagree.
+- Design outbox publishing and consumer deduplication around explicit transaction boundaries.
+- Specify signature verification, replay handling and reconciliation for a webhook.
+
+## Why this matters
+
+A commerce service commits an order and then crashes before publishing OrderCreated. The customer sees an order number, but the warehouse never receives the event. Reversing the order is also dangerous: publishing first can start shipment for a database transaction that later rolls back. The integration design must handle this gap rather than assuming that two independent systems commit together.
+
+## Core theory
+
+A synchronous request waits for a response within the caller's time budget. Asynchronous work separates acceptance from eventual completion. Queues buffer work, while events describe something that has happened. The distinction is about responsibility and time, not whether the payload is JSON.
+
+The transactional outbox writes the business record and an event record in the same local database transaction. A separate publisher sends committed events to the broker and later records publication. If it crashes after sending but before recording success, it may send the event again. Therefore, the pattern prevents the commit/publish gap but does not eliminate duplicate delivery.
+
+A consumer can record a stable event ID and its business effect in the same local transaction. If the event ID has already been applied, acknowledge it without applying the effect again. A preliminary SELECT followed by an unrelated INSERT is not a sufficient concurrency guarantee. Use the database's uniqueness and transaction facilities. Retention must cover the expected redelivery/reconciliation horizon.
+
+Ordering is another contract. An event can arrive after a newer event. Choose a per-entity sequence or version and decide whether to defer, reject or reconcile gaps. Never infer a global order from timestamps generated on different machines.
+
+A webhook is an HTTP callback. Verify the provider's signature over the exact original body bytes before trusting parsed content. GitHub's documented example uses HMAC-SHA256 and X-Hub-Signature-256. Other providers use different headers and algorithms. A valid signature authenticates the protected bytes; it does not by itself establish freshness, uniqueness, permission for every business effect, or eventual delivery.
+
+## Worked example
+
+The order service stores order O-81 and outbox event E-81 in one relational transaction. A worker sends E-81 twice because its first acknowledgement is lost. The warehouse consumer uses a unique key on its processed-event record, together with a transaction that reserves stock. Only one stock reservation commits.
+
+```sql
+BEGIN;
+INSERT INTO processed_events (consumer_name, event_id)
+VALUES ('warehouse-reservation', 'E-81');
+-- A uniqueness conflict means this consumer already applied the event.
+UPDATE inventory SET reserved = reserved + 1
+WHERE sku = 'COURSE-1' AND available - reserved >= 1;
+-- Check the affected-row count; a failed reservation needs a business outcome.
+COMMIT;
+```
+
+This is transaction-boundary pseudocode, not a complete database implementation. A uniqueness conflict must be handled by the chosen database transaction mechanism. A stock shortage is a business rejection that needs an explicit status or compensating workflow, not an infinite retry.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Order and outbox in one commit"] --> B["Publisher"]\n B --> C["Broker may redeliver"]\n C --> D["Consumer transaction"]\n D --> E["Deduplicate and apply effect"]'
+  }
+/>
+
+The two atomic boundaries are local: the order/outbox commit and the consumer's deduplication/effect commit. The message crossing between them can be repeated.
+
+## Inspect the decision
+
+<details>
+<summary>The provider signed the webhook correctly. Can you skip event-ID tracking?</summary>
+
+No. A genuine delivery can be retried, and an old signed body can be replayed if the protocol has no freshness control. Verify the signature, apply the provider's timestamp policy when available, and deduplicate using an authenticated event identifier and a durable record.
+
+</details>
+
+## Common mistakes
+
+- Saying “exactly once” without identifying the scope confuses transport delivery with one committed business effect.
+- Acknowledging a webhook before durable acceptance can lose the event after a crash.
+- Re-serializing JSON before signature verification changes the bytes and can invalidate legitimate signatures.
+- Logging a shared signing secret exposes every future delivery using that secret.
+- Using an outbox across unrelated Cosmos DB partitions assumes an atomic boundary the cited implementation does not provide.
+
+## Practice exercise
+
+A payment provider may redeliver a payment-confirmed webhook for 72 hours. Your handler currently parses JSON, adds loyalty points and returns 200. Describe a replacement flow, including concurrent duplicates, a storage outage, an old event and a provider-specific signing-key rotation.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Read the original bytes under a body-size limit, verify the provider's signing procedure with a protected active key, and apply any documented signed-timestamp tolerance. Validate the event schema and map it to the expected merchant/account. In one local transaction, insert the provider/event ID and apply the points exactly once for that event. Use a uniqueness constraint to resolve concurrent duplicates. A recognized duplicate can return a successful acknowledgement without repeating points.
+
+If durable acceptance fails, return the documented retriable failure rather than claiming success. Retain deduplication records for at least the delivery/reconciliation policy, which can be longer than 72 hours. During planned key rotation, accept only the provider's configured overlapping keys for the specified transition window. Reconcile payment state with the provider when evidence is incomplete.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Commit business record + outbox together. Publish with retries. Deduplicate + apply together. Verify raw bytes. Signature validity is not replay protection. Define ordering, dead-letter handling and reconciliation before treating an asynchronous operation as complete.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Microsoft Transactional Outbox](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos): the problem, local transaction and publisher example.
+- [GitHub webhook validation](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries): original-payload HMAC validation and timing-safe comparison.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): §15.3.3, the meaning of 202 Accepted.
+
+SQL, retention choices and the warehouse example are original design exercises. The Azure source's Cosmos DB implementation has a same-logical-partition transaction constraint.

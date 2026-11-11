@@ -1,0 +1,76 @@
+---
+id: pspo2-kanban
+locale: az
+title: 'Kanban ilə dəyər axını'
+objectives:
+  - 'Dörd axın metrikini və SLE-ni hesabla və fərqləndir.'
+  - 'WIP limiti ilə pull sistemini Scrum tədbirlərində tətbiq et.'
+---
+
+## Anlayış
+
+Yüklənmiş sənədin dəqiq adı The Kanban Guide for Scrum Teams, January 2021-dir. Scrum-u əvəz etmir və əlavə məcburi tədbir yaratmır. Dörd təcrübə: iş axınını görünən etmək, WIP-i məhdudlaşdırmaq, davam edən işi fəal idarə etmək və Definition of Workflow-u yoxlayıb uyğunlaşdırmaq. Başlama və bitmə nöqtələri, iş vahidi, vəziyyətlər və keçid siyasətləri aydın olmalıdır.
+
+## Niyə vacibdir
+
+WIP başlanmış, bitməmiş işlərin sayıdır. Cycle Time başlanğıcdan bitməyə keçən vaxtdır. Work Item Age hələ bitməmiş işin başlanğıcından indiyə keçən vaxtdır. Throughput zaman vahidində bitən iş sayıdır; story point cəmi deyil. WIP ölçüsü ilə WIP limiti fərqlidir: biri müşahidə, digəri siyasətdir. Limit altında yer açılmadan iş götürməmək pull yanaşmasını yaradır.
+
+## Qərar qaydaları
+
+SLE müddət və ehtimalı birlikdə verir: məsələn, işlərin 85%-i 8 gün və ya az vaxtda bitir. Tarixi Cycle Time-a əsaslanan proqnozdur, hər işə zəmanət deyil. Tarixçə yoxdursa ilkin fərziyyə seçib yeniləmək olar. Little qanununda orta Cycle Time = orta WIP / orta Throughput; müqayisə oluna bilən sistem sərhədləri və sabit uzunmüddətli axın fərziyyələri vacibdir. Bu, konkret işin son tarixini hesablama üsulu deyil.
+
+### İş axını məlumatını qərara çevir
+
+Bir çox işin eyni vəziyyətdə yığılması daha çox işə başlamaq üçün siqnal olmaya bilər. Əvvəl hansı maneənin bitirməyə imkan vermədiyini yoxla: mütəxəssis gözləməsi, xarici təsdiq və ya böyük iş paketləri ola bilər. Kanban Guide əvvəl WIP-i azaltmağı nəzərdən keçirməyi tövsiyə edir; sadəcə limit yazmaq isə fəal idarəçiliyi əvəz etmir. İşin yaşını SLE ilə müqayisə etmək araşdırma ehtiyacını göstərə bilər, amma köhnəlmiş hər işə eyni səbəbi aid etmə. Throughput və keyfiyyətin birlikdə izlənməsi sürəti artırarkən rework-un gizlənməməsinə kömək edir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n  A["Backlog"] --> B["Active: WIP limit"]\n  B --> C["Done"]\n  B -. "Age / SLE" .-> B\n  A -. "Pull when capacity exists" .-> B'
+  }
+/>
+
+Bu model tədris xülasəsidir; mənbənin şəklinin surəti deyil.
+
+## Praktik vəziyyət
+
+WIP limiti 4-dür və dörd iş açıqdır. Birinin yaşı 9 gündür; SLE 85% üçün 8 gündür. Başqa komanda daha bir işi başlamağı istəyir.
+
+## Qərarın əsaslandırılması
+
+Əvvəl yaşlanan və bloklanmış işi araşdır, bitirməyə kömək et. WIP limitini avtomatik artırma. Daily-də Sprint Goal-a axın maneəsini və açma addımını müzakirə et. Retrospective-də iş siyasətini və limitin təsirini yoxla; ehtiyac olduqda arada da uyğunlaş.
+
+## Yayılmış səhvlər
+
+Age-i bitmiş işə tətbiq etmək; SLE-ni zəmanət saymaq; WIP limitini hər çətinlikdə artırmaq; Kanban olduğu üçün Sprint-i ləğv etmək.
+
+## Tətbiq məşqi
+
+İş 2-ci gün başlayıb 7-ci gün bitir. Digəri 3-cü gün başlayıb, indi 9-cu gündür və bitməyib. Keçən həftə 10 iş bitib. Metrikləri tap.
+
+## İzahlı həll
+
+<details>
+<summary>İzahlı həlli aç</summary>
+
+Bu nümunədə keçən vaxt fərqinə görə birincinin Cycle Time-ı 5 gün, ikincinin Age-i 6 gündür. Throughput 10 iş/həftədir. Tam açıq iş sayı verilmədiyindən WIP hesablana bilməz. Başlanğıc/bitmə vaxtlarının və gün konvensiyasının eyni olmasını yoxla.
+
+</details>
+
+## Özünü yoxla və yadda saxla
+
+WIP: açıq iş sayı; Cycle Time: bitmiş işin müddəti; Age: açıq işin yaşı; Throughput: bitən iş/zaman; SLE: müddət + ehtimal.
+
+<LessonCheck />
+
+## Mənbələr və əhatə
+
+Kanban Guide for Scrum Teams 2021: səh. 3–8; metriklər səh. 4, SLE səh. 6.
+
+- [The Kanban Guide for Scrum Teams — Scrum.org, Daniel Vacanti & Yuval Yeret (January 2021)](https://www.scrum.org/resources/kanban-guide-scrum-teams)
+- [The Scrum Guide — Ken Schwaber & Jeff Sutherland (November 2020)](https://scrumguides.org/scrum-guide.html)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Rəsmi test sualları köçürülməyib. İmtahan formatı ayrıca yoxlanır; bu mövzu bölgüsü rəsmi blueprint deyil.
+
+Əlavə əhatə mənbəyi: [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies). İstifadəçinin göndərdiyi mətn oxunub; kompetensiya siyahısı rəsmi imtahan çəkilərini müəyyən etmir.

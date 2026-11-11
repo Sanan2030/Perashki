@@ -1,0 +1,113 @@
+---
+id: data-dbt-quality-lineage
+locale: az
+title: 'dbt: çevirmə, lineage və məlumat keyfiyyəti'
+objectives:
+  - 'ref-in dependency və relation davranışını izah et.'
+  - 'Data contract üçün built-in və custom test seç.'
+  - 'Keçən check-i source-un tam düzgünlüyündən ayır.'
+---
+
+## Öyrənmə məqsədləri
+
+- ref-in dependency və relation davranışını izah et.
+- Data contract üçün built-in və custom test seç.
+- Keçən check-i source-un tam düzgünlüyündən ayır.
+
+## Bu mövzu niyə vacibdir
+
+Model order identifier-i dəyişir və sonra bir neçə report fail olur. Başqa model-də null customer key var, amma relationship check keçir. Transformation aydın dependency və bir-birini tamamlayan assertion tələb edir ki, change impact və data fərziyyəsi publication-dan əvvəl görünsün.
+
+## Əsas anlayışlar
+
+dbt model transformation-u çox vaxt adapter vasitəsilə materialize olunan SQL SELECT kimi ifadə edir. Materialization nəticənin necə qurulub yeniləndiyini müəyyən edir. Model adı view, table və ya incremental relation olduğunu demir; contract və dəstəklənən refresh davranışını sənədləşdir.
+
+Physical schema-nı hardcode etmək əvəzinə başqa model üçün `ref` istifadə et. O, konfiqurasiya edilmiş environment relation-ını tapır və graph dependency-sini qeydə alır. Graph işi sıralamağa və downstream təsiri yoxlamağa kömək edir. Declared graph faydalı lineage-dir, amma hər external consumer və sənədsiz manual query-ni avtomatik tapa bilməz.
+
+Data test assertion-u pozan record-ları sorğulayır. Built-in unique, not_null, accepted_values və relationships adi fərziyyələri yoxlayır. Onları model grain və biznes qaydasından seç. Relationship test explicit non-null test-i əvəz etmir: null dəyər relationship check-dən kənarda qalıb required key contract-ını poza bilər.
+
+Built-in check-in ifadə etmədiyi domain invariant üçün singular SQL test yaz; məsələn, mənfi remaining refundable amount. Pass həmin test/data vəziyyətində failing row tapılmadığını göstərir, hər mümkün biznes qaydasının düzgünlüyünü yox. Sample coverage və source completeness-i ayrıca yoxla.
+
+Build və test-i məqsədli et. Model run və data test run ayrı əməliyyatdır; configured build seçilmiş model/test-i birləşdirə bilər. Selection, severity və dependency davranışı downstream publication-un davamına təsir edir. Pipeline yaşıl qalsın deyə test-i susdurmaq əvəzinə failure record saxla və investigation sahibini müəyyən et.
+
+Incremental model sabit key, update və late arrival policy tələb edir. `ref` özü source data-nı deduplicate etmir və hər re-run-u təhlükəsiz etmir. Published column-u dəyişməzdən əvvəl schema, downstream dependency və consumer gözləntisini müqayisə et.
+
+## İşlənmiş nümunə
+
+Nümunə fact model staging relation-a istinad edir:
+
+```sql
+select order_id, customer_id, amount_cents
+from {{ ref('stg_orders') }}
+where status = 'paid'
+```
+
+Model property hissəsi bir-birini tamamlayan yoxlamaları göstərir:
+
+```yaml
+version: 2
+models:
+  - name: fct_paid_orders
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+```
+
+İç-içə arguments sintaksisi seçilmiş sənədə əsaslanır; quraşdırılmış dbt versiyasının dəstəyini yoxla. Hissə configured project və dimension model fərz edir; icra olunmuş adapter deployment iddiası yoxdur. Order-in customer key-i null-dursa, relationship coverage-ə güvənmək əvəzinə not_null onu ayrıca yoxlayır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n S[Source and staging contract] --> R[ref dependency graph]\n R --> M[Fact and dimension models]\n M --> T[Complementary data tests]\n T --> G{Quality gate passes?}\n G -->|Yes| P[Publish with freshness evidence]\n G -->|No| I[Investigate owned failures]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Bütün unique və relationship test-ləri keçir. Data completeness sübut olunubmu?</summary>
+
+Xeyr. Bütöv source interval çatışmasa da dataset daxilində key-lər uyğun ola bilər. Source contract-a uyğun reconciliation və freshness/completeness check əlavə et. Hansı assertion-un keçdiyini, hansı property-nin yoxlanmadığını dəqiq göstər.
+
+</details>
+
+## Tipik səhvlər
+
+- Məqsədli model reference əvəzinə environment schema hardcode etmək.
+- Relationships-in required non-null key-ə də zəmanət verdiyini düşünmək.
+- Təsirlənən consumer-i anlamadan failure-ı susdurmaq.
+- Model graph-ını bütün mümkün external dependency saymaq.
+
+## Praktik tapşırıq
+
+Paid-orders fact hər order üçün bir row, valid customer və mənfi olmayan amount tələb edir. Check-ləri, downstream impact review-u və dünənki source interval-ın mövcudluq sübutunu müəyyən et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Order ID üçün unique/not_null, required customer ID üçün not_null və relationships, amount üçün uyğun custom negative test istifadə et. Schema dəyişikliyindən əvvəl ref əsaslı downstream model və məlum external report-u araşdır. Gözlənilən source interval-ı reconcile edib completeness-i yaz; tək key test bütün source record-un gəldiyini təsdiqləmir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+ref = relation resolution və graph dependency. Test = cari data üzərində açıq assertion. Key, relationship, domain rule və completeness bir-birini tamamlayan sübut tələb edir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [dbt: Data tests](https://docs.getdbt.com/docs/build/data-tests): failing row assertion və built-in test.
+- [dbt: ref function](https://docs.getdbt.com/reference/dbt-jinja-functions/ref): environment relation resolution və dependency graph. Orijinal project hissələrini quraşdırılmış adapter/Core/Fusion versiyası ilə yoxla.

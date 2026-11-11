@@ -1,0 +1,89 @@
+---
+id: product-strategy
+locale: en
+title: 'Product strategy and outcome roadmaps'
+objectives:
+  - 'Explain the choices a product strategy makes.'
+  - 'Connect goals, outcomes, assumptions and investment options.'
+  - 'Review an outcome roadmap when evidence changes.'
+---
+
+## Learning objectives
+
+- Explain the choices a product strategy makes.
+- Connect goals, outcomes, assumptions and investment options.
+- Review an outcome roadmap when evidence changes.
+
+## Why this matters
+
+A roadmap that lists delivery dates can be mistaken for a strategy. Strategy explains which customer situations and outcomes the organization will pursue, why those choices are plausible and what it will not prioritize. Teams need that context to make coherent decisions when requests compete.
+
+## Core theory
+
+A product strategy connects an ambition to a set of choices about customers, problems, value and capabilities. Identify the situation being served, important alternatives and the advantage the organization believes it can create. A strategy should expose assumptions rather than describe every attractive market at once.
+
+A product vision provides direction; a Product Goal describes a future product state that guides the Scrum Team. An outcome expresses a change for users or the organization. An output is something produced. Delivering an onboarding wizard is an output; improving the proportion of eligible users who reach a first useful result is an outcome, with its own measurement contract.
+
+An outcome roadmap organizes goals, opportunities, experiments and possible investments over changing horizons. Near-term work can be more detailed than later options. Dates may be important constraints, but precision should follow evidence. Preserve legal or contractual commitments explicitly instead of presenting every idea as equally certain.
+
+Use evidence to compare investments. Current value, unrealized value, time to market and ability to innovate provide complementary EBM lenses. A product can generate revenue while frustrating an underserved segment or becoming increasingly difficult to change. Avoid optimizing one visible metric while ignoring strategic constraints.
+
+Review assumptions and outcomes at meaningful intervals. Establish what evidence would support continuing, changing direction or stopping an investment. The Product Owner remains accountable for value and Product Backlog management; a strategy workshop does not distribute that accountability to whichever stakeholder requests the most work. Teams still collaborate on what is feasible and how to learn.
+
+## Worked example
+
+A booking platform chooses to help small clinics reduce unfilled appointments caused by late cancellations. It does not initially target large hospital scheduling. The value hypothesis is that a usable cancellation and waitlist flow can recover capacity without increasing administrative burden.
+
+The roadmap starts with evidence on cancellation patterns and a limited waitlist experiment. Possible notifications and integration work are options supporting that outcome. If no-shows dominate instead of cancellable slots, the original opportunity needs revision. The team can change the investment while preserving the broader purpose, rather than shipping a notification feature solely because its date was printed.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n V[Direction and customer situation] --> C[Strategic choices]\n C --> G[Product Goal and outcomes]\n G --> H[Assumptions and experiments]\n H --> E[Evidence across value lenses]\n E --> A[Continue adapt or stop]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A feature shipped on its promised date, but the target behavior did not improve. Did the strategy succeed?</summary>
+
+The delivery commitment may have been met, but the outcome hypothesis remains unsupported or contradicted. Check measurement quality, exposure and observation window, then inspect the strategic assumptions. Do not replace an outcome with an output after the result is known.
+
+</details>
+
+## Common mistakes
+
+- Calling a long feature list a strategy.
+- Targeting every customer segment without explicit choices.
+- Treating a forecast as an unconditional commitment.
+- Changing the metric after delivery to preserve a success story.
+
+## Practice exercise
+
+Write a strategy for a subscription service reducing avoidable cancellations. Include the target situation, one excluded segment, outcome, key assumption and a decision rule for the first experiment.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Choose a specific cancellation situation, such as customers unable to pause during temporary non-use. Exclude another segment deliberately while collecting evidence. Define an outcome with eligibility and a complete window, then test whether a pause option addresses the observed reason without harming payment clarity or support load. Specify what results would trigger further investment, revision or stopping; do not infer causation from an uncontrolled before/after percentage alone.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Choice + outcome + assumption + evidence + adaptation. Roadmap items are investment options connected to goals; delivery and realized value are different observations.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[The Professional Product Owner, McGreal and Jocham (2018)](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): selected product-discovery, value and backlog passages from the user-supplied book. Explanations, cases and exercises are original; book prose and figures are not republished.
+
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): goals, experiments and four key value areas; adaptation CC BY-SA 4.0, Scrum.org.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Goal and Product Owner accountability; adaptation CC BY-SA 4.0, Schwaber and Sutherland.

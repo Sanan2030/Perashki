@@ -1,0 +1,67 @@
+---
+id: pspo1-refinement
+locale: az
+title: 'Refinement, ölçüləndirmə və dəyərli dilimlər'
+objectives:
+  - 'Refinement-i davam edən əməkdaşlıq kimi tətbiq et.'
+  - 'Dəyər, risk, ölçü və asılılığı sıralama qərarında birləşdir.'
+---
+
+## Anlayış
+
+Product Backlog refinement elementləri daha kiçik və dəqiq etmək üçün davam edən fəaliyyətdir. Scrum Guide nümunə atributlar kimi təsvir, sıra və ölçünü göstərir; konkret alət, user story formatı və ya ayrıca refinement tədbiri tələb etmir. Bir Sprint-də Done ola biləcək elementlər Planning-də seçilməyə hazır sayılır. “Hazır” elementi dəyişməz tələblər müqaviləsinə çevirmir: yeni öyrənmə hələ də baş verə bilər.
+
+## Niyə vacibdir
+
+Aydınlaşdırma yalnız yazılı mətn artırmaq deyil. İstifadəçinin nəyə nail olmaq istədiyi, mümkün istisnalar, keyfiyyət məhdudiyyətləri və nəticənin necə müşahidə ediləcəyi birlikdə başa düşülməlidir. The Professional Product Owner kitabının 7-ci fəslində elementin ölçüsü və “Ready” düşüncəsi vurğulanır. Komanda ümumi meyar siyahısından istifadə edə bilər, amma bu, Scrum-un dördüncü artifact-ı və ya bütün qeyri-müəyyənliyi yox edən giriş qapısı deyil.
+
+## Qərar qaydaları
+
+İşi görəcək Developers ölçüləndirməyə cavabdehdir; Product Owner nəticə və güzəştləri izah edərək təsir edə bilər, amma rəqəmi məcbur etməməlidir. Sıralama isə yalnız ölçü yarışması deyil: dəyər, risk, xərc və asılılıq da nəzərə alınır. Riskli fərziyyəni yoxlayan kiçik addım böyük həllin əvvəlində faydalı ola bilər. Funksional dilim istifadəçinin mənalı bir işini tamamlamasına imkan verir; yalnız verilənlər bazası və ya ekran qatını hazırlamaq çox vaxt bu geribildirimi gecikdirir. Sonuncu dilimləmə yanaşması praktik tədris üsuludur, universal Scrum tələbi deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Böyük ehtiyac"] --> B["Söhbət və risk"]\n B --> C["Kiçik dəyərli dilim"]\n C --> D["Developers ölçüləndirir"]\n D --> E["Product Owner sıralayır"]'
+  }
+/>
+
+## Praktik vəziyyət
+
+Xəstəxana bütün rezervasiya sistemini yeniləmək istəyir. İlkin element “yeni rezervasiya platforması” adlanır. Satış bunu 5 bal olaraq yazıb; Developers mövcud təqvim inteqrasiyasının necə işlədiyini bilmir. Həllə otaq seçimi, ödəniş, bildiriş və hesabat daxildir.
+
+## Qərarın əsaslandırılması
+
+Əvvəl problemi və istifadəçi qrupunu aydınlaşdır: hansı rezervasiya bu gün uğursuz olur? Developers inteqrasiya riskini və kiçik variantı araşdırır. Bir otaq növü üçün vaxt seçib təsdiq almaq kimi mənalı dilim mümkündürsə, onun keyfiyyət şərtlərini və istisnalarını birlikdə dəqiqləşdir. Ölçünü Developers verir. Product Owner bu variantı alternativ işlərlə müqayisə edib sıralayır. Bütün sistemi dəqiqləşdirmək bitmədən heç bir şey öyrənməyəcəyimiz uzun mərhələ yaratma.
+
+## Yayılmış səhvlər
+
+Story point-u Scrum qaydası saymaq; Product Owner-in təxmini endirməsini refinement saymaq; “Ready” yoxdursa komandanın düşünməsini dayandırmaq; texniki qatları istifadəçi dəyəri ilə qarışdırmaq; bütün kiçik işləri strateji ehtiyacdan üstün tutmaq. Əlavə sənədin hansı qərarı yaxşılaşdıracağını soruşmadan sənəd həcmini artırma.
+
+## Tətbiq məşqi
+
+“Bütün istifadəçilər üçün ödəniş sistemi” elementini iki kiçik alternativə böl. Hər alternativ üçün istifadəçi nəticəsi, əsas risk, acceptance criterion və ortaq Done şərtini yaz. Hansı məlumatın Developers tərəfindən ölçüləndirmə üçün lazım olduğunu göstər.
+
+## İzahlı həll
+
+<details>
+<summary>İzahlı həlli aç</summary>
+
+Bir alternativ bir valyutada mövcud provayderlə ödənişdir; digəri bir məhdud istifadəçi qrupunda ödəniş statusunu etibarlı görməkdir. İlkində provayder xətası və təkrar ödəniş riski, ikincidə status gecikməsi araşdırılır. Acceptance criterion konkret davranışa, Done isə inteqrasiya və tələb olunan keyfiyyət yoxlamalarına aiddir. Developers texniki məlumatdan sonra ölçüləndirir; Product Owner əsas nəticə və riskə görə seçim edir.
+
+</details>
+
+## Özünü yoxla və yadda saxla
+
+Refinement davam edir; ölçü Developers-ə aiddir; Product Owner dəyəri və sıralamanı idarə edir. User story, story point və Ready siyahısı seçimdir. Kiçik işin niyə dəyərli olduğunu da göstər.
+
+<LessonCheck />
+
+## Mənbələr və əhatə
+
+Scrum Guide 2020: Product Backlog, səh. 10–11; Sprint Planning, səh. 8–9; Definition of Done, səh. 12. The Professional Product Owner: fəsil 7, Product Backlog Ordering, Done və Ready Is a Mindset. Kompetensiyalar: Product Backlog Management, Emergent Software Development. Bu üsulların hamısı məcburi Scrum qaydası deyil.
+
+- [Scrum Guide](https://scrumguides.org/scrum-guide.html)
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies)

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "scrum-framework",
+    "title": "Understanding and Applying the Scrum Framework",
+    "description": "Begin with the framework, then reason about what transparency and adaptation require in a real decision.",
+    "areas": [
+      {
+        "id": "empiricism",
+        "title": "Empiricism",
+        "description": "Make assumptions visible and change decisions when evidence changes.",
+        "lessonIds": ["pspo1-empiricism", "pspo2-strategy"]
+      },
+      {
+        "id": "scrum-values",
+        "title": "Scrum Values",
+        "description": "Connect commitment, focus, openness, respect and courage to observable team behavior.",
+        "lessonIds": ["pspo1-empiricism"]
+      },
+      {
+        "id": "scrum-team",
+        "title": "Scrum Team",
+        "description": "Distinguish shared product accountability from the three specific accountabilities.",
+        "lessonIds": ["scrum-accountabilities"]
+      },
+      {
+        "id": "events",
+        "title": "Events",
+        "description": "Explain the inspection and adaptation purpose of each event instead of memorizing meeting names.",
+        "lessonIds": ["pspo1-events", "pspo1-sprint-goal-changes"]
+      },
+      {
+        "id": "artifacts",
+        "title": "Artifacts",
+        "description": "Use artifacts and commitments to make product work inspectable.",
+        "lessonIds": ["pspo1-artifacts"]
+      },
+      {
+        "id": "done",
+        "title": "Done",
+        "description": "Keep a shared quality boundary and distinguish it from item-specific acceptance criteria.",
+        "lessonIds": ["pspo1-artifacts", "pspo2-shared-quality", "pspo2-release-feature-flags"]
+      },
+      {
+        "id": "scaling",
+        "title": "Scaling",
+        "description": "Reason from one product, shared direction and an integrated usable Increment.",
+        "lessonIds": ["pspo2-shared-quality", "pspo3-complexity", "pspo2-platform-value"]
+      }
+    ]
+  },
+  {
+    "id": "people-teams",
+    "title": "Developing People and Teams",
+    "description": "Understand decision ownership and productive collaboration. The links below are starting points, not a claim of complete proficiency in every focus area.",
+    "areas": [
+      {
+        "id": "self-managing-teams",
+        "title": "Self-Managing Teams",
+        "description": "Create clarity about goals and boundaries while letting the team decide how to work.",
+        "lessonIds": ["pspo1-empiricism", "scrum-accountabilities"]
+      },
+      {
+        "id": "facilitation",
+        "title": "Facilitation",
+        "description": "Help people inspect common evidence and reach a transparent product decision.",
+        "lessonIds": ["pspo2-facilitation"]
+      },
+      {
+        "id": "leadership-styles",
+        "title": "Leadership Styles",
+        "description": "Examine authority, autonomy and the consequences of acting as a request proxy.",
+        "lessonIds": ["pspo2-organization", "scrum-accountabilities"]
+      },
+      {
+        "id": "coaching",
+        "title": "Coaching",
+        "description": "A separate focus area for developing others; no dedicated coaching lesson is published yet.",
+        "lessonIds": []
+      },
+      {
+        "id": "mentoring",
+        "title": "Mentoring",
+        "description": "A separate focus area for sharing experience; no dedicated mentoring lesson is published yet.",
+        "lessonIds": []
+      },
+      {
+        "id": "teaching",
+        "title": "Teaching",
+        "description": "A separate focus area for helping people understand concepts; no dedicated teaching lesson is published yet.",
+        "lessonIds": []
+      }
+    ]
+  },
+  {
+    "id": "product-management",
+    "title": "Managing Products with Agility",
+    "description": "Connect direction, value, customer evidence and ordering decisions across the life of a product.",
+    "areas": [
+      {
+        "id": "forecasting-release",
+        "title": "Forecasting & Release Planning",
+        "description": "Communicate what historical evidence supports and where a forecast remains uncertain.",
+        "lessonIds": [
+          "pspo2-forecasting",
+          "pspo2-release-feature-flags",
+          "pspo2-evidence-uncertainty"
+        ]
+      },
+      {
+        "id": "product-vision",
+        "title": "Product Vision",
+        "description": "Explain the audience, need and direction before committing to a fixed feature list.",
+        "lessonIds": ["pspo1-product-value", "pspo2-strategy", "pspo2-business-models"]
+      },
+      {
+        "id": "product-value",
+        "title": "Product Value",
+        "description": "Distinguish outputs from outcomes and inspect current and unrealized value.",
+        "lessonIds": [
+          "pspo1-product-value",
+          "pspo2-value",
+          "pspo2-outcome-experiments",
+          "pspo2-platform-value",
+          "pspo2-portfolio-decisions"
+        ]
+      },
+      {
+        "id": "product-backlog",
+        "title": "Product Backlog Management",
+        "description": "Refine useful slices and compare value, risk, size and dependencies.",
+        "lessonIds": ["pspo1-refinement", "pspo1-product-value", "pspo2-backlog-economics"]
+      },
+      {
+        "id": "business-strategy",
+        "title": "Business Strategy",
+        "description": "Use goals and experiments to guide investment under uncertainty.",
+        "lessonIds": [
+          "pspo2-strategy",
+          "pspo2-organization",
+          "pspo2-outcome-experiments",
+          "pspo2-business-models",
+          "pspo2-portfolio-decisions"
+        ]
+      },
+      {
+        "id": "stakeholders-customers",
+        "title": "Stakeholders & Customers",
+        "description": "Distinguish stakeholder feedback from evidence of actual customer outcomes.",
+        "lessonIds": ["pspo2-facilitation", "pspo2-discovery", "pspo2-platform-value"]
+      }
+    ]
+  },
+  {
+    "id": "professional-delivery",
+    "title": "Developing and Delivering Products Professionally",
+    "description": "A Product Owner needs enough understanding of quality, risk and flow to make sound product trade-offs without taking over implementation decisions.",
+    "areas": [
+      {
+        "id": "emergent-development",
+        "title": "Emergent Software Development",
+        "description": "Learn through small integrated changes instead of assuming every detail is known up front.",
+        "lessonIds": ["pspo1-refinement", "pspo2-discovery"]
+      },
+      {
+        "id": "technical-risk",
+        "title": "Managing Technical Risk",
+        "description": "Expose integration, maintenance and quality risks when comparing investment choices.",
+        "lessonIds": ["pspo2-shared-quality", "pspo2-platform-value"]
+      },
+      {
+        "id": "continuous-quality",
+        "title": "Continuous Quality",
+        "description": "Treat shared quality as part of creating usable value throughout the Sprint.",
+        "lessonIds": ["pspo2-shared-quality", "pspo1-artifacts"]
+      },
+      {
+        "id": "continuous-integration",
+        "title": "Continuous Integration",
+        "description": "Connect integrated evidence to a usable product instead of independent component completion.",
+        "lessonIds": ["pspo2-shared-quality"]
+      },
+      {
+        "id": "continuous-delivery",
+        "title": "Continuous Delivery",
+        "description": "Remove artificial release gates while respecting quality and operational constraints.",
+        "lessonIds": ["pspo2-forecasting", "pspo2-shared-quality", "pspo2-release-feature-flags"]
+      },
+      {
+        "id": "optimizing-flow",
+        "title": "Optimizing Flow",
+        "description": "Use WIP, Cycle Time, Work Item Age, Throughput and an SLE to inspect flow.",
+        "lessonIds": ["pspo2-kanban"]
+      }
+    ]
+  },
+  {
+    "id": "agile-organization",
+    "title": "Evolving the Agile Organization",
+    "description": "Look beyond the team for incentives, overloaded portfolios and decision delays that constrain value.",
+    "areas": [
+      {
+        "id": "organization-culture",
+        "title": "Organizational Design and Culture",
+        "description": "Inspect whether organizational structures and incentives support product autonomy.",
+        "lessonIds": ["pspo2-organization"]
+      },
+      {
+        "id": "portfolio-planning",
+        "title": "Portfolio Planning",
+        "description": "Make competing investments and too much parallel work visible.",
+        "lessonIds": ["pspo2-organization", "pspo2-portfolio-decisions"]
+      },
+      {
+        "id": "evidence-based-management",
+        "title": "Evidence-Based Management",
+        "description": "Relate goals, hypotheses and experiments to CV, UV, T2M and A2I.",
+        "lessonIds": [
+          "pspo2-value",
+          "pspo2-strategy",
+          "pspo3-reflection",
+          "pspo2-outcome-experiments",
+          "pspo2-evidence-uncertainty"
+        ]
+      }
+    ]
+  }
+]

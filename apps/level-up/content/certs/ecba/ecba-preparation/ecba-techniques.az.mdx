@@ -1,0 +1,77 @@
+---
+id: ecba-techniques
+locale: az
+title: 'Analiz üsulunun seçilməsi'
+objectives:
+  - 'Araşdırma sualına uyğun üsul seç və məhdudiyyətini izah et.'
+  - 'Müsahibə, müşahidə, sorğu, workshop, proses modeli və prototype-ı birləşdir.'
+---
+
+## Əsas anlayış
+
+Üsul müəyyən məlumatı əldə etmək, göstərmək və ya yoxlamaq vasitəsidir. “Həmişə workshop et” və ya “analitik mütləq bu alətdə işləməlidir” kimi universal qayda yoxdur. BABOK v3-ün texnikalarını seçərkən öyrənmək istədiyin məsələni, iştirakçıları, vaxtı, riski və əldə olan sübutu nəzərə al. Eyni qərar üçün bir neçə üsul bir-birini tamamlaya bilər.
+
+## Niyə vacibdir
+
+İnsanlar işi necə gördüklərini düzgün xatırlamaya, həssas məsələni qrupda deməyə və ya gələcək ekranı sözlə izah etməyə çətinlik çəkə bilər. Yalnız bir üsula güvənmək görünməyən boşluq yaradır. Təcrübəli əməkdaşın izahını müşahidə ilə tutuşdurmaq, sonra prototype ilə anlaşmanı yoxlamaq daha etibarlı öyrənmə verə bilər. Məqsəd daha çox sənəd hazırlamaq deyil; qərardakı qeyri-müəyyənliyi azaltmaqdır.
+
+## Nəzəriyyə və fərqlər
+
+**Müsahibə** fərdi bilik, səbəb və baxışları araşdırmağa kömək edir. Açıq sual təfərrüatı açır; qapalı sual konkret cavabı dəqiqləşdirə bilər. **Müşahidə** işi real şəraitdə göstərir. Fəal müşahidədə sual iş zamanı verilə bilər; passiv müşahidədə axın kəsilmədən izlənir və suallar sonra verilir. Hər ikisində məqsədi və iştirakçı razılaşmasını aydın et.
+
+**Sənəd analizi** qayda, təlimat və əvvəlki məlumatı araşdırır; sənədin aktual və etibarlı olduğunu yoxla. **Sorğu** müəyyən qrupdan strukturlaşdırılmış məlumat toplamağa imkan verir; yönləndirici sual və yanlış hədəf qrup nəticəni zəiflədir. **Workshop** əvvəlcədən müəyyən edilmiş məqsəd üçün əməkdaşlıqdır. Fasilitator fokus və iştirak imkanını qoruyur, katib qərar və açıq məsələləri saxlayır.
+
+**Proses modeli** işi, hadisəni, qərarı və nəticəni göstərir; yüksək səviyyəli şəkil bütün istisnaları sübut etmir. **Prototype** görünüşü, davranışı və fərziyyələri erkən araşdırır. Birdəfəlik prototype tələbi öyrənmək üçündür; təkamül edən prototype işlək həllə çevrilə bilər. Təsirli görünməsi keyfiyyət və ya texniki uyğunluğun avtomatik sübutu deyil.
+
+## İşlənmiş nümunə
+
+Anbar rəhbəri “işçilər sifariş axtarışında çox vaxt itirir” deyir. Analitik əvvəl mövcud təlimatı yoxlayır və növbə rəhbərləri ilə danışır. Sonra razılaşdırılmış müşahidədə işçilərin kağızdakı kodu başqa sistemə yenidən yazdığını görür. Proses modeli bu keçidi görünən edir. Sadə prototype kodun bir dəfə daxil edilməsini sınayır.
+
+Bütün işçilər üçün dərhal sorğu göndərmək həllin mümkünlüyünü yoxlamazdı. Əvvəl niyə və harada vaxt itirildiyini öyrənmək lazımdır. Prototype-a verilən müsbət rəy də qənaətin sübutu deyil: real tapşırıq vaxtını və səhvləri müqayisə etməyə ehtiyac qalır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q["Question: why is picking slow?"] --> D["Review current instructions"]\n D --> I["Interview shift leads"]\n I --> O["Observe actual handoffs"]\n O --> M["Model the workflow"]\n M --> P["Test a small prototype"]\n P --> V["Check task time and errors"]'
+  }
+/>
+
+Model üsulu onun cavab verəcəyi sual ilə bağlayır. Bir mərhələdə yeni boşluq tapılarsa əvvəlki sübutu yenidən yoxlamaq olar.
+
+## Qərar məşqi
+
+İstifadəçilər yeni formanı təsvir edə bilmir, amma mövcud prosesdəki narahatlığı izah edir. Əvvəl onların iş məqsədini müsahibə və müşahidə ilə aydınlaşdır; sonra aşağı detallı prototype ilə konkret davranışı yoxla. Texniki inteqrasiya qeyri-müəyyəndirsə, istifadəçi rəyindən başqa tətbiq mütəxəssisinin araşdırması da lazımdır. Bir üsul başqa sualın cavabını əvəz etmir.
+
+## Səhvlər və düzgün yanaşma
+
+- Həllə yönəldən sual vermə: “Bu gözəl funksiyanı istəyirsən?” faydalı sübut deyil.
+- Yalnız əlçatan və razı istifadəçiləri seçmə.
+- Köhnə təlimatı real işin qüsursuz təsviri sayma.
+- Qrupdakı ən yüksək vəzifəli şəxsin fikrini ümumi razılıq sayma.
+- Prototype-ı istehsala hazır məhsul kimi təqdim etmə.
+
+## Tətbiq tapşırığı və izahlı həll
+
+**Tapşırıq:** Üç boşluğa üsul seç: işçinin izah edə bilmədiyi təkrarlanan işarə ardıcıllığı; şöbələr arasında ziddiyyətli təsdiq qaydası; yeni forma üzərində anlaşılmayan addım. Hər seçim üçün bir məhdudiyyət yaz.
+
+**İzahlı həll:** Birincidə müşahidə gündəlik davranışı üzə çıxara bilər, amma müşahidə olunanlar davranışını dəyişə bilər. İkincidə sənəd analizi və məqsədli workshop qaydanı və fikir ayrılığını aydınlaşdırar, amma səlahiyyət və iştirak düzgün seçilməlidir. Üçüncüdə prototype üzərində real tapşırıq faydalıdır; bu, bütün inteqrasiya və keyfiyyət şərtlərini yoxlamır.
+
+## Mini-quiz
+
+Suallarda “ən yaxşı üsul” soruşulanda onun məqsədini, məlum məlumatı və məhdudiyyəti birlikdə oxu. Sadəcə ən tanış üsulu seçmə.
+
+<LessonCheck />
+
+## Xülasə
+
+Sual → lazım olan sübut → uyğun üsul → məhdudiyyət → təsdiq. Üsul seçimini yeni məlumatla dəyişmək olar. Müsahibə, müşahidə, modelləşdirmə və prototype bir-birinə rəqib olmaq əvəzinə birgə fayda verə bilər.
+
+## Mənbələr və əhatə
+
+BABOK Guide v3, 2015: §10.18, səh. 269–270; §10.25, səh. 290–293; §10.31, səh. 305–307; §10.35, səh. 318–323; §10.36, səh. 323–325; §10.45, səh. 350–352; §10.50, səh. 363–365. Oxunmuş əsas izahlar: 269, 290–291, 305–306, 318–319, 323–324, 350–351, 363–364.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Yüklənmiş üzv PDF-i saytda yayımlanmır. Buradakı suallar orijinal tədris məşqidir və rəsmi imtahan sualları deyil.

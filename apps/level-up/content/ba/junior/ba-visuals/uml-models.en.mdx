@@ -1,0 +1,89 @@
+---
+id: uml-models
+locale: en
+title: 'Choose the right UML view'
+objectives:
+  - 'Choose a model for scope, interaction, structure or lifecycle.'
+  - 'Make actor goals and object relationships explicit.'
+  - 'Cross-check an interaction against lifecycle and business rules.'
+---
+
+## Learning objectives
+
+- Choose a model for scope, interaction, structure or lifecycle.
+- Make actor goals and object relationships explicit.
+- Cross-check an interaction against lifecycle and business rules.
+
+## Why this matters
+
+One enormous diagram rarely answers every stakeholder question. A product owner may need a boundary and user goal, an engineer may need message order, and operations may need allowed status transitions. UML offers complementary views. Choosing the view starts with the decision, not the diagramming tool.
+
+## Core theory
+
+A use-case view identifies actors, goals and the system boundary. An actor is an external role interacting with the system, not necessarily a particular employee. A use-case diagram alone does not describe every normal or exceptional step; supplement it with a scenario when behavior matters.
+
+A sequence view shows participants and ordered messages for a scenario. It helps expose which component calls another, where a response is expected and what happens on failure. It does not by itself prove timing guarantees or deployment topology. Label alternatives and avoid assuming every asynchronous interaction completes immediately.
+
+A class or domain view describes concepts, attributes and relationships. Multiplicity states how many related instances are allowed at an association end. “One order has many items” is a structural rule; it is not a workflow. Decide whether an object may temporarily have zero related instances and test those assumptions against creation and deletion behavior.
+
+A state view models a lifecycle: states, triggering events, guards and transitions. A status label such as Paid should have an agreed meaning. Define which actor or event can move an order into that state and what happens when an event is duplicated or arrives late.
+
+Keep views consistent. If a sequence marks an order Paid before payment confirmation, but the state rule requires confirmation, the models disagree. Resolve the rule rather than changing labels until the diagrams look similar. Use the smallest set of views that makes the relevant behavior clear; modelling is evidence for a discussion, not an end in itself.
+
+## Worked example
+
+For a booking service, the use case is “Cancel a booking,” with the customer as actor. A sequence describes a request to the booking API, an eligibility check and a refund request. A state model distinguishes Confirmed, CancellationPending and Cancelled.
+
+The domain view states that a booking can have zero or more payment attempts. That matters because a first attempt may fail before a successful one. The sequence must identify the settled payment rather than refunding every attempt. An unknown provider response keeps cancellation pending until reconciliation establishes the result.
+
+## Visual model
+
+<Diagram
+  chart={
+    'stateDiagram-v2\n [*] --> Confirmed\n Confirmed --> CancellationPending: eligible request\n CancellationPending --> Cancelled: outcome confirmed\n CancellationPending --> Confirmed: request rejected\n Cancelled --> [*]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Does a class diagram establish the order in which API calls execute?</summary>
+
+No. Structural relationships do not specify runtime message order. Use a sequence view for a particular interaction and a state view for allowed lifecycle changes. Compare them against the same business rules and explicitly record asynchronous or unresolved outcomes.
+
+</details>
+
+## Common mistakes
+
+- Using a person’s name where an actor role is intended.
+- Treating multiplicity as an event sequence.
+- Adding every implementation detail to a stakeholder domain model.
+- Assuming a sequence diagram proves every possible execution path.
+
+## Practice exercise
+
+Choose two views for a subscription cancellation with a pending final invoice. State what each view answers and define one invariant that both must respect.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use a state view to define Active, CancellationPending and Cancelled, and a sequence view to show the cancellation request, invoice check and confirmation messages. An invariant might be that final cancellation is not confirmed before the agreed billing condition is resolved. Add a domain view only if the relationship between subscriptions, invoices and payments is itself uncertain.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Scope and goals → use case. Ordered interaction → sequence. Concepts and multiplicity → class/domain. Lifecycle rules → state. Cross-check shared terms and invariants.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the user-supplied book support these original explanations; the PDF and source prose are not republished.
+
+- BABOK §7.1: specifying and modelling requirements; §10.47: use cases and scenarios.
+- [OMG UML 2.5.1 specification index](https://www.omg.org/spec/UML/2.5.1): version and normative references. The lesson diagrams are selected teaching views, not a full UML conformance course.

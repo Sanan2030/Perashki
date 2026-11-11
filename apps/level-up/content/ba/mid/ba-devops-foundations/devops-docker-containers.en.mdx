@@ -1,0 +1,106 @@
+---
+id: devops-docker-containers
+locale: en
+title: 'Docker images, containers, storage and secure builds'
+objectives:
+  - 'Explain image layers, running containers and persistent volumes.'
+  - 'Review a Dockerfile for dependency caching, runtime size and credential exposure.'
+  - 'Distinguish a mutable tag from an immutable image digest.'
+---
+
+## Learning objectives
+
+- Explain image layers, running containers and persistent volumes.
+- Review a Dockerfile for dependency caching, runtime size and credential exposure.
+- Distinguish a mutable tag from an immutable image digest.
+
+## Why this matters
+
+A team removes and recreates a database container, then discovers that its data was stored only in the container's writable layer. Another team rebuilds the same latest tag and receives different dependencies. Containers make packaging convenient; they do not automatically define durability, reproducibility or security.
+
+## Core theory
+
+An image is a packaged filesystem and runtime configuration built from layers. A container is a running instance with a writable layer and process isolation. Stopping a container is not identical to removing it. Data durability must be designed explicitly using appropriate persistent storage and backup/recovery behavior; a volume is not itself a tested backup.
+
+A multi-stage build separates compilation/testing tools from the runtime output. Copy only the required application artifacts into the final stage. Keep dependency manifests earlier than frequently changing source where that supports useful caching. A lockfile helps dependency reproducibility, but native tooling, base images and external downloads can still change the result.
+
+Image tags are names that can be repointed. Digests identify content. A release policy can record and promote the same verified digest between environments instead of rebuilding a supposedly identical version for production. Digest pinning improves identity; it also needs an update process so vulnerable bases are not pinned forever.
+
+Use a .dockerignore to exclude irrelevant context such as local secrets and large caches. Do not COPY a credential and then delete it in a later layer: earlier layers may still expose it. Build-time secret mechanisms and runtime secret injection have different lifecycles; choose supported mechanisms and do not use ordinary image metadata as a secret vault.
+
+Run with the least privileges needed, including a suitable non-root user and filesystem permissions where the application supports them. Exposing a port in image metadata does not publish it to the host. Deliberate host/container mappings and network policy determine reachability. A container is not a virtual machine or a guarantee against every host/container escape.
+
+## Worked example
+
+An application needs a compiler to build but only a runtime to serve requests. Use two stages, test the artifact, then promote its content identity. The following is a schematic, deliberately non-buildable template: replace both image placeholders with reviewed real images and digests, and adapt commands to the application.
+
+```dockerfile
+FROM reviewed-build-image@sha256:REPLACE_WITH_REAL_DIGEST AS build
+WORKDIR /src
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM reviewed-runtime-image@sha256:REPLACE_WITH_REAL_DIGEST
+WORKDIR /app
+COPY --from=build /src/dist ./dist
+USER 10001
+CMD ["node", "dist/server.js"]
+```
+
+This is not this Next.js project's deployment Dockerfile. The final artifact layout and user permissions must match the actual runtime. A real build must preserve the managed environment's proxy and CA settings rather than bypassing network controls.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Reviewed source and lockfile"] --> B["Build stage"]\n B --> C["Tested runtime artifacts"]\n C --> D["Minimal final image"]\n D --> E["Container process"]\n F["Persistent volume and backup policy"] --> E'
+  }
+/>
+
+The runtime image and persistent data follow different lifecycles. Replacing the image should not accidentally erase the required business data.
+
+## Inspect the decision
+
+<details>
+<summary>A secret was copied into one image layer and removed in the next. Is the published image safe to share?</summary>
+
+Do not assume so. The earlier layer can retain the value. Treat the exposure according to the credential policy, rotate if required and redesign the build so the secret never enters a published layer.
+
+</details>
+
+## Common mistakes
+
+- Treating latest as an immutable version makes rollback ambiguous.
+- Keeping state only in a removable writable layer can lose data on replacement.
+- Assuming --no-cache also refreshes the base image confuses cache use with pulling a new base.
+- Shipping compilers and unnecessary packages increases runtime size and attack surface.
+- Claiming a volume proves recoverability skips backup, restore and corruption scenarios.
+
+## Practice exercise
+
+Review a build that copies the entire repository, installs dependencies after every source change, runs as root and writes uploads inside the container. Propose changes for caching, credential handling, runtime permissions, artifact identity and durable user data.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Reduce and review build context, exclude local credentials, and copy manifests before source when suitable. Use a lockfile and a multi-stage build. Supply required build credentials through supported secret mechanisms instead of committed files or layers. Configure a runtime identity and writable paths deliberately.
+
+Record the final digest, scan/test the artifact under the release policy and promote that identity. Store required uploads in an appropriate durable service or volume with tested backup/restore. Rebuild and review updated bases regularly rather than treating pinned content as permanently safe.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Image = packaged content. Container = running process/state. Volume ≠ backup. Tag ≠ digest. Deleting a file later does not erase an earlier image layer. Multi-stage builds and least privilege need application-specific validation.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Docker building best practices](https://docs.docker.com/build/building/best-practices/): multi-stage builds, context, cache, image updates and pinning.
+
+The Dockerfile is an annotated teaching template, not a build executed or a production configuration applied in this task.

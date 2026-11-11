@@ -1,0 +1,28 @@
+{
+  "total": 336,
+  "passed": 336,
+  "failed": 0,
+  "categories": {
+    "question": {
+      "passed": 75,
+      "total": 75
+    },
+    "exclamation": {
+      "passed": 45,
+      "total": 45
+    },
+    "comma": {
+      "passed": 95,
+      "total": 95
+    },
+    "runon": {
+      "passed": 66,
+      "total": 66
+    },
+    "paragraph": {
+      "passed": 55,
+      "total": 55
+    }
+  },
+  "failures": []
+}

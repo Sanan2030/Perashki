@@ -1,0 +1,78 @@
+---
+id: cbap-evaluation
+locale: az
+title: 'Müəssisə həllinin dəyərini qiymətləndir'
+objectives:
+  - 'Səbəb barədə qərardan əvvəl solution measure-ları topla və şərh et.'
+  - 'Solution limitation-u enterprise limitation-dan ayır və mütənasib action tövsiyə et.'
+---
+
+## Əsas anlayış
+
+Solution Evaluation real həlli yoxlayır, performance-i şərh edir, value realization-a mane olanı tapır. Solution işləyən component, pilot, prototype və geniş release ola bilər; evaluation yalnız layihənin sonu üçün deyil. BABOK v3 measuring performance, analyzing measure, solution limitation, enterprise limitation və action recommendation-u ayırır. Task-lar tək business case vədinə deyil, observed value-ya aiddir.
+
+## Niyə vacibdir
+
+Feature specification-u ödəyə bilər, user faydalanmaya bilər. Slow processing internal component-dən, organization approval rule, skill çatışmazlığı və ya sərhəddən kənar handoff-dan gələ bilər. Kəskin metric dəyişikliyi hətta inaccurate measure ola bilər. Alternativi yoxlamadan daha çox software təklif etmək real constraint-i saxlayıb investisiyanı itirə bilər. Evaluation evidence-i business outcome və mümkün action-a bağlamalıdır.
+
+## Nəzəriyyə və fərqlər
+
+**Measure:** desired value-ya uyğun quantitative/qualitative information tap. Mövcud measure-ın relevance/accuracy-sini yoxla. Sample həcmi, timing, frequency və məlumatın aktuallığını düşün; assessment criteria-nı authorized stakeholder ilə razılaşdır. Dashboard rəqəmi avtomatik uyğun measure deyil.
+
+**Analyze:** measure-ı objective, expected value və risk tolerance-la şərh et. Trend/variance-i, data-nın təkrarlana bilən və etibarlı olmasını yoxla. Kiçik/qeyri-təmsilçi window-dan güclü nəticə çıxarma. **Solution limitation:** problemli component, defect, internal dependency kimi solution daxilini araşdır. **Enterprise limitation:** culture, operations, skill, organization structure və stakeholder concern kimi solution sərhədindən kənarı araşdır. Enterprise yalnız şirkətdən kənar demək deyil.
+
+**Action tövsiyəsi:** qiymətləndirmələri birləşdir. Həlli yaxşılaşdırmaq, interface complexity-ni azaltmaq, process/role dəyişmək, information access artırmaq, redundant işi silmək, solution-u replace/retire etmək mümkündür. Dərhal correction həmişə əsaslı deyil: severity, recurrence, impact, cost və alternativi müqayisə et. Action-un sübut olunmuş limitation-u necə qarşılayacağını və artımın necə yoxlanacağını izah et.
+
+## İşlənmiş nümunə
+
+Supplier portal invoice approval time-ı azaltmalıdır. Pilot-da submission artır, amma payment gecikir. Daha böyük portal təklifindən əvvəl analyst “approval time”ın submission, receipt və ya sonrakı status-dan ölçülməsinə baxır. Measure düzəldilib müvafiq operating condition-lara bölünür.
+
+Delay-in bir hissəsi portalda duplicate notification-dur: solution limitation. Digəri həftəlik authorization görüşü tələb edən finance rule-dur: portal sərhədinə görə enterprise limitation. Bir location-da training gap da təsir edir. Əsaslı recommendation real control-a uyğun portal correction, authorization/training dəyişməsini birləşdirə bilər. Tək submission artımı sürətli payment sübutu deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n O["Business objective and expected value"] --> M["Collect relevant measures"]\n M --> A["Check accuracy and analyze variance"]\n A --> S["Assess solution limitations"]\n A --> E["Assess enterprise limitations"]\n S --> R["Recommend proportionate action"]\n E --> R\n R --> F["Check realized improvement"]\n F --> M'
+  }
+/>
+
+Model etibarlı observation-u diagnosis və recommendation-dan ayırır. İki budaq solution/enterprise assessment-in birlikdə gedə bildiyini göstərir. Limitation-u ayırmazdan əvvəl boundary aydın olmalıdır.
+
+## Qərar məşqi
+
+Manager submission ikiqat olduğu üçün dərhal success announcement istəyir. Measure-ın məhdud nəticəsini izah et: daha çox submission qeydə alınıb. Gözlənilən payment benefit-i özü sübut etmir. Etibarlı outcome measure müqayisə et, delay araşdır, həm artım, həm unresolved limitation bildir. Natamam nəticəni tanımaq yaxşı next action verir; həqiqi qazancı görməzdən gəlmək və ya insanı günahlandırmaq deyil.
+
+## Tipik səhvlər və yaxşı təcrübə
+
+- Deployed functionality-ni realized benefit sayma.
+- Əlaqəni yoxlamadan proxy metric-i objective etmə.
+- Ani variance səbəbini deməzdən əvvəl accuracy/observation şəraitini yoxla.
+- Internal/external limitation ayırmazdan əvvəl solution boundary müəyyən et.
+- Hər performance probleminin əlavə code tələb etdiyini fərz etmə.
+- Action müqayisəsində recurring cost və retirement təsirini daxil et.
+
+## Tətbiq tapşırığı və izahlı cavab
+
+**Tapşırıq:** case management sistemi düzgün nəticə verir, amma işçi ayrıca imza üçün hər case-i çap edir. Yeni tracking release böyük sürət artımı göstərir. İki araşdırma və iki mümkün action tap.
+
+**İzahlı cavab:** artımı qəbul etməmiş measure-a bax: event tərifi, timing və comparable observation təsdiqlə. Ayrı olaraq çap/imza addımını və niyə mövcudluğunu araşdır. Sistemin sərhədinə görə enterprise limitation ola bilər; daxil integration problemi ayrı diagnosis istəyə bilər. Action əsaslı authorization practice dəyişikliyi və ya lazım control-u dəstəkləyən solution improvement ola bilər. Sübut və real constraint-dən seç; delay yaradır deyə control-u silmək icazəsi uydurma.
+
+## Mini-test
+
+Measure toplamağı, şərhini, limitation diagnosis və action seçimini ayır. Ssenari istənilən nəticəni hələ dəstəkləməyə bilər. Təsdiqsiz səbəbə inamlı fix tövsiyəsindən evidence toplama güclü ola bilər.
+
+<LessonCheck />
+
+## Yaddaş vərəqi
+
+Objective → uyğun reliable measure → interpreted gap → solution/enterprise assessment → mütənasib recommendation → follow-up measurement. Potential value gözləntidir; evaluation reallaşanı və əlavə value maneəsini araşdırır.
+
+## Mənbələr və əhatə
+
+BABOK Guide v3, 2015: introduction, s. 163–164; §8.1, s. 166–170; §8.2, s. 170–173; §8.3, s. 173–177; §8.4, s. 177–182; §8.5, s. 182–186. Əsas oxunan izahlar: 163, 167–168, 170–172, 173–175, 177–179, 182–184. Nümunə və cavab quruluşları orijinal tədris materialıdır.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+İzah və nümunələr orijinal tədris materialıdır. Yüklənmiş üzv PDF-i saytda yayılmır. Məşq sualları müstəqil hazırlanıb; rəsmi imtahan sualları deyil.

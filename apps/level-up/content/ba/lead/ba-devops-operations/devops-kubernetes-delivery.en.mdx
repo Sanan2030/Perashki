@@ -1,0 +1,107 @@
+---
+id: devops-kubernetes-delivery
+locale: en
+title: 'Kubernetes delivery: Deployments, Services and probes'
+objectives:
+  - 'Distinguish a Pod, Deployment and Service in a delivery path.'
+  - 'Choose readiness, liveness and startup checks for different failure modes.'
+  - 'Explain rollout failure and data-compatible recovery.'
+---
+
+## Learning objectives
+
+- Distinguish a Pod, Deployment and Service in a delivery path.
+- Choose readiness, liveness and startup checks for different failure modes.
+- Explain rollout failure and data-compatible recovery.
+
+## Why this matters
+
+A new version starts slowly. Its liveness check restarts it before initialization finishes, while a different deployment sends traffic to instances that have not loaded configuration. Kubernetes is reconciling the specified configuration, but the specification encodes the wrong operating assumptions.
+
+## Core theory
+
+A Pod groups containers that share a scheduling/network context. A Deployment manages replicated Pods through ReplicaSets and a desired-state controller. A Service provides a stable service abstraction for selected backends; it does not make an unhealthy application correct. Labels and selectors must connect the intended workloads, or traffic can reach no endpoints or the wrong endpoints.
+
+Readiness asks whether a container is ready to serve traffic in the applicable routing path. A failed readiness check does not itself mean the container should restart. Liveness detects an unhealthy state for which restarting the container is an appropriate remedy. Startup probes allow slow initialization before liveness/readiness checks take over. A poorly designed liveness check against a shared failing database can restart all otherwise functioning application instances and amplify an outage.
+
+A rolling update replaces instances gradually. maxUnavailable and maxSurge control permitted unavailable and extra capacity during the rollout. They are not evidence of spare cluster capacity or an automatic guarantee of zero user impact. Readiness, connection draining, application compatibility and capacity all matter.
+
+Requests guide scheduling/resource accounting; limits bound supported resource consumption under runtime rules. A CPU limit can cause throttling, while memory overuse can lead to termination. Arbitrary large requests can prevent scheduling; unrealistically small settings can cause instability. Choose settings from evidence rather than copying one manifest for every service.
+
+A progress deadline lets a Deployment report a stalled rollout. Kubernetes does not automatically implement a complete application or database rollback merely because that deadline expires. Restoring a previous Pod template does not reverse a destructive schema migration or external payment. Record immutable image identity and keep the rollout's data/API compatibility explicit.
+
+## Worked example
+
+An API takes up to 90 seconds to initialize and has /livez and /readyz endpoints. The following fragment belongs under a container specification; thresholds are illustrative and require measurement:
+
+```yaml
+ports:
+  - containerPort: 8080
+startupProbe:
+  httpGet: { path: /livez, port: 8080 }
+  periodSeconds: 5
+  failureThreshold: 24
+livenessProbe:
+  httpGet: { path: /livez, port: 8080 }
+  periodSeconds: 10
+readinessProbe:
+  httpGet: { path: /readyz, port: 8080 }
+  periodSeconds: 5
+```
+
+The startup allowance is an example budget, not proof that every start will finish. The readiness endpoint should reflect whether this instance can serve its defined traffic; the liveness endpoint should not turn every transient downstream failure into a restart. Inspect rollout status, events and resource evidence before changing thresholds.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Deployment desired state"] --> B["ReplicaSet and Pods"]\n B --> C["Startup completes"]\n C --> D["Readiness permits traffic"]\n D --> E["Service routes requests"]\n C --> F["Liveness detects restartable failure"]'
+  }
+/>
+
+Traffic eligibility and restart decisions use different signals. A controller can correctly follow a configuration whose checks are inappropriate for the application.
+
+## Inspect the decision
+
+<details>
+<summary>The database is unavailable for 30 seconds. Should every API instance fail liveness immediately?</summary>
+
+Only if a restart is actually the appropriate remedy. Otherwise the design may cause a restart storm without repairing the database. Separate temporary inability to serve traffic from an unrecoverable local process condition.
+
+</details>
+
+## Common mistakes
+
+- Treating readiness failure as an automatic container restart confuses probe purposes.
+- Using no startup allowance can repeatedly kill slow but healthy initialization.
+- A mismatched selector can break routing even while Pods run.
+- A rolling update needs capacity for its allowed surge.
+- A template rollback does not restore every business-data change.
+
+## Practice exercise
+
+A rollout stalls with old replicas ready and new replicas repeatedly restarting. Design an investigation covering startup duration, liveness/readiness, resources, image identity and compatibility. State when reverting the Pod template would be insufficient.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Inspect events and bounded logs, verify the actual image/digest, and compare startup behavior with probe thresholds. Check resource requests/limits and failures such as OOM termination or missing configuration. Confirm readiness endpoints and selectors match the desired traffic path. Retain healthy capacity while forming the mitigation.
+
+A previous template can restore compatible application code, but a migration or externally committed effect requires its own recovery strategy. A failed progress condition is evidence to act on, not proof of automatic rollback. Recheck the real user journey after mitigation.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Pod ≠ Deployment ≠ Service. Startup protects initialization; readiness controls traffic eligibility; liveness can trigger restart. Rollout constraints need real capacity. A stalled rollout condition is not automatic data rollback.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/): updates, rollback and deployment status.
+- [Kubernetes probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/): liveness, readiness and startup behavior.
+
+The YAML fragment is an original teaching example, not a deployment applied to a cluster in this task.

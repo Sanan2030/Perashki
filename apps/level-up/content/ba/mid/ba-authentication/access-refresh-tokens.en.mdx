@@ -1,0 +1,105 @@
+---
+id: access-refresh-tokens
+locale: en
+title: 'Access tokens, refresh tokens and rotation races'
+objectives:
+  - 'Identify which token belongs at a resource server and which belongs at the authorization server.'
+  - 'Explain rotation, reuse detection and concurrent-refresh failure modes.'
+  - 'Specify expiration, revocation, logout and client-storage requirements without inventing universal lifetimes.'
+---
+
+## Learning objectives
+
+- Identify which token belongs at a resource server and which belongs at the authorization server.
+- Explain rotation, reuse detection and concurrent-refresh failure modes.
+- Specify expiration, revocation, logout and client-storage requirements without inventing universal lifetimes.
+
+## Why this matters
+
+A mobile banking app receives five 401 responses at once. Each request tries to refresh the session using the same refresh token. The first refresh rotates it; another request then submits the invalidated value. The server may interpret this as theft and revoke the active grant. A secure protocol and coordinated client behavior are both necessary for a reliable session.
+
+## Core theory
+
+An access token represents authorization to a protected resource, normally limited by audience, scope and lifetime. It can be opaque or structured, including a JWT. JWT is a format, not a requirement for OAuth. With a bearer token, possession is enough for use within the token's authorization constraints; protect it in transit and storage.
+
+A refresh token is a credential for obtaining new access tokens from the authorization server. It is not an API token for orders, payments or user profiles. Issuing it is optional. RFC 6749 permits refreshing to identical or narrower scope; refresh is not an opportunity to silently expand permission. Do not assume that every application receives a refresh token or that every refresh token is a JWT.
+
+RFC 9700 requires public clients' refresh tokens to be sender-constrained or protected with rotation. With rotation, the authorization server invalidates the previous refresh token when issuing a replacement and retains their relationship. Reuse of an invalidated token indicates a possible compromise. The server cannot reliably tell which holder is legitimate, so it revokes the active refresh token for that grant, requiring a fresh authorization grant.
+
+| Credential    | Intended recipient                  | Important restriction                              |
+| ------------- | ----------------------------------- | -------------------------------------------------- |
+| Access token  | Authorized resource server          | Correct audience, scope and validity               |
+| Refresh token | Authorization server token endpoint | Correct client/grant binding and replay protection |
+| ID Token      | OpenID Connect client               | Identity/authentication evidence for that client   |
+
+A token family is a useful implementation term for related rotating tokens; it is not a requirement to use one particular database schema. Store high-entropy opaque refresh credentials defensively, for example keeping only a server-side hash where the chosen design permits comparison without recovering the original value. Protect application secrets separately.
+
+Short access-token lifetimes limit exposure but are not instant revocation. Deleting a browser cookie or revoking refresh capability does not automatically invalidate a previously issued self-contained access token at every API. Immediate enforcement may require introspection, a revocation/session lookup or another supported policy. There is no universal standard five-minute or thirty-day lifetime: choose and document a risk-based policy.
+
+## Worked example
+
+Assume an example access-token lifetime of five minutes and a rotating refresh token R1. These are teaching values, not a recommended standard. At expiry, the client starts one refresh operation. Concurrent requests await that shared operation. The authorization server atomically consumes R1 and issues A2 plus R2. The client stores the replacement before replaying eligible API requests.
+
+```text
+A1 expired -> one refresh using R1 -> receive A2 + R2
+                 other requests wait
+retry safe/appropriately deduplicated requests using A2
+```
+
+If the refresh response is lost, blindly retrying R1 can look like reuse. The identity provider's protocol and documented recovery policy determine the correct response. Do not design a broad reuse grace period merely to hide a client race; it also changes the replay threat model. For a non-idempotent payment request, acquiring A2 does not by itself make a blind replay safe.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Access token expires"] --> B["One coordinated refresh"]\n B --> C["Consume old refresh token"]\n C --> D["Issue replacement pair"]\n D --> E["Resume eligible requests"]\n C --> F["Reuse detected: revoke grant"]'
+  }
+/>
+
+The success path consumes the old refresh credential. A later reuse is a different security event, not an ordinary continuation of the successful path.
+
+## Inspect the decision
+
+<details>
+<summary>A developer says “logout deletes the cookie, so all issued JWTs stop working immediately.” What is missing?</summary>
+
+The API's validation and revocation model. A self-contained token can remain valid until expiry if the API only checks its signature and claims. Logout should end local session state and revoke refresh capability as supported, while requirements explicitly state whether already issued access tokens must be rejected immediately.
+
+</details>
+
+## Common mistakes
+
+- Sending the refresh token to a resource API increases credential exposure and violates its intended role.
+- Launching one refresh per failed request creates avoidable rotation races.
+- Retrying every 401 forever hides revoked sessions and can overload the identity provider.
+- Storing a client secret in a browser bundle does not turn the browser into a confidential client.
+- Putting bearer credentials in URLs can expose them through logs, history and referrers.
+
+## Practice exercise
+
+Write a session-recovery policy for a browser-backed expense system. Ten requests can fail together; a user can revoke a device; the refresh response can be lost. Specify concurrency behavior, one retry boundary, invalid_grant handling and the meaning of logout for existing access tokens.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Coordinate refresh in the component that owns the session, ideally the server-side session/BFF for that architecture. Let the ten requests await one refresh, store the rotated credential atomically, and retry only requests whose business replay policy permits it. Bound an original request to one recovery attempt; a fresh authentication failure returns control to the user.
+
+Treat invalid_grant as a failed grant, not a cue to keep submitting an old token. Follow the identity provider's recovery guidance when a response is lost; if safe recovery cannot be established, require a fresh authorization flow. Revoke the device's grant/session and document whether APIs check revocation on every call or may accept existing access tokens until their expiry. Test concurrent refresh, lost responses, clock skew, revoked devices and an offline client returning later.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Access token → resource server. Refresh token → authorization server. Rotation → invalidate old token and retain relationship. Reuse detection → revoke active grant. Coordinate concurrent refresh; bound retries. Logout and immediate access-token invalidation are separate requirements.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html): §§1.4, 1.5 and 6.
+- [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html): §§2.2.2 and 4.14.
+- [OWASP OAuth guidance](https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html): terminology and replay prevention.
+
+Single-flight coordination, database choices and the five-minute example are original implementation guidance, not additional OAuth protocol requirements.

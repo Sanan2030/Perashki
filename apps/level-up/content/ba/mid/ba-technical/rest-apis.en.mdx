@@ -1,0 +1,109 @@
+---
+id: rest-apis
+locale: en
+title: 'HTTP APIs, resource contracts and failure semantics'
+objectives:
+  - 'Distinguish HTTP method semantics from application-specific business rules.'
+  - 'Write an API contract covering validation, authorization, concurrency and errors.'
+  - 'Use conditional requests to prevent a stale client from overwriting a newer change.'
+---
+
+## Learning objectives
+
+- Distinguish HTTP method semantics from application-specific business rules.
+- Write an API contract covering validation, authorization, concurrency and errors.
+- Use conditional requests to prevent a stale client from overwriting a newer change.
+
+## Why this matters
+
+A delivery team can agree on a button and still disagree about what a failed request means. In a booking system, a timeout after confirmation does not prove that the booking failed. If the client creates a second booking, the user may be charged twice. An API contract must describe observable state transitions and recovery, not just a URL and a happy-path JSON example.
+
+## Core theory
+
+An API exposes operations across a trust and process boundary. HTTP supplies methods, status codes, headers and representation rules. REST is an architectural style; JSON over HTTP alone does not establish that every REST constraint is satisfied. JSON and XML are representation formats, not authentication mechanisms.
+
+| Operation | Intended semantics                       | Contract question                                    |
+| --------- | ---------------------------------------- | ---------------------------------------------------- |
+| GET       | Retrieve a representation; safe          | Which filters, permissions and cache rules apply?    |
+| POST      | Process a representation, often create   | How are duplicate submissions recognized?            |
+| PUT       | Create or replace the target resource    | Is the complete replacement representation required? |
+| PATCH     | Apply a described partial modification   | Which patch format and concurrency rules apply?      |
+| DELETE    | Remove the association at the target URI | What happens when it is already absent?              |
+
+Safe means the client does not request a state change; a server may still record access logs. Idempotent means repeating an identical request has the same intended server effect as one request. It does not require identical response bodies: a repeated DELETE can return a different status without ceasing to be idempotent. PUT and DELETE are defined as idempotent; POST is not inherently idempotent. An application can add a documented deduplication policy to a particular POST operation.
+
+Distinguish transport failure, authentication failure, authorization failure, invalid input and business conflict. Use 201 with a resource location for creation when that matches the operation; 202 means processing was accepted, not completed. A 204 response has no content. A 401 response concerns missing or invalid authentication and uses an appropriate authentication challenge; 403 concerns refusal despite the understood request. A 404 policy can deliberately conceal another tenant's object. A failed If-Match precondition normally produces 412.
+
+RFC 9457 defines application/problem+json. Clients should branch on stable problem identifiers or documented extensions, not parse human-readable detail text. Do not return stack traces, tokens or database credentials in an error.
+
+## Worked example
+
+Two analysts load booking B-42 at version 7. Analyst A changes the travel date, creating version 8. Analyst B edits the passenger name using the stale version. Without a concurrency condition, B's update can silently restore the old date.
+
+```http
+PATCH /bookings/B-42 HTTP/1.1
+Content-Type: application/merge-patch+json
+If-Match: "booking-B-42-v7"
+
+{"passengerName":"Ayla"}
+```
+
+The service compares the strong ETag with its current representation version before changing state. If the current version is 8, it returns 412. The client reloads and asks the user to reconcile changes. ETags are representation validators; they do not authorize access. An object-level permission check remains necessary. The chosen merge-patch behavior is an application contract that must be documented and implemented.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Request"] --> B["Authenticate and authorize"]\n B --> C["Validate body and preconditions"]\n C --> D["Apply one state transition"]\n D --> E["Success or stable problem response"]'
+  }
+/>
+
+Every request crosses validation and permission boundaries before a state transition. The diagram summarizes an application pipeline, not a mandated ordering for every possible HTTP response.
+
+## Inspect the decision
+
+<details>
+<summary>A repeated DELETE returns 204, then 404. Has idempotency necessarily failed?</summary>
+
+No. Compare the intended resource effect, not the bytes in the response. If the target remains absent after both requests, the intended effect can still be idempotent. The documented contract should help clients interpret the second response.
+
+</details>
+
+## Common mistakes
+
+- Using GET to approve a refund makes a supposedly safe operation change state and exposes it to prefetching and CSRF problems.
+- Treating every timeout as a failed business operation causes duplicate submissions.
+- Returning 200 for every failure forces clients to invent undocumented error parsing.
+- Accepting a client-supplied tenant identifier as proof of permission exposes other tenants' resources.
+- Calling every partial update PATCH without defining its media type leaves deletion, null and array behavior ambiguous.
+
+## Practice exercise
+
+Use the [API lab below](#practice-lab) to send simulated orders requests, inspect responses and check the exercise. The contract panel describes the fixture identities and limits.
+
+Specify an update operation for a subscription address. Include authentication, resource ownership, accepted fields, stale-edit handling, a successful response and a machine-readable error. Then list three negative cases a tester can execute. Assume two users can edit the same subscription concurrently.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Require a validated session or access token and a server-side ownership check. Accept only the documented address fields, validate length and country rules, and require a strong If-Match value matching the current version. Return the updated representation and a new ETag on success. Return 412 for a stale validator with a problem type such as https://example.invalid/problems/stale-version; example.invalid is a placeholder, not a deployed endpoint. Do not include the current private address in an unauthorized error.
+
+Test an unknown field, a stale ETag and an authenticated user requesting another user's subscription. Also test a timeout after commit: the client should reload the resource to establish its state, not blindly replay an unrelated change.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Resource + method + representation + permissions + preconditions + success + failure + recovery = a useful contract. Safe and idempotent describe intended semantics. A timeout leaves the business outcome uncertain until checked. ETags prevent stale writes only when the server enforces the comparison.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): §§9.2, 9.3, 13.1.1 and 15.
+- [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457.html): §§3–3.1 and 5.
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): Operation, Schema and Response objects.
+
+The examples and error-policy choices are original teaching material. They do not describe an existing banking API.

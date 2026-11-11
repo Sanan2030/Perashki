@@ -1,0 +1,80 @@
+---
+id: pspo2-shared-quality
+locale: en
+title: 'Shared quality and technical risk'
+objectives:
+  - 'Distinguish Done, acceptance criteria, integration and release.'
+  - 'Make technical risk and its effect on product value visible.'
+---
+
+## Concept
+
+In Scrum, an Increment is more than separately completed components. New work must be verified together with earlier Increments and be usable. The Definition of Done creates a shared understanding of product quality. Multiple Scrum Teams working on the same product mutually define and follow the same Definition of Done. When organizational standards exist, those standards are the minimum rather than an optional target.
+
+## Why it matters
+
+A Product Owner does not prescribe the technical implementation, but needs to understand how quality affects customers and future investment. Acceptance criteria may describe the expected behavior of one item; they do not replace the shared Definition of Done. An export that works functionally is not Done if a mandatory security check fails. The whole Scrum Team is accountable for a valuable, useful Increment each Sprint; adding a separate final quality phase does not resolve that accountability.
+
+## Decision principles
+
+Chapter 3 of the book explains how technical debt can make future changes slower. Done does not necessarily mean no technical debt exists; it does mean work satisfies the shared quality definition. EBM 2024 uses A2I to examine constraints on new capabilities and T2M to examine delivery and learning speed. Continuous integration and automated checks can help, but Scrum prescribes no particular tool, delivery pipeline or programming method.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Shared Definition of Done"] --> B["Small integrated change"]\n B --> C["Verified usable Increment"]\n C --> D["Customer outcome and learning"]\n D --> E["Inspect quality and capability"]\n E --> A'
+  }
+/>
+
+This original teaching model is a summary, not a reproduction of a source figure.
+
+## Worked scenario
+
+Three teams build the interface, calculation and audit parts of a payments product. Each reports completion, but integrated checks show inconsistent amounts. A sponsor asks to postpone the audit check to preserve the promised date.
+
+## Decision reasoning
+
+First make the product state transparent: component completion is not an integrated Done Increment. Do not change quality criteria merely to fit the date. Collaborate with Developers on the cause and a smaller usable scope. The Product Owner explains value and ordering trade-offs; Developers own the technical plan. Earlier integration and smaller changes can be tested as improvements in subsequent work.
+
+## Common pitfalls
+
+### One product across teams, and the optional Nexus example
+
+When several Scrum Teams focus on the same product, they share the same Product Goal, Product Backlog and Product Owner. Delegating refinement to team representatives does not create independent Product Owners or competing component priorities. Check the product boundary before applying this rule: separate products need not share one backlog.
+
+The reviewed ExamDeck portfolio sample also introduces **Nexus**, a separate scaling framework. In that example, the Nexus Daily Scrum inspects progress toward the Nexus Sprint Goal and exposes cross-team dependencies and integration issues. Each team's Daily Scrum still serves its own Sprint Goal. The cross-team event is not a management status meeting, staff-reassignment mechanism or daily PO ordering session. Nexus is optional; its events are not required by the Scrum Guide. This limited explanation uses the public third-party sample; the official Nexus page was unavailable in this review and the full framework is outside this lesson's scope.
+
+Related original practice below includes this distinction. [Read the source example](https://examdeck.pro/pspo2-practice-questions/portfolio-planning) and consult the [official Nexus Guide](https://www.scrum.org/resources/online-nexus-guide) for the complete framework.
+
+Common mistakes include assigning quality only to testers, allowing incompatible Done definitions, assuming all technical debt means unfinished work, and using local output as proof of product value. A technical proposal also needs an explanation of impact: not every refactoring is automatically the most valuable next investment.
+
+## Application exercise
+
+Write three observations and one small improvement experiment for the scenario. Include an observation about product quality and another about the ability to make future changes. What result would show that the experiment was not useful?
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+One answer: expose integration failures, waiting time for integration, and usable changes that pass security checks. Test integrating smaller changes daily for one product journey. That cadence is a teaching example, not a Scrum rule. If waiting does not fall or production failures rise, investigate instead of declaring automation successful.
+
+</details>
+
+## Check understanding and remember
+
+Shared Done → integrated evidence → usable Increment. Item-specific acceptance criteria do not waive shared quality. Explain technical investment through the capability to deliver future value.
+
+<LessonCheck />
+
+## Sources and scope
+
+Scrum Guide 2020: Scrum Team and Developers, p. 5; Increment and Definition of Done, pp. 11–12. The Professional Product Owner: chapter 3, Negative Value and Technical Debt. EBM Guide 2024: A2I and T2M, pp. 10–11. The supplied competencies include Managing Technical Risk, Continuous Quality, Continuous Integration and Continuous Delivery. Placing this lesson in PSPO II is an editorial learning choice, not an official exam weighting.
+
+- [The Scrum Guide — November 2020](https://scrumguides.org/scrum-guide.html)
+- [Evidence-Based Management Guide — 2024](https://www.scrum.org/resources/evidence-based-management-guide)
+- [The Professional Product Owner — McGreal & Jocham, 2018](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [The Professional Scrum Competencies — user-supplied page text](https://www.scrum.org/professional-scrum-competencies)
+
+Explanations, scenarios and any example numbers are teaching material; official questions are not reproduced. Scrum Guide 2020 and EBM 2024 take precedence over older terminology.

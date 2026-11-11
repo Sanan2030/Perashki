@@ -1,0 +1,61 @@
+{
+  "id": "pspo2",
+  "name": "Professional Scrum Product Owner II",
+  "format": null,
+  "questionCount": null,
+  "durationMinutes": null,
+  "passPercent": null,
+  "domains": [
+    {
+      "id": "product-value",
+      "title": {
+        "en": "Product value and outcomes",
+        "az": "Məhsul dəyəri və nəticələr"
+      }
+    },
+    {
+      "id": "empiricism",
+      "title": {
+        "en": "Empiricism and evidence",
+        "az": "Empirizm və sübut"
+      }
+    },
+    {
+      "id": "stakeholder-leadership",
+      "title": {
+        "en": "Stakeholder collaboration and leadership",
+        "az": "Maraqlı tərəflərlə əməkdaşlıq və liderlik"
+      }
+    },
+    {
+      "id": "scrum-application",
+      "title": {
+        "en": "Applying Scrum",
+        "az": "Scrum-un tətbiqi"
+      }
+    },
+    {
+      "id": "product-strategy",
+      "title": {
+        "en": "Product strategy and discovery",
+        "az": "Məhsul strategiyası və kəşf"
+      }
+    }
+  ],
+  "verificationStatus": "needs-verification",
+  "verifiedAt": null,
+  "sources": [
+    {
+      "title": "Professional Scrum Product Owner II — official certification page",
+      "url": "https://www.scrum.org/assessments/professional-scrum-product-owner-ii-certification"
+    },
+    {
+      "title": "The Scrum Guide — official source",
+      "url": "https://scrumguides.org/scrum-guide.html"
+    }
+  ],
+  "notes": {
+    "en": "TODO: VERIFY the current official exam format, question count, duration, pass policy, syllabus and domain coverage. Official-source requests were blocked by the cloud network policy during authoring. Numeric exam facts are deliberately unset. Domain groups here organize original learning practice; they are not a verified official exam blueprint. Practice scores do not establish eligibility or predict an official result. Timed practice is not an official-format mock exam.",
+    "az": "TODO: VERIFY — cari rəsmi imtahan formatını, sual sayını, müddətini, keçid siyasətini, proqramını və domen əhatəsini yoxlayın. Hazırlanma zamanı rəsmi mənbələrə sorğular bulud şəbəkə siyasəti tərəfindən bloklanıb. Rəqəmsal imtahan faktları qəsdən boş saxlanıb. Buradakı domenlər orijinal öyrənmə məşqini qruplaşdırır; təsdiqlənmiş rəsmi imtahan planı deyil. Məşq balları uyğunluğu təsdiq etmir və rəsmi nəticəni proqnozlaşdırmır. Vaxtlı məşq rəsmi formatlı sınaq imtahanı deyil."
+  }
+}

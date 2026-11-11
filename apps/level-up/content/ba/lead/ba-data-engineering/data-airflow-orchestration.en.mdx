@@ -1,0 +1,96 @@
+---
+id: data-airflow-orchestration
+locale: en
+title: 'Airflow orchestration: intervals, retries and idempotent tasks'
+objectives:
+  - 'Explain DAG dependencies and data-interval identity.'
+  - 'Design tasks that can be retried without duplicate output.'
+  - 'Plan bounded catchup, backfill and operational recovery.'
+---
+
+## Learning objectives
+
+- Explain DAG dependencies and data-interval identity.
+- Design tasks that can be retried without duplicate output.
+- Plan bounded catchup, backfill and operational recovery.
+
+## Why this matters
+
+A scheduled job fails after writing half its output. A retry appends the same records again, and the next task publishes a misleading total. An orchestrator can restart work, but it cannot invent an idempotent output contract. Task and data boundaries must be designed together.
+
+## Core theory
+
+An Airflow DAG describes tasks and their dependencies. A successful dependency state permits downstream work under the configured trigger rules; it does not by itself prove that a business dataset is correct. Put required validation and publication gates into the workflow explicitly.
+
+A scheduled run has logical scheduling context and a data interval. For interval-based processing, derive the source partition from that context rather than from the wall clock at execution. A delayed or retried task should still process the intended interval. Timezone and schedule changes need review because they affect which data is selected.
+
+Treat tasks as restartable units with complete outputs. Use stable keys, upserts or controlled partition replacement instead of unconditional repeated inserts. Write intermediate data separately and publish atomically where the storage system supports it. If a remote API call has a side effect, retries need the provider's operation identity and recovery contract too.
+
+Dependencies should refer to durable outputs, not an assumed local file on the previous worker. Distributed executors may run the next task elsewhere. Use a suitable shared store and pass small references or metadata through XCom rather than using it as a bulk data warehouse.
+
+Retries address selected failures under policy; they are not a guarantee that every failure is transient. Bound attempts, delay, concurrency and notification. Preserve the reason for permanent failures and avoid repeatedly consuming capacity on invalid input.
+
+Catchup and backfill need deliberate scope and resource planning. Historical intervals can overload a source or overwrite previously published data if outputs are not versioned or idempotent. Define who may trigger replay, how affected periods are labeled and what quality evidence is required before republishing.
+
+## Worked example
+
+A daily warehouse DAG has four tasks:
+
+| Task      | Input identity            | Durable output           | Retry rule                        |
+| --------- | ------------------------- | ------------------------ | --------------------------------- |
+| Extract   | Scheduled source interval | Raw interval artifact    | Same interval, no duplicate batch |
+| Transform | Raw artifact version      | Staged partition         | Stable-key merge or replacement   |
+| Validate  | Staged partition          | Check results            | Re-evaluate the same version      |
+| Publish   | Validated partition       | Consumer-visible version | Controlled atomic switch          |
+
+For an interval beginning January 10, a delayed run on January 12 still processes January 10's intended data. The task should not use the current date to silently select January 12. The source completeness policy must still account for late records. This is an original workflow design; no Airflow scheduler is installed or connected to production.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n I[Scheduled data interval] --> E[Extract durable artifact]\n E --> T[Retry-safe transform]\n T --> V[Validate specific version]\n V --> P[Publish complete result]\n P --> O[Freshness monitoring and owned recovery]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Can enabling three retries make a task’s append-only writes safe?</summary>
+
+No. If an attempt partially appends before failing, another attempt can duplicate records. Redesign the output boundary with stable keys, a transactional or partition publication policy and reconciliation. Retry count controls attempts, not effect uniqueness.
+
+</details>
+
+## Common mistakes
+
+- Using now as the critical partition selector.
+- Assuming downstream workers share a local filesystem.
+- Passing large datasets through XCom.
+- Launching unrestricted historical backfills without capacity or publication review.
+
+## Practice exercise
+
+A transform fails after writing half a day’s records. Design restart behavior and state what the validation and publication tasks must inspect before exposing the result.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Retain the intended interval and source version. Write to an isolated staging target or use a transaction/upsert policy that permits safe re-execution. Reconcile expected counts, keys and relevant totals, and identify whether incomplete earlier output remains. Publish only a validated complete version, preserving the prior consumer-visible result until the switch. Bound the replay and label corrected periods.
+
+</details>
+
+## Check understanding and cheat sheet
+
+DAG = dependency orchestration. Interval = intended data identity. Retry safety comes from output design. Durable references, validation gates and bounded replay protect consumers.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Apache Airflow: DAGs](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html): task dependencies and workflow concepts.
+- [Apache Airflow: Best practices](https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html): transaction-like tasks, UPSERT, specific partitions and avoiding now for critical calculations. The stable documentation was read selectively on the source-register date; API syntax is version-specific.

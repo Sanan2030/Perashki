@@ -1,0 +1,729 @@
+[
+  {
+    "id": "mplaza-pspo1-232105",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232105",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Doğru yoxsa yanlış? Eyni məhsulda bir neçə komanda işləyirsə, onların Sprints-i eyni vaxtda başlamalı və bitməlidir.",
+      "en": "True or false? When multiple teams are working on the same product, their Sprints should start and end at the same time."
+    },
+    "options": [
+      {
+        "id": "895515",
+        "text": {
+          "az": "YANLIŞ",
+          "en": "FALSE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895516",
+        "text": {
+          "az": "DOĞRU",
+          "en": "TRUE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895515"],
+    "explanation": {
+      "az": "Scrum.org-a görə Sprints-in eyni vaxtda başlayıb bitməsi məcburi deyil; məsələn, əksər komandaların Sprints-i dörd həftə, bəzilərinki iki həftə ola bilər.\n\n* [PSM-19. Scaled Scrum](/online-courses/scrum-framework/lesson/19/)",
+      "en": "According to Scrum.org, it's not mandatory to start and end the Sprints at the same time; e.g., most teams have four-week Sprints, but some of them have two-week Sprints. \n\n\n\n* [PSM-19. Scaled Scrum](/online-courses/scrum-framework/lesson/19/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232106",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232106",
+    "trackId": "pspo1",
+    "type": "multiple",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Qeyri-funksional tələblər haqqında hansı ÜÇ ifadə düzgündür?",
+      "en": "Which THREE statements are correct about non-functional requirements?"
+    },
+    "options": [
+      {
+        "id": "895517",
+        "text": {
+          "az": "Onlar Sprint Backlog-da olacaqlar, lakin Product Backlog-də olmayacaqlar.",
+          "en": "They will be in the Sprint Backlog, but not the Product Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895518",
+        "text": {
+          "az": "Onlar release-dan dərhal əvvəl daxil edilə bilər.",
+          "en": "They can be incorporated right before the release."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895519",
+        "text": {
+          "az": "Onlardan bəzisinə təşkilatın QA şöbəsi nəzarət edə bilər.",
+          "en": "Some of them can be controlled by the QA department of the organization."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895520",
+        "text": {
+          "az": "Onlar hər increment-ə daxil edilməlidir.",
+          "en": "They should be incorporated into every increment."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895521",
+        "text": {
+          "az": "Onlar Hardening Sprints zamanı nəzərə alınmalıdır.",
+          "en": "They will be considered in the Hardening Sprints."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895522",
+        "text": {
+          "az": "Onlardan bəziləri Product Backlog-a əlavə edilə bilər.",
+          "en": "Some of them can be added to the Product Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895523",
+        "text": {
+          "az": "Onlardan bəziləri Definition of Done-a əlavə edilə bilər.",
+          "en": "Some of them can be added to the Definition of Done."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895520", "895522", "895523"],
+    "explanation": {
+      "az": "a. Sprint Retrospectives zamanı yaranan proses yaxşılaşdırma işləri istisna olmaqla, Sprint Backlog-dakı bütün işlər Product Backlog-dan gəlir. b. Hər Increment istifadə edilə bilən, yəni potensial release edilə bilən olmalıdır; bu, görülməli hər işin görülməsi deməkdir. c. Komandanın cross-functional olduğunu və işi A-dan Z-yə gördüyünü unutma. d. Məsələn, təhlükəsizlik: tələbləri hər Sprint-ə daxil etmək üçün onları Definition of Done-a əlavə etmək olar. e. Hardening Sprints yoxdur. f. Məsələn, proqramın konkret hissəsinin performansı barədə tələb. g. Məsələn, təhlükəsizlik, scalability, maintainability.\n\n* [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)",
+      "en": "a. All items in the Sprint Backlog come from the Product Backlog, except for process improvement items that are generated in Sprint Retrospectives. b. Every Increment should be usable (potentially releasable), which means that everything that needs to be done is done. c. Remember that the team is cross-functional and does the work from A to Z. d. E.g., security: The way they can be \"incorporated into every Sprint\" is by adding them to the Definition of Done. e. There are no Hardening Sprints. f. E.g., something related to performance of a certain part of the software g. E.g., security, scalability, maintainability \n\n* [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232107",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232107",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "User acceptance testing nə vaxt həyata keçirilir?",
+      "en": "When is user acceptance testing done?"
+    },
+    "options": [
+      {
+        "id": "895524",
+        "text": {
+          "az": "Sprint Review görüşdə",
+          "en": "In the Sprint Review meeting"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895525",
+        "text": {
+          "az": "Layihənin sonunda",
+          "en": "At the end of the project"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895526",
+        "text": {
+          "az": "Buraxılışlardan əvvəl",
+          "en": "Before releases"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895527",
+        "text": {
+          "az": "Sprint ərzində",
+          "en": "During the Sprint"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895527"],
+    "explanation": {
+      "az": "* [PSM-12. Increment and Definition of Done](/online-courses/scrum-framework/lesson/12/)\n\nUser acceptance tests və ya başqa testlər bitməyibsə, işi həqiqətən Done adlandıra bilmərik. Buna görə testlər Sprint ərzində edilməlidir.\n\nBəzi Agile yanaşmalarında user acceptance testing iterasiyanın sonundakı review görüşünə saxlanılır, amma Scrum-da — ən azı müasir şərhlərinə görə — belə deyil.",
+      "en": "* [PSM-12. Increment and Definition of Done](/online-courses/scrum-framework/lesson/12/)\n\n  We can't really call it \"Done\" while user acceptance tests (or any other tests) are not done. Therefore, it has to be done during the Sprint.\n\nSome Agile approaches consider user acceptance testing for the review meeting at the end of the iteration, but that's not the case in Scrum -- at least according to the modern interpretations of Scrum."
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232108",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232108",
+    "trackId": "pspo1",
+    "type": "multiple",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Sprint ərzində aşağıdakılardan hansı İKİ dəyişə bilər?",
+      "en": "Which TWO of the following may change during the Sprint?"
+    },
+    "options": [
+      {
+        "id": "895528",
+        "text": {
+          "az": "Product Backlog",
+          "en": "Product Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895529",
+        "text": {
+          "az": "Sprint Backlog",
+          "en": "Sprint Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895530",
+        "text": {
+          "az": "Minimum keyfiyyət səviyyəsi",
+          "en": "Minimum level of quality"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895531",
+        "text": {
+          "az": "Product Goal",
+          "en": "Product Goal"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895528", "895529"],
+    "explanation": {
+      "az": "a. Product Backlog istənilən vaxt dəyişə bilər. b. Sprint Backlog-dakı tapşırıqlar davamlı dəyişir. Scrum.org Sprint Backlog-dakı işlərin dəyişməsinə də qarşı deyil. c. Gözlənilən keyfiyyət səviyyəsi Sprint ərzində azalmamalıdır. d. Product Goal uzunmüddətli plandır; tez-tez, xüsusən Sprint-in ortasında dəyişmir. Sprint zamanı sabit qalan anlayışlar diqqətin yayınmasını önləmək və daha məhsuldar mühit yaratmaq üçündür. Sprints problem yaradacaq qədər uzun deyil.\n\n* [PSM-05. Sprint](/online-courses/scrum-framework/lesson/05/)",
+      "en": "a. The Product Backlog may change at any time. b. The tasks in the Sprint Backlog are always changing. Also, Scrum.org is not against changing the \"items\" in the Sprint Backlog either. c. The level of expected quality shouldn't decrease during the Sprint. d. The Product Goal is the long-term plan, and it doesn't change frequently, and certainly not in the middle of the Sprint. Those that stay fixed during the Sprint are needed to avoid distractions and create a more productive environment. After all, Sprints are not so long that they create problems.\n\n\n\n* [PSM-05. Sprint](/online-courses/scrum-framework/lesson/05/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232109",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232109",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Doğru yoxsa yanlış? Məhsulun funksiyalari ilə bağlı olan normal maddələrlə yanaşı, hər bir Sprint Backlog bizim iş üsulumuzu təkmilləşdirməyə dair elementi ehtiva edə bilər.",
+      "en": "True or false? Besides the normal items that are about the features of the product, each Sprint Backlog may contain an item about improving the way we work."
+    },
+    "options": [
+      {
+        "id": "895532",
+        "text": {
+          "az": "DOĞRU",
+          "en": "TRUE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895533",
+        "text": {
+          "az": "YANLIŞ",
+          "en": "FALSE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895532"],
+    "explanation": {
+      "az": "Scrum Guide-ın 2017 yeniləməsində hər Sprint Retrospective-də ən azı bir yüksək prioritetli proses yaxşılaşdırma işinin planlaşdırılıb növbəti Sprint Backlog-a əlavə edilməsi barədə tələb var idi. Yeni versiya bunu məcburi etmir, amma istəsəniz etməyə imkan verir.\n\n* [PSM-09. Sprint Retrospective](/online-courses/scrum-framework/lesson/09/)",
+      "en": "In the 2017 update of the Scrum Guide, a statement was added, saying that at least one high-priority process improvement item should be planned in each Sprint Retrospective and added to the next Sprint Backlog. The new version of the guide doesn't say that you have to do that, but it says that you can if you want. \n\n\n\n* [PSM-09. Sprint Retrospective](/online-courses/scrum-framework/lesson/09/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232110",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232110",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Orta hesabla, Sprint Backlog-dəki maddələr _____ olur",
+      "en": "On average, items in the Sprint Backlog tend to be _____"
+    },
+    "options": [
+      {
+        "id": "895534",
+        "text": {
+          "az": "Product Backlog ilə eyni ölçüdə",
+          "en": "the same size as those in the Product Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895535",
+        "text": {
+          "az": "Product Backlog ilə müqayisədə daha kiçik",
+          "en": "smaller than those in the Product Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895536",
+        "text": {
+          "az": "Product Backlog ilə müqayisədə daha böyük",
+          "en": "larger than those in the Product Backlog"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895535"],
+    "explanation": {
+      "az": "Bu belə işləyir: işləri ilk dəfə Product Backlog-a əlavə edərkən onları çox kiçik və aydın hissələrə bölmək tələb olunmur; bu, əvvəlcədən planlaşdırma forması olardı. Bəzi işlər çox böyük ola bilər. Sıralama zamanı yuxarıya qalxan işləri aydınlaşdırıb bir Sprint-ə sığmasına əmin olmaq üçün daha kiçik hissələrə bölürsünüz. Onların bəzisi yuxarıda qalır, bəzisi aşağı enə bilər. Buna görə Product Backlog-un yuxarısındakı işlər orta hesabla aşağıdakılardan kiçikdir. Sprint Backlog-a isə Product Backlog-un yuxarısından iş seçildiyi üçün onun işləri də orta hesabla Product Backlog-dakı işlərdən kiçikdir.\n\n* [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)",
+      "en": "This is how it works:\nWhen you first add the items to the Product Backlog, you don't have to break them down into very small and clear items, because it's a form of upfront planning. Some of them may be very large. When you order the items, if they go on the top of the list, you have to make them clear, and make sure they can fit into one Sprint; therefore, you will break them down into smaller items. Some of those smaller items remain on the top, and some may go down. As a result, items at the top of the Product Backlog are on average smaller than those at the bottom. On the other hand, items in the Sprint Backlog come from the top of the Product Backlog, and therefore, we can say that the items in the Sprint Backlog are, on average, smaller than items in the Product Backlog.\n\n\n\n* [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232111",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232111",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Product Owners ilə bağlı aşağıdakılardan hansı düzgün deyil?",
+      "en": "Which of the following is NOT correct about Product Owners?"
+    },
+    "options": [
+      {
+        "id": "895537",
+        "text": {
+          "az": "Onlar layihənin gedişatını ölçürlər.",
+          "en": "They measure the progress of the project."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895538",
+        "text": {
+          "az": "Onlar Sprint Backlog-də iş elementlərinə üstünlük verirlər.",
+          "en": "They prioritize the work items in the Sprint Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895539",
+        "text": {
+          "az": "Onlar Product Backlog-i şəffaf və görünən edir.",
+          "en": "They make the Product Backlog transparent and visible."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895540",
+        "text": {
+          "az": "Onlar Product Goal-ə doğru irəliləyişi ölçürlər.",
+          "en": "They measure progress toward the Product Goal."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895538"],
+    "explanation": {
+      "az": "a. Bunu Product Owner edir.\n[PSM-08. Sprint Review](/online-courses/scrum-framework/lesson/08/)\nb. Sprint Backlog-u Developers idarə edir; bəzi qərarlar üçün Product Owner ilə məsləhətləşmək lazımdır.\n[PSM-11. Sprint Backlog and Sprint Goal](/online-courses/scrum-framework/lesson/11/)\nc. Bunu Product Owner edir.\n[PSM-15. Product Owner](/online-courses/scrum-framework/lesson/15/), [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)\nd. Bunu Product Owner edir.\n[PSM-08. Sprint Review](/online-courses/scrum-framework/lesson/08/), [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)\nSualdakı NOT sözünə diqqət etdinmi?",
+      "en": "a. It's done by the Product Owner.\n[PSM-08. Sprint Review](/online-courses/scrum-framework/lesson/08/) b. Developers manage the Sprint Backlog. (For some decisions, they need to consult the Product Owner.)\n[PSM-11. Sprint Backlog and Sprint Goal](/online-courses/scrum-framework/lesson/11/) c. It's done by the Product Owner.\n[PSM-15. Product Owner](/online-courses/scrum-framework/lesson/15/), [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/) d. It's done by the Product Owner.\n[PSM-08. Sprint Review](/online-courses/scrum-framework/lesson/08/), [PSM-10. Product Backlog and Product Goal](/online-courses/scrum-framework/lesson/10/)   Did you notice the word \"not\" in the question?"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232112",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232112",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Doğru yoxsa yanlış? Bizim velocity 6-cı Sprint-in sonunda 250 idi. 8-ci Sprint-in sonunda 275 oldu. Buna görə də, biz indi əvvəlkindən daha çox dəyər yaradırıq.",
+      "en": "True or false? Our velocity was 250 at the end of the 6th Sprint. It has become 275 at the end of the 8th Sprint. Therefore, we're creating more value now compared to before."
+    },
+    "options": [
+      {
+        "id": "895541",
+        "text": {
+          "az": "DOĞRU",
+          "en": "TRUE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895542",
+        "text": {
+          "az": "YANLIŞ",
+          "en": "FALSE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895542"],
+    "explanation": {
+      "az": "Velocity ilə dəyər arasında birbaşa əlaqə yoxdur. Məsələn, daha az dəyərli işləri daha sürətlə görə bilərik: velocity yüksələr, amma dəyər eyni qala, arta və ya azala bilər. Bir çox insan velocity-ni ən vacib meyar sayır, amma bu doğru deyil; əsas fokus dəyər, Sprint Goal və Product Goal olmalıdır.",
+      "en": "There's no direct relationship between velocity (speed) and value; e.g., maybe we're working faster on less valuable items, in which case, velocity will be higher, but value may be the same, higher, or lower. Many people consider velocity as the most important criterion, but that's not true -- we should rather be focused on value, Sprint Goal, and Product Goal."
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232113",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232113",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Doğru yoxsa yanlış? Sprint üçün maksimum bir release ola bilər.",
+      "en": "True or false? There can be a maximum of one release per Sprint."
+    },
+    "options": [
+      {
+        "id": "895543",
+        "text": {
+          "az": "YANLIŞ",
+          "en": "FALSE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895544",
+        "text": {
+          "az": "DOĞRU",
+          "en": "TRUE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895543"],
+    "explanation": {
+      "az": "* [PSM-12. Increment and Definition of Done](/online-courses/scrum-framework/lesson/12/)\n\nBir iş Done olduqda yeni Increment yaranır. Adətən Sprint ərzində bir neçə Increments yaranır və hamısı istifadə edilə, potensial release oluna bilər. Lazımdırsa, bəzisini Sprint-in sonunu gözləmədən release etmək olar.",
+      "en": "* [PSM-12. Increment and Definition of Done](/online-courses/scrum-framework/lesson/12/)\n\n  As soon as an item is Done, a new Increment is created. Normally, multiple Increments are created during the Sprint, and all of them as usable (potentially releasable). If needed, some of them can be releases, without having to wait for the end of the Sprint."
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232114",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232114",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Sprint-in sonunda biri demək olar ki Done olmaqla, qalan bütün işlər Done-dur. Natamam işlə nə edilməlidir?",
+      "en": "At the end of the Sprint, all items are Done except for one that is almost Done. What should be done with this item?"
+    },
+    "options": [
+      {
+        "id": "895545",
+        "text": {
+          "az": "Onu Increment-a daxil etməyin.",
+          "en": "Do not include it in the Increment."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895546",
+        "text": {
+          "az": "İstifadəçi qəbulu testləri done olarsa, o, Increment-ə əlavə edilə bilər.",
+          "en": "It can be added to the Increment if the user acceptance tests are done."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895547",
+        "text": {
+          "az": "Növbəti Sprint Backlog-a qoyun.",
+          "en": "Put it in the next Sprint Backlog."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895548",
+        "text": {
+          "az": "Biz elementi tamamlayana qədər Sprint uzadılacaq.",
+          "en": "The Sprint will be extended until we complete the item."
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895545"],
+    "explanation": {
+      "az": "a. Increment-də hər şey Done, yəni 100% DONE olmalıdır. İş done deyilsə, onu Increment-ə daxil etmirik və Product Backlog-a qaytarırıq. b. Increment yalnız 100% DONE işlərdən ibarətdir. c. İş avtomatik növbəti Sprint Backlog-a keçmir. Product Backlog-a qayıtmalı və ehtimal ki, yenidən qiymətləndirilməlidir. Sonra Product Owner onun dəyərə töhfəsini nəzərdən keçirib sıralamanı dəyişə bilər. Hələ yuxarıdadırsa, növbəti Sprint Planning-də seçiləcək. d. Sprints timeboxed-dır; müddəti uzatmırıq.\n\n* [PSM-05. Sprint](/online-courses/scrum-framework/lesson/05/)",
+      "en": "a. Everything in the Increment must be Done -- i.e., 100% DONE! If an item is not done, we won't include it in the Increment and send it back to the Product Backlog. b. The Increment contains only 100% DONE items. c. It doesn't go to the next Sprint Backlog automatically. It has to go back to the Product Backlog and probably be re-estimated. Then the Product Owner may revise its contribution to value and change the ordering based on that. If the item is still at the top, it will be selected in the next Sprint Planning meeting. d. Sprints are timeboxed, meaning that we don't extend their duration. \n\n* [PSM-05. Sprint](/online-courses/scrum-framework/lesson/05/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232115",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232115",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Doğru yoxsa yanlış? Birdən çox komanda eyni məhsul üzərində işləyərkən, hamısının izlədiyi bir ümumi Definition of Done olmalıdır.",
+      "en": "True or false? When multiple teams are working on the same product, there should be one common Definition of Done that they all follow."
+    },
+    "options": [
+      {
+        "id": "895549",
+        "text": {
+          "az": "YANLIŞ",
+          "en": "FALSE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895550",
+        "text": {
+          "az": "DOĞRU",
+          "en": "TRUE"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895550"],
+    "explanation": {
+      "az": "* [PSM-12. Increment and Definition of Done](/online-courses/scrum-framework/lesson/12/)\n\nKomandalar ayrı-ayrı Increments yaratmır; işlərini qalan işlə inteqrasiya edir və Increments həmişə bütöv olur. Başqa sözlə, Increments bütün komandaların işini göstərir. İnteqrasiya olunmuş Increments yaratmaq üçün məhsulda bütün komandaların əməl etdiyi vahid Definition of Done olmalıdır. Komanda istəsə öz Definition of Done tərifinə əlavə məhdudiyyət, məsələn, daha çox test daxil edə bilər. Bu halda öz tərifinə uyğun iş ümumi tərifə də uyğun gəlir.",
+      "en": "* [PSM-12. Increment and Definition of Done](/online-courses/scrum-framework/lesson/12/)\n\n  Teams don't create isolated Increments for themselves, but they integrate their work into the rest, and the Increments are always integrated and combined. In other words, Increments show the work of all teams. As a result, there should be a single Definition of Done for the product that all teams comply with, to make sure they can generate integrated Increments. If a team wants, they can have extra constraints in their Definition of Done (e.g., more tests), and that's fine, because when something complies with their definition, it will also comply with the overall definition."
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  },
+  {
+    "id": "mplaza-pspo1-232116",
+    "providerId": "mplaza-pspo1",
+    "sourceQuestionId": "232116",
+    "trackId": "pspo1",
+    "type": "multiple",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "az": "Scrum üçün aşağıdakılardan hansı İKİ tələb olunur?",
+      "en": "Which TWO of the following are required by Scrum?"
+    },
+    "options": [
+      {
+        "id": "895551",
+        "text": {
+          "az": "Sprint Retrospectives",
+          "en": "Sprint Retrospectives"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895552",
+        "text": {
+          "az": "Release planlaşdırma",
+          "en": "Release planning"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895553",
+        "text": {
+          "az": "Definition of Ready",
+          "en": "Definition of Ready"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895554",
+        "text": {
+          "az": "Definition of Done",
+          "en": "Definition of Done"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      },
+      {
+        "id": "895555",
+        "text": {
+          "az": "Tam iş saatına sahib olan developers",
+          "en": "Having full-time developers"
+        },
+        "explanation": {
+          "az": "Mənbə bu sual üçün vahid ümumi izah verir.",
+          "en": "The source provides one overall explanation for this question."
+        }
+      }
+    ],
+    "correct": ["895551", "895554"],
+    "explanation": {
+      "az": "Scrum Guide-da olan hər şey tələb olunur. Digər anlayışlar əlavə seçim ola bilər; bəzisi uyğun, bəzisi uyğunsuzdur.\n\n* [PSM-03. What is Scrum?](/online-courses/scrum-framework/lesson/03/)",
+      "en": "Everything in the Scrum Guide is required. Other concepts may be optional and acceptable, or unacceptable. \n\n\n\n* [PSM-03. What is Scrum?](/online-courses/scrum-framework/lesson/03/)"
+    },
+    "lessonId": "pspo1-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["mplaza-pspo1"]
+  }
+]

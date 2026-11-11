@@ -1,0 +1,2579 @@
+[
+  {
+    "id": "rest-apis-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A DELETE request returns 204; repeating it returns 404. The resource remains absent. What does this establish about idempotence?",
+      "az": "DELETE request 204 qaytarır; təkrarlandıqda 404 qaytarır. Resource silinmiş vəziyyətdə qalır. Bu, idempotence haqqında nə göstərir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The second status proves a duplicate business effect.",
+          "az": "İkinci status təkrarlanan biznes təsirini sübut edir."
+        },
+        "explanation": {
+          "en": "A different status does not by itself establish a second state change.",
+          "az": "Fərqli status öz-özlüyündə ikinci state dəyişikliyini sübut etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The server must use POST to make deletion idempotent.",
+          "az": "Server silməni idempotent etmək üçün POST istifadə etməlidir."
+        },
+        "explanation": {
+          "en": "DELETE already has idempotent semantics; POST does not inherently add that property.",
+          "az": "DELETE artıq idempotent semantikaya malikdir; POST öz-özlüyündə bu xüsusiyyəti əlavə etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The operation can still be idempotent.",
+          "az": "Əməliyyat yenə də idempotent ola bilər."
+        },
+        "explanation": {
+          "en": "Idempotence concerns the intended server effect, not identical response bytes.",
+          "az": "Idempotence eyni response byte-larına deyil, serverdə nəzərdə tutulan təsirə aiddir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "RFC 9110 §9.2.2 defines idempotence in terms of the intended effect of repetition. See the lesson’s Sources and further reading for exact sections.",
+      "az": "RFC 9110 §9.2.2 idempotence-i təkrarın nəzərdə tutulan təsiri ilə müəyyən edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "rest-apis",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "http-problems-9457", "openapi-311"]
+  },
+  {
+    "id": "rest-apis-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A client sends If-Match for version 7, but the resource is now version 8. Under the lesson's conditional-update contract, which response fits?",
+      "az": "Client 7-ci versiya üçün If-Match göndərir, amma resource artıq 8-ci versiyadadır. Dərsdəki conditional-update contract-a əsasən hansı response uyğundur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "412, without applying the stale update.",
+          "az": "Köhnəlmiş update-i tətbiq etmədən 412."
+        },
+        "explanation": {
+          "en": "The specified representation precondition failed.",
+          "az": "Göstərilən representation precondition ödənməyib."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "200, after applying only the fields that changed.",
+          "az": "Yalnız dəyişmiş sahələri tətbiq etdikdən sonra 200."
+        },
+        "explanation": {
+          "en": "Partial application still bypasses the caller's failed precondition.",
+          "az": "Qismən tətbiq də çağıranın ödənməyən precondition-unu nəzərə almır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "401, because the representation version is an authentication credential.",
+          "az": "401, çünki representation versiyası authentication credential-dır."
+        },
+        "explanation": {
+          "en": "An ETag is a validator, not proof of identity.",
+          "az": "ETag validator-dur, şəxsiyyət sübutu deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A strong If-Match comparison prevents an otherwise authorized client from silently overwriting a newer representation. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Strong If-Match müqayisəsi səlahiyyətli client-in daha yeni representation-ı xəbərsiz əvəz etməsinin qarşısını alır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "rest-apis",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "http-problems-9457", "openapi-311"]
+  },
+  {
+    "id": "rest-apis-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements belong in a correct HTTP API contract? Select all that apply.",
+      "az": "Düzgün HTTP API contract-a hansı fikirlər daxildir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A 204 response has no response content.",
+          "az": "204 response-un response content-i yoxdur."
+        },
+        "explanation": {
+          "en": "Clients should not expect a JSON representation from 204.",
+          "az": "Client-lər 204-dən JSON representation gözləməməlidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Every transport timeout proves that the transaction rolled back.",
+          "az": "Hər transport timeout transaction-ın rollback olunduğunu sübut edir."
+        },
+        "explanation": {
+          "en": "The callee may have committed before the connection failed.",
+          "az": "Çağırılan tərəf bağlantı kəsilməzdən əvvəl commit etmiş ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Clients should parse localized problem-detail prose as their error identifier.",
+          "az": "Client-lər error identifier kimi lokallaşdırılmış problem-detail mətnini parse etməlidir."
+        },
+        "explanation": {
+          "en": "Stable problem types or documented extensions support machine behavior.",
+          "az": "Sabit problem type-ları və ya sənədləşdirilmiş extension-lar proqramın avtomatik davranışına əsas verir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "202 means work was accepted, not necessarily completed.",
+          "az": "202 işin qəbul edildiyini bildirir, mütləq tamamlandığını yox."
+        },
+        "explanation": {
+          "en": "Acceptance and completion are different observable states.",
+          "az": "Qəbul və tamamlanma müşahidə edilən fərqli vəziyyətlərdir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Distinguish HTTP status semantics, application state and transport observations; RFC 9457 detail text is not a stable parsing contract. See the lesson’s Sources and further reading for exact sections.",
+      "az": "HTTP status semantikasını, application state-i və transport müşahidələrini fərqləndirin; RFC 9457 detail mətni sabit parsing contract deyil. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "rest-apis",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "http-problems-9457", "openapi-311"]
+  },
+  {
+    "id": "rest-apis-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A subscription API checks a valid access token and If-Match but trusts the subscription ID without an ownership check. What remains missing?",
+      "az": "Subscription API etibarlı access token-i və If-Match-i yoxlayır, amma ownership yoxlamadan subscription ID-yə etibar edir. Nə çatışmır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A different ETag encoding that includes the user's display name.",
+          "az": "İstifadəçinin görünən adını daxil edən fərqli ETag encoding."
+        },
+        "explanation": {
+          "en": "Encoding identity in a validator does not implement the resource's permission policy.",
+          "az": "Şəxsiyyəti validator-a daxil etmək resource-un permission qaydasını tətbiq etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A client-side check that the edit button was visible.",
+          "az": "Edit düyməsinin göründüyünü yoxlayan client-side yoxlama."
+        },
+        "explanation": {
+          "en": "Direct API clients do not have to use the UI.",
+          "az": "API-yə birbaşa müraciət edən client-lər UI-dan istifadə etməyə məcbur deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Object-level authorization for the requested subscription.",
+          "az": "İstənilən subscription üçün object-level authorization."
+        },
+        "explanation": {
+          "en": "Token validity and version matching do not grant access to an arbitrary object.",
+          "az": "Token-in etibarlılığı və versiyanın uyğunluğu istənilən obyektə giriş hüququ vermir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Permissions, validation and representation preconditions protect different boundaries. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Permission-lar, validation və representation precondition-ları fərqli sərhədləri qoruyur. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "rest-apis",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "http-problems-9457", "openapi-311"]
+  },
+  {
+    "id": "integration-basics-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An order and outbox event commit together. The publisher sends the event, then crashes before recording success. What must the consumer anticipate?",
+      "az": "Sifariş və outbox event birlikdə commit olunur. Publisher event-i göndərir, sonra uğuru qeyd etmədən dayanır. Consumer nəyi nəzərə almalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The original order must have rolled back.",
+          "az": "İlkin sifariş mütləq rollback olunub."
+        },
+        "explanation": {
+          "en": "The committed order is independent of the later publisher crash.",
+          "az": "Commit olunmuş sifariş publisher-in sonradan dayanmasından asılı deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A duplicate delivery that needs durable deduplication with the business effect.",
+          "az": "Biznes təsiri ilə birlikdə durable deduplication tələb edən təkrar çatdırılmanı."
+        },
+        "explanation": {
+          "en": "The worker can repeat a send whose acknowledgement/state was lost.",
+          "az": "Worker acknowledgement və ya state-i itmiş göndərişi təkrarlaya bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The outbox guarantees the broker will suppress every duplicate.",
+          "az": "Outbox broker-in bütün duplicate-ləri aradan qaldıracağına zəmanət verir."
+        },
+        "explanation": {
+          "en": "An outbox closes a local commit/publish gap, not all duplicate-delivery windows.",
+          "az": "Outbox lokal commit/publish boşluğunu bağlayır, bütün təkrar çatdırılma imkanlarını aradan qaldırmır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "The outbox and consumer each need explicit local transaction boundaries; transport redelivery remains possible. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Həm outbox, həm də consumer üçün açıq lokal transaction sərhədləri lazımdır; transport səviyyəsində redelivery yenə mümkündür. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "integration-basics",
+    "practiceOnly": true,
+    "sourceIds": ["azure-transactional-outbox", "github-webhook-validation", "http-semantics-9110"]
+  },
+  {
+    "id": "integration-basics-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A GitHub webhook's JSON is parsed and re-serialized before signature verification. Why can a genuine delivery fail verification?",
+      "az": "GitHub webhook-un JSON-u signature verification-dan əvvəl parse edilir və yenidən serialize olunur. Həqiqi göndəriş niyə verification-dan keçməyə bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "GitHub signs only the event type, so including any JSON body is invalid.",
+          "az": "GitHub yalnız event type-ı imzalayır, buna görə JSON body daxil etmək yanlışdır."
+        },
+        "explanation": {
+          "en": "The documented signature covers payload contents.",
+          "az": "Sənədləşdirilmiş signature payload məzmununu əhatə edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Every signature failure is proof of a compromised sender.",
+          "az": "Hər signature xətası göndərənin ələ keçirildiyini sübut edir."
+        },
+        "explanation": {
+          "en": "Incorrect byte handling can reject an authentic delivery.",
+          "az": "Byte-larla səhv işləmək həqiqi göndərişin rədd edilməsinə səbəb ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The HMAC protects the exact original bytes, which serialization can change.",
+          "az": "HMAC dəqiq ilkin byte-ları qoruyur, serialization isə onları dəyişə bilər."
+        },
+        "explanation": {
+          "en": "Whitespace, escaping or property order can change without changing parsed meaning.",
+          "az": "Whitespace, escaping və ya property sırası parse olunmuş mənanı dəyişmədən dəyişə bilər."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Verify the documented HMAC over the original body, then process the validated content. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Sənədləşdirilmiş HMAC-i ilkin body üzərində yoxlayın, sonra təsdiqlənmiş məzmunu emal edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "integration-basics",
+    "practiceOnly": true,
+    "sourceIds": ["azure-transactional-outbox", "github-webhook-validation", "http-semantics-9110"]
+  },
+  {
+    "id": "integration-basics-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which controls address different webhook risks? Select all that apply.",
+      "az": "Hansı nəzarət tədbirləri fərqli webhook risklərini həll edir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Deduplicate the authenticated event ID together with its business effect.",
+          "az": "Authentication-dan keçmiş event ID-ni biznes təsiri ilə birlikdə deduplicate etmək."
+        },
+        "explanation": {
+          "en": "A valid signature does not prevent legitimate retries or replay.",
+          "az": "Etibarlı signature qanuni retry və ya replay-in qarşısını almır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Return 200 before durable acceptance during a storage outage.",
+          "az": "Storage outage zamanı durable acceptance-dan əvvəl 200 qaytarmaq."
+        },
+        "explanation": {
+          "en": "Acknowledging lost work can prevent the sender from retrying it.",
+          "az": "İtirilmiş işin qəbulunu təsdiqləmək göndərənin onu təkrar göndərməsinə mane ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Use a timestamp generated only by the receiver as proof the sender's event is fresh.",
+          "az": "Yalnız qəbul edən tərəfdə yaradılmış timestamp-i göndərənin event-inin yeni olmasına sübut saymaq."
+        },
+        "explanation": {
+          "en": "A new receipt timestamp says nothing about when the signed event was created.",
+          "az": "Yeni qəbul timestamp-i imzalanmış event-in nə vaxt yaradıldığını bildirmir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Verify the provider's signature over original payload bytes.",
+          "az": "Provider-in signature-ını ilkin payload byte-ları üzərində yoxlamaq."
+        },
+        "explanation": {
+          "en": "This authenticates the protected content under the configured signing scheme.",
+          "az": "Bu, konfiqurasiya edilmiş signing scheme çərçivəsində qorunan məzmunun həqiqiliyini təsdiqləyir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Authenticity, replay handling and durable processing are separate concerns. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Authenticity, replay handling və durable processing ayrı məsələlərdir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "integration-basics",
+    "practiceOnly": true,
+    "sourceIds": ["azure-transactional-outbox", "github-webhook-validation", "http-semantics-9110"]
+  },
+  {
+    "id": "integration-basics-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Two consumers both find no processed-event record, then each adds loyalty points before inserting that record. What is the key defect?",
+      "az": "İki consumer emal edilmiş event qeydinin olmadığını görür, sonra hər biri həmin qeydi əlavə etməzdən əvvəl loyalty point-ləri artırır. Əsas qüsur nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The consumer should acknowledge earlier to stop concurrency.",
+          "az": "Consumer concurrency-ni dayandırmaq üçün acknowledgement-ı daha tez verməlidir."
+        },
+        "explanation": {
+          "en": "Earlier acknowledgement does not coordinate competing workers and can lose events.",
+          "az": "Erkən acknowledgement rəqabət aparan worker-ləri koordinasiya etmir və event itkisinə səbəb ola bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The deduplication claim and effect are not protected by one atomic boundary.",
+          "az": "Deduplication claim və təsir vahid atomic sərhədlə qorunmur."
+        },
+        "explanation": {
+          "en": "Concurrent checks can both pass without a unique transactional claim.",
+          "az": "Unikal transactional claim olmadan paralel yoxlamaların hər ikisi keçə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The event ID should be longer even if the database operations remain unchanged.",
+          "az": "Database əməliyyatları dəyişməsə də event ID daha uzun olmalıdır."
+        },
+        "explanation": {
+          "en": "A longer ID does not eliminate the check/apply race.",
+          "az": "Daha uzun ID check/apply race-i aradan qaldırmır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Use a durable uniqueness rule and transaction that coordinate the processed-event record with the points effect. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Emal edilmiş event qeydini point-lərin artırılması ilə əlaqələndirən durable uniqueness qaydası və transaction istifadə edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "integration-basics",
+    "practiceOnly": true,
+    "sourceIds": ["azure-transactional-outbox", "github-webhook-validation", "http-semantics-9110"]
+  },
+  {
+    "id": "access-refresh-tokens-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An access token expires and five requests simultaneously refresh using the same rotating refresh token. The second refresh is rejected as reuse. Which client change addresses the race?",
+      "az": "Access token-in vaxtı bitir və beş request eyni rotating refresh token ilə eyni anda refresh edir. İkinci refresh reuse kimi rədd olunur. Hansı client dəyişikliyi bu race-i həll edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Coordinate one refresh and let the requests await its outcome.",
+          "az": "Bir refresh-i koordinasiya etmək və request-lərin onun nəticəsini gözləməsini təmin etmək."
+        },
+        "explanation": {
+          "en": "The session owner can serialize refresh and publish the replacement pair coherently.",
+          "az": "Session-u idarə edən tərəf refresh-ləri ardıcıllaşdıra və yeni token cütünü uyğun şəkildə paylaşa bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Keep retrying the invalidated refresh token until one request succeeds.",
+          "az": "Bir request uğurlu olana qədər etibarsızlaşdırılmış refresh token-i təkrar göndərmək."
+        },
+        "explanation": {
+          "en": "Repeated use of a consumed credential can cause further grant rejection.",
+          "az": "İstifadə olunmuş credential-ın təkrar istifadəsi grant-ın yenidən rəddinə səbəb ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Send the refresh token to each resource API instead of refreshing.",
+          "az": "Refresh etmək əvəzinə refresh token-i hər resource API-yə göndərmək."
+        },
+        "explanation": {
+          "en": "The refresh token belongs at the authorization server's token endpoint.",
+          "az": "Refresh token authorization server-in token endpoint-i üçün nəzərdə tutulur."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Rotation needs both server-side replay handling and coordinated client/session behavior. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Rotation həm server-side replay handling, həm də koordinasiyalı client/session davranışı tələb edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "access-refresh-tokens",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-6749", "oauth-security-9700", "owasp-oauth-security"]
+  },
+  {
+    "id": "access-refresh-tokens-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An app deletes its session cookie and revokes refresh capability. Its API checks only a self-contained access token's signature, audience and expiry. What can still happen?",
+      "az": "Tətbiq session cookie-sini silir və refresh imkanını ləğv edir. API isə self-contained access token-in yalnız signature, audience və expiry-sini yoxlayır. Nə hələ baş verə bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The API must accept the refresh token to notice logout.",
+          "az": "API logout-u görmək üçün refresh token-i qəbul etməlidir."
+        },
+        "explanation": {
+          "en": "That would confuse token recipients rather than implement revocation.",
+          "az": "Bu, revocation tətbiq etmək əvəzinə token-lərin nəzərdə tutulduğu tərəfləri qarışdırar."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A previously issued access token can remain usable until its enforced expiry.",
+          "az": "Əvvəl verilmiş access token tətbiq olunan expiry vaxtınadək işlək qala bilər."
+        },
+        "explanation": {
+          "en": "Local logout and refresh revocation do not automatically add a per-call revocation lookup.",
+          "az": "Lokal logout və refresh revocation hər çağırış üçün avtomatik revocation yoxlaması yaratmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The token's signature automatically changes when the browser cookie is deleted.",
+          "az": "Browser cookie-si silinəndə token-in signature-ı avtomatik dəyişir."
+        },
+        "explanation": {
+          "en": "Deleting local state does not change an already issued token's bytes.",
+          "az": "Lokal state-in silinməsi artıq verilmiş token-in byte-larını dəyişmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Immediate access-token invalidation requires an explicit supported enforcement policy beyond deleting client state. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Access token-i dərhal etibarsızlaşdırmaq üçün client state-in silinməsindən əlavə, dəstəklənən açıq enforcement qaydası lazımdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "access-refresh-tokens",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-6749", "oauth-security-9700", "owasp-oauth-security"]
+  },
+  {
+    "id": "access-refresh-tokens-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements follow from the cited OAuth guidance? Select all that apply.",
+      "az": "İstinad edilən OAuth qaydalarından hansı fikirlər çıxır? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Issuing a refresh token is optional.",
+          "az": "Refresh token vermək məcburi deyil."
+        },
+        "explanation": {
+          "en": "An authorization server can decide not to issue one.",
+          "az": "Authorization server onu verməməyi seçə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Every OAuth access token is a JWT.",
+          "az": "Hər OAuth access token JWT-dir."
+        },
+        "explanation": {
+          "en": "OAuth permits opaque and other token formats.",
+          "az": "OAuth opaque və digər token formatlarına icazə verir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Refreshing can silently broaden previously granted scope.",
+          "az": "Refresh əvvəl verilmiş scope-u xəbərsiz genişləndirə bilər."
+        },
+        "explanation": {
+          "en": "A refresh request does not authorize scope expansion beyond the grant.",
+          "az": "Refresh request grant çərçivəsindən kənara çıxan scope genişlənməsinə icazə vermir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Public-client refresh tokens must be sender-constrained or use rotation.",
+          "az": "Public client-lərin refresh token-ləri sender-constrained olmalı və ya rotation istifadə etməlidir."
+        },
+        "explanation": {
+          "en": "RFC 9700 supplies this replay-protection requirement.",
+          "az": "Bu replay protection tələbini RFC 9700 müəyyən edir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Token format, issuance policy and replay protection are distinct; RFC 6749 and RFC 9700 define their roles. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Token formatı, verilmə qaydası və replay protection ayrı məsələlərdir; RFC 6749 və RFC 9700 onların rolunu müəyyən edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "access-refresh-tokens",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-6749", "oauth-security-9700", "owasp-oauth-security"]
+  },
+  {
+    "id": "access-refresh-tokens-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A rotated refresh response is lost. The client cannot establish safe recovery under the identity provider's policy. Which response is most defensible?",
+      "az": "Rotation-dan sonrakı refresh response itir. Client identity provider-in qaydası çərçivəsində təhlükəsiz bərpa yolunu müəyyən edə bilmir. Hansı yanaşma daha əsaslıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Require a fresh authorization flow rather than repeatedly redeeming the consumed token.",
+          "az": "İstifadə olunmuş token-i təkrar-təkrar dəyişmək əvəzinə yeni authorization flow tələb etmək."
+        },
+        "explanation": {
+          "en": "Recovery must respect the provider's replay policy and the uncertain replacement state.",
+          "az": "Bərpa provider-in replay qaydasına və yeni token-in qeyri-müəyyən vəziyyətinə uyğun olmalıdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Disable reuse detection permanently for this device.",
+          "az": "Bu cihaz üçün reuse detection-ı həmişəlik söndürmək."
+        },
+        "explanation": {
+          "en": "That changes the security boundary to hide an unresolved recovery problem.",
+          "az": "Bu, həll edilməmiş bərpa problemini gizlətmək üçün təhlükəsizlik sərhədini dəyişir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Increase the old access token's exp value locally.",
+          "az": "Köhnə access token-in exp dəyərini lokal olaraq artırmaq."
+        },
+        "explanation": {
+          "en": "A client cannot extend a signed grant by editing untrusted token data.",
+          "az": "Client etibarsız token məlumatını redaktə etməklə imzalanmış grant-ın müddətini uzada bilməz."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A lost transport response is not permission to bypass refresh-token replay protection. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Transport response-un itməsi refresh token replay protection-dan yan keçməyə icazə vermir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "access-refresh-tokens",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-6749", "oauth-security-9700", "owasp-oauth-security"]
+  },
+  {
+    "id": "oauth-pkce-oidc-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A public client sends an S256 code challenge. What must it retain for the token exchange?",
+      "az": "Public client S256 code challenge göndərir. Token exchange üçün nəyi saxlamalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Only the challenge, because the verifier is public authorization metadata.",
+          "az": "Yalnız challenge-ı, çünki verifier açıq authorization metadata-sıdır."
+        },
+        "explanation": {
+          "en": "The challenge is not a substitute for the retained verifier.",
+          "az": "Challenge saxlanmalı verifier-i əvəz etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A client secret embedded in the downloadable browser code.",
+          "az": "Yüklənən browser koduna yerləşdirilmiş client secret-i."
+        },
+        "explanation": {
+          "en": "A public client cannot keep a bundled static secret confidential.",
+          "az": "Public client paketə daxil edilmiş sabit secret-i məxfi saxlaya bilməz."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The transaction-specific code verifier.",
+          "az": "Həmin transaction-a aid code verifier-i."
+        },
+        "explanation": {
+          "en": "The token endpoint compares its transformation with the saved challenge.",
+          "az": "Token endpoint onun transformasiyasını saxlanmış challenge ilə müqayisə edir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "PKCE binds code redemption to the verifier held by the initiating client transaction. See the lesson’s Sources and further reading for exact sections.",
+      "az": "PKCE code redemption-ı prosesi başladan client transaction-ın saxladığı verifier-ə bağlayır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "oauth-pkce-oidc",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-security-9700", "pkce-7636", "oidc-core-10"]
+  },
+  {
+    "id": "oauth-pkce-oidc-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An ID Token targets web-client, while an access token targets orders-api. Which component should consume each credential?",
+      "az": "ID Token web-client üçün, access token isə orders-api üçün nəzərdə tutulub. Hər credential-ı hansı komponent istifadə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The client validates the ID Token; orders-api validates the access token.",
+          "az": "Client ID Token-i, orders-api isə access token-i yoxlayır."
+        },
+        "explanation": {
+          "en": "The intended recipients and purposes differ.",
+          "az": "Onların nəzərdə tutulduğu tərəflər və məqsədləri fərqlidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Orders-api accepts the ID Token because both are signed by the same issuer.",
+          "az": "Hər ikisi eyni issuer tərəfindən imzalandığı üçün orders-api ID Token-i qəbul edir."
+        },
+        "explanation": {
+          "en": "A valid issuer signature does not erase audience and purpose restrictions.",
+          "az": "Etibarlı issuer signature-ı audience və məqsəd məhdudiyyətlərini aradan qaldırmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The browser sends the authorization code as its permanent API credential.",
+          "az": "Browser authorization code-u daimi API credential-ı kimi göndərir."
+        },
+        "explanation": {
+          "en": "The code is a short-lived exchange credential, not an access token.",
+          "az": "Code qısamüddətli exchange credential-dır, access token deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Authentication evidence for an OpenID Connect client is not interchangeable with resource authorization. See the lesson’s Sources and further reading for exact sections.",
+      "az": "OpenID Connect client-i üçün authentication sübutu resource authorization ilə eyni deyil. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "oauth-pkce-oidc",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-security-9700", "pkce-7636", "oidc-core-10"]
+  },
+  {
+    "id": "oauth-pkce-oidc-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which choices fit the lesson's authorization-code flow? Select all that apply.",
+      "az": "Hansı seçimlər dərsdəki authorization code flow-a uyğundur? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Use exact trusted issuer and registered redirect expectations.",
+          "az": "Etibarlı issuer-i və qeydiyyatdan keçmiş redirect gözləntilərini dəqiq yoxlamaq."
+        },
+        "explanation": {
+          "en": "An arbitrary issuer or redirect can cross the trust boundary.",
+          "az": "İxtiyari issuer və ya redirect etibar sərhədini poza bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Use PKCE as the only check for every later API call.",
+          "az": "Sonrakı bütün API çağırışlarında yeganə yoxlama kimi PKCE istifadə etmək."
+        },
+        "explanation": {
+          "en": "PKCE protects code redemption, not all resource-token and authorization decisions.",
+          "az": "PKCE code redemption-ı qoruyur, bütün resource token və authorization qərarlarını yox."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Accept a nonce mismatch if the ID Token can be decoded.",
+          "az": "ID Token decode edilirsə nonce uyğunsuzluğunu qəbul etmək."
+        },
+        "explanation": {
+          "en": "Decoded claims do not override failed identity transaction validation.",
+          "az": "Decode edilmiş claim-lər identity transaction validation xətasını aradan qaldırmır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Generate transaction-specific verifier and transaction validation data.",
+          "az": "Hər transaction üçün ayrıca verifier və transaction validation məlumatı yaratmaq."
+        },
+        "explanation": {
+          "en": "Reusing values weakens binding to the initiating flow.",
+          "az": "Dəyərlərin təkrar istifadəsi başlanğıc flow ilə bağlılığı zəiflədir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Follow the complete maintained client flow; individual controls serve different protocol stages. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Dəstəklənən client flow-u bütöv tətbiq edin; ayrı-ayrı nəzarətlər fərqli protocol mərhələlərinə xidmət edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "oauth-pkce-oidc",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-security-9700", "pkce-7636", "oidc-core-10"]
+  },
+  {
+    "id": "oauth-pkce-oidc-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "How does RFC 9700 distinguish PKCE guidance for authorization-code clients?",
+      "az": "RFC 9700 authorization code client-ləri üçün PKCE qaydasını necə fərqləndirir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "It is forbidden for confidential clients because they already have secrets.",
+          "az": "Confidential client-lərin artıq secret-i olduğuna görə onlar üçün qadağandır."
+        },
+        "explanation": {
+          "en": "RFC 9700 recommends it for confidential clients too.",
+          "az": "RFC 9700 confidential client-lər üçün də onu tövsiyə edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "It replaces TLS and refresh-token replay protection for every client.",
+          "az": "Bütün client-lər üçün TLS-i və refresh token replay protection-ı əvəz edir."
+        },
+        "explanation": {
+          "en": "These controls address separate channels and credentials.",
+          "az": "Bu nəzarətlər ayrı kanalları və credential-ları qoruyur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Public clients must use it; its use is recommended for confidential clients.",
+          "az": "Public client-lər onu istifadə etməlidir; confidential client-lər üçün istifadəsi tövsiyə olunur."
+        },
+        "explanation": {
+          "en": "This preserves the exact normative distinction in §2.1.1.",
+          "az": "Bu, §2.1.1-dəki normativ fərqi dəqiq saxlayır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Do not turn a supplementary summary into a stronger or weaker normative claim than the primary RFC. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Əlavə xülasəni əsas RFC-dəkindən daha sərt və ya daha zəif normativ iddiaya çevirməyin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "oauth-pkce-oidc",
+    "practiceOnly": true,
+    "sourceIds": ["oauth-security-9700", "pkce-7636", "oidc-core-10"]
+  },
+  {
+    "id": "jwt-validation-authorization-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A JWT has a valid signature and exp but aud=reporting-api. The payment API expects payment-api. What should it do?",
+      "az": "JWT-nin signature və exp dəyərləri etibarlıdır, amma aud=reporting-api-dir. Payment API payment-api gözləyir. Nə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Replace aud locally before verifying permissions.",
+          "az": "Permission-ları yoxlamadan əvvəl aud-u lokal olaraq əvəz etmək."
+        },
+        "explanation": {
+          "en": "Editing an untrusted claim does not create a valid grant.",
+          "az": "Etibarsız claim-i redaktə etmək etibarlı grant yaratmır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Reject it under the payment API's audience policy.",
+          "az": "Payment API-nin audience qaydasına əsasən onu rədd etmək."
+        },
+        "explanation": {
+          "en": "A token minted for another recipient is not valid authorization for this API.",
+          "az": "Başqa tərəf üçün verilmiş token bu API üçün etibarlı authorization deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Accept it if the issuer is shared by both services.",
+          "az": "Hər iki service-in issuer-i eynidirsə qəbul etmək."
+        },
+        "explanation": {
+          "en": "A common issuer can mint tokens for different audiences.",
+          "az": "Eyni issuer fərqli audience-lər üçün token verə bilər."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Issuer trust and intended audience are independent validation requirements. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Issuer-ə etibar və nəzərdə tutulan audience müstəqil validation tələbləridir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "jwt-validation-authorization",
+    "practiceOnly": true,
+    "sourceIds": [
+      "jwt-security-8725",
+      "oauth-security-9700",
+      "owasp-authorization",
+      "owasp-rest-security"
+    ]
+  },
+  {
+    "id": "jwt-validation-authorization-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An unknown kid appears in a token containing jku=https://caller-controlled.example.invalid/keys. What is the safe key-discovery approach?",
+      "az": "Token-də naməlum kid və jku=https://caller-controlled.example.invalid/keys görünür. Təhlükəsiz key discovery yanaşması hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Fetch jku automatically and trust any returned matching key.",
+          "az": "jku-nu avtomatik yükləmək və qaytarılan istənilən uyğun key-ə etibar etmək."
+        },
+        "explanation": {
+          "en": "An attacker-selected key location can enable token forgery and SSRF.",
+          "az": "Hücumçunun seçdiyi key ünvanı token saxtalaşdırılmasına və SSRF-ə imkan verə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Skip signature verification during signing-key rotation.",
+          "az": "Signing key rotation zamanı signature verification-ı keçmək."
+        },
+        "explanation": {
+          "en": "Operational rotation does not justify failing open.",
+          "az": "Əməliyyat məqsədli rotation yoxlamadan keçirməyə əsas vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Use bounded discovery from the configured trusted issuer and reject if no valid key is found.",
+          "az": "Konfiqurasiya edilmiş etibarlı issuer-dən məhdud discovery istifadə etmək və etibarlı key tapılmadıqda rədd etmək."
+        },
+        "explanation": {
+          "en": "The received token must not choose the application's trust anchor.",
+          "az": "Daxil olan token tətbiqin trust anchor-unu seçməməlidir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "RFC 8725 treats received key selectors and URLs as untrusted input; issuer/key binding remains necessary. See the lesson’s Sources and further reading for exact sections.",
+      "az": "RFC 8725 daxil olan key selector və URL-ləri etibarsız giriş sayır; issuer ilə key-in əlaqəsi yenə yoxlanmalıdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "jwt-validation-authorization",
+    "practiceOnly": true,
+    "sourceIds": [
+      "jwt-security-8725",
+      "oauth-security-9700",
+      "owasp-authorization",
+      "owasp-rest-security"
+    ]
+  },
+  {
+    "id": "jwt-validation-authorization-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which checks remain relevant after a token signature verifies? Select all that apply.",
+      "az": "Token signature-ı yoxlamadan keçdikdən sonra hansı yoxlamalar aktual qalır? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Enforce tenant and object permissions for the requested resource.",
+          "az": "İstənilən resource üçün tenant və object permission-larını tətbiq etmək."
+        },
+        "explanation": {
+          "en": "A scope is not universal ownership of all objects.",
+          "az": "Scope bütün obyektlərə universal ownership vermir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Trust the body tenantId because it is structurally valid JSON.",
+          "az": "Struktur baxımından düzgün JSON olduğuna görə body-dəki tenantId-yə etibar etmək."
+        },
+        "explanation": {
+          "en": "Input shape cannot establish the actor's authorized tenant.",
+          "az": "Girişin forması istifadəçinin hansı tenant üçün səlahiyyətli olduğunu sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Allow algorithms solely because the token header names them.",
+          "az": "Algorithm-lərə yalnız token header-də göstərildiyinə görə icazə vermək."
+        },
+        "explanation": {
+          "en": "The application must restrict accepted algorithms.",
+          "az": "Tətbiq qəbul etdiyi algorithm-ləri məhdudlaşdırmalıdır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Validate the configured issuer, audience, validity and token profile.",
+          "az": "Konfiqurasiya edilmiş issuer-i, audience-i, etibarlılıq müddətini və token profile-ı yoxlamaq."
+        },
+        "explanation": {
+          "en": "Signature success alone does not establish the intended use.",
+          "az": "Signature-ın uğurla yoxlanması nəzərdə tutulan istifadəni təkbaşına təsdiqləmir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Token validation and resource authorization form separate gates. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Token validation və resource authorization ayrı yoxlama mərhələləridir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "jwt-validation-authorization",
+    "practiceOnly": true,
+    "sourceIds": [
+      "jwt-security-8725",
+      "oauth-security-9700",
+      "owasp-authorization",
+      "owasp-rest-security"
+    ]
+  },
+  {
+    "id": "jwt-validation-authorization-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A user with invoices:read requests another tenant's invoice using a guessed UUID. What is the decisive missing protection if it succeeds?",
+      "az": "invoices:read icazəsi olan istifadəçi təxmin etdiyi UUID ilə başqa tenant-ın invoice-unu istəyir. Request uğurludursa hansı əsas qorunma çatışmır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A refresh token attached to the GET request.",
+          "az": "GET request-ə əlavə edilmiş refresh token."
+        },
+        "explanation": {
+          "en": "A refresh token is not the intended resource credential.",
+          "az": "Refresh token resource üçün nəzərdə tutulan credential deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Server-side object/tenant authorization.",
+          "az": "Server-side object/tenant authorization."
+        },
+        "explanation": {
+          "en": "UUID unpredictability is not an access-control policy.",
+          "az": "UUID-nin çətin təxmin edilməsi access control qaydası deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A longer JWT subject string.",
+          "az": "Daha uzun JWT subject string-i."
+        },
+        "explanation": {
+          "en": "Subject length does not enforce resource relationships.",
+          "az": "Subject uzunluğu resource əlaqələrini yoxlamır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Apply permission checks to every specific resource, even when the token and broad action scope are valid. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Token və ümumi action scope etibarlı olsa da hər konkret resource üçün permission yoxlaması tətbiq edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "jwt-validation-authorization",
+    "practiceOnly": true,
+    "sourceIds": [
+      "jwt-security-8725",
+      "oauth-security-9700",
+      "owasp-authorization",
+      "owasp-rest-security"
+    ]
+  },
+  {
+    "id": "browser-bff-csrf-cors-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A malicious same-origin script cannot read an HttpOnly session cookie. Which risk can remain?",
+      "az": "Zərərli same-origin script HttpOnly session cookie-sini oxuya bilmir. Hansı risk qala bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "It can issue authenticated requests through the compromised page.",
+          "az": "Ələ keçirilmiş səhifə vasitəsilə authenticated request-lər göndərə bilər."
+        },
+        "explanation": {
+          "en": "HttpOnly limits direct reads, not every action by a same-origin script.",
+          "az": "HttpOnly birbaşa oxumanı məhdudlaşdırır, same-origin script-in bütün hərəkətlərini yox."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "HttpOnly proves every request expresses the user's intentional action.",
+          "az": "HttpOnly hər request-in istifadəçinin şüurlu hərəkəti olduğunu sübut edir."
+        },
+        "explanation": {
+          "en": "Cookie attachment does not establish request intent.",
+          "az": "Cookie-nin əlavə edilməsi request-in niyyətini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The script can only act after CORS is disabled.",
+          "az": "Script yalnız CORS söndürüldükdən sonra hərəkət edə bilər."
+        },
+        "explanation": {
+          "en": "Same-origin script execution does not require cross-origin permission.",
+          "az": "Same-origin script-in işləməsi cross-origin icazə tələb etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "HttpOnly reduces one exposure route but does not make XSS harmless. See the lesson’s Sources and further reading for exact sections.",
+      "az": "HttpOnly bir ifşa yolunu azaldır, amma XSS-i zərərsiz etmir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "browser-bff-csrf-cors",
+    "practiceOnly": true,
+    "sourceIds": ["owasp-csrf-prevention", "owasp-rest-security", "azure-microservices-patterns"]
+  },
+  {
+    "id": "browser-bff-csrf-cors-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A browser refuses to expose a cross-origin response because CORS is missing. What should an API designer avoid assuming?",
+      "az": "CORS olmadığına görə browser cross-origin response-u göstərmir. API dizayn edən şəxs hansı fərziyyədən çəkinməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "That command-line clients need their own server-side authentication checks.",
+          "az": "Command-line client-lər üçün ayrıca server-side authentication yoxlamalarının lazım olmasından."
+        },
+        "explanation": {
+          "en": "Server authorization remains necessary for all clients.",
+          "az": "Server authorization bütün client-lər üçün yenə lazımdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "That the server necessarily never received or acted on the request.",
+          "az": "Server-in request-i mütləq almadığından və ya icra etmədiyindən."
+        },
+        "explanation": {
+          "en": "Some requests can be sent even when the browser blocks response access.",
+          "az": "Browser response-a girişi bloklasa da bəzi request-lər göndərilə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "That CORS governs browser behavior.",
+          "az": "CORS-un browser davranışını idarə etməsindən."
+        },
+        "explanation": {
+          "en": "Browser enforcement is precisely the relevant scope.",
+          "az": "Browser tərəfindən tətbiq edilmə məhz uyğun əhatə dairəsidir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Response-read restrictions do not provide a general proof of request integrity or server authorization. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Response-u oxuma məhdudiyyəti ümumi request integrity və ya server authorization sübutu deyil. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "browser-bff-csrf-cors",
+    "practiceOnly": true,
+    "sourceIds": ["owasp-csrf-prevention", "owasp-rest-security", "azure-microservices-patterns"]
+  },
+  {
+    "id": "browser-bff-csrf-cors-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements fit a cookie-authenticated BFF design? Select all that apply.",
+      "az": "Hansı fikirlər cookie ilə authentication edən BFF dizaynına uyğundur? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Same-site sibling origins may still matter to the threat model.",
+          "az": "Same-site qonşu origin-lər də threat model üçün əhəmiyyətli ola bilər."
+        },
+        "explanation": {
+          "en": "Site and origin are different boundaries.",
+          "az": "Site və origin fərqli sərhədlərdir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Access-Control-Allow-Origin: * can expose credentialed responses to any origin.",
+          "az": "Access-Control-Allow-Origin: * credential ilə göndərilən response-ları istənilən origin-ə aça bilər."
+        },
+        "explanation": {
+          "en": "Browsers reject wildcard origin for credentialed response access.",
+          "az": "Browser-lər credential ilə response-a giriş üçün wildcard origin-i rədd edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Every webhook should carry the user's browser anti-CSRF token.",
+          "az": "Hər webhook istifadəçinin browser anti-CSRF token-ini daşımalıdır."
+        },
+        "explanation": {
+          "en": "Webhooks need their own authenticated delivery and replay policy.",
+          "az": "Webhook-ların öz authenticated delivery və replay qaydası olmalıdır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "State-changing requests need a coherent CSRF/request-integrity policy.",
+          "az": "State dəyişdirən request-lər üçün ardıcıl CSRF/request integrity qaydası lazımdır."
+        },
+        "explanation": {
+          "en": "Moving tokens to the server does not remove automatically attached cookie risks.",
+          "az": "Token-lərin server-ə keçirilməsi avtomatik əlavə olunan cookie risklərini aradan qaldırmır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Session storage, browser integrity, CORS and non-browser integration authentication require separate design decisions. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Session storage, browser integrity, CORS və browser-dən kənar inteqrasiyaların authentication-ı ayrıca dizayn qərarları tələb edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "browser-bff-csrf-cors",
+    "practiceOnly": true,
+    "sourceIds": ["owasp-csrf-prevention", "owasp-rest-security", "azure-microservices-patterns"]
+  },
+  {
+    "id": "browser-bff-csrf-cors-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Why should a service avoid exposing approve-refund as a state-changing GET operation?",
+      "az": "Service niyə approve-refund əməliyyatını state dəyişdirən GET kimi təqdim etməməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "GET is a safe-method request that can be navigated or prefetched without intended mutation.",
+          "az": "GET safe method sayılır və dəyişiklik niyyəti olmadan navigation və ya prefetch ilə göndərilə bilər."
+        },
+        "explanation": {
+          "en": "State changes violate that expectation and complicate CSRF protection.",
+          "az": "State dəyişikliyi bu gözləntini pozur və CSRF qorunmasını çətinləşdirir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Every GET request is automatically authenticated by CORS.",
+          "az": "Hər GET request CORS tərəfindən avtomatik authentication olunur."
+        },
+        "explanation": {
+          "en": "CORS is not authentication.",
+          "az": "CORS authentication deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A Secure cookie forbids all GET requests.",
+          "az": "Secure cookie bütün GET request-ləri qadağan edir."
+        },
+        "explanation": {
+          "en": "Secure controls transport, not the method's business effect.",
+          "az": "Secure biznes təsirini deyil, transport-u idarə edir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Method semantics and request-integrity controls should support the same documented behavior. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Method semantikası və request integrity nəzarətləri eyni sənədləşdirilmiş davranışı dəstəkləməlidir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "browser-bff-csrf-cors",
+    "practiceOnly": true,
+    "sourceIds": ["owasp-csrf-prevention", "owasp-rest-security", "azure-microservices-patterns"]
+  },
+  {
+    "id": "api-idempotency-concurrency-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A payment POST times out after the provider may have committed. What is the safest recovery under an idempotent-operation contract?",
+      "az": "Payment POST timeout olur və provider artıq commit etmiş ola bilər. Idempotent operation contract çərçivəsində ən təhlükəsiz bərpa hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Create a fresh key immediately because a timeout proves no result exists.",
+          "az": "Timeout nəticənin olmadığını sübut etdiyinə görə dərhal yeni key yaratmaq."
+        },
+        "explanation": {
+          "en": "A timeout leaves the remote business state uncertain.",
+          "az": "Timeout uzaqdakı biznes vəziyyətini qeyri-müəyyən saxlayır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Tell the user payment definitely failed without checking state.",
+          "az": "State-i yoxlamadan istifadəçiyə ödənişin mütləq uğursuz olduğunu demək."
+        },
+        "explanation": {
+          "en": "The available transport evidence does not establish that claim.",
+          "az": "Mövcud transport sübutu bu iddianı təsdiqləmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Preserve the operation identity and reconcile or retry under the same documented key policy.",
+          "az": "Əməliyyatın identity-sini qorumaq və eyni sənədləşdirilmiş key qaydası ilə reconciliation və ya retry etmək."
+        },
+        "explanation": {
+          "en": "A new identity can represent a second charge rather than a recovery attempt.",
+          "az": "Yeni identity bərpa cəhdi əvəzinə ikinci ödənişi ifadə edə bilər."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Deduplication and reconciliation protect the logical operation across uncertain transport outcomes. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Deduplication və reconciliation qeyri-müəyyən transport nəticələrində eyni məntiqi əməliyyatı qoruyur. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-idempotency-concurrency",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "azure-retry-pattern", "azure-transactional-outbox"]
+  },
+  {
+    "id": "api-idempotency-concurrency-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Two servers both observe a missing operation key before either creates an order. Which design prevents both effects from committing?",
+      "az": "İki server sifariş yaratmazdan əvvəl operation key-in olmadığını görür. Hansı dizayn hər iki təsirin commit olunmasının qarşısını alır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A durable scoped uniqueness rule and an appropriate atomic transaction boundary.",
+          "az": "Uyğun scope-da durable uniqueness qaydası və uyğun atomic transaction sərhədi."
+        },
+        "explanation": {
+          "en": "The claim and effect must be coordinated across workers.",
+          "az": "Claim və təsir worker-lər arasında koordinasiya edilməlidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A process-local boolean on each server.",
+          "az": "Hər server-də process-local boolean."
+        },
+        "explanation": {
+          "en": "Separate processes do not share that lock.",
+          "az": "Ayrı process-lər həmin lock-u paylaşmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A longer cache TTL after the order is already created.",
+          "az": "Sifariş artıq yaradıldıqdan sonra daha uzun cache TTL."
+        },
+        "explanation": {
+          "en": "TTL length does not remove the check/write race.",
+          "az": "TTL uzunluğu check/write race-i aradan qaldırmır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A preflight SELECT is not an atomic claim; the data store must enforce the invariant. See the lesson’s Sources and further reading for exact sections.",
+      "az": "İlkin SELECT atomic claim deyil; invariant-ı data store təmin etməlidir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-idempotency-concurrency",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "azure-retry-pattern", "azure-transactional-outbox"]
+  },
+  {
+    "id": "api-idempotency-concurrency-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements correctly distinguish two API protections? Select all that apply.",
+      "az": "Hansı fikirlər iki API qorunmasını düzgün fərqləndirir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Version/If-Match checks can prevent stale clients from overwriting newer state.",
+          "az": "Version/If-Match yoxlamaları köhnəlmiş client-lərin daha yeni state-i əvəz etməsinin qarşısını ala bilər."
+        },
+        "explanation": {
+          "en": "They address a lost-update invariant.",
+          "az": "Onlar lost update invariant-ını qoruyur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "An idempotent PUT automatically prevents all lost updates between different payloads.",
+          "az": "Idempotent PUT fərqli payload-lar arasındakı bütün lost update-lərin avtomatik qarşısını alır."
+        },
+        "explanation": {
+          "en": "Different replacements can still overwrite changes without concurrency control.",
+          "az": "Concurrency control olmadıqda fərqli əvəzləmələr yenə də dəyişiklikləri silə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A valid key lets the caller bypass ownership checks to retrieve the result.",
+          "az": "Etibarlı key nəticəni almaq üçün ownership yoxlamasını keçməyə imkan verir."
+        },
+        "explanation": {
+          "en": "Stored outcomes remain protected by authorization.",
+          "az": "Saxlanmış nəticələr də authorization ilə qorunur."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Idempotency keys can recognize repeated attempts at one logical creation.",
+          "az": "Idempotency key-lər eyni məntiqi yaratma əməliyyatının təkrar cəhdlərini tanıya bilər."
+        },
+        "explanation": {
+          "en": "They address duplicate operations under the chosen contract.",
+          "az": "Onlar seçilmiş contract çərçivəsində duplicate əməliyyatları həll edir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Operation identity and representation version solve different problems and can be combined. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Operation identity və representation version fərqli problemləri həll edir və birlikdə istifadə oluna bilər. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-idempotency-concurrency",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "azure-retry-pattern", "azure-transactional-outbox"]
+  },
+  {
+    "id": "api-idempotency-concurrency-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "The same authenticated actor reuses a completed creation key with a materially different validated payload. What fits the lesson's contract?",
+      "az": "Eyni authenticated istifadəçi tamamlanmış yaratma key-ini məzmunca fərqli, validation-dan keçmiş payload ilə yenidən istifadə edir. Dərsin contract-ına nə uyğundur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Overwrite the stored result and silently create the second order.",
+          "az": "Saxlanmış nəticəni əvəz etmək və xəbərsiz ikinci sifariş yaratmaq."
+        },
+        "explanation": {
+          "en": "This destroys the original deduplication guarantee.",
+          "az": "Bu, ilkin deduplication zəmanətini pozur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Return the first result while claiming it was created from the new payload.",
+          "az": "İlk nəticəni qaytarıb onun yeni payload-dan yaradıldığını iddia etmək."
+        },
+        "explanation": {
+          "en": "That misrepresents the submitted operation and hides the mismatch.",
+          "az": "Bu, göndərilən əməliyyatı yanlış təqdim edir və uyğunsuzluğu gizlədir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Return a documented conflict without applying another creation.",
+          "az": "Başqa yaratma əməliyyatı tətbiq etmədən sənədləşdirilmiş conflict qaytarmaq."
+        },
+        "explanation": {
+          "en": "One key cannot ambiguously identify two different business operations.",
+          "az": "Bir key iki fərqli biznes əməliyyatını qeyri-müəyyən şəkildə ifadə edə bilməz."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "A request fingerprint makes the key's intended operation explicit; differing payloads need a defined conflict policy. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Request fingerprint key-in nəzərdə tutduğu əməliyyatı aydınlaşdırır; fərqli payload-lar üçün müəyyən edilmiş conflict qaydası lazımdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-idempotency-concurrency",
+    "practiceOnly": true,
+    "sourceIds": ["http-semantics-9110", "azure-retry-pattern", "azure-transactional-outbox"]
+  },
+  {
+    "id": "api-contracts-evolution-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An OpenAPI operation lists two separate Security Requirement Objects. How are the alternatives interpreted?",
+      "az": "OpenAPI əməliyyatında iki ayrı Security Requirement Object göstərilir. Bu alternativlər necə şərh olunur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "All security declarations are comments and cannot influence implementations.",
+          "az": "Bütün security deklarasiyaları şərhdir və implementation-a təsir edə bilməz."
+        },
+        "explanation": {
+          "en": "The description is not enforcement, but it guides implementers and tools.",
+          "az": "Təsvir enforcement deyil, amma implementation hazırlayanlara və alətlərə istiqamət verir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Satisfying one alternative can authorize the request under that declaration.",
+          "az": "Bir alternativin ödənməsi həmin deklarasiya çərçivəsində request-ə icazə verə bilər."
+        },
+        "explanation": {
+          "en": "The list represents alternatives; schemes inside one object are combined.",
+          "az": "Siyahı alternativləri bildirir; bir obyektin daxilindəki scheme-lər isə birlikdə tələb olunur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Every scheme in every separate object must always be satisfied together.",
+          "az": "Bütün ayrı obyektlərdəki hər scheme həmişə birlikdə ödənməlidir."
+        },
+        "explanation": {
+          "en": "That confuses list alternatives with multiple schemes in a single requirement.",
+          "az": "Bu, siyahıdakı alternativləri tək requirement daxilindəki bir neçə scheme ilə qarışdırır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Review security list structure carefully and ensure runtime behavior matches the contract. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Security siyahısının strukturunu diqqətlə yoxlayın və runtime davranışının contract-a uyğun olmasını təmin edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-contracts-evolution",
+    "practiceOnly": true,
+    "sourceIds": ["openapi-311", "http-problems-9457", "http-semantics-9110"]
+  },
+  {
+    "id": "api-contracts-evolution-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An optional string property may explicitly be null in OpenAPI 3.1.1. Which distinction is necessary?",
+      "az": "OpenAPI 3.1.1-də optional string property açıq şəkildə null ola bilər. Hansı fərq vacibdir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Optional always means that null is an accepted string.",
+          "az": "Optional həmişə null-un qəbul edilən string olması deməkdir."
+        },
+        "explanation": {
+          "en": "Omitting a property does not make null a valid value.",
+          "az": "Property-nin buraxıla bilməsi null-u etibarlı dəyərə çevirmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The 3.0 nullable keyword must be used instead of JSON Schema type unions.",
+          "az": "JSON Schema type union əvəzinə 3.0 nullable keyword-u istifadə edilməlidir."
+        },
+        "explanation": {
+          "en": "The lesson uses the 3.1.1 JSON Schema based dialect.",
+          "az": "Dərsdə JSON Schema əsasında qurulmuş 3.1.1 dialect istifadə olunur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Property absence and a present null value are different; required and type govern different aspects.",
+          "az": "Property-nin olmaması ilə mövcud olub null dəyəri daşıması fərqlidir; required və type ayrı aspektləri idarə edir."
+        },
+        "explanation": {
+          "en": "Presence and value constraints are independent decisions.",
+          "az": "Mövcudluq və dəyər məhdudiyyətləri müstəqil qərarlardır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Define absence, null, defaults and partial-update semantics explicitly. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Absence, null, default və partial update semantikasını açıq müəyyən edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-contracts-evolution",
+    "practiceOnly": true,
+    "sourceIds": ["openapi-311", "http-problems-9457", "http-semantics-9110"]
+  },
+  {
+    "id": "api-contracts-evolution-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which compatibility risks require review? Select all that apply.",
+      "az": "Hansı compatibility riskləri yoxlanmalıdır? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A new response enum value can break an exhaustive consumer.",
+          "az": "Response-a yeni enum dəyəri əlavə edilməsi bütün variantları ayrıca emal edən consumer-i poza bilər."
+        },
+        "explanation": {
+          "en": "Some clients assume the documented set is closed.",
+          "az": "Bəzi client-lər sənədləşdirilmiş dəyərlər toplusunun qapalı olduğunu fərz edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A cursor automatically preserves permissions after access is revoked.",
+          "az": "Cursor giriş ləğv olunduqdan sonra permission-ları avtomatik saxlayır."
+        },
+        "explanation": {
+          "en": "Every page must reapply current authorization.",
+          "az": "Hər səhifədə cari authorization yenidən tətbiq edilməlidir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Human-readable problem detail is the stable machine identifier.",
+          "az": "İnsan üçün oxunaqlı problem detail sabit machine identifier-dır."
+        },
+        "explanation": {
+          "en": "Clients should use the problem type or documented extensions.",
+          "az": "Client-lər problem type və ya sənədləşdirilmiş extension-lardan istifadə etməlidir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "A newly required request field can break older clients.",
+          "az": "Request-ə yeni məcburi sahə əlavə edilməsi köhnə client-ləri poza bilər."
+        },
+        "explanation": {
+          "en": "They do not yet send the required input.",
+          "az": "Onlar tələb olunan girişi hələ göndərmir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Compatibility and authorization depend on behavior and consumer expectations, not only the provider's schema. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Compatibility və authorization yalnız provider-in schema-sından deyil, davranışdan və consumer gözləntilərindən də asılıdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-contracts-evolution",
+    "practiceOnly": true,
+    "sourceIds": ["openapi-311", "http-problems-9457", "http-semantics-9110"]
+  },
+  {
+    "id": "api-contracts-evolution-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A team adds a createdAt cursor but many records share timestamps and new records arrive concurrently. What should it avoid promising without additional design?",
+      "az": "Komanda createdAt cursor-u əlavə edir, amma çox qeydin timestamp-i eynidir və yeni qeydlər paralel gəlir. Əlavə dizayn olmadan hansı vədi verməməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "That cursor filters should stay consistent between pages.",
+          "az": "Cursor filter-lərinin səhifələr arasında uyğun qalacağını."
+        },
+        "explanation": {
+          "en": "Filter binding is an important contract requirement.",
+          "az": "Filter-lə bağlılıq vacib contract tələbidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A unique, snapshot-consistent traversal merely because it uses a cursor.",
+          "az": "Yalnız cursor istifadə edildiyinə görə unikal və snapshot-a uyğun keçid olacağını."
+        },
+        "explanation": {
+          "en": "Tie-breaking and a consistency/snapshot policy still need definition.",
+          "az": "Tie-breaker və consistency/snapshot qaydası yenə müəyyən edilməlidir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "That each request needs a page-size limit.",
+          "az": "Hər request üçün page size limit-in lazım olduğunu."
+        },
+        "explanation": {
+          "en": "A bounded size remains useful for resource control.",
+          "az": "Məhdud ölçü resource istifadəsini idarə etmək üçün faydalıdır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "A cursor is a navigation mechanism, not automatically a unique ordering, stable snapshot or access credential. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Cursor navigation mexanizmidir; avtomatik unikal sıralama, sabit snapshot və ya access credential deyil. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-contracts-evolution",
+    "practiceOnly": true,
+    "sourceIds": ["openapi-311", "http-problems-9457", "http-semantics-9110"]
+  },
+  {
+    "id": "architecture-boundaries-sagas-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A payment commits locally, then booking confirmation fails. Why is compensation not equivalent to rolling back one database transaction?",
+      "az": "Ödəniş lokal olaraq commit olunur, sonra booking confirmation uğursuz olur. Compensation niyə bir database transaction-ının rollback-i ilə eyni deyil?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Local commits and external effects may already be observed; compensation can also fail.",
+          "az": "Lokal commit-lər və xarici təsirlər artıq görünə bilər; compensation özü də uğursuz ola bilər."
+        },
+        "explanation": {
+          "en": "A refund or release is a new business action with its own outcome.",
+          "az": "Refund və ya release öz nəticəsi olan yeni biznes əməliyyatıdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Sagas provide global isolation over all participant databases.",
+          "az": "Saga-lar bütün iştirakçı database-lər arasında global isolation təmin edir."
+        },
+        "explanation": {
+          "en": "A saga does not automatically create a distributed ACID boundary.",
+          "az": "Saga avtomatik distributed ACID sərhədi yaratmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The booking service can erase every provider-side effect by restoring its own database.",
+          "az": "Booking service öz database-ini bərpa etməklə provider-dəki bütün təsirləri silə bilər."
+        },
+        "explanation": {
+          "en": "One service does not control committed external state.",
+          "az": "Bir service xaricdə commit olunmuş state-i idarə etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Model compensations, pending states and reconciliation explicitly rather than claiming invisible global rollback. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Görünməz global rollback iddiası əvəzinə compensation-ları, pending state-ləri və reconciliation-ı açıq modelləşdirin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "architecture-boundaries-sagas",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-microservices-patterns",
+      "azure-saga-pattern",
+      "azure-transactional-outbox"
+    ]
+  },
+  {
+    "id": "architecture-boundaries-sagas-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "One small team has no demonstrated independent scaling or deployment need. What is a defensible response to a default six-service rewrite?",
+      "az": "Kiçik bir komandanın ayrıca scaling və ya deployment ehtiyacı sübut edilməyib. Altı service-ə standart keçid təklifinə hansı cavab əsaslıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Reject all service boundaries permanently, regardless of future evidence.",
+          "az": "Gələcək sübutlardan asılı olmayaraq bütün service sərhədlərini həmişəlik rədd etmək."
+        },
+        "explanation": {
+          "en": "An architecture decision should be revisited when its forces change.",
+          "az": "Təsir edən amillər dəyişəndə architecture qərarına yenidən baxılmalıdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Compare the claimed benefit with consistency and operational cost; a modular monolith may fit.",
+          "az": "İddia edilən faydanı consistency və əməliyyat xərci ilə müqayisə etmək; modular monolith uyğun ola bilər."
+        },
+        "explanation": {
+          "en": "Deployment distribution needs an evidenced force, not a fashion preference.",
+          "az": "Deployment-in bölünməsi dəb seçiminə deyil, sübut olunmuş ehtiyaca əsaslanmalıdır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Approve it because more services necessarily produce more product value.",
+          "az": "Daha çox service mütləq daha çox product value yaratdığı üçün təsdiqləmək."
+        },
+        "explanation": {
+          "en": "Component count is not evidence of a better user outcome.",
+          "az": "Komponent sayı istifadəçi nəticəsinin daha yaxşı olduğuna sübut deyil."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Choose boundaries from domain, quality and ownership needs, recording trade-offs and conditions for change. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Sərhədləri domain, keyfiyyət və ownership ehtiyaclarına görə seçin; trade-off-ları və dəyişiklik şərtlərini qeyd edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "architecture-boundaries-sagas",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-microservices-patterns",
+      "azure-saga-pattern",
+      "azure-transactional-outbox"
+    ]
+  },
+  {
+    "id": "architecture-boundaries-sagas-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements about distributed design are sound? Select all that apply.",
+      "az": "Distributed design haqqında hansı fikirlər doğrudur? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "CQRS does not inherently require event sourcing.",
+          "az": "CQRS öz-özlüyündə event sourcing tələb etmir."
+        },
+        "explanation": {
+          "en": "Separating command/query models is a different choice from storing state as events.",
+          "az": "Command/query modellərini ayırmaq state-i event-lər kimi saxlamaqdan fərqli seçimdir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A saga automatically isolates every concurrent business workflow.",
+          "az": "Saga bütün paralel biznes workflow-larını avtomatik isolation ilə təmin edir."
+        },
+        "explanation": {
+          "en": "Intermediate states and anomalies still require design.",
+          "az": "Aralıq state-lər və anomaliyalar yenə dizayn tələb edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Every unknown payment outcome should be retried with a new charge identity.",
+          "az": "Nəticəsi naməlum hər ödəniş yeni charge identity ilə təkrarlanmalıdır."
+        },
+        "explanation": {
+          "en": "That can duplicate an already committed remote operation.",
+          "az": "Bu, uzaqda artıq commit olunmuş əməliyyatı təkrarlaya bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "A domain boundary, deployment unit and Scrum product boundary need not be identical.",
+          "az": "Domain sərhədi, deployment unit və Scrum product sərhədi eyni olmaq məcburiyyətində deyil."
+        },
+        "explanation": {
+          "en": "They describe different kinds of responsibility.",
+          "az": "Onlar fərqli məsuliyyət növlərini ifadə edir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Architecture patterns address selected concerns and do not eliminate unrelated consistency or product-boundary decisions. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Architecture pattern-ləri seçilmiş məsələləri həll edir; əlaqəsiz consistency və product sərhədi qərarlarını aradan qaldırmır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "architecture-boundaries-sagas",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-microservices-patterns",
+      "azure-saga-pattern",
+      "azure-transactional-outbox"
+    ]
+  },
+  {
+    "id": "architecture-boundaries-sagas-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "An orchestration-based saga's compensation remains pending after repeated failures. Which behavior is most appropriate?",
+      "az": "Orchestration əsaslı saga-nın compensation-ı təkrar uğursuzluqlardan sonra pending qalır. Hansı davranış daha uyğundur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Retain durable workflow state, expose the pending condition and use a defined recovery path.",
+          "az": "Durable workflow state-i saxlamaq, pending vəziyyəti göstərmək və müəyyən edilmiş bərpa yolunu istifadə etmək."
+        },
+        "explanation": {
+          "en": "The business state has not magically returned to its initial condition.",
+          "az": "Biznes vəziyyəti öz-özünə ilkin hala qayıtmayıb."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Mark the whole purchase rolled back and delete evidence of the pending step.",
+          "az": "Bütün alış-verişi rollback olunmuş kimi qeyd etmək və pending addımın sübutunu silmək."
+        },
+        "explanation": {
+          "en": "This hides an unresolved external effect and prevents reconciliation.",
+          "az": "Bu, həll olunmamış xarici təsiri gizlədir və reconciliation-a mane olur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Assume orchestration forbids all partial outcomes.",
+          "az": "Orchestration-ın bütün qismən nəticələri qadağan etdiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "A coordinator makes the workflow explicit; it does not make failures impossible.",
+          "az": "Coordinator workflow-u aydınlaşdırır; uğursuzluqları mümkünsüz etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Compensation itself needs observability, retries where safe and operational ownership. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Compensation özü də observability, təhlükəsiz olduqda retry və əməliyyat üzrə ownership tələb edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "architecture-boundaries-sagas",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-microservices-patterns",
+      "azure-saga-pattern",
+      "azure-transactional-outbox"
+    ]
+  },
+  {
+    "id": "api-resilience-observability-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A gateway, service and SDK each retry independently. Why can this worsen an outage?",
+      "az": "Gateway, service və SDK hər biri müstəqil retry edir. Bu, outage-i niyə ağırlaşdıra bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A retry always changes the HTTP method to an unsafe one.",
+          "az": "Retry həmişə HTTP method-u unsafe method-a çevirir."
+        },
+        "explanation": {
+          "en": "The amplification problem does not depend on method rewriting.",
+          "az": "Yükün artması problemi method-un dəyişməsindən asılı deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "More retries always reduce server load by spreading requests.",
+          "az": "Daha çox retry request-ləri yayaraq həmişə server yükünü azaldır."
+        },
+        "explanation": {
+          "en": "Uncoordinated immediate retries can do the opposite.",
+          "az": "Koordinasiyasız ani retry-lər əks nəticə verə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Nested attempts can multiply calls and exhaust a shared time/resource budget.",
+          "az": "İç-içə cəhdlər çağırışları çoxalda və ortaq vaxt/resource budget-ini tükədə bilər."
+        },
+        "explanation": {
+          "en": "Each layer can amplify rather than merely repeat the original request count.",
+          "az": "Hər qat ilkin request sayını sadəcə təkrarlamaq əvəzinə dəfələrlə artıra bilər."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Choose explicit retry ownership and inspect existing library policies before adding another loop. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Retry məsuliyyətini açıq müəyyən edin və əlavə loop yaratmazdan əvvəl mövcud library qaydalarını yoxlayın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-resilience-observability",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-retry-pattern",
+      "azure-circuit-breaker",
+      "azure-microservices-patterns",
+      "http-semantics-9110"
+    ]
+  },
+  {
+    "id": "api-resilience-observability-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A breaker has moved from open to half-open. What should happen under the cited pattern?",
+      "az": "Breaker open vəziyyətindən half-open vəziyyətinə keçib. İstinad edilən pattern-ə görə nə edilməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Permit limited probes and decide whether recovery supports reopening normal traffic.",
+          "az": "Məhdud probe-lara icazə vermək və bərpanın normal traffic-i açmağa yetərli olub-olmadığını qiymətləndirmək."
+        },
+        "explanation": {
+          "en": "Controlled probes avoid overwhelming a recovering dependency.",
+          "az": "Nəzarətli probe-lar bərpa olunan dependency-nin həddindən artıq yüklənməsinin qarşısını alır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Send every queued request immediately to prove throughput.",
+          "az": "Throughput-u sübut etmək üçün bütün növbədəki request-ləri dərhal göndərmək."
+        },
+        "explanation": {
+          "en": "That can flood a dependency before it has recovered.",
+          "az": "Bu, dependency bərpa olunmazdan əvvəl onu yükləyə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat every previous timed-out payment as definitely failed.",
+          "az": "Əvvəl timeout olmuş hər ödənişi qəti uğursuz saymaq."
+        },
+        "explanation": {
+          "en": "Circuit state does not establish authoritative business outcomes.",
+          "az": "Circuit state biznes nəticələrini qəti müəyyən etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Circuit breaking limits likely failed calls and probes recovery; it does not determine remote transaction state. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Circuit breaking uğursuz olacağı ehtimal edilən çağırışları məhdudlaşdırır və bərpanı yoxlayır; uzaqdakı transaction state-ni müəyyən etmir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-resilience-observability",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-retry-pattern",
+      "azure-circuit-breaker",
+      "azure-microservices-patterns",
+      "http-semantics-9110"
+    ]
+  },
+  {
+    "id": "api-resilience-observability-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which are appropriate inputs to a retry decision? Select all that apply.",
+      "az": "Retry qərarı üçün hansı məlumatlar uyğundur? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Whether the remaining deadline allows another attempt and delay.",
+          "az": "Qalan deadline-ın daha bir cəhdə və gözləməyə imkan verib-verməməsi."
+        },
+        "explanation": {
+          "en": "A caller's total budget must bound recovery work.",
+          "az": "Çağıranın ümumi budget-i bərpa işini məhdudlaşdırmalıdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Whether a permission error can be repeated indefinitely until it disappears.",
+          "az": "Permission xətasının yox olana qədər sonsuz təkrarlana bilməsi."
+        },
+        "explanation": {
+          "en": "Retry does not grant authorization.",
+          "az": "Retry authorization vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Whether logging the complete bearer token will simplify debugging.",
+          "az": "Tam bearer token-in log-a yazılmasının debugging-i asanlaşdırıb-asanlaşdırmaması."
+        },
+        "explanation": {
+          "en": "Credentials should not be exposed in telemetry.",
+          "az": "Credential-lar telemetry-də ifşa edilməməlidir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Whether the fault may be transient and replay is safe under the operation contract.",
+          "az": "Xətanın keçici ola bilməsi və operation contract çərçivəsində replay-in təhlükəsiz olması."
+        },
+        "explanation": {
+          "en": "Retries need both operational and business-semantic justification.",
+          "az": "Retry üçün həm əməliyyat, həm də biznes semantikası baxımından əsas olmalıdır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Bounded retries, safe semantics and useful credential-free telemetry belong together. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Məhdud retry-lər, təhlükəsiz semantika və credential daşımayan faydalı telemetry birlikdə tətbiq edilməlidir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-resilience-observability",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-retry-pattern",
+      "azure-circuit-breaker",
+      "azure-microservices-patterns",
+      "http-semantics-9110"
+    ]
+  },
+  {
+    "id": "api-resilience-observability-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A payment request times out locally. Which telemetry/behavior is most useful?",
+      "az": "Payment request lokal olaraq timeout olur. Hansı telemetry və davranış daha faydalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Count every retry as a newly completed customer payment.",
+          "az": "Hər retry-ı yeni tamamlanmış müştəri ödənişi saymaq."
+        },
+        "explanation": {
+          "en": "Attempt volume is not completed business value.",
+          "az": "Cəhd sayı tamamlanmış biznes dəyəri deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Use only mean latency and discard slow-tail observations.",
+          "az": "Yalnız orta latency-ni istifadə etmək və çox gecikən müşahidələri atmaq."
+        },
+        "explanation": {
+          "en": "Averages can hide deadline failures and user impact.",
+          "az": "Ortalama deadline pozuntularını və istifadəçiyə təsiri gizlədə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Track its original operation identity and pending/reconciled state separately from attempt counts.",
+          "az": "İlkin operation identity-ni və pending/reconciled vəziyyəti cəhd sayından ayrı izləmək."
+        },
+        "explanation": {
+          "en": "This links technical failure to the true business outcome without creating a new payment.",
+          "az": "Bu, yeni ödəniş yaratmadan texniki xətanı həqiqi biznes nəticəsi ilə əlaqələndirir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Observability should explain user impact and uncertainty, not inflate completed transaction counts. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Observability tamamlanmış transaction sayını şişirtmək əvəzinə istifadəçiyə təsiri və qeyri-müəyyənliyi izah etməlidir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "api-resilience-observability",
+    "practiceOnly": true,
+    "sourceIds": [
+      "azure-retry-pattern",
+      "azure-circuit-breaker",
+      "azure-microservices-patterns",
+      "http-semantics-9110"
+    ]
+  },
+  {
+    "id": "secure-api-coding-extra-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "A TypeScript interface excludes tenantId, but the server receives it in JSON. Which control does the lab use?",
+      "az": "TypeScript interface-də tenantId yoxdur, amma server onu JSON-da alır. Lab hansı nəzarətdən istifadə edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The browser form's hidden fields define the actor's tenant.",
+          "az": "Browser form-un gizli sahələri istifadəçinin tenant-ını müəyyən edir."
+        },
+        "explanation": {
+          "en": "The caller controls request contents.",
+          "az": "Request məzmununu çağıran tərəf idarə edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A strict runtime schema rejects unknown fields and trusted context supplies the tenant.",
+          "az": "Strict runtime schema naməlum sahələri rədd edir və tenant etibarlı context-dən götürülür."
+        },
+        "explanation": {
+          "en": "Compile-time annotations do not validate hostile runtime input.",
+          "az": "Compile-time annotation-lar zərərli runtime input-u yoxlamır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A type assertion on request.json() proves tenant ownership.",
+          "az": "request.json() üzərində type assertion tenant ownership-i sübut edir."
+        },
+        "explanation": {
+          "en": "An assertion changes compiler assumptions, not runtime authority.",
+          "az": "Assertion runtime səlahiyyətini deyil, compiler-in fərziyyələrini dəyişir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Keep untrusted input separate from the authenticated actor and prevent mass assignment. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Etibarsız girişi authenticated istifadəçidən ayrı saxlayın və mass assignment-in qarşısını alın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "secure-api-coding",
+    "practiceOnly": true,
+    "sourceIds": [
+      "owasp-authorization",
+      "owasp-rest-security",
+      "http-semantics-9110",
+      "pkce-7636",
+      "github-webhook-validation"
+    ]
+  },
+  {
+    "id": "secure-api-coding-extra-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "In the lab, order version 1 is edited to version 2. A second update still expects version 1. What happens?",
+      "az": "Lab-da sifarişin 1-ci versiyası 2-ci versiyaya dəyişdirilir. İkinci update hələ 1-ci versiyanı gözləyir. Nə baş verir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The service silently merges the new quantity into version 2.",
+          "az": "Service yeni quantity-ni xəbərsiz 2-ci versiyaya birləşdirir."
+        },
+        "explanation": {
+          "en": "That bypasses the stale-update policy.",
+          "az": "Bu, stale update qaydasını keçmiş olur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The creation idempotency result is rewritten to match every later update.",
+          "az": "Yaratma əməliyyatının idempotency nəticəsi hər sonrakı update-ə uyğun yenidən yazılır."
+        },
+        "explanation": {
+          "en": "The recorded creation result is a snapshot, while GET returns current state.",
+          "az": "Qeyd olunmuş yaratma nəticəsi snapshot-dır, GET isə cari state-i qaytarır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The update fails with 412 and leaves the current quantity/version unchanged.",
+          "az": "Update 412 ilə uğursuz olur və cari quantity/version dəyişmir."
+        },
+        "explanation": {
+          "en": "A stale comparison must not apply part of the update.",
+          "az": "Köhnəlmiş müqayisə update-in heç bir hissəsini tətbiq etməməlidir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Optimistic locking prevents stale changes independently of preserving a creation operation's original response. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Optimistic locking yaratma əməliyyatının ilkin response-unu qorumaqdan müstəqil olaraq köhnəlmiş dəyişikliklərin qarşısını alır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "secure-api-coding",
+    "practiceOnly": true,
+    "sourceIds": [
+      "owasp-authorization",
+      "owasp-rest-security",
+      "http-semantics-9110",
+      "pkce-7636",
+      "github-webhook-validation"
+    ]
+  },
+  {
+    "id": "secure-api-coding-extra-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Which limitations of the coding lab matter? Select all that apply.",
+      "az": "Coding lab-ın hansı məhdudiyyətləri əhəmiyyətlidir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The supplied Principal must come from validated authentication in an actual adapter.",
+          "az": "Real adapter-də verilən Principal yoxlanmış authentication-dan gəlməlidir."
+        },
+        "explanation": {
+          "en": "The lab fixture is not a credential-verification implementation.",
+          "az": "Lab fixture credential verification implementation-ı deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Passing the unit tests proves a production payment integration cannot double-charge.",
+          "az": "Unit test-lərin keçməsi production payment integration-ın ikiqat ödəniş edə bilməyəcəyini sübut edir."
+        },
+        "explanation": {
+          "en": "Remote side effects and crash recovery are outside this model.",
+          "az": "Uzaqdakı side effect-lər və crash recovery bu modelin əhatəsində deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Because the lab is in TypeScript, runtime schema checks are unnecessary.",
+          "az": "Lab TypeScript-də olduğuna görə runtime schema yoxlamaları lazım deyil."
+        },
+        "explanation": {
+          "en": "Untrusted input still arrives at runtime.",
+          "az": "Etibarsız giriş yenə runtime-da daxil olur."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Its maps do not provide durable, cross-process transaction guarantees.",
+          "az": "Onun map-ləri durable, cross-process transaction zəmanəti vermir."
+        },
+        "explanation": {
+          "en": "A real multi-instance service needs the appropriate database boundary.",
+          "az": "Real multi-instance service üçün uyğun database sərhədi lazımdır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Tests demonstrate the model's invariants, not guarantees for boundaries the model does not implement. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Testlər modelin invariant-larını göstərir, modelin tətbiq etmədiyi sərhədlərə zəmanət vermir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "secure-api-coding",
+    "practiceOnly": true,
+    "sourceIds": [
+      "owasp-authorization",
+      "owasp-rest-security",
+      "http-semantics-9110",
+      "pkce-7636",
+      "github-webhook-validation"
+    ]
+  },
+  {
+    "id": "secure-api-coding-extra-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "api-engineering",
+    "difficulty": 3,
+    "text": {
+      "en": "Why does the in-process lab return structured copies of stored orders?",
+      "az": "In-process lab saxlanmış sifarişlərin structured copy-lərini niyə qaytarır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "To persist map contents across process restarts.",
+          "az": "Map məzmununu process yenidən başladıqda saxlamaq üçün."
+        },
+        "explanation": {
+          "en": "A copy remains in memory and does not add durability.",
+          "az": "Copy yaddaşda qalır və durability əlavə etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "To prevent callers from mutating stored state through returned object references.",
+          "az": "Çağıranların qaytarılan object reference-ləri vasitəsilə saxlanmış state-i dəyişməsinin qarşısını almaq üçün."
+        },
+        "explanation": {
+          "en": "An internal reference would permit state changes outside the service's checks.",
+          "az": "Daxili reference service-in yoxlamalarından kənar state dəyişikliklərinə imkan verər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "To turn an unverified JWT into a trusted Principal.",
+          "az": "Yoxlanmamış JWT-ni etibarlı Principal-a çevirmək üçün."
+        },
+        "explanation": {
+          "en": "Copying values does not verify authenticity or permission.",
+          "az": "Dəyərlərin kopyalanması authenticity və ya permission yoxlamır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Copying protects an in-process mutation boundary; it does not replace authentication or storage transactions. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Kopyalama in-process mutation sərhədini qoruyur; authentication və ya storage transaction-larını əvəz etmir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "secure-api-coding",
+    "practiceOnly": true,
+    "sourceIds": [
+      "owasp-authorization",
+      "owasp-rest-security",
+      "http-semantics-9110",
+      "pkce-7636",
+      "github-webhook-validation"
+    ]
+  }
+]

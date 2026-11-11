@@ -1,0 +1,105 @@
+{
+  "lexical": {
+    "total": 66,
+    "exact": 66
+  },
+  "agreement": {
+    "total": 50,
+    "correctClassification": 50,
+    "exact": 50
+  },
+  "challenge": {
+    "total": 14,
+    "exact": 14
+  },
+  "previousExactTextRegressions": [],
+  "caveat": "Correlated synthetic exercises and small authored development probes, not real-world accuracy",
+  "probes": [
+    {
+      "input": "maktablar yeni acildi",
+      "expected": "Məktəblər yeni açıldı.",
+      "actual": "Məktəblər yeni açıldı.",
+      "exact": true
+    },
+    {
+      "input": "maktablarda yeni dersler basladi",
+      "expected": "Məktəblərdə yeni dərslər başladı.",
+      "actual": "Məktəblərdə yeni dərslər başladı.",
+      "exact": true
+    },
+    {
+      "input": "Mən sənədi oxuyurlar.",
+      "expected": "Mən sənədi oxuyuram.",
+      "actual": "Mən sənədi oxuyuram.",
+      "exact": true
+    },
+    {
+      "input": "Biz məktubu göndərdi.",
+      "expected": "Biz məktubu göndərdik.",
+      "actual": "Biz məktubu göndərdik.",
+      "exact": true
+    },
+    {
+      "input": "Onlar layihəni tamamladım.",
+      "expected": "Onlar layihəni tamamladılar.",
+      "actual": "Onlar layihəni tamamladılar.",
+      "exact": true
+    },
+    {
+      "input": "Sən sabah hesabatı yoxlayacağam.",
+      "expected": "Sən sabah hesabatı yoxlayacaqsan.",
+      "actual": "Sən sabah hesabatı yoxlayacaqsan.",
+      "exact": true
+    },
+    {
+      "input": "Siz sənədi hazırladım.",
+      "expected": "Siz sənədi hazırladınız.",
+      "actual": "Siz sənədi hazırladınız.",
+      "exact": true
+    },
+    {
+      "input": "Mən məktubu göndərdim.",
+      "expected": "Mən məktubu göndərdim.",
+      "actual": "Mən məktubu göndərdim.",
+      "exact": true
+    },
+    {
+      "input": "Biz məktubu göndərmədik.",
+      "expected": "Biz məktubu göndərmədik.",
+      "actual": "Biz məktubu göndərmədik.",
+      "exact": true
+    },
+    {
+      "input": "Mən və sən məktubu göndərdik.",
+      "expected": "Mən və sən məktubu göndərdik.",
+      "actual": "Mən və sən məktubu göndərdik.",
+      "exact": true
+    },
+    {
+      "input": "`Mən sənədi oxuyurlar.`",
+      "expected": "`Mən sənədi oxuyurlar.`",
+      "actual": "`Mən sənədi oxuyurlar.`",
+      "exact": true
+    },
+    {
+      "input": "API cavabı JSON formatındadır.",
+      "expected": "API cavabı JSON formatındadır.",
+      "actual": "API cavabı JSON formatındadır.",
+      "exact": true
+    },
+    {
+      "input": "Onlar məktubu göndərdi.",
+      "expected": "Onlar məktubu göndərdi.",
+      "actual": "Onlar məktubu göndərdi.",
+      "exact": true
+    },
+    {
+      "input": "Mən bilirəm ki, sən məktubu oxuyursan.",
+      "expected": "Mən bilirəm ki, sən məktubu oxuyursan.",
+      "actual": "Mən bilirəm ki, sən məktubu oxuyursan.",
+      "exact": true
+    }
+  ],
+  "lexicalFailures": [],
+  "agreementFailures": []
+}

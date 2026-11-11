@@ -1,0 +1,101 @@
+---
+id: testing-postman-apis
+locale: az
+title: 'Postman ilə API testləri və mock'
+objectives:
+  - 'Faydalı Postman post-response assertion yaz.'
+  - 'API contract-dan mənfi və sərhəd hallarını seç.'
+  - 'Collection data, secret və mock fərziyyələrinə nəzarət et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Faydalı Postman post-response assertion yaz.
+- API contract-dan mənfi və sərhəd hallarını seç.
+- Collection data, secret və mock fərziyyələrinə nəzarət et.
+
+## Bu mövzu niyə vacibdir
+
+API-nin 200 qaytarması nəzərdə tutulan resource-u yaratdığını, permission yoxladığını və təkrar request-i düzgün idarə etdiyini sübut etmir. Postman exploratory və automated check-ləri təşkil edə bilər, amma assertion contract və müşahidə edilən biznes davranışını təsvir etməlidir.
+
+## Əsas anlayışlar
+
+Operation contract-dan başla: method, path, required header, authentication, input schema, gözlənilən status, response field və state effect. Collection işə düşməzdən əvvəl environment və fixture state qur. Qeydə alınmamış manual setup-a bağlı request-i təkrarlamaq çətindir.
+
+Post-response script adlı yoxlamalar üçün `pm.test`, assertion üçün `pm.expect` istifadə edə bilər. Structured body-ni yalnız contract elə deyirsə parse et. 204 response content daşımır; universal JSON parse yanlış testdir. Error response-u success qədər məqsədli test et.
+
+API dəstəkləyirsə missing credential, insufficient permission, cross-tenant access, yanlış type, boundary, missing/null field, duplicate operation və stale precondition daxil et. Gözlənilən status-u contract-dan çıxar; hər biznes xətası üçün universal status code uydurma.
+
+Məxfi olmayan konfiqurasiya üçün collection variable/environment, credential üçün uyğun secret handling istifadə et. Access token commit və həssas environment value export etmə. Debugging rahat olsun deyə private body-ni çap etmə. Təkrar icralar bir-birinin state-ini pozmasın deyə fixture identifier-lərini ayır.
+
+Mock server client development və failure araşdırması üçün sabit nümunə verə bilər. Real provider-in həmin nümunəni implement etdiyini və authorization yoxladığını təsdiqləmir. Contract, integration və state verification müvafiq real sərhəddə sübut tələb edir.
+
+Faydalı collection run yalnız ayrı response-ları yoxlamır. Operation-u icazəli read və ya uyğun müşahidə ilə izlə, duplicate-in ikinci effect yaratmadığını yoxla; yalnız icazəli fixture contract-da test data-sını təmizlə. Timing assertion nəzarət olunan workload tələb edir; bir response time performance percentile deyil.
+
+## İşlənmiş nümunə
+
+Nümunə orders endpoint uğurlu icazəli creation üçün 201 və JSON order representation müəyyən edir. Post-response script belə ola bilər:
+
+```javascript
+pm.test('Creates an order with the expected owner', function () {
+  pm.response.to.have.status(201);
+  const body = pm.response.json();
+  pm.expect(body.id).to.be.a('string').and.not.empty;
+  pm.expect(body.customerId).to.eql(pm.collectionVariables.get('customerId'));
+});
+```
+
+Bu, contract-a məxsus hissədir; bütün creation endpoint-lərinin bu field-ləri qaytardığı iddiası deyil. Ayrı mənfi halda yanlış amount ilə razılaşdırılmış error və order yaranmaması yoxlanır. Cross-tenant hal protected data-nın açılmadığını da yoxlamalıdır. Eyni check-i statik mock-a qarşı işlətmək yalnız mock sübutu verir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[Operation and state contract] --> F[Isolated fixtures and environment]\n F --> R[Request and response]\n R --> A[Named assertions]\n A --> S[Verify durable state effects]\n S --> E[Report evidence and limits]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Mock cross-tenant request üçün gözlənilən 403 qaytarır. Server authorization yoxlanıbmı?</summary>
+
+Xeyr. Mock qurulmuş davranışı qaytarır. Müvafiq sərhəddə nəzarətli tenant fixture-ləri ilə real server-side policy-ni sına; həm mutation-un rəddini, həm qorunan response data-sının olmamasını yoxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Məna və state olmadan yalnız status yoxlamaq.
+- 204 daxil bütün response-ları JSON parse etmək.
+- Paylaşılan environment faylında token export etmək.
+- Mock success-i provider compatibility sübutu saymaq.
+
+## Praktik tapşırıq
+
+Simulyasiya orders request-ləri göndərmək, response-lara baxmaq və tapşırığı yoxlamaq üçün [aşağıdakı API laboratoriyasını](#practice-lab) istifadə et. Contract panel fixture identity və limit-ləri göstərir.
+
+Idempotent create üçün üç request müəyyən et: ilk düzgün request, eyni operation-un təkrarı və key-in konfliktli reuse-u. Sənədləşdirilməmiş status code fərz etmədən response/state assertion yaz.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Razılaşdırılmış düzgün payload və operation key istifadə et. İlk nəticəni və contract üzrə yalnız bir entity yarandığını yoxla. Eyni scope-lu key/payload-u təkrarla və ikinci business effect olmadığını yoxla. Key-i mənaca fərqli payload-la işlədib contract-ın aydın conflict davranışını gözlə. Key scope və retention fərziyyəsini saxla; uyğun response body təkbaşına atomik deduplication sübut etmir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Contract → fixture → request → status/body/security assertion → state sübutu. Mock nəzarət olunan nümunədir; real server davranışı ayrıca yoxlanmalıdır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Postman: Write post-response scripts](https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/): pm.test, pm.expect və response assertion.
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): schema və operation contract.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): HTTP semantikası. Nümunələr credential saxlamır və production API çağırmır.

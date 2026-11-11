@@ -1,0 +1,87 @@
+---
+id: pspo2-portfolio-decisions
+locale: en
+title: 'Portfolio investment and product retirement'
+objectives:
+  - Compare the next investment using CV, UV, opportunity cost and delivery constraints.
+  - Separate sunk cost from future costs and benefits.
+  - Plan a feature or product retirement with affected customers.
+---
+
+## Learning objectives
+
+Make a defensible continue, explore, reduce or retire recommendation. Explain why neither today's revenue nor an attractive market estimate settles the decision alone.
+
+## Why it matters
+
+Keeping every product and feature alive consumes support, security and change capacity. Funding only today's winner can miss tomorrow's opportunity. Starting every promising initiative can fragment teams until none produces a useful result.
+
+## Core theory
+
+Current Value (CV) concerns value delivered today; Unrealized Value (UV) concerns the gap between the desired and current experience. UV is potential to investigate, not guaranteed revenue. Ability to Innovate (A2I) and Time-to-Market (T2M) expose whether the organization can act on an opportunity. The four areas are complementary, not a universal combined ranking.
+
+Compare **marginal investment**: what could the next unit of capacity achieve in each option? **Opportunity cost** is the benefit forgone from the best available alternative. **Sunk costs** have already been incurred and cannot be recovered by continuing. Future migration, contractual and support costs remain relevant even when past development spending does not justify continuation.
+
+Separate products may need different goals and backlogs. Multiple Scrum Teams on one product share the same Product Goal, Product Backlog and Product Owner. Scrum does not prescribe a Portfolio Owner, Portfolio Backlog, investment committee or mandatory budget cadence. Finance and stakeholders can contribute evidence and constraints; voting does not remove the PO's accountability for effective Product Backlog management.
+
+A mature product can deserve continued investment for reliability or a valuable underserved segment. A new opportunity can justify a bounded experiment rather than an immediate all-in transfer. Set evidence and reconsideration conditions before allocating scarce capacity. Portfolio percentages are context-dependent, not Scrum rules.
+
+Retirement can create value by reducing complexity and recurring cost, but low usage alone is insufficient. Check who depends on the capability, legal/contractual duties, alternatives, accessibility, migration effort and data retention. Communicate notice, provide a transition path and inspect harm. Hiding a feature leaves many operating costs intact; deleting it abruptly may damage trust.
+
+## Worked example
+
+A mature invoicing product has healthy renewal revenue and few unmet needs. A newer supplier service has little revenue but evidence of painful manual work. An obsolete export format in the mature product consumes support capacity, yet two customers use it for regulated reporting.
+
+Protect the mature product's essential service while testing the supplier need with limited capacity. Investigate a supported replacement for the export before announcing retirement. Compare future retained value, transition cost and recovered capacity. Neither “keep everything because we paid for it” nor “move everything to the new market” is justified by these observations alone.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n E[Current and unmet value] --> C[Compare next investment]\n C --> K[Continue or improve]\n C --> X[Bounded exploration]\n C --> R[Retire with transition]\n K --> O[Inspect outcomes and capacity]\n X --> O\n R --> O\n O --> E'
+  }
+/>
+
+Every branch returns to evidence. Retirement is an investment decision with costs, not simply a delete action.
+
+## Inspect a decision
+
+<details>
+<summary>Does high CV mean all remaining capacity should stay with the mature product?</summary>
+
+No. Compare the next improvement's likely benefit with the evidence and risk in other opportunities. Protect existing users while testing important unmet needs. High UV also does not authorize abandoning today's customers without a transition.
+
+</details>
+
+## Common mistakes
+
+- Treating yesterday's spending as the reason to keep spending.
+- Calling a large estimated market a validated customer outcome.
+- Ignoring the few users for whom an old feature is critical.
+- Funding too many initiatives without considering shared capacity and waiting time.
+
+## Practice exercise
+
+A rarely used report costs 20 support hours each month. Its replacement would take 40 hours, followed by 8 support hours per month. Identify the simplest cost comparison and three non-financial facts needed before deciding to retire it. All figures are hypothetical.
+
+## Worked solution
+
+<details>
+<summary>Show the reasoning</summary>
+
+The simplified saving is 12 support hours per month, so 40 hours is recovered in roughly 3.3 months, if all assumptions hold. This does not establish value or permission to retire. Check critical user needs, contractual/retention duties and the usability of the migration path. Include continuing platform costs and opportunity cost before allocating capacity. Past implementation effort is not part of the future saving calculation.
+
+</details>
+
+## Mini-quiz and cheat sheet
+
+Compare the next investment, not the size of past spending. CV is today's evidence; UV is an opportunity hypothesis. Consider A2I, T2M, scarce capacity and transition harm. Continue, explore and retire all require inspection.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): goals, experiments and four KVAs; adapted explanations CC BY-SA 4.0, Scrum.org.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): one product shared by multiple teams and Product Owner accountability.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): selected value, negative-value and multi-product capacity discussion, chapters 3 and 8.
+- [Kwestio](https://kwestio.jad2advisory.com/certifications/pspo-ii/practice) and [ExamDeck portfolio examples](https://examdeck.pro/pspo2-practice-questions/portfolio-planning): topic-gap inputs only. Economics, retirement plan and questions here are original supplementary teaching, not official exam rules.

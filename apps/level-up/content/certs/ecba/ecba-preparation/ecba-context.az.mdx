@@ -1,0 +1,75 @@
+---
+id: ecba-context
+locale: az
+title: 'Biznes analizi anlayışları və kontekst'
+objectives:
+  - 'Ssenaridə BACCM-in altı anlayışını və onların əlaqələrini göstər.'
+  - 'Biznes, maraqlı tərəf, həll və keçid tələblərini fərqləndir.'
+---
+
+## Əsas anlayış
+
+Biznes analizi dəyişiklik üçün ehtiyacı anlamağa və həmin şəraitdə dəyər verə bilən həll tövsiyə etməyə kömək edir. Analitik yalnız proqram tələbi yazan şəxs deyil: proses, qayda, xidmət, məlumat və təşkilati dəyişiklik də analiz oluna bilər. İş adı fərqli olan insanlar da biznes analizi tapşırıqlarını yerinə yetirə bilər. Bu dərs BABOK v3-ün anlayışlarını yeni tədris nümunələri ilə izah edir; cari imtahan proqramının surəti deyil.
+
+## Niyə vacibdir
+
+Maraqlı tərəf “mobil tətbiq istəyirik” deyəndə artıq həll variantı təqdim edir. Onun hansı problemi həll etməli olduğunu bilmədən yaxşı ekran hazırlamaq mümkündür, amma düzgün dəyişiklik etmək mümkün olmaya bilər. Ehtiyac, həll və dəyəri ayırmaq analitikə həm əsassız fərziyyəni görməyə, həm alternativləri müqayisə etməyə imkan verir. Dəyər yalnız pul deyil: təhlükəsizlik, etimad, daha rahat iş və riskin azalması da kontekstdən asılı olaraq dəyər ola bilər.
+
+## Nəzəriyyə və fərqlər
+
+BACCM altı əlaqəli anlayış verir: **ehtiyac**, **dəyişiklik**, **həll**, **maraqlı tərəf**, **dəyər** və **kontekst**. Bunlar prioritet siyahısı və ya ardıcıl altı mərhələ deyil. Ehtiyac problemdir və ya fürsətdir; dəyişiklik mövcud vəziyyətin çevrilməsidir; həll ehtiyacı müəyyən şəraitdə qarşılayan yoldur. Maraqlı tərəfin bu dəyişikliklə əlaqəsi var. Dəyər onun üçün nəyin faydalı olduğunu, kontekst isə qərarı başa düşmək üçün lazım olan şəraiti göstərir. Bir anlayış dəyişəndə digərləri yenidən yoxlanmalıdır.
+
+Tələblərin təsnifatı ayrıca baxışdır. **Biznes tələbi** dəyişiklik niyə lazımdır sualına cavab verir. **Maraqlı tərəf tələbi** müəyyən qrupun ehtiyacını göstərir. **Həll tələbi** funksional imkan və ya keyfiyyət şərti ola bilər. **Keçid tələbi** isə köhnə vəziyyətdən yenisinə keçmək üçün müvəqqəti ehtiyacdır. Məlumatın birdəfəlik köçürülməsi keçiddir; sonrakı gündəlik axtarış imkanı həll tələbi ola bilər. Tələb ehtiyacın, dizayn həllin təsviridir; bunlar analiz zamanı bir-birini dəqiqləşdirir.
+
+## İşlənmiş nümunə
+
+Şəbəkə klinikasında pasiyentlər rezervasiyanı bitirmək üçün tez-tez zəng edir. Sponsor yeni mobil tətbiq istəyir. Analitik əvvəl zənglərin səbəbini araşdırır: mövcud saytda boş vaxtlar düzgün görünmür, bəzi pasiyentlər isə telefonla dəstəyi seçir.
+
+Ehtiyac rezervasiyanı etibarlı tamamlamaqdır. Dəyişiklik özünəxidmət və qəbul prosesinin yenilənməsi ola bilər. Həll variantlarına mövcud saytın düzəldilməsi, əməkdaş üçün alət və yeni tətbiq daxildir. Pasiyent, qəbul əməkdaşı və xidmət sahibi maraqlı tərəfdir. Kontekstə filialların fərqli iş vaxtı və məxfilik qaydaları daxildir. Dəyəri yalnız tətbiqin yüklənməsi ilə deyil, uğurlu rezervasiya və təkrar zənglərlə yoxlamaq daha faydalıdır. Bu ölçülər ssenari seçimidir, BABOK-un məcburi KPI-ları deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n A["Need: reliable booking"] --> B["Change: booking service"]\n B --> C["Options: site, staff tool, app"]\n D["Patients and reception"] --> A\n E["Context: branch hours and privacy"] --> C\n C --> F["Value: successful bookings"]\n F --> A'
+  }
+/>
+
+Model bu ssenaridəki sualların əlaqəsini göstərir. Məqsəd bir cavabı əvvəlcədən doğru elan etmək deyil; həll variantını ehtiyac və dəyər sübutu ilə yoxlamaqdır.
+
+## Qərar məşqi
+
+Sponsor “tətbiq artıq seçilib, araşdırma lazım deyil” deyir. İki cavabı müqayisə et: dərhal ekran siyahısı yazmaq, yaxud qərarın əsasını və məhdudiyyətini aydınlaşdırıb ehtiyacı yoxlamaq. İkinci yanaşma daha faydalıdır: qərarın həqiqətən dəyişməz olub-olmadığını öyrən, həllin həll etməli olduğu problemi müəyyən et və onun uğur meyarını razılaşdır. Məhdudiyyətə hörmət etmək həmin həllin dəyərini sübutsuz qəbul etmək demək deyil.
+
+## Səhvlər və düzgün yanaşma
+
+- Tələb olunan funksiyanı avtomatik biznes ehtiyacı sayma; onun niyə lazım olduğunu araşdır.
+- Dəyəri yalnız sponsorun maliyyə baxışından qiymətləndirmə; təsirlənən qrupları da dinlə.
+- BACCM anlayışlarını layihə mərhələlərinə çevirmə.
+- Daimi keyfiyyət tələbini müvəqqəti keçid işi ilə qarışdırma.
+- Dizayn qərarının yeni ehtiyac və risk yarada biləcəyini unutma.
+
+## Tətbiq tapşırığı və izahlı həll
+
+**Tapşırıq:** Bu dörd ifadəni təsnif et: “təkrar zəngləri azaltmaq”, “qəbul əməkdaşı boş saatı görməlidir”, “sistem eyni saatı iki pasiyentə verməsin”, “mövcud rezervasiyalar bir dəfə köçürülsün”. Sonra yeni tətbiq tələb etmədən bir alternativ təklif et.
+
+**İzahlı həll:** Birincisi biznes nəticəsi, ikincisi maraqlı tərəf ehtiyacı, üçüncüsü funksional həll tələbi, dördüncüsü müvəqqəti keçid tələbidir. Mövcud saytın vaxt məlumatını düzəltmək mümkün alternativdir. Bunun daha yaxşı olduğunu hələ bilmirik: qiymət, risk, istifadəçi təsiri və məhdudiyyətlər barədə sübut lazımdır.
+
+## Mini-quiz
+
+Sualları cavablandırarkən əvvəl hansı anlayışın soruşulduğunu tap. Ssenaridə olmayan hüquqi qayda və ya təşkilati səlahiyyəti özündən əlavə etmə.
+
+<LessonCheck />
+
+## Xülasə
+
+Ehtiyac “niyə”, həll “hansı yol”, dəyər “kimə nə fayda”, kontekst “hansı şərait” sualını açır. Dəyişiklik və maraqlı tərəflər bunlarla birlikdə düşünülür. Tələb növü onun cümlədəki yerinə görə deyil, məqsədinə görə seçilir.
+
+## Mənbələr və əhatə
+
+BABOK Guide v3, 2015: §1.2–1.3, səh. 2; §2.1–2.5, səh. 12–20. Səhifələr kitabın çap nömrələridir. Cari ECBA imtahan proqramı ayrıca IIBA mənbələri ilə yoxlanmalıdır.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Yüklənmiş üzv PDF-i saytda yayımlanmır. Buradakı suallar orijinal tədris məşqidir və rəsmi imtahan sualları deyil.

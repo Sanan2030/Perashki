@@ -1,0 +1,96 @@
+---
+id: api-resilience-observability
+locale: az
+title: 'API timeout, retry, circuit breaker və müşahidəolunma'
+objectives:
+  - 'End-to-end zaman büdcəsini cəhdlər və downstream çağırışları arasında böl.'
+  - 'Keçici xətada retry-ni nasaz dependency circuit-ini açmaqdan fərqləndir.'
+  - 'Credential və şəxsi payload yazmadan istifadəçi təsirini izah edən telemetry seç.'
+---
+
+## Öyrənmə məqsədləri
+
+- End-to-end zaman büdcəsini cəhdlər və downstream çağırışları arasında böl.
+- Keçici xətada retry-ni nasaz dependency circuit-ini açmaqdan fərqləndir.
+- Credential və şəxsi payload yazmadan istifadəçi təsirini izah edən telemetry seç.
+
+## Bu mövzu niyə vacibdir
+
+Tətbiqin istifadəçiyə cavab büdcəsi iki saniyədir. Gateway, orders service və payment client hərəsi iki saniyəlik timeout ilə üç dəfə müstəqil retry edir. Call graph request-ləri çoxalda, resursları istifadəçi büdcəsindən artıq saxlaya bilər. Daha çox retry qismən outage-i ağırlaşdıra bilər. Recovery policy operation semantikası və tutumla birlikdə layihələndirilməlidir.
+
+## Əsas anlayışlar
+
+Timeout caller-in nə qədər gözlədiyini məhdudlaşdırır; callee-nin commit etmədiyini sübut etmir. Dəstəkləndikdə deadline-ı ötür, response emalına vaxt saxla, downstream cəhdlərin qalan büdcəyə sığmasını təmin et. Yerli request-i abort etmək başlamış remote işi avtomatik dayandırmır.
+
+Yalnız xəta keçici ola bilərsə və operation contract replay-ə təhlükəsiz icazə verirsə retry et. Yanlış input və çatışmayan permission təkrarla düzəlmir. Naməlum payment outcome nəzarətsiz yeni göndəriş deyil, operation identity və reconciliation tələb edir. Provider-in Retry-After və ya throttling policy-si vaxt seçiminə təsir edir; ümumi caller deadline-ını pozmağa icazə vermir.
+
+Exponential backoff cəhdlərarası gecikməni artırır. Jitter client retry-lərini yayır ki, hamısı eyni anda qayıtmasın. Maksimum cəhd, ümumi vaxt, hər cəhd üçün deadline və ortaq retry sahibi müəyyən et. Daxili library artıq retry edə bilər; xarici loop əlavə etməzdən əvvəl mövcud policy-ləri inventarlaşdır.
+
+Circuit breaker dependency-nin son xətalarını izləyir. Closed normal çağırışa icazə verir. Open dependency bərpa olunarkən çağırışı tez rədd edir və ya degraded nəticə verir. Half-open az sayda probe-a icazə verir; uğurlu probe breaker-i bağlaya, uğursuz probe yenidən aça bilər. Breaker dependency-ni təmir etmir; resurs tutumunu qoruyur və ehtimal olunan təkrar xətaları məhdudlaşdırır.
+
+Bulkhead resursları ayırır ki, ləng recommendation service checkout-a lazım olan connection-ları tükətməsin. Graceful degradation dürüst olmalıdır: recommendation panel-in əlçatmaz olduğunu göstərmək məqbul ola bilər; sübut olmadan payment-i uğurlu göstərmək olmaz.
+
+Observability texniki simptomu biznes operation-la bağlayır. Faydalı siqnallar request həcmi, error rate, latency percentile-ları, saturation, orijinal operation-a düşən retry, breaker state, queue age və pending business outcome-lardır. Trace/correlation identifier işi sərhədlər arasında bağlayır; authentication credential-ı deyil. Bearer token, refresh token, session cookie və tam həssas request body-ni log-a yazma. Telemetry üçün sampling, access control və retention müəyyən et.
+
+## İşlənmiş nümunə
+
+Nümunə büdcə 2 000 ms-dir. Xidmət yerli işə və response serialization-a 200 ms saxlayır; downstream üçün maksimum 1 800 ms qalır. Bir 700 ms cəhd, məhdud random gecikmə və qalan deadline-a sığan son cəhd mümkün seçimdir. Dəqiq dəyərlər ölçülmüş latency və dependency davranışı tələb edir; nümunə universal retry policy deyil.
+
+Downstream operation replay-safe deyilsə və ya büdcə çatmırsa, məcburi yeni çağırış əvəzinə failure və ya sənədləşdirilmiş pending nəticə qaytar. Circuit open-dırsa, dürüst degraded experience və ya uyğun failure göstər. Orijinal business operation-u bir dəfə, cəhdləri ayrıca say ki, retry transaction həcmini şişirtməsin.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Original operation and deadline"] --> B{"Circuit permits call?"}\n B -->|No| C["Truthful failure or degradation"]\n B -->|Yes| D["Bounded attempt"]\n D --> E{"Transient and safe with budget?"}\n E -->|Yes| F["Backoff with jitter"]\n F --> D\n E -->|No| G["Return outcome or reconcile"]'
+  }
+/>
+
+Retry semantikaya, dependency state-inə və qalan vaxta bağlıdır. Hər exception ətrafında sabit loop deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Payment çağırışı timeout olur və circuit açılır. Bu, payment-in uğursuz olduğunu sübut edirmi?</summary>
+
+Xeyr. Timeout və breaker state caller-in dependency ilə əlaqəsini təsvir edir, əsas payment state-ini yox. Operation identity-ni saxla və nəticəni reconcile et. Yetərli sübut olmadan müştəriyə nə “ödənilib”, nə də “pul tutulmayıb” de.
+
+</details>
+
+## Tipik səhvlər
+
+- Hər layer-də retry outage zamanı işi çoxaldır.
+- Yalnız mean latency istifadə etmək istifadəçi gözləntisini pozan tail request-ləri gizlədir.
+- Correlation ID-ni caller identity sübutu saymaq spoofing fərziyyəsinə yol açır.
+- Limitsiz queue outage-i həll etmək əvəzinə gecikmiş işə və memory pressure-a çevirir.
+- Retry-ni yalnız ani xətada test etmək slow call, lost response və qismən commit-i buraxır.
+
+## Praktik tapşırıq
+
+Shipping API overload üçün 429 qaytarır və bəzən label request-i qəbul etdikdən sonra timeout olur. UI büdcəsi üç saniyədir. Retry/breaker policy, istifadəçinin gördüyü pending state və beş telemetry siqnalı təklif et. Dependency-nin dərhal fail etmək əvəzinə ləngidiyi load test daxil et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Üç saniyəlik ümumi büdcə və yerli emala vaxt saxlayan bir retry sahibi seç. Sənədləşdirilmiş throttling və Retry-After-a yalnız icazəli retry qalan büdcəyə sığdıqda əməl et. Provider dəstəkləyirsə, sabit label operation identity-ni təkrar istifadə et; başqa label almaq əvəzinə qəbul edilmiş, amma outcome-u naməlum nəticəni reconcile et.
+
+Ölçülmüş failure/overload policy-yə görə breaker-i aç, məhdud recovery probe-a icazə ver, shipping resurslarını əlaqəsiz request-lərdən ayır. Biznes contract dəstəkləyirsə dürüst “label hazırlanır/təsdiq gözlənilir” state göstər. Latency percentile, request/attempt sayını, 429 rate-i, pending operation yaşını və breaker keçidlərini izlə. Slow response, recovery probe, paralel retry, queue pressure və client timeout-dan sonrakı tamamlanmanı sına. Threshold-lar universal constant deyil, sübutla əsaslanan məhsul/əməliyyat qərarıdır.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Timeout ≠ remote failure. Retry = keçici xəta + replay-safe operation + qalan büdcə. Backoff + jitter + məhdud cəhd eyniandakı overload-u azaldır. Circuit breaker ehtimal olunan failure-da tez dayanır və recovery-ni yoxlayır. Orijinal operation-u cəhdlərdən ayrı ölç. Dürüst biznes state-ini çaşdırıcı success ekranına qurban vermə.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Microsoft Retry pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry): strategiya, performance, idempotency və nested retry.
+- [Microsoft Circuit Breaker](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker): closed/open/half-open state və recovery.
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): Bulkhead və kommunikasiya.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): method semantikası və Retry-After.
+
+Büdcə, telemetry seçimi və threshold nümunələri orijinal operational design tövsiyəsidir. Onları workload sübutu ilə təsdiqlə.

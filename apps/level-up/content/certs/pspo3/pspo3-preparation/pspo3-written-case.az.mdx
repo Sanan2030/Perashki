@@ -1,0 +1,77 @@
+---
+id: pspo3-written-case
+locale: az
+title: 'Məhsul ssenarisini əsaslandır'
+objectives:
+  - 'Kontekstdən yoxlamaya qədər əsaslandırılmış məhsul cavabı yaz.'
+  - 'Alternativin qiymətini və qeyri-müəyyənliyi açıq göstər.'
+---
+
+## Anlayış
+
+Bu dərs yazılı məhsul mühakiməsi məşqidir, rəsmi qiymətləndirmə rubrikası deyil. Güclü cavab mövcud faktı, fərziyyəni və çatışmayan məlumatı ayırır. EBM 2024-ə görə funksiya buraxmaq istifadəçi nəticəsi deyil; əvvəl hansı qrup üçün hansı nəticənin dəyərli olduğunu aydınlaşdır. Məsələn, satıcının uzlaşdırma işini bitirməsi funksiyadan daha mənalı nəticə ola bilər.
+
+## Niyə vacibdir
+
+Cavabda ən az iki real seçim və onların qiymətini müqayisə et. Kitabın 7-ci fəslindəki dəyər, risk, ölçü və asılılıqlar bu müzakirəyə kömək edir. Konkret tövsiyə ver: hansı işi indi, hansını sonra, niyə? Product Owner sıralamaya hesabatlı qalır, Developers ölçü və texniki plan barədə qərarlara sahibdir. Əməkdaşlığı təsvir etmək qərarsızlıq demək deyil.
+
+## Qərar qaydaları
+
+Sonda yoxlama planı yaz: başlanğıc ölçü, gözlənilən nəticə, müddət, zərər sərhədi və qərarı dəyişən fakt. Rəqəm yoxdursa uydurma; hansı məlumatı necə əldə edəcəyini de. Bu struktur bizim tədris vasitəmizdir. Cavabın uzunluğu və texniki termin sayı özlüyündə yaxşı mühakimə demək deyil.
+
+### Variantın qiymətini konkretləşdir
+
+Sadəcə “ən dəyərli işi edərəm” yazmaq əvəzinə hansı istifadəçi nəticəsinin dəyişəcəyini, hansı riskin azaldığını və hansı alternativdən imtina etdiyini göstər. Hüquqi tələb və ya ciddi keyfiyyət riski varsa qərarı yalnız gözlənilən gəlirlə izah etmə. Məlum olmayan müqavilə tarixini və ya imtahan qaydasını uydurma; təsdiqləməli məlumat kimi qeyd et. Son cümlədə yeni sübutun qərarı hansı istiqamətdə dəyişəcəyini göstərmək əsaslandırmanı yoxlanıla bilən edir. Bu yazı quruluşu yerli tədris rubrikasıdır, Scrum.org qiymətləndiricisinin gizli meyarı deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n  A["Məqsəd"] --> B["Sübut və seçim"]\n  B --> C["Kiçik addım"]\n  C --> D["Yoxla və uyğunlaşdır"]\n  D --> B'
+  }
+/>
+
+Bu model tədris xülasəsidir; mənbənin şəklinin surəti deyil.
+
+## Praktik vəziyyət
+
+Ödəniş məhsulu bütün funksiyaları buraxır, amma satıcıların məhsulda qalması azalır. Komanda daha böyük hesabat paneli təklif edir.
+
+## Qərarın əsaslandırılması
+
+Paneli dərhal böyütmə. Ayrılan satıcılarla ehtiyacı araşdır, uzlaşdırma çətinliyi kimi yoxlanılan fərziyyə seç və kiçik həllin təsirini müqayisə et. Saxlanma və əməliyyat səhvlərini birlikdə izlə. Qərarı real nəticə ilə yenilə.
+
+## Yayılmış səhvlər
+
+Ssenaridə olmayan faktı əminliklə əlavə etmək; alternativ verməmək; “komanda ilə danışaram” deyib qərar və yoxlama planını yazmamaq.
+
+## Tətbiq məşqi
+
+Ssenariyə 150–250 sözlə cavab yaz. Fakt, seçim, qərar və yoxlama cümlələrini ayrıca işarələ. Bu söz aralığı yalnız məşq üçündür.
+
+## İzahlı həll
+
+<details>
+<summary>İzahlı həlli aç</summary>
+
+Mümkün cavab: məlum fakt saxlanmanın azalmasıdır. Səbəb hələ fərziyyədir. Tam panel və kiçik uzlaşdırma təkmilləşdirməsi müqayisə edilir. Əvvəl problemi təsdiqləyən kiçik araşdırma seçilir. Sonra eyni seqmentin saxlanması və səhvləri ilə təsir yoxlanır; sübut təsdiqləməzsə yanaşma dəyişir.
+
+</details>
+
+## Özünü yoxla və yadda saxla
+
+Fakt → alternativ → əsaslandırılmış qərar → yoxlama. Məlum olmayanı açıq de.
+
+<ConceptStepper />
+
+## Mənbələr və əhatə
+
+EBM 2024: Understanding What is Valuable və Experiment Loop, səh. 5–7. Kitab: fəsil 7. Scrum Guide: Product Owner.
+
+- [Evidence-Based Management Guide — Scrum.org (2024)](https://www.scrum.org/resources/evidence-based-management-guide)
+- [The Scrum Guide — Ken Schwaber & Jeff Sutherland (November 2020)](https://scrumguides.org/scrum-guide.html)
+- [The Professional Product Owner — Don McGreal & Ralph Jocham (2018), ISBN 9780134686479](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Rəsmi test sualları köçürülməyib. İmtahan formatı ayrıca yoxlanır; bu mövzu bölgüsü rəsmi blueprint deyil.
+
+Əlavə əhatə mənbəyi: [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies). İstifadəçinin göndərdiyi mətn oxunub; kompetensiya siyahısı rəsmi imtahan çəkilərini müəyyən etmir.

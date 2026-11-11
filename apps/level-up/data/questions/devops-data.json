@@ -1,0 +1,2953 @@
+[
+  {
+    "id": "devops-linux-git-networking-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A release points to commit abc123, but a health request still reports the previous artifact digest. What should you verify next?",
+      "az": "Release abc123 commit-inə istinad edir, amma health request köhnə artifact digest-i göstərir. Sonra nəyi yoxlamalısan?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Only whether the Git branch name is main.",
+          "az": "Yalnız Git branch adının main olmasını."
+        },
+        "explanation": {
+          "en": "A branch can point to new source while an older artifact still runs.",
+          "az": "Köhnə artifact işləyərkən branch yeni source-a yönələ bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Whether a local text editor has reloaded the source.",
+          "az": "Yerli text editor-un source-u yenidən yükləməsini."
+        },
+        "explanation": {
+          "en": "Editor state does not identify the remote serving process.",
+          "az": "Editor state remote request-i cavablayan prosesi müəyyən etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The artifact deployed and the process actually serving the request.",
+          "az": "Yerləşdirilmiş artifact-ı və request-i həqiqətən cavablayan prosesi."
+        },
+        "explanation": {
+          "en": "A commit reference alone does not establish runtime identity.",
+          "az": "Commit istinadı runtime identity-ni təkbaşına təsdiqləmir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Trace source revision, built artifact identity, deployment and the running process as separate pieces of evidence.",
+      "az": "Source revision, build artifact-ı, deployment və işləyən prosesi ayrı sübut kimi izlə."
+    },
+    "lessonId": "devops-linux-git-networking",
+    "practiceOnly": true,
+    "sourceIds": ["git-branching", "linux-user-commands", "http-semantics-9110"]
+  },
+  {
+    "id": "devops-linux-git-networking-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A service responds locally on its port, but its public hostname cannot be resolved. Which layer has the clearest initial failure evidence?",
+      "az": "Xidmət yerli port-da cavab verir, amma public hostname resolve olunmur. İlkin xəta sübutu ən aydın hansı layer-dədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "DNS resolution for the public hostname.",
+          "az": "Public hostname üçün DNS resolution-da."
+        },
+        "explanation": {
+          "en": "The observed failure occurs before an HTTP connection to the public service can be made.",
+          "az": "Müşahidə edilən xəta public xidmətlə HTTP connection-dan əvvəl yaranır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The business database transaction.",
+          "az": "Business DB transaction-da."
+        },
+        "explanation": {
+          "en": "No database evidence has been provided.",
+          "az": "DB barədə sübut verilməyib."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The Git merge strategy.",
+          "az": "Git merge strategiyasında."
+        },
+        "explanation": {
+          "en": "A merge strategy cannot be inferred from a name-resolution failure.",
+          "az": "Name resolution xətasından merge strategiyası çıxarıla bilməz."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Investigate the failing layer first. A local response does not establish public DNS, routing or TLS behavior.",
+      "az": "Əvvəl nasaz layer-i araşdır. Yerli response public DNS, routing və ya TLS davranışını təsdiqləmir."
+    },
+    "lessonId": "devops-linux-git-networking",
+    "practiceOnly": true,
+    "sourceIds": ["git-branching", "linux-user-commands", "http-semantics-9110"]
+  },
+  {
+    "id": "devops-linux-git-networking-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO observations are useful read-only evidence when diagnosing a service that may be listening on the wrong port?",
+      "az": "Yanlış port-da dinləyə bilən xidməti diaqnostika edərkən hansı İKİ müşahidə faydalı read-only sübutdur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Inspect listening sockets and compare the bind address with expected routing.",
+          "az": "Listening socket-ləri yoxlamaq və bind address-i expected routing ilə müqayisə etmək."
+        },
+        "explanation": {
+          "en": "A loopback-only listener may not be reachable through the intended network path.",
+          "az": "Yalnız loopback-də dinləyən proses intended network path ilə əlçatmaz ola bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Print all environment variables into a shared log.",
+          "az": "Bütün environment variable-ları ortaq log-a yazmaq."
+        },
+        "explanation": {
+          "en": "That can expose credentials and is not a targeted diagnostic.",
+          "az": "Bu, credential ifşa edə bilər və fokuslu diaqnostika deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Delete the deployment before collecting evidence.",
+          "az": "Sübut toplamadan deployment-i silmək."
+        },
+        "explanation": {
+          "en": "Destructive mutation loses useful evidence and is not a read-only observation.",
+          "az": "Dağıdıcı dəyişiklik sübutu itirir və read-only müşahidə deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Inspect the process and its effective startup configuration.",
+          "az": "Prosesi və onun real startup konfiqurasiyasını yoxlamaq."
+        },
+        "explanation": {
+          "en": "This can identify the running executable and configured port.",
+          "az": "Bu, işləyən executable və configured port-u müəyyən edə bilər."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Collect targeted process and socket evidence without dumping secrets or changing the service.",
+      "az": "Secret-ləri çap etmədən və xidməti dəyişmədən hədəfli process/socket sübutu topla."
+    },
+    "lessonId": "devops-linux-git-networking",
+    "practiceOnly": true,
+    "sourceIds": ["git-branching", "linux-user-commands", "http-semantics-9110"]
+  },
+  {
+    "id": "devops-linux-git-networking-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "An HTTP readiness endpoint returns 200. What conclusion is justified from that response alone?",
+      "az": "HTTP readiness endpoint 200 qaytarır. Yalnız bu cavabdan hansı nəticə çıxarmaq olar?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Every customer payment workflow is working.",
+          "az": "Bütün customer payment workflow-ları işləyir."
+        },
+        "explanation": {
+          "en": "A health endpoint may not cover the complete business transaction.",
+          "az": "Health endpoint tam business transaction-u yoxlamaya bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The current branch was built and deployed without dependency changes.",
+          "az": "Cari branch dependency dəyişmədən build/deploy olunub."
+        },
+        "explanation": {
+          "en": "The status code does not establish build provenance.",
+          "az": "Status code build provenance-i təsdiqləmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "That endpoint returned a successful HTTP response at the observed time.",
+          "az": "Həmin endpoint müşahidə anında uğurlu HTTP cavabı qaytarıb."
+        },
+        "explanation": {
+          "en": "The observation is specific to the requested endpoint and time.",
+          "az": "Müşahidə konkret endpoint və vaxta aiddir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Distinguish a transport/application check from runtime provenance and an end-to-end business outcome.",
+      "az": "Transport/application yoxlamasını runtime provenance və end-to-end business outcome-dan ayır."
+    },
+    "lessonId": "devops-linux-git-networking",
+    "practiceOnly": true,
+    "sourceIds": ["git-branching", "linux-user-commands", "http-semantics-9110"]
+  },
+  {
+    "id": "devops-docker-containers-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "The tag app:latest points to different bytes today than yesterday. Which reference better identifies the exact selected image content?",
+      "az": "app:latest tag-i bu gün dünəndən fərqli byte-lara yönəlir. Seçilmiş image məzmununu hansı istinad daha dəqiq müəyyən edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The directory name of the source checkout.",
+          "az": "Source checkout qovluğunun adı."
+        },
+        "explanation": {
+          "en": "A source directory does not identify the image bytes.",
+          "az": "Source directory image byte-larını müəyyən etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A reviewed image digest.",
+          "az": "Yoxlanmış image digest."
+        },
+        "explanation": {
+          "en": "The digest identifies content rather than a mutable name.",
+          "az": "Digest dəyişən adı deyil, məzmunu müəyyən edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The same latest tag written in uppercase.",
+          "az": "Eyni latest tag-in böyük hərflə yazılması."
+        },
+        "explanation": {
+          "en": "Changing case does not create an immutable content identity.",
+          "az": "Hərf ölçüsünü dəyişmək dəyişməz content identity yaratmır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "A digest identifies bytes, but still needs a trusted build, review and update process.",
+      "az": "Digest byte-ları müəyyən edir, amma trusted build, review və update prosesi yenə lazımdır."
+    },
+    "lessonId": "devops-docker-containers",
+    "practiceOnly": true,
+    "sourceIds": ["docker-build-practices"]
+  },
+  {
+    "id": "devops-docker-containers-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A secret is copied into an image in one layer and deleted in a later layer. What is the main problem?",
+      "az": "Secret image-in bir layer-inə köçürülür, sonrakı layer-də silinir. Əsas problem nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The secret becomes safe because the final directory listing omits it.",
+          "az": "Son directory listing-də olmadığı üçün secret təhlükəsiz olur."
+        },
+        "explanation": {
+          "en": "Final filesystem visibility is not the same as absence from image history.",
+          "az": "Son filesystem-də görünməmək image tarixçəsində olmamaq deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The image digest automatically encrypts every layer.",
+          "az": "Image digest hər layer-i avtomatik encrypt edir."
+        },
+        "explanation": {
+          "en": "A digest is a content identifier, not encryption.",
+          "az": "Digest content identifier-dir, encryption deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The secret can remain in earlier image-layer content.",
+          "az": "Secret əvvəlki image layer məzmununda qala bilər."
+        },
+        "explanation": {
+          "en": "A later deletion does not erase previously built layer data.",
+          "az": "Sonrakı deletion əvvəlki layer data-sını silmir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Keep secrets out of image layers and use appropriate build/runtime secret mechanisms rather than copying and deleting them.",
+      "az": "Secret-i layer-dən kənarda saxla; köçürüb silmək əvəzinə uyğun build/runtime secret mexanizmi seç."
+    },
+    "lessonId": "devops-docker-containers",
+    "practiceOnly": true,
+    "sourceIds": ["docker-build-practices"]
+  },
+  {
+    "id": "devops-docker-containers-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO choices support a smaller and more controlled runtime image?",
+      "az": "Hansı İKİ seçim kiçik və daha nəzarətli runtime image yaradır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Run under a suitable non-root identity with only required permissions.",
+          "az": "Yalnız lazım olan permission-la uyğun non-root identity altında işləmək."
+        },
+        "explanation": {
+          "en": "Reduced runtime privilege limits the effect of a compromise.",
+          "az": "Az runtime privilege komprometasiya təsirini məhdudlaşdırır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Include the entire home directory to preserve convenience files.",
+          "az": "Rahatlıq faylları qalsın deyə bütün home directory-ni daxil etmək."
+        },
+        "explanation": {
+          "en": "That broadens image contents and may include sensitive data.",
+          "az": "Bu, image məzmununu genişləndirir və həssas data daxil edə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat the container writable layer as durable database storage.",
+          "az": "Container writable layer-ini durable DB storage saymaq."
+        },
+        "explanation": {
+          "en": "Container replacement can discard that state; storage needs a separate contract.",
+          "az": "Container replacement həmin state-i ata bilər; storage ayrıca contract tələb edir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Use a build stage and copy only required runtime output into the final stage.",
+          "az": "Build stage istifadə edib final stage-ə yalnız lazım runtime output köçürmək."
+        },
+        "explanation": {
+          "en": "Multi-stage builds can omit build tools and intermediate files.",
+          "az": "Multi-stage build build alətləri və intermediate faylları kənarda saxlaya bilər."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Minimize runtime contents and privilege. Durable data and secrets require deliberate external management.",
+      "az": "Runtime məzmunu və privilege-i azalt. Durable data/secret məqsədli external idarə tələb edir."
+    },
+    "lessonId": "devops-docker-containers",
+    "practiceOnly": true,
+    "sourceIds": ["docker-build-practices"]
+  },
+  {
+    "id": "devops-docker-containers-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A build uses --no-cache with a mutable base-image tag. Does this alone guarantee the newest base image is fetched?",
+      "az": "Build dəyişən base image tag ilə --no-cache istifadə edir. Bu, ən yeni base image-in yüklənməsinə təkbaşına zəmanətdirmi?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Yes; the tag itself cannot change.",
+          "az": "Bəli; tag özü dəyişə bilməz."
+        },
+        "explanation": {
+          "en": "Tags can be updated to point at different content.",
+          "az": "Tag başqa content-ə yönəldilə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "No; pulling the base image is a separate concern, such as using --pull.",
+          "az": "Xeyr; --pull kimi base image pull ayrıca məsələdir."
+        },
+        "explanation": {
+          "en": "Ignoring build cache and fetching a newer base are different operations.",
+          "az": "Build cache-i keçmək və yeni base yükləmək ayrı əməliyyatdır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Yes; no-cache is a guarantee about remote tag freshness.",
+          "az": "Bəli; no-cache remote tag freshness zəmanətidir."
+        },
+        "explanation": {
+          "en": "The option does not by itself establish a new base pull.",
+          "az": "Bu option təkbaşına yeni base pull-u təsdiqləmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Understand cache invalidation and base-image resolution separately; prefer a reviewed identity and intentional updates.",
+      "az": "Cache invalidation və base image resolution-u ayrı anla; yoxlanmış identity və məqsədli update seç."
+    },
+    "lessonId": "devops-docker-containers",
+    "practiceOnly": true,
+    "sourceIds": ["docker-build-practices"]
+  },
+  {
+    "id": "devops-ci-cd-artifacts-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "Tests pass on artifact A. A release job rebuilds from the same commit with floating dependencies and produces artifact B. Which statement is accurate?",
+      "az": "Test A artefaktında keçir. Release job eyni commit-i floating dependency-lərlə yenidən build edib B yaradır. Hansı fikir düzgündür?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The test evidence for A does not automatically establish B behaves identically.",
+          "az": "A-nın test sübutu B-nin eyni davranışını avtomatik təsdiqləmir."
+        },
+        "explanation": {
+          "en": "A rebuild can resolve different dependencies or use a different environment.",
+          "az": "Rebuild fərqli dependency və ya environment seçə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The commit hash proves A and B contain identical bytes.",
+          "az": "Commit hash A/B-nin eyni byte saxladığını sübut edir."
+        },
+        "explanation": {
+          "en": "Source identity alone does not determine every build input.",
+          "az": "Source identity bütün build input-larını təkbaşına müəyyən etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Renaming B to A restores the original test evidence.",
+          "az": "B-ni A adlandırmaq əvvəlki test sübutunu bərpa edir."
+        },
+        "explanation": {
+          "en": "An artifact name cannot substitute for content and provenance.",
+          "az": "Artefakt adı content və provenance-i əvəz etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Promote the tested immutable artifact where feasible, or validate the new artifact explicitly.",
+      "az": "Mümkündürsə test edilmiş immutable artifact-ı irəlilət və ya yenisini açıq validate et."
+    },
+    "lessonId": "devops-ci-cd-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["github-actions-secure-use", "docker-build-practices"]
+  },
+  {
+    "id": "devops-ci-cd-artifacts-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A privileged job checks out and executes a forked pull request while deployment credentials are available. What is the primary trust problem?",
+      "az": "Səlahiyyətli job deployment credential-ları açıqkən fork PR-ı checkout edib işlədir. Əsas trust problemi nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Tests ran before the deployment step.",
+          "az": "Testlər deployment addımından əvvəl işləyib."
+        },
+        "explanation": {
+          "en": "The ordering does not remove credentials from the untrusted execution context.",
+          "az": "Bu sıra credential-ı etibarsız execution context-dən çıxarmır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Untrusted code can execute with release credentials.",
+          "az": "Etibarsız kod release credential-ları ilə işləyə bilər."
+        },
+        "explanation": {
+          "en": "The job crosses a trust boundary by combining untrusted execution and privilege.",
+          "az": "Job etibarsız execution-la privilege-i birləşdirərək trust boundary keçir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The job name does not include the word secure.",
+          "az": "Job adında secure sözü yoxdur."
+        },
+        "explanation": {
+          "en": "Names do not enforce permissions.",
+          "az": "Ad permission tətbiq etmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Separate unprivileged PR validation from trusted, constrained release execution.",
+      "az": "Səlahiyyətsiz PR validation-u trusted, constrained release execution-dan ayır."
+    },
+    "lessonId": "devops-ci-cd-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["github-actions-secure-use", "docker-build-practices"]
+  },
+  {
+    "id": "devops-ci-cd-artifacts-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO controls improve a GitHub Actions release trust boundary?",
+      "az": "Hansı İKİ control GitHub Actions release trust boundary-sini yaxşılaşdırır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Constrain federated identity trust to the intended repository, workflow and environment.",
+          "az": "Federated identity trust-u intended repository, workflow və environment-lə məhdudlaşdırmaq."
+        },
+        "explanation": {
+          "en": "Short-lived credentials still require a specific authorization policy.",
+          "az": "Qısamüddətli credential yenə konkret authorization policy tələb edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Interpolate a pull-request title directly into shell source.",
+          "az": "Pull request başlığını birbaşa shell source-a interpolasiya etmək."
+        },
+        "explanation": {
+          "en": "Untrusted input can become executable shell syntax.",
+          "az": "Etibarsız input icra olunan shell sintaksisinə çevrilə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Assume secret masking removes every possible encoded secret from logs.",
+          "az": "Secret masking-in log-da bütün encoded secret-ləri sildiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "Masking is not a guarantee for every transformed representation.",
+          "az": "Masking hər transformed representation üçün zəmanət deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Use minimum required token permissions and review full-SHA action pins.",
+          "az": "Minimum token permission istifadə edib full-SHA action pin-lərini yoxlamaq."
+        },
+        "explanation": {
+          "en": "Least privilege and reviewed immutable action references constrain exposure.",
+          "az": "Least privilege və yoxlanmış immutable action istinadı exposure-u məhdudlaşdırır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Control permissions, dependencies, inputs and identity claims together; OIDC alone is not an authorization model.",
+      "az": "Permission, dependency, input və identity claim-i birlikdə idarə et; tək OIDC authorization modeli deyil."
+    },
+    "lessonId": "devops-ci-cd-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["github-actions-secure-use", "docker-build-practices"]
+  },
+  {
+    "id": "devops-ci-cd-artifacts-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 2,
+    "text": {
+      "en": "A deployment is manually approved, but the job deploys whatever image a mutable tag resolves to later. What is missing?",
+      "az": "Deployment əl ilə approve edilir, amma job dəyişən tag-in sonradan göstərdiyi image-i deploy edir. Nə çatışmır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A binding between approval and the exact artifact identity deployed.",
+          "az": "Approval ilə yerləşdirilən dəqiq artifact identity-si arasında binding."
+        },
+        "explanation": {
+          "en": "Approval should refer to the reviewed artifact and its evidence.",
+          "az": "Approval yoxlanmış artifact və onun sübutuna istinad etməlidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "An additional motivational name for the pipeline.",
+          "az": "Pipeline üçün əlavə motivasiyaedici ad."
+        },
+        "explanation": {
+          "en": "A name does not constrain content selection.",
+          "az": "Ad content seçimini məhdudlaşdırmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A second rebuild after approval.",
+          "az": "Approval-dan sonra ikinci rebuild."
+        },
+        "explanation": {
+          "en": "That can create yet another unreviewed artifact.",
+          "az": "Bu, daha bir yoxlanmamış artifact yarada bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Record and deploy the approved immutable identity, with a known recovery reference and compatible state.",
+      "az": "Məlum recovery reference və compatible state ilə approved immutable identity-ni qeyd edib deploy et."
+    },
+    "lessonId": "devops-ci-cd-artifacts",
+    "practiceOnly": true,
+    "sourceIds": ["github-actions-secure-use", "docker-build-practices"]
+  },
+  {
+    "id": "devops-kubernetes-delivery-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "A Pod process is alive but cannot currently serve traffic. Which probe should normally control whether it receives Service traffic?",
+      "az": "Pod prosesi işləyir, amma hazırda trafik qəbul edə bilmir. Service trafiki almasını adətən hansı probe idarə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Liveness alone.",
+          "az": "Yalnız liveness."
+        },
+        "explanation": {
+          "en": "A liveness failure can trigger a restart; it is not the same routing decision.",
+          "az": "Liveness failure restart yarada bilər; routing qərarı ilə eyni deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The Git commit timestamp.",
+          "az": "Git commit timestamp-i."
+        },
+        "explanation": {
+          "en": "Commit metadata does not establish serving readiness.",
+          "az": "Commit metadata xidmət readiness-ini təsdiqləmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Readiness.",
+          "az": "Readiness."
+        },
+        "explanation": {
+          "en": "A readiness failure marks the Pod unready for normal Service traffic.",
+          "az": "Readiness failure Pod-u adi Service trafiki üçün Unready edir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Design readiness around safe traffic handling. Avoid restarting healthy processes merely because a shared dependency is briefly unavailable.",
+      "az": "Readiness-i təhlükəsiz trafik handling-ə görə qur. Shared dependency qısa əlçatmazdır deyə sağlam prosesi restart etmə."
+    },
+    "lessonId": "devops-kubernetes-delivery",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-deployments", "kubernetes-probes"]
+  },
+  {
+    "id": "devops-kubernetes-delivery-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "A service needs a long initialization period. What is the role of a startup probe?",
+      "az": "Xidmətə uzun initialization lazımdır. Startup probe-un rolu nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Gate liveness and readiness probing until startup has succeeded.",
+          "az": "Startup uğurlu olana qədər liveness/readiness yoxlamasını gözlətmək."
+        },
+        "explanation": {
+          "en": "A startup probe protects initialization from premature health-check failure behavior.",
+          "az": "Startup probe initialization-u vaxtından əvvəl health check failure davranışından qoruyur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Guarantee every future customer transaction succeeds.",
+          "az": "Bütün gələcək customer transaction-larına success zəmanəti vermək."
+        },
+        "explanation": {
+          "en": "Startup success establishes neither all dependencies nor every business operation.",
+          "az": "Startup success nə bütün dependency-ni, nə bütün business operation-u təsdiqləyir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Automatically migrate and roll back the production database.",
+          "az": "Production DB-ni avtomatik migrate/rollback etmək."
+        },
+        "explanation": {
+          "en": "Probes do not provide database migration recovery.",
+          "az": "Probe DB migration recovery təmin etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Probe configuration expresses startup and health behavior, not a complete delivery or data-recovery strategy.",
+      "az": "Probe startup/health davranışını ifadə edir; tam delivery və ya data recovery strategiyası deyil."
+    },
+    "lessonId": "devops-kubernetes-delivery",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-deployments", "kubernetes-probes"]
+  },
+  {
+    "id": "devops-kubernetes-delivery-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "Which TWO items belong in a review of a Kubernetes rolling release?",
+      "az": "Kubernetes rolling release review-una hansı İKİ məsələ daxildir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compatibility of the new application with the current schema and recovery plan.",
+          "az": "Yeni tətbiqin cari schema və recovery planı ilə uyğunluğu."
+        },
+        "explanation": {
+          "en": "Changing image versions does not automatically reverse persisted data changes.",
+          "az": "Image version dəyişmək persisted data dəyişməsini avtomatik çevirmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assume a progress deadline performs a complete automatic rollback.",
+          "az": "Progress deadline-ın tam automatic rollback etdiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "A progress deadline reports a stalled rollout; it is not a complete rollback mechanism.",
+          "az": "Progress deadline dayanmış rollout-u bildirir; tam rollback mexanizmi deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Ignore readiness because a container process exists.",
+          "az": "Container prosesi var deyə readiness-i nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "A running process can still be unable to serve requests.",
+          "az": "İşləyən proses request-i cavablaya bilməyə bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Capacity under maxSurge/maxUnavailable and resource requests.",
+          "az": "maxSurge/maxUnavailable və resource request-lərlə real tutum."
+        },
+        "explanation": {
+          "en": "Rollout availability depends on actual scheduling and capacity constraints.",
+          "az": "Rollout availability real scheduling/capacity məhdudiyyətindən asılıdır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Review scheduling, readiness, immutable image identity and data compatibility as related but separate concerns.",
+      "az": "Scheduling, readiness, immutable image identity və data compatibility-ni əlaqəli, amma ayrı yoxla."
+    },
+    "lessonId": "devops-kubernetes-delivery",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-deployments", "kubernetes-probes"]
+  },
+  {
+    "id": "devops-kubernetes-delivery-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "A Deployment reports ProgressDeadlineExceeded. What should the operator infer?",
+      "az": "Deployment ProgressDeadlineExceeded bildirir. Operator nə nəticə çıxarmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The database and application have both automatically returned to their previous state.",
+          "az": "DB və tətbiq avtomatik əvvəlki state-ə qayıdıb."
+        },
+        "explanation": {
+          "en": "Deployment progress detection does not guarantee this recovery.",
+          "az": "Deployment progress detection bu recovery-yə zəmanət vermir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "All Pods are necessarily healthy because a deadline exists.",
+          "az": "Deadline olduğuna görə bütün Pod-lar mütləq sağlamdır."
+        },
+        "explanation": {
+          "en": "The failure condition indicates the opposite of that assumption.",
+          "az": "Failure condition bu fərziyyənin əksini göstərir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The rollout failed to make the required progress; investigate and follow the recovery policy.",
+          "az": "Rollout tələb olunan irəliləyiş etməyib; araşdır və recovery policy-ni izlə."
+        },
+        "explanation": {
+          "en": "The condition provides failure evidence, not proof that recovery already occurred.",
+          "az": "Condition recovery-nin bitməsi deyil, failure sübutu verir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Do not treat rollout failure detection as a guarantee of automatic application and database recovery.",
+      "az": "Rollout failure detection-u automatic application/DB recovery zəmanəti sayma."
+    },
+    "lessonId": "devops-kubernetes-delivery",
+    "practiceOnly": true,
+    "sourceIds": ["kubernetes-deployments", "kubernetes-probes"]
+  },
+  {
+    "id": "devops-terraform-iac-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "A Terraform variable is marked sensitive. Which claim is accurate?",
+      "az": "Terraform variable sensitive-dir. Hansı iddia düzgündür?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Everyone with state access is unable to recover the value.",
+          "az": "State access-i olan heç kim dəyəri bərpa edə bilməz."
+        },
+        "explanation": {
+          "en": "Access to stored state can expose sensitive data.",
+          "az": "Stored state access həssas data-nı aça bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The flag can redact display, but the value may still be stored in state or plan data.",
+          "az": "Flag display-i gizlədə bilər, amma value state/plan-da qala bilər."
+        },
+        "explanation": {
+          "en": "Redaction and omission from persisted data are different properties.",
+          "az": "Redaction ilə persisted data-dan çıxarma ayrı xüsusiyyətdir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The value is guaranteed absent from every state file.",
+          "az": "Value bütün state fayllarında mütləq yoxdur."
+        },
+        "explanation": {
+          "en": "Sensitive marking alone does not establish absence from state.",
+          "az": "Tək sensitive işarəsi value-nun state-də olmadığını təsdiqləmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Protect state and plan artifacts. Ephemeral and write-only features have version and provider constraints that must be checked.",
+      "az": "State/plan artifact-ını qoru. Ephemeral/write-only funksiyaların version/provider məhdudiyyətini yoxla."
+    },
+    "lessonId": "devops-terraform-iac",
+    "practiceOnly": true,
+    "sourceIds": ["terraform-state-purpose", "terraform-sensitive-data"]
+  },
+  {
+    "id": "devops-terraform-iac-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "Two engineers plan to change the same infrastructure through Terraform. What coordination should they verify?",
+      "az": "İki mühəndis Terraform ilə eyni infrastrukturda change planlayır. Hansı coordination-u yoxlamalıdırlar?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Every backend provides identical locking automatically.",
+          "az": "Hər backend avtomatik eyni locking verir."
+        },
+        "explanation": {
+          "en": "Lock support is not universal.",
+          "az": "Lock dəstəyi universal deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A local filename prevents concurrent remote changes.",
+          "az": "Local filename paralel remote change-i önləyir."
+        },
+        "explanation": {
+          "en": "A filename does not coordinate independent writers.",
+          "az": "Filename müstəqil writer-ləri əlaqələndirmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The chosen backend supports appropriate locking and access controls for their workflow.",
+          "az": "Seçilmiş backend workflow üçün uyğun locking/access control dəstəkləyir."
+        },
+        "explanation": {
+          "en": "Coordination behavior depends on backend capabilities and configuration.",
+          "az": "Koordinasiya davranışı backend-in imkanlarından və konfiqurasiyasından asılıdır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Review backend-specific state coordination, authorization and recovery before applying concurrent changes.",
+      "az": "Paralel dəyişiklikləri tətbiq etməzdən əvvəl backend-ə uyğun state koordinasiyasını, authorization qaydalarını və bərpa imkanlarını yoxlayın."
+    },
+    "lessonId": "devops-terraform-iac",
+    "practiceOnly": true,
+    "sourceIds": ["terraform-state-purpose", "terraform-sensitive-data"]
+  },
+  {
+    "id": "devops-terraform-iac-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "Which TWO statements correctly distinguish configuration, state and actual infrastructure?",
+      "az": "Hansı İKİ fikir configuration, state və faktiki infrastruktur arasındakı fərqi düzgün izah edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "State maps managed resource instances to remote objects and retains management data.",
+          "az": "State idarə olunan resource instance-larını uzaqdakı obyektlərlə əlaqələndirir və idarəetmə məlumatlarını saxlayır."
+        },
+        "explanation": {
+          "en": "Terraform uses state to relate its model to actual infrastructure.",
+          "az": "Terraform öz modelini faktiki infrastrukturla əlaqələndirmək üçün state-dən istifadə edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "State is only an expendable console log.",
+          "az": "State sadəcə silinə bilən console log-dur."
+        },
+        "explanation": {
+          "en": "Losing or exposing state has operational and confidentiality consequences.",
+          "az": "State-in itirilməsi və ya ifşa olunması əməliyyat və məxfilik baxımından nəticələr doğurur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A saved plan proves nobody can change remote infrastructure afterward.",
+          "az": "Saxlanmış plan sonradan heç kimin uzaqdakı infrastrukturu dəyişə bilməyəcəyini sübut edir."
+        },
+        "explanation": {
+          "en": "Out-of-band change can still occur and alter assumptions.",
+          "az": "Terraform-dan kənar dəyişikliklər yenə baş verə və ilkin fərziyyələri dəyişə bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Configuration describes intended resources and relationships.",
+          "az": "Configuration nəzərdə tutulan resource-ları və onların əlaqələrini təsvir edir."
+        },
+        "explanation": {
+          "en": "It represents the desired management model.",
+          "az": "O, arzu olunan idarəetmə modelini ifadə edir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Review the proposed transition against current evidence. Do not confuse a plan with a permanent lock on real-world state.",
+      "az": "Təklif olunan keçidi cari sübutlarla müqayisə edin. Plan-ı real vəziyyətə qoyulmuş daimi lock kimi qəbul etməyin."
+    },
+    "lessonId": "devops-terraform-iac",
+    "practiceOnly": true,
+    "sourceIds": ["terraform-state-purpose", "terraform-sensitive-data"]
+  },
+  {
+    "id": "devops-terraform-iac-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "A reviewed plan unexpectedly proposes replacing a database. What is the best next action?",
+      "az": "Yoxlanılan plan gözlənilmədən database-in əvəzlənməsini təklif edir. Növbəti ən düzgün addım hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Delete the state file so the replacement disappears from the output.",
+          "az": "Əvəzləmə nəticədə görünməsin deyə state faylını silmək."
+        },
+        "explanation": {
+          "en": "That damages management evidence rather than resolving the cause.",
+          "az": "Bu, səbəbi aradan qaldırmaq əvəzinə idarəetmə sübutlarını zədələyir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Investigate the cause, impact, backup/restore evidence and approved recovery path before applying.",
+          "az": "Tətbiqdən əvvəl səbəbi, təsiri, backup/restore sübutlarını və təsdiqlənmiş bərpa yolunu araşdırmaq."
+        },
+        "explanation": {
+          "en": "A destructive transition needs an understood data and availability consequence.",
+          "az": "Dağıdıcı keçidin məlumatlara və əlçatanlığa təsiri əvvəlcədən aydın olmalıdır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Apply immediately because a plan is always safe.",
+          "az": "Plan həmişə təhlükəsiz olduğuna görə dərhal tətbiq etmək."
+        },
+        "explanation": {
+          "en": "A plan describes changes; it does not certify their safety.",
+          "az": "Plan dəyişiklikləri təsvir edir; onların təhlükəsizliyinə zəmanət vermir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Inspect drift, configuration and provider behavior, then review the concrete change with its data-recovery implications.",
+      "az": "Drift-i, configuration-ı və provider davranışını araşdırın, sonra konkret dəyişikliyi məlumatların bərpasına təsiri ilə birlikdə qiymətləndirin."
+    },
+    "lessonId": "devops-terraform-iac",
+    "practiceOnly": true,
+    "sourceIds": ["terraform-state-purpose", "terraform-sensitive-data"]
+  },
+  {
+    "id": "devops-sre-incidents-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "An SLO allows 99.9% successful eligible requests. There are 100,000 eligible requests and 80 failures in the window. What remains of the request-based error budget?",
+      "az": "SLO uyğun request-lərin 99.9%-nin uğurlu olmasını tələb edir. Ölçmə müddətində 100,000 uyğun request və 80 uğursuzluq var. Request əsaslı error budget-dən nə qədər qalıb?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "20 failed requests.",
+          "az": "20 uğursuz request."
+        },
+        "explanation": {
+          "en": "The allowance is 100 failures; 80 have been consumed.",
+          "az": "İcazə verilən hədd 100 uğursuzluqdur; bunun 80-i istifadə olunub."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "20 minutes of downtime.",
+          "az": "20 dəqiqə downtime."
+        },
+        "explanation": {
+          "en": "A request-based budget cannot be converted to minutes without a separate model.",
+          "az": "Ayrıca model olmadan request əsaslı budget-i dəqiqəyə çevirmək olmaz."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "80 successful requests.",
+          "az": "80 uğurlu request."
+        },
+        "explanation": {
+          "en": "Failures consumed the budget; successful requests are not the remaining allowance.",
+          "az": "Budget-i uğursuzluqlar sərf edir; uğurlu request-lər qalan limit deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Keep the SLI population, window and budget units explicit: 100000 × 0.001 = 100 allowed failures.",
+      "az": "SLI üçün uyğun request toplusunu, müddəti və budget vahidlərini açıq göstərin: 100000 × 0.001 = icazə verilən 100 uğursuzluq."
+    },
+    "lessonId": "devops-sre-incidents",
+    "practiceOnly": true,
+    "sourceIds": ["google-sre-slos", "google-sre-incidents", "azure-recovery-targets"]
+  },
+  {
+    "id": "devops-sre-incidents-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "The RTO is 60 minutes and RPO is 15 minutes. A restore takes 95 minutes and recovers data from 40 minutes before the incident. Which targets are missed?",
+      "az": "RTO 60 dəqiqə, RPO isə 15 dəqiqədir. Restore 95 dəqiqə çəkir və incident-dən 40 dəqiqə əvvəlki məlumatları bərpa edir. Hansı hədəflər ödənmir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Neither, because the service eventually recovered.",
+          "az": "Heç biri, çünki service sonda bərpa olunub."
+        },
+        "explanation": {
+          "en": "Eventual recovery is weaker than satisfying quantified targets.",
+          "az": "Gec də olsa bərpa olunmaq ölçülə bilən hədəfləri ödəmək demək deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Both RTO and RPO.",
+          "az": "Həm RTO, həm də RPO."
+        },
+        "explanation": {
+          "en": "Recovery took too long and the recovered data is too old for the stated targets.",
+          "az": "Bərpa çox uzun çəkib və bərpa olunan məlumatlar göstərilən hədəflər üçün həddindən artıq köhnədir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Only RTO, because any backup meets RPO.",
+          "az": "Yalnız RTO, çünki istənilən backup RPO-nu ödəyir."
+        },
+        "explanation": {
+          "en": "Backup existence does not establish an acceptable recovery point.",
+          "az": "Backup-ın mövcudluğu qəbul edilən recovery point olduğunu sübut etmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Measure recovery time and recoverable data loss separately through restore exercises.",
+      "az": "Restore məşqləri ilə bərpa müddətini və mümkün məlumat itkisini ayrı-ayrılıqda ölçün."
+    },
+    "lessonId": "devops-sre-incidents",
+    "practiceOnly": true,
+    "sourceIds": ["google-sre-slos", "google-sre-incidents", "azure-recovery-targets"]
+  },
+  {
+    "id": "devops-sre-incidents-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "Which TWO actions support effective incident response?",
+      "az": "Hansı İKİ addım effektiv incident response-a kömək edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Record a timeline and follow up on system-level contributing conditions.",
+          "az": "Hadisələrin vaxt ardıcıllığını qeyd etmək və sistem səviyyəsində təsir edən şəraiti araşdırmaq."
+        },
+        "explanation": {
+          "en": "Evidence supports learning and concrete prevention or detection improvements.",
+          "az": "Sübutlar öyrənməyə, qarşısının alınması və aşkarlanma üzrə konkret təkmilləşdirmələrə əsas verir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Wait for a complete root-cause explanation before any mitigation.",
+          "az": "Hər hansı mitigation addımından əvvəl root cause tam izah olunana qədər gözləmək."
+        },
+        "explanation": {
+          "en": "Restoring service safely can take priority over final causal analysis.",
+          "az": "Service-in təhlükəsiz bərpası yekun səbəb təhlilindən daha təcili ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat naming an individual at fault as a complete corrective action.",
+          "az": "Bir şəxsi günahkar göstərməyi tam düzəldici tədbir saymaq."
+        },
+        "explanation": {
+          "en": "That does not address system conditions or recovery capability.",
+          "az": "Bu, sistemdəki şəraiti və ya bərpa imkanını yaxşılaşdırmır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Assign coordination and communications responsibilities while responders mitigate the impact.",
+          "az": "İştirakçılar təsiri azaldarkən koordinasiya və kommunikasiya məsuliyyətlərini bölüşdürmək."
+        },
+        "explanation": {
+          "en": "Clear responsibilities reduce conflicting changes and lost communication.",
+          "az": "Aydın məsuliyyətlər ziddiyyətli dəyişiklikləri və kommunikasiya boşluqlarını azaldır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Coordinate mitigation, preserve evidence and convert learning into owned follow-up actions.",
+      "az": "Mitigation işini koordinasiya edin, sübutları qoruyun və öyrənilənləri məsul şəxsi müəyyən edilmiş sonrakı tədbirlərə çevirin."
+    },
+    "lessonId": "devops-sre-incidents",
+    "practiceOnly": true,
+    "sourceIds": ["google-sre-slos", "google-sre-incidents", "azure-recovery-targets"]
+  },
+  {
+    "id": "devops-sre-incidents-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "devops",
+    "difficulty": 3,
+    "text": {
+      "en": "A backup job reports success every night, but no restore has been tested. What is still unproven?",
+      "az": "Backup job hər gecə uğurla tamamlandığını bildirir, amma heç bir restore sınağı keçirilməyib. Nə hələ sübut olunmayıb?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "That a usable restoration can meet the required recovery time and data-loss targets.",
+          "az": "İşlək bərpanın tələb olunan bərpa müddəti və məlumat itkisi hədəflərinə çata bilməsi."
+        },
+        "explanation": {
+          "en": "Backup completion is not end-to-end restore evidence.",
+          "az": "Backup-ın tamamlanması başdan sona restore sübutu deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "That the job ran at all.",
+          "az": "Job-un ümumiyyətlə işə düşməsi."
+        },
+        "explanation": {
+          "en": "The scenario already supplies successful job evidence; the gap is restoration.",
+          "az": "Ssenaridə job-un uğurlu işlədiyi artıq göstərilir; boşluq restore ilə bağlıdır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "That recovery targets are unnecessary.",
+          "az": "Bərpa hədəflərinə ehtiyac olmaması."
+        },
+        "explanation": {
+          "en": "Targets still define the required capability.",
+          "az": "Hədəflər tələb olunan imkanı müəyyən etməyə davam edir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Test restoration and dependencies under representative conditions; compare measured results with RTO and RPO.",
+      "az": "Restore-u və asılılıqları real şəraitə yaxın mühitdə sınayın; ölçülmüş nəticələri RTO və RPO ilə müqayisə edin."
+    },
+    "lessonId": "devops-sre-incidents",
+    "practiceOnly": true,
+    "sourceIds": ["google-sre-slos", "google-sre-incidents", "azure-recovery-targets"]
+  },
+  {
+    "id": "data-analysis-grain-quality-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Two February signups are eligible and fully observed. One activates. A paid-customer extract contains only that successful person. What is the correct signup activation rate?",
+      "az": "Fevralda qeydiyyatdan keçmiş iki nəfər uyğun sayılır və hər ikisinin müşahidəsi tamamlanıb. Biri aktivləşir. Ödəniş edən müştərilərdən çıxarılmış məlumatda yalnız həmin uğurlu şəxs var. Qeydiyyatdan sonra aktivləşmə faizi nə qədərdir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "100%, using only the paid-customer extract.",
+          "az": "Yalnız ödəniş edən müştərilərin məlumatına əsasən 100%."
+        },
+        "explanation": {
+          "en": "Selecting only successful people removes the non-activator from the denominator.",
+          "az": "Yalnız uğurlu şəxslərin seçilməsi aktivləşməyən şəxsi məxrəcdən çıxarır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The number cannot be calculated because unsuccessful users should be excluded.",
+          "az": "Uğursuz istifadəçilər çıxarılmalı olduğuna görə bu göstəricini hesablamaq mümkün deyil."
+        },
+        "explanation": {
+          "en": "The scenario provides the complete eligible population.",
+          "az": "Ssenaridə uyğun şəxslərin tam toplusu verilib."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "50%, using both eligible signups.",
+          "az": "Hər iki uyğun qeydiyyatı nəzərə alaraq 50%."
+        },
+        "explanation": {
+          "en": "The denominator includes people who could have activated, including the non-activator.",
+          "az": "Məxrəcə aktivləşmə imkanı olan şəxslər, o cümlədən aktivləşməyən şəxs daxildir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Choose the denominator from eligibility, not from having already achieved the desired outcome.",
+      "az": "Məxrəci arzu olunan nəticəni artıq əldə edənlərə görə deyil, uyğunluq şərtinə görə seçin."
+    },
+    "lessonId": "data-analysis-grain-quality",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "postgres18-joins"]
+  },
+  {
+    "id": "data-analysis-grain-quality-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "An order header appears twice after joining to its two items. What changed?",
+      "az": "Bir sifariş başlığı iki məhsul sətri ilə join edildikdən sonra iki dəfə görünür. Nə dəyişib?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The output grain, which now has one row per matching item.",
+          "az": "Nəticənin grain-i: artıq hər uyğun məhsul sətri üçün bir sətir var."
+        },
+        "explanation": {
+          "en": "A one-to-many join repeats the header values.",
+          "az": "One-to-many join başlıq dəyərlərini təkrarlayır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The customer necessarily placed a second order.",
+          "az": "Müştəri mütləq ikinci sifariş verib."
+        },
+        "explanation": {
+          "en": "Repeated joined rows do not establish another business event.",
+          "az": "Join nəticəsində təkrarlanan sətirlər yeni biznes hadisəsini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The original stored order amount necessarily changed.",
+          "az": "Saxlanmış ilkin sifariş məbləği mütləq dəyişib."
+        },
+        "explanation": {
+          "en": "A join can repeat a value without modifying source data.",
+          "az": "Join mənbə məlumatını dəyişmədən dəyəri təkrarlaya bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Declare the grain before and after each transformation; count keys to detect multiplication.",
+      "az": "Hər transformasiyadan əvvəl və sonra grain-i müəyyən edin; çoxalmanı aşkar etmək üçün key-ləri sayın."
+    },
+    "lessonId": "data-analysis-grain-quality",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "postgres18-joins"]
+  },
+  {
+    "id": "data-analysis-grain-quality-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO fields help make a metric contract reproducible?",
+      "az": "Hansı İKİ sahə metric contract-ın təkrar hesablana bilməsinə kömək edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Numerator, denominator and explicit event definition.",
+          "az": "Surət, məxrəc və hadisənin açıq tərifi."
+        },
+        "explanation": {
+          "en": "They define the actual calculation.",
+          "az": "Bunlar faktiki hesablamanı müəyyən edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A favorable chart color with no source definition.",
+          "az": "Mənbə tərifi olmadan əlverişli chart rəngi."
+        },
+        "explanation": {
+          "en": "Appearance does not establish measurement meaning.",
+          "az": "Görünüş ölçmənin mənasını müəyyən etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A rule to remove every unsuccessful customer.",
+          "az": "Hər uğursuz müştərini çıxaran qayda."
+        },
+        "explanation": {
+          "en": "That biases an outcome rate rather than specifying eligibility.",
+          "az": "Bu, uyğunluğu müəyyən etmək əvəzinə nəticə faizini qərəzli edir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Eligible population and observation window.",
+          "az": "Uyğun şəxslər toplusu və müşahidə müddəti."
+        },
+        "explanation": {
+          "en": "They establish who could contribute and when outcomes are measured.",
+          "az": "Bunlar kimin hesablamaya daxil ola biləcəyini və nəticələrin nə vaxt ölçüldüyünü müəyyən edir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Also retain source, timezone, exclusions, refresh/completeness information and an accountable owner.",
+      "az": "Mənbəni, timezone-u, istisnaları, yenilənmə və tamlıq məlumatlarını, eləcə də cavabdeh şəxsi də qeyd edin."
+    },
+    "lessonId": "data-analysis-grain-quality",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "postgres18-joins"]
+  },
+  {
+    "id": "data-analysis-grain-quality-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A required order amount is missing. Under the lesson cleaning contract, what should happen?",
+      "az": "Məcburi sifariş məbləği yoxdur. Dərsdəki cleaning contract-a əsasən nə edilməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Replace it with zero without reporting a change.",
+          "az": "Dəyişikliyi bildirmədən onu sıfırla əvəz etmək."
+        },
+        "explanation": {
+          "en": "That changes the meaning and hides an assumption.",
+          "az": "Bu, mənanı dəyişir və fərziyyəni gizlədir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Treat it as a duplicate of any other missing amount.",
+          "az": "Onu məbləği olmayan istənilən başqa qeydin duplicate-i saymaq."
+        },
+        "explanation": {
+          "en": "Missingness does not establish that two rows represent the same order.",
+          "az": "Dəyərin olmaması iki sətrin eyni sifarişi ifadə etdiyini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Quarantine it with a reason and include the exclusion in reconciliation.",
+          "az": "Səbəbini qeyd edərək quarantine-ə ayırmaq və çıxarılmanı reconciliation-a daxil etmək."
+        },
+        "explanation": {
+          "en": "The amount is unknown rather than a measured zero.",
+          "az": "Məbləğ ölçülmüş sıfır deyil, naməlum dəyərdir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Use an explicit field-specific policy and preserve an audit trail; missing and zero are different states.",
+      "az": "Hər sahə üçün açıq qayda tətbiq edin və audit trail-i qoruyun; dəyərin olmaması ilə sıfır fərqli vəziyyətlərdir."
+    },
+    "lessonId": "data-analysis-grain-quality",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "postgres18-joins"]
+  },
+  {
+    "id": "sql-basics-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A customer has no matching orders in a LEFT JOIN. Which expression counts zero matching orders for that customer?",
+      "az": "LEFT JOIN zamanı müştərinin uyğun sifarişi yoxdur. Hansı ifadə bu müştəri üçün uyğun sifarişlərin sayını sıfır hesablayır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "SUM(DISTINCT c.customer_id).",
+          "az": "SUM(DISTINCT c.customer_id)."
+        },
+        "explanation": {
+          "en": "Customer identifiers are not the intended order count.",
+          "az": "Müştəri ID-ləri nəzərdə tutulan sifariş sayı deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "COUNT(o.order_id), when order_id is non-null on actual orders.",
+          "az": "Faktiki sifarişlərdə order_id NULL olmadıqda COUNT(o.order_id)."
+        },
+        "explanation": {
+          "en": "The null-extended unmatched row contributes no non-null order ID.",
+          "az": "Uyğunluğu olmayan, NULL ilə tamamlanmış sətir NULL olmayan sifariş ID-si vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "COUNT(*).",
+          "az": "COUNT(*)."
+        },
+        "explanation": {
+          "en": "It counts the retained output row and therefore returns one.",
+          "az": "Bu, nəticədə saxlanmış sətri sayır və buna görə bir qaytarır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Select an aggregate that counts the intended entity at the joined grain.",
+      "az": "Join-dən sonrakı grain-də nəzərdə tutulan obyekti sayan aggregate seçin."
+    },
+    "lessonId": "sql-basics",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-joins", "postgres18-windows"]
+  },
+  {
+    "id": "sql-basics-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "You need every customer and only their paid-order matches. Where should the paid-status qualification go in a customer-to-order LEFT JOIN?",
+      "az": "Bütün müştərilər və yalnız onların ödənilmiş sifarişləri lazımdır. Müştəridən sifarişə LEFT JOIN zamanı ödəniş statusu şərti harada olmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Only in WHERE o.status = paid after the join.",
+          "az": "Yalnız join-dən sonrakı WHERE o.status = paid hissəsində."
+        },
+        "explanation": {
+          "en": "That removes null-extended customers with no paid match.",
+          "az": "Bu, ödənilmiş sifarişi olmayan, NULL ilə tamamlanmış müştəriləri çıxarır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "In ORDER BY, because sorting filters unmatched rows.",
+          "az": "ORDER BY hissəsində, çünki sıralama uyğunluğu olmayan sətirləri filter edir."
+        },
+        "explanation": {
+          "en": "ORDER BY does not filter rows.",
+          "az": "ORDER BY sətirləri filter etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "In the ON condition for matching orders.",
+          "az": "Uyğun sifarişləri seçən ON şərtində."
+        },
+        "explanation": {
+          "en": "This restricts matches while retaining customers with none.",
+          "az": "Bu, uyğunluqları məhdudlaşdırır, amma uyğun sifarişi olmayan müştəriləri saxlayır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "The difference between ON and WHERE matters when preserving the complete left-side population.",
+      "az": "Sol tərəfdəki bütün qeydləri qorumaq lazım olduqda ON ilə WHERE arasındakı fərq əhəmiyyətlidir."
+    },
+    "lessonId": "sql-basics",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-joins", "postgres18-windows"]
+  },
+  {
+    "id": "sql-basics-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO SQL statements are accurate?",
+      "az": "Hansı İKİ SQL fikri doğrudur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "HAVING can filter groups after aggregation.",
+          "az": "HAVING aggregation-dan sonra qrupları filter edə bilər."
+        },
+        "explanation": {
+          "en": "It operates on grouped results rather than selecting individual input rows.",
+          "az": "O, ayrıca giriş sətirlərini seçmək əvəzinə qruplaşdırılmış nəticələr üzərində işləyir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "SUM(DISTINCT amount) always fixes a one-to-many revenue join.",
+          "az": "SUM(DISTINCT amount) one-to-many revenue join problemini həmişə həll edir."
+        },
+        "explanation": {
+          "en": "Different valid orders can share the same amount and be incorrectly collapsed.",
+          "az": "Fərqli və etibarlı sifarişlərin məbləği eyni ola bilər və onlar səhvən birləşdirilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A query without ORDER BY guarantees insertion order.",
+          "az": "ORDER BY olmayan query əlavə edilmə ardıcıllığına zəmanət verir."
+        },
+        "explanation": {
+          "en": "SQL output order is not guaranteed that way.",
+          "az": "SQL nəticəsinin sırasına bu yolla zəmanət verilmir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "IS NULL tests for missing values.",
+          "az": "IS NULL çatışmayan dəyərləri yoxlayır."
+        },
+        "explanation": {
+          "en": "Ordinary equality to NULL does not act like an equality to a normal value.",
+          "az": "NULL ilə adi bərabərlik müqayisəsi normal dəyərlə bərabərlik kimi işləmir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Use the appropriate null test, aggregation stage and explicit ordering; repair grain rather than hiding fanout.",
+      "az": "Uyğun NULL yoxlaması, aggregation mərhələsi və açıq sıralama istifadə edin; fanout-u gizlətmək əvəzinə grain-i düzəldin."
+    },
+    "lessonId": "sql-basics",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-joins", "postgres18-windows"]
+  },
+  {
+    "id": "sql-basics-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "The paid revenue is 16500 cents. A header-to-item join produces 17500 because o1 has two items and a 1000-cent header. What is the sound correction?",
+      "az": "Ödənilmiş gəlir 16500 sentdir. Başlıqdan məhsul sətrinə join nəticəsində 17500 alınır, çünki o1-in iki məhsul sətri və 1000 sentlik başlıq məbləği var. Düzgün düzəliş hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Divide all revenue by two.",
+          "az": "Bütün gəliri ikiyə bölmək."
+        },
+        "explanation": {
+          "en": "Only one order has two items; the duplication factor is not uniform.",
+          "az": "Yalnız bir sifarişdə iki məhsul sətri var; təkrarlanma əmsalı hamı üçün eyni deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Sum the additive item amounts or preserve one row per order before summing headers.",
+          "az": "Toplana bilən məhsul məbləğlərini toplamaq və ya başlıq məbləğlərini toplamadan əvvəl hər sifariş üçün bir sətir saxlamaq."
+        },
+        "explanation": {
+          "en": "Both approaches can respect the intended additive grain.",
+          "az": "Hər iki yanaşma nəzərdə tutulan toplama grain-ini qoruya bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Subtract 1000 from every future report.",
+          "az": "Bütün gələcək hesabatlardan 1000 çıxmaq."
+        },
+        "explanation": {
+          "en": "A hard-coded adjustment fails as data and item counts change.",
+          "az": "Məlumatlar və məhsul sayı dəyişdikdə sabit düzəliş işləmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Fix the relationship between grain and additive measure, then reconcile the resulting total.",
+      "az": "Grain ilə toplana bilən measure arasındakı əlaqəni düzəldin, sonra yekun məbləği reconciliation ilə yoxlayın."
+    },
+    "lessonId": "sql-basics",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-joins", "postgres18-windows"]
+  },
+  {
+    "id": "data-sql-windows-cohorts-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "A customer has revenue rows for January and March, with February absent. What does LAG(revenue) on the March row return when ordered by month?",
+      "az": "Müştərinin yanvar və mart gəlir sətirləri var, fevral isə yoxdur. Ay üzrə sıralandıqda mart sətrində LAG(revenue) nə qaytarır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The January row value.",
+          "az": "Yanvar sətrinin dəyərini."
+        },
+        "explanation": {
+          "en": "LAG accesses the preceding row, not a guaranteed previous calendar month.",
+          "az": "LAG əvvəlki sətrə müraciət edir; əvvəlki təqvim ayına zəmanət vermir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A measured February zero.",
+          "az": "Fevral üçün ölçülmüş sıfır dəyərini."
+        },
+        "explanation": {
+          "en": "The absent month is not inserted automatically.",
+          "az": "Çatışmayan ay avtomatik əlavə edilmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The average of January and February.",
+          "az": "Yanvarla fevralın ortalamasını."
+        },
+        "explanation": {
+          "en": "LAG does not perform that aggregation.",
+          "az": "LAG bu aggregation-ı yerinə yetirmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Use a calendar spine and an explicit missing-period policy when the question requires consecutive calendar months.",
+      "az": "Sual ardıcıl təqvim aylarını tələb etdikdə calendar spine və çatışmayan dövrlər üçün açıq qayda istifadə edin."
+    },
+    "lessonId": "data-sql-windows-cohorts",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-windows", "postgres18-joins"]
+  },
+  {
+    "id": "data-sql-windows-cohorts-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "Data is complete through March. What should March first-paid-cohort month-one retention display?",
+      "az": "Məlumatlar martın sonunadək tamdır. Martda ilk ödənişini edən cohort üçün birinci ay retention göstəricisi necə göstərilməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "100%, because the cohort started in March.",
+          "az": "100%, çünki cohort martda başlayıb."
+        },
+        "explanation": {
+          "en": "Entry activity is not next-month activity.",
+          "az": "Başlanğıc fəaliyyəti növbəti ayın fəaliyyəti deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Unobserved, because April is not yet in the observation window.",
+          "az": "Müşahidə olunmayıb, çünki aprel hələ müşahidə müddətinə daxil deyil."
+        },
+        "explanation": {
+          "en": "A future outcome is not evidence of zero retention.",
+          "az": "Gələcək nəticənin olmaması sıfır retention sübutu deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "0%, because no April row exists.",
+          "az": "0%, çünki aprel sətri yoxdur."
+        },
+        "explanation": {
+          "en": "The missing future period is right-censored, not a measured failure.",
+          "az": "Çatışmayan gələcək dövr right-censored sayılır, ölçülmüş uğursuzluq deyil."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Keep unobserved periods distinct from observed periods with no qualifying activity.",
+      "az": "Hələ müşahidə edilməmiş dövrləri müşahidə edilmiş, amma uyğun fəaliyyət olmayan dövrlərdən fərqləndirin."
+    },
+    "lessonId": "data-sql-windows-cohorts",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-windows", "postgres18-joins"]
+  },
+  {
+    "id": "data-sql-windows-cohorts-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "Which TWO choices support a deterministic row-by-row running paid total?",
+      "az": "Hansı İKİ seçim sətir-sətir deterministik running paid total hesablamağa kömək edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "An explicit ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW frame.",
+          "az": "Açıq ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW frame-i."
+        },
+        "explanation": {
+          "en": "The frame states that accumulation proceeds through the current ordered row.",
+          "az": "Frame toplamanın sıralanmış cari sətrə qədər aparıldığını göstərir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assuming a window ORDER BY also fixes final presentation order.",
+          "az": "Window daxilindəki ORDER BY-ın yekun görünüş sırasını da müəyyən etdiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "A separate outer ORDER BY controls final result ordering.",
+          "az": "Yekun nəticənin sırasını ayrıca xarici ORDER BY müəyyən edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Removing PARTITION BY even though totals must restart per customer.",
+          "az": "Cəmlər hər müştəri üçün yenidən başlamalı olsa da PARTITION BY-ı çıxarmaq."
+        },
+        "explanation": {
+          "en": "That would combine customers in the same accumulation.",
+          "az": "Bu, müştəriləri eyni yığımda birləşdirər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "An ordering with a meaningful stable tie-breaker.",
+          "az": "Mənalı və sabit tie-breaker olan sıralama."
+        },
+        "explanation": {
+          "en": "Equal timestamps otherwise leave row sequencing ambiguous.",
+          "az": "Əks halda eyni timestamp-lər sətirlərin ardıcıllığını qeyri-müəyyən saxlayır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Frame, partition and ordering express different parts of the intended calculation.",
+      "az": "Frame, partition və sıralama nəzərdə tutulan hesablamanın müxtəlif hissələrini ifadə edir."
+    },
+    "lessonId": "data-sql-windows-cohorts",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-windows", "postgres18-joins"]
+  },
+  {
+    "id": "data-sql-windows-cohorts-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "February first-paid retention is 100% for u3, while February signup activation is 50% for u3 and u5. Why can both be correct?",
+      "az": "Fevralda ilk ödənişini edənlər üçün u3-ün retention göstəricisi 100%, fevral qeydiyyatları olan u3 və u5 üçün activation isə 50%-dir. Hər ikisi necə doğru ola bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "They use different entry events, observation definitions and denominators.",
+          "az": "Onlar fərqli giriş hadisələrindən, müşahidə təriflərindən və məxrəclərdən istifadə edir."
+        },
+        "explanation": {
+          "en": "Only u3 belongs to the February first-paid cohort; both are February signups.",
+          "az": "Fevralda ilk ödəniş edən cohort-a yalnız u3 daxildir; fevralda qeydiyyatdan keçənlərə isə hər ikisi daxildir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "One rate must be wrong because the month label matches.",
+          "az": "Ay etiketi eyni olduğuna görə göstəricilərdən biri səhv olmalıdır."
+        },
+        "explanation": {
+          "en": "A calendar label does not establish the same population or metric.",
+          "az": "Təqvim etiketi eyni toplu və ya metric demək deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Activation and retention are always interchangeable names.",
+          "az": "Activation və retention həmişə bir-birini əvəz edən adlardır."
+        },
+        "explanation": {
+          "en": "They measure different behaviors and windows.",
+          "az": "Onlar fərqli davranışları və müddətləri ölçür."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "State cohort entry, activity and observation window instead of comparing percentages by month label alone.",
+      "az": "Faizləri yalnız ay adına görə müqayisə etmək əvəzinə cohort-a daxilolmanı, fəaliyyəti və müşahidə müddətini göstərin."
+    },
+    "lessonId": "data-sql-windows-cohorts",
+    "practiceOnly": true,
+    "sourceIds": ["postgres18-windows", "postgres18-joins"]
+  },
+  {
+    "id": "data-python-pandas-cleaning-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Orders may have many rows per customer, while the customer dimension must have one row per key. Which pandas merge validation matches this enrichment?",
+      "az": "Sifarişlərdə hər müştəri üçün çox sətir ola bilər, customer dimension-da isə hər key üçün bir sətir olmalıdır. Hansı pandas merge validation bu zənginləşdirməyə uyğundur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "validate='many_to_many'.",
+          "az": "validate='many_to_many'."
+        },
+        "explanation": {
+          "en": "It permits multiplication and does not enforce the intended unique dimension.",
+          "az": "Bu, sətirlərin çoxalmasına icazə verir və dimension-un tələb olunan unikallığını yoxlamır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "No validation, followed by dropping any repeated amount.",
+          "az": "Validation tətbiq etmədən sonradan təkrarlanan bütün məbləğləri silmək."
+        },
+        "explanation": {
+          "en": "That can conceal key errors and remove valid equal-valued orders.",
+          "az": "Bu, key səhvlərini gizlədə və məbləği eyni olan etibarlı sifarişləri silə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "validate='many_to_one'.",
+          "az": "validate='many_to_one'."
+        },
+        "explanation": {
+          "en": "It asserts that the right-side customer key is unique.",
+          "az": "Bu, sağ tərəfdəki customer key-in unikal olduğunu yoxlayır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Declare merge cardinality and investigate violations before aggregating money.",
+      "az": "Pul məbləğlərini toplamadan əvvəl merge cardinality-ni müəyyən edin və pozuntuları araşdırın."
+    },
+    "lessonId": "data-python-pandas-cleaning",
+    "practiceOnly": true,
+    "sourceIds": ["pandas-missing-data", "pandas-merge-validation"]
+  },
+  {
+    "id": "data-python-pandas-cleaning-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Two rows share an order ID but contain conflicting amounts and no reliable version ordering. What does the lesson lab do?",
+      "az": "İki sətrin order ID-si eynidir, məbləğləri isə ziddiyyətlidir və etibarlı versiya ardıcıllığı yoxdur. Dərsin lab-ı nə edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Raise an error rather than choose a version arbitrarily.",
+          "az": "Versiyanı təsadüfi seçmək əvəzinə xəta yaradır."
+        },
+        "explanation": {
+          "en": "The fixture has no correction rule that establishes which version is authoritative.",
+          "az": "Fixture-də hansı versiyanın əsas sayılacağını müəyyən edən düzəliş qaydası yoxdur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Keep whichever row happens to load first without reporting it.",
+          "az": "Heç bir qeyd etmədən ilk yüklənən sətri saxlayır."
+        },
+        "explanation": {
+          "en": "Input order is not a documented authority rule.",
+          "az": "Giriş sırası sənədləşdirilmiş etibarlılıq qaydası deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Add the two amounts because repeated IDs mean two orders.",
+          "az": "Təkrarlanan ID-lər iki sifariş demək olduğuna görə məbləğləri toplayır."
+        },
+        "explanation": {
+          "en": "The repeated key contradicts the one-order grain.",
+          "az": "Təkrarlanan key hər sifarişə bir sətir grain-i ilə ziddiyyət təşkil edir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Exact repeated rows and conflicting versions require different policies.",
+      "az": "Tam eyni təkrar sətirlər və ziddiyyətli versiyalar üçün fərqli qaydalar lazımdır."
+    },
+    "lessonId": "data-python-pandas-cleaning",
+    "practiceOnly": true,
+    "sourceIds": ["pandas-missing-data", "pandas-merge-validation"]
+  },
+  {
+    "id": "data-python-pandas-cleaning-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO pandas behaviors need explicit attention in this exercise?",
+      "az": "Bu tapşırıqda hansı İKİ pandas davranışına xüsusi diqqət lazımdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Null merge keys can match one another.",
+          "az": "NULL merge key-ləri bir-biri ilə uyğunlaşa bilər."
+        },
+        "explanation": {
+          "en": "This differs from ordinary SQL equality-join behavior and may create unintended matches.",
+          "az": "Bu, adi SQL equality join davranışından fərqlənir və nəzərdə tutulmayan uyğunluqlar yarada bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "fillna(0) is automatically meaningful for every column.",
+          "az": "fillna(0) hər sütun üçün avtomatik məna daşıyır."
+        },
+        "explanation": {
+          "en": "IDs, categories and unknown amounts do not share a universal zero policy.",
+          "az": "ID-lər, kateqoriyalar və naməlum məbləğlər üçün vahid sıfır qaydası yoxdur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A string identifier can safely be converted to a number in every dataset.",
+          "az": "İstənilən dataset-də string ID-ni təhlükəsiz şəkildə ədədə çevirmək olar."
+        },
+        "explanation": {
+          "en": "That can erase meaningful leading zeros or fail for nonnumeric IDs.",
+          "az": "Bu, mənalı başlanğıc sıfırlarını silə və ya rəqəm olmayan ID-lərdə uğursuz ola bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Use isna/notna to detect missing values.",
+          "az": "Çatışmayan dəyərləri aşkar etmək üçün isna/notna istifadə etmək."
+        },
+        "explanation": {
+          "en": "Equality to NaN is not a reliable missing-value test.",
+          "az": "NaN ilə bərabərlik müqayisəsi çatışmayan dəyəri yoxlamağın etibarlı yolu deyil."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Preserve identifier meaning and distinguish unknown observations from valid measured zeros.",
+      "az": "ID-nin mənasını qoruyun və naməlum müşahidələri ölçülmüş etibarlı sıfırlardan ayırın."
+    },
+    "lessonId": "data-python-pandas-cleaning",
+    "practiceOnly": true,
+    "sourceIds": ["pandas-missing-data", "pandas-merge-validation"]
+  },
+  {
+    "id": "data-python-pandas-cleaning-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "pandas and SQL independently aggregate the same cleaned orders. Which reconciliation is expected?",
+      "az": "pandas və SQL eyni təmizlənmiş sifarişləri müstəqil şəkildə toplayır. Hansı reconciliation nəticəsi gözlənilir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "17500 paid cents, because the item join is always the correct grain.",
+          "az": "17500 ödənilmiş sent, çünki məhsul join-i həmişə düzgün grain-dir."
+        },
+        "explanation": {
+          "en": "That is the deliberately inflated header sum after fanout.",
+          "az": "Bu, fanout-dan sonra qəsdən şişirdilmiş başlıq cəmidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "An extra paid order with zero amount replacing the missing value.",
+          "az": "Çatışmayan dəyər sıfırla əvəz edilərək əlavə bir ödənilmiş sifariş."
+        },
+        "explanation": {
+          "en": "The stated cleaning policy quarantines that invalid row.",
+          "az": "Göstərilən cleaning qaydası həmin etibarsız sətri quarantine-ə ayırır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "16500 paid cents, with monthly totals 4000, 6000 and 6500.",
+          "az": "Aylıq cəmlər 4000, 6000 və 6500 olmaqla 16500 ödənilmiş sent."
+        },
+        "explanation": {
+          "en": "These are the fixture results after one exact duplicate and one invalid amount are excluded.",
+          "az": "Bunlar bir tam duplicate və bir etibarsız məbləğ çıxarıldıqdan sonra fixture-in nəticələridir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Reconcile both totals and row-handling counts, not merely whether two scripts complete.",
+      "az": "Yalnız iki script-in tamamlanmasını yoxlamayın; həm məbləğləri, həm də sətirlərə tətbiq edilən əməliyyatların sayını reconciliation ilə tutuşdurun."
+    },
+    "lessonId": "data-python-pandas-cleaning",
+    "practiceOnly": true,
+    "sourceIds": ["pandas-missing-data", "pandas-merge-validation"]
+  },
+  {
+    "id": "data-excel-powerbi-models-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "In the teaching star schema, what grain should FactOrders have?",
+      "az": "Tədris star schema-sında FactOrders hansı grain-də olmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "One row per report color.",
+          "az": "Hər hesabat rənginə bir sətir."
+        },
+        "explanation": {
+          "en": "Presentation categories do not define the business fact grain.",
+          "az": "Görünüş kateqoriyaları biznes faktının grain-ini müəyyən etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "One row per valid unique order.",
+          "az": "Hər etibarlı, unikal sifarişə bir sətir."
+        },
+        "explanation": {
+          "en": "This matches the additive order-level amount used by the measures.",
+          "az": "Bu, measure-lərdə istifadə olunan, sifariş səviyyəsində toplana bilən məbləğə uyğundur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A mixture of order headers and item rows with repeated header amounts.",
+          "az": "Təkrarlanan başlıq məbləğləri ilə sifariş başlıqlarının və məhsul sətirlərinin qarışığı."
+        },
+        "explanation": {
+          "en": "Mixing grains makes simple aggregation ambiguous and can inflate revenue.",
+          "az": "Grain-lərin qarışdırılması sadə aggregation-ı qeyri-müəyyən edir və gəliri şişirdə bilər."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Consistent fact grain and unique dimension keys are foundations of the model.",
+      "az": "Ardıcıl fact grain-i və unikal dimension key-ləri modelin əsasını təşkil edir."
+    },
+    "lessonId": "data-excel-powerbi-models",
+    "practiceOnly": true,
+    "sourceIds": ["powerbi-star-schema", "powerquery-data-types"]
+  },
+  {
+    "id": "data-excel-powerbi-models-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A DAX paid-revenue measure changes when a February report filter is applied. What explains this?",
+      "az": "Fevral report filter-i tətbiq edildikdə DAX paid-revenue measure-i dəyişir. Bunu nə izah edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The measure permanently edits the raw CSV.",
+          "az": "Measure ilkin CSV-ni daimi olaraq redaktə edir."
+        },
+        "explanation": {
+          "en": "A report measure does not imply source mutation.",
+          "az": "Report measure mənbənin dəyişdirilməsi demək deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Every measure is a stored row-by-row column.",
+          "az": "Hər measure saxlanmış, sətir-sətir hesablanan sütundur."
+        },
+        "explanation": {
+          "en": "Measures and calculated columns have different evaluation behavior.",
+          "az": "Measure-lər və calculated column-lar fərqli qaydada hesablanır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The measure is evaluated in the current filter context.",
+          "az": "Measure cari filter context-də hesablanır."
+        },
+        "explanation": {
+          "en": "The date filter changes which related fact rows contribute.",
+          "az": "Tarix filter-i hansı əlaqəli fact sətirlərinin hesablamaya daxil olduğunu dəyişir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Review relationships and filter context when interpreting report-level calculations.",
+      "az": "Hesabat səviyyəsində hesablamaları şərh edərkən relationship-ləri və filter context-i yoxlayın."
+    },
+    "lessonId": "data-excel-powerbi-models",
+    "practiceOnly": true,
+    "sourceIds": ["powerbi-star-schema", "powerquery-data-types"]
+  },
+  {
+    "id": "data-excel-powerbi-models-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO checks belong in Excel/Power Query preparation and modeling?",
+      "az": "Hansı İKİ yoxlama Excel/Power Query hazırlığına və modelləşdirməyə aiddir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Verify dimension-key uniqueness before creating one-to-many relationships.",
+          "az": "One-to-many relationship yaratmazdan əvvəl dimension key-lərinin unikallığını yoxlamaq."
+        },
+        "explanation": {
+          "en": "Duplicate dimension keys violate the intended relationship cardinality.",
+          "az": "Təkrarlanan dimension key-ləri nəzərdə tutulan relationship cardinality-ni pozur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assume a refreshed chart proves the source range contains every new row.",
+          "az": "Yenilənmiş chart-ın mənbə aralığında bütün yeni sətirlərin olduğunu sübut etdiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "A refresh can operate on an incomplete source range.",
+          "az": "Refresh natamam mənbə aralığında da işləyə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Make every relationship bidirectional without reviewing ambiguity.",
+          "az": "Qeyri-müəyyənliyi yoxlamadan bütün relationship-ləri bidirectional etmək."
+        },
+        "explanation": {
+          "en": "Filter direction should be an intentional modeling decision.",
+          "az": "Filter istiqaməti düşünülmüş modelləşdirmə qərarı olmalıdır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Specify the intended locale for ambiguous date conversions.",
+          "az": "Qeyri-müəyyən tarix çevirmələri üçün nəzərdə tutulan locale-ı göstərmək."
+        },
+        "explanation": {
+          "en": "A syntactically valid conversion can still assign the wrong calendar date.",
+          "az": "Sintaktik baxımdan düzgün çevirmə yenə də səhv təqvim tarixi verə bilər."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Repeatable preparation, explicit types and deliberate relationships support trustworthy measures.",
+      "az": "Təkrarlana bilən hazırlıq, açıq data type-lar və düşünülmüş relationship-lər etibarlı measure-lərə əsas yaradır."
+    },
+    "lessonId": "data-excel-powerbi-models",
+    "practiceOnly": true,
+    "sourceIds": ["powerbi-star-schema", "powerquery-data-types"]
+  },
+  {
+    "id": "data-excel-powerbi-models-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A region has 1 success out of 2 and another has 90 out of 100. What is the combined success rate?",
+      "az": "Bir regionda 2 haldan 1-i, digərində isə 100 haldan 90-ı uğurludur. Ümumi uğur faizi nə qədərdir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "140%, the sum of the two percentages.",
+          "az": "İki faizin cəmi olan 140%."
+        },
+        "explanation": {
+          "en": "Subgroup percentages are not additive measures.",
+          "az": "Alt qrupların faizləri toplana bilən measure-lər deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "91/102, approximately 89.2%.",
+          "az": "91/102, təxminən 89.2%."
+        },
+        "explanation": {
+          "en": "Combine the eligible numerators and denominators.",
+          "az": "Uyğun surətləri və məxrəcləri birləşdirin."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "70%, the simple average of 50% and 90%.",
+          "az": "50% və 90%-in sadə ortalaması olan 70%."
+        },
+        "explanation": {
+          "en": "That weights regions equally despite different population sizes.",
+          "az": "Bu, topluların ölçüsü fərqli olsa da regionlara eyni çəki verir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "For the overall population, aggregate numerator and denominator before dividing; define any alternative weighting explicitly.",
+      "az": "Ümumi toplu üçün bölmədən əvvəl surətləri və məxrəcləri toplayın; alternativ çəki üsulunu açıq müəyyən edin."
+    },
+    "lessonId": "data-excel-powerbi-models",
+    "practiceOnly": true,
+    "sourceIds": ["powerbi-star-schema", "powerquery-data-types"]
+  },
+  {
+    "id": "data-experiments-statistics-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "Conversion increases from 10% to 12%. Which description is correct?",
+      "az": "Conversion 10%-dən 12%-ə yüksəlir. Hansı təsvir doğrudur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A 2-percentage-point increase and a 20% relative lift.",
+          "az": "2 faiz bəndi artım və 20% nisbi artım."
+        },
+        "explanation": {
+          "en": "The absolute difference is 0.02; dividing by 0.10 gives 0.20.",
+          "az": "Mütləq fərq 0.02-dir; bunu 0.10-a böldükdə 0.20 alınır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A 20-percentage-point increase.",
+          "az": "20 faiz bəndi artım."
+        },
+        "explanation": {
+          "en": "That confuses relative lift with the absolute rate difference.",
+          "az": "Bu, nisbi artımı faiz göstəricisinin mütləq fərqi ilə qarışdırır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A 2% relative lift.",
+          "az": "2% nisbi artım."
+        },
+        "explanation": {
+          "en": "The relative difference is 20%, not 2%.",
+          "az": "Nisbi fərq 2% deyil, 20%-dir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Report both the effect scale and its uncertainty; an observed difference alone does not justify rollout.",
+      "az": "Həm təsirin ölçüsünü, həm də qeyri-müəyyənliyini göstərin; yalnız müşahidə olunan fərq rollout üçün kifayət etmir."
+    },
+    "lessonId": "data-experiments-statistics",
+    "practiceOnly": true,
+    "sourceIds": ["nist-experiment-design", "govuk-performance-metrics"]
+  },
+  {
+    "id": "data-experiments-statistics-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "In the lesson, 100/1000 versus 120/1000 yields an approximate interval of -0.74 to +4.74 percentage points. What follows?",
+      "az": "Dərsdə 100/1000 ilə 120/1000 müqayisəsi təxminən -0.74-dən +4.74 faiz bəndinədək interval verir. Bundan hansı nəticə çıxır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "There is a 95% probability that the null hypothesis is true.",
+          "az": "Null hypothesis-in doğru olma ehtimalı 95%-dir."
+        },
+        "explanation": {
+          "en": "That is not the frequentist interval or p-value interpretation.",
+          "az": "Bu, frequentist interval və ya p-value-nun izahı deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The approximation includes no difference, so it does not establish a confident positive effect.",
+          "az": "Yaxınlaşma sıfır fərqi də əhatə etdiyi üçün müsbət təsiri inamla təsdiqləmir."
+        },
+        "explanation": {
+          "en": "The interval includes zero and a small negative effect.",
+          "az": "Interval sıfırı və kiçik mənfi təsiri əhatə edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The variants are proven identical.",
+          "az": "Variantların eyni olduğu sübut edilib."
+        },
+        "explanation": {
+          "en": "Failure to establish a difference is not proof of equivalence.",
+          "az": "Fərqi təsdiqləyə bilməmək ekvivalentliyi sübut etmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "State assumptions and limitations. The simplified fixed-horizon approximation is not a universal experiment method.",
+      "az": "Fərziyyələri və məhdudiyyətləri göstərin. Sadələşdirilmiş fixed-horizon yaxınlaşması bütün experiment-lər üçün universal üsul deyil."
+    },
+    "lessonId": "data-experiments-statistics",
+    "practiceOnly": true,
+    "sourceIds": ["nist-experiment-design", "govuk-performance-metrics"]
+  },
+  {
+    "id": "data-experiments-statistics-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "Which TWO choices improve an account-level A/B experiment design?",
+      "az": "Hansı İKİ seçim account səviyyəsində A/B experiment dizaynını yaxşılaşdırır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Predeclare the primary outcome, analysis/stopping plan and guardrails.",
+          "az": "Primary outcome-u, təhlil və dayandırma planını, guardrail-ləri əvvəlcədən müəyyən etmək."
+        },
+        "explanation": {
+          "en": "This reduces outcome switching and unaccounted repeated testing.",
+          "az": "Bu, nəticə göstəricisinin sonradan dəyişdirilməsini və nəzərə alınmayan təkrar testləri azaldır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Stop at the first favorable significance result after unlimited peeking.",
+          "az": "Limitsiz ara yoxlamalardan sonra ilk əlverişli significance nəticəsində dayanmaq."
+        },
+        "explanation": {
+          "en": "That alters error behavior without an appropriate sequential design.",
+          "az": "Uyğun sequential design olmadan bu, xəta davranışını dəyişir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Ignore missing outcomes if the observed percentage looks high.",
+          "az": "Müşahidə olunan faiz yüksəkdirsə çatışmayan nəticələri nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "Differential missingness can invalidate the comparison.",
+          "az": "Qruplarda fərqli səviyyədə məlumat çatışmazlığı müqayisəni etibarsız edə bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Keep each account in a stable assigned variant.",
+          "az": "Hər account-u sabit təyin olunmuş variantda saxlamaq."
+        },
+        "explanation": {
+          "en": "Repeated visits should not unintentionally cross treatments under this design.",
+          "az": "Bu dizaynda təkrar ziyarətlər istənmədən variantlar arasında keçid yaratmamalıdır."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "The assignment unit, measurement quality and decision rules need to be designed before inspecting the result.",
+      "az": "Assignment unit, ölçmə keyfiyyəti və qərar qaydaları nəticəyə baxmazdan əvvəl hazırlanmalıdır."
+    },
+    "lessonId": "data-experiments-statistics",
+    "practiceOnly": true,
+    "sourceIds": ["nist-experiment-design", "govuk-performance-metrics"]
+  },
+  {
+    "id": "data-experiments-statistics-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statement correctly describes a p-value?",
+      "az": "Hansı fikir p-value-nu düzgün təsvir edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A tail probability for results at least as incompatible with a specified null model as those observed.",
+          "az": "Müşahidə olunan nəticələr qədər və ya onlardan daha çox müəyyən null model ilə uyğunsuz olan nəticələrin tail probability-si."
+        },
+        "explanation": {
+          "en": "The probability is conditional on that null model and its assumptions.",
+          "az": "Bu ehtimal həmin null model və onun fərziyyələri şərti ilə hesablanır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The probability that the null hypothesis is true.",
+          "az": "Null hypothesis-in doğru olma ehtimalı."
+        },
+        "explanation": {
+          "en": "That reverses the conditioning and is not the definition.",
+          "az": "Bu, şərtlənməni tərsinə çevirir və tərifə uyğun deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The expected business profit from rollout.",
+          "az": "Rollout-dan gözlənilən biznes gəliri."
+        },
+        "explanation": {
+          "en": "Statistical compatibility does not calculate commercial value.",
+          "az": "Statistik uyğunluq kommersiya dəyərini hesablamır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A p-value does not supply effect size, practical value or the acceptable trade-off with guardrail harms.",
+      "az": "P-value təsirin ölçüsünü, praktiki dəyəri və ya guardrail zərərləri ilə qəbul edilən güzəşti göstərmir."
+    },
+    "lessonId": "data-experiments-statistics",
+    "practiceOnly": true,
+    "sourceIds": ["nist-experiment-design", "govuk-performance-metrics"]
+  },
+  {
+    "id": "data-dashboards-storytelling-practice-01",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A dashboard uses only red and green cells to indicate failure and success. What should be added?",
+      "az": "Dashboard uğursuzluğu və uğuru yalnız qırmızı və yaşıl xanalarla göstərir. Nə əlavə edilməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "More shades of red and green without labels.",
+          "az": "Etiketlər olmadan daha çox qırmızı və yaşıl çalar."
+        },
+        "explanation": {
+          "en": "Additional colors still rely on color to convey status.",
+          "az": "Əlavə rənglər yenə statusu çatdırmaq üçün rəngə əsaslanır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A hidden note available only in the database.",
+          "az": "Yalnız database-də görünən gizli qeyd."
+        },
+        "explanation": {
+          "en": "Users need access to the meaning in the report interface.",
+          "az": "İstifadəçilər mənanı report interfeysində görə bilməlidir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Text, icons or another accessible non-color signal for the status.",
+          "az": "Status üçün mətn, ikon və ya başqa əlçatan, rəngdən asılı olmayan işarə."
+        },
+        "explanation": {
+          "en": "Meaning must not depend on color alone.",
+          "az": "Məna yalnız rəngdən asılı olmamalıdır."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "WCAG use-of-color guidance requires another means of conveying the information; contrast and accessible values also need review.",
+      "az": "WCAG use-of-color qaydası məlumatı çatdırmaq üçün əlavə üsul tələb edir; contrast və əlçatan dəyərlər də yoxlanmalıdır."
+    },
+    "lessonId": "data-dashboards-storytelling",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "wcag22-use-of-color"]
+  },
+  {
+    "id": "data-dashboards-storytelling-practice-02",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A pipeline refreshed successfully at noon, but upstream events are complete only through yesterday. Which freshness statement is useful?",
+      "az": "Pipeline günorta uğurla yenilənib, amma upstream hadisələri yalnız dünənin sonunadək tamdır. Hansı freshness məlumatı faydalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Show the refresh time and the separate event-completeness cutoff.",
+          "az": "Refresh vaxtını və hadisələrin hansı vaxta qədər tam olduğunu ayrı göstərmək."
+        },
+        "explanation": {
+          "en": "A successful run does not establish up-to-the-minute source completeness.",
+          "az": "Uğurlu run mənbənin bu dəqiqəyədək tam olduğunu sübut etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Label every metric real-time because the job succeeded.",
+          "az": "Job uğurlu olduğuna görə hər metric-i real-time adlandırmaq."
+        },
+        "explanation": {
+          "en": "That overstates the actual observation window.",
+          "az": "Bu, faktiki müşahidə müddətini olduğundan geniş göstərir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Remove all timestamps to avoid explaining the gap.",
+          "az": "Boşluğu izah etməmək üçün bütün timestamp-ləri silmək."
+        },
+        "explanation": {
+          "en": "The user loses evidence needed to interpret the result.",
+          "az": "İstifadəçi nəticəni şərh etmək üçün lazım olan sübutu itirir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Freshness includes when processing ran and through when the underlying observations are complete.",
+      "az": "Freshness həm emalın nə vaxt işlədiyini, həm də əsas müşahidələrin hansı vaxta qədər tam olduğunu əhatə edir."
+    },
+    "lessonId": "data-dashboards-storytelling",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "wcag22-use-of-color"]
+  },
+  {
+    "id": "data-dashboards-storytelling-practice-03",
+    "trackId": "ba",
+    "type": "multiple",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Which TWO elements help someone interpret an exported KPI chart?",
+      "az": "Hansı İKİ element export edilmiş KPI chart-ını şərh etməyə kömək edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Active filters and a source-completeness statement.",
+          "az": "Aktiv filter-lər və mənbənin tamlığı barədə məlumat."
+        },
+        "explanation": {
+          "en": "The export should retain context that may otherwise be lost.",
+          "az": "Export əks halda itə biləcək konteksti saxlamalıdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A causal claim based only on two lines moving together.",
+          "az": "Yalnız iki xəttin birlikdə hərəkətinə əsaslanan səbəb-nəticə iddiası."
+        },
+        "explanation": {
+          "en": "Correlation in a chart does not establish causation.",
+          "az": "Chart-dakı correlation causation sübutu deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "An unlabeled truncated bar axis chosen to dramatize the change.",
+          "az": "Dəyişikliyi şişirtmək üçün seçilmiş, izahsız kəsilmiş bar axis."
+        },
+        "explanation": {
+          "en": "That can distort length-based magnitude comparisons.",
+          "az": "Bu, uzunluğa əsaslanan miqyas müqayisələrini təhrif edə bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Units, eligible population and time window.",
+          "az": "Vahidlər, uyğun toplu və vaxt aralığı."
+        },
+        "explanation": {
+          "en": "They establish the meaning and comparability of values.",
+          "az": "Bunlar dəyərlərin mənasını və müqayisə edilə bilməsini müəyyən edir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "An export should preserve the measurement context and avoid stronger claims than the evidence supports.",
+      "az": "Export ölçmə kontekstini qorumalı və sübutların imkan verdiyindən daha güclü iddia irəli sürməməlidir."
+    },
+    "lessonId": "data-dashboards-storytelling",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "wcag22-use-of-color"]
+  },
+  {
+    "id": "data-dashboards-storytelling-practice-04",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "data-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A February cohort retention cell shows 100%, based on one customer. What should the report make visible?",
+      "az": "Fevral cohort-unun retention xanası bir müştəriyə əsasən 100% göstərir. Hesabatda nə görünməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Only the large percentage, because counts distract from success.",
+          "az": "Yalnız böyük faiz, çünki saylar uğurdan diqqəti yayındırır."
+        },
+        "explanation": {
+          "en": "Hiding the denominator encourages overconfidence.",
+          "az": "Məxrəcin gizlədilməsi həddindən artıq inam yaradır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A guarantee that future cohorts will also retain at 100%.",
+          "az": "Gələcək cohort-larda da retention-un 100% olacağına zəmanət."
+        },
+        "explanation": {
+          "en": "One observed customer cannot establish that prediction.",
+          "az": "Müşahidə olunan bir müştəri belə proqnozu təsdiqləyə bilməz."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The cohort size and limitations of such a small denominator.",
+          "az": "Cohort-un ölçüsü və belə kiçik məxrəcin yaratdığı məhdudiyyətlər."
+        },
+        "explanation": {
+          "en": "The percentage is arithmetically correct but weak as a general estimate.",
+          "az": "Faiz riyazi baxımdan doğrudur, amma ümumi qiymətləndirmə kimi zəifdir."
+        }
+      }
+    ],
+    "correct": ["c"],
+    "explanation": {
+      "en": "Show counts with percentages and distinguish descriptive observations from general or causal conclusions.",
+      "az": "Faizlərlə birlikdə sayları göstərin və təsviri müşahidələri ümumi və ya səbəb-nəticə qənaətlərindən ayırın."
+    },
+    "lessonId": "data-dashboards-storytelling",
+    "practiceOnly": true,
+    "sourceIds": ["govuk-performance-metrics", "govuk-service-success", "wcag22-use-of-color"]
+  }
+]

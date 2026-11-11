@@ -1,0 +1,105 @@
+---
+id: jwt-validation-authorization
+locale: az
+title: 'JWT yoxlanması, JWKS rotasiyası və obyekt icazələri'
+objectives:
+  - 'Seçilmiş access token profilinin tələb etdiyi cryptographic və claim yoxlamalarını sadala.'
+  - 'Token-in idarə etdiyi key URL-inə güvənmədən naməlum key ID-ni idarə et.'
+  - 'Uğurlu token verification-dan asılı olmayaraq scope, tenant və object yoxlamalarını tətbiq et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Seçilmiş access token profilinin tələb etdiyi cryptographic və claim yoxlamalarını sadala.
+- Token-in idarə etdiyi key URL-inə güvənmədən naməlum key ID-ni idarə et.
+- Uğurlu token verification-dan asılı olmayaraq scope, tenant və object yoxlamalarını tətbiq et.
+
+## Bu mövzu niyə vacibdir
+
+API token signature-ını yoxlayır və sonra ID-si URL-də verilən istənilən invoice-u qaytarır. Beləliklə, qanuni istifadəçi başqa şirkətin invoice-unu istəyə bilir. Signature verification konfiqurasiya edilmiş profil üzrə token-in həqiqiliyini göstərdi; həmin invoice-a icazəni göstərmədi. Authentication, token validation və biznes authorization ayrı yoxlamalar tələb edir.
+
+## Əsas anlayışlar
+
+Adi signed JWT üç base64url hissədən ibarətdir: protected header, payload və signature. Encoding encryption deyil. Belə token-i əldə edən adətən claim-ləri oxuya bilir; secret və lazımsız şəxsi məlumat yazma. Encrypted token daxil olmaqla başqa JWT formaları da var; “bütün JWT-lər oxunan üçhissəli string-dir” demək də həddindən artıq ümumiləşdirmədir.
+
+Gələn token-dəki ixtiyari claim-dən deyil, konfiqurasiya edilmiş token profilindən və etibarlı issuer-dən başla. Bu dərsin API-si üçün təsdiqlənmiş algorithm və issuer-ə bağlı key ilə düzgün signature, dəqiq trusted issuer, gözlənilən API audience, məhdud clock tolerance ilə exp və uyğun nbf yoxlaması, tələb olunan subject və issuer profilinə görə gözlənilən token purpose/type tələb et. Bunlar bu API-nin qəbul tələbləridir; hər mümkün JWT-nin eyni məcburi claim-ləri olduğu iddiası deyil.
+
+RFC 8725 library-nin çağırana qəbul edilən algorithm-ləri məhdudlaşdırmaq imkanı verməsini tələb edir. Signed token API hücumçunun idarə etdiyi header istədiyi üçün algorithm qəbul etməməlidir. kid-i konfiqurasiya edilmiş issuer key-ləri daxilində etibarsız key selector say. Açıq təhlükəsiz trust policy olmadan etibarsız token-dəki jku və ya x5u URL-ini yükləmə.
+
+JWKS rotation distributed cache problemi yaradır. Trusted key-ləri məhdud refresh davranışı ilə cache et. Naməlum key ID-də konfiqurasiya edilmiş issuer-dən nəzarətli refresh qanuni yeni key tapa bilər. Tapmırsa, token-i rədd et. Random key ID-lərin limitsiz network çağırışı yaratmaması üçün refresh-ə rate limit qoy. Köhnə verification key-lərini issuer-in overlap müddətində saxla; removal və revocation policy-si aydın olmalıdır.
+
+Token validation-dan sonra resource icazələrini qiymətləndir. invoices:read kimi scope əməliyyat kateqoriyasına icazə verir; hər tenant-ın invoice-una giriş vermir. Actor-u və icazəli tenant üzvlüyünü trusted context və server məlumatından çıxar, sorğunu həmin sərhəddə apar. Role policy input-larından biridir. Ownership, tenant üzvlüyü və transaction limit-ləri üçün çox vaxt relationship/attribute əsaslı yoxlamalar da lazımdır.
+
+## İşlənmiş nümunə
+
+U-7 istifadəçisi T-A tenant-ına aiddir və invoices:read scope-u var. GET /invoices/I-9 request-i isə T-B-yə aid invoice göstərir.
+
+```ts
+// trustedActor is produced by validated authentication, not request JSON.
+const invoice = await repository.findInvoice({
+  id: requestedId,
+  tenantId: trustedActor.tenantId,
+});
+if (!invoice) return notFound();
+if (!trustedActor.scopes.includes('invoices:read')) return forbidden();
+return invoiceView(invoice);
+```
+
+Nümunə kod JWT verification-u və bütün access policy-ni implement etmir. Əsas sərhəd budur: requestedId obyekti göstərir, trustedActor və server-side policy girişi müəyyən edir. Proqnozlaşdırılan ID-ni UUID-yə çevirmək icazə yoxlamasını əvəz etmir. Vahid 404 concealment policy başqa tenant-ın obyektinin mövcudluğunu açıqlamamağa kömək edə bilər.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Untrusted token"] --> B["Configured issuer and allowed algorithm"]\n B --> C["Signature and claims"]\n C --> D["Scope and tenant policy"]\n D --> E["Object permission"]\n E --> F["Authorized representation"]'
+  }
+/>
+
+Token validation və object authorization ayrı keçidlərdir. Birindən keçmək qalan policy qərarlarını aradan qaldırmır.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Token düzgün imzalanıb və vaxtı bitməyib, amma audience-i reporting service-dir. Payment API onu qəbul edə bilərmi?</summary>
+
+Xeyr. Etibarlı issuer müxtəlif alıcılar üçün credential verə bilər. Payment API öz audience tələbini yoxlamalıdır. Əks halda daha az həssas xidmət üçün alınan token daha həssas xidmətdə istifadə edilə bilər.
+
+</details>
+
+## Tipik səhvlər
+
+- Decoded payload-u authenticated actor saymaq verification-dan əvvəl məlumata güvənir.
+- Token-dəki ixtiyari key URL-ini yükləmək SSRF və hücumçunun idarə etdiyi trust yarada bilər.
+- “Daxili” çağırışda authorization-u keçmək hər internal workload-un bütün icazələrə malik olduğunu fərz edir.
+- Request-dəki tenantId-ni security boundary saymaq çağırana başqa təşkilat seçmək imkanı verir.
+- Clock drift üçün expiry yoxlamasını söndürmək kiçik operational tolerance-ı müddətsiz etibarlılığa çevirir.
+
+## Praktik tapşırıq
+
+Bütün API nüsxələri cache-i refresh etməmiş issuer-in yeni signing key-i yaranır. Eyni anda hücumçu random kid-lər göndərir, qanuni istifadəçi isə cross-tenant invoice istəyir. Hər üç hal üçün təhlükəsiz davranış müəyyən et; issuer, audience, expiry, algorithm və object ownership üçün mənfi testlər yaz.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Key naməlumdursa, yalnız əvvəlcədən qurulmuş trusted JWKS endpoint-dən məhdud və cache-lənən refresh-ə icazə ver. Uyğun trusted key tapılarsa verification-u yenilə, tapılmazsa fail closed et. Random kid trafikinə qarşı refresh-ləri əlaqələndir, rate/cache limit-ləri tətbiq et. Başqa issuer-ə fallback etmə və unsigned token qəbul etmə.
+
+Invoice request-ində token-i yoxla və tenant/object icazələrini ayrıca tətbiq et. Testlər yanlış issuer və ya API audience-li token-i, konfiqurasiya olunmuş tolerance-dan artıq expired token-i, dəstəklənməyən algorithm-i və qanuni istifadəçinin icazəsiz obyekt istəməsini rədd etməlidir. Overlap zamanı qanuni yeni key-i də sına və request log-larında bearer token olmadığını yoxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Decode ≠ verify. Düzgün signature ≠ düzgün issuer/audience. Etibarlı access token ≠ hər object üçün icazə. Trusted issuer key discovery-ni müəyyən edir. Algorithm allowlist, zaman yoxlamaları, profile separation və resource policy bu API validation modelinin vacib hissələridir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [RFC 8725](https://www.rfc-editor.org/rfc/rfc8725.html): §§3.1–3.2 və 3.8–3.12.
+- [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html): §2.3, access token səlahiyyətinin məhdudlaşdırılması.
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): deny by default və object-level yoxlamalar.
+- [OWASP REST Security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html): JWT və access control bölmələri.
+
+Invoice policy və JWKS refresh strategiyası orijinal implementasiya nümunəsidir. Davamlı dəstəklənən verification library və issuer-in dəstəklədiyi token profilini istifadə et.

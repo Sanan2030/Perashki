@@ -1,0 +1,118 @@
+---
+id: api-contracts-evolution
+locale: az
+title: 'OpenAPI müqavilələri, səhifələmə və uyğun API dəyişiklikləri'
+objectives:
+  - 'OpenAPI 3.1.1 schema-larını və operation səviyyəli security tələblərini oxu.'
+  - 'Optional, nullable və absent-in niyə ayrı contract qərarları olduğunu izah et.'
+  - 'Compatibility, pagination sabitliyi və machine-readable failure davranışını qiymətləndir.'
+---
+
+## Öyrənmə məqsədləri
+
+- OpenAPI 3.1.1 schema-larını və operation səviyyəli security tələblərini oxu.
+- Optional, nullable və absent-in niyə ayrı contract qərarları olduğunu izah et.
+- Compatibility, pagination sabitliyi və machine-readable failure davranışını qiymətləndir.
+
+## Bu mövzu niyə vacibdir
+
+API komandası məcburi fraudReason request field-i əlavə edir və zərərsiz təkmilləşdirmə adlandırır. Köhnə client-lər artıq validation-dan keçmir. Başqa komanda köhnə mobile client-in fallback-siz exhaustive switch ilə işlədiyi response enum-a yeni value əlavə edir. Compatibility provider davranışı, sənədləşdirilmiş vəd və consumer fərziyyələri arasındakı əlaqədir; daha böyük schema təkbaşına uyğunluq zəmanəti deyil.
+
+## Əsas anlayışlar
+
+OpenAPI path, operation, parameter, request body, response və security requirement-ləri təsvir edir. Faydalı contract yalnız yaradılmış 200 response deyil, uğursuz nəticələri və davranış qaydalarını da əhatə edir. Specification interface-i təsvir edir; server və testlər ona real əməl etməlidir.
+
+OpenAPI 3.1.1 JSON Schema 2020-12 əsaslı dialect istifadə edir. Property-nin mövcudluğu required ilə müəyyən olunur. Nullable string type: [string, 'null'] ilə göstərilə bilər. Null real JSON value-dur; absence property-nin göndərilməməsidir. Default, deletion və partial update semantikası ayrıca aydın olmalıdır. Köhnə 3.0 nullable keyword-ünü 3.1 schema-ya köçürüb hər validator-un nəzərdə tutulan mənanı yoxladığını fərz etmə.
+
+```yaml
+openapi: 3.1.1
+info:
+  title: Example Orders API
+  version: 1.0.0
+paths:
+  /orders:
+    get:
+      security:
+        - oauth: [orders:read]
+      responses:
+        '200':
+          description: A page of authorized orders
+components:
+  securitySchemes:
+    oauth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://identity.example.invalid/authorize
+          tokenUrl: https://identity.example.invalid/token
+          scopes:
+            orders:read: Read permitted orders
+```
+
+Bütün URL-lər placeholder-dir. Operation səviyyəli security ümumi deklarasiyanı əvəz edə bilər. Siyahıdakı ayrı Security Requirement Object-lər alternativdir; bir object daxilində bir neçə scheme varsa, hamısı ödənməlidir. Boş object anonymous access-i alternativ edə bilər. Buna görə documentation dəyişikliyinin yanlış şərhi ciddi uyğunsuzluq yarada bilər.
+
+Pagination üçün ordering, tie-breaking, filter, page size limit və cursor validity-ni müəyyən et. createdAt ilə unique ID əsasında cursor sabit traversal order yarada bilər; tək timestamp bərabər vaxtları sıralamır. Paralel insert, delete və dəyişən sort key-lər yenə consistency policy tələb edir. Snapshot əsaslı və best-effort live traversal fərqli vədlərdir. Opaque cursor authorization credential-ı deyil: hər səhifə authenticated resource policy-ni yenidən tətbiq etməlidir.
+
+Request və response dəyişikliklərini ayrıca qiymətləndir. Required request field əlavə etmək köhnə client-i pozur. Response field silmək reader-i poza bilər. Enum-a value əlavə etmək qapalı çoxluq fərz edən consumer-i poza bilər. Yeni optional field tolerant reader ilə çox vaxt uyğundur, amma real consumer contract bu fərziyyəni dəstəkləməlidir.
+
+## İşlənmiş nümunə
+
+Reconciliation client yeni order-lər gələrkən settled order-ləri səhifələyir. Əvvəlki mövqelər dəyişdiyindən offset pagination qeydi təkrarlaya və ya atlaya bilər. Komanda dəyişməz settlement time və order ID-ni ordering key seçir, cursor-u eyni filter-lərə bağlayır, page size-ı 100-lə məhdudlaşdırır. Mühasibat üçün consistent snapshot lazımdırsa, server-side snapshot və ya ekvivalent dəstəklənən sərhəd də yaradır; cursor təkbaşına snapshot yaratmır.
+
+Xətalarda API sabit type və təhlükəsiz detail ilə application/problem+json qaytarır. İnsan üçün detail dəyişə və ya tərcümə oluna bilər, parsing API-yə çevrilməməlidir. Struktur uğurla decode olunsa da, başqa tenant-ın cursor-u onun məlumatını açıqlamamalıdır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Consumer need"] --> B["Schema and behavior contract"]\n B --> C["Provider implementation"]\n C --> D["Consumer and negative tests"]\n D --> E["Compatibility evidence"]\n E --> F["Version or migrate when needed"]'
+  }
+/>
+
+Contract davranış və compatibility sübutu ilə etibarlı olur. OpenAPI faylı yaratmaq bir addımdır; işləyən provider-in bütün vədlərə əməl etdiyinin sübutu deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Yeni response field optional-dır. Dəyişikliyin zərərsiz olduğuna zəmanət varmı?</summary>
+
+Universal olaraq yox. Tolerant consumer adətən nəzərə almayacaq, amma strict validator, representation signature və kövrək deserializer rədd edə bilər. Compatibility fərziyyələrini göstər və təhlükəsizlik iddiasından əvvəl vacib consumer-ləri test et.
+
+</details>
+
+## Tipik səhvlər
+
+- Təsadüfi `security: [{}]` anonymous access elan edə bilər.
+- bearerFormat: JWT-ni icra olunan verification məntiqi saymaq API-ni qorumasız qoyur.
+- Limitsiz page size proqnozlaşdırılan resource exhaustion təzyiqi yaradır.
+- Cursor-u fərqli filter-lərlə işlətmək yanlış və çaşdırıcı nəticə verə bilər.
+- Xam DB exception qaytarmaq implementasiya məlumatını açır və qeyri-sabit error parsing tələb edir.
+
+## Praktik tapşırıq
+
+Dörd təklifi qiymətləndir: yeni required request field, yeni response enum value, default ordering dəyişikliyi və page size maksimumunun artırılması. Consumer risklərini qruplaşdır, migration/test planı ver. Tenant icazəsi ləğv edilməmişdən əvvəl alınmış cursor üçün test də əlavə et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Uyğun default və ya yeni version/migration yoxdursa, required request field köhnə request-i pozur. Yeni enum tolerant consumer və ya aydın versioning sübutu tələb edir. Default ordering dəyişikliyi navigation fərziyyələrini və saxlanmış cursor-ları poza bilər; yeni ordering parameter elan et və ya cursor contract-ını məqsədli version/invalidate et. Maksimumu artırmaq schema baxımından uyğun olsa da xərc və latency-yə təsir edə bilər.
+
+Consumer nümunələrini köhnə və təklif olunan davranışla işlət, müsbət və mənfi schema-ları yoxla, security alternativlərini sına. Hər page request icazəni yenidən yoxlayır; əvvəl etibarlı cursor revoked access-i saxlamamalıdır. Expiry, filter binding və consistency səviyyəsini sənədləşdir. Həqiqətən uyğunsuz dəyişiklik üçün vədi səssiz dəyişmək əvəzinə deprecation/migration planı yayımla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Presence ≠ nullability. Schema ≠ runtime enforcement. Security siyahısındakı alternativlər birləşmiş scheme-lərdən fərqlidir. Cursor ≠ snapshot və ya permission. Compatibility real consumer-dən asılıdır. Sabit problem type maşın, detail mətni insan üçündür.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): Schema, Security Scheme və Security Requirement object-ləri.
+- [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457.html): §3.1, problem field-ləri və semantikası.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): representation və status semantikası.
+
+Pagination, compatibility kateqoriyaları və migration qərarları orijinal engineering tövsiyəsidir. OpenAPI 3.1.1 seçilmiş tədris nəşridir; ən son specification olduğu iddia edilmir.

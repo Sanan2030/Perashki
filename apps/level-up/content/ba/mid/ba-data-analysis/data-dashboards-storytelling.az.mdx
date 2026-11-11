@@ -1,0 +1,112 @@
+---
+id: data-dashboards-storytelling
+locale: az
+title: 'Dashboard: KPI tərifi, vizual sübut və qərarlar'
+objectives:
+  - 'Aydın comparison/trend sualına cavab verən chart seç.'
+  - 'Metric yanında unit, population, filter və data freshness göstər.'
+  - 'Yalnız rəngə əsaslanmadan uncertainty və status-u çatdır.'
+---
+
+## Öyrənmə məqsədləri
+
+- Aydın comparison/trend sualına cavab verən chart seç.
+- Metric yanında unit, population, filter və data freshness göstər.
+- Yalnız rəngə əsaslanmadan uncertainty və status-u çatdır.
+
+## Bu mövzu niyə vacibdir
+
+Dashboard kiməsə qərar verməyə kömək etməlidir. Çox rəqəm vacib denominator dəyişikliyini və gecikmiş data feed-i gizlədə bilər. Faydalı visual analysis sualı, cavabdeh şəxsi, etibarlı sübutu və mümkün addımı əlaqələndirir.
+
+## Əsas anlayışlar
+
+Hər KPI üçün contract qur: ad, qərar sahibi, numerator/denominator, unit, uyğun population, time window, exclusion, source, refresh cadence və məlum limit. Timestamp-ın “pipeline son işləyib” və ya “event-lər bu vaxta qədər tamdır” mənasını seç. Uğurlu refresh natamam upstream data yükləyə bilər.
+
+Visual encoding-i tapşırığa görə seç. Line chart zaman trend-i, sorted bar chart kateqoriya müqayisəsi, table dəqiq lookup, cohort matrix entry period və keçən vaxt müqayisəsi üçündür. Axis və unit yaz. Uzunluq ölçünü göstərdiyinə görə bar chart adətən zero baseline tələb edir. Başqa scale lazımdırsa açıq göstər, müqayisəni başqa chart-ın daha dürüst çatdırmasını düşün.
+
+Əlaqəsiz xətləri correlated göstərmək üçün ikinci axis əlavə etmə. Target-i observed value-dan ayır. Kiçik sample çaşdırırsa faizlə count göstər. Kiçik baseline-dan böyük görünən faiz dəyişikliyi kontekst tələb edir.
+
+WCAG Use of Color qaydası məlumatın yalnız rənglə verilməməsini tələb edir. Red/green status-a text, icon və ya pattern əlavə et. Chart-a mənalı label, lazım olduqda value üçün accessible table/text summary ver. Yetərli color contrast ayrıca tələbdir; label hər accessibility problemini həll etmir.
+
+Filter-i görünən və proqnozlaşdırılan saxla. Filter-li dashboard-da default population-a aydın qayıdış olsun. Region filter-i təşkilatın ümumi target comparison-unu səssiz dəyişməsin. Chart export olunanda window, filter və freshness-i artifact-a daxil et.
+
+İzah observation, interpretation, uncertainty və təklif olunan action ardıcıllığı ilə gedə bilər. Onları ayır: “martda revenue artdı” müşahidədir; “onboarding release səbəb oldu” güclü sübut tələb edən causal interpretation-dır. Faydalı dashboard həll olunmamış sualı saxta əminlik olmadan göstərə bilər.
+
+## İşlənmiş nümunə
+
+Lab-ın monthly paid revenue-sunu istifadə et: yanvar 4000, fevral 6000, mart 6500 cent. Tək tədris currency-si və cent unit-i ilə üçaylıq line/bar chart göstər. Çevirib currency-ni bildirmədən dollar adlandırma.
+
+Qısa specification:
+
+| Element        | Tərif                                   |
+| -------------- | --------------------------------------- |
+| Sual           | Paid order revenue aydan-aya dəyişirmi? |
+| Population     | Paid status-lu valid unique order       |
+| Additive grain | Bir order                               |
+| Window         | Yanvar–mart 2026, təqvim ayları         |
+| Completeness   | Süni data martın 31-dək tamdır          |
+| Measure        | Integer amount_cents cəmi               |
+| Reconciliation | Üç ayın cəmi 16500 cent                 |
+| Limit          | Refund, cost və multi-currency yoxdur   |
+
+Ayrıca cohort table əlavə et. Yanvar month-one retention 50%, fevral 100%, mart “Müşahidə olunmayıb” kimi göstərilir. Tooltip cutoff-u izah edə bilər, amma kritik status tamamilə hover-dan asılı olmamalıdır. Fevral cohort-unda yalnız bir paying customer var; denominator-u açıq göstər.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Decision and audience] --> K[KPI contract]\n K --> V[Appropriate chart and labels]\n V --> A[Accessible values and statuses]\n A --> F[Freshness and limitations]\n F --> N[Owner and next action]'
+  }
+/>
+
+Vizual measurement interface-in bir hissəsidir. Ətrafındakı təriflər value-ların məsuliyyətlə istifadə edilə bilməsini müəyyən edir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Mart retention-u qırmızı 0% cell olmalıdırmı?</summary>
+
+Xeyr. Aprel activity-si hələ müşahidə olunmayıb; mart month-one retention naməlumdur. “Müşahidə olunmayıb” label-i yaz, cutoff-u izah et. Qırmızı zero ölçülmüş failure iddiası edər və əsassız product intervention yarada bilər.
+
+</details>
+
+## Tipik səhvlər
+
+- Success/failure-ı yalnız red/green ilə vermək.
+- Denominator və observation window olmadan faiz göstərmək.
+- Refresh success-i bütün source event-lərin gəldiyi sübutu saymaq.
+- İki chart xətti correlation-unu causal explanation kimi vermək.
+- Export screenshot-da dəyişmiş filter state-i gizlətmək.
+- Əlçatmaz future cohort cell-lərinə zero yazmaq.
+
+## Praktik tapşırıq
+
+Fevral signup activation-unu araşdırmağa qərar verən Product Owner üçün bir ekranlıq report qur. Numerator/denominator, tərif, window, uyğun chart/table, freshness və bir əsaslı next action göstər. Konkret release-in nəticəyə səbəb olduğunu demə.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Calendar-month tərifi ilə iki fevral signup-ından bir activated account, yəni 50% göstər. Activation-un fevralda first paid order olduğunu, data-nın martın 31-dək tamlığını bildir. İki account üçün dramatik chart-dan count-lu kiçik table aydındır. Kiçik sample-ı izah et; rate-i release-ə bağlamamış account səbəblərini/instrumentation-u araşdır. Yeddi günlük activation lazımdırsa, ayrıca window müəyyən edib yenidən hesabla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Paylaşmazdan əvvəl | Yoxla                                        |
+| ------------------ | -------------------------------------------- |
+| Məna               | Metric contract və sahibi                    |
+| Comparability      | Eyni unit, window və population              |
+| Trust              | Reconciliation və completeness timestamp     |
+| Accessibility      | Rəngdən əlavə label və value                 |
+| Uncertainty        | Count, interval və ya unobserved state       |
+| Action             | Causal iddianı şişirtmədən dəstəklənən qərar |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [GOV.UK: Measuring performance](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service) və [Measuring success](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): service metric seçimi və outcome anlayışı.
+- [W3C: Understanding Success Criterion 1.4.1, Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html): məlumat yalnız rənglə çatdırılmamalıdır.
+- Chart seçimi və süni dashboard specification-u orijinal tədris tövsiyəsidir; mənbələrin məhz bu dashboard-u tələb etdiyi iddia olunmur.

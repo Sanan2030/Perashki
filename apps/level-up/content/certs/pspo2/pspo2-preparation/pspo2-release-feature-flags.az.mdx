@@ -1,0 +1,101 @@
+---
+id: pspo2-release-feature-flags
+locale: az
+title: 'Buraxılış qərarları, feature flag və Definition of Done'
+objectives:
+  - 'Deployment-i, user exposure-u və reallaşmış product value sübutunu ayır.'
+  - 'Release, experiment və operational flag-ləri məqsəd və lifecycle-a görə fərqləndir.'
+  - 'Yarımçıq işi flag arxasında gizlətməyin Definition of Done-u niyə ödəmədiyini izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Deployment-i, user exposure-u və reallaşmış product value sübutunu ayır.
+- Release, experiment və operational flag-ləri məqsəd və lifecycle-a görə fərqləndir.
+- Yarımçıq işi flag arxasında gizlətməyin Definition of Done-u niyə ödəmədiyini izah et.
+
+## Bu mövzu niyə vacibdir
+
+Komanda feature flag söndürülmüş halda yeni checkout binary deploy edir. Sponsor kod production-da olduğuna görə feature-i çatdırılmış dəyər sayır. Developers off path-in test edilmədiyini deyir. Product Owner deployment event-i, usable Done capability-ni, user exposure-u və daha yaxşı outcome sübutunu ayırmalıdır. Dördünü eyni saymaq real irəliləyişi gizlədir.
+
+## Əsas anlayışlar
+
+Deployment software version-u mühitə yerləşdirir. Release/exposure məhsulun operational məhdudiyyətləri daxilində capability-ni hədəf auditoriyaya açır. Realized value istifadəçinin və ya təşkilatın fayda gördüyünün sübutunu tələb edir. Komandalar deployment və exposure-u ayıra bilər, amma işi həqiqi vəziyyətindən fərqli göstərmək üçün istifadə etməməlidir.
+
+Scrum Guide Increment-in usable olmasını və Definition of Done-u ödəməsini tələb edir. Bir Sprint-də bir neçə Increment yarana bilər; Sprint Review release gate deyil. Feature flag optional engineering texnikasıdır; Scrum nə flag tələb edir, nə də söndürülmüş yarımçıq feature-i avtomatik Done sayır.
+
+Pete Hodgson-un MartinFowler.com məqaləsi flag məqsədlərini ayırır. Release toggle deployment-i exposure-dan ayıra bilər. Experiment toggle öyrənmək üçün cohort-ları alternativ davranışlara ayırır. Operational toggle overload vaxtı bahalı recommendation service-i söndürmək kimi dəyişiklik verir. Permissioning toggle capability-yə fərqli girişi idarə edir. Məqsəd və lifetime testing və cleanup policy-yə təsir edir.
+
+| Sual                                   | Məhsul baxımından mənası                                |
+| -------------------------------------- | ------------------------------------------------------- |
+| User indi həqiqətən nə edə bilir?      | Deployed kodu açılmış usable capability-dən ayır        |
+| Hansı path keyfiyyət sərhədini ödəyir? | Gizli yarımçıq işi Increment-ə daxil etmə               |
+| Exposure-u kim dəyişə bilər?           | Qərar səlahiyyətini və operational guardrail-i aydın et |
+| Outcome və zərər necə ölçüləcək?       | Rollout-u böyütməzdən əvvəl öyrənməni müəyyən et        |
+| Müvəqqəti flag nə vaxt silinəcək?      | Mürəkkəbliyin görünmədən yığılmasının qarşısını al      |
+
+Engineering məqaləsi gizli yarımçıq path-ləri deployment texnikası kimi müzakirə edir. Bu müşahidə Scrum-un Increment tərifini dəyişmir. Keyfiyyət standartının tələb etdiyi təhlükəsiz operating state, authorization boundary, data migration və interaction-ları sına. Flag-in off olması bütün DB və security dəyişikliklərini zərərsiz etmir.
+
+Rollback də bir boolean çevirməkdən genişdir. Flag ekranı gizlədə bilər, amma DB migration-u, tutulmuş payment-i və göndərilmiş email-i avtomatik geri qaytarmır. Təsir geri çevrilmirsə təhlükəsiz forward/compensation strategiyası qur.
+
+## İşlənmiş nümunə
+
+Komanda payment selection təcrübəsini dəyişir. Yeni path təhlükəsiz deploy edilir, əvvəlcə yalnız müəyyən canary auditoriyasına açılır. Genişləndirmədən əvvəl technical error, tamamlanan payment, support complaint və accessibility yoxlanır. Uyğun comparison product evidence verə bilər; əsasən operational safety üçün kiçik canary statistik etibarlı dəyər artımını avtomatik sübut etmir.
+
+Flag-in adı məlum sahibi, məqsədi, dəstəklənən configuration-ları, expand/stop meyarı və silinmə tarixi və ya şərti var. Developers implementasiya və technical quality-ni idarə edir. Product Owner real təşkilati sərhədlər daxilində dəyər, risk və exposure qərarlarında əməkdaşlıq edir. Sprint Review outcome və dəyişən konteksti yoxlayır; sonradan keyfiyyət vermir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Usable capability meets DoD"] --> B["Deploy safely"]\n B --> C["Controlled exposure"]\n C --> D["Outcome and guardrail evidence"]\n D --> E["Expand adapt or disable"]\n E --> F["Remove temporary flag when appropriate"]'
+  }
+/>
+
+Bu optional delivery modeli Done capability iddiasından əvvəl keyfiyyəti, sonra nəzarətli exposure və öyrənməni göstərir. Dəqiq implementasiya sırası dəyişə bilər; Scrum flag lifecycle müəyyən etmir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Feature gizli və yarımçıqdır, amma kod deploy edilib. Story point-ləri çatdırılmış customer value sübutu saymaq olarmı?</summary>
+
+Xeyr. Deployment, estimation vahidi və customer outcome fərqli müşahidələrdir. Yarımçıq iş gizlədildiyinə görə Done Increment olmur. Real capability və quality-ni yoxla, sonra value-ni outcome sübutu ilə qiymətləndir.
+
+</details>
+
+## Tipik səhvlər
+
+- Hər flag-i müvəqqəti saymaq qanuni uzunömürlü operational control-u nəzərə almır; hamısını daimi saxlamaq isə qarşısı alınan borc yaradır.
+- Client-side flag-i yeganə access control saymaq birbaşa icazəsiz API istifadəsinə yol verir.
+- Experiment cohort assignment-ını gözlənilmədən dəyişmək comparison-u korlayır.
+- Köhnə flag branch-lərini testsiz saxlamaq gələcək failure path yaradır.
+- “Flag-i söndür” deməyi tam rollback planı saymaq persistent data və external side effect-i unudur.
+
+## Praktik tapşırıq
+
+Yeni refund interface üçün rollout qur. Done sərhədini, deployed/released fərqini, operational və product evidence-i, stop şərtlərini, ownership-i və flag removal-u göstər. Bəzi refund-lar göndərildikdən sonra interface söndürülərsə nə baş verdiyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Capability-ni Done Increment adlandırmazdan əvvəl dəstəklənən imkan və operating state-lərin Definition of Done-u ödəməsini təmin et. Nəzarətli proseslə deploy et, uyğun qrupa aç, həm service health, həm uğurlu user outcome-u izlə. Məqbul olmayan error/refund duplicate, support yükü və accessibility zərərini stop/adapt şərti et. Scrum-un tələb etmədiyi release approval board uydurmaq əvəzinə Product Owner, Developers və operational stakeholder-lərlə sübut və məhdudiyyətləri razılaşdır.
+
+Göndərilən hər refund-un davamlı business state-ini və operation identity-sini saxla. Interface-i söndürmək sonrakı exposure-u dayandırır, tamamlanmış refund-u geri qaytarmır və duplicate-ə icazə vermir. Təhlükəsiz status/reconciliation yolu və lazımdırsa aydın compensation policy ver. Məqsədli qərar tamamlanıb qalan supported path qurulanda müvəqqəti release/experiment flag-i sil.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Deployed ≠ exposed ≠ Done ≠ valuable. Feature flag optional-dır. DoD keyfiyyət sərhədi qalır. Canary safety sübutu ilə product experiment sübutu fərqli suallara cavab verir. Flag-in məqsədi, sahibi, supported state-ləri və lifecycle-ı olur. Kodu söndürmək bütün business effect-ləri geri qaytarmır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Increment, Definition of Done və Sprint Review.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): təqdim edilmiş PDF, output/outcome və experiment loop.
+- [Pete Hodgson, Feature Toggles](https://martinfowler.com/articles/feature-toggles.html): flag kateqoriyaları və saxlanma xərci; 2026-10-22 tarixində oxunub.
+
+Məqalə ekspert engineering tövsiyəsidir; rəsmi Scrum.org mənbəyi və exam tələbi deyil. Scrum iddiaları üçün Scrum Guide 2020 əsasdır; rollout nümunələri orijinal məşqdir.

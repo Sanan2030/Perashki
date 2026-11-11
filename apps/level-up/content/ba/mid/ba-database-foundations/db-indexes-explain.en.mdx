@@ -1,0 +1,97 @@
+---
+id: db-indexes-explain
+locale: en
+title: 'Indexes and EXPLAIN: evidence-based query tuning'
+objectives:
+  - 'Distinguish planner estimates from measured execution.'
+  - 'Explain why an index may help one workload and hurt another.'
+  - 'Review EXPLAIN ANALYZE safely and interpret repeated nodes.'
+---
+
+## Learning objectives
+
+- Distinguish planner estimates from measured execution.
+- Explain why an index may help one workload and hurt another.
+- Review EXPLAIN ANALYZE safely and interpret repeated nodes.
+
+## Why this matters
+
+A slow query does not imply that every filtered column needs an index. The planner chooses among access paths using estimates, and a small table or broad selection may be cheaper to scan. Tuning starts with a representative workload and measured evidence rather than a rule that index scans are always better.
+
+## Core theory
+
+An index provides an alternative way to locate rows, with storage and maintenance cost. B-tree indexes commonly support equality and range conditions, but usefulness depends on query shape, selectivity, ordering, data distribution and available index types. A composite index has ordered columns; choosing them requires the actual predicates and workload, not a universal “index every column” rule.
+
+`EXPLAIN` describes the planned execution without running the ordinary statement. Planner costs are abstract estimates, not milliseconds. Estimated rows describe a node's expected output, which can differ from rows inspected or filtered. Bad estimates can lead to a poor join or access-path choice; inspect statistics and data distribution before blaming the planner.
+
+`EXPLAIN (ANALYZE, BUFFERS)` executes the statement and adds measured evidence. Do not run it casually on a production write or expensive query. A rollback can undo ordinary transactional database changes, but cannot be assumed to reverse every external side effect caused by functions or integrations. Use an appropriate controlled environment and workload.
+
+Read a plan as a tree. Nodes may execute many times; actual times and row counts for a repeated node are reported per-loop averages, so consider the loop count. Buffer information helps distinguish cache hits and reads, but a single warm-cache run is not a complete performance study. Instrumentation itself can add overhead.
+
+Compare alternatives under representative cardinality and concurrency. An index can improve lookup latency while increasing write work and storage. Check the product requirement, latency distribution and operational cost. Record the query version, parameters, data scale, plan, environment and measurement conditions so another engineer can assess the conclusion.
+
+## Worked example
+
+For a teaching orders table, a frequent query selects one customer's paid orders and sorts by time. A candidate index is:
+
+```sql
+CREATE INDEX orders_customer_time_idx
+ON orders (customer_id, ordered_at);
+EXPLAIN
+SELECT order_id, ordered_at, amount_cents
+FROM orders
+WHERE customer_id = 'u42' AND status = 'paid'
+ORDER BY ordered_at;
+```
+
+The index may help find and order that customer's rows, but the status condition still needs evaluation unless the chosen index design addresses it. A tiny fixture may correctly use a sequential scan. In a representative staging database, compare estimated and actual rows, loops and buffers. No plan output or speedup is fabricated here; these are PostgreSQL teaching statements, not executed production tuning.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Workload and latency requirement] --> P[Plan and estimates]\n P --> M[Controlled execution evidence]\n M --> I[Index or query option]\n I --> C[Read write and storage trade-offs]\n C --> R[Repeat representative measurement]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>EXPLAIN reports a lower cost after adding an index. Is a millisecond speedup proven?</summary>
+
+No. Cost is a planner estimate in abstract units. Measure the relevant workload and inspect actual behavior, while considering statistics, cache state, parameters and concurrency. Keep write and storage effects in the decision.
+
+</details>
+
+## Common mistakes
+
+- Treating cost units as elapsed milliseconds.
+- Running ANALYZE variants on writes without assessing effects.
+- Ignoring loop counts or estimate errors.
+- Declaring sequential scans bad regardless of selectivity and table size.
+
+## Practice exercise
+
+A plan estimates 10 output rows but produces 100000 in a frequently repeated node. List the evidence you would inspect before adding indexes and explain why one tiny local run is insufficient.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Check the predicate parameters, table statistics, data skew, correlations, node loops and filtering. Inspect whether the query expresses the intended result and whether an index can support its predicates or ordering. Measure at representative scale and concurrency, retaining environment and cache conditions. A small fixture cannot reproduce the cardinality and contention of the actual workload.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Estimate ≠ measurement. Cost ≠ milliseconds. ANALYZE executes. Read the tree, rows, loops and buffers. An index trades faster access against storage and write maintenance.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [PostgreSQL 18: Using EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html): costs, rows, actual measurements, loops and caveats.
+- [PostgreSQL 18: CREATE INDEX](https://www.postgresql.org/docs/18/sql-createindex.html): index definition, expressions, predicates and operational constraints. SQL and scenarios are original and do not claim measured production performance.

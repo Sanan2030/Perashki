@@ -1,0 +1,1592 @@
+[
+  {
+    "id": "pspo1-sprint-goal-changes-extra-01",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "During a Sprint, a selected item proves too large, but a smaller useful slice can still achieve the same Sprint Goal. What is the most appropriate response?",
+      "az": "Sprint zamanı seçilmiş item-in çox böyük olduğu aydınlaşır, amma daha kiçik, faydalı bir hissə eyni Sprint Goal-a çatdıra bilər. Ən uyğun cavab hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The Product Owner directly replaces every Developer's task to preserve the original item count.",
+          "az": "Product Owner ilkin item sayını qorumaq üçün hər Developer-in task-ını birbaşa əvəz edir."
+        },
+        "explanation": {
+          "en": "Product accountability does not give the Product Owner ownership of the Developers' implementation plan.",
+          "az": "Product üzrə cavabdehlik Product Owner-ə Developers-in implementation planı üzərində ownership vermir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The Scrum Master must cancel because any forecast change makes the goal obsolete.",
+          "az": "Forecast-da hər dəyişiklik goal-u köhnəltdiyinə görə Scrum Master Sprint-i ləğv etməlidir."
+        },
+        "explanation": {
+          "en": "Changed effort and an obsolete objective are different conditions; only the Product Owner can cancel.",
+          "az": "Əmək sərfinin dəyişməsi ilə məqsədin aktuallığını itirməsi fərqli hallardır; yalnız Product Owner ləğv edə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The team lowers its Definition of Done temporarily so all original items count as complete.",
+          "az": "Komanda bütün ilkin item-ləri tamamlanmış saymaq üçün Definition of Done-ı müvəqqəti zəiflədir."
+        },
+        "explanation": {
+          "en": "Quality must not decrease to create the appearance of meeting a forecast.",
+          "az": "Forecast-a çatmış kimi görünmək üçün keyfiyyət azaldılmamalıdır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "The Product Owner and Developers clarify and renegotiate scope; Developers adapt their plan without reducing quality.",
+          "az": "Product Owner və Developers scope-u aydınlaşdırıb yenidən razılaşdırır; Developers keyfiyyəti azaltmadan planını uyğunlaşdırır."
+        },
+        "explanation": {
+          "en": "The goal provides focus while allowing learning about the exact work.",
+          "az": "Goal dəqiq iş haqqında öyrənməyə imkan verərək diqqəti bir istiqamətdə saxlayır."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "The Scrum Guide permits scope clarification/renegotiation while protecting the Sprint Goal and quality. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Scrum Guide Sprint Goal-u və keyfiyyəti qorumaqla scope-un aydınlaşdırılmasına və yenidən razılaşdırılmasına icazə verir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo1-sprint-goal-changes",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "agile-manifesto-principles", "professional-po-2018"]
+  },
+  {
+    "id": "pspo1-sprint-goal-changes-extra-02",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "A legal change makes the current Sprint Goal obsolete. Who has the authority to cancel the Sprint?",
+      "az": "Hüquqi dəyişiklik cari Sprint Goal-u aktuallıqdan salır. Sprint-i ləğv etmək səlahiyyəti kimdədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Any individual Developer whenever the task list changes.",
+          "az": "Task siyahısı dəyişəndə istənilən Developer-də."
+        },
+        "explanation": {
+          "en": "An individual's plan change is not the defined cancellation authority.",
+          "az": "Bir şəxsin plan dəyişikliyi müəyyən edilmiş ləğvetmə səlahiyyəti deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The Product Owner, informed by the changed circumstances.",
+          "az": "Dəyişmiş şəraiti nəzərə alan Product Owner-də."
+        },
+        "explanation": {
+          "en": "The Scrum Guide assigns cancellation authority to the Product Owner.",
+          "az": "Scrum Guide ləğvetmə səlahiyyətini Product Owner-ə verir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The Sprint Review stakeholders through a majority acceptance vote.",
+          "az": "Çoxluğun qəbul səsi ilə Sprint Review stakeholder-lərində."
+        },
+        "explanation": {
+          "en": "Scrum does not define such a cancellation vote or require waiting for Review.",
+          "az": "Scrum belə ləğvetmə səsverməsi müəyyən etmir və Review-a qədər gözləməyi tələb etmir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Only the Scrum Master, because cancellation changes the event schedule.",
+          "az": "Ləğv event cədvəlini dəyişdirdiyinə görə yalnız Scrum Master-də."
+        },
+        "explanation": {
+          "en": "Supporting Scrum does not transfer the Product Owner's specified authority.",
+          "az": "Scrum-u dəstəkləmək Product Owner-in müəyyən edilmiş səlahiyyətini başqasına keçirmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Obsolescence concerns the goal's relevance, not merely a changed task estimate. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Aktuallığın itməsi sadəcə task estimate-in dəyişməsinə deyil, goal-un hələ mənalı olmasına aiddir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo1-sprint-goal-changes",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "agile-manifesto-principles", "professional-po-2018"]
+  },
+  {
+    "id": "pspo1-sprint-goal-changes-extra-03",
+    "trackId": "pspo1",
+    "type": "multiple",
+    "domain": "scrum-application",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements are consistent with the Scrum Guide? Select all that apply.",
+      "az": "Hansı fikirlər Scrum Guide-a uyğundur? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A usable Done Increment may be delivered before the Sprint Review.",
+          "az": "İstifadəyə yararlı Done Increment Sprint Review-dan əvvəl çatdırıla bilər."
+        },
+        "explanation": {
+          "en": "Review is not a gate to releasing value.",
+          "az": "Review dəyərin release edilməsi üçün məcburi keçid deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The Sprint Review can waive the Definition of Done for work stakeholders like.",
+          "az": "Sprint Review stakeholder-lərin bəyəndiyi iş üçün Definition of Done-dan imtina edə bilər."
+        },
+        "explanation": {
+          "en": "Stakeholder approval does not replace the quality commitment.",
+          "az": "Stakeholder təsdiqi keyfiyyət commitment-ini əvəz etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Welcoming change means every stakeholder request must interrupt the Sprint immediately.",
+          "az": "Dəyişiklikləri qəbul etmək hər stakeholder request-inin Sprint-i dərhal dayandırmalı olması deməkdir."
+        },
+        "explanation": {
+          "en": "The Agile principles do not erase Scrum's goal and quality constraints.",
+          "az": "Agile prinsipləri Scrum-un goal və keyfiyyət məhdudiyyətlərini aradan qaldırmır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Selected work may be clarified and renegotiated with the Product Owner as more is learned.",
+          "az": "Daha çox məlumat əldə edildikcə seçilmiş iş Product Owner ilə aydınlaşdırıla və yenidən razılaşdırıla bilər."
+        },
+        "explanation": {
+          "en": "Scrum permits learning while keeping the Sprint Goal protected.",
+          "az": "Scrum Sprint Goal-u qorumaqla öyrənməyə imkan verir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Protect the goal and quality while adapting through collaboration; do not add a mandatory release gate. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Əməkdaşlıqla uyğunlaşarkən goal-u və keyfiyyəti qoruyun; məcburi release approval mərhələsi əlavə etməyin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo1-sprint-goal-changes",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "agile-manifesto-principles", "professional-po-2018"]
+  },
+  {
+    "id": "pspo1-sprint-goal-changes-extra-04",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 2,
+    "text": {
+      "en": "A Done recovery improvement is usable on day seven of a ten-day Sprint. No actual operational or regulatory constraint requires delay. Why need it not wait for Sprint Review?",
+      "az": "On günlük Sprint-in yeddinci günündə Done olan bərpa təkmilləşdirməsi istifadəyə hazırdır. Gecikməni tələb edən əməliyyat və ya tənzimləyici məhdudiyyət yoxdur. Niyə Sprint Review-u gözləməyə ehtiyac yoxdur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The Sprint must end as soon as any Increment is released.",
+          "az": "Hər hansı Increment release olunan kimi Sprint bitməlidir."
+        },
+        "explanation": {
+          "en": "A release does not automatically change the Sprint timebox.",
+          "az": "Release Sprint timebox-unu avtomatik dəyişmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The Sprint Review inspects outcomes and changed circumstances; it is not mandatory release approval.",
+          "az": "Sprint Review nəticələri və dəyişmiş şəraiti yoxlayır; məcburi release approval deyil."
+        },
+        "explanation": {
+          "en": "Scrum permits delivery before Review when the capability meets the required quality boundary.",
+          "az": "İmkan tələb olunan keyfiyyət sərhədini ödədikdə Scrum Review-dan əvvəl çatdırılmaya icazə verir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The Product Owner can convert any unfinished work into Done by releasing it early.",
+          "az": "Product Owner istənilən yarımçıq işi erkən release etməklə Done edə bilər."
+        },
+        "explanation": {
+          "en": "Release timing does not waive the Definition of Done.",
+          "az": "Release vaxtı Definition of Done-ı aradan qaldırmır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "An early release removes the need to hold a Sprint Review.",
+          "az": "Erkən release Sprint Review keçirmək ehtiyacını aradan qaldırır."
+        },
+        "explanation": {
+          "en": "Releasing and inspecting the Sprint outcome serve different purposes.",
+          "az": "Release və Sprint nəticəsinin yoxlanması fərqli məqsədlərə xidmət edir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Use the event's purpose rather than inventing an end-of-Sprint gate. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Sprint-in sonunda əlavə məcburi keçid uydurmaq əvəzinə event-in məqsədinə əsaslanın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo1-sprint-goal-changes",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "agile-manifesto-principles", "professional-po-2018"]
+  },
+  {
+    "id": "pspo1-sprint-goal-changes-extra-05",
+    "trackId": "pspo1",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "en": "A sponsor says “Agile welcomes late change, so add my feature now even if the Sprint Goal is endangered.” What is the most defensible response?",
+      "az": "Sponsor deyir: “Agile gec dəyişiklikləri qəbul edir, ona görə Sprint Goal riskə düşsə də feature-imi indi əlavə edin.” Ən əsaslı cavab hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Ignore all new information until the Sprint ends.",
+          "az": "Sprint bitənədək bütün yeni məlumatları nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "Scrum is empirical and allows useful scope clarification.",
+          "az": "Scrum empiricism-ə əsaslanır və faydalı scope aydınlaşdırmasına imkan verir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assign it immediately because Agile principles override every Scrum commitment.",
+          "az": "Agile prinsipləri bütün Scrum commitment-lərini üstələdiyi üçün dərhal təyin etmək."
+        },
+        "explanation": {
+          "en": "Supplementary principles do not remove the framework's specific boundaries.",
+          "az": "Əlavə prinsiplər framework-ün konkret sərhədlərini aradan qaldırmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Ask stakeholders to redefine Done so the extra work fits.",
+          "az": "Əlavə işin sığması üçün stakeholder-lərdən Done-ı yenidən müəyyən etməyi istəmək."
+        },
+        "explanation": {
+          "en": "Quality is not an accounting device for accommodating more work.",
+          "az": "Keyfiyyət daha çox işi yerləşdirmək üçün hesab vasitəsi deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Inspect the request and its value, then collaborate on options that respect the Sprint Goal and quality.",
+          "az": "Request-i və dəyərini yoxlamaq, sonra Sprint Goal-u və keyfiyyəti qoruyan variantlar üzərində əməkdaşlıq etmək."
+        },
+        "explanation": {
+          "en": "Responsiveness includes transparent trade-offs rather than automatic interruption.",
+          "az": "Çevik reaksiya avtomatik müdaxilə əvəzinə şəffaf trade-off-ları da əhatə edir."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "The Agile principles and Scrum's commitments should support empirical collaboration rather than be used as slogans. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Agile prinsipləri və Scrum commitment-ləri şüar kimi işlədilmək əvəzinə empirik əməkdaşlığı dəstəkləməlidir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo1-sprint-goal-changes",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "agile-manifesto-principles", "professional-po-2018"]
+  },
+  {
+    "id": "pspo1-sprint-goal-changes-extra-06",
+    "trackId": "pspo1",
+    "type": "multiple",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "Which observations help distinguish a changed forecast from an obsolete Sprint Goal? Select all that apply.",
+      "az": "Hansı müşahidələr dəyişmiş forecast ilə aktuallığını itirmiş Sprint Goal-u fərqləndirməyə kömək edir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Whether stakeholders are willing to call unfinished work an Increment.",
+          "az": "Stakeholder-lərin yarımçıq işi Increment adlandırmağa razı olub-olmaması."
+        },
+        "explanation": {
+          "en": "Acceptance cannot substitute for the Definition of Done.",
+          "az": "Qəbul Definition of Done-ı əvəz edə bilməz."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Whether the objective still creates value under the new circumstances.",
+          "az": "Yeni şəraitdə məqsədin hələ dəyər yaradıb-yaratmaması."
+        },
+        "explanation": {
+          "en": "Obsolescence concerns the goal's relevance.",
+          "az": "Aktuallığın itməsi goal-un mənasını qoruyub-qorumamasına aiddir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Whether another useful scope option can still achieve the same objective.",
+          "az": "Başqa faydalı scope variantının eyni məqsədə çatdıra bilməsi."
+        },
+        "explanation": {
+          "en": "A changed implementation forecast need not invalidate the goal.",
+          "az": "Implementation forecast-ının dəyişməsi goal-u mütləq etibarsız etmir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Whether all original item estimates can be preserved by changing their labels.",
+          "az": "Etiketləri dəyişməklə bütün ilkin item estimate-lərinin qoruna bilməsi."
+        },
+        "explanation": {
+          "en": "Relabeling does not establish value or usability.",
+          "az": "Etiketi dəyişmək dəyəri və ya istifadəyə yararlılığı sübut etmir."
+        }
+      }
+    ],
+    "correct": ["b", "c"],
+    "explanation": {
+      "en": "Reason about objective, evidence and possible adaptation; task-list discomfort alone does not prove obsolescence. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Məqsədi, sübutları və mümkün uyğunlaşmanı əsas götürün; təkcə task siyahısındakı çətinlik aktuallığın itirildiyini sübut etmir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo1-sprint-goal-changes",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "agile-manifesto-principles", "professional-po-2018"]
+  },
+  {
+    "id": "pspo2-outcome-experiments-extra-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "Overall completion rises from 40% to 50%, but both mobile and desktop completion rates fall as the audience mix changes. What should the Product Owner do first?",
+      "az": "Auditoriya tərkibi dəyişdikcə ümumi tamamlanma 40%-dən 50%-ə yüksəlir, amma həm mobile, həm də desktop tamamlanma faizləri düşür. Product Owner əvvəlcə nə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Use completed story points to prove which audience benefited.",
+          "az": "Hansı auditoriyanın faydalandığını sübut etmək üçün tamamlanmış story point-ləri istifadə etmək."
+        },
+        "explanation": {
+          "en": "Delivery estimates do not resolve the observed customer-outcome question.",
+          "az": "Çatdırılma estimate-ləri müşahidə olunan müştəri nəticəsi sualını cavablandırmır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Inspect segments, traffic composition and measurement before claiming the change improved outcomes.",
+          "az": "Dəyişikliyin nəticələri yaxşılaşdırdığını iddia etməzdən əvvəl segment-ləri, traffic tərkibini və ölçməni yoxlamaq."
+        },
+        "explanation": {
+          "en": "The aggregate can rise because higher-baseline users make up more of the total.",
+          "az": "İlkin göstəricisi daha yüksək olan istifadəçilərin ümumi topludakı payı artdığı üçün aggregate yüksələ bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Expand immediately because the overall rate is the only valid product metric.",
+          "az": "Yeganə etibarlı product metric ümumi faiz olduğuna görə dərhal genişləndirmək."
+        },
+        "explanation": {
+          "en": "That ignores contrary segment evidence and possible user harm.",
+          "az": "Bu, əks segment sübutlarını və istifadəçiyə mümkün zərəri nəzərə almır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Discard all metrics permanently because averages can mislead.",
+          "az": "Ortalamalar aldada bildiyinə görə bütün metric-lərdən həmişəlik imtina etmək."
+        },
+        "explanation": {
+          "en": "The appropriate response is better measurement and interpretation.",
+          "az": "Uyğun cavab daha yaxşı ölçmə və şərhdir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "The lesson's synthetic aggregation reversal illustrates why segment context and comparison design matter. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Dərsdəki süni aggregation reversal nümunəsi segment kontekstinin və müqayisə dizaynının niyə vacib olduğunu göstərir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-outcome-experiments",
+    "practiceOnly": true,
+    "sourceIds": ["ebm-2024", "govuk-performance-metrics", "govuk-service-success", "scrum-2020"]
+  },
+  {
+    "id": "pspo2-outcome-experiments-extra-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "A team launches several changes during a seasonal promotion and observes higher conversion than last month. Which conclusion is justified without additional evidence?",
+      "az": "Komanda mövsümi promotion zamanı bir neçə dəyişiklik release edir və keçən aydan daha yüksək conversion görür. Əlavə sübut olmadan hansı qənaət əsaslıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Every launched feature caused an identical increase in conversion.",
+          "az": "Release edilmiş hər feature conversion-da eyni artıma səbəb olub."
+        },
+        "explanation": {
+          "en": "The observation does not identify independent causal contributions.",
+          "az": "Müşahidə ayrı-ayrı səbəb təsirlərini müəyyən etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The result must be ignored because only experiments produce any useful information.",
+          "az": "Yalnız experiment-lər faydalı məlumat verdiyinə görə nəticə nəzərə alınmamalıdır."
+        },
+        "explanation": {
+          "en": "Observational evidence can still inform a decision when its limits are explicit.",
+          "az": "Məhdudiyyətlər açıq göstərildikdə müşahidə sübutları da qərara kömək edə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The Sprint Review automatically turns the observed correlation into validation.",
+          "az": "Sprint Review müşahidə olunan correlation-ı avtomatik validation-a çevirir."
+        },
+        "explanation": {
+          "en": "An event cannot remove the comparison's design limitations.",
+          "az": "Event müqayisə dizaynının məhdudiyyətlərini aradan qaldıra bilməz."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Conversion changed, but the particular product change's causal effect is not yet established.",
+          "az": "Conversion dəyişib, amma konkret product dəyişikliyinin səbəb təsiri hələ müəyyən edilməyib."
+        },
+        "explanation": {
+          "en": "Seasonality, traffic and simultaneous releases can confound a before/after comparison.",
+          "az": "Mövsümilik, traffic və eyni vaxtda release-lər əvvəl/sonra müqayisəsini qarışdıra bilər."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "Be transparent about what the evidence supports and what a smaller, better comparison must resolve. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Sübutların nəyi dəstəklədiyini və daha kiçik, daha yaxşı müqayisənin nəyi aydınlaşdırmalı olduğunu şəffaf göstərin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-outcome-experiments",
+    "practiceOnly": true,
+    "sourceIds": ["ebm-2024", "govuk-performance-metrics", "govuk-service-success", "scrum-2020"]
+  },
+  {
+    "id": "pspo2-outcome-experiments-extra-03",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "Which elements strengthen a product experiment plan? Select all that apply.",
+      "az": "Hansı elementlər product experiment planını gücləndirir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Use stakeholder applause as sufficient proof of sustained customer benefit.",
+          "az": "Stakeholder alqışını davamlı müştəri faydasının yetərli sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Stakeholder reaction is evidence of a reaction, not the complete market outcome.",
+          "az": "Stakeholder reaksiyası reaksiyanın sübutudur, tam bazar nəticəsi deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Define the intended population, outcome and decision rule before looking at results.",
+          "az": "Nəticələrə baxmazdan əvvəl nəzərdə tutulan toplunu, outcome-u və qərar qaydasını müəyyən etmək."
+        },
+        "explanation": {
+          "en": "This makes the assumption and interpretation more inspectable.",
+          "az": "Bu, fərziyyəni və şərhi daha yoxlanıla bilən edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Track material harm and constraints alongside the target outcome.",
+          "az": "Hədəf nəticə ilə yanaşı əhəmiyyətli zərərləri və məhdudiyyətləri izləmək."
+        },
+        "explanation": {
+          "en": "Guardrails prevent a local metric from concealing wider damage.",
+          "az": "Guardrail-lər lokal metric-in daha geniş zərəri gizlətməsinin qarşısını alır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Redefine success whenever an early result favors the sponsor's preferred feature.",
+          "az": "Erkən nəticə sponsorun sevdiyi feature-i dəstəkləyəndə uğuru yenidən müəyyən etmək."
+        },
+        "explanation": {
+          "en": "Post-hoc goal changes weaken the test's ability to challenge assumptions.",
+          "az": "Nəticədən sonrakı goal dəyişiklikləri testin fərziyyələri sorğulamaq imkanını zəiflədir."
+        }
+      }
+    ],
+    "correct": ["b", "c"],
+    "explanation": {
+      "en": "Combine falsifiable hypotheses, measurement quality and guardrails with empirical judgment. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Yoxlanıb təkzib edilə bilən hypothesis-ləri, ölçmə keyfiyyətini və guardrail-ləri empirik mühakimə ilə birləşdirin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-outcome-experiments",
+    "practiceOnly": true,
+    "sourceIds": ["ebm-2024", "govuk-performance-metrics", "govuk-service-success", "scrum-2020"]
+  },
+  {
+    "id": "pspo2-outcome-experiments-extra-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 2,
+    "text": {
+      "en": "Velocity increases by 20% while customer task completion and support burden remain unchanged. What does the velocity observation alone demonstrate?",
+      "az": "Velocity 20% artır, amma müştəri task-larının tamamlanması və support yükü dəyişmir. Təkcə velocity müşahidəsi nəyi göstərir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Current Value increased by exactly 20%.",
+          "az": "Current Value dəqiq 20% artıb."
+        },
+        "explanation": {
+          "en": "There is no justified numerical conversion from velocity to value.",
+          "az": "Velocity-dən value-ya əsaslandırılmış ədədi çevirmə yoxdur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Unrealized Value is now zero.",
+          "az": "Unrealized Value artıq sıfırdır."
+        },
+        "explanation": {
+          "en": "A satisfaction/opportunity gap is not determined by delivery speed.",
+          "az": "Məmnunluq və imkan boşluğu çatdırılma sürəti ilə müəyyən olunmur."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The Product Owner should permanently optimize only velocity.",
+          "az": "Product Owner həmişəlik yalnız velocity-ni optimallaşdırmalıdır."
+        },
+        "explanation": {
+          "en": "One output measure cannot replace the product's outcome goal.",
+          "az": "Bir output measure product-un outcome goal-unu əvəz edə bilməz."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "A delivery/output measure changed under its measurement assumptions.",
+          "az": "Ölçmə fərziyyələri çərçivəsində bir çatdırılma/output measure dəyişib."
+        },
+        "explanation": {
+          "en": "It does not independently establish improved customer value.",
+          "az": "Bu, müştəri dəyərinin yaxşılaşdığını müstəqil şəkildə sübut etmir."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "EBM distinguishes activities/outputs from customer outcomes and broader impact. See the lesson’s Sources and further reading for exact sections.",
+      "az": "EBM fəaliyyətləri və output-ları müştəri outcome-larından və daha geniş təsirdən fərqləndirir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-outcome-experiments",
+    "practiceOnly": true,
+    "sourceIds": ["ebm-2024", "govuk-performance-metrics", "govuk-service-success", "scrum-2020"]
+  },
+  {
+    "id": "pspo2-outcome-experiments-extra-05",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 3,
+    "text": {
+      "en": "A faster onboarding flow increases starts but reduces completed first sessions for mobile users. A sponsor wants full expansion. What is the strongest next step?",
+      "az": "Daha sürətli onboarding flow başlayanların sayını artırır, amma mobile istifadəçilərin tamamladığı ilk session-ları azaldır. Sponsor tam genişlənmə istəyir. Ən əsaslı növbəti addım hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Require an additional Discovery Sprint as a rule imposed by Scrum.",
+          "az": "Scrum-un qoyduğu qayda kimi əlavə Discovery Sprint tələb etmək."
+        },
+        "explanation": {
+          "en": "Scrum does not prescribe a separate Discovery Sprint.",
+          "az": "Scrum ayrıca Discovery Sprint nəzərdə tutmur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Inspect completion, mobile-user evidence and guardrails before deciding whether to adapt or expand.",
+          "az": "Uyğunlaşdırma və ya genişlənmə qərarından əvvəl tamamlanmanı, mobile istifadəçi sübutlarını və guardrail-ləri yoxlamaq."
+        },
+        "explanation": {
+          "en": "The observed output increase conflicts with the intended completed-user outcome.",
+          "az": "Müşahidə olunan output artımı nəzərdə tutulan tamamlanmış istifadəçi nəticəsinə ziddir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Expand because more starts always means more realized value.",
+          "az": "Daha çox başlanğıc həmişə daha çox reallaşmış dəyər demək olduğu üçün genişləndirmək."
+        },
+        "explanation": {
+          "en": "Starting an unfinished journey can increase abandonment rather than value.",
+          "az": "Yarımçıq qalan journey-yə başlamaq dəyər əvəzinə tərk etməni artıra bilər."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Suppress mobile results because desktop averages look better.",
+          "az": "Desktop ortalamaları daha yaxşı göründüyünə görə mobile nəticələrini gizlətmək."
+        },
+        "explanation": {
+          "en": "Removing a harmed segment makes the decision less transparent.",
+          "az": "Zərər görən segment-in çıxarılması qərarın şəffaflığını azaldır."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "The goal is to improve a relevant outcome, not defend the first chosen implementation. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Məqsəd ilk seçilmiş implementation-ı müdafiə etmək deyil, uyğun nəticəni yaxşılaşdırmaqdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-outcome-experiments",
+    "practiceOnly": true,
+    "sourceIds": ["ebm-2024", "govuk-performance-metrics", "govuk-service-success", "scrum-2020"]
+  },
+  {
+    "id": "pspo2-outcome-experiments-extra-06",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "en": "Which practices from the supplementary GOV.UK measurement guidance help an empirical Product Owner? Select all that apply.",
+      "az": "Əlavə GOV.UK ölçmə qaydalarındakı hansı praktikalar empirik Product Owner-ə kömək edir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Combine baselines, segments and research with digital analytics.",
+          "az": "Baseline-ları, segment-ləri və araşdırmanı digital analytics ilə birləşdirmək."
+        },
+        "explanation": {
+          "en": "Multiple sources provide context and expose interpretation problems.",
+          "az": "Çoxsaylı mənbələr kontekst verir və şərh problemlərini üzə çıxarır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Treat that guidance as a verified PSPO exam blueprint.",
+          "az": "Bu qaydaları təsdiqlənmiş PSPO exam blueprint saymaq."
+        },
+        "explanation": {
+          "en": "It is supplementary service-design material, not Scrum.org assessment policy.",
+          "az": "Bu, əlavə service design materialıdır, Scrum.org assessment qaydası deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Let a dashboard automatically decide every investment without product judgment.",
+          "az": "Dashboard-un product mühakiməsi olmadan hər investment qərarını avtomatik verməsinə imkan yaratmaq."
+        },
+        "explanation": {
+          "en": "Metrics inform a decision and have assumptions and limitations.",
+          "az": "Metric-lər qərara məlumat verir və onların fərziyyələri, məhdudiyyətləri var."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Derive hypotheses and metrics from service purpose and user needs.",
+          "az": "Hypothesis və metric-ləri service məqsədindən və istifadəçi ehtiyaclarından çıxarmaq."
+        },
+        "explanation": {
+          "en": "This ties measurement to a meaningful benefit.",
+          "az": "Bu, ölçməni mənalı fayda ilə əlaqələndirir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Use supplemental practices for evidence quality while keeping Scrum rules and exam provenance distinct. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Əlavə praktikaları sübut keyfiyyəti üçün istifadə edin, Scrum qaydalarını və exam mənbələrini isə fərqləndirin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-outcome-experiments",
+    "practiceOnly": true,
+    "sourceIds": ["ebm-2024", "govuk-performance-metrics", "govuk-service-success", "scrum-2020"]
+  },
+  {
+    "id": "pspo2-release-feature-flags-extra-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 3,
+    "text": {
+      "en": "An unfinished capability is deployed with its flag off. Developers say it does not meet the Definition of Done. What is the correct Scrum interpretation?",
+      "az": "Yarımçıq imkan flag-i söndürülmüş halda deploy edilib. Developers onun Definition of Done-a uyğun olmadığını deyir. Düzgün Scrum şərhi hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Every production deployment automatically establishes a usable Increment for all included work.",
+          "az": "Hər production deployment daxilindəki bütün işlər üçün avtomatik istifadəyə yararlı Increment yaradır."
+        },
+        "explanation": {
+          "en": "Installed code and a usable Done capability are different observations.",
+          "az": "Quraşdırılmış kod və istifadəyə yararlı Done imkan fərqli müşahidələrdir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The Product Owner can waive quality because no user sees the new screen yet.",
+          "az": "Heç bir istifadəçi yeni ekranı hələ görmədiyinə görə Product Owner keyfiyyət tələbindən imtina edə bilər."
+        },
+        "explanation": {
+          "en": "A flag does not eliminate every security, data or quality consequence.",
+          "az": "Flag bütün təhlükəsizlik, məlumat və keyfiyyət nəticələrini aradan qaldırmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Scrum forbids all feature flags in any production environment.",
+          "az": "Scrum istənilən production mühitində bütün feature flag-ləri qadağan edir."
+        },
+        "explanation": {
+          "en": "Scrum does not prescribe or prohibit the technique universally.",
+          "az": "Scrum bu texnikanı universal şəkildə nə tələb edir, nə də qadağan edir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Its deployment does not make that unfinished capability part of a Done Increment.",
+          "az": "Deployment həmin yarımçıq imkanı Done Increment-in hissəsinə çevirmir."
+        },
+        "explanation": {
+          "en": "Hiding code is an optional technique, not a replacement for the quality commitment.",
+          "az": "Kodu gizlətmək optional texnikadır, keyfiyyət commitment-ini əvəz etmir."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "Scrum Guide 2020 controls the Done claim even when engineering articles discuss latent unfinished paths. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Engineering məqalələri gizli yarımçıq yolları müzakirə etsə də Done iddiasını Scrum Guide 2020 müəyyən edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-release-feature-flags",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "fowler-feature-toggles"]
+  },
+  {
+    "id": "pspo2-release-feature-flags-extra-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "A canary rollout shows no elevated error rate in a small audience. What can the Product Owner conclude about value?",
+      "az": "Canary rollout kiçik auditoriyada error rate artımı göstərmir. Product Owner value haqqında hansı qənaətə gələ bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The feature must stay disabled until the end of the next Sprint regardless of evidence.",
+          "az": "Sübutlardan asılı olmayaraq feature növbəti Sprint-in sonunadək söndürülmüş qalmalıdır."
+        },
+        "explanation": {
+          "en": "That invents a timing rule absent from Scrum.",
+          "az": "Bu, Scrum-da olmayan vaxt qaydası uydurur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "It provides some operational-safety evidence, but does not automatically prove a reliable customer-outcome improvement.",
+          "az": "Bu, əməliyyat təhlükəsizliyinə dair müəyyən sübut verir, amma müştəri nəticəsinin etibarlı yaxşılaşmasını avtomatik sübut etmir."
+        },
+        "explanation": {
+          "en": "Operational rollout checks and a product experiment answer different questions.",
+          "az": "Əməliyyat üzrə rollout yoxlamaları və product experiment fərqli sualları cavablandırır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The feature necessarily improves every customer outcome.",
+          "az": "Feature mütləq bütün müştəri nəticələrini yaxşılaşdırır."
+        },
+        "explanation": {
+          "en": "Absence of observed technical errors does not establish benefit.",
+          "az": "Müşahidə olunan texniki xətaların olmaması faydanı sübut etmir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "The Sprint Review is no longer useful because production traffic exists.",
+          "az": "Production traffic olduğuna görə Sprint Review artıq faydalı deyil."
+        },
+        "explanation": {
+          "en": "Review still inspects outcomes and changed context.",
+          "az": "Review nəticələri və dəyişmiş konteksti yoxlamağa davam edir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Inspect the type and limits of the evidence before expanding a claim or rollout. See the lesson’s Sources and further reading for exact sections.",
+      "az": "İddianı və ya rollout-u genişləndirməzdən əvvəl sübutun növünü və məhdudiyyətlərini yoxlayın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-release-feature-flags",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "fowler-feature-toggles"]
+  },
+  {
+    "id": "pspo2-release-feature-flags-extra-03",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "scrum-application",
+    "difficulty": 3,
+    "text": {
+      "en": "Which statements about feature flags are defensible? Select all that apply.",
+      "az": "Feature flag-lər haqqında hansı fikirlər əsaslıdır? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Disabling a refund interface does not reverse refunds already submitted.",
+          "az": "Refund interfeysini söndürmək artıq göndərilmiş refund-ları geri çevirmir."
+        },
+        "explanation": {
+          "en": "UI exposure and durable external business effects are different boundaries.",
+          "az": "UI görünürlüğü və durable xarici biznes təsirləri fərqli sərhədlərdir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A client-side flag alone securely authorizes access to the underlying API.",
+          "az": "Təkcə client-side flag əsas API-yə girişi təhlükəsiz şəkildə authorize edir."
+        },
+        "explanation": {
+          "en": "Direct API requests still require server-side permissions.",
+          "az": "Birbaşa API request-ləri yenə server-side permission tələb edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Every flag must have the same lifetime because all flags solve the same problem.",
+          "az": "Bütün flag-lər eyni problemi həll etdiyinə görə hər birinin ömrü eyni olmalıdır."
+        },
+        "explanation": {
+          "en": "Release, experiment and operational flags have different purposes.",
+          "az": "Release, experiment və operational flag-lər fərqli məqsədlərə xidmət edir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "A temporary flag needs a clear purpose, supported states and removal condition.",
+          "az": "Müvəqqəti flag-in aydın məqsədi, dəstəklənən vəziyyətləri və silinmə şərti olmalıdır."
+        },
+        "explanation": {
+          "en": "Otherwise its testing and maintenance cost can accumulate invisibly.",
+          "az": "Əks halda test və texniki xidmət xərci görünmədən yığıla bilər."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Flags are controlled optional engineering mechanisms whose quality and business consequences remain visible. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Flag-lər nəzarət olunan optional engineering mexanizmləridir; onların keyfiyyət və biznes nəticələri görünən qalmalıdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-release-feature-flags",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "fowler-feature-toggles"]
+  },
+  {
+    "id": "pspo2-release-feature-flags-extra-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "An experiment flag moves users randomly between variants on every page visit, although the experiment assumes stable user cohorts. What is the concern?",
+      "az": "Experiment sabit istifadəçi cohort-ları fərz edir, amma experiment flag-i hər səhifə ziyarətində istifadəçiləri təsadüfi variantlara keçirir. Problem nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The Product Owner must implement the cohort algorithm personally.",
+          "az": "Product Owner cohort algorithm-ini şəxsən yazmalıdır."
+        },
+        "explanation": {
+          "en": "Product accountability does not require taking over the Developers' engineering work.",
+          "az": "Product üzrə cavabdehlik Developers-in engineering işini öz üzərinə götürməyi tələb etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The implementation violates its allocation assumption and can contaminate outcome comparisons.",
+          "az": "Implementation bölgü fərziyyəsini pozur və outcome müqayisələrini qarışdıra bilər."
+        },
+        "explanation": {
+          "en": "Users no longer experience the defined cohort treatment consistently.",
+          "az": "İstifadəçilər artıq müəyyən edilmiş cohort təsirini ardıcıl yaşamır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "All experiments are forbidden within a Sprint.",
+          "az": "Sprint daxilində bütün experiment-lər qadağandır."
+        },
+        "explanation": {
+          "en": "Empirical product work can include experiments; Scrum does not impose that prohibition.",
+          "az": "Empirik product işi experiment-ləri əhatə edə bilər; Scrum belə qadağa qoymur."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Changing cohorts proves higher throughput and therefore more value.",
+          "az": "Cohort dəyişməsi daha yüksək throughput və buna görə daha çox value sübut edir."
+        },
+        "explanation": {
+          "en": "Neither the allocation defect nor value is resolved by output counts.",
+          "az": "Output sayları nə bölgü qüsurunu, nə də value məsələsini həll edir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "The Product Owner needs enough understanding to question evidence while collaborating with Developers on the implementation. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Product Owner implementation barədə Developers ilə əməkdaşlıq edərkən sübutları sorğulamaq üçün yetərli anlayışa malik olmalıdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-release-feature-flags",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "fowler-feature-toggles"]
+  },
+  {
+    "id": "pspo2-release-feature-flags-extra-05",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "en": "The team can turn off a feature quickly, but it also changes persistent account data. What should the rollout plan include?",
+      "az": "Komanda feature-i tez söndürə bilir, amma feature davamlı saxlanılan account məlumatlarını da dəyişir. Rollout planına nə daxil olmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A statement that all data changes disappear when the flag is off.",
+          "az": "Flag söndürüləndə bütün məlumat dəyişikliklərinin yox olacağına dair bəyanat."
+        },
+        "explanation": {
+          "en": "That invents rollback behavior the architecture does not provide.",
+          "az": "Bu, architecture-ın təmin etmədiyi rollback davranışını uydurur."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A lower Definition of Done for the migration because a flag exists.",
+          "az": "Flag olduğuna görə migration üçün daha zəif Definition of Done."
+        },
+        "explanation": {
+          "en": "The flag does not justify reducing the quality boundary.",
+          "az": "Flag keyfiyyət sərhədini zəiflətməyə əsas vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "No operational participation because release concerns only the Product Owner.",
+          "az": "Release yalnız Product Owner-ə aid olduğuna görə əməliyyat komandasının iştirak etməməsi."
+        },
+        "explanation": {
+          "en": "Real operational constraints and expertise remain relevant to a product decision.",
+          "az": "Real əməliyyat məhdudiyyətləri və təcrübə product qərarı üçün əhəmiyyətini saxlayır."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "A safe data migration/reconciliation or compensating strategy, not only a boolean switch.",
+          "az": "Yalnız boolean switch deyil, təhlükəsiz data migration/reconciliation və ya compensation strategiyası."
+        },
+        "explanation": {
+          "en": "Turning off exposure does not undo all committed effects.",
+          "az": "Görünürlüğü söndürmək bütün commit olunmuş təsirləri geri qaytarmır."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "Release decisions need truthful state and risk information across code, data and user impact. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Release qərarları kod, məlumat və istifadəçiyə təsir üzrə düzgün state və risk məlumatı tələb edir. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-release-feature-flags",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "fowler-feature-toggles"]
+  },
+  {
+    "id": "pspo2-release-feature-flags-extra-06",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "product-value",
+    "difficulty": 2,
+    "text": {
+      "en": "Which distinctions help interpret a deployment dashboard? Select all that apply.",
+      "az": "Deployment dashboard-unu şərh etməyə hansı fərqlər kömək edir? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A feature flag replaces Sprint Review inspection.",
+          "az": "Feature flag Sprint Review yoxlamasını əvəz edir."
+        },
+        "explanation": {
+          "en": "An engineering mechanism does not replace the event's purpose.",
+          "az": "Engineering mexanizmi event-in məqsədini əvəz etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Code can be installed without the intended audience being exposed to a capability.",
+          "az": "Nəzərdə tutulan auditoriyaya imkan açılmadan kod quraşdırıla bilər."
+        },
+        "explanation": {
+          "en": "Deployment and release/exposure can be decoupled.",
+          "az": "Deployment ilə release/görünürlük bir-birindən ayrıla bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A usable capability still needs outcome evidence before realized value is claimed.",
+          "az": "İstifadəyə yararlı imkan üçün reallaşmış value iddiasından əvvəl yenə outcome sübutu lazımdır."
+        },
+        "explanation": {
+          "en": "Quality/availability are not identical to observed benefit.",
+          "az": "Keyfiyyət və əlçatanlıq müşahidə olunan fayda ilə eyni deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Story points completed are interchangeable with customer satisfaction.",
+          "az": "Tamamlanmış story point-lər müştəri məmnunluğu ilə bir-birini əvəz edir."
+        },
+        "explanation": {
+          "en": "Estimation units do not measure the same construct.",
+          "az": "Estimate vahidləri eyni anlayışı ölçmür."
+        }
+      }
+    ],
+    "correct": ["b", "c"],
+    "explanation": {
+      "en": "Keep deployed, exposed, Done and valuable as distinct claims supported by appropriate evidence. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Deployed, exposed, Done və valuable iddialarını fərqləndirin və hər birini uyğun sübutla əsaslandırın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-release-feature-flags",
+    "practiceOnly": true,
+    "sourceIds": ["scrum-2020", "ebm-2024", "fowler-feature-toggles"]
+  },
+  {
+    "id": "pspo2-platform-value-extra-01",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 3,
+    "text": {
+      "en": "A platform adds 30 endpoints, but partners still cannot complete their first integration without weeks of support. What should the Product Owner inspect?",
+      "az": "Platforma 30 endpoint əlavə edir, amma partner-lər hələ də həftələrlə support almadan ilk integration-ı tamamlaya bilmir. Product Owner nəyi yoxlamalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Whether more story points can redefine the abandoned journeys as success.",
+          "az": "Daha çox story point-in tərk edilmiş journey-ləri uğur kimi yenidən müəyyən edə bilməsini."
+        },
+        "explanation": {
+          "en": "Changing an output measure does not fix the observed outcome.",
+          "az": "Output measure-i dəyişmək müşahidə olunan outcome-u düzəltmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "The actual integration journey, abandonment and consumer outcomes, not endpoint counts alone.",
+          "az": "Yalnız endpoint sayını deyil, faktiki integration journey-ni, tərk etməni və consumer nəticələrini."
+        },
+        "explanation": {
+          "en": "More output does not establish that consumers can achieve the product's intended benefit.",
+          "az": "Daha çox output consumer-lərin product-un nəzərdə tutulan faydasına çata bildiyini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Only the total number of services in the deployment diagram.",
+          "az": "Yalnız deployment diagram-dakı service-lərin ümumi sayını."
+        },
+        "explanation": {
+          "en": "Deployment units do not measure integration success.",
+          "az": "Deployment unit-ləri integration uğurunu ölçmür."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Whether internal users can be excluded from product discovery.",
+          "az": "Daxili istifadəçilərin product discovery-dən çıxarıla bilməsini."
+        },
+        "explanation": {
+          "en": "Internal users still have needs and constraints.",
+          "az": "Daxili istifadəçilərin də ehtiyacları və məhdudiyyətləri var."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "An API platform needs an identifiable user, product purpose and measurable value like other products. See the lesson’s Sources and further reading for exact sections.",
+      "az": "API platformasının da digər product-lar kimi müəyyən edilə bilən istifadəçisi, product məqsədi və ölçülə bilən value-su olmalıdır. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-platform-value",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "govuk-performance-metrics",
+      "azure-microservices-patterns"
+    ]
+  },
+  {
+    "id": "pspo2-platform-value-extra-02",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 3,
+    "text": {
+      "en": "Each component service has its own backlog and reports Done, but several Scrum Teams work on one product and no integrated usable Increment exists. What is most relevant?",
+      "az": "Hər component service-in öz backlog-u var və Done bildirir, amma bir neçə Scrum Team eyni product üzərində işləyir və inteqrasiya olunmuş, istifadəyə yararlı Increment yoxdur. Ən uyğun yanaşma hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Accept the component reports as definitive product value because each deployment is independent.",
+          "az": "Hər deployment müstəqil olduğuna görə component hesabatlarını qəti product value kimi qəbul etmək."
+        },
+        "explanation": {
+          "en": "Deployment independence does not establish a separate Scrum product boundary.",
+          "az": "Deployment müstəqilliyi ayrıca Scrum product sərhədini sübut etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Create one mandatory Product Owner per database to satisfy Scrum.",
+          "az": "Scrum-a uyğunluq üçün hər database-ə məcburi bir Product Owner təyin etmək."
+        },
+        "explanation": {
+          "en": "Scrum does not organize accountability by database count.",
+          "az": "Scrum cavabdehliyi database sayına görə təşkil etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Delay every integration until a final hardening Sprint required by Scrum.",
+          "az": "Bütün integration işini Scrum-un tələb etdiyi yekun hardening Sprint-ə saxlamaq."
+        },
+        "explanation": {
+          "en": "Scrum does not require a later quality/integration phase to make unfinished work Done.",
+          "az": "Scrum yarımçıq işi Done etmək üçün sonrakı keyfiyyət/integration mərhələsi tələb etmir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Inspect shared product accountability/backlog, integration and the mutually defined Definition of Done.",
+          "az": "Ortaq product cavabdehliyini və backlog-u, integration-ı və birlikdə müəyyən edilmiş Definition of Done-ı yoxlamaq."
+        },
+        "explanation": {
+          "en": "Component completion can conceal the absence of a usable product outcome.",
+          "az": "Component tamamlanması istifadəyə yararlı product nəticəsinin olmadığını gizlədə bilər."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "Reason from the product and usable integrated Increment rather than assuming software-service boundaries define Scrum products. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Software service sərhədlərinin Scrum product-larını müəyyən etdiyini fərz etmək əvəzinə product-a və istifadəyə yararlı, inteqrasiya olunmuş Increment-ə əsaslanın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-platform-value",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "govuk-performance-metrics",
+      "azure-microservices-patterns"
+    ]
+  },
+  {
+    "id": "pspo2-platform-value-extra-03",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "Which measures can inform an API-platform product decision? Select all that apply.",
+      "az": "Hansı measure-lər API platforması üzrə product qərarına məlumat verə bilər? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Number of microservices as direct proof of Current Value.",
+          "az": "Current Value-nun birbaşa sübutu kimi microservice sayı."
+        },
+        "explanation": {
+          "en": "Architecture activity is not itself evidence of consumer benefit.",
+          "az": "Architecture fəaliyyəti öz-özlüyündə consumer faydasının sübutu deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "First successful authorized integration, with non-completers included in the denominator.",
+          "az": "Tamamlamayanlar məxrəcə daxil edilməklə ilk uğurlu, authorization-dan keçmiş integration."
+        },
+        "explanation": {
+          "en": "It can expose whether users achieve the intended outcome.",
+          "az": "Bu, istifadəçilərin nəzərdə tutulan outcome-a çatıb-çatmadığını göstərə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Contract-related failures and support effort alongside integration completion.",
+          "az": "Integration tamamlanması ilə yanaşı contract ilə bağlı xətalar və support səyi."
+        },
+        "explanation": {
+          "en": "These provide quality, cost and friction evidence.",
+          "az": "Bunlar keyfiyyət, xərc və çətinliklər barədə sübut verir."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Average completion time only among successful partners as a complete view of all users.",
+          "az": "Bütün istifadəçilərin tam mənzərəsi kimi yalnız uğurlu partner-lər arasında orta tamamlanma vaxtı."
+        },
+        "explanation": {
+          "en": "It excludes people who abandoned or never completed.",
+          "az": "Bu, tərk edən və ya heç tamamlamayan şəxsləri kənarda saxlayır."
+        }
+      }
+    ],
+    "correct": ["b", "c"],
+    "explanation": {
+      "en": "Choose metrics from the consumer's purpose and inspect selection bias and operational harm. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Metric-ləri consumer-in məqsədindən çıxarın və selection bias-ı, eləcə də əməliyyat zərərini yoxlayın. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-platform-value",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "govuk-performance-metrics",
+      "azure-microservices-patterns"
+    ]
+  },
+  {
+    "id": "pspo2-platform-value-extra-04",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 3,
+    "text": {
+      "en": "A manager demands a rewrite before the team has identified why partners abandon integration. What is a strong Product Owner response?",
+      "az": "Komanda partner-lərin integration-ı niyə tərk etdiyini müəyyən etməzdən əvvəl manager yenidən yazılmanı tələb edir. Product Owner-in güclü cavabı hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Mandate the exact service decomposition because the Product Owner owns every implementation choice.",
+          "az": "Product Owner bütün implementation seçimlərinə sahib olduğuna görə dəqiq service bölgüsünü məcbur etmək."
+        },
+        "explanation": {
+          "en": "Developers own how to create the usable Increment.",
+          "az": "İstifadəyə yararlı Increment-in necə yaradılmasını Developers müəyyən edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Refuse all technical investments because only visible features can create value.",
+          "az": "Yalnız görünən feature-lər value yaratdığına görə bütün texniki investment-ləri rədd etmək."
+        },
+        "explanation": {
+          "en": "Reliability and ability to innovate can materially support value.",
+          "az": "Reliability və innovasiya imkanı value-ya əhəmiyyətli töhfə verə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Count the rewrite's deployment work as realized partner success in advance.",
+          "az": "Yenidən yazılmanın deployment işini əvvəlcədən reallaşmış partner uğuru saymaq."
+        },
+        "explanation": {
+          "en": "A promised output is not an observed outcome.",
+          "az": "Vəd edilmiş output müşahidə edilmiş outcome deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Clarify the outcome and constraint with Developers, then compare the rewrite with smaller testable alternatives.",
+          "az": "Outcome-u və məhdudiyyəti Developers ilə aydınlaşdırmaq, sonra yenidən yazılmanı daha kiçik, yoxlanıla bilən alternativlərlə müqayisə etmək."
+        },
+        "explanation": {
+          "en": "Investment should address evidence of a need and expose its assumptions.",
+          "az": "Investment sübut olunmuş ehtiyacı həll etməli və fərziyyələrini üzə çıxarmalıdır."
+        }
+      }
+    ],
+    "correct": ["d"],
+    "explanation": {
+      "en": "Make product value and risk transparent while preserving collaborative technical judgment. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Əməkdaşlıqla texniki mühakiməni qoruyaraq product value və riski şəffaf edin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-platform-value",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "govuk-performance-metrics",
+      "azure-microservices-patterns"
+    ]
+  },
+  {
+    "id": "pspo2-platform-value-extra-05",
+    "trackId": "pspo2",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 3,
+    "text": {
+      "en": "A technical investment reduces integration failures and frees capacity to test product ideas sooner. Which EBM interpretation is reasonable?",
+      "az": "Texniki investment integration xətalarını azaldır və product ideyalarını daha tez sınamaq üçün imkan yaradır. Hansı EBM şərhi əsaslıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Its value equals the exact number of implementation tasks completed.",
+          "az": "Onun value-su tamamlanmış implementation task-larının dəqiq sayına bərabərdir."
+        },
+        "explanation": {
+          "en": "Activity totals are not a numerical value conversion.",
+          "az": "Fəaliyyət sayları value-ya ədədi çevirmə deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "It may improve current outcomes and Ability-to-Innovate, subject to observed evidence.",
+          "az": "Müşahidə olunan sübutlardan asılı olaraq cari outcome-ları və Ability-to-Innovate-i yaxşılaşdıra bilər."
+        },
+        "explanation": {
+          "en": "Technical work can create value and reduce constraints on future learning.",
+          "az": "Texniki iş value yarada və gələcək öyrənməyə maneələri azalda bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "It cannot be valuable because users did not request a new screen.",
+          "az": "İstifadəçilər yeni ekran istəmədiyinə görə dəyərli ola bilməz."
+        },
+        "explanation": {
+          "en": "A user-facing screen is not a prerequisite for product benefit.",
+          "az": "İstifadəçiyə görünən ekran product faydasının ilkin şərti deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "It proves Unrealized Value is permanently zero.",
+          "az": "Bu, Unrealized Value-nun həmişəlik sıfır olduğunu sübut edir."
+        },
+        "explanation": {
+          "en": "An investment does not establish that every satisfaction/opportunity gap is gone.",
+          "az": "Bir investment bütün məmnunluq və imkan boşluqlarının bağlandığını sübut etmir."
+        }
+      }
+    ],
+    "correct": ["b"],
+    "explanation": {
+      "en": "Technical choices should be tied to measurable benefit and capacity/risk effects without fabricated precision. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Texniki seçimləri saxta dəqiqlik yaratmadan ölçülə bilən fayda, imkan və risk təsirləri ilə əlaqələndirin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-platform-value",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "govuk-performance-metrics",
+      "azure-microservices-patterns"
+    ]
+  },
+  {
+    "id": "pspo2-platform-value-extra-06",
+    "trackId": "pspo2",
+    "type": "multiple",
+    "domain": "product-strategy",
+    "difficulty": 2,
+    "text": {
+      "en": "Which source/accountability distinctions should a platform Product Owner preserve? Select all that apply.",
+      "az": "Platformanın Product Owner-i hansı mənbə və cavabdehlik fərqlərini qorumalıdır? Bütün uyğun variantları seçin."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The Product Owner clarifies product value and ordering while Developers determine implementation.",
+          "az": "Product Owner product value-nu və sıralamanı aydınlaşdırır, Developers isə implementation-ı müəyyən edir."
+        },
+        "explanation": {
+          "en": "Collaboration does not erase the different accountabilities.",
+          "az": "Əməkdaşlıq fərqli cavabdehlikləri aradan qaldırmır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Every bounded context must be one separate Scrum product by definition.",
+          "az": "Hər bounded context tərifə görə ayrıca bir Scrum product olmalıdır."
+        },
+        "explanation": {
+          "en": "Domain, deployment and product boundaries are not automatically identical.",
+          "az": "Domain, deployment və product sərhədləri avtomatik eyni deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "GOV.UK metric guidance verifies official PSPO question weighting.",
+          "az": "GOV.UK metric qaydaları rəsmi PSPO sual çəkilərini təsdiqləyir."
+        },
+        "explanation": {
+          "en": "Service-design advice is not an assessment blueprint.",
+          "az": "Service design məsləhəti assessment blueprint deyil."
+        }
+      },
+      {
+        "id": "d",
+        "text": {
+          "en": "Microsoft architecture patterns can inform engineering trade-offs without becoming Scrum requirements.",
+          "az": "Microsoft architecture pattern-ləri Scrum tələbinə çevrilmədən engineering trade-off-larına məlumat verə bilər."
+        },
+        "explanation": {
+          "en": "Supplementary guidance does not redefine the framework.",
+          "az": "Əlavə qaydalar framework-ü yenidən müəyyən etmir."
+        }
+      }
+    ],
+    "correct": ["a", "d"],
+    "explanation": {
+      "en": "Keep primary Scrum authority, supplementary techniques and original practice clearly distinguished. See the lesson’s Sources and further reading for exact sections.",
+      "az": "Əsas Scrum mənbəyini, əlavə texnikaları və müəllifin hazırladığı practice-i aydın fərqləndirin. Dəqiq bölmələr üçün dərsin “Mənbələr və əlavə oxu” hissəsinə baxın."
+    },
+    "lessonId": "pspo2-platform-value",
+    "practiceOnly": true,
+    "sourceIds": [
+      "scrum-2020",
+      "ebm-2024",
+      "govuk-performance-metrics",
+      "azure-microservices-patterns"
+    ]
+  }
+]

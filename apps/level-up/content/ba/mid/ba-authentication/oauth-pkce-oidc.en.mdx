@@ -1,0 +1,105 @@
+---
+id: oauth-pkce-oidc
+locale: en
+title: 'OAuth authorization code, PKCE and OpenID Connect'
+objectives:
+  - 'Trace an authorization code flow across the browser, client and authorization server.'
+  - 'Generate an S256 PKCE challenge from a transaction-specific verifier.'
+  - 'Distinguish the purpose and validation of state, nonce, ID Token and access token.'
+---
+
+## Learning objectives
+
+- Trace an authorization code flow across the browser, client and authorization server.
+- Generate an S256 PKCE challenge from a transaction-specific verifier.
+- Distinguish the purpose and validation of state, nonce, ID Token and access token.
+
+## Why this matters
+
+“Sign in with an identity provider” crosses several browser redirects and server calls. An app that accepts a code for the wrong browser transaction can sign a user into an unintended session. An app that sends an ID Token to an unrelated API can confuse identity evidence with authorization. A diagram that labels all returned values “token” hides these different trust decisions.
+
+## Core theory
+
+OAuth provides delegated authorization. OpenID Connect adds an identity layer, including an ID Token for the client. An authorization code is a short-lived, one-use intermediate credential that the client exchanges at the token endpoint. The code is not the access token and should not be accepted as an API credential.
+
+For an authorization-code flow, the client starts a transaction, creates a random PKCE verifier and sends its S256 challenge in the authorization request. The authorization server binds the challenge to the code. The token request later supplies the verifier. Someone who steals only the code should not be able to redeem it without that verifier. RFC 9700 requires PKCE for public clients and recommends it for confidential clients. This lesson chooses it for both. A browser client cannot keep a bundled client secret confidential.
+
+| Value                     | What it connects                                                            | What it does not replace         |
+| ------------------------- | --------------------------------------------------------------------------- | -------------------------------- |
+| code_verifier / challenge | Code redemption to the initiating client transaction                        | Resource-server token validation |
+| state                     | Callback to a client/browser transaction in a conventional state-based flow | Object-level API authorization   |
+| nonce                     | ID Token to the initiating OpenID Connect transaction when used             | Access-token audience checking   |
+| ID Token                  | Authentication evidence for the OpenID Connect client                       | An API access token              |
+
+State and nonce must be transaction-specific and checked against the transaction that initiated the flow. RFC 9700 describes circumstances where correctly deployed PKCE or OpenID Connect mechanisms provide CSRF protection; do not turn this into permission to skip the identity library's transaction validation. Use exact registered redirect matching, a fixed trusted issuer and the provider's supported flow. Never forward an arbitrary returnTo URL from a query string without an allowlist or equivalent safe policy.
+
+At callback, the client validates the transaction, exchanges the code over TLS, and validates the returned ID Token according to its OpenID Connect profile: trusted issuer, client audience, validity and the expected nonce when sent. APIs independently validate their own access tokens and permissions. Do not infer a user's payment permissions from the fact that authentication succeeded.
+
+## Worked example
+
+A browser initiates a login through a server-side client. The server retains the verifier and transaction data in its protected session store. The authorization request includes response_type=code, the registered redirect URI, scope=openid and the PKCE challenge. The exact scope set depends on the application.
+
+```ts
+import { createHash, randomBytes } from 'node:crypto';
+
+const verifier = randomBytes(32).toString('base64url');
+const challenge = createHash('sha256').update(verifier, 'ascii').digest('base64url');
+```
+
+Thirty-two random bytes encoded this way produce a 43-character verifier. The S256 challenge is base64url of the SHA-256 digest, without padding. The executable PKCE lab accompanying this lesson checks the RFC 7636 Appendix B vector. Generating these two values is only one part of a complete OAuth client; use a maintained client library for the complete protocol and transaction lifecycle.
+
+## Visual model
+
+<Diagram
+  chart={
+    'sequenceDiagram\n participant B as Browser\n participant C as Client\n participant A as Authorization server\n B->>C: Start login transaction\n C->>A: Redirect with challenge\n A->>B: Authenticate and return code\n B->>C: Callback code and state\n C->>A: Code and verifier over TLS\n A->>C: Tokens\n C->>C: Validate identity and bind session'
+  }
+/>
+
+The browser carries the code between redirects. The client exchanges it at a different endpoint using the retained verifier. Resource API requests occur only after the required token validation.
+
+## Inspect the decision
+
+<details>
+<summary>The access token has aud=orders-api, while the ID Token has aud=web-client. Is that necessarily a defect?</summary>
+
+No. The intended recipients differ. The client validates the ID Token for web-client. The orders API validates the access token for orders-api. Exchanging their roles would be a defect even if the same provider signed both.
+
+</details>
+
+## Common mistakes
+
+- Reusing one verifier for all sessions destroys transaction binding.
+- Keeping a verifier in an attacker-controlled callback parameter defeats its role as a retained secret.
+- Decoding the ID Token payload without validating the identity-provider response trusts unverified claims.
+- Treating PKCE as protection against every stolen access token confuses code interception with token replay.
+- Automatically redirecting a successful login to any supplied URL creates an open redirect.
+
+## Practice exercise
+
+A public mobile client has client_id=expense-mobile and calls receipts-api. Write the recipients of its authorization code, ID Token, access token and optional refresh token. Choose the S256 inputs and explain how you would handle a callback with a mismatched state or an ID Token nonce that differs from the saved transaction.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+The code is redeemed at the trusted authorization server's token endpoint, with the verifier created for that transaction. The ID Token is validated by expense-mobile as its audience. The access token is intended for receipts-api, which validates its own audience, issuer and authorization. A refresh token, if issued, belongs at the authorization server, not receipts-api.
+
+Generate fresh random verifier/state/nonce values as needed by the chosen library and retain them securely bound to the initiating flow. Send only the challenge in the authorization request, then the verifier at exchange. Reject a transaction mismatch, do not create an authenticated session, and start a new legitimate flow rather than accepting an unexplained callback. Never log the code, verifier or token values during diagnosis.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Code is exchanged; access token authorizes API calls; ID Token authenticates to the client; refresh token renews access. PKCE protects code redemption. State/nonce and the client library protect the initiating transaction. Every recipient validates its own intended credential.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html): §§2.1.1, 2.1.2, 4.1 and 4.7.
+- [RFC 7636](https://www.rfc-editor.org/rfc/rfc7636.html): §4 and Appendix B.
+- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html): §3.1 and §3.1.3.7, ID Token Validation.
+
+The client arrangement is an original example. It is not a complete OAuth server implementation and does not imply that all clients can hold a secret.

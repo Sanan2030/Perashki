@@ -1,0 +1,76 @@
+---
+id: pspo1-artifacts
+locale: az
+title: 'Scrum artifact-ları və commitment-ləri'
+objectives:
+  - 'Üç artifact-ı düzgün öhdəliklə əlaqələndir.'
+  - 'Done, acceptance criterion və refinement arasındakı fərqi tətbiq et.'
+---
+
+## Anlayış
+
+Product Backlog məhsulu yaxşılaşdırmaq üçün lazım olan işin yaranan, sıralanmış siyahısıdır. Öhdəliyi Product Goal-dur: məhsulun gələcək vəziyyəti. Komanda bir məqsədi yerinə yetirməli və ya ondan imtina etməlidir ki, növbətisini götürsün. Refinement elementləri bölmək, daha dəqiq etmək və ölçüləndirmək üçün davam edən fəaliyyətdir; ayrıca rəsmi tədbir deyil.
+
+## Niyə vacibdir
+
+Sprint Backlog Sprint Goal-u (niyə), seçilmiş elementləri (nə) və hərəkət planını (necə) birləşdirir. Öhdəliyi Sprint Goal-dur. Plan Developers üçündür və onlar tərəfindən hazırlanır; öyrəndikcə yenilənir. Məqsədi təhlükəyə atmadan əhatə Product Owner ilə yenidən müzakirə edilə bilər. Sprint Backlog dəyişməz müqavilə deyil.
+
+## Qərar qaydaları
+
+Increment əvvəlkilərə əlavə olunan, birlikdə yoxlanmış və istifadə edilə bilən addımdır. Öhdəliyi Definition of Done-dur. Acceptance criteria konkret elementin davranışını izah edə bilər, amma ortaq keyfiyyət meyarını əvəz etmir. Done olmayan iş Increment deyil, Review-da təqdim və ya buraxılış edilə bilməz; gələcək baxış üçün Product Backlog-a qayıdır. Eyni məhsul üzərində komandalar eyni Done tərifinə əməl edir.
+
+### Elementin meyarı ilə ortaq keyfiyyəti ayır
+
+Bir elementin acceptance criterion-u “iki valyutada ödəniş edir” deyə bilər; Definition of Done isə təhlükəsizlik, inteqrasiya və ya başqa ortaq keyfiyyət tədbirlərini təsvir edə bilər. Bu nümunə meyarların konkret siyahısının Scrum tərəfindən verildiyini demir. Təşkilati Done standartı varsa minimum kimi tətbiq edilir; yoxdursa Scrum Team məhsula uyğun tərif yaradır. Elementin davranışı acceptance criterion-u ödəsə də ortaq keyfiyyət yoxlaması bitməyibsə onu Increment-in hissəsi saymaq olmaz. Əksinə, hər element üçün ayrıca davranış meyarı yazmaq ortaq Done tərifini dəyişmək deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n  A["Product Backlog"] --> B["Product Goal"]\n  C["Sprint Backlog"] --> D["Sprint Goal"]\n  E["Increment"] --> F["Definition of Done"]'
+  }
+/>
+
+Bu model tədris xülasəsidir; mənbənin şəklinin surəti deyil.
+
+## Praktik vəziyyət
+
+Rezervasiya düyməsi işləyir, amma ortaq Done tərifindəki təhlükəsizlik yoxlaması keçilməyib. Product Owner bunu yarımçıq dəyər kimi Review-da göstərmək istəyir.
+
+## Qərarın əsaslandırılması
+
+İşi Done Increment kimi göstərmə. Problemi şəffaf et və elementi gələcək baxış üçün Product Backlog-a qaytar. Acceptance criterion-un ödənməsi ortaq təhlükəsizlik keyfiyyətini ləğv etmir.
+
+## Yayılmış səhvlər
+
+Done tərifini son gün zəiflətmək; refinement-i təsdiq qapısına çevirmək; Scrum-un user story və story point tələb etdiyini düşünmək.
+
+## Tətbiq məşqi
+
+Product Goal, Sprint Goal və Definition of Done üçün rezervasiya məhsulundan bir nümunə yaz. Bir elementin acceptance criterion-unu ayrıca göstər.
+
+## İzahlı həll
+
+<details>
+<summary>İzahlı həlli aç</summary>
+
+Product Goal: təkrar zəng etmədən rezervasiya etmək. Sprint Goal: istifadəçi boş vaxtı görüb rezervasiya edə bilsin. Done: inteqrasiya, avtomatlaşdırılmış testlər və təhlükəsizlik yoxlaması. Konkret meyar: dolu saat seçiləndə izahlı xəbərdarlıq göstərilir. Bunlar tədris nümunələridir.
+
+</details>
+
+## Özünü yoxla və yadda saxla
+
+Product Backlog → Product Goal; Sprint Backlog → Sprint Goal; Increment → Definition of Done. Hazır olmaq Done olmaq deyil.
+
+<LessonCheck />
+
+## Mənbələr və əhatə
+
+Scrum Guide 2020: Scrum Artifacts və hər artifact-ın Commitment bölməsi. Kitab: fəsil 7, Done və Ready.
+
+- [The Scrum Guide — Ken Schwaber & Jeff Sutherland (November 2020)](https://scrumguides.org/scrum-guide.html)
+- [The Professional Product Owner — Don McGreal & Ralph Jocham (2018), ISBN 9780134686479](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Rəsmi test sualları köçürülməyib. İmtahan formatı ayrıca yoxlanır; bu mövzu bölgüsü rəsmi blueprint deyil.
+
+Əlavə əhatə mənbəyi: [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies). İstifadəçinin göndərdiyi mətn oxunub; kompetensiya siyahısı rəsmi imtahan çəkilərini müəyyən etmir.

@@ -1,0 +1,106 @@
+{
+  "id": "ecba",
+  "name": "Entry Certificate in Business Analysis (ECBA)",
+  "format": "selected-response",
+  "questionCount": 50,
+  "durationMinutes": 75,
+  "passPercent": null,
+  "domains": [
+    {
+      "id": "understanding-business-analysis",
+      "title": {
+        "en": "Understanding Business Analysis",
+        "az": "Biznes analizini anlama"
+      },
+      "weight": 20
+    },
+    {
+      "id": "mindset",
+      "title": {
+        "en": "Mindset for Effective Business Analysis",
+        "az": "Səmərəli biznes analizi üçün düşüncə tərzi"
+      },
+      "weight": 14
+    },
+    {
+      "id": "implementing-business-analysis",
+      "title": {
+        "en": "Implementing Business Analysis",
+        "az": "Biznes analizinin tətbiqi"
+      },
+      "weight": 6
+    },
+    {
+      "id": "change",
+      "title": {
+        "en": "Change",
+        "az": "Dəyişiklik"
+      },
+      "weight": 10
+    },
+    {
+      "id": "need",
+      "title": {
+        "en": "Need",
+        "az": "Ehtiyac"
+      },
+      "weight": 10
+    },
+    {
+      "id": "solution",
+      "title": {
+        "en": "Solution",
+        "az": "Həll"
+      },
+      "weight": 10
+    },
+    {
+      "id": "stakeholder",
+      "title": {
+        "en": "Stakeholder",
+        "az": "Maraqlı tərəf"
+      },
+      "weight": 10
+    },
+    {
+      "id": "value",
+      "title": {
+        "en": "Value",
+        "az": "Dəyər"
+      },
+      "weight": 10
+    },
+    {
+      "id": "context",
+      "title": {
+        "en": "Context",
+        "az": "Kontekst"
+      },
+      "weight": 10
+    }
+  ],
+  "verificationStatus": "verified",
+  "verifiedAt": "2026-10-20",
+  "sources": [
+    {
+      "title": "Entry Certificate in Business Analysis (ECBA) — official certification page",
+      "url": "https://www.iiba.org/business-analysis-certifications/ecba/"
+    },
+    {
+      "title": "BABOK Guide — official IIBA resource",
+      "url": "https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/"
+    },
+    {
+      "title": "ECBA Exam Blueprint v1.1 — official IIBA PDF",
+      "url": "https://www.iiba.org/globalassets/certification/ecba/files/ecba-exam-blueprint.pdf"
+    },
+    {
+      "title": "ECBA Handbook — official IIBA PDF (2026)",
+      "url": "https://www.iiba.org/globalassets/certification/ecba/files/ecba-handbook.pdf"
+    }
+  ],
+  "notes": {
+    "en": "The current English ECBA blueprint v1.1 and 2026 handbook confirm 50 standard/situation-based multiple-choice questions, 75 minutes, and nine weighted domains. Verified 2026-10-20. This differs from the earlier knowledge-area grouping. Passing percentage was not confirmed in the consulted documents: passPercent is null (TODO: VERIFY passing policy). Domain tagging is our editorial mapping of original practice questions. Full mock availability is calculated from unique eligible questions and the verified domain allocation. Other language versions may differ; consult IIBA.",
+    "az": "Cari ingilisdilli ECBA blueprint v1.1 və 2026 təlimatı 50 standart/situasiya əsaslı çoxvariantlı sualı, 75 dəqiqəni və doqquz çəkili sahəni təsdiqləyir. Yoxlama tarixi: 2026-10-20. Bu quruluş əvvəlki bilik sahələri qruplaşmasından fərqlənir. Mənbələrdən keçid faizi təsdiqlənməyib: passPercent null qalır (TODO: VERIFY keçid qaydası). Orijinal məşq suallarının sahələrə bölgüsü redaksiya seçimimizdir. Tam sınaq mövcudluğu təkrarsız sual sayına və təsdiqli sahə bölgüsünə əsasən hesablanır. Digər dil versiyaları fərqlənə bilər; IIBA ilə yoxla."
+  }
+}

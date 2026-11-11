@@ -1,0 +1,101 @@
+---
+id: devops-linux-git-networking
+locale: az
+title: 'DevOps əsasları: Linux, Git və şəbəkə diaqnostikası'
+objectives:
+  - 'Source control state-ini, yerləşdirilmiş artifact-ı və işləyən prosesi fərqləndir.'
+  - 'DNS, transport, TLS və HTTP xətalarını ayrı layer-lər kimi diaqnostika et.'
+  - 'Yalnız oxuma müşahidələri ilə yoxlanıla bilən incident fərziyyəsi qur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Source control state-ini, yerləşdirilmiş artifact-ı və işləyən prosesi fərqləndir.
+- DNS, transport, TLS və HTTP xətalarını ayrı layer-lər kimi diaqnostika et.
+- Yalnız oxuma müşahidələri ilə yoxlanıla bilən incident fərziyyəsi qur.
+
+## Bu mövzu niyə vacibdir
+
+Developer son commit CI-dan keçdiyi üçün xidmətin sağlam olduğunu deyir. İstifadəçi isə hələ timeout alır. Testlərin keçməsi, nəzərdə tutulan artifact-ın yerləşdirilməsi, prosesin başlaması və sorğuların uğurla cavablanması ayrı müşahidələrdir. DevOps bu sərhədləri əlaqələndirir ki, komanda təhlükəsiz araşdırsın və nəticəni təkrarlaya bilsin.
+
+## Əsas anlayışlar
+
+Linux prosesinin identity-si, environment-i, working directory-si, açıq resursları və exit davranışı var. Xidmət işləyə, amma yanlış address və ya port-da dinləyə bilər. Container namespace və resurs izolyasiyası əlavə edir; daxilindəki prosesi anlamaq ehtiyacını aradan qaldırmır. Container daxilində yalnız loopback-ə bind olmaq nəzərdə tutulan container interface-ində dinləməklə eyni deyil.
+
+Shell əmrinin həm output-u, həm exit status-u var. Hər ikisini yoxla: boş output avtomatik uğur demək deyil. Shell pipeline-da xəta idarəsi məqsədli qurulmalıdır; əks halda görünən status yalnız son əmri əks etdirə bilər. Security və ya test əmrinin xətasını şərtsiz fallback əlavə edərək uğura çevirmə.
+
+Git snapshot-ları və parent əlaqələrini qeydə alır. Branch commit-ə yönələn dəyişə bilən istinaddır; HEAD cari checkout kontekstini müəyyən edir. Branch adı dəyişməz release identity-si deyil. Dirty working tree-də commit-ə daxil olmayan dəyişikliklər ola bilər. Həqiqətən nəyin yerləşdirildiyini müəyyənləşdirərkən commit identifikatorunu və artifact digest-ini qeydə al.
+
+Networking-i layer-lərlə araşdır. DNS adı həll edir, route address-ə çatır, TCP port-a bağlanır, TLS gözlənilən peer identity-sini şifrəli əlaqədə təsdiqləyir, HTTP isə tətbiq semantikasını daşıyır. 401 cavabı connection refusal-dan fərqli vəziyyəti sübut edir: birincidə authentication tələb edən HTTP responder-ə çatılıb; ikincidə həmin tətbiq cavabı alınmayıb. Uğurlu TLS handshake DB transaction-un tamamlana bildiyini sübut etmir.
+
+Aydın sualdan və məhdud, yalnız oxuma müşahidələrindən başla. Bütün environment-i, credential-ları və şəxsi request body-lərini log-a çıxarma. Correlation identifier istifadəçi xətasını server qeydləri ilə bağlamağa kömək edə bilər, amma authorization sübutu deyil.
+
+## İşlənmiş nümunə
+
+Süni staging incident-ində xidmət prosesi mövcuddur, amma hostname 503 qaytarır. Hansı artifact-ın işlədiyini, prosesin gözlənilən port-da dinləyib-dinləmədiyini, proxy-nin ona çatmasını və readiness-in nasaz downstream xidmətdən asılılığını yoxla.
+
+```sh
+git status --short
+git rev-parse HEAD
+ps -eo pid,comm
+ss -ltn
+curl --fail --max-time 5 https://service.example.invalid/healthz
+```
+
+Bunlar nümunə diaqnostikalardır; example.invalid placeholder-dir və əmrlərin mövcudluğu mühitdən asılıdır. Secret-ləri command argument-lərinə yazma. Checkout-da görünən commit eyni revision-un işləyən binary olduğunu təkbaşına sübut etmir. Deployment metadata-sını dəyişməz artifact identity-si ilə müqayisə et.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Commit"] --> B["Built artifact"]\n B --> C["Running process"]\n C --> D["Listening port"]\n D --> E["DNS transport TLS"]\n E --> F["HTTP and business behavior"]'
+  }
+/>
+
+Hər ox sübut tələb edən sərhəddir. Soldakı uğurlu müşahidə sağdakı bütün şərtləri təsdiq edə bilməz.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Endpoint timeout əvəzinə 401 qaytarır. İlk fərziyyə yenə “DNS işləmir” olmalıdırmı?</summary>
+
+Başqa sübut yoxdursa, yox. HTTP responder-ə çatılıb. Alınmış tətbiq cavabını name resolution xətası ilə eyni simptom saymaq əvəzinə gözlənilən authentication və routing davranışını yoxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Branch adını dəyişməz release saymaq incident-in təkrarlanmasını qeyri-müəyyən edir.
+- Yalnız son pipeline exit code-unu oxumaq əvvəlki əmrin xətasını gizlədə bilər.
+- Sorğu işləsin deyə TLS verification-u söndürmək peer identity barədə sübutu aradan qaldırır.
+- Müşahidələri yazmadan bütün xidmətləri restart etmək faydalı incident sübutunu məhv edə bilər.
+- Bütün environment variable-ları çap etmək diaqnostikaya aid olmayan credential-ları ifşa edə bilər.
+
+## Praktik tapşırıq
+
+CI release-i sağlam göstərir, amma istifadəçilər connection refusal alır. Build edilmiş commit-i, işləyən prosesi, bind address-i, proxy route-u və tətbiq cavabını ayıran beşaddımlı araşdırma yaz. Dəyişiklik düşünməzdən əvvəl nələri qeydə alacağını göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Branch etiketinə güvənmək əvəzinə yerləşdirilmiş artifact-ı və uyğun commit-i müəyyən et. Proses status-unu, aidiyyəti məhdud log-ları, sonra real listening address/port-u müşahidə et. Caller və ya proxy-dən nəzərdə tutulan route-u yoxla; DNS/TLS-i yalnız xəta sübutunun göstərdiyi yerdə araşdır. Sonda uyğun tətbiq cavabını və biznes asılılığını yoxla.
+
+Timestamp, artifact identity-si, nasaz path, məxfi hissələri çıxarılmış xəta və təsir əhatəsini qeydə al. Yalnız health endpoint-dən uğurlu biznes əməliyyatı nəticəsi çıxarma. Aidiyyəti sərhədi müəyyən etdikdən sonra dar çərçivədə əsaslandırılmış mitigation seç.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Checkout ≠ artifact ≠ proses ≠ əlçatan xidmət ≠ düzgün outcome. Output və exit status-u yoxla. DNS/TCP/TLS/HTTP sübutlarını fərqləndir. Dəyişməz release identity-si və məhdud müşahidələr istifadə et. Credential-ları və faydalı incident sübutlarını qoru.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Pro Git, Branches in a Nutshell](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell): commit istinadları, branch və HEAD.
+- [Linux man-pages intro(1)](https://man7.org/linux/man-pages/man1/intro.1.html): istifadəçi əmrlərinin əhatəsi; platformaya aid flag-lər üçün quraşdırılmış alətin manual-ına bax.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): HTTP authentication və response semantikası.
+
+Diaqnostika ardıcıllığı və shell nümunələri orijinal tədris materialıdır. Production xidmətdə icra edilməyib.

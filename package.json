@@ -1,0 +1,22 @@
+{
+  "name": "perashki",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "setup": "node scripts/manage.mjs install",
+    "dev": "node scripts/build-shared.mjs && node scripts/manage.mjs dev",
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs",
+    "typecheck": "node scripts/manage.mjs typecheck",
+    "pretest": "node scripts/build-shared.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

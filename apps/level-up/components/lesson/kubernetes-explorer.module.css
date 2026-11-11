@@ -1,0 +1,306 @@
+.explorer {
+  margin: 28px 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  font-size: 14px;
+}
+.header {
+  padding: 24px;
+  background: var(--sage);
+}
+.kicker {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.explorer .header h3 {
+  margin: 6px 0;
+  font-size: 25px;
+}
+.explorer .header p {
+  margin: 0;
+  font-size: 13px;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  padding: 10px;
+  background: var(--soft);
+}
+.tabs button {
+  flex: 1 1 120px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+  cursor: pointer;
+}
+.tabs button[aria-selected='true'] {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: 0 2px 4px #00000008;
+}
+.panel {
+  padding: 20px;
+}
+.journey {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.journey button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 8px;
+  background: var(--soft);
+  color: var(--ink);
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+.journey button[aria-current='step'] {
+  background: var(--sage);
+  border: 2px solid var(--accent);
+  padding: 11px 7px;
+}
+.journey small {
+  font-size: 10px;
+  color: var(--muted);
+}
+.explanation {
+  margin-top: 18px;
+}
+.explorer .explanation p {
+  margin: 8px 0;
+}
+.explorer pre {
+  max-width: 100%;
+  white-space: pre;
+  font-size: 11px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.explorer .actions button,
+.explorer .controls button,
+.explorer .configCard button {
+  min-height: 40px;
+  height: auto;
+  white-space: normal;
+  font-size: 12px;
+}
+.controls {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.explorer label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 650;
+}
+.explorer select {
+  max-width: 100%;
+  min-height: 40px;
+  padding: 8px 30px 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.chip {
+  display: inline-block;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 11px;
+  background: var(--soft);
+  overflow-wrap: anywhere;
+}
+.deployment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--lilac);
+}
+.deployment div {
+  flex: 1;
+  min-width: 0;
+}
+.deployment small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.deployment strong {
+  overflow-wrap: anywhere;
+}
+.deployment > svg {
+  flex-shrink: 0;
+}
+.branch {
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+}
+.replicaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 10px;
+}
+.replicaSet {
+  min-width: 0;
+  padding: 12px;
+  border: 1px dashed var(--muted);
+  border-radius: 10px;
+}
+.replicaSet > strong {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+.replicaSet > small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.pods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.pod {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+  padding: 15px 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--sage);
+  text-align: center;
+  min-width: 0;
+}
+.pod strong {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.pod small {
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.pod span {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 650;
+}
+.explorer .status {
+  margin: 16px 0 0;
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--soft);
+  font-size: 12px;
+}
+.explorer .note {
+  margin: 12px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.selectorGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.matched {
+  border: 2px solid var(--accent);
+  padding: 14px 7px;
+}
+.unmatched {
+  background: var(--soft);
+  border-style: dashed;
+}
+.configGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.configCard {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 16px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.configCard strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.explorer .configCard p {
+  margin: 0;
+  font-size: 12px;
+}
+.configCard small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.explorer button:focus-visible,
+.explorer select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animationToggle {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .header {
+    padding: 18px;
+  }
+  .panel {
+    padding: 12px;
+  }
+  .configGrid {
+    grid-template-columns: 1fr;
+  }
+  .actions > button {
+    flex: 1 1 120px;
+  }
+  .journey {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

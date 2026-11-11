@@ -1,0 +1,77 @@
+---
+id: ecba-techniques
+locale: en
+title: 'Choosing an analysis technique'
+objectives:
+  - 'Select a technique for the research question and explain its limits.'
+  - 'Combine interviews, observation, surveys, workshops, process models and prototypes.'
+---
+
+## Core concept
+
+A technique helps obtain, represent or examine particular information. There is no universal rule to always hold a workshop or use one software tool. Select BABOK v3 techniques in light of the question, participants, time, risk and evidence already available. Several techniques may complement one another in supporting the same decision. A familiar technique is not automatically the most informative choice.
+
+## Why it matters
+
+People may misremember routine work, hesitate to discuss sensitive matters in a group, or struggle to explain a future interface verbally. Relying on one technique can leave a blind spot. An experienced employee’s account can be compared with observation and then explored through a prototype. The aim is not to maximize documentation: it is to reduce uncertainty relevant to a decision while recognizing the limitations of each source.
+
+## Theory and distinctions
+
+**Interviews** investigate individual knowledge, reasons and perspectives. Open questions invite detail; closed questions can confirm a specific fact. **Observation** exposes work in context. Active observation allows questions during the activity; passive observation preserves the flow and reserves questions for later. Make objectives and participant expectations clear in either case.
+
+**Document analysis** examines policies, instructions and earlier information, while checking currency and credibility. **Surveys** collect structured information from a defined group; leading questions and an inappropriate target group undermine their usefulness. **Workshops** support collaboration around a predefined goal. A facilitator protects focus and participation, while a scribe captures decisions and unresolved issues.
+
+**Process models** show work, triggering events, decisions and outcomes. A high-level picture does not establish every exception. **Prototypes** expose appearance, behavior and assumptions early. A throw-away prototype supports learning and is not maintained as production code; an evolutionary prototype may develop into a working solution. Neither visual polish nor stakeholder enthusiasm automatically proves technical suitability or value.
+
+## Worked example
+
+A warehouse manager says employees waste time finding orders. The analyst reviews existing instructions and interviews shift leads, then observes agreed work sessions. Employees copy an identifier from paper into another system. A process model makes that handoff visible, and a simple prototype explores entering the identifier once.
+
+Immediately surveying every employee would not establish the feasibility of a solution. First understand where and why time is lost. Positive prototype feedback also does not prove savings: compare real task completion time and errors before drawing that conclusion. The sequence is a reasoned choice for this example, not a required BABOK procedure.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q["Question: why is picking slow?"] --> D["Review current instructions"]\n D --> I["Interview shift leads"]\n I --> O["Observe actual handoffs"]\n O --> M["Model the workflow"]\n M --> P["Test a small prototype"]\n P --> V["Check task time and errors"]'
+  }
+/>
+
+The model links each technique to the question it addresses. A new gap can justify revisiting earlier evidence rather than mechanically proceeding to the next technique.
+
+## Decision practice
+
+Users can explain problems in today’s workflow but cannot describe a new form. Clarify their task through interviews and observation, then explore concrete behavior with a low-fidelity prototype. If integration feasibility is uncertain, implementation expertise and technical investigation are needed in addition to user feedback. One technique cannot substitute for evidence answering a different question.
+
+## Common mistakes and better practice
+
+- Avoid leading prompts such as “Do you want this excellent feature?”
+- Do not select only convenient or supportive participants.
+- Do not assume an old manual perfectly describes current work.
+- Do not equate the most senior person’s view with group agreement.
+- Do not present a learning prototype as a production-ready product.
+
+## Application exercise and explained answer
+
+**Exercise:** Select techniques for three gaps: a routine sequence an employee cannot explain, conflicting approval rules across departments, and a confusing step in a proposed form. Name one limitation for each selection.
+
+**Explained answer:** Observation can expose routine behavior, although observation may itself change behavior. Document analysis plus a focused workshop can clarify conflicting rules, provided the right participants and decision authority are present. A realistic task using a prototype can expose form confusion, while leaving integration and quality questions unresolved. Other combinations can be defensible if their evidence and limitations are explained.
+
+## Mini-quiz
+
+When a question asks for the best technique, consider its purpose, the information already known and the constraints. Familiarity alone is not a sufficient reason.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Question → needed evidence → suitable technique → limitation → confirmation. Revise technique choices as learning develops. Interviews, observation, modelling and prototyping can complement one another rather than compete for universal preference.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: §10.18, pp. 269–270; §10.25, pp. 290–293; §10.31, pp. 305–307; §10.35, pp. 318–323; §10.36, pp. 323–325; §10.45, pp. 350–352; §10.50, pp. 363–365. Main explanations consulted: 269, 290–291, 305–306, 318–319, 323–324, 350–351, 363–364.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

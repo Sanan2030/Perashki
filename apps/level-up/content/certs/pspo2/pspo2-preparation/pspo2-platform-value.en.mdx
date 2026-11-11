@@ -1,0 +1,98 @@
+---
+id: pspo2-platform-value
+locale: en
+title: 'Product ownership for API platforms and technical investments'
+objectives:
+  - 'Identify users and measurable value for a platform whose customers are other teams.'
+  - 'Distinguish product and Scrum accountability boundaries from service deployment boundaries.'
+  - 'Compare technical investment options using outcomes, risk and evidence rather than activity totals.'
+---
+
+## Learning objectives
+
+- Identify users and measurable value for a platform whose customers are other teams.
+- Distinguish product and Scrum accountability boundaries from service deployment boundaries.
+- Compare technical investment options using outcomes, risk and evidence rather than activity totals.
+
+## Why this matters
+
+A platform team reports 30 new API endpoints and 99.9% uptime. Consuming teams still need three weeks and repeated support calls to integrate successfully. The Product Owner has evidence of output and one operational quality measure, but little evidence that consumers can solve their problem. Internal users are still users; product ownership requires understanding their outcomes and constraints.
+
+## Core theory
+
+The Scrum Guide describes a product as a vehicle to deliver value, with a clear boundary, known stakeholders and well-defined users or customers. The product may be a service or something more abstract than a consumer app. An API platform can therefore have meaningful product goals, but drawing a microservice does not automatically define a separate Scrum product.
+
+Identify the consumer's job and the downstream value chain. “Create endpoint X” is an output. “A new merchant can complete its first legitimate settlement without manual platform support” describes a more useful outcome. The platform's reliability, security and compatibility remain necessary quality constraints, not optional work that can be traded away without understanding consequences.
+
+A technical investment can improve Current Value, capture Unrealized Value, reduce Time-to-Market or improve Ability-to-Innovate. It does not need to be disguised as a customer-facing feature. State the expected benefit, risk, evidence and observation window. Reducing contract-breaking incidents, improving integration success and shortening safe change lead time can be valuable when they address a real constraint.
+
+GOV.UK's metric guidance encourages deriving measurements from purpose and hypotheses, using a baseline, segments and multiple data sources. For a platform, useful segments may include new versus experienced integrators, language/SDK, partner type or high-volume workflows. Do not assume a favorable mean time hides no failures: unsuccessful integrations can disappear from “average time among successful integrators.”
+
+Microsoft's microservices patterns describe engineering options such as BFF, bulkheads, CQRS and incremental migration. They inform trade-offs; they do not prescribe how the Product Owner should control implementation. Developers determine how to create a usable Increment. The Product Owner makes value and Product Backlog decisions transparent while collaborating on quality, risk and dependencies.
+
+When multiple Scrum Teams work on the same product, the Scrum Guide calls for shared product direction and one Product Backlog/Product Owner, and a mutually defined, complied-with Definition of Done. Multiple deployment services do not justify unrelated backlogs that conceal integration risk. Conversely, genuinely different products need an explicit boundary rather than a blanket assertion that every system is one product.
+
+## Worked example
+
+A merchant-onboarding API has three candidate investments. A: add ten optional endpoints requested by one large partner. B: improve error messages, sandbox examples and contract tests for existing endpoints. C: split the service into six deployments. The team investigates the actual constraint.
+
+Research shows new integrators repeatedly mis-handle authentication errors and cannot distinguish a pending settlement from a failed one. Option B may be the smallest test of a high-impact hypothesis. Measure first successful authorized settlement, end-to-end integration completion, support effort and contract-related failures. Segment new and experienced partners. The team may later justify C with evidence of deployment or scaling constraints, but a larger component count is not value evidence.
+
+The Product Owner orders a thin outcome-oriented slice with Developers: one representative integration journey, safe errors and a usable sandbox example. A platform-only demonstration at Review should still inspect evidence relevant to consumer outcomes, not just show internal architecture diagrams.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Platform consumer problem"] --> B["Product Goal and measurable outcome"]\n B --> C["Compare feature and technical options"]\n C --> D["Small usable integrated change"]\n D --> E["Consumer and operational evidence"]\n E --> F["Adapt product investment"]'
+  }
+/>
+
+The value chain connects a technical choice to an observed consumer outcome. Architecture and endpoint counts are intermediate observations, not the final product goal.
+
+## Inspect the decision
+
+<details>
+<summary>Each microservice has its own component Product Owner and reports Done independently, but no end-to-end usable Increment exists. What should be inspected?</summary>
+
+Inspect product boundaries, shared goal/backlog accountability, integration and the Definition of Done. Do not assume component completion equals product value. Scrum's accountabilities are organized around a product; a deployment diagram alone does not establish that boundary.
+
+</details>
+
+## Common mistakes
+
+- Counting endpoints, story points or migrations as realized value without consumer evidence can reward the wrong work.
+- Measuring only successful integrators excludes the people who never completed the journey.
+- Mandating a microservices migration as a Product Owner bypasses technical design judgment and may miss a smaller solution.
+- Treating internal users as automatically available hides recruitment and feedback constraints.
+- Comparing technical debt work only by immediate feature revenue ignores capacity, risk and future learning effects.
+
+## Practice exercise
+
+A platform has stable uptime but a 40% partner-integration abandonment rate. Management wants a mandatory API rewrite. Propose a Product Goal, two possible investment slices, an outcome measure, two guardrails and the evidence that would justify or refute the rewrite. Explain how Developers participate in choosing the solution.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+A possible Product Goal is to improve successful first integration for the intended partner segment within an agreed period while preserving security and operational reliability. First inspect where and why partners abandon. One slice might improve credential setup and a verified sample request; another might address a measured latency or compatibility bottleneck. Both should be usable, support an end-to-end journey and test a stated assumption.
+
+Measure completed integrations with an explicit denominator that includes non-completers. Guardrails might include unauthorized-access incidents and failed settlement/contract rates. Combine telemetry with observed partner work and support evidence. A rewrite becomes more defensible if the current design demonstrably prevents the required outcome and a smaller change cannot address it at acceptable cost/risk. Developers evaluate technical options; the Product Owner makes the product benefit, investment choice and uncertainty transparent.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Internal platform users need real outcomes. Product boundary ≠ microservice boundary. Technical investment can improve value and future learning. Measure completion with the right denominator and segments. Product Owner clarifies value/order; Developers decide implementation. Integrated usable product evidence matters more than component completion.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): product definition, Product Owner, Scrum Team, Product Backlog and Definition of Done.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): supplied PDF, CV/UV/T2M/A2I.
+- [GOV.UK performance metrics](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): purpose, hypotheses, segmentation and baselines.
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): engineering context only.
+
+The API-platform cases are original supplementary PSPO learning. Microsoft and GOV.UK do not establish Scrum rules or official PSPO exam coverage.

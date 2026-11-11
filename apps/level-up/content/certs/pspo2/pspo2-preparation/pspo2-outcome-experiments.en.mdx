@@ -1,0 +1,101 @@
+---
+id: pspo2-outcome-experiments
+locale: en
+title: 'Product experiments, segmented metrics and misleading averages'
+objectives:
+  - 'Define a product hypothesis with a population, baseline, expected outcome and decision rule.'
+  - 'Explain how a changing user mix can reverse the apparent meaning of an aggregate metric.'
+  - 'Use outcome and guardrail evidence without treating a dashboard as an automatic decision maker.'
+---
+
+## Learning objectives
+
+- Define a product hypothesis with a population, baseline, expected outcome and decision rule.
+- Explain how a changing user mix can reverse the apparent meaning of an aggregate metric.
+- Use outcome and guardrail evidence without treating a dashboard as an automatic decision maker.
+
+## Why this matters
+
+A Product Owner celebrates a checkout completion increase from 40% to 50%. Yet completion fell for both mobile and desktop users. The audience mix shifted toward desktop, where completion was already higher. The overall average is arithmetically correct but can support the wrong product conclusion. Advanced product judgment includes checking how a metric was formed and what it can establish.
+
+## Core theory
+
+Evidence-Based Management connects goals, experiments and observed outcomes. A hypothesis states a belief that could be wrong: for a specified group, changing a particular experience will produce an observable benefit because of a stated mechanism. A feature list states what to build; it does not explain what would establish value.
+
+GOV.UK's service guidance starts with user needs and service purpose, then derives benefits, hypotheses, measurements and data sources. It recommends combining metrics with user research, checking data quality, establishing a baseline and using segments and trends. These are supplementary product practices, not additional Scrum events or an official PSPO exam blueprint.
+
+A useful experiment plan states the population, comparison, allocation, observation period, outcome definition and decision rule before inspecting results. Randomized comparisons can improve causal inference when correctly implemented. A before/after comparison can be informative but may also reflect seasonality, traffic mix, instrumentation changes or other releases. Do not announce a precise causal effect merely because two percentages differ.
+
+Guardrails track material harm or constraints alongside the main outcome: failed payments, accessibility barriers, complaints, fraud losses or support effort. A local conversion increase can destroy value if it causes unacceptable harm elsewhere. Metrics are evidence for a decision, not an exemption from product judgment.
+
+Distinguish Current Value from Unrealized Value and inspect Time-to-Market and Ability-to-Innovate when deciding how the organization can learn. Output measures such as completed items do not establish customer outcomes. The four EBM key value areas provide perspectives; they do not mandate one universal KPI set or one numerical readiness score.
+
+## Worked example
+
+All numbers below are a synthetic illustration.
+
+| Period | Mobile completion | Desktop completion | Overall completion |
+| ------ | ----------------- | ------------------ | ------------------ |
+| Before | 20 / 80 = 25%     | 20 / 20 = 100%     | 40 / 100 = 40%     |
+| After  | 4 / 20 = 20%      | 46 / 80 = 57.5%    | 50 / 100 = 50%     |
+
+The overall rate rose while both segment rates fell. The population shifted from mostly mobile to mostly desktop. This is an illustration of aggregation reversal, often discussed as Simpson's paradox; it is not itself evidence about a real product.
+
+Before expanding the change, inspect consistent segment definitions, tracking quality, acquisition changes and a suitable comparison. Desktop's very small initial sample also makes a strong generalization unsafe. The next decision may be to repair measurement, repeat a better-designed test or investigate a segment's actual user problem—not immediately ship more of the change.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["User need and goal"] --> B["Hypothesis and decision rule"]\n B --> C["Comparison and measurement"]\n C --> D["Segment outcomes and guardrails"]\n D --> E["Continue adapt or stop"]\n E --> B'
+  }
+/>
+
+Learning loops return to the hypothesis when evidence is weak or contradictory. A favorable aggregate result is not the end of inspection.
+
+## Inspect the decision
+
+<details>
+<summary>The team's velocity rose by 20% while customer task completion stayed flat. What can the Product Owner conclude?</summary>
+
+Only that the selected delivery measure changed under its measurement assumptions. It does not establish an increase in customer value. Inspect customer outcomes, costs and the constraint being addressed before interpreting greater output as useful progress.
+
+</details>
+
+## Common mistakes
+
+- Changing the outcome definition after seeing results makes it easier to rationalize a favored feature.
+- Ignoring user segments can hide harm to a smaller or less powerful group.
+- Comparing a holiday promotion with a normal week can confuse acquisition or seasonality with product effect.
+- Stopping an experiment whenever one early number looks favorable increases the risk of a misleading decision.
+- Treating a prototype interview as proof of sustained real-world behavior overstates what was observed.
+
+## Practice exercise
+
+A new onboarding flow increases first-session starts but reduces completed first sessions for mobile users. A sponsor wants immediate expansion. Write a hypothesis, a primary outcome, two guardrails, a segmentation plan and the evidence needed for an expansion decision. State one observation that would make you stop or adapt.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+For new mobile users, hypothesize that a shorter topic-selection flow increases completed first practice sessions within a specified observation window by reducing navigation confusion. Use completion, not merely starts, as the primary user outcome. Track abandonment/errors and reported accessibility or support problems as guardrails, with explicit acceptable conditions.
+
+Compare suitable cohorts or a well-designed experiment, inspect instrumentation and separate mobile/desktop and new/returning users where relevant. Decide sample/observation and stopping rules with appropriate statistical expertise rather than inventing a universal 95% threshold from a small sample. Stop or adapt if completion worsens, a guardrail fails or the data cannot support the claimed improvement. Explain uncertainty to the sponsor and propose the smallest test that resolves the decision.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Need → benefit → falsifiable hypothesis → measurement → decision. Output ≠ outcome. Aggregate improvement can hide segment deterioration. Baselines, data quality and comparison design matter. Guardrails expose harm. EBM supports empirical judgment, not automatic feature approval.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): user-supplied PDF, goals, experiment loop and four key value areas.
+- [GOV.UK performance metrics](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): benefits, hypotheses, data quality, segmentation and baselines.
+- [GOV.UK service success](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): combining transaction measures, end-to-end journeys and research.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): empiricism and Sprint Review.
+
+The table, experiment-design reasoning and practice questions are original supplementary material. GOV.UK does not define Scrum accountabilities or an official PSPO syllabus.

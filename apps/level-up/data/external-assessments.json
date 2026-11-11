@@ -1,0 +1,213 @@
+[
+  {
+    "id": "kwestio-pspo2",
+    "trackId": "pspo2",
+    "name": "Kwestio — PSPO II Mock Exam",
+    "url": "https://kwestio.jad2advisory.com/certifications/pspo-ii",
+    "mockUrl": "https://kwestio.jad2advisory.com/certifications/pspo-ii/mock-exam",
+    "sourceId": "kwestio-pspo2",
+    "official": false,
+    "offer": {
+      "az": "160 sual · 4 tam sınaq · Pulsuz",
+      "en": "160 questions · 4 full mock papers · Free"
+    },
+    "access": {
+      "az": "Platformanın məlumatı, 1 noyabr 2026-da yoxlanıb. Məşq və vaxtlı sınaq Kwestio-da açılır.",
+      "en": "Provider-listed offer, checked 1 November 2026. Practice and timed mock available on Kwestio."
+    },
+    "coverage": {
+      "az": "EBM, proqnozlaşdırma, backlog strategiyası, discovery, maraqlı tərəf münaqişəsi və dəyər. Mövzu əhatəsi üçün açıq bankdakı 160 sual nəzərdən keçirilib.",
+      "en": "EBM, forecasting, backlog strategy, discovery, stakeholder conflict and value. All 160 public bank items reviewed for topic coverage."
+    },
+    "lessonIds": [
+      "pspo2-evidence-uncertainty",
+      "pspo2-backlog-economics",
+      "pspo2-portfolio-decisions",
+      "pspo2-facilitation"
+    ]
+  },
+  {
+    "id": "scrumprep-pspo2",
+    "trackId": "pspo2",
+    "name": "ScrumPrep — PSPO II",
+    "url": "https://scrumprep.com/product/pspo-ii-free-quiz/",
+    "sourceId": "scrumprep-pspo2",
+    "official": false,
+    "offer": {
+      "az": "12 təsadüfi sual · Pulsuz test",
+      "en": "12 random questions · Free quiz"
+    },
+    "access": {
+      "az": "Tam sınaqlar ödənişlidir. Pulsuz test düyməsi tələbə mağazasına aparır; giriş addımları tələb oluna bilər.",
+      "en": "Full mocks are paid. The free-quiz button leads to the student storefront; access steps may be required."
+    },
+    "coverage": {
+      "az": "Açıq səhifəyə görə məhsul dəyəri, strategiya və maraqlı tərəflər. Bu yoxlamada test suallarının özünə baxmaq mümkün olmayıb.",
+      "en": "Product value, strategy and stakeholders, according to the public page. The quiz questions themselves were not accessible in this review."
+    },
+    "lessonIds": ["pspo2-value", "pspo2-business-models", "pspo2-facilitation"]
+  },
+  {
+    "id": "examdeck-pspo2",
+    "trackId": "pspo2",
+    "name": "ExamDeck — PSPO II",
+    "url": "https://examdeck.pro/pspo2-practice-questions",
+    "sourceId": "examdeck-pspo2",
+    "official": false,
+    "offer": {
+      "az": "10 açıq nümunə · tətbiqdə 6 pulsuz başlanğıc sualı",
+      "en": "10 public examples · 6 free starter questions in the app"
+    },
+    "access": {
+      "az": "Açıq nümunələr qeydiyyatsızdır. Tətbiqin tam sual bankı və vaxtlı sınaqları ödənişlidir.",
+      "en": "Public examples need no sign-up. The app’s full bank and timed mocks are paid."
+    },
+    "coverage": {
+      "az": "Vision/biznes modeli, EBM, miqyaslanan backlog, release strategiyası, maraqlı tərəflər, portfolio və təşkilati mədəniyyət. Əlavə Nexus nümunəsi də var.",
+      "en": "Vision/business model, EBM, scaled backlog, release strategy, stakeholders, portfolio and organizational culture. Includes a supplementary Nexus example."
+    },
+    "lessonIds": [
+      "pspo2-business-models",
+      "pspo2-portfolio-decisions",
+      "pspo2-backlog-economics",
+      "pspo2-shared-quality",
+      "pspo2-forecasting"
+    ]
+  },
+  {
+    "id": "po-open-pspo2",
+    "trackId": "pspo2",
+    "name": "Scrum.org — Product Owner Open",
+    "url": "https://www.scrum.org/open-assessments/product-owner-open",
+    "sourceId": "po-open",
+    "official": true,
+    "offer": {
+      "az": "Pulsuz əsas bilik məşqi · PSPO II sınağı deyil",
+      "en": "Free foundational practice · Not a PSPO II mock"
+    },
+    "access": {
+      "az": "Bu mühitdə saytın giriş yoxlaması ilə qarşılaşıldı. Scrum.org-da aç; cari suallar və say yoxlanmayıb.",
+      "en": "This environment received a website challenge. Open on Scrum.org; current questions and count were not verified."
+    },
+    "coverage": {
+      "az": "Mürəkkəb ssenarilərdən əvvəl Scrum və Product Ownership əsaslarını təkrar et. Bu yoxlamada cari Open suallarının oxunduğu iddia edilmir.",
+      "en": "Review core Scrum and Product Ownership before advanced scenario practice. This review makes no claim to have read the current Open questions."
+    },
+    "lessonIds": [
+      "scrum-accountabilities",
+      "pspo1-events",
+      "pspo1-artifacts",
+      "pspo1-product-value"
+    ]
+  },
+  {
+    "id": "kwestio-pspo1",
+    "trackId": "pspo1",
+    "name": "Kwestio — PSPO I Mock Exam",
+    "url": "https://kwestio.jad2advisory.com/en/certifications/pspo-i",
+    "sourceId": "kwestio-pspo1",
+    "official": false,
+    "offer": {
+      "az": "361 sual · 4 tam sınaq · Pulsuz",
+      "en": "361 questions · 4 full mock papers · Free"
+    },
+    "access": {
+      "az": "Platformanın məlumatı, 2 noyabr 2026-da yoxlanıb. Məşq və vaxtlı sınaqlar Kwestio-da açılır.",
+      "en": "Provider-listed offer, checked 2 November 2026. Practice and timed mocks open on Kwestio."
+    },
+    "coverage": {
+      "az": "Açıq səhifə product vision/dəyər, backlog idarəsi, maraqlı tərəflər, proqnozlaşdırma, biznes göstəriciləri, discovery və EBM mövzularını göstərir. Bu əlavə üçün sual bankı təhlil edilməyib.",
+      "en": "The public page lists product vision/value, backlog management, stakeholders, forecasting, business metrics, discovery and EBM. The question bank was not reviewed for this integration."
+    },
+    "lessonIds": ["pspo1-product-value", "pspo1-refinement", "pspo1-empiricism"]
+  },
+  {
+    "id": "scrumprep-pspo1",
+    "trackId": "pspo1",
+    "name": "ScrumPrep — PSPO I",
+    "url": "https://scrumprep.com/product/pspo-i-free-quiz/",
+    "sourceId": "scrumprep-pspo1",
+    "official": false,
+    "offer": {
+      "az": "14 təsadüfi sual · Pulsuz test",
+      "en": "14 random questions · Free quiz"
+    },
+    "access": {
+      "az": "Qısa test pulsuzdur; tam sual bankı və vaxtlı sınaqlar ödənişlidir. Platformada giriş addımları tələb oluna bilər.",
+      "en": "The short quiz is free; the full question bank and timed mocks are paid. Access steps may be required on the provider’s site."
+    },
+    "coverage": {
+      "az": "Açıq səhifə Product Owner cavabdehliyi, dəyər və Product Backlog-u göstərir. Test suallarının özü oxunmayıb.",
+      "en": "The public page describes Product Owner accountability, value and the Product Backlog. The actual quiz questions were not read."
+    },
+    "lessonIds": ["scrum-accountabilities", "pspo1-product-value", "pspo1-refinement"]
+  },
+  {
+    "id": "mplaza-pspo1",
+    "trackId": "pspo1",
+    "name": "Management Plaza — PSPO I Exam Simulator",
+    "url": "https://mplaza.training/exam-simulators/pspo/",
+    "sourceId": "mplaza-pspo1",
+    "official": false,
+    "offer": {
+      "az": "Bir neçə demo sualı · Tam imtahan simulyatoru",
+      "en": "A few demo questions · Full exam simulator"
+    },
+    "access": {
+      "az": "İzah dəstəyi söndürülmüş pulsuz demo; tam simulyator ödənişlidir. Səhifədə tam bankın sayı fərqli göstərildiyi üçün burada dəqiq say verilmir.",
+      "en": "Free demo with coaching disabled; the full simulator is paid. The page gives inconsistent full-bank counts, so no exact total is listed here."
+    },
+    "coverage": {
+      "az": "Açıq mövzu siyahısında backlog sıralaması, Done, maraqlı tərəflər, release planı, delegation, texniki borc və dəyər var. Demo sualları təhlil edilməyib.",
+      "en": "The public syllabus lists backlog ordering, Done, stakeholder engagement, release planning, delegation, technical debt and value. Demo questions were not reviewed."
+    },
+    "lessonIds": [
+      "pspo1-refinement",
+      "pspo1-artifacts",
+      "scrum-accountabilities",
+      "pspo1-sprint-goal-changes"
+    ]
+  },
+  {
+    "id": "po-open-pspo1",
+    "trackId": "pspo1",
+    "name": "Scrum.org — Product Owner Open",
+    "url": "https://www.scrum.org/open-assessments/product-owner-open",
+    "sourceId": "po-open",
+    "official": true,
+    "offer": {
+      "az": "Pulsuz rəsmi Product Ownership məşqi",
+      "en": "Free official Product Ownership practice"
+    },
+    "access": {
+      "az": "Səhifə bu mühitdə giriş yoxlaması qaytardı. Scrum.org-da aç; cari suallar və sual sayı yoxlanmayıb.",
+      "en": "The page returned a website challenge here. Open on Scrum.org; current questions and count were not verified."
+    },
+    "coverage": {
+      "az": "Product Ownership əsasları üçün məşq keçididir. Ödənişli sertifikasiya imtahanı deyil; bu yoxlamada cari suallar oxunmayıb.",
+      "en": "A foundational Product Ownership practice link. It is not the paid certification exam; this review did not read its current questions."
+    },
+    "lessonIds": ["scrum-accountabilities", "pspo1-product-value", "pspo1-refinement"]
+  },
+  {
+    "id": "scrum-open-pspo1",
+    "trackId": "pspo1",
+    "name": "Scrum.org — Scrum Open",
+    "url": "https://www.scrum.org/open-assessments/scrum-open",
+    "sourceId": "scrum-open",
+    "official": true,
+    "offer": {
+      "az": "Pulsuz Scrum əsasları məşqi",
+      "en": "Free Scrum foundations practice"
+    },
+    "access": {
+      "az": "Səhifə bu mühitdə giriş yoxlaması qaytardı. Cari suallar və sual sayı yoxlanmayıb.",
+      "en": "The page returned a website challenge here. Current questions and count were not verified."
+    },
+    "coverage": {
+      "az": "PSPO I hazırlığı üçün əlavə Scrum framework məşqidir, tam Product Owner sınağı deyil. Cari test məzmunu oxunmayıb.",
+      "en": "A supplementary Scrum-framework practice link for PSPO I preparation, not a complete Product Owner mock. Current test content was not read."
+    },
+    "lessonIds": ["scrum-accountabilities", "pspo1-events", "pspo1-artifacts", "pspo1-empiricism"]
+  }
+]

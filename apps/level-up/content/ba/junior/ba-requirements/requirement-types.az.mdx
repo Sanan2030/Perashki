@@ -1,0 +1,158 @@
+---
+id: requirement-types
+locale: az
+title: 'Business, stakeholder və solution requirements'
+objectives:
+  - 'Biznes, maraqlı tərəf, funksional, keyfiyyət və keçid tələblərini fərqləndir.'
+  - 'Müştəri portalının yeni provayderə köçürülməsi üçün altı tələbi təsnif et.'
+---
+
+## 1. Öyrənmə məqsədləri
+
+Biznes, maraqlı tərəf, funksional, keyfiyyət və keçid tələblərini fərqləndir. Hər tələbi məqsədi ilə bağla, müşahidə edilən qəbul sübutu seç və bir cümlədə bir neçə detal səviyyəsinin qarışdığını tanı.
+
+## 2. Niyə vacibdir
+
+Bank müştəri portalını dəyişir. “Yeni portalı daha sürətli et və bütün müştəriləri köçür” sorğusu keyfiyyət narahatlığını keçid fəaliyyəti ilə qarışdırır, biznes nəticəsini isə az izah edir. Komanda bunu bir tam tələb saysa, qeydləri uğurla köçürə bilər, amma müştəri yenə işini görə bilməz.
+
+Təsnifat analitikə növbəti faydalı sualı verməyə kömək edir. O, etiket yarışı deyil, düşünmə vasitəsidir. Bir təşəbbüsdə adətən bir neçə kateqoriyanın əlaqəli tələbləri lazım olur.
+
+## 3. Sadə dildə əsas nəzəriyyə
+
+**Biznes tələbləri** dəyişikliyin niyə lazım olduğunu və dəstəkləməli olduğu nəticəni bildirir. Dəyərin qiymətləndirilməsinə istiqamət verir. “Çatışmayan çıxarışlar barədə təkrar zəngləri azaltmaq” nəticə istiqamətidir; başlanğıc göstəricisi, əhatə və razılaşdırılmış sübut hələ lazımdır.
+
+**Maraqlı tərəf tələbləri** insan və ya qrupun nəyi edə bilməli və ya yaşamalı olduğunu təsvir edir. “Müştəri dəstəyə müraciət etmədən əvvəlki çıxarışını ala bilməlidir” konkret ekran dizaynını məcbur etmədən ehtiyacı maraqlı tərəf baxışından izah edir.
+
+**Həll tələbləri** həllin verməli olduğu imkan və keyfiyyətləri təsvir edir. **Funksional tələblər** davranışa aiddir: məsələn, hesab və dövrə görə çıxarış tapmaq. Çox vaxt qeyri-funksional tələblər içində müzakirə olunan **keyfiyyət tələbləri** həllin nə qədər yaxşı işləməsinə və ya məhdudiyyətlərinə aiddir: əlçatanlıq, etibarlılıq, təhlükəsizlik və performans. Təkcə “sürətli” və “təhlükəsiz” yoxlanıla bilən meyar deyil.
+
+**Keçid tələbləri** cari vəziyyətdən gələcək vəziyyətə keçmək üçün lazım olan müvəqqəti imkan və ya şərtlərdir. Köçürülmüş qalıqların tutuşdurulması, dəstək işçilərinin təlimi və razılaşdırılmış keçid məşqi nümunədir. Daimi audit jurnalı ilk dəfə miqrasiya zamanı hazırlansa da, həll tələbi olaraq qalır.
+
+Yaxşı tələbə kontekst, sərhədlər, mənbə və ya əsaslandırma, qərar sahibi və uyğun qəbul sübutu da lazımdır. Təsnifat razılaşma çatışmazlığını və ya sübutsuz fərziyyəni düzəltmir.
+
+## 4. İşlənmiş nümunə: çıxarış portalının dəyişməsi
+
+Aşağıdakı hədəflər uydurulmuş tədris məlumatıdır, bank standartı deyil.
+
+| Kateqoriya    | Nümunə                                                                                                                             | Sübut və ya növbəti sual                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Biznes        | Razılaşdırılmış qiymətləndirmə dövründə pilotda çıxarışla bağlı təkrar zəngləri hər 1 000 fəal müştəriyə 20-dən 12-yə endirmək     | Zəng kateqoriyasını, başlanğıc ölçməni və digər dəyişiklikləri yoxla                |
+| Maraqlı tərəf | Müştəri dəstəyə müraciət etmədən seçdiyi hesab və ay üçün çıxarışı almalıdır                                                       | Köməkçi texnologiya istifadəçiləri daxil olmaqla insanların tapşırığını müşahidə et |
+| Funksional    | İcazəli hesab üçün seçilmiş dövrün mövcud çıxarışlarını göstərmək                                                                  | İcazəli, mövcud olmayan dövr və icazəsiz hesab nümunələrini yoxla                   |
+| Keyfiyyət     | Razılaşdırılmış yük və test şəraitində çıxarış siyahısı sorğularının 95%-i iki saniyədə tamamlanır                                 | Yükü, ölçmə yerini, məlumat dəstini və xəta emalını razılaşdır                      |
+| Keçid         | Sistem dəyişməzdən əvvəl köçürülən çıxarış sayını mənbə ilə tutuşdurmaq və fərqləri razılaşdırılmış istisna prosesi ilə həll etmək | Tutuşdurma nəticəsini saxla və təyin olunmuş qərar sahibinin təsdiqini al           |
+
+Analitik funksional və keyfiyyət meyarlarını maraqlı tərəf ehtiyacına, həmin ehtiyacı biznes nəticəsinə bağlayır. Miqrasiya sübutu vacibdir, amma biznes nəticəsinin yarandığını sübut etmir. Buraxılışdan sonra qiymətləndirmə yenə lazımdır.
+
+## 5. Diaqram
+
+<Diagram
+  chart={
+    'flowchart TD; A[Biznes nəticəsi] --> B[Maraqlı tərəf ehtiyacı]; B --> C[Funksional davranış]; B --> D[Keyfiyyət şərtləri]; E[Keçid şərtləri] --> F[Gələcək vəziyyətə təhlükəsiz keçid]; C --> G[Qəbul sübutu]; D --> G; F --> G; G --> H[Faktiki nəticəni qiymətləndir]; H --> A;'
+  }
+/>
+
+Qollar fərqli sualları göstərir: niyə dəyişmək, kimin nəyə ehtiyacı var, həll nə edir, necə işləyir və keçid necə təhlükəsiz edilir. Sübut onları eyniləşdirmədən əlaqələndirir.
+
+## 6. İnteraktiv təsnifat
+
+Tələbdə yazılıb: “Buraxılışdan sonra ilk dörd həftə köhnə və yeni çıxarış saylarını paralel müqayisə et, uyğunsuzluqları araşdır.” Kateqoriya seç, sonra izahı aç.
+
+<details>
+<summary>Keçid tələbi</summary>
+
+Ən uyğun əsas kateqoriya budur, çünki vəziyyətlər arasında keçid üçün müvəqqəti şərt müəyyən edir. Sahibi, müqayisə qaydalarını və çıxış şərtini aydınlaşdır. Paralel tutuşdurma davamlı əməliyyat imkanına çevrilirsə, daimi imkanı ayrıca modelləşdir.
+
+</details>
+
+<details>
+<summary>Biznes tələbi</summary>
+
+Fəaliyyət miqrasiya riskini azalda bilər, amma birbaşa biznes nəticəsi deyil. Biznes məqsədini fəaliyyətlə əvəz etməkdənsə, onu keçidin niyə vacib olduğuna bağla.
+
+</details>
+
+<details>
+<summary>Yalnız funksional tələb</summary>
+
+Müqayisə proqram davranışı tələb edə bilər, amma “yalnız funksional” müvəqqəti məqsədi və çıxış meyarını gizlədir. Əlaqəli funksional tələb müqayisənin necə işlədiyini, keçid tələbi isə nə vaxt lazım olduğunu izah edə bilər.
+
+</details>
+
+## 7. Tipik səhvlər və yaxşı təcrübələr
+
+- **Qeyri-dəqiq keyfiyyət dili:** “tez” sözünü razılaşdırılmış şərait, ölçü və hədlə əvəz et.
+- **Həllə tez bağlanmaq:** ekran və ya təchizatçı seçməzdən əvvəl maraqlı tərəfin ehtiyacını soruş.
+- **Bir cümlədə çox tələb:** sahiblik, qəbul sübutu və ya dəyişiklik nəzarəti fərqlənirsə ayır.
+- **Keçidi daimi davranış saymaq:** müvəqqəti tədbirin nə vaxt bitdiyini və hazırlığı kimin yoxladığını razılaşdır.
+- **Əlaqəsiz etiketlər:** tələbləri ehtiyac, mənbə, qərar və testlərə bağla.
+
+Rəqəmləri sübut tələb edən qərar say. Dəqiq, amma əsassız hədd yenə yanlış tələb ola bilər.
+
+## 8. Praktik tapşırıq və nümunə həll
+
+**Tapşırıq:** Onlayn mağaza qaytarma xidmətini köçürür. Bu ifadələri təsnif et, bir qeyri-dəqiq ifadəni yaxşılaşdır və sübutu tap: lazımsız dəstək müraciətlərini azaltmaq; müştəri qaytarma gedişini görməlidir; son təsdiqli qaytarma hadisəsini göstərmək; xidmət etibarlı olmalıdır; açıq qaytarmaları keçiddən əvvəl köçürmək.
+
+<details>
+<summary>Nümunə həlli aç</summary>
+
+Lazımsız müraciətləri azaltmaq biznes nəticəsi istiqamətidir. Qaytarma gedişini görmək maraqlı tərəf ehtiyacıdır. Təsdiqli hadisəni göstərmək funksional davranışdır. “Etibarlı” natamam keyfiyyət tələbidir: əlçatanlıq şəraiti, xəta emalı və uyğun ölçmə dövrünü razılaşdır. Açıq qaytarmaların köçürülməsi keçid tələbidir; qeyd tamlığı, tutuşdurma və istisna emalını müəyyən et. Testlərdə çatışmayan hadisə və icazəsiz giriş də olmalıdır. Uğurlu miqrasiyanı dəyər sübutu saymadan buraxılışdan sonra dəstək müraciətlərini yoxla.
+
+</details>
+
+## 9. Mini-test
+
+**1. Hansı ifadə əsasən maraqlı tərəf tələbidir?**
+
+A. “Dəstək əməkdaşı geri ödənişin niyə rədd edildiyini anlamalıdır.” B. “Mavi status nişanı istifadə et.” C. “Keçiddən əvvəl birdəfəlik məlumat tutuşdurması apar.”
+
+<details>
+<summary>Cavab və izah</summary>
+
+**A.** Maraqlı tərəfin ehtiyacını göstərir. B əsaslandırması hələ müəyyən edilməmiş dizayn seçimidir. C müvəqqəti keçid şərtidir.
+
+</details>
+
+**2. “Axtarış sürətli olmalıdır” ifadəsində nə çatışmır?**
+
+A. Təchizatçı adı. B. Razılaşdırılmış ölçü, hədd və iş şəraiti. C. Daha çox sifət.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Qəbul üçün müşahidə edilən şərt və sübut lazımdır. A qəbul olunan performansı müəyyən etmir. C qeyri-müəyyənliyi saxlayır.
+
+</details>
+
+**3. Hansı tələb ən aydın keçid tələbidir?**
+
+A. Hər geri ödənişin davamlı audit qeydini saxla. B. İcazəli istifadəçiyə qəbz endirməyə imkan ver. C. Sistemləri dəyişməzdən əvvəl köçürülmüş açıq geri ödənişləri tutuşdur.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**C.** Konkret vəziyyətlərarası keçidi dəstəkləyir. A davamlı həll imkanıdır. B daimi funksional davranışdır.
+
+</details>
+
+**4. Portal bütün qəbul testlərini keçib. Biznes nəticəsi mütləq yaranıbmı?**
+
+A. Bəli, testin bitməsi dəyəri sübut edir. B. Xeyr; faktiki nəticə sübutunu və məhdudiyyətləri yoxla. C. Bəli, tələblər düzgün təsnif olunubsa.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Uyğunluq və reallaşan dəyər fərqli suallardır. A testdən səbəb nəticəsi çıxarır. C təsnifata olmayan güc verir.
+
+</details>
+
+## 10. Bir səhifəlik yaddaş vərəqi
+
+**Biznes:** niyə dəyişmək və hansı nəticə vacibdir? **Maraqlı tərəf:** kimin nəyə ehtiyacı var? **Funksional:** həll hansı davranışı verməlidir? **Keyfiyyət:** hansı şəraitdə və nə qədər yaxşı? **Keçid:** hansı müvəqqəti şərt köçürməni təmin edir? **Hər kateqoriyada:** əsaslandırma, sərhəd, sahib və qəbul sübutunu yaz. **Son yoxlama:** nəzərdə tutulan nəticə müşahidə olunurmu və tələb real ehtiyaca bağlıdırmı?
+
+## 11. Əlavə oxu
+
+- [IIBA: Biznes analizi nədir?](https://www.iiba.org/professional-development/career-centre/what-is-business-analysis/)
+- [IIBA: Business Analysis Standard](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/business-analysis-standard/)
+- [W3C: WCAG icmalı](https://www.w3.org/WAI/standards-guidelines/wcag/)
+
+Dərs və nümunələr orijinal tədris materialıdır. BABOK mətni və rəsmi imtahan sualları təkrarlanmır.

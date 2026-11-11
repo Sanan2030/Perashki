@@ -1,0 +1,119 @@
+---
+id: data-excel-powerbi-models
+locale: az
+title: 'Excel, Power Query və Power BI: model və ölçülər'
+objectives:
+  - 'Təkrarlana bilən spreadsheet və Power Query preparation axını təsvir et.'
+  - 'Uyğun fact grain və unique dimension key-lərlə star schema qur.'
+  - 'DAX measure-in filter context ilə necə dəyişdiyini izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Təkrarlana bilən spreadsheet və Power Query preparation axını təsvir et.
+- Uyğun fact grain və unique dimension key-lərlə star schema qur.
+- DAX measure-in filter context ilə necə dəyişdiyini izah et.
+
+## Bu mövzu niyə vacibdir
+
+Workbook faydalı analiz aləti ola bilər, amma əl ilə dəyişən total-ı təkrarlamaq çətindir. Power Query transformation-u, Power BI relationship və measure-ları modelləşdirir. Bu alətlər SQL/Python kimi grain, key və reconciliation intizamı tələb edir. Dərs orijinal modeling tapşırığıdır; icra edilmiş Power BI faylı təqdim etdiyini iddia etmir.
+
+## Əsas anlayışlar
+
+Excel-də raw data table-ı calculation və presentation-dan ayrı saxla. Sabit column adı, aydın type və təkrarlana bilən refresh prosesi istifadə et. PivotTable əlçatan data-nı xülasələyir; input-un deduplicate olunduğunu və refresh-in ən yeni row-u aldığını sübut etmir.
+
+Power Query load-dan əvvəl data preparation edir: lazımi column seç, type təyin et, error idarə et, cleaning qaydasını yaz. Text date və decimal separator locale-dən asılıdır. `01/02/2026` müxtəlif qaydada başqa tarix demək ola bilər; inandırıcı, amma yanlış çevrilməni qəbul etmək əvəzinə nəzərdə tutulan locale seç. Error-u müəyyən qaydaya görə araşdır və ya quarantine et.
+
+**Star schema** eyni grain-də ölçülən event saxlayan fact-ı həmin fact-ı filter/group etmək üçün entity təsvir edən dimension-dan ayırır. Tapşırıqda FactOrders hər order-ə bir row, DimCustomer hər customer-ə bir row, DimDate hər date-ə bir row saxlayır. One-to-many relationship-in dimension tərəfində key unique olmalıdır.
+
+Modeli uyğunlaşdırmadan order-level revenue-nu item-level row ilə qarışdırma. Biznes item analizi istəyirsə uyğun additive amount ilə item grain fact və ya məqsədli aggregation istifadə et. Relationship table-ın uyğunsuz grain-ini düzəltmir.
+
+Calculated column model emalı zamanı hər row üzrə hesablanıb saxlanılır. Measure report-un cari filter context-ində hesablanır. Ay/country filter-i buna görə measure-a daxil olan fact row-ları dəyişir. Relationship direction və active relationship context-ə təsir edir. Bidirectional filtering ambiguity yarada bildiyi üçün məqsədli model qərarı olmalıdır.
+
+Ratio measure adətən nəzərdə tutulan context-də aggregated numerator-u aggregated denominator-a bölməlidir. Əvvəl hesablanmış subgroup faizlərini ortalamaq fərqli, çaşdırıcı nəticə verə bilər. Denominator zero/absent olduqda davranışı müəyyən et.
+
+## İşlənmiş nümunə
+
+`FactOrders`, `DimCustomer`, `DimDate` ilə tədris modeli qur. Doqquz raw row deyil, yeddi cleaned order yüklə. `DimCustomer[customer_id]`-ni `FactOrders[customer_id]`-yə one-to-many bağla. Hər fact key-in valid dimension match-ı olsun.
+
+Orijinal DAX measure nümunələri:
+
+```text
+Paid Revenue Cents :=
+CALCULATE(
+    SUM(FactOrders[amount_cents]),
+    FactOrders[status] = "paid"
+)
+
+Paid Orders :=
+CALCULATE(
+    COUNTROWS(FactOrders),
+    FactOrders[status] = "paid"
+)
+
+Average Paid Order Cents :=
+DIVIDE([Paid Revenue Cents], [Paid Orders])
+```
+
+Report filter-i olmadan paid revenue 16500 cent, paid order altı, mean paid order 2750 cent-dir. Fevral date filter-i iki paid order üzrə 6000 cent, yəni hər order üçün 3000 cent verir. Cancelled order heç bir paid measure-a daxil deyil.
+
+Excel-də `paid` filter-li PivotTable ilə monthly paid revenue-nu təkrarla. Yanvar 4000, fevral 6000, mart 6500 olduğunu təsdiqlə. Bunlar reconciliation üçün expected value-dur; bu cloud mühitində Excel/Power BI icra olunduğu iddiası deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[DimCustomer unique customer key] --> F[FactOrders one row per order]\n D[DimDate unique date key] --> F\n F --> M[DAX measures in filter context]\n M --> V[Report visuals and reconciliation]'
+  }
+/>
+
+Diaqram filter relationship-i göstərir; düşünmədən export edib cəmlənəcək, row sayını artıran fiziki join deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Region conversion faizlərini ortalamaq niyə risklidir?</summary>
+
+Region denominator-u fərqli ola bilər. Birində 2-dən 1, digərində 100-dən 90 success varsa rate 50%/90%-dir. Sadə orta 70%, birlikdə rate isə `91/102`, təxminən 89,2%-dir. Nəzərdə tutulan aggregate numerator-u aggregate denominator-a böl.
+
+</details>
+
+## Tipik səhvlər
+
+- Source table range-i dəyişmədən chart refresh etmək.
+- Qeyri-müəyyən dəyəri yoxlamadan locale-dən asılı date conversion qəbul etmək.
+- Dimension tərəfində duplicate key saxlamaq.
+- Row-level calculated percentage-i additive fact saymaq.
+- Model problemini gizlətmək üçün bütün relationship-i bidirectional etmək.
+
+## Praktik tapşırıq
+
+Üç table modelini çək, hər grain-i və unique key-i göstər. Filtersiz və yalnız fevral üçün average paid order amount-u proqnozlaşdır. Seçilmiş filter-də paid order olmayanda davranışı izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Customer/date dimension key-ə bir row, order fact order ID-yə bir row saxlayır. Filtersiz average `16500/6=2750` cent, fevral `6000/2=3000` cent-dir. Alternate result verilməyən `DIVIDE` zero denominator-da blank qaytarır. Uyğun order olmadığını açıq göstər; uydurma 0% göstərmə və zero-ya bölmə. Unknown input amount-u matching order olmamasından ayrı saxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Layer           | Vəzifə                                       |
+| --------------- | -------------------------------------------- |
+| Raw Excel table | Source data və schema-nı saxlamaq            |
+| Power Query     | Təkrarlana bilən cleaning və type conversion |
+| Star schema     | Uyğun fact, dimension və relationship        |
+| DAX measure     | Context-ə uyğun aggregation                  |
+| Report          | Görünən unit, filter və refresh vaxtı        |
+| Reconciliation  | Etibarlı SQL/source total ilə uyğunlaşma     |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Microsoft: Understand star schema and its importance for Power BI](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema): fact, dimension, relationship və measure.
+- [Microsoft: Data types in Power Query](https://learn.microsoft.com/en-us/power-query/data-types): aydın type və locale-aware conversion.
+- Excel workflow və DAX hissələri həmin anlayışların orijinal tədris tətbiqidir. Workbook və ya Power BI service deployment iddiası yoxdur.

@@ -1,0 +1,100 @@
+---
+id: db-safe-migrations
+locale: en
+title: 'Safe database migrations and expand-contract delivery'
+objectives:
+  - 'Design an expand-migrate-contract sequence.'
+  - 'Assess locks and the limits of concurrent index creation.'
+  - 'Distinguish application rollback from data restoration.'
+---
+
+## Learning objectives
+
+- Design an expand-migrate-contract sequence.
+- Assess locks and the limits of concurrent index creation.
+- Distinguish application rollback from data restoration.
+
+## Why this matters
+
+A rolling deployment temporarily runs old and new application versions together. Renaming or deleting a column before old readers stop using it can break a release even when the migration succeeds syntactically. Database changes need compatibility and recovery evidence alongside application tests.
+
+## Core theory
+
+An expand-contract approach separates introducing a compatible structure from removing the old one. First add the new representation without breaking existing clients. Then migrate data and application behavior, verify consistency and switch readers deliberately. Contract only after the compatibility and recovery window has been satisfied.
+
+Define how old and new writers coexist. Dual writing is not automatically safe: decide the authoritative representation, atomicity boundary and conflict detection. A partial update to only one representation can create silent disagreement. For a simple same-row transition, one database transaction can update both fields; other arrangements need their own durable coordination.
+
+Backfill in bounded batches with a stable key, checkpoints and restart behavior. Avoid an unbounded operation whose load, locks or recovery cost has not been measured. Compare row counts, null rates and value reconciliation rather than treating job completion as proof of correctness. Account for concurrent writes during the backfill.
+
+Review each DDL operation's engine/version-specific lock behavior. PostgreSQL `CREATE INDEX CONCURRENTLY` reduces blocking of normal writes during index construction, but has costs and restrictions. It cannot run inside an ordinary transaction block and can leave an invalid index on failure. Concurrent does not mean lock-free, instant or operationally harmless.
+
+Plan recovery before a destructive step. Reverting application code does not restore dropped or transformed data. Retain compatible schema and a known restore procedure where needed; test backup recovery against agreed targets. A reverse migration can be lossy or impossible. Establish who authorizes the cutover, what metrics stop it and how the system will operate while recovery is underway.
+
+## Worked example
+
+Suppose an order amount moves from `amount_cents` to a more general `amount_minor` field. The teaching expansion is:
+
+```sql
+ALTER TABLE orders ADD COLUMN amount_minor bigint;
+```
+
+Old readers continue using `amount_cents`. Reviewed writers populate both according to the same currency contract. A bounded backfill fills missing new values and reconciliation compares eligible records. New readers switch only when the compatibility conditions hold. The old column is removed in a later authorized change after old binaries and recovery needs are addressed.
+
+An index example is deliberately separate:
+
+```sql
+CREATE INDEX CONCURRENTLY orders_customer_time_idx
+ON orders (customer_id, ordered_at);
+```
+
+Do not wrap that statement in a migration tool's default transaction without checking its support. No schema change is applied by this lesson.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n E[Expand compatible schema] --> W[Compatible readers and writers]\n W --> B[Bounded restartable backfill]\n B --> V[Reconcile and observe]\n V --> S[Controlled reader switch]\n S --> C[Contract after recovery window]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>The new code works in staging. Can the old column be dropped in the same rolling release?</summary>
+
+Not on that evidence alone. Old instances, delayed jobs, reports and recovery procedures may still depend on it. Check the complete reader/writer population, deployment order and rollback window. Defer contraction until those dependencies have been removed or explicitly handled.
+
+</details>
+
+## Common mistakes
+
+- Calling every DDL operation zero downtime.
+- Backfilling without considering concurrent updates.
+- Assuming source rollback recovers deleted data.
+- Ignoring an invalid index after a failed concurrent build.
+
+## Practice exercise
+
+Design a migration from a required text status to a controlled status representation. Specify expansion, writer behavior, backfill checks, cutover evidence and what rollback can preserve.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Introduce the compatible new structure first, define a mapping and preserve unknown legacy values for review instead of silently inventing a status. Make writers maintain a coherent representation, backfill in restartable batches and verify distribution and unmatched values. Switch readers under observed conditions and retain the old representation through the rollback window. Only remove it after reviewing old clients, jobs and restoration requirements.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Expand → coexist → backfill → reconcile → switch → contract. Compatibility, lock behavior and data recovery require evidence beyond a successful migration exit code.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [PostgreSQL 18: CREATE INDEX](https://www.postgresql.org/docs/18/sql-createindex.html): concurrent builds, transaction restrictions and invalid-index recovery.
+- [PostgreSQL 18: Explicit locking](https://www.postgresql.org/docs/18/explicit-locking.html): lock behavior. Expand-contract is an original delivery application of compatibility and operational reasoning, not a promise of automatic zero downtime.

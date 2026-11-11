@@ -1,0 +1,87 @@
+---
+id: pspo2-backlog-economics
+locale: en
+title: 'Product Backlog economics and renewal'
+objectives:
+  - Compare delay cost, uncertainty, dependencies and expected value when ordering work.
+  - Refine near-term options and remove stale requests without losing important evidence.
+  - Distinguish Product Backlog ordering from the Developers’ Sprint plan.
+---
+
+## Learning objectives
+
+Explain why the item with the highest projected return need not be first. Renew a stale backlog, choose a useful vertical slice and retain clear accountability when work is delegated.
+
+## Why it matters
+
+A backlog containing every request ever received creates an illusion of future commitments. Stakeholders wait for items that no longer support the Product Goal, while expensive dependencies remain hidden. The purpose is an emergent, ordered source of product work, not a permanent request archive.
+
+## Core theory
+
+The Product Owner is accountable for effective Product Backlog management, including its ordering and transparency. Others can help describe, research or order items; delegation does not transfer accountability. The Developers are responsible for sizing the work and for the plan within the Sprint Backlog.
+
+**Cost of Delay** describes the consequences of waiting over a stated period. These may include lost opportunity, avoidable operating cost or a verified compliance penalty. It is an optional economic lens, not a required Scrum formula. A legal deadline must be checked with the appropriate expert; a stakeholder calling something “mandatory” is not sufficient evidence.
+
+Compare expected benefit, timing, risk, effort, dependency constraints and learning. A small experiment may reduce uncertainty before a large commitment. A high-return item that cannot be used until an external service changes may be less useful now than a small end-to-end improvement. Pure ROI ordering can conceal both timing and uncertainty. Avoid false precision when inputs are guesses.
+
+Refinement is ongoing work to add useful detail, order and size; it is not a mandatory event with a fixed timebox. Near-term items usually need more detail than distant options. No universal number of Sprints must be fully specified. Remove, merge or archive obsolete requests with a reason and a way to recover relevant evidence. Archiving a request is not secretly abandoning a contractual obligation.
+
+Split by a usable customer outcome where feasible. “All database work” followed by “all screens” postpones integrated feedback. A small complete journey can provide earlier evidence, while still meeting the Definition of Done. Technical work can be essential to safety and future value even when users never see it directly.
+
+## Worked example
+
+A booking product has three candidates: a small consent correction with a verified deadline next week, an attractive reporting feature with no time-sensitive demand, and a cheap test of a risky external identity dependency. The backlog also contains 300 old requests with no owner or recent evidence.
+
+The PO first makes the deadline and consequences visible, discusses a compliant usable slice with Developers and investigates the dependency early enough to influence later choices. The report remains an option. The team reviews old requests against current goals, keeping important evidence without promising all 300 items. The numbers are teaching assumptions, not a universal ordering rule.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n G[Product Goal] --> E[Benefit timing risk and dependencies]\n E --> O[Order useful options]\n O --> S[Small Done slice]\n S --> L[Inspect outcomes]\n L --> E\n L --> R[Refine merge or retire requests]'
+  }
+/>
+
+Ordering changes as evidence changes. Retirement and refinement keep the options useful; the diagram is an original teaching model.
+
+## Inspect a decision
+
+<details>
+<summary>Must the PO approve the order of every technical task inside a Sprint?</summary>
+
+No. Developers adapt their Sprint Backlog plan to achieve the Sprint Goal. Technical sequencing alone is not a breach of Product Backlog accountability. If new information changes the needed scope, Developers and the PO collaborate; the Sprint Goal and quality boundary remain protected.
+
+</details>
+
+## Common mistakes
+
+- Using request age or executive rank as the only ordering rule.
+- Refining years of speculative detail while neglecting the next useful slice.
+- Treating technical risk reduction as automatically worthless or automatically first.
+- Calling deleted requests completed work or hiding a real obligation.
+
+## Practice exercise
+
+A team can deliver either a modest regulatory correction due in ten days or a larger growth feature whose benefit is uncertain. Both require the same scarce specialist. Write the evidence you need before ordering them, then propose a smaller learning step for the growth idea.
+
+## Worked solution
+
+<details>
+<summary>Show the reasoning</summary>
+
+Verify the obligation, date, affected users, consequences, effort and dependency. Compare the opportunity cost of delaying each option. Explore the smallest compliant end-to-end correction and a low-cost test of the growth assumption. Explain the rationale and revisit it when evidence changes. Do not manufacture a numerical ranking from unknown inputs or waive mandatory quality to fit both.
+
+</details>
+
+## Mini-quiz and cheat sheet
+
+Goal → timing and value evidence → dependency/risk → useful slice → inspect. A Product Backlog is emergent. Delegation preserves PO accountability; the Developers own their Sprint plan. Keeping an option does not require detailing or promising it.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Owner, Product Backlog, Sprint Backlog and refinement. Adapted explanations: CC BY-SA 4.0, Schwaber and Sutherland.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): selected ordering, value and forecasting material in chapters 3, 7 and 8.
+- [Kwestio PSPO II practice](https://kwestio.jad2advisory.com/certifications/pspo-ii/practice): public backlog-strategy topics reviewed, including stale items and learning through uncertainty.
+- [ExamDeck backlog-at-scale examples](https://examdeck.pro/pspo2-practice-questions/product-value-and-backlog-management-at-scale): supplementary economic trade-off topics. Provider questions are not reproduced; this lesson and its questions are original practice.

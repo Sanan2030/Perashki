@@ -1,0 +1,103 @@
+---
+id: devops-terraform-iac
+locale: az
+title: 'Terraform ilə infrastruktur, state və təhlükəsiz dəyişiklik icmalı'
+objectives:
+  - 'Desired configuration-u, qeydə alınmış state-i və real remote infrastructure-u fərqləndir.'
+  - 'Nəzərdən keçirilən plan-da dağıdıcı və gözlənilməyən əməliyyatları tap.'
+  - 'Həssas state/plan dəyərlərini qoru və backend-dən asılı coordination-u izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Desired configuration-u, qeydə alınmış state-i və real remote infrastructure-u fərqləndir.
+- Nəzərdən keçirilən plan-da dağıdıcı və gözlənilməyən əməliyyatları tap.
+- Həssas state/plan dəyərlərini qoru və backend-dən asılı coordination-u izah et.
+
+## Bu mövzu niyə vacibdir
+
+İki mühəndis eyni infrastruktura müstəqil dəyişiklik tətbiq edir. Adı dəyişən configuration block əvəzetmə kimi şərh olunur, credential-lı state faylı isə Git-ə commit edilir. Terraform-u “sadəcə mətn faylları” saymaq həm coordination modelini, həm əməliyyat metadata-sının məxfiliyini nəzərdən qaçırır.
+
+## Əsas anlayışlar
+
+Infrastructure as Code resursları və onların nəzərdə tutulan əlaqələrini təsvir edir. Terraform state konfiqurasiya ilə idarə olunan remote object-lərin uyğunluğunu və lazım olan metadata-nı qeydə alır. State silinib atılan adi cache deyil: onu itirmək və ya ehtiyatsız dəyişmək Terraform-un ownership-i yanlış anlamasına və arzuolunmaz dəyişikliklər təklif etməsinə səbəb ola bilər.
+
+Üç görünüş fərqlənə bilər: konfiqurasiya arzu olunanı deyir, state idarə olunan əlaqələri saxlayır, remote sistem isə real cari vəziyyətə malikdir. Reallıq gözlənilən konfiqurasiya prosesindən kənar dəyişəndə drift yaranır. Refresh/plan fərqi göstərə bilər, amma plan daimi zəmanət deyil: icradan əvvəl credential, provider davranışı və remote resource dəyişə bilər.
+
+Təklif olunan əməliyyatları resurs səviyyəsində oxu. Replacement obyekti silib yenidən yarada bilər; bu, identifikatorları dəyişə, xidməti kəsə və idarə olunmayan state-i itirə bilər. Çoxsaylı gözlənilməyən silinmələr olan böyük plan daha tez approval vermək üçün deyil, seçilmiş environment-i, workspace/backend-i və resource mapping-i araşdırmaq üçün səbəbdir.
+
+Remote state üçün uyğun access control, encryption və backup/versioning istifadə et. Coordination və locking seçilmiş backend və konfiqurasiyadan asılıdır; hər backend-in concurrent write qarşısını aldığını fərz etmə. Terraform workspace və ya naming convention mühitlər arasında avtomatik authorization boundary deyil.
+
+Sensitive işarəsi adətən dəstəklənən CLI/UI çıxışını gizlədir; dəyəri bütün state və plan fayllarından mütləq çıxarmır. Versiya/provider-dən asılı ephemeral və write-only mexanizmlər dəstəkləndikdə fərqli persistence problemlərini həll edir. Faylların və backend-in özünü qoru; state, saved plan və credential-ları source control-a commit etmə.
+
+Təsdiqlənmiş plan-ın configuration revision-u, provider/dependency versiyaları, environment-i, identity-si və gözlənilən təsirləri məlum olmalıdır. Saved plan-ı apply etmək yenə səlahiyyət tələb edən əməliyyat dəyişikliyidir, yalnız oxuma review deyil. Bu kurs istifadəçinin infrastrukturunda apply işlətmir.
+
+## İşlənmiş nümunə
+
+Nəzarət olunan tədris mühiti üçün review ardıcıllığına bunlar daxil ola bilər:
+
+```sh
+terraform fmt -check
+terraform validate
+terraform plan -out=reviewed.plan
+terraform show reviewed.plan
+```
+
+Real mühit initialization və məqsədli seçilmiş backend/provider konfiqurasiyası tələb edir. Plan remote sistemləri oxuya bilər və uyğun credential-lar tələb edir. reviewed.plan faylını potensial həssas material say. Əmrlər izah üçündür; burada infrastruktur initialize edilməyib və dəyişdirilməyib.
+
+Address adının dəyişməsi DB replacement təklif edirsə, silinməni qəbul etməzdən əvvəl resource identity-sini və dəstəklənən refactoring/move mexanizmlərini araşdır. Dəqiq həll konfiqurasiya, backend və provider-dən asılıdır; universal state edit əmri uydurma.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Versioned desired configuration"] --> B["Compare state and remote objects"]\n B --> C["Review proposed plan"]\n C --> D["Authorized controlled execution"]\n D --> E["Updated remote state and evidence"]\n F["Protected backend and coordination"] --> B'
+  }
+/>
+
+Plan müqayisə ilə səlahiyyətli mutation arasında dayanır. Konfiqurasiyaya baxış environment-i, state ownership-ini və real təsirləri yoxlamaq ehtiyacını aradan qaldırmır.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Variable sensitive kimi işarələnib. Komanda yaradılmış state faylını commit edə bilərmi?</summary>
+
+Xeyr. Gizlətmək və fayldan çıxarmaq ayrı xüsusiyyətlərdir. State-də dəyər və ya başqa həssas attribute-lar qala bilər. State/plan materialını backend və credential policy-yə uyğun qoru və commit-dən kənarda saxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Plan çıxışını həmişə etibarlı saymaq remote dəyişiklikləri və icra kontekstini nəzərə almır.
+- Bütün workspace-ləri security isolation saymaq başqa mühiti ifşa edə bilər.
+- Gözlənilməyən plan-ı gizlətmək üçün state-i dəyişmək ownership anlayışını poza bilər.
+- Backend-in dəstəklədiyi coordination olmadan paralel apply konflikt yarada bilər.
+- Source mətnini geri qaytarmaq artıq tətbiq edilmiş bütün resurs təsirlərini avtomatik ləğv etmir.
+
+## Praktik tapşırıq
+
+Staging plan-ı production-a bənzəyən DB-ni silməyi təklif edir və secret-i gizlədilmiş göstərir. Dayandırıb araşdırmaq üçün checklist və təhlükəsiz review qeydi yaz. Təsadüfi apply-dan sonra tək source revert-in niyə kifayət etməyə biləcəyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Backend-i, workspace/environment-i, authentication olunmuş identity-ni, configuration revision-u, state-to-resource mapping-i və provider versiyalarını yoxla. Gözlənilən resource address-ləri real remote identifikatorlarla müqayisə et. İcraya icazədən əvvəl replacement/deletion səbəblərini araşdır. Ekrandakı dəyərlər gizlənsə də, saved plan-ı qoru.
+
+Təsdiqlənmiş scope-u, gözlənilən dəyişiklikləri, recovery şərtlərini və icra sahibini qeydə al. Təsadüfi apply-dan sonra real state və data-nı yoxlayıb recovery plan-ını izlə. Konfiqurasiyanı geri qaytarmaq yeni dəyişiklik təklif edə bilər, amma uyğun backup və ya başqa dəstəklənən recovery olmadan silinmiş biznes məlumatını bərpa edə bilməz.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Configuration ≠ state ≠ reallıq. Plan = müəyyən kontekstdə təklif olunan təsirlər. Sensitive redaction ≠ fayldan çıxarma. Coordination backend imkanlarından asılıdır. İcradan əvvəl replacement, environment və identity-ni yoxla. Recovery üçün Git revert-dən artıq tədbir lazımdır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Terraform state purpose](https://developer.hashicorp.com/terraform/language/state/purpose): object mapping və metadata.
+- [Terraform sensitive data](https://developer.hashicorp.com/terraform/language/manage-sensitive-data): state/plan sızması, redaction və dəstəklənən ephemeral dəyərlər.
+
+Əmrlər və review ssenariləri tədris üçündür. Dərslər cloud credential, Terraform state və production resource yaratmır.

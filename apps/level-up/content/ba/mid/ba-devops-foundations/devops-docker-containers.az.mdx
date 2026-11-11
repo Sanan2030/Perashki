@@ -1,0 +1,106 @@
+---
+id: devops-docker-containers
+locale: az
+title: 'Docker image, container, yaddaş və təhlükəsiz build'
+objectives:
+  - 'Image layer-lərini, işləyən container-ləri və persistent volume-ları izah et.'
+  - 'Dockerfile-ı dependency caching, runtime ölçüsü və credential sızması baxımından qiymətləndir.'
+  - 'Dəyişə bilən tag ilə dəyişməz image digest-i fərqləndir.'
+---
+
+## Öyrənmə məqsədləri
+
+- Image layer-lərini, işləyən container-ləri və persistent volume-ları izah et.
+- Dockerfile-ı dependency caching, runtime ölçüsü və credential sızması baxımından qiymətləndir.
+- Dəyişə bilən tag ilə dəyişməz image digest-i fərqləndir.
+
+## Bu mövzu niyə vacibdir
+
+Komanda DB container-ini silib yenidən yaradır, sonra məlumatların yalnız container-in yazıla bilən layer-ində saxlandığını görür. Başqa komanda eyni latest tag-ini yenidən build edir və fərqli dependency-lər alır. Container-lər paketləməni asanlaşdırır; məlumatların davamlılığını, build-in təkrarlana bilməsini və təhlükəsizliyi avtomatik təmin etmir.
+
+## Əsas anlayışlar
+
+Image layer-lərdən qurulan paketlənmiş filesystem və runtime konfiqurasiyasıdır. Container yazıla bilən layer-i və proses izolyasiyası olan işləyən nüsxədir. Container-i dayandırmaq onu silməklə eyni deyil. Məlumatların davamlılığı uyğun persistent storage, backup və recovery davranışı ilə ayrıca layihələndirilməlidir; volume-un olması sınaqdan keçirilmiş backup demək deyil.
+
+Multi-stage build kompilyasiya və test alətlərini runtime nəticəsindən ayırır. Son mərhələyə yalnız lazım olan tətbiq artifact-larını köçür. Faydalı caching yaradırsa, dependency manifest-lərini tez-tez dəyişən source fayllarından əvvəl yerləşdir. Lockfile dependency-lərin təkrarlana bilməsinə kömək edir, amma native alətlər, base image-lər və xarici yükləmələr nəticəni yenə dəyişə bilər.
+
+Image tag-ləri başqa məzmuna yönəldilə bilən adlardır. Digest isə məzmunu müəyyənləşdirir. Release policy production üçün guya eyni versiyanı yenidən build etmək əvəzinə, yoxlanmış eyni digest-i qeydə alıb mühitlər arasında irəlilədə bilər. Digest pinning artifact-ın kimliyini dəqiqləşdirir; həssas base image-in həmişəlik sabitlənməməsi üçün yeniləmə prosesi də lazımdır.
+
+Yerli secret-lər və böyük cache-lər kimi lazımsız məzmunu build context-dən çıxarmaq üçün .dockerignore istifadə et. Credential-ı COPY edib sonrakı layer-də silmə: əvvəlki layer onu yenə ifşa edə bilər. Build-time secret mexanizmlərinin və runtime secret injection-un lifecycle-ları fərqlidir. Dəstəklənən üsulu seç; adi image metadata-sını secret vault kimi istifadə etmə.
+
+Tətbiqin dəstəklədiyi hallarda uyğun non-root istifadəçi və filesystem icazələri də daxil olmaqla, yalnız lazım olan səlahiyyətlərlə işlət. Image metadata-sında port göstərmək onu host-a açmır. Əlçatımlılığı məqsədli host/container port mapping-i və network policy müəyyən edir. Container virtual machine deyil və bütün host/container escape hallarına qarşı zəmanət vermir.
+
+## İşlənmiş nümunə
+
+Tətbiqə build zamanı compiler, sorğulara cavab vermək üçün isə yalnız runtime lazımdır. İki mərhələ istifadə et, artifact-ı sına, sonra onun məzmun kimliyini mühitlər arasında irəlilət. Aşağıdakı sxematik şablon qəsdən birbaşa build edilə bilmir: hər iki image placeholder-ini yoxlanmış real image və digest-lərlə əvəz et, əmrləri tətbiqə uyğunlaşdır.
+
+```dockerfile
+FROM reviewed-build-image@sha256:REPLACE_WITH_REAL_DIGEST AS build
+WORKDIR /src
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM reviewed-runtime-image@sha256:REPLACE_WITH_REAL_DIGEST
+WORKDIR /app
+COPY --from=build /src/dist ./dist
+USER 10001
+CMD ["node", "dist/server.js"]
+```
+
+Bu, həmin Next.js layihəsinin deployment Dockerfile-ı deyil. Son artifact-ın quruluşu və istifadəçi icazələri real runtime-a uyğun gəlməlidir. Real build şəbəkə nəzarətini keçmək əvəzinə idarə olunan mühitin proxy və CA parametrlərini saxlamalıdır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Reviewed source and lockfile"] --> B["Build stage"]\n B --> C["Tested runtime artifacts"]\n C --> D["Minimal final image"]\n D --> E["Container process"]\n F["Persistent volume and backup policy"] --> E'
+  }
+/>
+
+Runtime image və persistent data ayrı lifecycle-lara malikdir. Image-i əvəzləmək lazım olan biznes məlumatlarını təsadüfən silməməlidir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Secret bir image layer-inə köçürülüb, növbəti layer-də silinib. Yayımlanmış image-i paylaşmaq təhlükəsizdirmi?</summary>
+
+Bunu təhlükəsiz sayma. Əvvəlki layer dəyəri saxlaya bilər. Sızmanı credential policy-yə uyğun qiymətləndir, lazım olduqda rotation et və build-i elə dəyiş ki, secret yayımlanan layer-ə heç daxil olmasın.
+
+</details>
+
+## Tipik səhvlər
+
+- latest-i dəyişməz versiya saymaq rollback-i qeyri-müəyyən edir.
+- State-i yalnız silinə bilən writable layer-də saxlamaq əvəzləmə zamanı məlumat itkisinə səbəb ola bilər.
+- --no-cache parametrinin base image-i də yenilədiyini düşünmək cache istifadəsini yeni base image-in yüklənməsi ilə qarışdırır.
+- Compiler və lazımsız paketləri runtime-a daxil etmək ölçünü və attack surface-i artırır.
+- Volume-un olması ilə recovery-nin sübut olunduğunu demək backup, restore və korlanma ssenarilərini nəzərdən qaçırır.
+
+## Praktik tapşırıq
+
+Bütün repository-ni köçürən, hər source dəyişikliyindən sonra dependency-ləri quraşdıran, root kimi işləyən və upload-ları container daxilində saxlayan build-i nəzərdən keçir. Caching, credential idarəsi, runtime icazələri, artifact kimliyi və istifadəçi məlumatlarının davamlılığı üçün dəyişikliklər təklif et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Build context-i azalt və yoxla, yerli credential-ları çıxar; uyğundursa manifest-ləri source-dan əvvəl köçür. Lockfile və multi-stage build istifadə et. Lazım olan build credential-larını commit edilmiş fayl və layer-lər vasitəsilə deyil, dəstəklənən secret mexanizmləri ilə ötür. Runtime identity-ni və yazıla bilən yolları məqsədli şəkildə konfiqurasiya et.
+
+Son digest-i qeydə al, release policy-yə uyğun artifact-ı scan və test et, mühitlər arasında həmin kimliyi irəlilət. Lazım olan upload-ları backup/restore-u sınaqdan keçirilmiş uyğun davamlı xidmətdə və ya volume-da saxla. Sabitlənmiş məzmunu həmişə təhlükəsiz saymaq əvəzinə, yenilənmiş base image-ləri müntəzəm build edib nəzərdən keçir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Image = paketlənmiş məzmun. Container = işləyən proses və state. Volume ≠ backup. Tag ≠ digest. Faylı sonradan silmək əvvəlki image layer-ini silmir. Multi-stage build və least privilege tətbiqin xüsusiyyətlərinə uyğun yoxlanmalıdır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Docker building best practices](https://docs.docker.com/build/building/best-practices/): multi-stage build, context, cache, image yeniləmələri və pinning.
+
+Dockerfile izahlı tədris şablonudur; bu tapşırıqda onun build-i icra edilməyib və production konfiqurasiyası tətbiq olunmayıb.

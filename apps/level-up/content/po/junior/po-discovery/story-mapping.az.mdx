@@ -1,0 +1,88 @@
+---
+id: story-mapping
+locale: az
+title: 'Hekayə xəritəsi və kəşf dövrləri'
+objectives:
+  - 'Journey backbone-u detailed task-dan ayır.'
+  - 'Journey boyunca usable outcome verən slice seç.'
+  - 'Map-la scope dondurmaq deyil, gap/risk/öyrənmə müzakirə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Journey backbone-u detailed task-dan ayır.
+- Journey boyunca usable outcome verən slice seç.
+- Map-la scope dondurmaq deyil, gap/risk/öyrənmə müzakirə et.
+
+## Bu mövzu niyə vacibdir
+
+Flat backlog yüzlərlə item saxlayıb user-in goal-a necə çatdığını gizlədə bilər. Story map journey-ni açır, ardıcıl release müzakirəsi yaradır. Dəyəri rəngli kart düzümündə deyil, shared understanding və slicing-dədir.
+
+## Əsas anlayışlar
+
+User goal və konkret journey-dən başla. Böyük activity-ləri təxmini narrative order-də göstər, altına detailed task qoy. Backbone kontekst verir, aşağı task alternativ/exception/implementation sualı açır. Map hər user-in bir sərt sequence izləməsi iddiası deyil.
+
+Activity sırasını işin priority-sindən ayır. Task journey-də erkəndir, çünki user erkən edir; mütləq ilk build ediləcəyi üçün yox. Ümumi goal-u qoruyaraq dependency/risk müzakirə et.
+
+Release slice usable outcome üçün yetərli journey-ni keçir. Kiçik booking release available slot tapmaq, reserve və confirmation almaq verə bilər. Yalnız DB layer/search screen engineering progress olsa da usable booking outcome olmaya bilər.
+
+Seçilmiş outcome üçün quality, exception handling və operational işi daxil et. Release label Definition of Done pozuntusuna bəraət deyil. “Walking skeleton” komanda usability-ni və real göstərilən sübutu müəyyən edəndə faydalıdır.
+
+Assumption açıq olsun: hansı user vəziyyəti, buraxılan alternativ, unresolved policy və slice-ı dəyişən sübut. Seçilmiş işi uyğun refined Product Backlog Item-a çevir. Map Product Owner ordering/əməkdaşlığını dəstəkləyir; Product Backlog-u əvəz etmir, məcburi yeni Scrum artifact deyil.
+
+## İşlənmiş nümunə
+
+Appointment booking backbone-u Discover, Choose, Reserve, Manage-dir. Task-lar location filter, availability inspection, detail submit, confirmation almaq və cancel-dir. İlk release bir location, limited schedule, reservation, accessible confirmation, əsas failure/cancellation behavior verir.
+
+Multi-location comparison və loyalty reward slice-dan kənardır. Komanda confirmation delivery-nin etibarsızlığını görüb visible reservation status/recovery path daxil edir. Slice kiçik olsun deyə təsdiqsiz reservation-u success adlandırmır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n D[Discover availability] --> C[Choose slot]\n C --> R[Reserve safely]\n R --> F[Confirm and manage]\n H[One coherent release slice] -.-> D\n H -.-> C\n H -.-> R\n H -.-> F'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Bütün search feature-ləri olan, reservation flow-u olmayan release booking goal-u tamamlayırmı?</summary>
+
+Bu goal-da yox. Search hypothesis test edə bilər, amma usable booking journey deyil. Learning purpose-u dürüst göstər və ya lazımi quality ilə reservation/confirmation verən kiçik end-to-end slice seç.
+
+</details>
+
+## Tipik səhvlər
+
+- Journey order-u backlog priority ilə qarışdırmaq.
+- Yalnız horizontal technical layer-i release slice seçmək.
+- Lazımi accessibility/recovery işini release xəttinin altında gizlətmək.
+- Yeni sübut çıxanda map-ı fixed scope saymaq.
+
+## Praktik tapşırıq
+
+Refund journey üçün story map qur. İlk usable slice, iki deferred capability və commitment-dən əvvəl test ediləcək assumption seç.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Find payment, Check eligibility, Request refund, Track outcome activity-ləri seç. İlk slice bir payment method və limited eligible population-u authorization, duplicate protection, unresolved status-la dəstəkləyə bilər. Outcome-a vacib deyilsə əlavə payment method/advanced report defer et. Customer-in pending state-i anlayıb outcome-u tapmasını test et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+User goal → activity → task/exception → end-to-end slice → evidence/adaptation. Story mapping practice-dir, əlavə məcburi Scrum artifact deyil.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Agile Alliance: Story Mapping](https://agilealliance.org/glossary/story-mapping/): journey təşkili və release müzakirəsi.
+- [The Professional Product Owner, McGreal and Jocham (2018)](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): təqdim edilmiş kitabın product discovery, value və backlog barədə seçilmiş hissələri. İzah, case və tapşırıqlar orijinaldır; kitabın mətni və şəkilləri təkrar yayımlanmır. Seçilmiş chapter 7 hissəsi, s. 232–236.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Backlog, usable Increment, Definition of Done. CC BY-SA 4.0, Schwaber və Sutherland.

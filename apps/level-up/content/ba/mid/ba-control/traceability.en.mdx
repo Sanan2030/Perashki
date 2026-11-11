@@ -1,0 +1,88 @@
+---
+id: traceability
+locale: en
+title: 'Requirements traceability'
+objectives:
+  - 'Choose trace relationships that support a decision.'
+  - 'Follow a change through requirements, designs and tests.'
+  - 'Distinguish coverage links from evidence of correctness.'
+---
+
+## Learning objectives
+
+- Choose trace relationships that support a decision.
+- Follow a change through requirements, designs and tests.
+- Distinguish coverage links from evidence of correctness.
+
+## Why this matters
+
+A regulation changes a refund deadline. Searching for the word refund in documents may miss a report, a customer message and a delayed job that all depend on the rule. Traceability makes those relationships visible and helps the team assess impact before committing to a change.
+
+## Core theory
+
+Traceability connects business analysis information to related information. Useful links include a requirement's source, the need it supports, the design that realizes it, dependencies on other requirements and tests that verify it. The exact relationship vocabulary should fit the organization's decisions; not every pair of records needs a link.
+
+Forward tracing asks what realizes a need and how it will be checked. Backward tracing asks why a component, requirement or test exists. Both help discover missing work and unsupported scope. A feature without a known source may still be valuable, but its rationale needs examination rather than automatic acceptance or deletion.
+
+Distinguish a relation from its evidence. A requirement linked to a test has a coverage relationship. Whether that test ran, passed under representative conditions and actually checked the intended rule is a separate question. A coverage percentage can hide weak or obsolete tests.
+
+Use stable identifiers, explicit link types, versions and ownership. A baseline identifies the information state used for a decision or release. Preserve historical relationships when requirements or designs change so an earlier release remains understandable. Do not silently repoint every past test result to a newer requirement version.
+
+Maintain enough detail to support impact analysis without creating an unmanageable matrix. High-risk rules, regulated behavior and shared interfaces often need stronger evidence than a disposable experiment. Review orphan records, broken links and changes in dependencies. Traceability supports judgment; it does not automatically decide whether a proposed change is worthwhile.
+
+## Worked example
+
+Business objective `OBJ-2` is to reduce avoidable duplicate refunds. Requirement `REF-014` restricts a refund to the remaining amount. Design `API-9` implements the authorization and deduplication boundary. Tests `T-31` and `T-32` check normal and repeated requests, while support procedure `OPS-7` handles unknown provider outcomes.
+
+A proposal to allow partial refunds touches amount calculation, API schema, customer communication and reconciliation. The analyst follows the links, asks owners for impacts and records which test versions must change. A passing test for full refunds is retained as historical evidence, not represented as proof of partial-refund correctness.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n O[Business objective] --> R[Versioned requirement]\n R --> D[Design and interface]\n R --> P[Operational procedure]\n D --> T[Tests and execution evidence]\n R --> C[Change impact review]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Every requirement has at least one linked test. Is the solution necessarily verified?</summary>
+
+No. The links establish intended coverage, not successful execution or adequate assertions. Inspect what each test checks, the requirement version, relevant environment and actual result. Add missing negative and exception paths where the risk requires them.
+
+</details>
+
+## Common mistakes
+
+- Measuring only the number of links.
+- Linking to a document without identifying the relevant requirement.
+- Deleting historical relationships after a rule changes.
+- Treating a traceability tool as the owner of the decision.
+
+## Practice exercise
+
+Create a small trace chain for a maximum-transfer rule: objective, requirement, API design, negative test and support procedure. Identify two impacts of increasing the limit.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Link the objective to a stable transfer-limit requirement, then to server-side validation, a boundary-value test and the escalation procedure. Raising the limit may affect risk policy, authorization, transaction monitoring, client messaging and tests. Ask the relevant owners to assess those effects and record the approved requirement version and verification evidence.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Source → need → requirement → design → test evidence → delivered version. Ask both “why does this exist?” and “what changes if this rule changes?”
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the supplied book support original explanations and scenarios; source prose and the member PDF are not distributed.
+
+Selected sections: §5.1 Trace Requirements, §5.2 Maintain Requirements, §5.4 Assess Requirements Changes and §3.4 Plan Business Analysis Information Management.

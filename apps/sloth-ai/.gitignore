@@ -1,0 +1,28 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env.*.local
+.vercel
+*.log
+logs/*.json
+.DS_Store
+coverage
+*.tsbuildinfo
+lib/editor/generated/
+
+# Offline corpus preparation artifacts; keep provenance manifests tracked.
+scripts/data/__pycache__/
+data/corpus/az-v*/
+
+# Offline training outputs and Python environment; never deployed with the app.
+.venv-training/
+artifacts/training/
+training/**/__pycache__/
+
+# Browser test artifacts
+playwright-report/
+test-results/
+artifacts/qa/
+scripts/qa/__pycache__/

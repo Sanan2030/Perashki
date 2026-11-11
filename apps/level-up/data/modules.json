@@ -1,0 +1,634 @@
+[
+  {
+    "id": "ba-foundations",
+    "trackId": "ba",
+    "level": "junior",
+    "title": {
+      "az": "Problemi anla",
+      "en": "Understand the problem"
+    },
+    "description": {
+      "az": "Sorğunun arxasındakı insanları və nəticələri müəyyən et.",
+      "en": "Find the people and outcomes behind a request."
+    },
+    "lessonIds": ["ba-role", "sdlc", "stakeholder-mapping"],
+    "estimatedMinutes": 95,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-requirements",
+    "trackId": "ba",
+    "level": "junior",
+    "title": {
+      "az": "Söhbətdən tələblərə",
+      "en": "From conversations to requirements"
+    },
+    "description": {
+      "az": "Ehtiyacları topla, təsnif et və yoxlanıla bilən şəkildə sənədləşdir.",
+      "en": "Elicit, classify and document testable needs."
+    },
+    "lessonIds": [
+      "elicitation",
+      "requirement-types",
+      "stories-gherkin",
+      "use-cases",
+      "requirements-documents"
+    ],
+    "estimatedMinutes": 225,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-visuals",
+    "trackId": "ba",
+    "level": "junior",
+    "title": {
+      "az": "Sistemi görünən et",
+      "en": "Make the system visible"
+    },
+    "description": {
+      "az": "Qeyri-müəyyənliyi diaqram və ya prototype ilə aradan qaldır.",
+      "en": "Use a diagram or prototype to resolve ambiguity."
+    },
+    "lessonIds": ["bpmn-process", "uml-models", "wireframes"],
+    "estimatedMinutes": 155,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-control",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "az": "Əhatəni və qərarları idarə et",
+      "en": "Manage scope and decisions"
+    },
+    "description": {
+      "az": "Dəyişən tələbləri uyğun və izlənilə bilən saxla.",
+      "en": "Keep changing requirements coherent and traceable."
+    },
+    "lessonIds": ["prioritization", "traceability", "scope-change", "gap-root-cause"],
+    "estimatedMinutes": 190,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-technical",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Data modelling and business acceptance",
+      "az": "Məlumat modelləşdirməsi və biznes qəbulu"
+    },
+    "description": {
+      "en": "Model business information and verify acceptance of business workflows.",
+      "az": "Biznes məlumatlarını modelləşdir və biznes axınlarının qəbulunu yoxla."
+    },
+    "lessonIds": ["data-modeling", "uat"],
+    "estimatedMinutes": 95,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-delivery",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "az": "Çatdırılma komandalarında analiz",
+      "en": "Analysis in delivery teams"
+    },
+    "description": {
+      "az": "Sənədləşməni, axını və qiymətləndirməni komanda üçün faydalı et.",
+      "en": "Make documentation, flow and evaluation useful to the team."
+    },
+    "lessonIds": ["agile-analysis", "jira-confluence", "solution-evaluation"],
+    "estimatedMinutes": 105,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-leadership",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "az": "Məqsədli analiz liderliyi",
+      "en": "Lead analysis with intent"
+    },
+    "description": {
+      "az": "Strategiyanı, idarəetməni və insanları əlaqələndir.",
+      "en": "Connect strategy, governance and people."
+    },
+    "lessonIds": [
+      "babok-map",
+      "ba-techniques-perspectives",
+      "analysis-governance",
+      "facilitation-conflict",
+      "storytelling-time"
+    ],
+    "estimatedMinutes": 175,
+    "prerequisites": []
+  },
+  {
+    "id": "po-foundations",
+    "trackId": "po",
+    "level": "junior",
+    "title": {
+      "az": "Nəticəyə sahib çıx",
+      "en": "Own an outcome"
+    },
+    "description": {
+      "az": "Scrum məsuliyyətlərini və məqsədli backlog qərarlarını öyrən.",
+      "en": "Learn Scrum accountabilities and purposeful backlog decisions."
+    },
+    "lessonIds": ["product-goal", "scrum-framework", "product-backlog", "good-pbis"],
+    "estimatedMinutes": 130,
+    "prerequisites": []
+  },
+  {
+    "id": "po-discovery",
+    "trackId": "po",
+    "level": "junior",
+    "title": {
+      "az": "Qərardan əvvəl kəşf et",
+      "en": "Discover before deciding"
+    },
+    "description": {
+      "az": "İnsanlardan öyrən və məhsul fərziyyələrini aşkar et.",
+      "en": "Learn from people and expose product assumptions."
+    },
+    "lessonIds": ["jtbd-research", "personas", "story-mapping"],
+    "estimatedMinutes": 155,
+    "prerequisites": []
+  },
+  {
+    "id": "po-strategy",
+    "trackId": "po",
+    "level": "mid",
+    "title": {
+      "az": "Strategiyanı seçimlərə çevir",
+      "en": "Translate strategy into choices"
+    },
+    "description": {
+      "az": "İstiqamət, kəşf, göstərici və iqtisadi qərarları əlaqələndir.",
+      "en": "Connect direction, discovery, metrics and economic decisions."
+    },
+    "lessonIds": ["product-strategy", "okrs", "product-metrics", "ebm", "po-prioritization"],
+    "estimatedMinutes": 225,
+    "prerequisites": []
+  },
+  {
+    "id": "po-delivery",
+    "trackId": "po",
+    "level": "mid",
+    "title": {
+      "az": "Çatdırılma boyu əməkdaşlıq et",
+      "en": "Collaborate through delivery"
+    },
+    "description": {
+      "az": "Proqnoz və kommersiya qərarlarını sübuta əsaslandır.",
+      "en": "Make forecasts and commercial decisions with evidence."
+    },
+    "lessonIds": ["forecast-release", "po-teamwork", "pricing-gtm"],
+    "estimatedMinutes": 130,
+    "prerequisites": []
+  },
+  {
+    "id": "po-leadership",
+    "trackId": "po",
+    "level": "lead",
+    "title": {
+      "az": "Məhsul sisteminə liderlik et",
+      "en": "Lead a product system"
+    },
+    "description": {
+      "az": "Müstəqilliyi, iqtisadiyyatı və məsuliyyətli məhsul qərarlarını tarazlaşdır.",
+      "en": "Balance autonomy, economics and responsible product decisions."
+    },
+    "lessonIds": ["scaling-products", "portfolio-lifecycle", "product-ethics", "po-negotiation"],
+    "estimatedMinutes": 140,
+    "prerequisites": []
+  },
+  {
+    "id": "ecba-preparation",
+    "trackId": "ecba",
+    "level": "junior",
+    "title": {
+      "az": "ECBA əsasları",
+      "en": "ECBA foundations"
+    },
+    "description": {
+      "az": "Orijinal öyrənmə ssenariləri; rəsmi imtahan məlumatları ayrıca saxlanılır.",
+      "en": "Original study scenarios; official exam details are maintained separately."
+    },
+    "lessonIds": ["ecba-context", "ecba-knowledge-areas", "ecba-techniques"],
+    "estimatedMinutes": 90,
+    "prerequisites": []
+  },
+  {
+    "id": "ccba-preparation",
+    "trackId": "ccba",
+    "level": "junior",
+    "title": {
+      "az": "CCBA tətbiqi analiz",
+      "en": "CCBA applied analysis"
+    },
+    "description": {
+      "az": "Orijinal öyrənmə ssenariləri; rəsmi imtahan məlumatları ayrıca saxlanılır.",
+      "en": "Original study scenarios; official exam details are maintained separately."
+    },
+    "lessonIds": ["ccba-planning", "ccba-elicitation", "ccba-lifecycle"],
+    "estimatedMinutes": 90,
+    "prerequisites": []
+  },
+  {
+    "id": "cbap-preparation",
+    "trackId": "cbap",
+    "level": "junior",
+    "title": {
+      "az": "CBAP mürəkkəb qərarlar",
+      "en": "CBAP complex decisions"
+    },
+    "description": {
+      "az": "Orijinal öyrənmə ssenariləri; rəsmi imtahan məlumatları ayrıca saxlanılır.",
+      "en": "Original study scenarios; official exam details are maintained separately."
+    },
+    "lessonIds": ["cbap-strategy", "cbap-design", "cbap-evaluation"],
+    "estimatedMinutes": 105,
+    "prerequisites": []
+  },
+  {
+    "id": "pspo1-preparation",
+    "trackId": "pspo1",
+    "level": "junior",
+    "title": {
+      "az": "PSPO I məhsul əsasları",
+      "en": "PSPO I product foundations"
+    },
+    "description": {
+      "az": "Orijinal öyrənmə ssenariləri; rəsmi imtahan məlumatları ayrıca saxlanılır.",
+      "en": "Original study scenarios; official exam details are maintained separately."
+    },
+    "lessonIds": [
+      "scrum-accountabilities",
+      "pspo1-events",
+      "pspo1-artifacts",
+      "pspo1-product-value",
+      "pspo1-empiricism",
+      "pspo1-refinement",
+      "pspo1-sprint-goal-changes"
+    ],
+    "estimatedMinutes": 190,
+    "prerequisites": []
+  },
+  {
+    "id": "pspo2-preparation",
+    "trackId": "pspo2",
+    "level": "junior",
+    "title": {
+      "az": "PSPO II tətbiqi sahiblik",
+      "en": "PSPO II applied ownership"
+    },
+    "description": {
+      "az": "Orijinal öyrənmə ssenariləri; rəsmi imtahan məlumatları ayrıca saxlanılır.",
+      "en": "Original study scenarios; official exam details are maintained separately."
+    },
+    "lessonIds": [
+      "pspo2-strategy",
+      "pspo2-value",
+      "pspo2-facilitation",
+      "pspo2-kanban",
+      "pspo2-forecasting",
+      "pspo2-shared-quality",
+      "pspo2-discovery",
+      "pspo2-organization",
+      "pspo2-outcome-experiments",
+      "pspo2-release-feature-flags",
+      "pspo2-platform-value",
+      "pspo2-backlog-economics",
+      "pspo2-portfolio-decisions",
+      "pspo2-business-models",
+      "pspo2-evidence-uncertainty"
+    ],
+    "estimatedMinutes": 590,
+    "prerequisites": []
+  },
+  {
+    "id": "pspo3-preparation",
+    "trackId": "pspo3",
+    "level": "junior",
+    "title": {
+      "az": "PSPO III düşünülmüş sahiblik",
+      "en": "PSPO III reflective ownership"
+    },
+    "description": {
+      "az": "Orijinal öyrənmə ssenariləri; rəsmi imtahan məlumatları ayrıca saxlanılır.",
+      "en": "Original study scenarios; official exam details are maintained separately."
+    },
+    "lessonIds": ["pspo3-written-case", "pspo3-complexity", "pspo3-reflection"],
+    "estimatedMinutes": 60,
+    "prerequisites": []
+  },
+  {
+    "id": "ba-authentication",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Authentication and browser security",
+      "az": "Autentifikasiya və brauzer təhlükəsizliyi"
+    },
+    "description": {
+      "en": "Trace credentials and trust boundaries through API and browser flows.",
+      "az": "Credential-ları və trust boundary-ləri API və brauzer axınlarında izlə."
+    },
+    "lessonIds": [
+      "access-refresh-tokens",
+      "oauth-pkce-oidc",
+      "jwt-validation-authorization",
+      "browser-bff-csrf-cors"
+    ],
+    "estimatedMinutes": 295,
+    "prerequisites": ["ba-technical"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-api-engineering",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "API contracts and coding",
+      "az": "API müqavilələri və kodlaşdırma"
+    },
+    "description": {
+      "en": "Implement testable contracts, deduplication and concurrency rules.",
+      "az": "Test edilə bilən contract, deduplication və concurrency qaydaları tətbiq et."
+    },
+    "lessonIds": ["api-idempotency-concurrency", "api-contracts-evolution", "secure-api-coding"],
+    "estimatedMinutes": 240,
+    "prerequisites": ["ba-authentication"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-distributed-systems",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "Distributed architecture and resilience",
+      "az": "Paylanmış arxitektura və dayanıqlılıq"
+    },
+    "description": {
+      "en": "Make data ownership, recovery and operational trade-offs explicit.",
+      "az": "Data ownership, recovery və əməliyyat seçimlərinin təsirlərini aydın göstər."
+    },
+    "lessonIds": ["architecture-boundaries-sagas", "api-resilience-observability"],
+    "estimatedMinutes": 160,
+    "prerequisites": ["ba-api-engineering"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-devops-foundations",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "DevOps foundations",
+      "az": "DevOps əsasları"
+    },
+    "description": {
+      "en": "Diagnose services, package containers and design trusted delivery pipelines.",
+      "az": "Xidmətləri diaqnostika et, container-ləri paketlə və etibarlı delivery pipeline qur."
+    },
+    "lessonIds": [
+      "devops-linux-git-networking",
+      "docker-kubernetes-masterclass",
+      "devops-docker-containers",
+      "devops-ci-cd-artifacts"
+    ],
+    "estimatedMinutes": 330,
+    "prerequisites": [],
+    "placement": "library"
+  },
+  {
+    "id": "ba-devops-operations",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "DevOps operations and reliability",
+      "az": "DevOps əməliyyatları və etibarlılıq"
+    },
+    "description": {
+      "en": "Reason about Kubernetes delivery, infrastructure state, SLOs and recovery.",
+      "az": "Kubernetes delivery, infrastruktur state-i, SLO və recovery-ni təhlil et."
+    },
+    "lessonIds": ["devops-kubernetes-delivery", "devops-terraform-iac", "devops-sre-incidents"],
+    "estimatedMinutes": 230,
+    "prerequisites": ["ba-devops-foundations"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-data-analysis",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Data analysis and reporting",
+      "az": "Data analizi və hesabat"
+    },
+    "description": {
+      "en": "Define metrics, validate datasets and build reproducible Python and BI analysis.",
+      "az": "Metrikaları müəyyən et, dataset-ləri yoxla və təkrarlana bilən Python və BI analizi qur."
+    },
+    "lessonIds": [
+      "data-analysis-grain-quality",
+      "data-python-pandas-cleaning",
+      "data-excel-powerbi-models",
+      "data-dashboards-storytelling"
+    ],
+    "estimatedMinutes": 280,
+    "prerequisites": [],
+    "placement": "library"
+  },
+  {
+    "id": "ba-analytics-advanced",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "Advanced analytics and experiments",
+      "az": "Qabaqcıl analitika və eksperimentlər"
+    },
+    "description": {
+      "en": "Calculate observable retention cohorts and assess controlled experiments.",
+      "az": "Müşahidə oluna bilən retention cohort-ları hesabla və nəzarətli eksperimentləri qiymətləndir."
+    },
+    "lessonIds": ["data-sql-windows-cohorts", "data-experiments-statistics"],
+    "estimatedMinutes": 170,
+    "prerequisites": ["ba-data-analysis", "ba-technical"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-database-foundations",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Database query performance",
+      "az": "DB sorğularının performansı"
+    },
+    "description": {
+      "en": "Apply database query performance through worked cases, diagrams, exercises and explained checks.",
+      "az": "Query performance-i işlənmiş nümunə, diaqram, tapşırıq və izahlı yoxlamalarla öyrən."
+    },
+    "lessonIds": ["db-indexes-explain"],
+    "estimatedMinutes": 75,
+    "prerequisites": ["ba-technical"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-databases",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "Database concurrency and evolution",
+      "az": "DB-də concurrency və schema dəyişiklikləri"
+    },
+    "description": {
+      "en": "Apply database concurrency and evolution through worked cases, diagrams, exercises and explained checks.",
+      "az": "DB concurrency və evolution mövzularını işlənmiş nümunə, diaqram, tapşırıq və izahlı yoxlamalarla tətbiq et."
+    },
+    "lessonIds": ["db-transactions-locks", "db-safe-migrations"],
+    "estimatedMinutes": 155,
+    "prerequisites": ["ba-database-foundations"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-cache-foundations",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Cache design and freshness",
+      "az": "Cache dizaynı və freshness"
+    },
+    "description": {
+      "en": "Apply cache design and freshness through worked cases, diagrams, exercises and explained checks.",
+      "az": "Cache dizaynını və məlumatın aktuallığını nümunə, diaqram, tapşırıq və izahlı yoxlamalarla öyrən."
+    },
+    "lessonIds": ["caching-redis"],
+    "estimatedMinutes": 70,
+    "prerequisites": ["ba-technical"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-messaging-caching",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "Message delivery and recovery",
+      "az": "Message delivery və recovery"
+    },
+    "description": {
+      "en": "Apply message delivery and recovery through worked cases, diagrams, exercises and explained checks.",
+      "az": "Message delivery və recovery-ni nümunə, diaqram, tapşırıq və izahlı yoxlamalarla tətbiq et."
+    },
+    "lessonIds": ["messaging-kafka", "messaging-rabbitmq"],
+    "estimatedMinutes": 150,
+    "prerequisites": ["ba-technical"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-software-testing",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Software testing and quality evidence",
+      "az": "Proqram təminatının sınağı və keyfiyyət sübutu"
+    },
+    "description": {
+      "en": "Apply software testing and quality evidence through worked cases, diagrams, exercises and explained checks.",
+      "az": "Test sərhədlərini və keyfiyyət sübutunu nümunə, diaqram, tapşırıq və izahlı yoxlamalarla qiymətləndir."
+    },
+    "lessonIds": ["testing-strategy-contracts", "testing-postman-apis", "testing-playwright"],
+    "estimatedMinutes": 215,
+    "prerequisites": ["ba-technical"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-data-pipelines",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Data pipeline foundations",
+      "az": "Data pipeline əsasları"
+    },
+    "description": {
+      "en": "Apply data pipeline foundations through worked cases, diagrams, exercises and explained checks.",
+      "az": "Data pipeline anlayışlarını nümunə, diaqram, tapşırıq və izahlı yoxlamalarla tətbiq et."
+    },
+    "lessonIds": ["data-etl-warehouse"],
+    "estimatedMinutes": 75,
+    "prerequisites": ["ba-technical", "ba-data-analysis"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-data-engineering",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "Data transformation and orchestration",
+      "az": "Data transformation və orchestration"
+    },
+    "description": {
+      "en": "Apply data transformation and orchestration through worked cases, diagrams, exercises and explained checks.",
+      "az": "Data transformation və orchestration-u nümunə, diaqram, tapşırıq və izahlı yoxlamalarla öyrən."
+    },
+    "lessonIds": ["data-dbt-quality-lineage", "data-airflow-orchestration"],
+    "estimatedMinutes": 160,
+    "prerequisites": ["ba-data-pipelines"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-cloud-foundations",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "en": "Cloud identity and networking",
+      "az": "Cloud identity və networking"
+    },
+    "description": {
+      "en": "Apply cloud identity and networking through worked cases, diagrams, exercises and explained checks.",
+      "az": "Cloud identity və networking-i nümunə, diaqram, tapşırıq və izahlı yoxlamalarla tətbiq et."
+    },
+    "lessonIds": ["cloud-iam-vpc-balancing"],
+    "estimatedMinutes": 80,
+    "prerequisites": ["ba-devops-foundations"],
+    "placement": "library"
+  },
+  {
+    "id": "ba-cloud-security",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "en": "Cloud costs and security engineering",
+      "az": "Cloud xərcləri və security engineering"
+    },
+    "description": {
+      "en": "Apply cloud costs and security engineering through worked cases, diagrams, exercises and explained checks.",
+      "az": "Cloud xərcini və security engineering qərarlarını nümunə, diaqram, tapşırıq və izahlı yoxlamalarla qiymətləndir."
+    },
+    "lessonIds": [
+      "cloud-cost-engineering",
+      "security-threat-modeling-ssrf",
+      "security-secrets-rotation"
+    ],
+    "estimatedMinutes": 220,
+    "prerequisites": ["ba-cloud-foundations", "ba-authentication"],
+    "placement": "library"
+  },
+  {
+    "id": "library-api-data-basics",
+    "trackId": "ba",
+    "level": "mid",
+    "placement": "library",
+    "title": {
+      "en": "SQL and API fundamentals",
+      "az": "SQL və API əsasları"
+    },
+    "description": {
+      "en": "Independent SQL, HTTP and integration lessons.",
+      "az": "Müstəqil SQL, HTTP və inteqrasiya dərsləri."
+    },
+    "lessonIds": ["sql-basics", "rest-apis", "integration-basics"],
+    "estimatedMinutes": 200,
+    "prerequisites": []
+  }
+]

@@ -1,0 +1,116 @@
+---
+id: data-experiments-statistics
+locale: az
+title: 'A/B testi: təsadüfi bölgü, qeyri-müəyyənlik və qərar qaydası'
+objectives:
+  - 'Experiment hypothesis, randomization unit və primary outcome müəyyən et.'
+  - 'Əminliyi şişirtmədən absolute və relative difference hesabla.'
+  - 'Uncertainty, peeking, guardrail və causal claim sərhədlərini izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Experiment hypothesis, randomization unit və primary outcome müəyyən et.
+- Əminliyi şişirtmədən absolute və relative difference hesabla.
+- Uncertainty, peeking, guardrail və causal claim sərhədlərini izah et.
+
+## Bu mövzu niyə vacibdir
+
+Sonlu sample-da iki conversion rate demək olar həmişə fərqlənir. Məhsul qərarı fərqin etibarlı, mənalı və xərclərinə dəyərli olub-olmamasıdır. Experiment dizaynı nəticəyə baxmamış qurulmalıdır. Dərs bir sadə formulun hər experiment-i əhatə etdiyini iddia etmədən məhsul qərarını statistik intizama bağlayır.
+
+## Əsas anlayışlar
+
+Yanlışlığı yoxlanıla bilən hypothesis-dən başla: konkret experience dəyişikliyi uyğun population üçün müəyyən outcome-u yaxşılaşdıracaq. Account kimi assignment unit seç və təkrar səfərlərdə sabit saxla. Hər page view-u randomize etmək eyni insanı hər iki variant-a məruz qoyub müqayisəni poza bilər.
+
+Primary metric, eligibility, exclusion, duration/sample-size plan, analysis method və qərar qaydasını əvvəlcədən seç. Payment failure, support load və accessibility failure kimi guardrail daxil et. Conversion artımı başqa kritik outcome-u zədələyən release-i avtomatik əsaslandırmır.
+
+Random assignment gözlənilən mənada treatment effect-i confounding faktordan ayırmağa kömək edir. Kiçik sample-da mükəmməl balans və broken logging-in düzəlməsi zəmanəti deyil. Assignment count, exposure record, missing outcome və variant-ın fərqli çatdırılmasını yoxla. Şübhəli allocation imbalance dərhal sevinc deyil, araşdırma yaratmalıdır.
+
+Absolute difference rate-lərin fərqidir; relative lift fərqi baseline rate-ə bölür. 10%-dən 12%-ə keçid **2 percentage point** və **20% relative lift**-dir. Heç biri təkbaşına uncertainty və business value sübutu deyil. Gözlənilən fayda, implementasiya xərci və downside risk-i nəzərə al.
+
+Confidence interval təkrar sampling fərziyyələri altında interval prosedurunun davranışını təsvir edir. Frequentist 95% interval-ın sabit real value-nun məhz bu intervalda olmasına 95% ehtimal verdiyini demə. P-value müəyyən null model altında müşahidə edilən nəticə qədər və ya daha uyğunsuz nəticənin ehtimalıdır. Null hypothesis-in doğru olma ehtimalı deyil.
+
+Uyğun sequential method yoxdursa significance-ı təkrar yoxlayıb ilk yaxşı nəticədə dayandırmaq error davranışını dəyişir. Çox metric/segment testi false positive ehtimalını da dəyişir. Bunları nəzərə al. Clustered assignment, rare event və ratio metric üçün independent observation formulunu kor-koranə tətbiq etmə; quruluşa uyğun method seç.
+
+## İşlənmiş nümunə
+
+Müstəqil account assignment və tam outcome ilə orijinal sadələşdirilmiş fixed-horizon nümunəsinə bax:
+
+| Variant | Account sayı | Converted | Conversion |
+| ------- | -----------: | --------: | ---------: |
+| A       |         1000 |       100 |        10% |
+| B       |         1000 |       120 |        12% |
+
+Absolute difference `0.12 - 0.10 = 0.02`, yəni 2 percentage point-dir. Relative lift `0.02 / 0.10 = 20%`-dir.
+
+Tədris yaxınlaşması üçün rate difference-in unpooled standard error-u:
+
+```text
+SE = sqrt((0.10 * 0.90 / 1000) + (0.12 * 0.88 / 1000))
+   ≈ 0.01399
+Approximate 95% interval = 0.02 ± 1.96 * SE
+                         ≈ [-0.0074, 0.0474]
+```
+
+Bu, təxminən **-0,74-dən +4,74 percentage point-dək** intervaldır. Sıfır fərq intervala daxildir; bu yaxınlaşmada data inamlı müsbət effect-i dəstəkləmir. Bu, equivalence və ya faydanın yoxluğu sübutu deyil. Lab hesabı təkrarlayır. Formul orijinal pedaqoji hesablamadır; NIST səhifəsindən sitat və hər production experiment üçün tövsiyə deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n H[Hypothesis and outcome] --> P[Predeclared design]\n P --> R[Stable random assignment]\n R --> Q[Check exposure and data quality]\n Q --> E[Estimate effect and uncertainty]\n E --> D[Decision with guardrails and costs]'
+  }
+/>
+
+Dizayn müşahidə edilmiş fərqdən əvvəl gəlir. Qərar planlı experiment-i davam etdirmək, instrumentation-u düzəltmək və ya riskli release-dən imtina ola bilər.
+
+## Qərarı təhlil et
+
+<details>
+<summary>20% relative lift yeni variant-ın daha yaxşı olduğunu sübut edirmi?</summary>
+
+Xeyr. Baseline, sample size, uncertainty, assignment validity və biznes nəticələri qalır. Burada 20% relative lift yalnız iki percentage point-dir; approximate interval kiçik mənfi fərqi də ehtiva edir. Hər iki effect ölçüsünü və məhdudiyyətini bildir.
+
+</details>
+
+## Tipik səhvlər
+
+- Percentage point və relative percent change-i eyni kəmiyyət saymaq.
+- P-value-nu hypothesis-in doğru olma ehtimalı kimi şərh etmək.
+- Yenilənən dashboard ilk yaxşı görünəndə dayandırmaq.
+- Nəticəni görüb primary metric-i dəyişmək, analizi exploratory adlandırmamaq.
+- Təkrar user, cluster assignment və incomplete follow-up-u nəzərə almamaq.
+- Non-significant nəticəni variant-ların eyniliyi sübutu saymaq.
+
+## Praktik tapşırıq
+
+Treatment conversion-u 5%-dən 6%-ə artırır. Absolute/relative dəyişiklik hesabla. Rollout tövsiyəsindən əvvəl çatışmayan məlumatı sadala. Primary nəticə statistik inandırıcı olsa da support ticket guardrail-in qərarı niyə dəyişə bildiyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Dəyişiklik bir percentage point və 20% relative lift-dir. Sample size, assignment unit, observation completeness, uncertainty, əvvəlcədən seçilmiş stopping rule, eligibility, logging keyfiyyəti və praktik xərclər çatışır. Ciddi support incident artımı conversion qazancından ağır ola bilər. Statistik sübut qərara kömək edir; stakeholder üçün məqbul seçimi özü etmir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Anlayış              | İzah                                             |
+| -------------------- | ------------------------------------------------ |
+| Absolute change      | Rate fərqi, çox vaxt percentage point ilə        |
+| Relative lift        | Fərqin baseline-a nisbəti                        |
+| Randomization unit   | Müstəqil təyin edilən entity                     |
+| Uncertainty interval | Göstərilmiş fərziyyəli prosedurun verdiyi aralıq |
+| P-value              | Müəyyən null model altında tail probability      |
+| Guardrail            | Cəlbedici dəyişikliyə məhdudiyyət qoyan outcome  |
+| Exploratory result   | Yeni dizaynda təsdiq tələb edən tapıntı          |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [NIST/SEMATECH: Choosing an experimental design](https://www.itl.nist.gov/div898/handbook/pri/section3/pri33.htm): experiment məqsədi, comparative design və seçim.
+- [GOV.UK: Measuring performance](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): faydalı outcome ölçüsü.
+- Binomial interval nümunəsi açıq sadələşdirilmiş fərziyyələrlə orijinal əlavə təlimdir. NIST icmalı online experimentation və sequential inference-in tam izahı kimi təqdim edilmir.

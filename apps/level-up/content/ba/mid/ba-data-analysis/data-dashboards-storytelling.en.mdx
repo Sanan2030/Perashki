@@ -1,0 +1,112 @@
+---
+id: data-dashboards-storytelling
+locale: en
+title: 'Dashboards: KPI contracts, visual evidence and decisions'
+objectives:
+  - 'Choose a chart that answers a stated comparison or trend question.'
+  - 'Display units, population, filters and data freshness beside a metric.'
+  - 'Communicate uncertainty and status without relying on color alone.'
+---
+
+## Learning objectives
+
+- Choose a chart that answers a stated comparison or trend question.
+- Display units, population, filters and data freshness beside a metric.
+- Communicate uncertainty and status without relying on color alone.
+
+## Why this matters
+
+A dashboard should help someone make a decision. A large collection of numbers can hide the one changed denominator or delayed data feed that matters. Useful visual analysis connects a question, an accountable owner, trustworthy evidence and a possible action.
+
+## Core theory
+
+Give each KPI a contract: name, decision owner, numerator, denominator, units, eligible population, time window, exclusions, source, refresh cadence and known limitations. Define whether the timestamp means “pipeline last ran” or “events complete through.” A successful refresh can still load incomplete upstream data.
+
+Choose visual encodings according to the task. A line chart helps inspect a time trend; a sorted bar chart compares categories; a table supports exact lookup; a cohort matrix compares entry periods and elapsed time. Label axes and units. A bar chart normally needs a zero baseline because length encodes magnitude. If another scale is necessary, make it explicit and assess whether a different chart communicates the comparison more honestly.
+
+Avoid adding a second axis just to make unrelated lines seem correlated. Distinguish a target from an observed value. Show counts with percentages when small samples could mislead. An apparently large percentage change from a tiny baseline needs context.
+
+WCAG's use-of-color guidance requires that color is not the only visual means of conveying information. Pair red/green status with text, icons or patterns. Give charts meaningful labels and a table or textual summary when users need an accessible way to obtain the values. Sufficient color contrast is a separate requirement; adding labels does not solve every accessibility issue.
+
+Keep filters visible and predictable. A filtered dashboard needs an obvious path back to its default population. Prevent a regional filter from silently changing an organization-wide target comparison. When users export a chart, include the relevant window, filters and freshness in the artifact.
+
+A narrative can follow observation, interpretation, uncertainty and proposed action. Keep those categories distinct: “Revenue increased in March” is observed; “the onboarding release caused it” is a causal interpretation needing stronger evidence. A useful dashboard can show an unresolved question without inventing certainty.
+
+## Worked example
+
+Use the lab's monthly paid revenue. The values are January 4000, February 6000 and March 6500 cents. Display a three-month line or bar chart with an explicit single teaching currency and cents unit. Do not label the values as dollars unless you convert them and state the currency.
+
+A compact specification:
+
+| Element        | Definition                                     |
+| -------------- | ---------------------------------------------- |
+| Question       | Is paid order revenue changing month to month? |
+| Population     | Valid unique orders with status paid           |
+| Additive grain | One order                                      |
+| Window         | January–March 2026, calendar months            |
+| Completeness   | Synthetic data complete through March 31       |
+| Measure        | Sum of integer amount_cents                    |
+| Reconciliation | Three months total 16500 cents                 |
+| Limitation     | No refunds, costs or multi-currency treatment  |
+
+Add a separate cohort table. January month-one retention is 50%, February is 100%, March is labeled “Unobserved.” A tooltip can explain the observation cutoff, but critical status should not depend entirely on hover. The February cohort has only one paying customer, so show its denominator visibly.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Decision and audience] --> K[KPI contract]\n K --> V[Appropriate chart and labels]\n V --> A[Accessible values and statuses]\n A --> F[Freshness and limitations]\n F --> N[Owner and next action]'
+  }
+/>
+
+A visual is one component of a measurement interface. The surrounding definitions determine whether its values can be used responsibly.
+
+## Inspect the decision
+
+<details>
+<summary>Should March retention be a red 0% cell?</summary>
+
+No. April activity is not observed yet, so March month-one retention is unknown. Use an explicit “Unobserved” label and explain the cutoff. A red zero would assert measured failure and could trigger an unjustified product intervention.
+
+</details>
+
+## Common mistakes
+
+- Using red and green alone to convey success and failure.
+- Showing a percentage without its denominator or observation window.
+- Labeling refresh success as proof that all source events have arrived.
+- Presenting a correlation between two chart lines as a causal explanation.
+- Hiding a changed filter state in an exported screenshot.
+- Filling unavailable future cohort cells with zero.
+
+## Practice exercise
+
+Design a one-screen report for a product owner deciding whether to investigate February signup activation. Include the numerator, denominator, definition, observation window, a suitable chart or table, a freshness statement and one justified next action. Avoid claiming that a specific release caused the result.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Show one activated account out of two February signups, or 50%, under the calendar-month definition. State that activation means a first paid order within February and that data is complete through March 31. A small table with counts is clearer than a dramatic chart for two accounts. Explain the tiny sample and investigate account-level reasons or instrumentation before attributing the rate to a release. If a seven-day activation metric is needed instead, define and recalculate that different window.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Before sharing | Check                                       |
+| -------------- | ------------------------------------------- |
+| Meaning        | Metric contract and owner                   |
+| Comparability  | Same units, windows and population          |
+| Trust          | Reconciliation and completeness timestamp   |
+| Accessibility  | Labels and values beyond color              |
+| Uncertainty    | Counts, intervals or unobserved states      |
+| Action         | Decision supported without causal overclaim |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [GOV.UK: Measuring performance](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service) and [Measuring success](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): selecting service measures and understanding outcomes.
+- [W3C: Understanding Success Criterion 1.4.1, Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html): color must not be the only means of conveying information.
+- Chart selection and the synthetic dashboard specification are original instructional recommendations, not a claim that the cited pages prescribe this exact dashboard.

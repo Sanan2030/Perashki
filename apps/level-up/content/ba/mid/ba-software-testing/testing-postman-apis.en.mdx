@@ -1,0 +1,101 @@
+---
+id: testing-postman-apis
+locale: en
+title: 'API testing with Postman: assertions, negative cases and mocks'
+objectives:
+  - 'Write useful Postman post-response assertions.'
+  - 'Choose negative and boundary cases from an API contract.'
+  - 'Keep collection data, secrets and mock assumptions controlled.'
+---
+
+## Learning objectives
+
+- Write useful Postman post-response assertions.
+- Choose negative and boundary cases from an API contract.
+- Keep collection data, secrets and mock assumptions controlled.
+
+## Why this matters
+
+An API returning 200 is not enough to establish that it created the intended resource, enforced permissions or handled a repeated request correctly. Postman can organize exploratory and automated checks, but the assertions must describe the contract and observable business behavior.
+
+## Core theory
+
+Start from the operation contract: method, path, required headers, authentication, input schema, expected status, response fields and state effects. Establish the environment and fixture state before running a collection. A request that depends on an unrecorded manual setup is hard to reproduce.
+
+Post-response scripts can use `pm.test` for named checks and `pm.expect` for assertions. Parse structured bodies only where the contract says they are structured. A 204 response has no response content, so a universal JSON parse is an incorrect test. Test error responses as deliberately as success responses.
+
+Include missing credentials, insufficient permission, cross-tenant access, invalid types, boundaries, missing versus null fields, duplicate operations and stale preconditions where the API supports them. Derive expected statuses from the agreed contract; do not invent a universal status code for every business error.
+
+Use collection variables and environments for non-secret configuration, and appropriate secret handling for credentials. Avoid committing access tokens or exporting sensitive environment values. Tests should not print private bodies merely to simplify debugging. Keep fixture identifiers isolated so repeated runs do not corrupt each other's state.
+
+A mock server can provide predictable examples for client development and failure exploration. It does not establish that the real provider implements the example or enforces authorization. Contract, integration and state verification need evidence at the actual relevant boundary.
+
+A useful collection run checks more than individual responses. Follow an operation through a permitted read or another suitable observation, verify that a duplicate did not create a second effect and clean up only the test data under the authorized fixture contract. Timing assertions need a controlled workload; one response time is not a performance percentile.
+
+## Worked example
+
+Assume a teaching order endpoint specifies 201 and a JSON order representation for a successful authorized creation. Its post-response script can include:
+
+```javascript
+pm.test('Creates an order with the expected owner', function () {
+  pm.response.to.have.status(201);
+  const body = pm.response.json();
+  pm.expect(body.id).to.be.a('string').and.not.empty;
+  pm.expect(body.customerId).to.eql(pm.collectionVariables.get('customerId'));
+});
+```
+
+This is a contract-specific fragment, not a claim that every creation endpoint returns these fields. A separate negative case uses an invalid amount and expects the agreed error without a created order. A cross-tenant case must also verify that protected data is not exposed. Running the same checks against a static mock supplies mock evidence only.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[Operation and state contract] --> F[Isolated fixtures and environment]\n F --> R[Request and response]\n R --> A[Named assertions]\n A --> S[Verify durable state effects]\n S --> E[Report evidence and limits]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A mock returns the expected 403 for a cross-tenant request. Has server authorization been verified?</summary>
+
+No. The mock returns configured behavior. Exercise the actual server-side policy at the relevant boundary with controlled tenant fixtures, and verify both denied mutation and absence of protected response data.
+
+</details>
+
+## Common mistakes
+
+- Asserting only status without meaning or state.
+- Parsing JSON for every response including 204.
+- Exporting tokens inside a shared environment file.
+- Using mock success as proof of provider compatibility.
+
+## Practice exercise
+
+Use the [API lab below](#practice-lab) to send simulated orders requests, inspect responses and check the exercise. The contract panel describes the fixture identities and limits.
+
+Specify three requests for an idempotent create operation: first valid request, repeated same operation and conflicting reuse of the key. State response and state assertions without assuming undocumented status codes.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use an agreed valid payload and operation key. Verify the first operation result and exactly one resulting entity under the contract. Repeat the same scoped key and payload, then verify no second business effect. Reuse the key with a different meaningful payload and expect the contract’s explicit conflict behavior. Record the key scope and retention assumptions; a matching response body alone does not prove atomic deduplication.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Contract → fixtures → request → status/body/security assertions → state evidence. Mocks are controlled examples; real server behavior needs separate verification.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Postman: Write post-response scripts](https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/): pm.test, pm.expect and response assertions.
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): schema and operation contracts.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): HTTP semantics. Examples use no embedded credentials and do not contact a production API.

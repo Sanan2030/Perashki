@@ -1,0 +1,98 @@
+---
+id: pspo2-platform-value
+locale: az
+title: 'API platformalarında Product Ownership və texniki investisiyalar'
+objectives:
+  - 'Müştərisi başqa komandalar olan platformanın user-lərini və ölçülə bilən value-sini müəyyən et.'
+  - 'Product və Scrum accountability sərhədlərini service deployment sərhədlərindən ayır.'
+  - 'Texniki investisiyanı fəaliyyət sayı ilə deyil, outcome, risk və sübutla müqayisə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Müştərisi başqa komandalar olan platformanın user-lərini və ölçülə bilən value-sini müəyyən et.
+- Product və Scrum accountability sərhədlərini service deployment sərhədlərindən ayır.
+- Texniki investisiyanı fəaliyyət sayı ilə deyil, outcome, risk və sübutla müqayisə et.
+
+## Bu mövzu niyə vacibdir
+
+Platforma komandası 30 yeni API endpoint və 99,9% uptime bildirir. İstifadə edən komandaların uğurlu integration üçün hələ üç həftəyə və təkrar support çağırışına ehtiyacı var. Product Owner-də output və bir operational quality ölçüsü var, amma consumer-in problemini həll etməsi barədə az sübut var. Daxili user də user-dir; product ownership onun outcome və məhdudiyyətini anlamağı tələb edir.
+
+## Əsas anlayışlar
+
+Scrum Guide product-ı aydın sərhədi, məlum stakeholder-i və yaxşı müəyyən edilmiş user/customer-i olan dəyər çatdırma vasitəsi kimi təsvir edir. Məhsul service və ya consumer app-dən daha abstrakt bir şey ola bilər. API platformanın mənalı product goal-u ola bilər, amma microservice çəkmək avtomatik ayrıca Scrum product müəyyən etmir.
+
+Consumer-in job-unu və downstream value chain-i tap. “Endpoint X yarat” output-dur. “Yeni merchant manual platform support olmadan ilk qanuni settlement-ini tamamlayır” daha faydalı outcome-dur. Platformanın reliability, security və compatibility-si lazımi keyfiyyət məhdudiyyətləridir; nəticəni anlamadan imtina edilən optional iş deyil.
+
+Texniki investisiya Current Value-ni artıra, Unrealized Value-ni reallaşdıra, Time-to-Market-i azalda və ya Ability-to-Innovate-i yaxşılaşdıra bilər. Onu customer-facing feature kimi gizlətmək lazım deyil. Gözlənilən fayda, risk, sübut və observation window-u göstər. Real məhdudiyyəti həll edirsə contract-breaking incident-in azalması, integration success-in artması və safe change lead time-ın qısalması dəyərlidir.
+
+GOV.UK metric guidance purpose və hypothesis-dən measurement çıxarmağı, baseline, segment və müxtəlif data source istifadə etməyi dəstəkləyir. Platformada segment yeni/təcrübəli integrator, language/SDK, partner növü və ya böyük həcmli workflow ola bilər. Əlverişli mean time-ın xətaları gizlətmədiyini fərz etmə: uğursuz integration “uğurlu integrator-ların orta vaxtı” ölçüsündən yoxa çıxa bilər.
+
+Microsoft microservice pattern-ləri BFF, bulkhead, CQRS və incremental migration kimi engineering seçimləri izah edir. Seçim təsirlərini anlamağa kömək edir; Product Owner-in implementasiyaya nəzarət etməsini müəyyən etmir. Usable Increment-in necə yaradılmasını Developers seçir. Product Owner keyfiyyət, risk və asılılıqlarda əməkdaşlıq edərək value və Product Backlog qərarlarını şəffaf edir.
+
+Bir neçə Scrum Team eyni product üzərində işləyirsə Scrum Guide ortaq product direction, bir Product Backlog/Product Owner və birlikdə müəyyənləşdirilib əməl olunan Definition of Done tələb edir. Çox deployment service olması integration riskini gizlədən əlaqəsiz backlog-lara əsas vermir. Həqiqətən ayrı product-lar da bütün sistemi bir product elan etmək əvəzinə açıq sərhəd tələb edir.
+
+## İşlənmiş nümunə
+
+Merchant onboarding API üçün üç investisiya var. A: böyük partner-in istədiyi on optional endpoint əlavə etmək. B: mövcud endpoint-lərin error message, sandbox nümunə və contract test-lərini yaxşılaşdırmaq. C: service-i altı deployment-ə ayırmaq. Komanda real məhdudiyyəti araşdırır.
+
+Research yeni integrator-un authentication error-u yanlış idarə etdiyini və pending settlement-i failed nəticədən ayıra bilmədiyini göstərir. B yüksək təsirli hypothesis-i yoxlayan ən kiçik test ola bilər. İlk uğurlu authorized settlement-i, end-to-end integration completion-u, support əməyini və contract failure-ı ölç. Yeni və təcrübəli partner-i ayır. Sonradan deployment/scaling sübutu C-ni əsaslandıra bilər, amma komponent sayının artması value sübutu deyil.
+
+Product Owner Developers ilə nazik outcome yönümlü hissəni sıralayır: bir təmsilçi integration journey, təhlükəsiz error və usable sandbox nümunəsi. Review-da yalnız platforma demosu olsa da, sadəcə daxili arxitektura diaqramı deyil, consumer outcome-na aid sübut yoxlanmalıdır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Platform consumer problem"] --> B["Product Goal and measurable outcome"]\n B --> C["Compare feature and technical options"]\n C --> D["Small usable integrated change"]\n D --> E["Consumer and operational evidence"]\n E --> F["Adapt product investment"]'
+  }
+/>
+
+Value chain texniki seçimi müşahidə olunan consumer outcome-a bağlayır. Arxitektura və endpoint sayı aralıq müşahidədir, son Product Goal deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Hər microservice-in component Product Owner-i var, Done ayrıca bildirilir, amma end-to-end usable Increment yoxdur. Nə yoxlanmalıdır?</summary>
+
+Product sərhədlərini, ortaq goal/backlog accountability-ni, integration-u və Definition of Done-u yoxla. Komponentin tamamlanmasını product value sayma. Scrum accountability-ləri product ətrafında qurulur; deployment diaqramı bu sərhədi təkbaşına müəyyən etmir.
+
+</details>
+
+## Tipik səhvlər
+
+- Consumer sübutu olmadan endpoint, story point və migration sayını realized value saymaq yanlış işi mükafatlandıra bilər.
+- Yalnız uğurlu integrator-u ölçmək journey-ni bitirməyənləri kənarda qoyur.
+- Product Owner kimi microservice migration məcbur etmək texniki dizayn mühakiməsini keçir və kiçik həlli qaçıra bilər.
+- Daxili user-in avtomatik əlçatan olduğunu düşünmək recruitment və feedback məhdudiyyətini gizlədir.
+- Technical debt işini yalnız ani feature gəliri ilə müqayisə etmək tutum, risk və gələcək öyrənmə təsirini nəzərə almır.
+
+## Praktik tapşırıq
+
+Platformanın uptime-ı sabitdir, amma partner integration abandonment 40%-dir. Management məcburi API rewrite istəyir. Product Goal, iki investisiya hissəsi, outcome ölçüsü, iki guardrail və rewrite-ı əsaslandıran və ya rədd edən sübut təklif et. Developers-in həll seçiminə necə qatıldığını izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Mümkün Product Goal razılaşdırılmış müddətdə security və operational reliability-ni qoruyaraq hədəf partner segment-in ilk uğurlu integration-unu artırmaqdır. Əvvəl partner-in harada və niyə dayandığını araşdır. Bir hissə credential setup və yoxlanmış sample request-i, digəri ölçülmüş latency/compatibility bottleneck-i həll edə bilər. Hər ikisi usable olmalı, end-to-end journey dəstəkləməli və göstərilmiş fərziyyəni test etməlidir.
+
+Tamamlamayanları da daxil edən aydın denominator ilə completed integration ölç. Guardrail kimi unauthorized access incident və failed settlement/contract rate götürülə bilər. Telemetry-ni partner işinin müşahidəsi və support sübutu ilə birləşdir. Cari dizayn tələb olunan outcome-a real mane olur və kiçik dəyişiklik məqbul cost/risk ilə həll etmirsə rewrite daha əsaslıdır. Developers texniki variantları qiymətləndirir; Product Owner faydanı, investisiya seçimini və qeyri-müəyyənliyi şəffaf edir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Internal platform user-in real outcome-a ehtiyacı var. Product boundary ≠ microservice boundary. Texniki investisiya value və gələcək öyrənməni yaxşılaşdıra bilər. Completion-u düzgün denominator və segment-lə ölç. Product Owner value/order-i aydınlaşdırır; implementasiyanı Developers seçir. İnteqrasiya olunmuş usable product sübutu component completion-dan vacibdir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): product tərifi, Product Owner, Scrum Team, Product Backlog və Definition of Done.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): təqdim edilmiş PDF, CV/UV/T2M/A2I.
+- [GOV.UK performance metrics](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): purpose, hypothesis, segmentation və baseline.
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): yalnız engineering konteksti.
+
+API platforma ssenariləri orijinal əlavə PSPO materialıdır. Microsoft və GOV.UK Scrum qaydaları və rəsmi PSPO exam əhatəsi müəyyən etmir.

@@ -1,0 +1,141 @@
+{
+  "id": "po-lead",
+  "trackId": "po",
+  "level": "lead",
+  "title": {
+    "az": "Senior / Lead məhsul sahibi",
+    "en": "Senior / Lead Product Owner"
+  },
+  "responsibilities": [
+    {
+      "az": "Çox komandanı uyğun məhsul nəticələri ətrafında birləşdir.",
+      "en": "Align multiple teams around coherent product outcomes."
+    },
+    {
+      "az": "Məsuliyyətli sərmayə və portfel seçimləri et.",
+      "en": "Make responsible investment and portfolio trade-offs."
+    },
+    {
+      "az": "Başqalarının məhsul qərarı vermə qabiliyyətini inkişaf etdir.",
+      "en": "Grow product decision-making capability in others."
+    }
+  ],
+  "hardSkills": [
+    {
+      "az": "Məhsul sərhədləri, miqyaslanma və inteqrasiya iqtisadiyyatı",
+      "en": "Product boundaries, scaling and integration economics"
+    },
+    {
+      "az": "Həyat dövrü və portfel sərmayə qərarları",
+      "en": "Lifecycle and portfolio investment decisions"
+    },
+    {
+      "az": "Məhsul etikası, əlçatanlıq və davamlı sübut sistemləri",
+      "en": "Product ethics, accessibility and sustainable evidence systems"
+    }
+  ],
+  "softSkills": [
+    {
+      "az": "Rəhbərlik uyğunluğu və nəzarətsiz təsir",
+      "en": "Executive alignment and influence without control"
+    },
+    {
+      "az": "Mentorluq, münaqişə həlli və etik mühakimə",
+      "en": "Coaching, conflict resolution and ethical judgment"
+    }
+  ],
+  "tools": [
+    {
+      "az": "Portfel sübutu və ortaq nəticə xəritələri",
+      "en": "Portfolio evidence and shared outcome maps"
+    },
+    {
+      "az": "Komandalararası asılılıq və risk vizuallaşdırması",
+      "en": "Cross-team dependency and risk visualization"
+    }
+  ],
+  "deliverables": [
+    {
+      "az": "Ortaq məhsul istiqaməti və sərmayə əsaslandırması",
+      "en": "Shared product direction and investment rationale"
+    },
+    {
+      "az": "Portfel baxışı və məhsulun dayandırılması təklifi",
+      "en": "Portfolio review and product retirement proposal"
+    },
+    {
+      "az": "Etik qərar qeydi və liderlik mentorluq planı",
+      "en": "Ethical decision record and leadership coaching plan"
+    }
+  ],
+  "changes": {
+    "az": "Bir komandanın seçimlərini yaxşılaşdırmaqdan uyğun və məsuliyyətli məhsul sistemini qurmağa keçirsən.",
+    "en": "You move from optimizing one team’s choices to shaping a coherent, responsible product system."
+  },
+  "checklist": [
+    {
+      "id": "po-lead-skill-1",
+      "text": {
+        "az": "Gündəlik işi diktə etmədən bir neçə komandanı uyğunlaşdıra bilirəm.",
+        "en": "I can align several teams without prescribing their daily work."
+      }
+    },
+    {
+      "id": "po-lead-skill-2",
+      "text": {
+        "az": "Aşağı dəyərli sərmayənin dayandırılmasını əsaslandıra bilirəm.",
+        "en": "I can argue for stopping low-value investment."
+      }
+    },
+    {
+      "id": "po-lead-skill-3",
+      "text": {
+        "az": "Məxfilik və kənarlaşdırma risklərini tapa bilirəm.",
+        "en": "I can identify privacy and exclusion risks."
+      }
+    },
+    {
+      "id": "po-lead-skill-4",
+      "text": {
+        "az": "Məhsul sərhədlərini komanda strukturundan ayıra bilirəm.",
+        "en": "I can distinguish product boundaries from team structures."
+      }
+    },
+    {
+      "id": "po-lead-skill-5",
+      "text": {
+        "az": "Müstəqil məhsul mühakiməsi üçün mentorluq edə bilirəm.",
+        "en": "I can coach independent product judgment."
+      }
+    },
+    {
+      "id": "po-lead-skill-6",
+      "text": {
+        "az": "Stimulların müştəri dəyərini zəiflədib-zəiflətmədiyini yoxlaya bilirəm.",
+        "en": "I can inspect whether incentives undermine customer value."
+      }
+    }
+  ],
+  "interviews": [
+    {
+      "question": {
+        "az": "Məhsulu dayandırmağa necə qərar verərsən?",
+        "en": "How do you decide whether to retire a product?"
+      },
+      "answer": {
+        "az": "Davam edən müştəri dəyərini, strateji uyğunluğu, ümumi xərci, alternativləri və keçid risklərini müqayisə edərəm. Təsirlənən müştəriləri cəlb edib təhlükəsiz köçürmə qurar və fərziyyələrin davam sərmayəsini əsaslandırmasını yoxlayaram.",
+        "en": "I compare ongoing customer value, strategic fit, total costs, alternatives and transition risks. I include affected customers, define a safe migration and inspect whether assumptions justify continued investment."
+      }
+    },
+    {
+      "question": {
+        "az": "Artım yaxşılaşır, amma ləğvetmə çətinləşir. Necə cavab verərsən?",
+        "en": "Growth improves but cancellations become harder. How do you respond?"
+      },
+      "answer": {
+        "az": "Göstəricinin dəyər yerinə məcburetməni mükafatlandırıb-mükafatlandırmadığını yoxlayaram, hüquq və əlçatanlıq ekspertlərini cəlb edər, aldadıcı maneələri aradan qaldırar və müştəri seçiminə hörmət edən saxlama ölçüləri seçərəm.",
+        "en": "I inspect whether the metric rewards coercion rather than value, involve legal and accessibility expertise, remove deceptive friction and choose retention measures that respect customer choice."
+      }
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+name: Production validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: performance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    name: Typecheck, regressions, build and performance
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild local dictionary
+        run: npm run dictionary:import -- public/dictionaries/az
+
+      - name: Check production dependency advisories
+        id: dependencycheck
+        continue-on-error: true
+        run: npm audit --omit=dev --audit-level=moderate
+
+      - name: Typecheck benchmark integration
+        id: typecheck
+        continue-on-error: true
+        run: npm run --ignore-scripts typecheck
+
+      - name: Check lint rules
+        id: lint
+        continue-on-error: true
+        run: npm run --ignore-scripts lint
+
+      - name: Verify offline corpus preparation tools
+        id: dataprep
+        continue-on-error: true
+        run: npm run data:test
+
+      - name: Run complete regression suite
+        id: tests
+        continue-on-error: true
+        run: npm run --ignore-scripts test
+
+      - name: Verify language targets and reproducible local models
+        id: languagequality
+        continue-on-error: true
+        run: |
+          python scripts/build-additional-gold.py
+          git diff --exit-code -- tests/fixtures/additional-gold-200.json
+          npm run --ignore-scripts nlp:observed:train -- data/nlp/real/observed-spelling.json /tmp/slothai-observed-channel.json
+          cmp /tmp/slothai-observed-channel.json lib/editor/observed-channel-model.json
+          npm run --ignore-scripts nlp:document:train -- --output=/tmp/slothai-document-model.json
+          cmp /tmp/slothai-document-model.json lib/editor/neural/document-model.json
+          npm run --ignore-scripts nlp:institutions:train -- --output=/tmp/slothai-institutional-model.json --report=/tmp/slothai-institutional-training.json
+          cmp /tmp/slothai-institutional-model.json data/experiments/institutional/model.json
+          cmp /tmp/slothai-institutional-training.json data/nlp/institutions/training-report.json
+          npm run --ignore-scripts nlp:institutions:check -- --output=/tmp/slothai-institutional-evaluation.json
+          node --import tsx scripts/train-log-spelling.ts --output=/tmp/slothai-log-model.json
+          cmp /tmp/slothai-log-model.json lib/editor/neural/log-model.json
+          node --import tsx scripts/train-log-ocr.ts
+          git diff --exit-code -- lib/editor/log-ocr-model.json data/nlp/logs/log-training-report.json
+          git diff --exit-code -- data/nlp/documents/document-training-report.json
+          npm run --ignore-scripts nlp:observed:evaluate -- --output=/tmp/slothai-observed-evaluation.json --enforce
+          npm run --ignore-scripts gold:complete
+          npm run --ignore-scripts local-ai:train
+          git diff --exit-code -- lib/editor/local-ai/model.json data/local-ai/pairs.json data/local-ai/training-report.json
+          python scripts/build-paired-corpus.py
+          python scripts/build-paired-challenge.py
+          git diff --exit-code -- data/local-ai/paired-additions.json data/local-ai/challenge-v2.json
+          npm run --ignore-scripts local-ai:pos:train
+          npm run --ignore-scripts local-ai:paired:train
+          git diff --exit-code -- lib/editor/local-ai/pos-model.json lib/editor/local-ai/paired-model.json lib/editor/local-ai/joint-boundary-model.json data/local-ai/ud/splits.json data/local-ai/pos-report.json data/local-ai/paired-training-report.json
+          npm run --ignore-scripts local-ai:paired:check
+          npm run --ignore-scripts local-ai:reliability
+          npm run --ignore-scripts neural:corpus
+          git diff --exit-code -- data/neural/corpus.json data/neural/data-quality.json
+          npm run --ignore-scripts neural:train -- --epochs=72
+          npm run --ignore-scripts neural:continue -- --epochs=24
+          git diff --exit-code -- lib/editor/neural/model.json data/neural/training-report.json data/neural/training-history.json
+          npm run --ignore-scripts neural:attention:train
+          git diff --exit-code -- lib/editor/neural/attention-model.json data/neural/attention-training-report.json
+          npm run --ignore-scripts neural:attention:check
+          npm run --ignore-scripts neural:attention:independent:check
+          npm run --ignore-scripts nlp:evaluate -- --enforce
+          npm run --ignore-scripts nlp:data -- data/nlp/wikipedia-documents.jsonl /tmp/slothai-release-splits
+          npm run --ignore-scripts nlp:reviewed:data -- --source=/tmp/slothai-release-splits --reviews=data/nlp/reviews/az-batch-001-splits --output=/tmp/slothai-reviewed-release-splits
+          cmp /tmp/slothai-reviewed-release-splits/manifest.json data/neural/reviewed-data-manifest.json
+          npm run --ignore-scripts nlp:reviewed:verify -- --data=/tmp/slothai-reviewed-release-splits --model=lib/editor/neural/bounded-model.json
+          npm run --ignore-scripts nlp:evaluate -- --input=/tmp/slothai-release-splits/test.jsonl --model=lib/editor/neural/bounded-model.json --full-editor --threshold-floor=0.9999 --output=/tmp/slothai-release-quality.json --enforce
+          npm run --ignore-scripts nlp:evaluate -- --input=/tmp/slothai-reviewed-release-splits/test.jsonl --model=lib/editor/neural/bounded-model.json --full-editor --output=/tmp/slothai-reviewed-release-quality.json --enforce
+          npm run --ignore-scripts nlp:domain:data -- --base=/tmp/slothai-reviewed-release-splits --output=/tmp/slothai-domain-release-splits
+          cmp /tmp/slothai-domain-release-splits/manifest.json data/neural/domain-data-manifest.json
+          node --import tsx scripts/verify-domain-neural-artifact.ts --data=/tmp/slothai-domain-release-splits --model=lib/editor/neural/domain-model.json
+          npm run --ignore-scripts nlp:domain:evaluate -- --model=lib/editor/neural/domain-model.json --split=train --output=/tmp/slothai-domain-train.json --enforce
+          npm run --ignore-scripts nlp:domain:evaluate -- --model=lib/editor/neural/domain-model.json --split=test --output=/tmp/slothai-domain-test.json --enforce
+          npm run --ignore-scripts nlp:domain:evaluate -- --model=lib/editor/neural/domain-model.json --fresh --output=/tmp/slothai-domain-fresh.json --enforce
+          npm run --ignore-scripts nlp:domain:evaluate -- --model=lib/editor/neural/domain-model.json --input=/tmp/slothai-domain-release-splits/test.jsonl --output=/tmp/slothai-domain-source.json --enforce
+          npm run --ignore-scripts neural:boundaries:train -- --source=/tmp/slothai-release-splits --output=/tmp/slothai-boundary-release
+          cmp /tmp/slothai-boundary-release/selected.json lib/editor/neural/sentence-boundary-model.json
+          cmp /tmp/slothai-boundary-release/report.json data/neural/sentence-boundary-training-report.json
+          npm run --ignore-scripts neural:boundaries:check -- --source=/tmp/slothai-release-splits --output=/tmp/slothai-boundary-validation.json --split=validation
+          npm run --ignore-scripts neural:boundaries:check -- --source=/tmp/slothai-release-splits --output=/tmp/slothai-boundary-test.json --split=test
+          npm run --ignore-scripts neural:boundaries:check -- --source=/tmp/slothai-release-splits --output=/tmp/slothai-boundary-fresh.json --input=data/nlp/fresh-wikipedia-documents.jsonl
+          npm run --ignore-scripts quality:priorities
+          npm run --ignore-scripts neural:check
+          npm run --ignore-scripts neural:diversity:check
+          npm run --ignore-scripts neural:expansion:check
+          npm run --ignore-scripts gold:check
+          npm run --ignore-scripts gold:exact
+          npm run --ignore-scripts local-ai:fresh:check
+          npm run --ignore-scripts local-ai:context:check
+          npm run --ignore-scripts local-ai:evaluate
+          npm run --ignore-scripts local-ai:validate
+
+      - name: Report regression corpus
+        id: corpus
+        if: always()
+        continue-on-error: true
+        run: node --import tsx scripts/report-regressions.ts
+
+      - name: Report independent frozen holdout
+        id: holdout
+        if: always()
+        continue-on-error: true
+        run: node --import tsx scripts/report-holdout.ts
+
+      - name: Report entity holdout
+        id: entities
+        if: always()
+        continue-on-error: true
+        run: node --import tsx scripts/report-named-entity-holdout.ts
+
+      - name: Report punctuation holdout
+        id: punctuation
+        if: always()
+        continue-on-error: true
+        run: node --import tsx scripts/report-punctuation-holdout.ts
+
+      - name: Evaluate unseen sentences and record actual outputs
+        id: unseen
+        if: always()
+        continue-on-error: true
+        run: node --import tsx scripts/evaluate-unseen.ts
+
+      - name: Evaluate independent RSD/IT and email correspondence
+        id: correspondence
+        if: always()
+        continue-on-error: true
+        run: |
+          python scripts/build-independent-corpora.py
+          git diff --exit-code -- tests/fixtures/rsd-it-holdout.json tests/fixtures/email-holdout.json
+          node --import tsx scripts/report-independent-corpora.ts
+
+      - name: Verify dictionary reproduction
+        id: dictionary
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -e
+          before=$(sha256sum lib/editor/generated/az-words.json public/dictionaries/az/metadata.json)
+          npm run --silent dictionary:import -- public/dictionaries/az > /dev/null
+          after=$(sha256sum lib/editor/generated/az-words.json public/dictionaries/az/metadata.json)
+          test "$before" = "$after"
+
+      - name: Build production application
+        id: build
+        continue-on-error: true
+        run: npm run --ignore-scripts build
+
+      - name: Run enforced performance benchmark
+        id: benchmark
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          npm run --silent benchmark:json -- --enforce > benchmark-results.json
+          status=$?
+          cat benchmark-results.json
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
+
+      - name: Verify browser editing and lists
+        id: browser
+        continue-on-error: true
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:browser
+
+      - name: Publish benchmark summary
+        if: always()
+        shell: bash
+        run: |
+          if [ ! -f benchmark-results.json ]; then
+            echo "## SlothAI performance benchmark" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "Benchmark result file was not produced." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          node <<'NODE'
+          const fs = require('node:fs');
+          const data = JSON.parse(fs.readFileSync('benchmark-results.json', 'utf8'));
+          const lines = [
+            '## SlothAI performance benchmark',
+            '',
+            `Node: ${data.node}`,
+            '',
+            '| Words | Requests | Avg ms | P50 ms | P95 ms | Target ms | RSS peak MB | RSS delta MB | Status |',
+            '|---:|---:|---:|---:|---:|---:|---:|---:|:---:|',
+            ...data.results.map(r =>
+              `| ${r.words} | ${r.requests} | ${r.avgMs} | ${r.p50Ms} | ${r.p95Ms} | ${r.targetMs} | ${r.rssPeakMb} | ${r.rssDeltaMb} | ${r.status} |`
+            ),
+            '',
+            'The CI gate uses warm p95 latency. Memory values are process-level approximations.',
+            '',
+            '### UI diff',
+            '',
+            '| Words | Scope | Avg ms | P50 ms | P95 ms | Status |',
+            '|---:|---|---:|---:|---:|---|',
+            ...data.diffResults.map(r => `| ${r.words} | ${r.scope} | ${r.avgMs} | ${r.p50Ms} | ${r.p95Ms} | ${r.status} |`),
+            '',
+            '### Language components',
+            '',
+            '| Component | Words | P95 ms | Target ms | Status |',
+            '|---|---:|---:|---:|:---:|',
+            ...data.componentResults.map(r => `| ${r.name} | ${r.words} | ${r.p95Ms} | ${r.targetMs} | ${r.status} |`),
+          ];
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\n') + '\n');
+          NODE
+
+      - name: Upload benchmark artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-benchmark-${{ github.sha }}
+          path: benchmark-results.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload corpus diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-diagnostics-${{ github.sha }}
+          path: docs/stabilization-regressions.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload holdout diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: holdout-diagnostics-${{ github.sha }}
+          path: docs/holdout-results.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload entity and punctuation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editor-diagnostics-${{ github.sha }}
+          path: |
+            docs/named-entity-holdout-results.json
+            docs/punctuation-holdout-results.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload unseen evaluation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unseen-evaluation-${{ github.sha }}
+          path: docs/unseen-evaluation-results.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload independent RSD and email evaluations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-correspondence-${{ github.sha }}
+          path: |
+            docs/rsd-it-independent-results.json
+            docs/email-independent-results.json
+            docs/independent-gold-v2-results.json
+            data/local-ai/fresh-report.json
+            data/local-ai/context-test-report.json
+            data/local-ai/paired-test-report.json
+            data/local-ai/paired-reliability-report.json
+            data/local-ai/pos-report.json
+            data/neural/evaluation-report.json
+            data/neural/training-report.json
+            data/neural/quality-report.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce complete validation gate
+        if: always()
+        env:
+          RESULTS: ${{ steps.dependencycheck.outcome }} ${{ steps.dataprep.outcome }} ${{ steps.typecheck.outcome }} ${{ steps.lint.outcome }} ${{ steps.tests.outcome }} ${{ steps.languagequality.outcome }} ${{ steps.corpus.outcome }} ${{ steps.holdout.outcome }} ${{ steps.entities.outcome }} ${{ steps.punctuation.outcome }} ${{ steps.unseen.outcome }} ${{ steps.correspondence.outcome }} ${{ steps.dictionary.outcome }} ${{ steps.build.outcome }} ${{ steps.benchmark.outcome }} ${{ steps.browser.outcome }}
+        run: |
+          echo "Validation: $RESULTS"
+          for result in $RESULTS; do
+            if [ "$result" != success ]; then exit 1; fi
+          done

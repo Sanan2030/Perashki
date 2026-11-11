@@ -1,0 +1,848 @@
+[
+  {
+    "id": "ba-junior",
+    "trackId": "ba",
+    "level": "junior",
+    "title": {
+      "az": "Junior biznes analitik",
+      "en": "Junior Business Analyst"
+    },
+    "responsibilities": [
+      {
+        "az": "Rəhbərliklə kiçik və sərhədli biznes problemini aydınlaşdır.",
+        "en": "Clarify a small, bounded business problem with guidance."
+      },
+      {
+        "az": "Təsirlənən insanlarla tələbləri hazırla və təsdiqlə.",
+        "en": "Prepare and confirm requirements with affected people."
+      },
+      {
+        "az": "Qəbul testinə dəstək ol və qərarları aydın saxla.",
+        "en": "Support acceptance testing and maintain clear decisions."
+      }
+    ],
+    "hardSkills": [
+      {
+        "az": "Maraqlı tərəflərin müəyyənləşdirilməsi və müsahibə hazırlığı",
+        "en": "Stakeholder identification and interview preparation"
+      },
+      {
+        "az": "Tələb növləri, user story-lər və qəbul nümunələri",
+        "en": "Requirement types, user stories and acceptance examples"
+      },
+      {
+        "az": "Sadə proses xəritələri, istifadə halları və vayrfreymlər",
+        "en": "Simple process maps, use cases and wireframes"
+      }
+    ],
+    "softSkills": [
+      {
+        "az": "Fəal dinləmə və dəqiq suallar",
+        "en": "Active listening and precise questions"
+      },
+      {
+        "az": "Aydın yazı və etibarlı izləmə",
+        "en": "Clear writing and reliable follow-up"
+      }
+    ],
+    "tools": [
+      {
+        "az": "İş izləmə sistemi və komanda bilik bazası",
+        "en": "Issue tracker and team knowledge base"
+      },
+      {
+        "az": "Diaqram və ilkin prototype alətləri",
+        "en": "Diagramming and basic prototyping tools"
+      }
+    ],
+    "deliverables": [
+      {
+        "az": "Maraqlı tərəflər siyahısı və əlaqə qeydləri",
+        "en": "Stakeholder list and engagement notes"
+      },
+      {
+        "az": "Acceptance criteria olan kiçik tələb paketi",
+        "en": "Small requirements pack with acceptance criteria"
+      },
+      {
+        "az": "Proses xəritəsi və UAT ssenariləri",
+        "en": "Process map and UAT scenarios"
+      }
+    ],
+    "changes": {
+      "az": "Termin öyrənməkdən baxış altında sərhədli analiz tapşırıqlarını tamamlamağa keçirsən.",
+      "en": "You move from learning terminology to completing bounded analysis tasks with review."
+    },
+    "checklist": [
+      {
+        "id": "ba-junior-skill-1",
+        "text": {
+          "az": "Problemi təklif edilən funksiyadan ayıra bilirəm.",
+          "en": "I can separate a problem from a proposed feature."
+        }
+      },
+      {
+        "id": "ba-junior-skill-2",
+        "text": {
+          "az": "Dəyişiklikdən təsirlənən istifadəçiləri müəyyən edə bilirəm.",
+          "en": "I can identify users affected by a change."
+        }
+      },
+      {
+        "id": "ba-junior-skill-3",
+        "text": {
+          "az": "Neytral müsahibə sualları hazırlaya bilirəm.",
+          "en": "I can prepare neutral interview questions."
+        }
+      },
+      {
+        "id": "ba-junior-skill-4",
+        "text": {
+          "az": "Müşahidə edilən acceptance criteria yaza bilirəm.",
+          "en": "I can write observable acceptance criteria."
+        }
+      },
+      {
+        "id": "ba-junior-skill-5",
+        "text": {
+          "az": "Qərar və istisnaları olan proses çəkə bilirəm.",
+          "en": "I can draw a process with decisions and exceptions."
+        }
+      },
+      {
+        "id": "ba-junior-skill-6",
+        "text": {
+          "az": "Razılıq fərz etmədən anlayışı təsdiqləyə bilirəm.",
+          "en": "I can confirm understanding without assuming agreement."
+        }
+      }
+    ],
+    "interviews": [
+      {
+        "question": {
+          "az": "Maraqlı tərəf idarə paneli istəyir. İlk nəyi soruşarsan?",
+          "en": "A stakeholder asks for a dashboard. What do you ask first?"
+        },
+        "answer": {
+          "az": "Bu gün hansı qərarın çətin olduğunu, kimin verdiyini və hansı yaxşılaşmanın vacib olduğunu soruşaram. Sonra idarə panelinin uyğun seçim olub-olmadığını yoxlayaram.",
+          "en": "I ask which decision is difficult today, who makes it and what improvement would matter. Then I test whether a dashboard is a useful option."
+        }
+      },
+      {
+        "question": {
+          "az": "Tələbin yoxlanıla bildiyini necə bilirsən?",
+          "en": "How do you know a requirement is testable?"
+        },
+        "answer": {
+          "az": "Tələb kontekst və sərhədlərlə müşahidə edilən davranış və ya ölçülən şərti təsvir edir. Komanda ilə uğurlu, mənfi və sərhəd nümunəsini nəzərdən keçirərəm.",
+          "en": "It describes an observable behavior or measurable condition, with context and boundaries. I walk through a positive, negative and boundary example with the team."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ba-mid",
+    "trackId": "ba",
+    "level": "mid",
+    "title": {
+      "az": "Mid səviyyəli biznes analitik",
+      "en": "Mid-level Business Analyst"
+    },
+    "responsibilities": [
+      {
+        "az": "Çoxsaylı maraqlı tərəfi olan təşəbbüsün analizinə sahib çıx.",
+        "en": "Own analysis for an initiative with multiple stakeholders."
+      },
+      {
+        "az": "Tələb əlaqələrini, asılılıqları və dəyişiklik təsirini idarə et.",
+        "en": "Manage requirement relationships, dependencies and change impact."
+      },
+      {
+        "az": "Çatdırılma qərarlarını həll nəticələri ilə bağla.",
+        "en": "Connect delivery decisions to solution outcomes."
+      }
+    ],
+    "hardSkills": [
+      {
+        "az": "İzlənilmə, prioritetləşdirmə və əhatə nəzarəti",
+        "en": "Traceability, prioritization and scope control"
+      },
+      {
+        "az": "Məlumat modelləri, SQL oxuma və API müqavilələri",
+        "en": "Data models, SQL reading and API contracts"
+      },
+      {
+        "az": "Əsas səbəb analizi, boşluq analizi və UAT planlaması",
+        "en": "Root cause analysis, gap analysis and UAT planning"
+      }
+    ],
+    "softSkills": [
+      {
+        "az": "Seminar fasilitasiyası və konstruktiv sorğulama",
+        "en": "Workshop facilitation and constructive challenge"
+      },
+      {
+        "az": "Fərqli stimullar arasında danışıqlar",
+        "en": "Negotiation across differing incentives"
+      }
+    ],
+    "tools": [
+      {
+        "az": "Jira/Confluence və ya uyğun əlaqəli iş məkanları",
+        "en": "Jira/Confluence or equivalent linked workspaces"
+      },
+      {
+        "az": "Postman/OpenAPI alətləri və yalnız oxuma SQL proqramları",
+        "en": "Postman/OpenAPI tools and read-only SQL clients"
+      }
+    ],
+    "deliverables": [
+      {
+        "az": "Tələb modeli və izlənilmə xəritəsi",
+        "en": "Requirements model and traceability map"
+      },
+      {
+        "az": "Dəyişiklik təsiri qiymətləndirməsi və qərar jurnalı",
+        "en": "Change impact assessment and decision log"
+      },
+      {
+        "az": "UAT paketi və nəticə qiymətləndirmə planı",
+        "en": "UAT pack and outcome evaluation plan"
+      }
+    ],
+    "changes": {
+      "az": "Fərdi tapşırıqlardan analiz qərarlarının və nəticələrinin müstəqil sahibliyinə keçirsən.",
+      "en": "You move from individual tasks to independent ownership of analysis decisions and their consequences."
+    },
+    "checklist": [
+      {
+        "id": "ba-mid-skill-1",
+        "text": {
+          "az": "Prioritet qərarını fərziyyələrlə əsaslandıra bilirəm.",
+          "en": "I can justify a prioritization decision with assumptions."
+        }
+      },
+      {
+        "id": "ba-mid-skill-2",
+        "text": {
+          "az": "Ehtiyacı dizayn və testlərə qədər izləyə bilirəm.",
+          "en": "I can trace a need through design and tests."
+        }
+      },
+      {
+        "id": "ba-mid-skill-3",
+        "text": {
+          "az": "API xətası və təkrar cəhd tələblərini tapa bilirəm.",
+          "en": "I can identify API error and retry requirements."
+        }
+      },
+      {
+        "id": "ba-mid-skill-4",
+        "text": {
+          "az": "ERD-ni izah edib qeyri-müəyyən əlaqə sayını tapa bilirəm.",
+          "en": "I can explain an ERD and detect ambiguous cardinality."
+        }
+      },
+      {
+        "id": "ba-mid-skill-5",
+        "text": {
+          "az": "Əhatə dəyişikliyini təsirlənən komandalar üzrə qiymətləndirə bilirəm.",
+          "en": "I can assess a scope change across affected teams."
+        }
+      },
+      {
+        "id": "ba-mid-skill-6",
+        "text": {
+          "az": "Buraxılışı başlanğıc göstəricisi ilə qiymətləndirə bilirəm.",
+          "en": "I can evaluate a release against a baseline."
+        }
+      }
+    ],
+    "interviews": [
+      {
+        "question": {
+          "az": "Gec gələn tələb dəyişikliyini necə qiymətləndirərsən?",
+          "en": "How would you assess a late requirement change?"
+        },
+        "answer": {
+          "az": "Ehtiyacı və təcililiyi aydınlaşdıraram, təsirlənən qayda, interfeys və testləri izləyərəm, komanda ilə seçimləri qiymətləndirib fayda, risk və qərar sahibini təqdim edərəm.",
+          "en": "I clarify the need and urgency, trace impacted rules, interfaces and tests, estimate options with the team, then present benefits, risks and the decision owner."
+        }
+      },
+      {
+        "question": {
+          "az": "Funksiya buraxılıb, amma göstərici yaxşılaşmayıb. Növbəti nədir?",
+          "en": "The feature shipped but the metric did not improve. What next?"
+        },
+        "answer": {
+          "az": "Ölçməni təsdiqləyərəm, istifadə və seqment fərqlərini yoxlayaram, fərziyyələri faktiki davranışla müqayisə edib əlavə funksiya yazmazdan əvvəl ən kiçik araşdırmanı tövsiyə edərəm.",
+          "en": "I validate measurement, inspect adoption and segment differences, compare assumptions with actual behavior, and recommend the next smallest investigation before adding more features."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ba-lead",
+    "trackId": "ba",
+    "level": "lead",
+    "title": {
+      "az": "Lead biznes analitik",
+      "en": "Lead Business Analyst"
+    },
+    "responsibilities": [
+      {
+        "az": "Komandalararası analizi strateji nəticələrə uyğunlaşdır.",
+        "en": "Align analysis across teams with strategic outcomes."
+      },
+      {
+        "az": "Uyğun idarəetmə qur və analitiklərə mentorluq et.",
+        "en": "Set proportionate governance and coach analysts."
+      },
+      {
+        "az": "Yüksək təsirli təşkilati qərarlarda qeyri-müəyyənliyi həll et.",
+        "en": "Resolve ambiguity in high-impact organizational decisions."
+      }
+    ],
+    "hardSkills": [
+      {
+        "az": "Müəssisə analizi və dəyişiklik strategiyası",
+        "en": "Enterprise analysis and change strategy"
+      },
+      {
+        "az": "Kontekstdə BABOK bilik sahələri, üsullar və perspektivlər",
+        "en": "BABOK knowledge areas, techniques and perspectives in context"
+      },
+      {
+        "az": "Analiz keyfiyyəti, qərar səlahiyyəti və fayda qiymətləndirməsi",
+        "en": "Analysis quality, decision rights and benefit evaluation"
+      }
+    ],
+    "softSkills": [
+      {
+        "az": "Sübut və qeyri-müəyyənliklə rəhbərliyə təqdimat",
+        "en": "Executive storytelling with evidence and uncertainty"
+      },
+      {
+        "az": "Mentorluq, danışıqlar və münaqişə fasilitasiyası",
+        "en": "Coaching, negotiation and conflict facilitation"
+      }
+    ],
+    "tools": [
+      {
+        "az": "Ortaq qərar qeydləri və analiz standartları",
+        "en": "Shared decision records and analysis standards"
+      },
+      {
+        "az": "Portfel və imkan xəritələmə məkanları",
+        "en": "Portfolio and capability mapping workspaces"
+      }
+    ],
+    "deliverables": [
+      {
+        "az": "Analiz strategiyası və idarəetmə razılaşması",
+        "en": "Analysis strategy and governance agreement"
+      },
+      {
+        "az": "İmkan boşluğu və dəyişiklik seçimi qiymətləndirməsi",
+        "en": "Capability gap and change-option assessment"
+      },
+      {
+        "az": "Mentorluq planı və sübut əsaslı keyfiyyət baxışı",
+        "en": "Coaching plan and evidence-based quality review"
+      }
+    ],
+    "changes": {
+      "az": "Bir təşəbbüsü çatdırmaqdan təşkilatın analiz qərarlarını necə verməsini yaxşılaşdırmağa keçirsən.",
+      "en": "You move from delivering one initiative to improving how the organization makes analysis decisions."
+    },
+    "checklist": [
+      {
+        "id": "ba-lead-skill-1",
+        "text": {
+          "az": "İmkan boşluqlarını strateji seçimlərlə əlaqələndirə bilirəm.",
+          "en": "I can connect capability gaps to strategic choices."
+        }
+      },
+      {
+        "id": "ba-lead-skill-2",
+        "text": {
+          "az": "Riskə uyğun idarəetmə qura bilirəm.",
+          "en": "I can design governance that fits risk."
+        }
+      },
+      {
+        "id": "ba-lead-skill-3",
+        "text": {
+          "az": "Qərarı ələ almadan mentorluq edə bilirəm.",
+          "en": "I can coach without taking over decisions."
+        }
+      },
+      {
+        "id": "ba-lead-skill-4",
+        "text": {
+          "az": "Ortaq sübut ətrafında münaqişəni idarə edə bilirəm.",
+          "en": "I can facilitate conflict around shared evidence."
+        }
+      },
+      {
+        "id": "ba-lead-skill-5",
+        "text": {
+          "az": "Rəhbərliyə seçimlərin təsirini izah edə bilirəm.",
+          "en": "I can communicate trade-offs to executives."
+        }
+      },
+      {
+        "id": "ba-lead-skill-6",
+        "text": {
+          "az": "Analiz standartlarının nəticəni yaxşılaşdırıb-yaxşılaşdırmadığını yoxlaya bilirəm.",
+          "en": "I can inspect whether analysis standards improve outcomes."
+        }
+      }
+    ],
+    "interviews": [
+      {
+        "question": {
+          "az": "Bürokratiya yaratmadan analizi necə standartlaşdırarsan?",
+          "en": "How do you standardize analysis without bureaucracy?"
+        },
+        "answer": {
+          "az": "Riskə görə minimum qərar sübutunu razılaşdıraram, uyğun üsulu komandaya buraxaram, dövr vaxtı və təkrar işi yoxlayaram, qərarı yaxşılaşdırmayan yoxlamaları ləğv edərəm.",
+          "en": "I agree minimum decision evidence based on risk, let teams choose suitable techniques, inspect cycle time and rework, and remove checks that do not improve decisions."
+        }
+      },
+      {
+        "question": {
+          "az": "İki biznes sahəsi dəyərdə razılaşmır. Necə davam edərsən?",
+          "en": "Two business areas disagree on value. How do you proceed?"
+        },
+        "answer": {
+          "az": "Zidd maraqları üzə çıxararam, ortaq nəticə və sərhədləri müəyyən edərəm, variantları sübutla müqayisə edib qərar səlahiyyətini və yenidən baxış şərtini qeyd edərəm.",
+          "en": "I surface competing interests, define a shared outcome and constraints, compare options against evidence, identify decision authority, and record what would trigger reconsideration."
+        }
+      }
+    ]
+  },
+  {
+    "id": "po-junior",
+    "trackId": "po",
+    "level": "junior",
+    "title": {
+      "az": "Junior məhsul sahibi",
+      "en": "Junior Product Owner"
+    },
+    "responsibilities": [
+      {
+        "az": "Məhsul istiqamətini komandaya aydın et.",
+        "en": "Make a product direction understandable to a team."
+      },
+      {
+        "az": "Dəstək və geribildirimlə fokuslu iş siyahısını sırala.",
+        "en": "Order a focused backlog with support and feedback."
+      },
+      {
+        "az": "İstifadəçiləri anla və çatdırılan nəticələri yoxla.",
+        "en": "Understand users and inspect delivered outcomes."
+      }
+    ],
+    "hardSkills": [
+      {
+        "az": "Scrum məsuliyyətləri, tədbirləri, artifact-ları və öhdəlikləri",
+        "en": "Scrum accountabilities, events, artifacts and commitments"
+      },
+      {
+        "az": "Product Goal və aydın backlog elementləri",
+        "en": "Product Goal and clear Product Backlog Items"
+      },
+      {
+        "az": "İlkin kəşf müsahibələri və hekayə xəritəsi",
+        "en": "Basic discovery interviews and story mapping"
+      }
+    ],
+    "softSkills": [
+      {
+        "az": "Aydın kontekst paylaşma və fəal dinləmə",
+        "en": "Clear context sharing and active listening"
+      },
+      {
+        "az": "Maraq və fərziyyələri yeniləməyə hazırlıq",
+        "en": "Curiosity and willingness to revise assumptions"
+      }
+    ],
+    "tools": [
+      {
+        "az": "İş siyahısı aləti və əməkdaşlıq lövhəsi",
+        "en": "Backlog tool and collaborative whiteboard"
+      },
+      {
+        "az": "Sadə məhsul analitikası və müsahibə qeydləri",
+        "en": "Simple product analytics and interview notes"
+      }
+    ],
+    "deliverables": [
+      {
+        "az": "Product Goal və sıralanmış backlog",
+        "en": "Product Goal and ordered backlog"
+      },
+      {
+        "az": "Kəşf qeydləri və qəbul nümunələri",
+        "en": "Discovery notes and acceptance examples"
+      },
+      {
+        "az": "Kiçik nəticə baxışı",
+        "en": "Small outcome review"
+      }
+    ],
+    "changes": {
+      "az": "Tapşırıq izləməkdən mentorluqla şəffaf məhsul seçimlərinə keçirsən.",
+      "en": "You move from tracking tasks to making transparent product choices with coaching."
+    },
+    "checklist": [
+      {
+        "id": "po-junior-skill-1",
+        "text": {
+          "az": "Məhsul nəticəsini funksiyadan ayıra bilirəm.",
+          "en": "I can distinguish a product outcome from a feature."
+        }
+      },
+      {
+        "id": "po-junior-skill-2",
+        "text": {
+          "az": "Növbəti iş elementinin niyə vacib olduğunu izah edə bilirəm.",
+          "en": "I can explain why the next backlog item matters."
+        }
+      },
+      {
+        "id": "po-junior-skill-3",
+        "text": {
+          "az": "Hər Scrum məsuliyyətini izah edə bilirəm.",
+          "en": "I can describe each Scrum accountability."
+        }
+      },
+      {
+        "id": "po-junior-skill-4",
+        "text": {
+          "az": "Yönləndirməyən kəşf sualları verə bilirəm.",
+          "en": "I can ask non-leading discovery questions."
+        }
+      },
+      {
+        "id": "po-junior-skill-5",
+        "text": {
+          "az": "Qəbul nümunələrini istifadəçi dəyərinə bağlaya bilirəm.",
+          "en": "I can connect acceptance examples to user value."
+        }
+      },
+      {
+        "id": "po-junior-skill-6",
+        "text": {
+          "az": "Buraxılışdan sonra sübutu yoxlaya bilirəm.",
+          "en": "I can inspect evidence after a release."
+        }
+      }
+    ],
+    "interviews": [
+      {
+        "question": {
+          "az": "Product Backlog-u kim sıralayır?",
+          "en": "Who orders the Product Backlog?"
+        },
+        "answer": {
+          "az": "Product Owner sıralama daxil olmaqla iş siyahısının səmərəli idarəsinə cavabdehdir. Başqaları töhfə verə və həvalə olunan işi görə bilər, amma cavabdehlik Product Owner-də qalır.",
+          "en": "The Product Owner is accountable for effective Product Backlog management, including ordering. Others can contribute or do delegated work, while accountability remains with the Product Owner."
+        }
+      },
+      {
+        "question": {
+          "az": "Faydalı Product Goal necə olur?",
+          "en": "What makes a useful Product Goal?"
+        },
+        "answer": {
+          "az": "Gələcək məhsul vəziyyətini aydın edir və seçimlərə istiqamət verir. İrəliləyiş üçün mənalı sübut əlavə edər, funksiyalar siyahısını məqsəd saymaram.",
+          "en": "It makes a future product state understandable and guides choices. I add meaningful evidence of progress and avoid treating a list of features as the goal."
+        }
+      }
+    ]
+  },
+  {
+    "id": "po-mid",
+    "trackId": "po",
+    "level": "mid",
+    "title": {
+      "az": "Mid səviyyəli məhsul sahibi",
+      "en": "Mid-level Product Owner"
+    },
+    "responsibilities": [
+      {
+        "az": "Kəşf və çatdırılma boyunca məhsul qərarlarına sahib çıx.",
+        "en": "Own product decisions across discovery and delivery."
+      },
+      {
+        "az": "Strategiyanı məqsəd, göstərici və backlog seçiminə bağla.",
+        "en": "Connect strategy to goals, metrics and backlog choices."
+      },
+      {
+        "az": "Maraqlı tərəf gözləntilərini sübut və proqnozla idarə et.",
+        "en": "Manage stakeholder expectations with evidence and forecasts."
+      }
+    ],
+    "hardSkills": [
+      {
+        "az": "Nəticə yol xəritələri, OKR və məhsul göstəriciləri",
+        "en": "Outcome roadmaps, OKRs and product metrics"
+      },
+      {
+        "az": "Sübuta əsaslanan idarəetmə və eksperiment quruluşu",
+        "en": "Evidence-Based Management and experiment design"
+      },
+      {
+        "az": "Proqnozlaşdırma, qiymət və buraxılış fərziyyələri",
+        "en": "Forecasting, pricing and launch hypotheses"
+      }
+    ],
+    "softSkills": [
+      {
+        "az": "Maraqlı tərəf danışıqları və qərar aydınlığı",
+        "en": "Stakeholder negotiation and decision clarity"
+      },
+      {
+        "az": "Məhsul və mühəndislik arasında fasilitasiya",
+        "en": "Facilitation across product and engineering"
+      }
+    ],
+    "tools": [
+      {
+        "az": "Məhsul analitikası və eksperiment jurnalı",
+        "en": "Product analytics and experiment logs"
+      },
+      {
+        "az": "Nəticə yol xəritəsi və axın göstəriciləri paneli",
+        "en": "Outcome roadmap and throughput dashboards"
+      }
+    ],
+    "deliverables": [
+      {
+        "az": "Məhsul strategiyası və nəticə yol xəritəsi",
+        "en": "Product strategy and outcome roadmap"
+      },
+      {
+        "az": "Ölçü və qoruyucu sərhədlərlə eksperiment planı",
+        "en": "Experiment brief with measures and guardrails"
+      },
+      {
+        "az": "Proqnoz və maraqlı tərəf qərar qeydi",
+        "en": "Forecast and stakeholder decision record"
+      }
+    ],
+    "changes": {
+      "az": "İşi sıralamaqdan dəyər, qeyri-müəyyənlik, risk və iqtisadiyyatı müstəqil tarazlaşdırmağa keçirsən.",
+      "en": "You move from ordering work to independently balancing value, uncertainty, risk and economics."
+    },
+    "checklist": [
+      {
+        "id": "po-mid-skill-1",
+        "text": {
+          "az": "Məhsul strategiyasının arxasındakı seçimləri izah edə bilirəm.",
+          "en": "I can explain the choices behind a product strategy."
+        }
+      },
+      {
+        "id": "po-mid-skill-2",
+        "text": {
+          "az": "Yanlışlığı sübut oluna bilən məhsul eksperimenti qura bilirəm.",
+          "en": "I can design a falsifiable product experiment."
+        }
+      },
+      {
+        "id": "po-mid-skill-3",
+        "text": {
+          "az": "Nəticə, çıxış və qoruyucu ölçüləri ayıra bilirəm.",
+          "en": "I can separate outcomes, outputs and guardrails."
+        }
+      },
+      {
+        "id": "po-mid-skill-4",
+        "text": {
+          "az": "Proqnoz qeyri-müəyyənliyini izah edə bilirəm.",
+          "en": "I can communicate forecast uncertainty."
+        }
+      },
+      {
+        "id": "po-mid-skill-5",
+        "text": {
+          "az": "Sübutla prioritet danışıqları apara bilirəm.",
+          "en": "I can negotiate priorities using evidence."
+        }
+      },
+      {
+        "id": "po-mid-skill-6",
+        "text": {
+          "az": "Qiymət fərziyyəsini və risklərini izah edə bilirəm.",
+          "en": "I can explain a pricing hypothesis and its risks."
+        }
+      }
+    ],
+    "interviews": [
+      {
+        "question": {
+          "az": "Rəhbər maraqlı tərəf təcili funksiya tələb edir. Nə edərsən?",
+          "en": "A senior stakeholder demands an urgent feature. What do you do?"
+        },
+        "answer": {
+          "az": "Əsas nəticə və təcililiyi aydınlaşdıraram, Product Goal və sübutla müqayisə edərəm, seçim təsirini açıb cavabdeh sıralama qərarı verər və paylaşaram.",
+          "en": "I clarify the underlying outcome and urgency, compare it with the Product Goal and current evidence, expose trade-offs, then make and communicate an accountable ordering decision."
+        }
+      },
+      {
+        "question": {
+          "az": "Kəşf eksperimentini necə ölçərsən?",
+          "en": "How would you measure a discovery experiment?"
+        },
+        "answer": {
+          "az": "İcra etməzdən əvvəl riskli fərziyyəni, müşahidə edilən davranışı, hədəf seqmenti, qərar həddini və qoruyucu ölçüləri müəyyən edərəm. Həm dəstəkləyən, həm zidd sübutu yoxlayaram.",
+          "en": "I specify the risky assumption, observable behavior, target segment, decision threshold and safeguards before running it. I inspect both supporting and contradictory evidence."
+        }
+      }
+    ]
+  },
+  {
+    "id": "po-lead",
+    "trackId": "po",
+    "level": "lead",
+    "title": {
+      "az": "Senior / Lead məhsul sahibi",
+      "en": "Senior / Lead Product Owner"
+    },
+    "responsibilities": [
+      {
+        "az": "Çox komandanı uyğun məhsul nəticələri ətrafında birləşdir.",
+        "en": "Align multiple teams around coherent product outcomes."
+      },
+      {
+        "az": "Məsuliyyətli sərmayə və portfel seçimləri et.",
+        "en": "Make responsible investment and portfolio trade-offs."
+      },
+      {
+        "az": "Başqalarının məhsul qərarı vermə qabiliyyətini inkişaf etdir.",
+        "en": "Grow product decision-making capability in others."
+      }
+    ],
+    "hardSkills": [
+      {
+        "az": "Məhsul sərhədləri, miqyaslanma və inteqrasiya iqtisadiyyatı",
+        "en": "Product boundaries, scaling and integration economics"
+      },
+      {
+        "az": "Həyat dövrü və portfel sərmayə qərarları",
+        "en": "Lifecycle and portfolio investment decisions"
+      },
+      {
+        "az": "Məhsul etikası, əlçatanlıq və davamlı sübut sistemləri",
+        "en": "Product ethics, accessibility and sustainable evidence systems"
+      }
+    ],
+    "softSkills": [
+      {
+        "az": "Rəhbərlik uyğunluğu və nəzarətsiz təsir",
+        "en": "Executive alignment and influence without control"
+      },
+      {
+        "az": "Mentorluq, münaqişə həlli və etik mühakimə",
+        "en": "Coaching, conflict resolution and ethical judgment"
+      }
+    ],
+    "tools": [
+      {
+        "az": "Portfel sübutu və ortaq nəticə xəritələri",
+        "en": "Portfolio evidence and shared outcome maps"
+      },
+      {
+        "az": "Komandalararası asılılıq və risk vizuallaşdırması",
+        "en": "Cross-team dependency and risk visualization"
+      }
+    ],
+    "deliverables": [
+      {
+        "az": "Ortaq məhsul istiqaməti və sərmayə əsaslandırması",
+        "en": "Shared product direction and investment rationale"
+      },
+      {
+        "az": "Portfel baxışı və məhsulun dayandırılması təklifi",
+        "en": "Portfolio review and product retirement proposal"
+      },
+      {
+        "az": "Etik qərar qeydi və liderlik mentorluq planı",
+        "en": "Ethical decision record and leadership coaching plan"
+      }
+    ],
+    "changes": {
+      "az": "Bir komandanın seçimlərini yaxşılaşdırmaqdan uyğun və məsuliyyətli məhsul sistemini qurmağa keçirsən.",
+      "en": "You move from optimizing one team’s choices to shaping a coherent, responsible product system."
+    },
+    "checklist": [
+      {
+        "id": "po-lead-skill-1",
+        "text": {
+          "az": "Gündəlik işi diktə etmədən bir neçə komandanı uyğunlaşdıra bilirəm.",
+          "en": "I can align several teams without prescribing their daily work."
+        }
+      },
+      {
+        "id": "po-lead-skill-2",
+        "text": {
+          "az": "Aşağı dəyərli sərmayənin dayandırılmasını əsaslandıra bilirəm.",
+          "en": "I can argue for stopping low-value investment."
+        }
+      },
+      {
+        "id": "po-lead-skill-3",
+        "text": {
+          "az": "Məxfilik və kənarlaşdırma risklərini tapa bilirəm.",
+          "en": "I can identify privacy and exclusion risks."
+        }
+      },
+      {
+        "id": "po-lead-skill-4",
+        "text": {
+          "az": "Məhsul sərhədlərini komanda strukturundan ayıra bilirəm.",
+          "en": "I can distinguish product boundaries from team structures."
+        }
+      },
+      {
+        "id": "po-lead-skill-5",
+        "text": {
+          "az": "Müstəqil məhsul mühakiməsi üçün mentorluq edə bilirəm.",
+          "en": "I can coach independent product judgment."
+        }
+      },
+      {
+        "id": "po-lead-skill-6",
+        "text": {
+          "az": "Stimulların müştəri dəyərini zəiflədib-zəiflətmədiyini yoxlaya bilirəm.",
+          "en": "I can inspect whether incentives undermine customer value."
+        }
+      }
+    ],
+    "interviews": [
+      {
+        "question": {
+          "az": "Məhsulu dayandırmağa necə qərar verərsən?",
+          "en": "How do you decide whether to retire a product?"
+        },
+        "answer": {
+          "az": "Davam edən müştəri dəyərini, strateji uyğunluğu, ümumi xərci, alternativləri və keçid risklərini müqayisə edərəm. Təsirlənən müştəriləri cəlb edib təhlükəsiz köçürmə qurar və fərziyyələrin davam sərmayəsini əsaslandırmasını yoxlayaram.",
+          "en": "I compare ongoing customer value, strategic fit, total costs, alternatives and transition risks. I include affected customers, define a safe migration and inspect whether assumptions justify continued investment."
+        }
+      },
+      {
+        "question": {
+          "az": "Artım yaxşılaşır, amma ləğvetmə çətinləşir. Necə cavab verərsən?",
+          "en": "Growth improves but cancellations become harder. How do you respond?"
+        },
+        "answer": {
+          "az": "Göstəricinin dəyər yerinə məcburetməni mükafatlandırıb-mükafatlandırmadığını yoxlayaram, hüquq və əlçatanlıq ekspertlərini cəlb edər, aldadıcı maneələri aradan qaldırar və müştəri seçiminə hörmət edən saxlama ölçüləri seçərəm.",
+          "en": "I inspect whether the metric rewards coercion rather than value, involve legal and accessibility expertise, remove deceptive friction and choose retention measures that respect customer choice."
+        }
+      }
+    ]
+  }
+]

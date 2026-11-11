@@ -1,0 +1,87 @@
+---
+id: messaging-kafka
+locale: en
+title: 'Kafka: partitions, offsets, ordering and consumer recovery'
+objectives:
+  - 'Explain partition order and consumer-group assignment.'
+  - 'Distinguish processing an event from committing its offset.'
+  - 'Design safe replay around an external side-effect boundary.'
+---
+
+## Learning objectives
+
+- Explain partition order and consumer-group assignment.
+- Distinguish processing an event from committing its offset.
+- Design safe replay around an external side-effect boundary.
+
+## Why this matters
+
+A consumer updates a database and crashes before committing its Kafka offset. On restart it receives the event again. That is not necessarily broker corruption: the application has crossed a processing/checkpoint boundary. Understanding that boundary is essential when messages trigger money, stock or notifications.
+
+## Core theory
+
+A Kafka topic is divided into partitions. Each partition is an ordered log with offsets identifying positions within that partition. Offsets are not a global ordering across every partition and topic. Choose partition keys according to required ordering and distribution, and review how key or partition-count changes affect the application.
+
+Consumers sharing a group divide partition ownership; independent groups can read the same events for different purposes. Group membership changes can reassign partitions, so processing must tolerate interruptions and replay. Useful parallelism is constrained by partition assignment and workload distribution, not simply the number of processes started.
+
+A committed offset records recovery progress for a group and partition. In the usual next-position convention, committing offset 43 means recovery continues at position 43. Processing offset 42 and committing before its business effect risks skipping work after a crash. Committing after the effect permits replay if the commit is not completed. The application must choose and handle the resulting semantics.
+
+Producer idempotence and Kafka transactions address particular broker-side and Kafka-to-Kafka boundaries under configuration assumptions. They do not automatically make a separate database, payment provider or email service part of the same exactly-once transaction. Use an appropriate idempotency/inbox contract or durable coordination for external effects.
+
+Monitor lag, processing failures and event age, while distinguishing a slow consumer from a dead one. Define poison-event handling, retry limits, schema compatibility and replay authorization. Retention limits how long records remain available; a committed offset is not a backup of the event data or the consumer's external state.
+
+## Worked example
+
+Partition 0 contains order events at offsets 41 and 42. A billing consumer processes event 42, records an idempotency key with the database effect and then attempts to commit next offset 43. It crashes before the commit is confirmed.
+
+After restart, 42 may be replayed. The database boundary recognizes the event's stable business identifier and avoids a second charge record. The consumer still verifies the prior operation outcome before advancing. Another partition can be processed concurrently, but the application cannot infer a total customer-event order across both partitions without an explicit design.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n P[Partition record and offset] --> C[Consumer group assignment]\n C --> B[Durable business effect]\n B --> O[Commit recovery position]\n B -.-> D[Idempotency and replay evidence]\n O --> N[Next record after restart]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>The producer enables idempotence. Is a consumer’s external HTTP payment call now exactly once?</summary>
+
+No. Producer duplicate protection does not coordinate the consumer with a remote payment service. The payment boundary needs its own stable operation identity, durable result handling and reconciliation. State exactly which transaction boundary a guarantee covers.
+
+</details>
+
+## Common mistakes
+
+- Calling offsets global sequence numbers.
+- Committing progress before required effects without accepting possible loss.
+- Assuming every extra consumer increases parallelism.
+- Treating an event ID as deduplication without durable atomic handling.
+
+## Practice exercise
+
+Describe crash recovery before and after a database effect but before offset commit. Identify the evidence needed to avoid both a duplicate charge and an incorrectly skipped event.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Before the effect, replay should safely perform the work. After a durable effect but before commit, replay must recognize the completed operation through a durable identifier recorded atomically with that effect. A remote payment requires a provider operation contract and unknown-outcome reconciliation. Advance the offset only under the chosen processing policy, and test the crash boundaries rather than only a happy-path loop.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Order is per partition. Group ownership can change. Processing ≠ checkpointing. Kafka guarantees do not silently cover external effects. Design replay and retention deliberately.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Apache Kafka 4.1: Design](https://kafka.apache.org/41/design/design/): partitions, consumer positions, delivery semantics and transaction boundaries. Edition is explicit; no newest-version claim is made.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): HTTP idempotent semantics; application/provider operation contracts remain separate. Examples are original and no broker or payment system is deployed.

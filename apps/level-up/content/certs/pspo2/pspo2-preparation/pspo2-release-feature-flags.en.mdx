@@ -1,0 +1,101 @@
+---
+id: pspo2-release-feature-flags
+locale: en
+title: 'Release decisions, feature flags and the Definition of Done'
+objectives:
+  - 'Distinguish deployment, user exposure and evidence of realized product value.'
+  - 'Differentiate release, experiment and operational flags by purpose and lifecycle.'
+  - 'Explain why hiding unfinished work behind a flag does not satisfy the Definition of Done.'
+---
+
+## Learning objectives
+
+- Distinguish deployment, user exposure and evidence of realized product value.
+- Differentiate release, experiment and operational flags by purpose and lifecycle.
+- Explain why hiding unfinished work behind a flag does not satisfy the Definition of Done.
+
+## Why this matters
+
+A team deploys a new checkout binary with a feature flag off. A sponsor counts the feature as delivered value because the code is in production. Developers say the off path is untested. The Product Owner needs to distinguish a deployment event, a usable Done capability, exposure to users and evidence of better outcomes. Counting all four as the same thing makes product progress opaque.
+
+## Core theory
+
+Deployment installs a software version into an environment. Release or exposure makes a capability available to an intended audience under the product's operational constraints. Realized value requires evidence that users or the organization benefit. Teams can decouple deployment and exposure, but they must not use that separation to obscure the actual state of the work.
+
+The Scrum Guide requires an Increment to be usable and meet the Definition of Done. Multiple Increments can be created in a Sprint, and Sprint Review is not a release gate. A feature flag is an optional engineering technique; Scrum neither requires flags nor says a disabled incomplete feature is automatically Done.
+
+Pete Hodgson's article on MartinFowler.com distinguishes flag purposes. Release toggles can separate deployment from exposure. Experiment toggles assign cohorts to alternative behavior for learning. Operational toggles permit changes such as turning off a costly recommendation service during overload. Permissioning toggles manage differing access to capabilities. A flag's purpose and intended lifetime affect its testing and cleanup policy.
+
+| Question                                | Product implication                                         |
+| --------------------------------------- | ----------------------------------------------------------- |
+| What can users actually do now?         | Separate deployed code from an exposed usable capability    |
+| Which paths meet the quality boundary?  | Do not count unfinished hidden work as part of an Increment |
+| Who can change exposure?                | Make decision authority and operational guardrails explicit |
+| How will outcomes and harm be observed? | Define learning before expanding rollout                    |
+| When will temporary flags be removed?   | Prevent permanent complexity from accumulating invisibly    |
+
+The engineering article discusses latent unfinished paths as a deployment technique. That observation does not override Scrum's definition of an Increment. Test the safe operating states, authorization boundaries, data migrations and interactions required by the product's quality standard. A flag being off does not neutralize every database or security change.
+
+Rollback is also more than flipping a boolean. A flag may hide a screen but cannot automatically undo a database migration, a charged payment or an email already sent. Define a safe forward/compensating strategy where effects are irreversible.
+
+## Worked example
+
+A team changes the payment-selection experience. The new path is deployed safely but initially exposed only to a defined canary audience. The team checks technical errors, completed payments, support complaints and accessibility before expanding. A suitable comparison can provide product evidence; a small canary primarily used for operational safety does not automatically prove a statistically reliable value improvement.
+
+The flag has a named owner, intended purpose, supported configurations, expansion/stop criteria and a removal date or condition. Developers manage implementation and technical quality. The Product Owner collaborates on value, risk and exposure decisions within real organizational constraints. The Sprint Review inspects outcomes and changes in context; it does not confer quality retrospectively.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Usable capability meets DoD"] --> B["Deploy safely"]\n B --> C["Controlled exposure"]\n C --> D["Outcome and guardrail evidence"]\n D --> E["Expand adapt or disable"]\n E --> F["Remove temporary flag when appropriate"]'
+  }
+/>
+
+This optional delivery model shows quality before claiming a Done capability, then controlled exposure and learning. The exact implementation sequence can vary; Scrum does not prescribe a flag lifecycle.
+
+## Inspect the decision
+
+<details>
+<summary>The new feature is hidden and incomplete, but its code was deployed. Can its story points be used as proof of delivered customer value?</summary>
+
+No. Deployment, estimation units and customer outcomes are different observations. Incomplete work does not become part of a Done Increment by being hidden. Inspect the actual capability and quality, then use outcome evidence to assess value.
+
+</details>
+
+## Common mistakes
+
+- Treating every flag as temporary ignores legitimate longer-lived operational controls, while treating every flag as permanent creates avoidable debt.
+- Using a client-side flag as the only access-control rule permits direct unauthorized API use.
+- Changing an experiment's cohort assignment unpredictably contaminates comparisons.
+- Leaving old flag branches untested creates future failure paths.
+- Calling “disable the flag” a complete rollback plan ignores persisted data and external side effects.
+
+## Practice exercise
+
+Design a rollout for a new refund interface. Include its Done boundary, the meaning of “deployed” versus “released,” operational and product evidence, stopping conditions, ownership and flag removal. Explain what happens if the interface is disabled after some refunds were submitted.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Ensure the supported capability and operating states meet the Definition of Done before calling that capability a Done Increment. Deploy under a controlled process, expose to an appropriate group, and monitor both service health and successful user outcomes. Define unacceptable error/refund duplication, support burden and accessibility harm as stop/adapt conditions. Collaborate across Product Owner, Developers and operational stakeholders on evidence and constraints rather than inventing a Scrum-required release approval board.
+
+Record each submitted refund's durable business state and operation identity. Disabling the interface stops further exposure but does not undo completed refunds or authorize duplicate submissions. Provide a safe status/reconciliation path and an explicit compensating policy if necessary. Remove a temporary release/experiment flag once the intended decision is complete and the remaining supported path is established.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Deployed ≠ exposed ≠ Done ≠ valuable. Feature flags are optional. DoD remains the quality boundary. Canary safety evidence and product experiment evidence answer different questions. A flag has a purpose, owner, supported states and lifecycle. Disabling code does not reverse every business effect.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Increment, Definition of Done and Sprint Review.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): supplied PDF, outputs/outcomes and experiment loop.
+- [Pete Hodgson, Feature Toggles](https://martinfowler.com/articles/feature-toggles.html): flag categories and carrying cost, read online on 2026-10-22.
+
+The article is expert engineering guidance, not an official Scrum.org source or an exam requirement. Scrum Guide 2020 controls the Scrum claims; rollout examples are original practice.

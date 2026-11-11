@@ -1,0 +1,88 @@
+---
+id: okrs
+locale: az
+title: 'OKR və qərara çevrilən ölçülər'
+objectives:
+  - 'Objective, Key Result və initiative-i ayır.'
+  - 'Denominator dəyişikliyini gizlətmədən ölçülən outcome qur.'
+  - 'Tarixi dəyişmədən progress-i yoxla və initiative-i yenilə.'
+---
+
+## Öyrənmə məqsədləri
+
+- Objective, Key Result və initiative-i ayır.
+- Denominator dəyişikliyini gizlətmədən ölçülən outcome qur.
+- Tarixi dəyişmədən progress-i yoxla və initiative-i yenilə.
+
+## Bu mövzu niyə vacibdir
+
+“Yeni dashboard çıxar” faydalı iş ola bilər, amma customer-in daha yaxşı qərarını sübut etmir. Objectives and Key Results initiative ilə onun təsir etməli olduğu outcome arasındakı fərqi qoruyanda niyyəti müşahidə edilən dəyişikliyə bağlayır.
+
+## Əsas anlayışlar
+
+Objective mənalı istiqamət/təkmilləşdirmədir. Key Result ona doğru irəliləyişin sübutudur. Initiative nəticəyə çatmaq üçün görülən işdir. OKR qaydaları fərqlənir; bu dərsin orijinal quruluşu Scrum qaydası və ya məcburi EBM formatı deyil.
+
+Metric, baseline, target, uyğun population, window və source göstər. Denominator səssiz dəyişirsə target mənasızdır. “Activation artır” aydın first useful result və hər uyğun user üçün yetərli follow-up tələb edir. Data quality/observation completeness açıq qalsın.
+
+Bütün komandaların fəaliyyəti siyahısı deyil, outcome-u təmsil edən azsaylı nəticə seç. Yerli artım zərər verə bilərsə guardrail əlavə et. Support sürəti unresolved ticket bağlamaqla artmamalı, conversion artımı payment failure-ı gizlətməməlidir.
+
+Influence və authority-ni açıq et. Komanda initiative/measurement sahibi ola bilər, amma external factor da nəticəyə təsir edir. Causal claim-i experiment və ya uyğun sübutla araşdır. Release vaxtı nəticə dəyişməsi release-in səbəb olduğunu avtomatik göstərmir.
+
+Agreed intervalda progress, assumption və initiative effectiveness yoxla. Initiative kömək etmirsə sonradan target azaltmaqla success demə, işi uyğunlaşdır. İlkin metric/target yanlışdırsa correction və səbəbini açıq yaz. Hər aspirational target-i şərtsiz delivery vədi və ya sadə individual performance score etmə.
+
+## İşlənmiş nümunə
+
+Learning platform objective seçir: “Yeni learner faydalı ilk məşq sessiyasına çatsın.” Proposed KR yeddi tam gündə ilk dərsi və məşqi bitirən uyğun yeni learner payını observed baseline 30%-dən nümunə target 40%-ə artırır.
+
+Komanda progress-dən əvvəl eligibility, event logging, cohort cutoff müəyyən edir. Guardrail failed practice load və accessibility defect-dir. Qısa onboarding initiative-dir, nəticə deyil. User onboarding-i tez keçib practice-ə başlamırsa iş bitsə də objective ödənmir. Rəqəmlər sünidir, target real istifadə üçün kontekst tələb edir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n O[Objective and intended outcome] --> K[Defined key results]\n K --> I[Initiatives and assumptions]\n I --> E[Observed evidence and guardrails]\n E --> R[Review progress]\n R --> I'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Bütün initiative bitib, KR dəyişməyib. Komanda success bildirə bilərmi?</summary>
+
+Görülmüş işi bildirə bilər, intended outcome-u yox. Measurement validity/vaxtını yoxla, initiative-in niyə təsir etmədiyini araşdır, planı dəyiş. İlkin nəticəni task count-la əvəz etmək əvəzinə fərqi saxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Yalnız shipment date-i outcome result yazmaq.
+- Uyğun population-u qeydsiz dəyişmək.
+- Müvafiq guardrail olmadan tək metric istifadə etmək.
+- Nəzarətsiz trend-dən causal effect iddia etmək.
+
+## Praktik tapşırıq
+
+“Daha sürətli checkout qur” ifadəsini Objective, ölçülən KR, initiative və guardrail kimi yaz. Hələ lazım olan baseline məlumatını göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Objective uyğun shopper-in az çətinliklə alış etməsinə yönələ bilər. Sübutla təsdiqlənəcək baseline/target, konkret completion metric/window ilə KR müəyyən et. Address addımını sadələşdirmək initiative ola bilər. Payment error/support incident guardrail ola bilər. Artım iddiasından əvvəl eligibility, instrumentation və comparison method göstər.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Objective = istiqamət. Key Result = müəyyən sübut. Initiative = təklif olunan iş. Baseline, denominator, guardrail və qərar tarixini saxla.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Evidence-Based Management Guide 2024, Scrum.org](https://www.scrum.org/resources/evidence-based-management-guide): goal, measure, experiment, input/output/outcome fərqi. EBM uyğunlaşdırması: CC BY-SA 4.0, Scrum.org.
+- [GOV.UK: How to set performance metrics](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): purpose, hypothesis, measurement quality.
+- OKR quruluşu orijinal əlavə təlimdir; heç bir mənbə məhz bu template-i məcburi kimi təqdim etmir.

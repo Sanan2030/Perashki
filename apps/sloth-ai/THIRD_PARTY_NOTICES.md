@@ -1,0 +1,61 @@
+# Azerbaijani dictionary
+
+Source: https://github.com/mozillaz/spellchecker
+Pinned revision: 7f484fc96126919ccdb1f65908558b36a5b43301
+Authors/maintainers: Mozilla Azerbaijan. The upstream README attributes the word list to azerdict.com.
+License: Mozilla Public License 2.0; full text at public/dictionaries/az/LICENSE.
+
+The unmodified upstream az.dic and az.aff files are redistributed in public/dictionaries/az. Their hashes are recorded in metadata.json. The generated lib/editor/generated/az-words.json is a derived word list under the same MPL-2.0 license: Hunspell flags are removed, text is NFC-normalized and duplicate spellings are removed. It is not a list of definitions. These covered files and the generation script are available in this repository; the original source and license are also served by the deployed app under /dictionaries/az/.
+
+The upstream header declares 42,937 records, but the file contains 42,936 data lines. These yield 38,174 distinct entries. Generation excludes two non-word entries (a bare number and a trailing-hyphen prefix), leaving 38,172 matchable base entries. Two multiword entries are retained, and their component words use the normal word-matching path.
+
+This is the full pinned source dictionary, not every Azerbaijani word. Build preparation executes a restricted single-step SFX subset with two-character FLAG long parsing, strip/add and terminal conditions. It does not execute prefix, compound, continuation or cross-product rules. Fourteen malformed/unsupported rule lines and eleven malformed flag entries are skipped, rather than guessed. Runtime forms are capped at 100,000 to bound memory; reaching this cap does not certify linguistic completeness or correctness. Reviewed spelling choices take priority; imported ambiguities are preserved. Imported one/two-letter forms are not used for automatic correction.
+
+Reproduce with npm run dictionary:import -- public/dictionaries/az (offline), or omit the argument to explicitly download the pinned source. All three inputs are SHA-256-checked before output is written. Generated JSON is excluded from git and recreated by dev, test, typecheck and build preparation. Normal correction uses bundled application assets and performs no dictionary download. Generated output remains covered by MPL-2.0.
+
+## Phase 0 evaluation (October 2026)
+
+`data/evaluation/phase0/no-harm-2000.json` samples 2,000 forms from the pinned
+MPL-2.0 dictionary described above. The word forms remain MPL-2.0-derived material;
+source revision, full license, generator and attribution are available above.
+The surrounding mention sentences and holdout/calibration clauses were authored
+by the assistant for this project, not copied from an outside text corpus and
+not reviewed by a linguist. These frozen datasets are evaluation/calibration-only;
+they do not train weights. No new Wikipedia/CC BY-SA/GFDL text or pretrained
+model was imported in phase 0. No new license determination is implied by those
+evaluation references.
+
+## az-v1 WordLM browser projection (17 October 2026)
+
+`lib/editor/wordlm/model.json` contains derived statistical counts/probabilities
+from the accepted LocalDoc/AzTC-full snapshot, not redistributed corpus sentences.
+Dataset publisher: LocalDoc. Publisher declaration: CC BY 4.0; original source
+notices and the accepted restricted-use record remain in
+`docs/stage1/collection/sources.json` and `accepted-2026-10-08.md`.
+Pinned source/license evidence:
+https://huggingface.co/datasets/LocalDoc/AzTC-full/blob/4ea07271d4a2c9746759547264a5e4310bc2956e/README.md
+License: https://creativecommons.org/licenses/by/4.0/
+
+Changes: mechanical filtering/splitting, train-only vocabulary and Kneser-Ney
+count fitting, followed by bounded top-count projection and backoff-mass
+redistribution. Model/export hashes and limitations are recorded in
+`docs/training/wordlm-browser-2026-10-17.md`. The publisher declaration and owner
+acceptance do not independently clear every underlying source work or relicense
+unrelated app code. The separate MPL-2.0 dictionary remains covered above.
+
+## az-v1 PunctCase weights (4 November 2026)
+
+`lib/editor/punctcase/weights.json` encodes the learned float32 parameters of
+the character-CNN/BiGRU fitted on punctuation/case labels from the same accepted
+LocalDoc/AzTC-full snapshot. It does not redistribute the original corpus
+sentences. Dataset publisher: LocalDoc; pinned publisher CC BY 4.0 declaration:
+https://huggingface.co/datasets/LocalDoc/AzTC-full/blob/4ea07271d4a2c9746759547264a5e4310bc2956e/README.md
+License: https://creativecommons.org/licenses/by/4.0/
+
+Changes: original accepted clean train text was converted to character/token
+inputs and mechanically derived punctuation/case labels, then fitted on CPU
+with source-split validation. The selected checkpoint was serialized without
+quantization for opt-in browser inference. Checkpoint/export hashes and measured
+limitations are in `docs/training/punctcase-app-2026-11-04.md`. The existing
+publisher-declaration and owner restricted-use acceptance above apply; no new
+independent clearance of underlying works or relicense of app code is claimed.

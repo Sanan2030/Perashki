@@ -1,0 +1,89 @@
+---
+id: uml-models
+locale: az
+title: 'Uyğun UML görünüşünü seç'
+objectives:
+  - 'Scope, interaction, structure və lifecycle üçün uyğun model seç.'
+  - 'Actor goal və object relationship-i aydın et.'
+  - 'Interaction-u lifecycle və business rule ilə tutuşdur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Scope, interaction, structure və lifecycle üçün uyğun model seç.
+- Actor goal və object relationship-i aydın et.
+- Interaction-u lifecycle və business rule ilə tutuşdur.
+
+## Bu mövzu niyə vacibdir
+
+Bir nəhəng diaqram nadir hallarda bütün stakeholder sualına cavab verir. Product Owner boundary/user goal, engineer message order, operations isə allowed status transition istəyə bilər. UML bir-birini tamamlayan view verir. View seçimi alətdən deyil, qərardan başlayır.
+
+## Əsas anlayışlar
+
+Use-case view actor, goal və system boundary müəyyən edir. Actor konkret işçi deyil, sistemlə əlaqə quran external rol da ola bilər. Use-case diagram bütün normal/exception addımı izah etmir; behavior vacibdirsə scenario əlavə et.
+
+Sequence view scenario üçün participant və ordered message göstərir. Hansı komponentin kimi çağırdığını, harada response gözləndiyini, failure-da davranışı açır. Timing guarantee və deployment topology-ni özü sübut etmir. Alternative-i label et; hər async interaction-un dərhal bitdiyini fərz etmə.
+
+Class/domain view concept, attribute və relationship təsvir edir. Multiplicity association ucunda neçə related instance-a icazə olduğunu deyir. “Order-in çox item-i var” struktur qaydasıdır, workflow deyil. Object-in müvəqqəti sıfır relation-a icazəsini seç, creation/deletion ilə yoxla.
+
+State view lifecycle modelləşdirir: state, trigger event, guard və transition. Paid kimi status razılaşdırılmış məna daşımalıdır. Order-i o state-ə hansı actor/event-in keçirdiyini, event duplicate/late gələndə davranışı müəyyən et.
+
+View-ları uyğun saxla. Sequence payment confirmation-dan əvvəl Paid qoyur, state rule confirmation tələb edirsə model ziddir. Diaqram oxşasın deyə label dəyişmə, qaydanı həll et. Davranışı aydın edən minimal view seç; modeling müzakirə sübutudur, özü son məqsəd deyil.
+
+## İşlənmiş nümunə
+
+Booking service üçün use case “Cancel a booking”, actor customer-dir. Sequence booking API request, eligibility check və refund request göstərir. State model Confirmed, CancellationPending, Cancelled-i ayırır.
+
+Domain view booking-in sıfır və ya çox payment attempt-ə malik olduğunu deyir. İlkin cəhd uğursuz, sonrakı uğurlu ola bilər. Sequence hər attempt-i refund etmək deyil, settled payment-i tapmalıdır. Unknown provider response cancellation-u reconciliation-adək pending saxlayır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'stateDiagram-v2\n [*] --> Confirmed\n Confirmed --> CancellationPending: eligible request\n CancellationPending --> Cancelled: outcome confirmed\n CancellationPending --> Confirmed: request rejected\n Cancelled --> [*]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Class diagram API çağırışlarının icra sırasını müəyyən edirmi?</summary>
+
+Xeyr. Structure runtime message order vermir. Konkret interaction üçün sequence, allowed lifecycle change üçün state view seç. Eyni business rule ilə müqayisə et, async/unresolved outcome-u açıq yaz.
+
+</details>
+
+## Tipik səhvlər
+
+- Actor rolu yerinə şəxsin adını yazmaq.
+- Multiplicity-ni event sequence saymaq.
+- Stakeholder domain model-ə bütün implementation detalını əlavə etmək.
+- Sequence diagram-ın bütün execution path-ləri sübut etdiyini fərz etmək.
+
+## Praktik tapşırıq
+
+Pending final invoice ilə subscription cancellation üçün iki view seç. Hər birinin cavabını, ikisinin də qoruduğu invariant-ı yaz.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Active, CancellationPending, Cancelled üçün state, cancellation request/invoice check/confirmation message üçün sequence istifadə et. Invariant: agreed billing condition həll olmamış final cancellation təsdiqlənmir. Subscription/invoice/payment əlaqəsi özü naməlumdursa domain view əlavə et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Scope/goal → use case. Ordered interaction → sequence. Concept/multiplicity → class/domain. Lifecycle rule → state. Ortaq term və invariant-ı tutuşdur.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Təqdim edilmiş kitabın seçilmiş bölmələri orijinal izah və ssenariləri dəstəkləyir; mənbə mətni və üzvlər üçün PDF yayılmır.
+
+- BABOK §7.1: requirement specification/modeling; §10.47: use case/scenario.
+- [OMG UML 2.5.1 specification index](https://www.omg.org/spec/UML/2.5.1): version və normative reference. Diaqramlar seçilmiş teaching view-dur; tam UML conformance kursu deyil.

@@ -1,0 +1,97 @@
+---
+id: pspo2-evidence-uncertainty
+locale: en
+title: 'Probability, experiments and evidence quality'
+objectives:
+  - Interpret a simulation percentile without turning it into a guarantee.
+  - Explain why an interval including harm does not establish a positive effect.
+  - Choose an assumption test and distinguish on-product time from innovation.
+---
+
+## Learning objectives
+
+Communicate what evidence supports, what remains uncertain and what would change the next decision. Use numerical results without inventing certainty.
+
+## Why it matters
+
+A stakeholder may select the earliest date from a forecast range or quote only a positive experiment estimate. Both conceal risk. Sophisticated calculations still depend on comparable observations, suitable design and honest interpretation.
+
+## Core theory
+
+### Probabilistic delivery forecasts
+
+A throughput-based **Monte Carlo** forecast repeatedly samples historical completed-item counts and simulates how long a stated scope might take. The result is a distribution of simulated completion times. A percentile summarizes that distribution: if 850 of 1000 hypothetical runs finish by day 40, that date has an 85% completion rate within those simulated runs. This is conditional on the model and input data; it is not an 85% guarantee about reality or a statistical confidence interval for an experiment.
+
+Check item granularity, completion criteria, team availability, dependencies and process changes. Biased or non-comparable history produces misleading precision. An independent resampling model may miss seasonality, correlations and rare disruption. More simulations do not repair poor input. Re-forecast as scope and evidence change. Discuss the consequences of delay before choosing a risk level; neither the median nor the slowest historical Sprint is universally correct. Scrum does not mandate Monte Carlo, story points or a particular percentile.
+
+### Experiment estimates and intervals
+
+Suppose a properly analyzed trial estimates a completion-rate change of **+2 percentage points**, with a reported confidence interval from **−2 to +6 percentage points**. The interval includes no change and possible harm. A positive point estimate alone does not establish improvement. This also does not prove the effect is zero or that the design was necessarily invalid. Inspect sample size, randomization, observation window, practical effect size and guardrails before deciding whether more evidence is worth collecting. Percentage points and relative percentages are different quantities.
+
+A confidence interval is not the probability that an individual user benefits. Its interpretation depends on the statistical method and assumptions. Avoid repeatedly checking results and stopping at the first favorable number without a suitable analysis plan.
+
+### Test the important assumption
+
+A **riskiest-assumption test** targets a belief whose failure would undermine the decision. Choose by consequence and uncertainty, not simply what is easiest to measure. Testing willingness to pay may involve a transparent offer or a limited paid pilot; interviews remain useful for understanding the problem but do not prove purchase behavior. An MVP is a way to learn with limited investment; it is not an excuse to skip quality or an instruction to build every core feature first. Neither label is a required Scrum artifact.
+
+### Capacity is not customer value
+
+The **on-product index** is an example A2I measure of time spent on product work rather than other responsibilities. If 24 of 40 available hours are product work, the illustrative ratio is 60%, provided the boundary is clear. Product work can include maintenance: 60% is not “60% innovation,” productivity or CV. Use it with maintenance/defect burden and experienced outcomes. EBM offers example measures, not a fixed compulsory scorecard.
+
+## Worked example
+
+A team changes its size and receives a new external dependency. An old simulation's 85th-percentile date remains in a contract slide. Meanwhile, a small trial has a positive point estimate but an interval including harm. Leadership wants a confident launch promise.
+
+Reassess the delivery assumptions and update the forecast. Explain the trial's uncertainty separately; delivery confidence and benefit evidence answer different questions. Choose a smaller usable release or another bounded test if its learning justifies the cost. Preserve quality and do not change success criteria afterward to declare a win.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Decision and assumptions] --> D[Comparable data and test design]\n D --> R[Range and limitations]\n R --> C[Consequences and options]\n C --> T[Small useful next step]\n T --> E[New evidence]\n E --> Q'
+  }
+/>
+
+The loop applies to learning decisions; it does not imply delivery simulation and experiment inference use the same method.
+
+## Inspect a decision
+
+<details>
+<summary>Can a 100000-run simulation remove uncertainty caused by a newly introduced supplier?</summary>
+
+No. It can make the output of the chosen model more stable while still omitting the new constraint. Investigate the supplier and update the assumptions or model before communicating a precise date.
+
+</details>
+
+## Common mistakes
+
+- Reporting a forecast percentile as a guaranteed contractual date.
+- Calling a positive point estimate proof while its interval includes harm.
+- Counting on-product maintenance time as innovation or customer benefit.
+- Retesting only to obtain a preferred answer rather than to address a documented limitation.
+
+## Practice exercise
+
+Of 2000 illustrative simulation runs, 1800 finish by week 9. A separate customer experiment estimates +3 percentage points with an interval of −1 to +7. Write two sentences separating delivery information from value evidence, then name one assumption to check in each.
+
+## Worked solution
+
+<details>
+<summary>Show the reasoning</summary>
+
+“90% of runs in this model finished by week 9, conditional on comparable throughput, scope and dependencies; this is not a guarantee. The customer test has not established a positive change because its interval includes harm and no change.” Check whether delivery history reflects the current system and whether the trial has sufficient observation and an appropriate analysis. The scenario does not calculate those intervals or validate a statistical method.
+
+</details>
+
+## Mini-quiz and cheat sheet
+
+Simulation percentile ≠ guarantee. Experiment estimate ≠ established benefit. On-product time ≠ innovation. Test consequential assumptions, disclose limits and update decisions.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Kanban Guide for Scrum Teams 2021](https://www.scrum.org/resources/kanban-guide-scrum-teams): throughput, historical evidence and probabilistic service expectations; adapted explanations CC BY-SA 4.0.
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): experiment loop, A2I and example measures including on-product index; adapted explanations CC BY-SA 4.0, Scrum.org.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): selected Validation and Forecasting material, chapters 4 and 8.
+- [Kwestio PSPO II](https://kwestio.jad2advisory.com/certifications/pspo-ii/practice): public topics on Monte Carlo, assumption tests and inconclusive intervals prompted this supplement. Statistical explanations and numerical scenarios here are original teaching, not rules prescribed by Scrum or EBM.

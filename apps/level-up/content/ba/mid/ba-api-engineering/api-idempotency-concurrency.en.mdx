@@ -1,0 +1,108 @@
+---
+id: api-idempotency-concurrency
+locale: en
+title: 'Idempotency keys, concurrent requests and optimistic locking'
+objectives:
+  - 'Separate duplicate-operation protection from stale-update protection.'
+  - 'Specify scoped idempotency records, request fingerprints and atomic state changes.'
+  - 'Recover from an unknown result without issuing a new business operation.'
+---
+
+## Learning objectives
+
+- Separate duplicate-operation protection from stale-update protection.
+- Specify scoped idempotency records, request fingerprints and atomic state changes.
+- Recover from an unknown result without issuing a new business operation.
+
+## Why this matters
+
+A user presses Pay and the response times out after the provider commits the charge. Retrying with a new operation identifier can charge twice. On another screen, two valid users overwrite each other's edits. Both problems involve repeated or overlapping requests, but one needs operation deduplication and the other needs concurrency control. One header does not solve both.
+
+## Core theory
+
+An idempotency key is an application contract for recognizing attempts to perform the same logical operation. For this lesson's POST operation, the service associates the key with an authenticated actor/tenant, operation, canonical request fingerprint and a recorded outcome. Repeating the same key and equivalent request returns the recorded outcome; using the same key for a materially different request produces a documented conflict.
+
+Do not describe one universal key header, expiry period or response code as an HTTP requirement. RFC 9110 defines method idempotence, while this design adds an explicit business-operation policy. The chosen API must document its key syntax, scope, retry horizon, result retention, in-progress behavior and failure semantics.
+
+A race is possible when two workers both check “key absent” before either records it. Use a database uniqueness constraint on the scoped key and a transaction that coordinates the business effect and idempotency outcome. A cache alone can disappear, and a process-local lock does not coordinate multiple servers. For an external payment provider, a local transaction cannot atomically commit the remote charge; coordinate the provider's supported idempotency facility, durable operation state and reconciliation.
+
+Fingerprint validated business meaning, not arbitrary incoming JSON bytes. Whitespace and property order should not create a new operation when the contract treats them as equivalent. Decide how defaults and omitted optional fields affect equivalence. Keep authorization checks in front of access to a stored result so an attacker cannot replay a guessed key to obtain another actor's data.
+
+Optimistic locking addresses a different invariant: only update the version the caller actually inspected. A strong ETag and If-Match can make this condition visible at the HTTP boundary. The database must enforce the version comparison and update atomically. A stale precondition returns 412 under the chosen HTTP contract. A business-state conflict can be 409; do not conflate it with a failed representation precondition.
+
+## Worked example
+
+The order API accepts key checkout-81 for actor U-1 in tenant T-1 and a validated request for two units of SKU BOOK. It commits order O-81 and the outcome record together. The connection fails before the client receives 201. A retry with the same scoped key and equivalent payload returns O-81; it does not create O-82.
+
+```sql
+-- Conceptual transaction; adapt to the chosen database.
+BEGIN;
+INSERT INTO operation_keys (tenant_id, actor_id, operation, key, fingerprint)
+VALUES ('T-1', 'U-1', 'create-order', 'checkout-81', 'hash-of-validated-input');
+INSERT INTO orders (id, tenant_id, quantity, version)
+VALUES ('O-81', 'T-1', 2, 1);
+UPDATE operation_keys SET result_order_id = 'O-81', state = 'completed'
+WHERE tenant_id = 'T-1' AND actor_id = 'U-1'
+  AND operation = 'create-order' AND key = 'checkout-81';
+COMMIT;
+```
+
+A uniqueness conflict needs explicit duplicate/in-progress handling. Do not repeat the order INSERT after a conflict. Separately, updating O-81 at version 1 should fail if another update already produced version 2.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n A["Authenticated request and operation key"] --> B{"Scoped key already recorded?"}\n B -->|No| C["Atomic claim and business write"]\n B -->|Yes| D{"Equivalent payload?"}\n D -->|Yes| E["Return recorded outcome"]\n D -->|No| F["Documented conflict"]\n C --> E'
+  }
+/>
+
+The key lookup is not the atomicity guarantee. The write boundary and unique scoped claim ensure competing requests cannot both create the logical operation.
+
+## Inspect the decision
+
+<details>
+<summary>A PUT is idempotent. Does this guarantee that two users cannot overwrite each other?</summary>
+
+No. Method idempotence concerns repetition of an identical intended operation. Different users can submit different replacements derived from stale state. Use a version precondition or another suitable concurrency policy when lost updates are unacceptable.
+
+</details>
+
+## Common mistakes
+
+- Using a new key after an uncertain outcome turns recovery into a new operation.
+- Scoping keys globally without a policy can leak results or cause unrelated actors to collide.
+- Recording the key after committing the business effect leaves a duplicate window.
+- Expiring a key before the supported retry/reconciliation period can permit a late duplicate.
+- Automatically retrying a stale PATCH without re-reading and reconciling can overwrite an intentional change.
+
+## Practice exercise
+
+Use the [API lab below](#practice-lab) to send simulated orders requests, inspect responses and check the exercise. The contract panel describes the fixture identities and limits.
+
+A refund request can take 20 seconds, clients can retry for 48 hours, and two API instances process requests concurrently. Specify outcomes for identical duplicates, changed payloads, an in-progress operation and an external-provider timeout. Then identify where If-Match belongs when a finance officer changes a refund decision.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Bind the operation key to tenant, actor and refund operation; validate/fingerprint the business request and enforce uniqueness durably. Retain enough operation state to honor the 48-hour retry contract and subsequent reconciliation needs. Return the existing result for an identical completed operation. Reject a different payload for the same key. Define an explicit in-progress response/status resource so the client can observe completion instead of creating another refund.
+
+For an external-provider timeout, preserve “outcome unknown/pending reconciliation” when justified, reuse the provider's original operation identity and query its authoritative state. Do not invent a successful or failed charge from the transport timeout alone. An officer editing a previously read decision supplies a version/If-Match precondition; the server compares and updates atomically. Idempotency and version checks can coexist because they protect different invariants.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Same operation → same scoped key and equivalent business payload. Unknown outcome → reconcile, not a new key. Duplicate prevention → durable unique claim plus the correct atomic boundary. Lost-update prevention → atomic version comparison. Neither mechanism replaces authorization.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): §§9.2.2 and 13.1.1.
+- [Microsoft Retry pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry): idempotency and transaction consistency.
+- [Microsoft Transactional Outbox](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos): local transaction boundaries.
+
+The operation-key schema, conflict policy and retention scenario are original application-design examples, not a universal idempotency protocol.

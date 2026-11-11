@@ -1,0 +1,146 @@
+---
+id: product-metrics
+locale: en
+title: 'AARRR, HEART and North Star metrics'
+objectives:
+  - 'Choose metrics that reveal customer behavior and value rather than vanity growth.'
+  - 'Select a North Star metric and two guardrails for a learning product.'
+---
+
+## 1. Learning objectives
+
+Choose a metric for a product decision, distinguish counts from rates and cohorts, explain AARRR and HEART, and propose a North Star candidate with guardrails. Interpret improvement without automatically claiming causation.
+
+## 2. Why it matters
+
+A learning app celebrates a doubling of page views. Interviews reveal that learners keep reopening the same explanation because it is confusing. More views may represent difficulty rather than learning value. A good measurement system starts with the decision and the user outcome, not the easiest event to count.
+
+## 3. Core theory
+
+**AARRR** is a lifecycle lens: acquisition, activation, retention, referral and revenue. Acquisition asks how relevant people arrive. Activation asks whether a new user experiences an initial meaningful benefit. Retention asks whether people return for continuing value. Referral concerns users introducing others. Revenue concerns the economic exchange that sustains the product. These categories are prompts, not a compulsory funnel for every business.
+
+**HEART** is a user-experience lens: happiness, engagement, adoption, retention and task success. Happiness may require carefully designed surveys or interviews; clicks alone do not establish satisfaction. Task success asks whether people can complete a meaningful task, including failures, effort and accessibility barriers. Select categories that answer your question instead of collecting everything.
+
+A **North Star metric** is a candidate measure of recurring customer value that helps coordinate product choices. It should reflect the product’s value hypothesis, not merely team output. No single metric captures every user’s experience. Use supporting measures and guardrails against harm, exclusion, privacy violations or unsustainable cost.
+
+Define the unit, population, time window, event and exclusions before calculating. A rate has a numerator and denominator. A cohort groups people with a shared starting condition, such as first activation week. Compare equivalent windows and segments. A changed metric may reflect measurement changes, seasonality or customer mix; it does not by itself prove that a feature caused the result.
+
+## 4. Worked example: useful learning rather than more clicks
+
+The fictional app promises that learners can apply business-analysis techniques to real scenarios. A candidate North Star is **weekly learners who complete a scenario exercise and demonstrate a stated skill on a follow-up task**. This is a hypothesis about learning value, not a validated industry standard. The team must check whether the task really tests the skill and whether the measure excludes people who learn differently.
+
+| Question                          | Candidate measure                                                                    | Limitation or guardrail                              |
+| --------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| Do new users reach initial value? | First-week learners completing a meaningful starter exercise / eligible new learners | Define eligibility and inspect access barriers       |
+| Does useful engagement continue?  | Activated cohort returning to a new relevant exercise in the following week          | Do not mix differently aged cohorts                  |
+| Can learners perform the task?    | Successful scenario applications / attempted applications                            | Review assessment validity and guessing              |
+| Are we causing harm or burden?    | Accessibility failures, unresolved confusion and unwanted reminder complaints        | Collect only necessary data with appropriate consent |
+
+In invented practice data, 100 people activate in week one and 40 of those return in week two. Under that exact return definition, next-week retention is 40%. If next month has 200 new activated users and 60 return, the absolute return count rises but the rate falls to 30%. Neither observation alone explains why it changed.
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart LR; A[Customer outcome] --> B[Decision and hypothesis]; B --> C[Define measure and cohort]; C --> D[Collect trustworthy evidence]; D --> E[Inspect segments and guardrails]; E --> F[Adapt and test again]; F --> B;'
+  }
+/>
+
+The loop starts with value and a decision. Checking data quality and side effects is part of interpretation, not an optional final report.
+
+## 6. Interactive metric choice
+
+A manager proposes “minutes spent in the app” as the only success measure. Consider each response.
+
+<details>
+<summary>Increase lesson length to raise time spent</summary>
+
+This can improve the metric while wasting learners’ time. Time may help diagnose effort, but maximizing it does not guarantee learning. A confusing page can increase time just as effectively as a useful exercise.
+
+</details>
+
+<details>
+<summary>Measure applied learning and use time as a diagnostic signal</summary>
+
+This is more closely connected to the product’s promise. Validate the assessment, inspect different learners and watch accessibility and frustration. Shorter time with sustained skill may be a better outcome than longer time without understanding.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Vanity count:** interpret sign-ups or views without relevant population or behavior. Add a value-linked rate or outcome measure.
+- **Cohort mixing:** compare a mature user group with a newly acquired group. Use comparable windows.
+- **Undefined denominator:** exclude failures after seeing results. State inclusion rules in advance.
+- **Correlation as causation:** a metric moves after a release, so assume the release caused it. Check alternatives and use appropriate experimental evidence.
+- **Single-metric pressure:** reward a team for a number that can be gamed. Inspect customer value and countermeasures.
+- **Collect everything:** more tracking can create privacy and maintenance risks. Collect what supports an explicit decision.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** A banking app wants customers to freeze a lost card quickly and safely. Choose a task-success measure, an activation signal and two guardrails. In a practice cohort, 15 of 50 attempted freezes succeed without assistance. Calculate the task-success rate under that definition and name a limitation.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+Task success could be a confirmed freeze by an eligible customer without assistance within an agreed observation window. Activation might be a new user successfully finding and understanding card controls; do not require a real card loss to create an activation event. Guardrails include accidental freeze or unfreeze reports and accessibility failure rates. The scenario success rate is 15 / 50 = 30%. It excludes people who never found the flow, so inspect discovery barriers separately. Also validate whether support-assisted completion should be reported as another outcome rather than hidden as failure. The numbers are fictional practice data, not bank benchmarks.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. Which is the strongest starting point for selecting a metric?**
+
+A. The event that is easiest to log. B. A customer outcome and decision you need to make. C. The biggest number available.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** A useful measure supports a value-related question. A may produce irrelevant data. C rewards scale without showing benefit or comparable context.
+
+</details>
+
+**2. Forty of 100 activated users return in the defined next-week window. What is that cohort’s return rate?**
+
+A. 40%. B. 140%. C. It must equal the percentage of all current users.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** The rate is 40 divided by the original eligible cohort of 100. B incorrectly adds counts. C changes the population and therefore answers a different question.
+
+</details>
+
+**3. Why should a North Star candidate have guardrails?**
+
+A. To guarantee all movement is causal. B. To eliminate qualitative research. C. To expose harms and trade-offs a primary measure can hide.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** A primary metric can improve while privacy, fairness or usability worsens. A overclaims what measurement establishes. B removes essential evidence about context and experience.
+
+</details>
+
+**4. Which question is especially connected to HEART’s task-success dimension?**
+
+A. Can people correctly complete the intended task, including those using assistive technology? B. How many story points did the team finish? C. How many unfiltered visits were logged?
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** It examines meaningful user performance. B measures delivery output, not user success. C measures activity without establishing completion or benefit.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**Start:** outcome, decision, hypothesis. **AARRR:** acquisition, activation, retention, referral, revenue. **HEART:** happiness, engagement, adoption, retention, task success. **Define:** unit, eligible population, event, window, numerator, denominator and exclusions. **North Star:** testable recurring-value candidate, supported by other evidence. **Guardrails:** privacy, accessibility, fairness, quality and cost. **Interpret:** cohort, segment, data quality and alternative explanations. **Remember:** output, activity, value and causation are different claims.
+
+## 11. Further reading
+
+- [Google Research: Measuring the User Experience on a Large Scale — the HEART framework](https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications/)
+- [Scrum.org: Evidence-Based Management Guide](https://www.scrum.org/resources/evidence-based-management-guide)
+- [GOV.UK: measuring service success](https://www.gov.uk/service-manual/measuring-success)
+- [Amplitude: North Star framework](https://amplitude.com/north-star)
+
+All examples, calculations and questions are original educational material. The scenario values are not claimed industry benchmarks.

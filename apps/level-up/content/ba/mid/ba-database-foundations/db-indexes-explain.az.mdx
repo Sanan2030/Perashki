@@ -1,0 +1,97 @@
+---
+id: db-indexes-explain
+locale: az
+title: 'İndekslər və EXPLAIN ilə sorğu optimallaşdırılması'
+objectives:
+  - 'Planner estimate-ini ölçülmüş execution-dan ayır.'
+  - 'Index-in bir workload-a kömək edib digərinə zərərini izah et.'
+  - 'EXPLAIN ANALYZE-ı təhlükəsiz qiymətləndir və təkrar icra olunan node-ları şərh et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Planner estimate-ini ölçülmüş execution-dan ayır.
+- Index-in bir workload-a kömək edib digərinə zərərini izah et.
+- EXPLAIN ANALYZE-ı təhlükəsiz qiymətləndir və təkrar icra olunan node-ları şərh et.
+
+## Bu mövzu niyə vacibdir
+
+Slow query hər filter olunan sütuna index lazım olduğunu göstərmir. Planner estimate əsasında access path seçir; kiçik cədvəli və ya geniş seçimi scan etmək daha ucuz ola bilər. Tuning “index scan həmişə yaxşıdır” qaydasından deyil, təmsilçi workload və ölçülmüş sübutdan başlayır.
+
+## Əsas anlayışlar
+
+Index storage və maintenance xərci ilə sətir tapmağın alternativ yoludur. B-tree çox vaxt equality və range şərtlərini dəstəkləyir, amma fayda query forması, selectivity, ordering, data distribution və mövcud index növündən asılıdır. Composite index-in sütunları sıralıdır; onları universal “hər sütuna index” qaydası ilə deyil, real predicate və workload-a görə seç.
+
+`EXPLAIN` adi statement-i işlətmədən planlaşdırılmış execution-u təsvir edir. Planner cost millisaniyə deyil, abstrakt estimate-dir. Estimated row node-un gözlənilən output-udur; baxılmış və filter olunmuş sətirdən fərqlənə bilər. Pis estimate yanlış join/access path seçdirə bilər; planner-i günahlandırmamış statistics və data distribution-u yoxla.
+
+`EXPLAIN (ANALYZE, BUFFERS)` statement-i icra edir və ölçmə əlavə edir. Production write və ya bahalı query üzərində düşünmədən işlətmə. Rollback adi transactional DB dəyişikliklərini geri qaytara bilər, amma function/integration-un hər external side effect-ini geri qaytardığını fərz etmək olmaz. Uyğun nəzarət olunan mühit və workload istifadə et.
+
+Plan-ı ağac kimi oxu. Node dəfələrlə icra oluna bilər; təkrarlanan node üçün actual time və row count hər loop üzrə orta göstərilir, ona görə loop sayını nəzərə al. Buffer məlumatı cache hit və read-i ayırmağa kömək edir, amma bir warm-cache icrası tam performance araşdırması deyil. Instrumentation özü overhead əlavə edə bilər.
+
+Alternativləri təmsilçi cardinality və concurrency ilə müqayisə et. Index lookup latency-ni azaldıb write işini və storage-ı artıra bilər. Product requirement, latency distribution və operational cost-u yoxla. Başqa mühəndisin nəticəni qiymətləndirməsi üçün query version, parameter, data scale, plan, environment və ölçmə şərtlərini saxla.
+
+## İşlənmiş nümunə
+
+Nümunə orders cədvəlində tez-tez bir müştərinin paid order-ləri seçilib vaxta görə sıralanır. Namizəd index belədir:
+
+```sql
+CREATE INDEX orders_customer_time_idx
+ON orders (customer_id, ordered_at);
+EXPLAIN
+SELECT order_id, ordered_at, amount_cents
+FROM orders
+WHERE customer_id = 'u42' AND status = 'paid'
+ORDER BY ordered_at;
+```
+
+Index müştərinin sətirlərini tapıb sıralamağa kömək edə bilər, amma index dizaynı nəzərə almırsa status şərti ayrıca yoxlanmalıdır. Kiçik fixture üçün sequential scan düzgün seçim ola bilər. Təmsilçi staging DB-də estimated/actual row, loop və buffer müqayisə et. Burada plan nəticəsi və sürət artımı uydurulmur; bunlar production-da icra edilmiş tuning deyil, PostgreSQL tədris statement-ləridir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Workload and latency requirement] --> P[Plan and estimates]\n P --> M[Controlled execution evidence]\n M --> I[Index or query option]\n I --> C[Read write and storage trade-offs]\n C --> R[Repeat representative measurement]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Index əlavə ediləndən sonra EXPLAIN cost azalmasını göstərir. Millisaniyə ilə sürət artımı sübut edilibmi?</summary>
+
+Xeyr. Cost abstrakt vahiddə planner estimate-dir. Statistics, cache state, parameter və concurrency-ni nəzərə alaraq uyğun workload-u ölç və real davranışı yoxla. Write və storage təsirlərini qərara daxil et.
+
+</details>
+
+## Tipik səhvlər
+
+- Cost vahidini keçmiş millisaniyə saymaq.
+- Təsiri qiymətləndirmədən write üzərində ANALYZE variantı işlətmək.
+- Loop sayını və estimate xətasını nəzərə almamaq.
+- Selectivity və table size-dan asılı olmayaraq sequential scan-i pis saymaq.
+
+## Praktik tapşırıq
+
+Plan tez-tez təkrarlanan node üçün 10 output row təxmin edir, amma 100000 verir. Index əlavə etməzdən əvvəl hansı sübutu araşdıracağını sadala və kiçik yerli bir icranın niyə kifayət etmədiyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Predicate parameter, table statistics, data skew, correlation, node loop və filtering-i yoxla. Query-nin düzgün nəticəni ifadə etdiyini, index-in predicate və ordering-ə kömək edib-etməyəcəyini araşdır. Environment və cache şərtlərini saxlayaraq reala uyğun scale və concurrency-də ölç. Kiçik fixture real workload cardinality və contention-ını təkrarlaya bilməz.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Estimate ≠ measurement. Cost ≠ millisaniyə. ANALYZE icra edir. Tree, row, loop və buffer-i oxu. Index daha sürətli access müqabilində storage və write maintenance xərci yaradır.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [PostgreSQL 18: Using EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html): cost, row, actual measurement, loop və məhdudiyyətlər.
+- [PostgreSQL 18: CREATE INDEX](https://www.postgresql.org/docs/18/sql-createindex.html): index definition, expression, predicate və operational məhdudiyyətlər. SQL və ssenarilər orijinaldır; ölçülmüş production performance iddiası yoxdur.

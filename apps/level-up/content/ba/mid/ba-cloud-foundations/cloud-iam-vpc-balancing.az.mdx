@@ -1,0 +1,91 @@
+---
+id: cloud-iam-vpc-balancing
+locale: az
+title: 'Cloud əsasları: IAM, VPC və load balancer'
+objectives:
+  - 'Workload role və least-privilege permission-ları izah et.'
+  - 'Request-i VPC, load balancer və application tier boyunca izlə.'
+  - 'Health check və network boundary-nin nəyi sübut etmədiyini müəyyən et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Workload role və least-privilege permission-ları izah et.
+- Request-i VPC, load balancer və application tier boyunca izlə.
+- Health check və network boundary-nin nəyi sübut etmədiyini müəyyən et.
+
+## Bu mövzu niyə vacibdir
+
+Xidmət əlçatan, amma unauthorized; authorized, amma əlçatmaz; load balancer-də sağlam, amma business workflow-da nasaz ola bilər. Identity, networking, routing və application policy-ni ayrı sərhəd saymaq cloud arxitekturasını anlamağı asanlaşdırır.
+
+## Əsas anlayışlar
+
+IAM hansı identity-nin hansı şərtdə hansı resource üzərində hansı action edə biləcəyini idarə edir. Daxilə yazılmış uzunömürlü access key əvəzinə uyğun temporary credential və workload role seç. Permission-u tələb olunan action/resource ilə məhdudlaşdır, real istifadəyə bax, güclü administrative yolları qoru. Role adı policy-nin minimal olduğunun sübutu deyil.
+
+VPC subnet, address, route table və connectivity seçimi olan məntiqi təcrid edilmiş şəbəkədir. Adında public olduğu üçün subnet public olmur. İnternet əlçatımlılığı route, addressing, gateway və control-dan asılıdır. Private network application-level authorization-u avtomatik vermir.
+
+Security group əlaqəli resource üçün allowed traffic-i idarə edir və AWS-də stateful-dur. Network ACL-in fərqli subnet-level stateless modeli var. Return traffic və scope-u anlamadan aralarında qayda köçürmə. Network rule reachability-ni məhdudlaşdırır; request-in müəyyən tenant object-inə girişini təsdiqləmir.
+
+Application Load Balancer listener və rule-a görə HTTP/HTTPS request-i target group-a yönəldir. Target health sübutu ilə seçilə bilər, amma keçən health endpoint bütün customer journey-ni sübut etmir. Readiness/failure davranışını uyğun qur və faydalı request correlation saxla.
+
+TLS termination və forwarding aydın trust modeli tələb edir. Encryption-un harada bitdiyini, növbəti hop-un qorunmasını və identity header verən trusted komponenti bil. Nəzərdə tutulan girişdən yan keçərək caller-in səlahiyyətli proxy header-i saxtalaşdırmasına imkan vermə.
+
+DNS, certificate, routing, data üçün IAM access və application permission da daxil olmaqla bütün request yolunu və operational asılılığı yoxla. Multi-zone placement və scaling xərc/failure nəticələri olan seçimdir; deployment-i cloud-native adlandırmaqla yaranan sehrli xüsusiyyət deyil.
+
+## İşlənmiş nümunə
+
+Orijinal booking dizaynı açıq HTTPS load balancer və birbaşa public inbound-u olmayan application tier istifadə edir. Network rule nəzərdə tutulan load-balancer-to-application yolunu açır. Workload role yalnız lazım olan secret və data resource-ları oxuya bilir.
+
+Customer request xidmətdə yenə authentication və object-level authorization-dan keçir. DB public caller-ə açılmır. Health endpoint 200 versə də role-da action çatmadığı üçün booking write fail edirsə komanda bütün port-ları açmır, identity sərhədini araşdırır. Tapşırıq AWS resource yaratmır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n U[Customer request] --> L[HTTPS listener and routing]\n L --> N[Constrained application network path]\n N --> A[Authentication and object authorization]\n A --> D[Data access under workload role]\n H[Health evidence] --> L'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>DB private subnet-dədir. Tətbiq tenant authorization-u buraxa bilərmi?</summary>
+
+Xeyr. Network placement hansı authenticated user-in biznes object-inə baxacağını deyil, reachability-ni məhdudlaşdırır. Server-side policy sərhədi qorumasa əlçatan tətbiq başqa tenant-ın data-sını aça bilər.
+
+</details>
+
+## Tipik səhvlər
+
+- Image və ya repository-də uzunömürlü key saxlamaq.
+- Subnet adını real routing sübutu saymaq.
+- IAM denial-ı düzəltmək üçün geniş network rule açmaq.
+- Load balancer health check-i end-to-end business test saymaq.
+
+## Praktik tapşırıq
+
+Load balancer-ə çatıb application authorization error alan request-i izlə. Dörd ayrı yoxlama seç və hər layer-i dəyişməyə hansı sübutun əsas verdiyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Listener/routing və target health-i, network yolunu, application identity/object policy-ni və downstream resource üçün workload access-i yoxla. Alınmış application denial network timeout deyil. Müvafiq səlahiyyətlə yalnız sübutun göstərdiyi layer-i dəyiş; səbəbi bilmədən IAM və network nəzarətini eyni anda genişləndirmə.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Identity permission ≠ network reachability ≠ TLS trust ≠ user/object authorization. Request yolunu izlə və temporary, scope-u məhdud workload credential istifadə et.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [AWS IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html): federation, temporary credential və least privilege.
+- [AWS VPC overview](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html): networking komponentləri.
+- [AWS Application Load Balancer overview](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html): request routing və target group.
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): server-side policy. Provider terminləri bütün cloud-lara ümumiləşdirilmir.

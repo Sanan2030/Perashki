@@ -1,0 +1,76 @@
+---
+id: pspo1-artifacts
+locale: en
+title: 'Artifacts and their commitments'
+objectives:
+  - 'Connect each artifact to its commitment.'
+  - 'Apply the distinctions between Done, acceptance criteria and refinement.'
+---
+
+## Concept
+
+The Product Backlog is an emergent, ordered list of work needed to improve the product. Its commitment is the Product Goal, a future state of the product. A team fulfills or abandons one Product Goal before taking on the next. Refinement continuously breaks down and clarifies items; it is not a separate prescribed event.
+
+## Why it matters
+
+The Sprint Backlog combines Sprint Goal (why), selected items (what) and an actionable plan (how). Its commitment is the Sprint Goal. It is a plan by and for Developers, updated as they learn. Scope can be renegotiated with the Product Owner without endangering the goal; it is not an immutable contract.
+
+## Decision principles
+
+An Increment is an additive, integrated, verified and usable step. Its commitment is Definition of Done. Acceptance criteria describe item-specific behavior but do not replace shared quality measures. Work that is not Done is not part of the Increment and cannot be released or presented at Review; it returns to the Product Backlog. Teams on the same product share a Definition of Done.
+
+### Distinguish item criteria from shared quality
+
+An item’s acceptance criteria might describe support for two currencies, while Definition of Done might include security, integration or other shared quality measures. Scrum does not prescribe this particular checklist. An organizational Done standard applies as a minimum; otherwise the Scrum Team creates one appropriate to the product. Meeting item-specific behavior criteria does not make work part of the Increment if shared quality checks remain. Conversely, adding an item-specific behavior criterion need not change the shared Definition of Done.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n  A["Product Backlog"] --> B["Product Goal"]\n  C["Sprint Backlog"] --> D["Sprint Goal"]\n  E["Increment"] --> F["Definition of Done"]'
+  }
+/>
+
+This is a teaching summary, not a reproduction of a source figure.
+
+## Worked scenario
+
+A booking button works, but the security check in the shared Definition of Done has failed. The Product Owner wants to show it as partial value at Review.
+
+## Decision reasoning
+
+Do not present the item as a Done Increment. Make the problem transparent and return it to the Product Backlog for future consideration. Meeting item-specific acceptance criteria does not waive shared security quality.
+
+## Common pitfalls
+
+Weakening Done on the last day; making refinement an approval gate; assuming Scrum mandates user stories or story points.
+
+## Application exercise
+
+Write a booking-product example for Product Goal, Sprint Goal and Definition of Done, plus separate acceptance criteria for one item.
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+Product Goal: book without follow-up calls. Sprint Goal: let users see availability and reserve. Done: integration, automated tests and security checks. Item criterion: show an explanatory message for unavailable slots. These are teaching examples.
+
+</details>
+
+## Check understanding and remember
+
+Product Backlog → Product Goal; Sprint Backlog → Sprint Goal; Increment → Definition of Done. Ready does not mean Done.
+
+<LessonCheck />
+
+## Sources and scope
+
+Scrum Guide 2020: Scrum Artifacts and each Commitment section. Book: chapter 7, Done and Ready.
+
+- [The Scrum Guide — Ken Schwaber & Jeff Sutherland (November 2020)](https://scrumguides.org/scrum-guide.html)
+- [The Professional Product Owner — Don McGreal & Ralph Jocham (2018), ISBN 9780134686479](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+
+Explanations and examples are original teaching material. Official test questions are not reproduced. Exam formats are verified separately; these topic groups are not an official blueprint.
+
+Additional scope reference: [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies). The user-supplied text was read; the competency taxonomy does not establish official exam weights.

@@ -1,0 +1,197 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { Bold, Code2, Italic, List, ListOrdered, Quote, Underline, type LucideIcon } from 'lucide-react';
+import {
+  documentText, editableDocument, parseRichHTML, renderRichDocument, toggleListBlocks, type RichDocument, type RichMark,
+} from '@/lib/ui/rich-document';
+import { readRichSelection, replaceRichSelection, restoreRichSelection, type RichPosition } from '@/lib/ui/rich-selection';
+import { shouldSubmitEditorKey } from '@/lib/ui/editor-keys';
+
+const tagByMark: Record<RichMark, string> = {
+  bold: 'strong', italic: 'em', underline: 'u', quote: 'q', code: 'code',
+};
+const controls: { action: RichMark | 'bullet' | 'ordered'; title: string; icon: LucideIcon }[] = [
+  { action: 'bold', title: 'Qalın (Ctrl+B)', icon: Bold },
+  { action: 'italic', title: 'Kursiv (Ctrl+I)', icon: Italic },
+  { action: 'underline', title: 'Altıxətli (Ctrl+U)', icon: Underline },
+  { action: 'quote', title: 'Sitat — seçilmiş mətni dırnağa al', icon: Quote },
+  { action: 'code', title: 'Kod formatı', icon: Code2 },
+  { action: 'bullet', title: 'Markerlənmiş siyahı', icon: List },
+  { action: 'ordered', title: 'Nömrələnmiş siyahı', icon: ListOrdered },
+];
+
+function closestTag(node: Node, tag: string, root: HTMLElement): HTMLElement | null {
+  let current: Node | null = node.nodeType === Node.TEXT_NODE ? node.parentNode : node;
+  while (current && current !== root) {
+    if (current instanceof HTMLElement && current.tagName.toLowerCase() === tag) return current;
+    current = current.parentNode;
+  }
+  return null;
+}
+
+function wrapRange(range: Range, tag: string): void {
+  const fragment = range.extractContents();
+  const wrapper = document.createElement(tag);
+  wrapper.append(fragment);
+  range.insertNode(wrapper);
+  const selection = window.getSelection();
+  const selected = document.createRange();
+  selected.selectNodeContents(wrapper);
+  selection?.removeAllRanges();
+  selection?.addRange(selected);
+}
+
+export interface RichEditorProps {
+  value: RichDocument;
+  onChange: (document: RichDocument) => void;
+  label: string;
+  placeholder?: string;
+  disabled?: boolean;
+  maxLength?: number;
+  onSubmit?: () => void;
+  onBlur?: () => void;
+}
+
+export function RichEditor({ value, onChange, label, placeholder, disabled, maxLength, onSubmit, onBlur }: RichEditorProps) {
+  const editor = useRef<HTMLDivElement>(null);
+  const last = useRef(value);
+  const initialized = useRef(false);
+  const savedRange = useRef<Range | null>(null);
+
+  useEffect(() => {
+    const remember = () => {
+      const selection = window.getSelection();
+      if (selection?.rangeCount && editor.current?.contains(selection.getRangeAt(0).commonAncestorContainer)) {
+        savedRange.current = selection.getRangeAt(0).cloneRange();
+      }
+    };
+    document.addEventListener('selectionchange', remember);
+    return () => document.removeEventListener('selectionchange', remember);
+  }, []);
+
+  useEffect(() => {
+    if (editor.current && (!initialized.current || last.current !== value)) {
+      editor.current.replaceChildren(renderRichDocument(value, editor.current.ownerDocument));
+      last.current = value;
+      initialized.current = true;
+    }
+  }, [value]);
+
+  function publish() {
+    if (!editor.current) return;
+    const next = parseRichHTML(editor.current.innerHTML);
+    if (maxLength !== undefined && documentText(next).length > maxLength) {
+      editor.current.replaceChildren(renderRichDocument(last.current, editor.current.ownerDocument));
+      return;
+    }
+    last.current = next;
+    onChange(next);
+  }
+
+  function commit(next: RichDocument, start: RichPosition, end = start) {
+    const root = editor.current;
+    if (!root || maxLength !== undefined && documentText(next).length > maxLength) return;
+    root.replaceChildren(renderRichDocument(next, root.ownerDocument));
+    last.current = next;
+    onChange(next);
+    restoreRichSelection(root, start, end);
+    savedRange.current = window.getSelection()?.getRangeAt(0).cloneRange() ?? null;
+  }
+
+  function act(action: RichMark | 'bullet' | 'ordered') {
+    const root = editor.current;
+    const selection = window.getSelection();
+    if (!root || disabled) return;
+    const current = selection?.rangeCount ? selection.getRangeAt(0) : null;
+    const range = current && root.contains(current.commonAncestorContainer) ? current : savedRange.current;
+    if (!range || !root.contains(range.commonAncestorContainer)) return;
+
+    if (action === 'bullet' || action === 'ordered') {
+      const selected = readRichSelection(root, range);
+      const lastBlock = selected.end.offset === 0 && selected.end.block > selected.start.block ? selected.end.block - 1 : selected.end.block;
+      const next = toggleListBlocks(selected.document, selected.start.block, lastBlock, action);
+      commit(next, selected.start, selected.end);
+    } else {
+      if (range.collapsed || !selection) return;
+      const existing = closestTag(range.commonAncestorContainer, tagByMark[action], root);
+      if (existing && existing.textContent === range.toString()) {
+        existing.replaceWith(...Array.from(existing.childNodes));
+      } else if (action === 'quote') {
+        const selected = range.toString();
+        const fragment = range.extractContents();
+        const wrapper = document.createElement('q');
+        if (!(selected.startsWith('“') && selected.endsWith('”'))) wrapper.append('“');
+        wrapper.append(fragment);
+        if (!(selected.startsWith('“') && selected.endsWith('”'))) wrapper.append('”');
+        range.insertNode(wrapper);
+        const selectedRange = document.createRange();
+        selectedRange.selectNodeContents(wrapper);
+        selection.removeAllRanges();
+        selection.addRange(selectedRange);
+      } else wrapRange(range, tagByMark[action]);
+    }
+    if (action !== 'bullet' && action !== 'ordered') publish();
+  }
+
+  function paste(event: React.ClipboardEvent<HTMLDivElement>) {
+    event.preventDefault();
+    const root = editor.current;
+    const selection = window.getSelection();
+    if (!root || !selection?.rangeCount) return;
+    const range = selection.getRangeAt(0);
+    if (!root.contains(range.commonAncestorContainer)) return;
+    const html = event.clipboardData.getData('text/html');
+    const source = html ? parseRichHTML(html) : editableDocument(event.clipboardData.getData('text/plain'));
+    const next = replaceRichSelection(readRichSelection(root, range), source);
+    commit(next.document, next.caret);
+  }
+
+  function drop(event: React.DragEvent<HTMLDivElement>) {
+    event.preventDefault();
+    const root = editor.current;
+    const selection = window.getSelection();
+    const range = document.caretRangeFromPoint?.(event.clientX, event.clientY)
+      ?? (selection?.rangeCount ? selection.getRangeAt(0) : undefined);
+    if (!root || !range || !root.contains(range.commonAncestorContainer)) return;
+    const raw = event.dataTransfer.getData('text/plain');
+    const next = replaceRichSelection(readRichSelection(root, range), editableDocument(raw));
+    commit(next.document, next.caret);
+  }
+
+  return (
+    <div className="workspace-rich-editor">
+      <div className="workspace-rich-toolbar" role="toolbar" aria-label={`${label} formatı`}>
+        <span className="workspace-rich-toolbar-label">Format</span>
+        {controls.map(control => {
+          const Icon = control.icon;
+          return (
+            <button key={control.action} type="button" title={control.title}
+              aria-label={control.title} disabled={disabled}
+              onMouseDown={event => event.preventDefault()}
+              onClick={() => act(control.action)}>
+              <Icon size={15} strokeWidth={2} aria-hidden="true" />
+            </button>
+          );
+        })}
+      </div>
+      <div ref={editor} contentEditable={!disabled} suppressContentEditableWarning
+        role="textbox" aria-label={label} aria-multiline="true" spellCheck={false}
+        data-placeholder={placeholder} data-empty={!documentText(value)}
+        className="workspace-rich-surface"
+        onInput={publish} onPaste={paste} onDrop={drop} onBlur={onBlur}
+        onKeyDown={event => {
+          if (event.nativeEvent.isComposing) return;
+          if ((event.metaKey || event.ctrlKey) && ['b', 'i', 'u'].includes(event.key.toLowerCase())) {
+            event.preventDefault();
+            act(({ b: 'bold', i: 'italic', u: 'underline' } as const)[event.key.toLowerCase() as 'b' | 'i' | 'u']);
+            return;
+          }
+          if (onSubmit && shouldSubmitEditorKey({ key: event.key, shiftKey: event.shiftKey, altKey: event.altKey, isComposing: event.nativeEvent.isComposing })) {
+            event.preventDefault();
+            onSubmit();
+          }
+        }} />
+    </div>
+  );
+}

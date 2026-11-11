@@ -1,0 +1,89 @@
+---
+id: elicitation
+locale: az
+title: 'Müsahibə, seminar və müşahidə'
+objectives:
+  - 'Konkret qeyri-müəyyənlik üçün elicitation texnikası seç.'
+  - 'Real iş barədə cavabı yönləndirməyən suallar ver.'
+  - 'Finding, interpretation, açıq məsələ və approval qərarını ayır.'
+---
+
+## Öyrənmə məqsədləri
+
+- Konkret qeyri-müəyyənlik üçün elicitation texnikası seç.
+- Real iş barədə cavabı yönləndirməyən suallar ver.
+- Finding, interpretation, açıq məsələ və approval qərarını ayır.
+
+## Bu mövzu niyə vacibdir
+
+Stakeholder export button istəyir, amma support təkrarlanan reconciliation xətası bildirir. Düyməni dərhal qurmaq real problemi saxlaya bilər. Elicitation təklif edilən həll avtomatik requirement sayılmamış ehtiyac, qayda, məhdudiyyət və sübutu açır. Analyst kimin təcrübəsinin çatışmadığını da bilməlidir.
+
+## Əsas anlayışlar
+
+Məlumatın dəstəkləyəcəyi qərardan başla. İştirakçı, sənəd, termin, access məhdudiyyəti və expected output-u tap. Bir workshop hər suala cavab verər düşünmək əvəzinə texnikaları birləşdir.
+
+Interview insanın real təcrübəsini dərindən açır. Gələcək feature barədə rəy istəməzdən əvvəl “Son uğursuz reconciliation-u addım-addım danış” soruş. “Əla dashboard-umuz bunu həll edərmi?” kimi leading sual cavabı təlqin edir və zəif sübut verir. Recording-dən əvvəl icazə al, lazımsız şəxsi məlumat toplama.
+
+Observation workaround-u, sənədləşmiş və real proses fərqini göstərir. Ekran addımından niyyət çıxarmaq əvəzinə mənasını soruş. Müşahidəçi davranışa təsir edə bilər; bir növbə bütün operating condition-ları təmsil etmir.
+
+Workshop insanlara bilik müqayisəsi, termin razılaşması və birgə seçim araşdırması verir. Outcome, agenda, facilitation rolları və decision authority müəyyən et. Sakit iştirakçını da dinlə, etirazı saxla; səsli çoxluq legal, security və business authority-ni əvəz etmir.
+
+Source, tarix, kontekst, nümunə və confidence saxla. Birbaşa müşahidəni interpretation və həll olunmamış assumption-dan ayır. Elicitation results confirmation qeydin mənbəni düzgün əks etdirib-etdirmədiyini yoxlayır. Həlli və hər derived requirement-i avtomatik approve etmir. Verification, business validation və approval ayrı fəaliyyətdir.
+
+## İşlənmiş nümunə
+
+Çatdırılma şirkəti “order-lər itir” deyir. Dispatcher üçün reassignment-dan sonra order filtered queue-dan yox olur; finance üçün settled order gündəlik export-da görünmür. Bunlar ayrı event-dir.
+
+Analyst iki rolla yaxın nümunə üzrə danışır, reassignment-ı müşahidə edir, export timestamp-lərini müqayisə edir. Ortaq log iki finding saxlayır: queue visibility assignment-a görə dəyişir; export cutoff late settlement-i çıxarır. İştirakçılar təsviri təsdiqləyir. Sonra export window təklifi impact assessment və səlahiyyətli qərara gedir; interview qeydlərinin təsdiqi maliyyə policy-sini dəyişmək icazəsi sayılmır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n D[Decision and uncertainty] --> P[Prepare people and evidence]\n P --> E[Interview observe workshop]\n E --> F[Findings and open questions]\n F --> C[Confirm accuracy]\n C --> A[Separate analysis and approval]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Interview iştirakçısı qeydləri doğru sayır, amma feature təklifini rədd edir. Bu, ziddiyyətdirmi?</summary>
+
+Xeyr. İnsan investisiyanı və həlli deyil, təcrübəsinin təsvirini təsdiqləyib. Təklifin hansı ehtiyacı və seçim təsirini qarşılamadığını soruş, təsdiqlənmiş sübutu saxla, alternativi razılaşdırılmış qərar prosesi ilə yoxla.
+
+</details>
+
+## Tipik səhvlər
+
+- İstənilən feature-i əsas ehtiyac saymaq.
+- Bir ekspertin fikrini bütün user-lərə ümumiləşdirmək.
+- Uyğun consent/access olmadan həssas case yazmaq.
+- Workshop-da susmağı approval saymaq.
+
+## Praktik tapşırıq
+
+Son uğursuz refund barədə 30 dəqiqəlik interview hazırla. Üç non-leading sual, bir observation və qeydə alınmış finding-i təsdiqləmə üsulu yaz. Policy dəyişikliyini kimin approve edə biləcəyini göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Refund-u nə başladıb, hansı addımlar gedib, expected nəticə actual-dan harada fərqlənib soruş. Məxfi hissəsi çıxarılmış yaxın nümunə istə, icazə varsa cari workflow-u müşahidə et. Ardıcıllığı, termin və açıq məsələləri iştirakçıya geri xülasələ. Düzəlişi saxla, qısa confirmation sorğusu göndər. Policy sahibini ayrıca tap; interview facilitator avtomatik approver deyil.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Qərar → iştirakçı və texnika → sübut → təsdiqlənmiş finding → analiz → səlahiyyətli qərar. Hər addımda source və qeyri-müəyyənliyi saxla.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Təqdim edilmiş kitabın seçilmiş bölmələri orijinal izah və ssenariləri dəstəkləyir; mənbə mətni və üzvlər üçün PDF yayılmır.
+
+- BABOK §§4.1–4.5; interviews §10.25, observation §10.31, workshops §10.50.
+- [GOV.UK: Using in-depth interviews](https://www.gov.uk/service-manual/user-research/using-in-depth-interviews): hazırlıq, açıq sual və iştirakçı təcrübəsi.

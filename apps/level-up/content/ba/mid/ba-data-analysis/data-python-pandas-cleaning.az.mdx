@@ -1,0 +1,125 @@
+---
+id: data-python-pandas-cleaning
+locale: az
+title: 'Python və pandas: təmizləmə, yoxlama və təhlükəsiz merge'
+objectives:
+  - 'Aydın type-larla data yüklə və cleaning nəticəsini bildir.'
+  - 'Exact duplicate-i, konfliktli identifier-i və missing required value-nu ayır.'
+  - 'Merge cardinality yoxlaması istifadə et və aggregate-i SQL-lə tutuşdur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Aydın type-larla data yüklə və cleaning nəticəsini bildir.
+- Exact duplicate-i, konfliktli identifier-i və missing required value-nu ayır.
+- Merge cardinality yoxlaması istifadə et və aggregate-i SQL-lə tutuşdur.
+
+## Bu mövzu niyə vacibdir
+
+İnandırıcı rəqəm verən notebook kifayət deyil. Başqa analyst hansı row-un saxlandığını, digərlərinin niyə çıxarıldığını və join-in duplicate yaradıb-yaratmadığını bilməlidir. Fərziyyə spreadsheet-də gizli edit deyil, açıq check olanda Python təkrarlanan analizi asanlaşdırır.
+
+## Əsas anlayışlar
+
+Raw faylı dəyişməz evidence say. Derived output-u ayrı yaz, source version, schema, run time və reconciliation count saxla. Tapşırıqda süni və ya uyğun icazəli data istifadə et; rahat CSV şəxsi məlumatı repository-yə köçürmək səbəbi deyil.
+
+Ingestion zamanı required column və type elan et. ID quantity deyil, identifier-dir: leading zero saxla. Date-i aydın format, timezone və failure policy ilə parse et. Binary floating-point rounding-dən qaçmaq üçün tədris pulunu integer cent saxla; real maliyyə işi decimal arithmetic və currency field tələb edə bilər.
+
+Pandas dtype-larında missing value fərqli təqdim olunur. `NaN` bərabərliyi əvəzinə `isna()`/`notna()` istifadə et. Nullable integer/boolean missing-i saxta zero və ya true/false yaratmadan saxlayır. `fillna` işlətməzdən əvvəl missing-in mənasını seç.
+
+Exact duplicate row ilə eyni key-də konfliktli row ayrı policy tələb edir. Fixture exact repeat-i çıxarır. Etibarlı ordering/correction contract olmadığından eyni order ID-nin ziddiyyətli versiyasını rədd edir. Amount-suz row-u quarantine edib səbəbi bildirir. Başqa domain version-ları saxlaya bilər; qaydanı sənədləşdir.
+
+Merge record sayını artıra bilər. Hər ID üçün bir customer row və customer-ə çox order olduqda attribute əlavə etmək üçün `validate='many_to_one'` istifadə et. `indicator=True` unmatched key-i göstərir. Pandas null join key-ləri bir-birinə match edə bilər; adi SQL equality join-dən fərqlidir. SQL kimi non-matching lazımdırsa missing key-i ayrıca ayır və ya rədd et.
+
+Sərhədlərdə reconcile et: input row, exact duplicate, invalid row, retained row, paid row və total money. Aggregate publish-dən əvvəl gözlənilməyən match-i yoxla. Böyük row sayı və sürətli notebook yanlış grain-i kompensasiya etmir.
+
+## İşlənmiş nümunə
+
+Repository-də eyni süni tapşırığın standard-library və optional pandas implementasiyası var. Cleaning doqquz raw row, bir exact duplicate, amount-suz bir quarantined row və yeddi valid unique order bildirir.
+
+Cleaning-dən sonra pandas enrichment cardinality check istifadə edir:
+
+```python
+import pandas as pd
+
+orders = pd.read_csv('clean_orders.csv', dtype={
+    'order_id': 'string', 'customer_id': 'string',
+    'amount_cents': 'Int64',
+})
+customers = pd.read_csv('customers.csv', dtype={
+    'customer_id': 'string',
+})
+if orders['customer_id'].isna().any():
+    raise ValueError('Missing customer key')
+if customers['customer_id'].isna().any():
+    raise ValueError('Missing customer key')
+enriched = orders.merge(
+    customers, on='customer_id', how='left',
+    validate='many_to_one', indicator=True,
+)
+if not enriched['_merge'].eq('both').all():
+    raise ValueError('Unmatched customer key')
+paid = enriched.loc[enriched['status'].eq('paid')]
+assert int(paid['amount_cents'].sum()) == 16500
+```
+
+Kod cleaned input fərz edir. Lab-dakı `pandas_analysis.py` cleaning də edir, şəxsi data yazmır və nəticəni SQLite reference ilə müqayisə edir. Duplicate customer dimension key revenue-nu səssiz artırmaq əvəzinə merge-i fail edir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n R[Immutable raw CSV] --> S[Schema and type checks]\n S --> D[Exact duplicate policy]\n D --> Q[Quarantine invalid rows]\n Q --> M[Validated merge]\n M --> T[Reconcile with SQL]'
+  }
+/>
+
+Hər sərhədin ölçülən output-u var. Azalan row sayını izah etmək üçün rejection səbəblərini saxla.
+
+## Qərarı təhlil et
+
+<details>
+<summary>fillna(0) bütün table-a təhlükəsiz tətbiq edilə bilərmi?</summary>
+
+Xeyr. Unknown amount-u iddia edilən zero-ya, missing identifier-i saxta key-ə, missing category-ni izahsız numeric value-ya çevirə bilər. Mənanı razılaşdırdıqdan sonra field-ə məxsus qayda tətbiq et. Valid zero-revenue customer və invalid missing order amount ayrı idarə olunmalıdır.
+
+</details>
+
+## Tipik səhvlər
+
+- Identifier type-ı təxmin edib leading zero itirmək.
+- Konfliktli value-nu araşdırmadan duplicate ID silmək.
+- Dimension key uniqueness yoxlamadan merge etmək.
+- Pandas null-key matching-i SQL equality join ilə eyni saymaq.
+- Gözlənilən rəqəm görünənədək input faylını dəyişmək.
+- Exclusion count və təkrarlana bilən environment olmadan nəticə publish etmək.
+
+## Praktik tapşırıq
+
+Pandas qurulubsa iki implementasiyanı da işlət. Paid revenue və monthly total müqayisə et. Temporary copy-də bir customer row-u duplicate et; many-to-one merge keçməlidirmi, proqnozlaşdır. Missing amount-u pulsuz order kimi göstərmədən necə bildirəcəyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Hər iki implementasiya 16500 paid cent və 4000, 6000, 6500 monthly total qaytarmalıdır. Duplicate customer key many-to-one contract-ı pozur; enrichment-dən əvvəl fail etməli və ya həll olunmalıdır. Missing amount record-unu səbəbi ilə quarantine count-da bildir; revenue-ya səssiz zero yazma. Input-u dəyişmədən saxla, cleaning policy-ni output-la qeydə al.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Risk                         | Python/pandas yoxlaması                 |
+| ---------------------------- | --------------------------------------- |
+| ID formatı itir              | Aydın string dtype                      |
+| Unknown saxta zero olur      | isna və field-ə məxsus policy           |
+| Ziddiyyətli order version    | Duplicate-key conflict check            |
+| Dimension join pulu çoxaldır | merge(validate='many_to_one')           |
+| Missing relation gizlənir    | Indicator və unmatched key check        |
+| Notebook nəticəsi fərqlənir  | Müstəqil query ilə total reconciliation |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [pandas: Working with missing data](https://pandas.pydata.org/docs/user_guide/missing_data.html): missing value detection, nullable dtype və fill.
+- [pandas: Merge, join, concatenate and compare](https://pandas.pydata.org/docs/user_guide/merging.html): cardinality validation, indicator və null-key davranışı.
+- [İcra edilən data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab): orijinal cleaning/reconciliation tapşırığı; pandas optional lab dependency-dir, application dependency deyil.

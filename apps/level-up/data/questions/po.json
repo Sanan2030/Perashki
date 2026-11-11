@@ -1,0 +1,610 @@
+[
+  {
+    "id": "po-001",
+    "trackId": "po",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 1,
+    "text": {
+      "en": "A Junior Product Owner receives fifty unrelated ideas for a new service. What would provide direction before ordering them?",
+      "az": "Junior Product Owner yeni xidmət üçün əlli əlaqəsiz ideya alır. Sıralamadan əvvəl istiqaməti nə verər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Create a clear longer-term objective for the product.",
+          "az": "Məhsul üçün aydın uzunmüddətli məqsəd yaratmaq."
+        },
+        "explanation": {
+          "en": "A Product Goal provides direction for the Product Backlog and subsequent planning.",
+          "az": "Product Goal Məhsul Bekloquna və sonrakı planlaşdırmaya istiqamət verir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Label every request as mandatory without comparing consequences.",
+          "az": "Nəticələri müqayisə etmədən hər istəyi məcburi saymaq."
+        },
+        "explanation": {
+          "en": "If everything is essential, the classification offers no useful basis for trade-offs.",
+          "az": "Hər şey zəruridirsə, təsnifat seçimlər üçün faydalı əsas vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Give the loudest stakeholder permanent priority.",
+          "az": "Ən çox israr edən tərəfə daimi üstünlük vermək."
+        },
+        "explanation": {
+          "en": "Influence alone is not evidence of customer value, urgency, or alignment with the product goal.",
+          "az": "Təsir gücü təkbaşına müştəri dəyəri, təcililik və ya məhsul məqsədinə uyğunluq sübutu deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A Product Goal provides direction for the Product Backlog and subsequent planning.",
+      "az": "Product Goal Məhsul Bekloquna və sonrakı planlaşdırmaya istiqamət verir."
+    },
+    "lessonId": "product-goal",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-002",
+    "trackId": "po",
+    "type": "single",
+    "domain": "scrum-application",
+    "difficulty": 1,
+    "text": {
+      "en": "Developers ask the Product Owner for permission to change their implementation plan after learning something new. What is appropriate?",
+      "az": "Developers yeni məlumatdan sonra tətbiq planını dəyişmək üçün Product Owner-dən icazə istəyirlər. Uyğun yanaşma nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Let Developers decide how to create the Increment.",
+          "az": "Increment-in necə yaradılacağına Developers-in qərar verməsinə imkan yaratmaq."
+        },
+        "explanation": {
+          "en": "Developers own the implementation plan and adapt it as they learn.",
+          "az": "Developers tətbiq planına sahibdirlər və öyrəndikcə onu uyğunlaşdırırlar."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Have the Product Owner assign individual technical tasks.",
+          "az": "Fərdi texniki tapşırıqları Product Owner-in paylaması."
+        },
+        "explanation": {
+          "en": "This removes the Developers’ ownership of the implementation plan and self-management.",
+          "az": "Bu, tətbiq planına sahibliyi və özünüidarəetməni Developersdan alır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Freeze the original plan regardless of new evidence.",
+          "az": "Yeni sübutdan asılı olmayaraq ilkin planı dəyişməz saxlamaq."
+        },
+        "explanation": {
+          "en": "Ignoring new evidence prevents adapting to a better understanding of the need or situation.",
+          "az": "Yeni sübutun nəzərə alınmaması ehtiyac və ya vəziyyətin daha yaxşı anlaşılmasına uyğunlaşmağa mane olur."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Developers own the implementation plan and adapt it as they learn.",
+      "az": "Developers tətbiq planına sahibdirlər və öyrəndikcə onu uyğunlaşdırırlar."
+    },
+    "lessonId": "scrum-accountabilities",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-003",
+    "trackId": "po",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 1,
+    "text": {
+      "en": "A release includes all promised features but customers cannot complete the intended job. What should the Product Owner examine?",
+      "az": "Buraxılış bütün vəd edilən funksiyaları ehtiva edir, amma müştərilər nəzərdə tutulan işi görə bilmirlər. Product Owner nəyi yoxlamalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Measure a change in customer behavior or benefit.",
+          "az": "Müştəri davranışında və ya faydasında dəyişikliyi ölçmək."
+        },
+        "explanation": {
+          "en": "Outcome measures connect product work to the effect it is intended to create.",
+          "az": "Nəticə göstəriciləri məhsul işini yaratmalı olduğu təsirlə əlaqələndirir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Count delivered features as proof of customer benefit.",
+          "az": "Təqdim olunan funksiyaların sayını müştəri faydasının sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Output volume does not establish adoption, benefit, or a changed business outcome.",
+          "az": "Çıxış həcmi qəbul, fayda və ya dəyişmiş biznes nəticəsini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat a manager’s signature as sufficient proof that the need is satisfied.",
+          "az": "Rəhbərin imzasını ehtiyacın ödənilməsinin kifayət qədər sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Authorization alone does not demonstrate observable business behavior or achieved value.",
+          "az": "Təkcə icazə müşahidə olunan biznes davranışını və ya əldə olunan dəyəri göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Outcome measures connect product work to the effect it is intended to create.",
+      "az": "Nəticə göstəriciləri məhsul işini yaratmalı olduğu təsirlə əlaqələndirir."
+    },
+    "lessonId": "product-metrics",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-004",
+    "trackId": "po",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "en": "A Mid Product Owner has three solution ideas and little evidence about the customer problem. What is the most responsible next move?",
+      "az": "Mid Product Owner-in üç həll ideyası və müştəri problemi barədə az sübutu var. Ən məsuliyyətli növbəti addım nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Study the problem with affected users before committing to a solution.",
+          "az": "Həllə öhdəlik götürməzdən əvvəl problemi təsirlənən istifadəçilərlə öyrənmək."
+        },
+        "explanation": {
+          "en": "Discovery tests whether a meaningful problem exists for a specific group.",
+          "az": "Kəşf konkret qrup üçün əhəmiyyətli problemin olub-olmadığını yoxlayır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Implement the requested interface before investigating the need.",
+          "az": "Ehtiyacı araşdırmadan istənilən interfeysi hazırlamaq."
+        },
+        "explanation": {
+          "en": "This commits to a solution before evidence establishes which problem should be solved.",
+          "az": "Bu, hansı problemin həll edilməli olduğu sübut edilmədən həllə öhdəlik yaradır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Copy a competitor’s feature without checking the customer problem.",
+          "az": "Müştəri problemini yoxlamadan rəqibin funksiyasını təkrarlamaq."
+        },
+        "explanation": {
+          "en": "Competitor behavior does not establish whether the same solution addresses this product’s users or strategy.",
+          "az": "Rəqibin davranışı eyni həllin bu məhsulun istifadəçilərinə və ya strategiyasına uyğun olduğunu sübut etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Discovery tests whether a meaningful problem exists for a specific group.",
+      "az": "Kəşf konkret qrup üçün əhəmiyyətli problemin olub-olmadığını yoxlayır."
+    },
+    "lessonId": "jtbd-research",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-005",
+    "trackId": "po",
+    "type": "single",
+    "domain": "product-value",
+    "difficulty": 2,
+    "text": {
+      "en": "A test improves average conversion but worsens outcomes for customers using assistive tools. What should the decision include?",
+      "az": "Test orta çevrilməni artırır, amma köməkçi alət istifadəçilərinin nəticəsini pisləşdirir. Qərar nəyi əhatə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Track a guardrail measure for harm alongside the target outcome.",
+          "az": "Hədəf nəticə ilə yanaşı zərəri izləyən qoruyucu göstərici seçmək."
+        },
+        "explanation": {
+          "en": "Guardrails reveal when a local improvement damages trust, safety, accessibility, or another important outcome.",
+          "az": "Qoruyucu göstəricilər yerli yaxşılaşmanın etimada, təhlükəsizliyə, əlçatanlığa və ya başqa nəticəyə zərər vurduğunu göstərir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Use only the overall average and disregard segment differences.",
+          "az": "Yalnız ümumi ortalamadan istifadə edib seqment fərqlərini nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "An aggregate can hide different outcomes and harm affecting particular groups.",
+          "az": "Ümumi göstərici müəyyən qruplara təsir edən fərqli nəticələri və zərəri gizlədə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Optimize sign-ups while ignoring retention and customer harm.",
+          "az": "Saxlanmanı və müştəriyə zərəri nəzərə almadan qeydiyyatı artırmaq."
+        },
+        "explanation": {
+          "en": "A local growth metric can rise while durable value or trust falls.",
+          "az": "Davamlı dəyər və ya etimad azalarkən yerli artım göstəricisi yüksələ bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Guardrails reveal when a local improvement damages trust, safety, accessibility, or another important outcome.",
+      "az": "Qoruyucu göstəricilər yerli yaxşılaşmanın etimada, təhlükəsizliyə, əlçatanlığa və ya başqa nəticəyə zərər vurduğunu göstərir."
+    },
+    "lessonId": "product-ethics",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-006",
+    "trackId": "po",
+    "type": "single",
+    "domain": "stakeholder-leadership",
+    "difficulty": 2,
+    "text": {
+      "en": "Two departments demand incompatible features for the next Sprint. How should the Product Owner frame the discussion?",
+      "az": "İki bölmə növbəti Sprint üçün bir-biri ilə uyğun olmayan funksiyalar tələb edir. Product Owner müzakirəni necə qurmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Make interests and trade-offs explicit against the shared product goal.",
+          "az": "Ortaq məhsul məqsədinə əsasən maraqları və kompromisləri açıq göstərmək."
+        },
+        "explanation": {
+          "en": "Negotiating the underlying interests can resolve competing requests without promising everything.",
+          "az": "Əsas maraqların razılaşdırılması hər şeyi vəd etmədən rəqabət aparan istəkləri həll edə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Give the loudest stakeholder permanent priority.",
+          "az": "Ən çox israr edən tərəfə daimi üstünlük vermək."
+        },
+        "explanation": {
+          "en": "Influence alone is not evidence of customer value, urgency, or alignment with the product goal.",
+          "az": "Təsir gücü təkbaşına müştəri dəyəri, təcililik və ya məhsul məqsədinə uyğunluq sübutu deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Make a committee collectively accountable as the Product Owner.",
+          "az": "Komitəni kollektiv şəkildə Product Owner kimi hesabatlı etmək."
+        },
+        "explanation": {
+          "en": "A committee obscures the single Product Owner accountability and makes product decisions ambiguous.",
+          "az": "Komitə vahid Product Owner-in hesabatlılığını zəiflədir və məhsul qərarlarını qeyri-müəyyən edir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Negotiating the underlying interests can resolve competing requests without promising everything.",
+      "az": "Əsas maraqların razılaşdırılması hər şeyi vəd etmədən rəqabət aparan istəkləri həll edə bilər."
+    },
+    "lessonId": "po-negotiation",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-007",
+    "trackId": "po",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "A Lead Product Owner oversees a profitable service with declining retention and expensive maintenance. What should determine its future?",
+      "az": "Lead Product Owner saxlanması zəifləyən və texniki saxlanması bahalaşan gəlirli xidmətə rəhbərlik edir. Onun gələcəyini nə müəyyən etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Reassess investment using product outcomes, future options, and maintenance cost.",
+          "az": "Məhsul nəticələri, gələcək imkanlar və saxlanma xərcinə görə sərmayəni yenidən qiymətləndirmək."
+        },
+        "explanation": {
+          "en": "A mature product may need maintenance, renewal, or retirement rather than endless feature expansion.",
+          "az": "Yetkin məhsula sonsuz funksiya artımı əvəzinə saxlanma, yenilənmə və ya dayandırılma lazım ola bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Continue because the organization has already spent heavily.",
+          "az": "Təşkilat artıq çox xərc çəkdiyi üçün davam etmək."
+        },
+        "explanation": {
+          "en": "Past spending cannot be recovered by making an additional poor investment.",
+          "az": "Əlavə zəif sərmayə keçmiş xərci geri qaytara bilməz."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Count delivered features as proof of customer benefit.",
+          "az": "Təqdim olunan funksiyaların sayını müştəri faydasının sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Output volume does not establish adoption, benefit, or a changed business outcome.",
+          "az": "Çıxış həcmi qəbul, fayda və ya dəyişmiş biznes nəticəsini sübut etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A mature product may need maintenance, renewal, or retirement rather than endless feature expansion.",
+      "az": "Yetkin məhsula sonsuz funksiya artımı əvəzinə saxlanma, yenilənmə və ya dayandırılma lazım ola bilər."
+    },
+    "lessonId": "portfolio-lifecycle",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-008",
+    "trackId": "po",
+    "type": "single",
+    "domain": "product-strategy",
+    "difficulty": 3,
+    "text": {
+      "en": "A portfolio has too many products for its investment capacity. What should leaders make explicit before spreading funding equally?",
+      "az": "Portfeldə sərmayə imkanından çox məhsul var. Maliyyəni bərabər bölməzdən əvvəl liderlər nəyi açıq göstərməlidirlər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Make explicit choices about customers, problems, and value.",
+          "az": "Müştərilər, problemlər və dəyər barədə açıq seçimlər etmək."
+        },
+        "explanation": {
+          "en": "Strategy guides trade-offs by identifying where the product will focus and what it will not pursue.",
+          "az": "Strategiya məhsulun diqqətini hara yönəldəcəyini və nədən imtina edəcəyini göstərərək seçimlərə istiqamət verir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Label every request as mandatory without comparing consequences.",
+          "az": "Nəticələri müqayisə etmədən hər istəyi məcburi saymaq."
+        },
+        "explanation": {
+          "en": "If everything is essential, the classification offers no useful basis for trade-offs.",
+          "az": "Hər şey zəruridirsə, təsnifat seçimlər üçün faydalı əsas vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Keep every specialist fully busy even if work accumulates unfinished.",
+          "az": "Bitməmiş iş yığılsa da hər mütəxəssisi tam məşğul saxlamaq."
+        },
+        "explanation": {
+          "en": "Local utilization can increase queues and delay the completion of valuable work.",
+          "az": "Yerli məşğulluq növbələri artıra və dəyərli işin tamamlanmasını gecikdirə bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Strategy guides trade-offs by identifying where the product will focus and what it will not pursue.",
+      "az": "Strategiya məhsulun diqqətini hara yönəldəcəyini və nədən imtina edəcəyini göstərərək seçimlərə istiqamət verir."
+    },
+    "lessonId": "portfolio-lifecycle",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-009",
+    "trackId": "po",
+    "type": "single",
+    "domain": "empiricism",
+    "difficulty": 3,
+    "text": {
+      "en": "A major release date is being discussed while demand and scope remain uncertain. How should a Lead Product Owner support an informed commitment?",
+      "az": "Tələb və əhatə qeyri-müəyyən qalarkən böyük buraxılış tarixi müzakirə olunur. Lead Product Owner məlumatlı öhdəliyi necə dəstəkləməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Use observed throughput and show a range with explicit assumptions.",
+          "az": "Müşahidə olunan iş axınından istifadə edib açıq fərziyyələrlə aralıq göstərmək."
+        },
+        "explanation": {
+          "en": "Probabilistic forecasts communicate uncertainty better than a single date presented as a promise.",
+          "az": "Ehtimallı proqnozlar qeyri-müəyyənliyi vəd kimi təqdim olunan tək tarixdən daha düzgün bildirir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Guarantee the original scope and date despite unresolved uncertainty.",
+          "az": "Həll edilməmiş qeyri-müəyyənliyə baxmayaraq ilkin əhatə və tarixə zəmanət vermək."
+        },
+        "explanation": {
+          "en": "An unsupported guarantee conceals uncertainty instead of supporting an informed decision.",
+          "az": "Əsası olmayan zəmanət məlumatlı qərarı dəstəkləmək əvəzinə qeyri-müəyyənliyi gizlədir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Remove conflicting evidence from the report to simplify the decision.",
+          "az": "Qərarı sadələşdirmək üçün ziddiyyətli sübutu hesabatdan silmək."
+        },
+        "explanation": {
+          "en": "Hiding evidence misleads decision makers and conceals uncertainty.",
+          "az": "Sübutu gizlətmək qərar verənləri yanıltmaqla qeyri-müəyyənliyi ört-basdır edir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Probabilistic forecasts communicate uncertainty better than a single date presented as a promise.",
+      "az": "Ehtimallı proqnozlar qeyri-müəyyənliyi vəd kimi təqdim olunan tək tarixdən daha düzgün bildirir."
+    },
+    "lessonId": "forecast-release",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-010",
+    "trackId": "po",
+    "type": "ordering",
+    "domain": "empiricism",
+    "difficulty": 2,
+    "text": {
+      "en": "For this specific reminder experiment, no data has been collected yet. The team agreed to define its test first, run it, inspect the observations, and then decide whether to invest further. Arrange these actions in that agreed learning sequence.",
+      "az": "Bu konkret xatırlatma təcrübəsi üçün hələ məlumat toplanmayıb. Komanda əvvəl testi müəyyən etməyi, sonra keçirməyi, müşahidələri yoxlamağı və əlavə sərmayəyə qərar verməyi razılaşdırıb. Addımları bu razılaşdırılmış öyrənmə sırası ilə düzün."
+    },
+    "options": [
+      {
+        "id": "hypothesis",
+        "text": {
+          "en": "Define the customer outcome, hypothesis, evidence threshold, and safety guardrails.",
+          "az": "Müştəri nəticəsini, fərziyyəni, sübut həddini və təhlükəsizlik göstəricilərini müəyyən etmək."
+        },
+        "explanation": {
+          "en": "Defining evidence before observing results reduces biased reinterpretation.",
+          "az": "Nəticələri görməzdən əvvəl sübutu müəyyən etmək qərəzli yenidən yozmanı azaldır."
+        }
+      },
+      {
+        "id": "run",
+        "text": {
+          "en": "Run the small consent-based reminder test and collect the agreed observations.",
+          "az": "Kiçik razılığa əsaslanan xatırlatma testini keçirib razılaşdırılmış müşahidələri toplamaq."
+        },
+        "explanation": {
+          "en": "The test generates observations about the hypothesis within the agreed limits.",
+          "az": "Test razılaşdırılmış məhdudiyyətlər daxilində fərziyyə barədə müşahidələr yaradır."
+        }
+      },
+      {
+        "id": "inspect",
+        "text": {
+          "en": "Compare the observations with the threshold and inspect harms and uncertainty.",
+          "az": "Müşahidələri hədlə müqayisə edib zərərləri və qeyri-müəyyənliyi yoxlamaq."
+        },
+        "explanation": {
+          "en": "Inspection checks both intended benefit and unintended consequences.",
+          "az": "Yoxlama həm nəzərdə tutulan faydanı, həm də gözlənilməz nəticələri qiymətləndirir."
+        }
+      },
+      {
+        "id": "adapt",
+        "text": {
+          "en": "Decide whether to expand, change, or stop the investment and explain the evidence.",
+          "az": "Sərmayəni artırmaq, dəyişmək və ya dayandırmaq qərarı verib sübutu izah etmək."
+        },
+        "explanation": {
+          "en": "The investment decision follows the evidence rather than sunk cost or enthusiasm.",
+          "az": "Sərmayə qərarı keçmiş xərcə və ya həvəsə deyil, sübuta əsaslanır."
+        }
+      }
+    ],
+    "correct": ["hypothesis", "run", "inspect", "adapt"],
+    "explanation": {
+      "en": "For this experiment, define evidence → run → inspect → adapt. This is not a fixed sequence of Scrum events, and discovery can repeat or run alongside delivery.",
+      "az": "Bu təcrübə üçün sıra sübutu müəyyən et → keçir → yoxla → uyğunlaş formasındadır. Bu, Scrum tədbirlərinin sabit sırası deyil; kəşf təkrarlana və ya çatdırılma ilə yanaşı gedə bilər."
+    },
+    "lessonId": "ebm",
+    "practiceOnly": true
+  },
+  {
+    "id": "po-011",
+    "trackId": "po",
+    "type": "matching",
+    "domain": "product-value",
+    "difficulty": 2,
+    "text": {
+      "en": "For a checkout improvement, match each measure to its intended role in the measurement plan. Use each role once.",
+      "az": "Ödəniş təkmilləşdirməsi üçün hər göstəricini ölçmə planındakı nəzərdə tutulan rolu ilə uyğunlaşdırın. Hər roldan bir dəfə istifadə edin."
+    },
+    "prompts": [
+      {
+        "en": "Number of redesign workshops completed.",
+        "az": "Tamamlanan yenidən dizayn iş sessiyalarının sayı."
+      },
+      {
+        "en": "Percentage of eligible customers who successfully complete their intended purchase.",
+        "az": "Nəzərdə tutduğu alışı uğurla bitirən uyğun müştərilərin faizi."
+      },
+      {
+        "en": "Rate of accidental purchases and resulting refund complaints, tracked to prevent harm.",
+        "az": "Zərərin qarşısını almaq üçün izlənən səhv alış və geri ödəniş şikayətlərinin tezliyi."
+      }
+    ],
+    "options": [
+      {
+        "id": "output",
+        "text": {
+          "en": "Activity/output measure",
+          "az": "Fəaliyyət/çıxış göstəricisi"
+        },
+        "explanation": {
+          "en": "Workshop completion measures work performed, not the customer benefit itself.",
+          "az": "İş sessiyasının tamamlanması görülən işi ölçür, müştəri faydasını deyil."
+        }
+      },
+      {
+        "id": "outcome",
+        "text": {
+          "en": "Customer outcome measure",
+          "az": "Müştəri nəticəsi göstəricisi"
+        },
+        "explanation": {
+          "en": "Successful intended purchases reflect the behavior this improvement is meant to enable.",
+          "az": "Uğurlu nəzərdə tutulmuş alışlar təkmilləşdirmənin mümkün etməli olduğu davranışı göstərir."
+        }
+      },
+      {
+        "id": "guardrail",
+        "text": {
+          "en": "Harm guardrail measure",
+          "az": "Zərərdən qoruyucu göstərici"
+        },
+        "explanation": {
+          "en": "The guardrail checks whether improving the primary outcome creates unacceptable side effects.",
+          "az": "Qoruyucu göstərici əsas nəticənin yaxşılaşmasının qəbuledilməz əlavə təsir yaradıb-yaratmadığını yoxlayır."
+        }
+      }
+    ],
+    "correct": ["output", "outcome", "guardrail"],
+    "explanation": {
+      "en": "The workshops are activity; successful intended purchases are the desired customer outcome; accidental purchases and complaints protect against harm. A balanced decision should inspect all three without equating output with value.",
+      "az": "İş sessiyaları fəaliyyətdir; uğurlu nəzərdə tutulmuş alışlar arzu olunan müştəri nəticəsidir; səhv alışlar və şikayətlər zərəri izləyir. Balanslı qərar çıxışı dəyərlə eyniləşdirmədən hər üçünü yoxlamalıdır."
+    },
+    "lessonId": "product-metrics",
+    "practiceOnly": true
+  }
+]

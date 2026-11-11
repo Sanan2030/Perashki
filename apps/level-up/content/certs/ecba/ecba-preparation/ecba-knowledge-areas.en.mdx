@@ -1,0 +1,79 @@
+---
+id: ecba-knowledge-areas
+locale: en
+title: 'A connected view of analysis work'
+objectives:
+  - 'Match the six knowledge areas to scenario decisions.'
+  - 'Distinguish knowledge areas from a mandatory lifecycle sequence.'
+---
+
+## Core concept
+
+In BABOK v3, a knowledge area groups related tasks. It does not instruct people to perform those tasks only once or in a particular month. Planning, elicitation, requirements work and value assessment may repeatedly inform each other during one change. Identify a task by the purpose of the present decision rather than the name of a document or department.
+
+## Why it matters
+
+A team that stops interviews because the “analysis phase” is finished may miss a newly discovered need. Another team may turn every comment into a requirement without clarifying decision authority. A connected view exposes omitted work and unnecessary duplication. A finding during user testing can require additional elicitation, a requirement change and reconsideration of expected value. Finishing one deliverable does not make all related questions permanently settled.
+
+## Theory and distinctions
+
+**Planning and Monitoring** organizes the analysis approach, engagement, governance, information and improvement of analysis work. **Elicitation and Collaboration** obtains information, confirms it, communicates it and maintains shared understanding. **Requirements Life Cycle Management** manages relationships, maintenance, priorities and changes to requirements and designs from inception to retirement.
+
+**Strategy Analysis** explores the need, current and future states, risk and the approach to change. **Requirements Analysis and Design Definition** models information, checks quality and alignment with value, and compares design options and potential value. **Solution Evaluation** assesses an actual solution’s performance and constraints on value. The solution need not be a final rollout: an operating pilot or prototype can also be evaluated.
+
+These are complementary views. A revised change strategy may alter planning; confirmed information can reveal a risk; operational measures can expose a new need. A methodology changes sequencing and formality, but does not eliminate the need to understand value or information quality. Select the task that addresses the present information gap.
+
+A useful distinction within analysis/design is verification versus validation: verification checks whether a requirement representation is sufficiently clear and usable; validation checks alignment with the need and expected value. A well-written requirement can still describe the wrong capability. Approval is a separate authorized decision.
+
+## Worked example
+
+A municipality introduces an online request service. The analyst agrees decision authority and information storage, observes current work, and investigates why citizens enter inaccurate addresses. The team defines a desired service outcome and compares a simpler form with assisted-service options.
+
+During a pilot, submissions increase but address errors do not fall. The initiative need not be described as “returning to an earlier phase.” Analysis interprets measures, investigates the actual limitation, elicits more information and assesses related requirement changes. Decisions follow the agreed governance approach. Several knowledge areas contribute to the same problem without becoming interchangeable.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n P["Plan and coordinate"] --> E["Elicit and confirm"]\n E --> A["Analyze requirements and options"]\n S["Analyze strategy"] --> A\n A --> L["Manage relationships and changes"]\n L --> V["Evaluate actual solution"]\n V --> E\n V --> S\n V --> P'
+  }
+/>
+
+Arrows show how findings can inform other analysis work. This is an original teaching model, not a reproduction of a BABOK process diagram or a required sequence.
+
+## Decision practice
+
+For “the pilot did not reduce waiting,” ask whether the measure is credible, whether a limitation lies within the solution, or whether the enterprise uses it differently from expected. Solution Evaluation directs that inquiry. If a new requirement emerges, use lifecycle management to assess its effects. Obtaining missing evidence is elicitation. These are distinct activities contributing to one decision.
+
+## Common mistakes and better practice
+
+- Avoid treating the areas as six mandatory phases.
+- Separate collecting elicitation results from confirming their accuracy.
+- Do not treat a passed technical test as proof of customer value.
+- Do not discard useful requirement information after release.
+- Avoid creating a new document for every question; identify the information and its consumer.
+
+## Application exercise and explained answer
+
+**Exercise:** Match four questions: “Who may approve?”, “Were interview findings recorded accurately?”, “Which tests are affected by this change?”, and “Why is the operating solution not delivering benefit?”
+
+**Explained answer:** These concern governance within planning, confirmation of elicitation results, lifecycle impact analysis, and solution evaluation. The impact analysis may need requirement relationships and implementation expertise. Selecting the best-fitting knowledge area does not forbid using information from others. Explain the immediate decision and the evidence it requires instead of merely memorizing a label.
+
+## Mini-quiz
+
+State the missing activity’s purpose in one sentence, then choose the area. Several areas may be relevant, but a question about one task calls for the most direct fit.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Planning organizes work; elicitation obtains information and checks understanding; lifecycle work manages relationships and changes; strategy frames need and the change approach; analysis/design refines requirements and options; evaluation examines actual value.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: knowledge-area introductions, pp. 21–22, 53–54, 75–76, 99–100, 133–134, 163–164; §4.3, pp. 65–66; §5.4, pp. 91–93. This grouping is the book’s professional framework; verify the current ECBA blueprint separately. Verification/validation distinction: §§7.2–7.3, pp. 141–146.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

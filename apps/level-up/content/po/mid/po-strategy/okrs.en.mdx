@@ -1,0 +1,88 @@
+---
+id: okrs
+locale: en
+title: 'OKRs and actionable measures'
+objectives:
+  - 'Distinguish an objective, key result and initiative.'
+  - 'Define a measurable outcome without hiding denominator changes.'
+  - 'Inspect progress and revise initiatives without rewriting history.'
+---
+
+## Learning objectives
+
+- Distinguish an objective, key result and initiative.
+- Define a measurable outcome without hiding denominator changes.
+- Inspect progress and revise initiatives without rewriting history.
+
+## Why this matters
+
+“Launch the new dashboard” can be useful work, but completing it does not establish that customers make better decisions. Objectives and Key Results can connect intent to observable change when the team preserves the difference between an initiative and the outcome it hopes to influence.
+
+## Core theory
+
+An objective describes a meaningful direction or improvement. A key result supplies evidence of progress toward it. An initiative is work undertaken in pursuit of that result. OKR conventions vary; this lesson uses an original working structure and does not present OKRs as a Scrum rule or a mandatory EBM format.
+
+Specify the metric, baseline, target, eligible population, observation window and data source. A target is not meaningful if its denominator changes silently. “Increase activation” needs a defined first useful result and enough follow-up for each eligible user. Keep data quality and observation completeness visible.
+
+Choose a small set of results that represents the outcome rather than a list of every team's activity. Pair the primary result with guardrails when a local improvement could create harm. Faster support handling should not be achieved by closing unresolved tickets; increased conversion should not conceal higher payment failures.
+
+Make influence and authority explicit. A team can own initiatives and measurement while external factors also affect the result. Use experiments or other suitable evidence to investigate causal claims. A result moving during a release does not automatically establish that the release caused it.
+
+Review progress, assumptions and initiative effectiveness at agreed intervals. If an initiative is not helping, adapt the work rather than lowering the target retrospectively and calling it success. If the original metric or target was invalid, record the correction and its rationale openly. Do not turn every aspirational target into an unqualified delivery promise or a simplistic individual performance score.
+
+## Worked example
+
+A learning platform chooses the objective “Help new learners reach a useful first practice session.” A proposed result increases the proportion of eligible new learners who finish a first lesson and its practice within seven complete days from an observed baseline of 30% to a teaching target of 40%.
+
+The team defines eligibility, event logging and the cohort cutoff before tracking progress. Guardrails include failed practice loads and accessibility defects. Shorter onboarding is an initiative, not the result itself. If users rush through onboarding but never start practice, the initiative may have completed while the objective remains unmet. The numbers are synthetic and the target needs real context before use.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n O[Objective and intended outcome] --> K[Defined key results]\n K --> I[Initiatives and assumptions]\n I --> E[Observed evidence and guardrails]\n E --> R[Review progress]\n R --> I'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Can a team report success because every initiative is finished while the key result is unchanged?</summary>
+
+It can report completed work, but not the intended outcome. Check measurement validity and timing, inspect why the initiatives did not move the result and adapt the plan. Preserve the distinction rather than replacing the original result with a task count.
+
+</details>
+
+## Common mistakes
+
+- Writing only shipment dates as outcome results.
+- Changing the eligible population without annotation.
+- Using one metric without a relevant guardrail.
+- Claiming a causal effect from an uncontrolled trend.
+
+## Practice exercise
+
+Rewrite “build a faster checkout” as an objective, one measurable result, an initiative and a guardrail. Identify the baseline information still required.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+An objective can focus on helping eligible shoppers complete a purchase with less friction. Define a result using a specific completion metric and observation window, with a baseline and target to be confirmed from evidence. Simplifying an address step can be an initiative. Payment errors or support incidents can constrain the change. State the eligible population, instrumentation and comparison method before claiming improvement.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Objective = direction. Key result = defined evidence. Initiative = proposed work. Preserve baselines, denominators, guardrails and the history of decisions.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Evidence-Based Management Guide 2024, Scrum.org](https://www.scrum.org/resources/evidence-based-management-guide): goals, measures, experiments and the input/output/outcome distinction. EBM adaptations: CC BY-SA 4.0, Scrum.org.
+- [GOV.UK: How to set performance metrics](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): purpose, hypotheses and measurement quality.
+- The OKR structure is original supplemental instruction; neither source is represented as mandating this exact template.

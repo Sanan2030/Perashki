@@ -1,0 +1,89 @@
+---
+id: product-strategy
+locale: az
+title: 'Məhsul strategiyası və nəticə yol xəritələri'
+objectives:
+  - 'Product strategy-nin hansı seçimlər etdiyini izah et.'
+  - 'Goal, outcome, assumption və investisiya variantını əlaqələndir.'
+  - 'Sübut dəyişəndə outcome roadmap-a yenidən bax.'
+---
+
+## Öyrənmə məqsədləri
+
+- Product strategy-nin hansı seçimlər etdiyini izah et.
+- Goal, outcome, assumption və investisiya variantını əlaqələndir.
+- Sübut dəyişəndə outcome roadmap-a yenidən bax.
+
+## Bu mövzu niyə vacibdir
+
+Delivery date siyahılı roadmap strategy ilə səhv salına bilər. Strategy hansı customer vəziyyətinə/outcome-a yönələcəyini, seçimin niyə əsaslı olduğunu və nəyin prioritet olmadığını izah edir. Request-lər yarışanda komanda ardıcıl qərar üçün bu kontekstə ehtiyac duyur.
+
+## Əsas anlayışlar
+
+Product strategy ambisiyanı customer, problem, value və capability seçimlərinə bağlayır. Xidmət edilən vəziyyəti, vacib alternativi və təşkilatın yaratmağa inandığı üstünlüyü göstər. Strategy bütün cəlbedici bazarı birlikdə təsvir etmək əvəzinə fərziyyələri açmalıdır.
+
+Product vision istiqamət verir; Product Goal Scrum Team-i yönəldən gələcək product state-dir. Outcome user/təşkilat üçün dəyişiklik, output istehsal olunandır. Onboarding wizard çatdırmaq output-dur; uyğun user-in first useful result-a çatan payını artırmaq ayrıca measurement contract-lı outcome-dur.
+
+Outcome roadmap goal, opportunity, experiment və mümkün investisiyanı dəyişən zaman üfüqlərində təşkil edir. Yaxın iş sonrakı variantdan detallı ola bilər. Tarix vacib constraint ola bilər, amma dəqiqlik sübuta əsaslanmalıdır. Hər ideyanı eyni əminlikdə göstərmək əvəzinə legal/contract commitment-i ayrıca saxla.
+
+İnvestisiyanı sübutla müqayisə et. Current Value, Unrealized Value, Time-to-Market, Ability-to-Innovate EBM baxışları bir-birini tamamlayır. Product revenue yaradıb az xidmət görən segment-i narazı sala və ya dəyişməsi çətinləşə bilər. Strateji constraint-i unutmaqla bir görünən metric-i optimizasiya etmə.
+
+Assumption/outcome-u mənalı intervalda yoxla. Davam, istiqamət dəyişikliyi və stop üçün sübutu əvvəl seç. Product Owner value və Product Backlog management üçün accountable qalır; strategy workshop bu cavabdehliyi ən çox iş istəyən stakeholder-ə bölüşdürmür. Feasibility və öyrənmədə əməkdaşlıq qalır.
+
+## İşlənmiş nümunə
+
+Booking platforması kiçik klinikalarda late cancellation səbəbli boş appointment-ləri azaltmağı seçir. Əvvəlcə böyük xəstəxana scheduling-ini hədəfləmir. Value hypothesis: usable cancellation/waitlist flow administrative yükü artırmadan tutumu qaytara bilər.
+
+Roadmap cancellation pattern sübutu və məhdud waitlist experiment ilə başlayır. Notification/integration həmin outcome-a xidmət edən variantdır. Cancellable slot deyil, no-show əsasdırsa opportunity yenilənməlidir. Komanda sırf tarix yazıldığına görə notification çıxarmaq əvəzinə geniş purpose-u saxlayıb investisiyanı dəyişə bilər.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n V[Direction and customer situation] --> C[Strategic choices]\n C --> G[Product Goal and outcomes]\n G --> H[Assumptions and experiments]\n H --> E[Evidence across value lenses]\n E --> A[Continue adapt or stop]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Feature vəd olunan tarixdə çıxıb, hədəf davranış yaxşılaşmayıb. Strategy uğurludurmu?</summary>
+
+Delivery commitment ödənmiş ola bilər, amma outcome hypothesis dəstəksiz və ya ziddiyyətlidir. Measurement keyfiyyəti, exposure və observation window-u yoxla, sonra strategy fərziyyəsinə bax. Nəticəni bildikdən sonra outcome-u output-la əvəz etmə.
+
+</details>
+
+## Tipik səhvlər
+
+- Uzun feature siyahısını strategy adlandırmaq.
+- Açıq seçim olmadan hər customer segment-i hədəfləmək.
+- Forecast-ı şərtsiz commitment saymaq.
+- Success hekayəsi qalsın deyə delivery-dən sonra metric dəyişmək.
+
+## Praktik tapşırıq
+
+Qarşısı alınan cancellation-u azaldan subscription xidməti üçün strategy yaz. Hədəf vəziyyət, kənar segment, outcome, əsas assumption və ilk experiment-in qərar qaydasını daxil et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Müvəqqəti istifadəsizlikdə pause edə bilməyən customer kimi konkret cancellation vəziyyəti seç. Sübut toplayarkən başqa segment-i məqsədli kənarda saxla. Eligibility/tam window ilə outcome müəyyən et; pause variantının payment aydınlığına və support load-a zərər vermədən real səbəbi həllini sına. Hansı nəticənin investisiya, revision və stop yaradacağını yaz; nəzarətsiz before/after faizindən causation çıxarma.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Seçim + outcome + assumption + evidence + adaptation. Roadmap item goal-a bağlı investisiya variantıdır; delivery və realized value ayrı müşahidədir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[The Professional Product Owner, McGreal and Jocham (2018)](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): təqdim edilmiş kitabın product discovery, value və backlog barədə seçilmiş hissələri. İzah, case və tapşırıqlar orijinaldır; kitabın mətni və şəkilləri təkrar yayımlanmır.
+
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): goal, experiment, dörd Key Value Area; uyğunlaşdırma CC BY-SA 4.0, Scrum.org.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Goal, Product Owner accountability; uyğunlaşdırma CC BY-SA 4.0, Schwaber və Sutherland.

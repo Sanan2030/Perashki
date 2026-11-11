@@ -1,0 +1,174 @@
+---
+id: stories-gherkin
+locale: en
+title: 'User stories and acceptance criteria'
+objectives:
+  - 'Connect a user need to observable acceptance examples, including failure paths.'
+  - 'Write a story and Given/When/Then examples for resetting a forgotten password.'
+---
+
+## 1. Learning objectives
+
+Express a user need without disguising a solution as value. Write observable acceptance criteria using Given/When/Then examples, include positive, negative and boundary cases, and distinguish a story from a complete specification or an automated test.
+
+## 2. Why it matters
+
+An online retailer receives the backlog item “add a reset button.” The team builds the button, but customers receive expired links and cannot recover access. The item described an interface element while hiding the customer outcome, security boundaries and error paths.
+
+A useful user story starts a conversation about the person, the desired capability and its value. Concrete acceptance examples then expose different interpretations before implementation.
+
+## 3. Core theory
+
+A common story format is “As a person in this situation, I want a capability, so that I can achieve an outcome.” This is a prompt, not a required incantation. Scrum does not require user stories or Gherkin; a team can choose a different useful way to represent Product Backlog Items.
+
+Acceptance criteria describe conditions used to judge whether a particular item meets the agreed need. They complement, rather than replace, a shared Definition of Done. A story's criteria might describe password-reset behavior; the Definition of Done describes broader quality conditions for an Increment.
+
+Gherkin provides structured examples. **Given** describes relevant starting context. **When** describes the action or event under examination. **Then** describes an observable result. Use additional **And** steps where they clarify the same part of the example. Keep one main behavior per scenario, name it clearly and describe results rather than clicking every screen control.
+
+Examples can support discussion and later automation, but writing Gherkin does not automatically run a test. Step definitions, a test runner and trustworthy assertions are needed for execution. Nor do three examples necessarily cover every requirement: quality, security, accessibility and operational constraints still need explicit attention.
+
+## 4. Worked example: recover access safely
+
+**Story:** As a registered customer who has forgotten my password, I want to restore account access through a verified recovery route so that I can continue managing my orders.
+
+The fictional team agrees that a recovery link lasts 15 minutes, is usable once and must not disclose whether an email address is registered. These are scenario decisions, not universal security recommendations. Real recovery rules require a security review.
+
+```gherkin
+Feature: Recover customer account access
+
+  Scenario: Use a valid recovery link once
+    Given a recovery link was issued 5 minutes ago
+    And that link has not been used
+    When the customer submits a new password meeting the agreed rules
+    Then the password is changed
+    And the recovery link cannot be used again
+
+  Scenario: Reject an expired link
+    Given a recovery link was issued 16 minutes ago
+    When the customer attempts to use that link
+    Then the password is not changed
+    And a safe route to request a new link is available
+
+  Scenario: Handle the expiry boundary
+    Given a recovery link reaches its agreed expiry instant
+    When the customer attempts to use that link
+    Then the link is rejected according to the agreed expiry rule
+```
+
+The boundary example deliberately points to a decision: what precisely is the expiry instant, which clock is authoritative and how are delayed requests handled? Agree those details with engineering and security rather than assuming “15 minutes” is unambiguous.
+
+For an unknown email address, an additional acceptance example should verify that the outward response does not reveal account existence. Do not publish sensitive implementation details in a customer message.
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart LR; A[User need] --> B[Story and conversation]; B --> C[Concrete examples]; C --> D[Positive path]; C --> E[Negative path]; C --> F[Boundary path]; D --> G[Shared acceptance understanding]; E --> G; F --> G; G --> H[Implement and verify]; H --> A;'
+  }
+/>
+
+The diagram shows examples refining a shared understanding before and during delivery. The return arrow reminds the team to inspect whether the delivered behavior actually helps the user.
+
+## 6. Interactive example review
+
+A proposed criterion says, “Then the reset works correctly.” Select the most useful revision.
+
+<details>
+<summary>Describe an observable result and relevant failure condition</summary>
+
+This improves the criterion. For a valid unused link, the agreed password changes and reuse is rejected. For an expired link, the password remains unchanged and a safe recovery route is offered. The conditions make disagreements visible.
+
+</details>
+
+<details>
+<summary>Replace it with “Then the user clicks the green button”</summary>
+
+A click describes interaction, not whether the intended behavior occurred. It also couples the example to a presentation choice. Test the result unless the specific interaction is itself the requirement.
+
+</details>
+
+<details>
+<summary>Add “very correctly” and wait for implementation</summary>
+
+More emphasis does not remove ambiguity. A short conversation using a concrete example is more useful than polishing an untestable phrase.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Story without value:** explain the user's progress, not only the screen to build.
+- **Acceptance criteria that dictate every technical step:** state necessary business behavior and constraints, while collaborating on implementation choices.
+- **Happy path only:** inspect invalid data, missing permissions, retries, failures and boundaries relevant to risk.
+- **Many behaviors in one scenario:** split examples so a failure has a clear meaning.
+- **Gherkin mistaken for automation:** execute and inspect real tests before claiming the behavior works.
+- **A story treated as the whole contract:** link related rules, quality requirements and decisions.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** Write a story and three acceptance examples for a customer canceling an order before dispatch. Include a successful cancellation, a rejection and the transition boundary. Explain what must be clarified about refunds.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+**Story:** As a customer whose plans changed, I want to cancel an eligible order so that I avoid an unwanted delivery. **Positive example:** given an authorized customer owns an order that is not dispatched, when cancellation is accepted, then the order is marked canceled and the customer sees the confirmed result. **Negative example:** given another customer's order, when cancellation is attempted, then no cancellation occurs and access is handled safely. **Boundary:** given dispatch and cancellation arrive concurrently, when the system decides eligibility, then it applies the agreed authoritative ordering rule and records the result. Clarify payment authorization versus captured payment, refund timing, duplicate requests and customer notifications rather than assuming “cancel” means an immediate refund.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. What is the main purpose of the “so that” part of a user story?**
+
+A. Specify the database column. B. Explain the user's intended value or progress. C. Guarantee the story is small enough.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** It connects the capability to a reason. A is an implementation detail and may need a separate discussion. C cannot be guaranteed by a sentence template.
+
+</details>
+
+**2. In Given/When/Then, what does “Then” normally describe?**
+
+A. The observable result. B. Every mouse movement. C. The team's staffing plan.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** It makes expected behavior inspectable. B over-specifies interaction without necessarily verifying value. C belongs to a different planning concern.
+
+</details>
+
+**3. A recovery link expires after an agreed duration. Which additional example is most useful?**
+
+A. Only another successful use well before expiry. B. The same scenario with a different title. C. Behavior at the exact expiry boundary using an agreed time rule.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** Boundaries expose hidden rule differences. A may add little coverage of the risk. B changes wording without adding evidence.
+
+</details>
+
+**4. Does a Gherkin file prove automated tests have executed?**
+
+A. Yes, because the syntax is structured. B. No; execution needs implementation, a runner and meaningful assertions. C. Yes, if every scenario includes “Then.”
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Specification and execution are distinct. A confuses notation with a running test. C checks a keyword, not behavior.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**Story:** person, capability and value. **Conversation:** examples, assumptions and trade-offs. **Acceptance criteria:** item-specific observable conditions. **Given:** relevant context. **When:** one action or event. **Then:** observable result. **Coverage:** positive, negative and boundary paths selected by risk. **Related evidence:** quality requirements, security review and Definition of Done. **Automation:** useful only when executed with assertions that could detect a broken behavior.
+
+## 11. Further reading
+
+- [Cucumber: Gherkin reference](https://cucumber.io/docs/gherkin/reference/)
+- [Cucumber: behavior-driven development](https://cucumber.io/docs/bdd/)
+- [Scrum Guide: Product Backlog and Definition of Done](https://scrumguides.org/scrum-guide.html)
+- [OWASP: Forgot Password Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html)
+
+The lesson and quiz questions are original practice material. Fictional examples are for analysis practice and do not replace a security design review.

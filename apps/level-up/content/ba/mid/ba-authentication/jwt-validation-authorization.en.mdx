@@ -1,0 +1,105 @@
+---
+id: jwt-validation-authorization
+locale: en
+title: 'JWT validation, JWKS rotation and object authorization'
+objectives:
+  - 'List the cryptographic and claim checks required by a chosen access-token profile.'
+  - 'Handle an unknown key ID without trusting a token-controlled key URL.'
+  - 'Apply scope, tenant and object checks independently of successful token verification.'
+---
+
+## Learning objectives
+
+- List the cryptographic and claim checks required by a chosen access-token profile.
+- Handle an unknown key ID without trusting a token-controlled key URL.
+- Apply scope, tenant and object checks independently of successful token verification.
+
+## Why this matters
+
+An API verifies a token's signature and then returns any invoice whose ID appears in the URL. A valid user can now request another company's invoice. Signature verification established the token's authenticity under the configured profile; it did not establish permission for that invoice. Authentication, token validation and business authorization require distinct checks.
+
+## Core theory
+
+A common signed JWT has three base64url-encoded parts: protected header, payload and signature. Encoding is not encryption. Anyone holding such a token can usually read its claims; do not put secrets or unnecessary personal data into them. Other JWT forms exist, including encrypted tokens, so “all JWTs are readable three-part strings” is also too broad.
+
+Start from a configured token profile and trusted issuer, not from arbitrary claims in a received token. For the API in this lesson, require a valid signature using an approved algorithm and issuer-bound key; exact trusted issuer; the API's expected audience; exp and applicable nbf checks with bounded clock tolerance; required subject; and the expected token purpose/type according to the issuer's profile. These are this API's acceptance requirements, not a claim that every possible JWT has the same required claims.
+
+RFC 8725 requires libraries to let callers restrict accepted algorithms. A signed-token API must not accept an algorithm merely because the attacker-controlled header requests it. Treat kid as an untrusted key selector within the configured issuer's keys. Do not fetch a jku or x5u URL from an untrusted token without an explicitly safe trust policy.
+
+JWKS rotation introduces a distributed cache problem. Cache trusted keys with bounded refresh behavior. On an unknown key ID, a controlled refresh from the configured issuer may find a legitimate new key. If it does not, reject the token. Rate-limit such refreshes so random key IDs cannot force unlimited network calls. Keep old verification keys for the issuer's intended overlap period; removal and revocation policy must be explicit.
+
+After token validation, evaluate resource permissions. A scope such as invoices:read allows a category of action; it does not imply access to every tenant's invoice. Derive the actor and authorized tenant membership from trusted context and server data, then query within that boundary. A role is one policy input. Relationship- and attribute-based checks are often needed for ownership, tenant membership or transaction limits.
+
+## Worked example
+
+User U-7 belongs to tenant T-A and has invoices:read. Request GET /invoices/I-9 names an invoice belonging to T-B.
+
+```ts
+// trustedActor is produced by validated authentication, not request JSON.
+const invoice = await repository.findInvoice({
+  id: requestedId,
+  tenantId: trustedActor.tenantId,
+});
+if (!invoice) return notFound();
+if (!trustedActor.scopes.includes('invoices:read')) return forbidden();
+return invoiceView(invoice);
+```
+
+This illustrative fragment does not implement JWT verification or the entire access policy. The important boundary is that requestedId identifies an object while trustedActor and server-side policy determine access. Changing a predictable ID to a UUID does not replace the permission check. A uniform 404 concealment policy can avoid revealing another tenant's object existence.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Untrusted token"] --> B["Configured issuer and allowed algorithm"]\n B --> C["Signature and claims"]\n C --> D["Scope and tenant policy"]\n D --> E["Object permission"]\n E --> F["Authorized representation"]'
+  }
+/>
+
+Token validation and object authorization are separate gates. Reaching one gate never bypasses the remaining policy decisions.
+
+## Inspect the decision
+
+<details>
+<summary>A token is correctly signed and unexpired, but its audience is a reporting service. Can the payment API accept it?</summary>
+
+No. A trusted issuer can issue credentials for different recipients. The payment API must enforce its own audience requirement. Otherwise a token obtained for a less sensitive service could be substituted into a more sensitive one.
+
+</details>
+
+## Common mistakes
+
+- Using a decoded payload as the authenticated actor trusts data before verification.
+- Fetching a token's arbitrary key URL can introduce SSRF and attacker-controlled trust.
+- Skipping authorization for “internal” calls assumes every internal workload has every permission.
+- Accepting a tenantId request field as the security boundary lets the caller select another organization.
+- Disabling expiry checks to handle clock drift converts a small operational tolerance into indefinite validity.
+
+## Practice exercise
+
+A new issuer signing key appears before every API instance refreshes its cache. At the same time, an attacker sends random kid values and a legitimate user requests a cross-tenant invoice. Define safe behavior for all three cases and write negative tests for issuer, audience, expiry, algorithm and object ownership.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Allow a bounded, cached refresh only from the preconfigured trusted JWKS endpoint when a key is unknown. Retry verification if an appropriate trusted key becomes available; otherwise fail closed. Coordinate refreshes and apply rate/caching limits to resist random-kid traffic. Do not fall back to another issuer or accept an unsigned token.
+
+For the invoice request, validate the token and independently enforce tenant/object permissions. Tests must reject a token for the wrong issuer or API audience, an expired token beyond configured tolerance, an unsupported algorithm and an authorized user naming an unauthorized object. Also test a legitimate new key during overlap and verify that request logs never contain the bearer token.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Decode ≠ verify. Valid signature ≠ correct issuer/audience. Valid access token ≠ permission for every object. Trusted issuer fixes key discovery. Algorithm allowlist, time checks, profile separation and resource policy are all necessary parts of this API's validation model.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [RFC 8725](https://www.rfc-editor.org/rfc/rfc8725.html): §§3.1–3.2 and 3.8–3.12.
+- [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html): §2.3, access-token privilege restriction.
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): deny by default and object-level checks.
+- [OWASP REST Security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html): JWT and access-control sections.
+
+The invoice policy and JWKS refresh strategy are original implementation examples. Use a maintained verification library and your issuer's supported token profile.

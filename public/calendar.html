@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azerbaijan Calendar 2026–2027</title>
+    <style>
+        /* --- CSS RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: rgba(22, 31, 49, 0.65);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            
+            /* Category Colors */
+            --holiday-color: #10b981;
+            --holiday-bg: rgba(16, 185, 129, 0.18);
+            --holiday-border: rgba(16, 185, 129, 0.4);
+            --holiday-glow: rgba(16, 185, 129, 0.35);
+
+            --special-color: #ef4444;
+            --special-bg: rgba(239, 68, 68, 0.18);
+            --special-border: rgba(239, 68, 68, 0.4);
+            --special-glow: rgba(239, 68, 68, 0.35);
+
+            --weekend-color: #64748b;
+            --weekend-bg: rgba(100, 116, 139, 0.12);
+            --weekend-border: rgba(100, 116, 139, 0.25);
+
+            --workday-color: #3b82f6;
+            --workday-bg: rgba(30, 41, 59, 0.5);
+            --workday-border: rgba(255, 255, 255, 0.05);
+
+            --today-color: #f59e0b;
+            --today-glow: rgba(245, 158, 11, 0.5);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER & DASHBOARD CONTROLS --- */
+        header {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 20px 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .flag-strip {
+            display: flex;
+            flex-direction: column;
+            width: 6px;
+            height: 38px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .flag-strip span { flex: 1; }
+        .flag-blue { background-color: #00b5e2; }
+        .flag-red { background-color: #ef3340; }
+        .flag-green { background-color: #50b848; }
+
+        .brand-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border: none;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
+        }
+
+        .year-display {
+            font-size: 1.5rem;
+            font-weight: 800;
+            min-width: 80px;
+            text-align: center;
+            color: #60a5fa;
+            text-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .stat-badge {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .stat-badge.holiday { background: var(--holiday-bg); color: var(--holiday-color); border: 1px solid var(--holiday-border); }
+        .stat-badge.special { background: var(--special-bg); color: var(--special-color); border: 1px solid var(--special-border); }
+
+        /* Month Quick Nav Bar */
+        .month-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+
+        .month-nav::-webkit-scrollbar { height: 4px; }
+        .month-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+        .month-chip {
+            padding: 8px 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .month-chip:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- LEGEND --- */
+        .legend {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .legend-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .swatch-workday { background: var(--workday-bg); border: 1px solid rgba(255,255,255,0.2); }
+        .swatch-weekend { background: var(--weekend-bg); border: 1px solid var(--weekend-border); }
+        .swatch-holiday { background: var(--holiday-bg); border: 1px solid var(--holiday-border); box-shadow: 0 0 8px var(--holiday-glow); }
+        .swatch-special { background: var(--special-bg); border: 1px solid var(--special-border); box-shadow: 0 0 8px var(--special-glow); }
+        .swatch-today { background: var(--bg-dark); border: 2px solid var(--today-color); box-shadow: 0 0 8px var(--today-glow); }
+
+        /* --- CALENDAR GRID & MONTH CARDS --- */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .calendar-grid.animating {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+
+        .month-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            scroll-margin-top: 100px;
+        }
+
+        .month-card:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .month-header {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-align: center;
+            letter-spacing: 0.5px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .month-name {
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .month-number {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .weekdays-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .weekday {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            padding: 4px 0;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+
+        .day-cell {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+            background: var(--workday-bg);
+            border: 1px solid var(--workday-border);
+            color: #d1d5db;
+        }
+
+        .day-cell.empty {
+            background: transparent;
+            border: none;
+            cursor: default;
+        }
+
+        /* Cell Category Variants */
+        .day-cell.weekend {
+            background: var(--weekend-bg);
+            border-color: var(--weekend-border);
+            color: #94a3b8;
+        }
+
+        .day-cell.holiday {
+            background: var(--holiday-bg);
+            border-color: var(--holiday-border);
+            color: #6ee7b7;
+            font-weight: 700;
+        }
+
+        .day-cell.special {
+            background: var(--special-bg);
+            border-color: var(--special-border);
+            color: #fca5a5;
+            font-weight: 700;
+        }
+
+        .day-cell.today {
+            border: 2px solid var(--today-color) !important;
+            box-shadow: 0 0 12px var(--today-glow);
+            z-index: 2;
+        }
+
+        /* Status Dots/Icons on Cells */
+        .day-icon {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 4px;
+        }
+
+        .day-cell.holiday .day-icon { background-color: var(--holiday-color); box-shadow: 0 0 6px var(--holiday-color); }
+        .day-cell.special .day-icon { background-color: var(--special-color); box-shadow: 0 0 6px var(--special-color); }
+
+        /* Hover Transitions for Cell Types */
+        .day-cell:not(.empty):hover {
+            transform: scale(1.12);
+            z-index: 5;
+        }
+
+        .day-cell.workday:hover {
+            border-color: var(--workday-color);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.2);
+            color: #ffffff;
+        }
+
+        .day-cell.weekend:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+            color: #ffffff;
+        }
+
+        .day-cell.holiday:hover {
+            border-color: var(--holiday-color);
+            box-shadow: 0 0 16px var(--holiday-glow);
+            background: rgba(16, 185, 129, 0.35);
+            color: #ffffff;
+        }
+
+        .day-cell.special:hover {
+            border-color: var(--special-color);
+            box-shadow: 0 0 16px var(--special-glow);
+            background: rgba(239, 68, 68, 0.35);
+            color: #ffffff;
+        }
+
+        /* --- POPUP MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(4, 7, 13, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup-card {
+            background: #111827;
+            border-radius: 22px;
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .modal-overlay.active .popup-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .popup-header {
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .popup-card.holiday .popup-header {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border-bottom: 1px solid var(--holiday-border);
+        }
+
+        .popup-card.special .popup-header {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(185, 28, 28, 0.1) 100%);
+            border-bottom: 1px solid var(--special-border);
+        }
+
+        .popup-card.weekend .popup-header {
+            background: linear-gradient(135deg, rgba(100, 116, 139, 0.25) 0%, rgba(51, 65, 85, 0.1) 100%);
+            border-bottom: 1px solid var(--weekend-border);
+        }
+
+        .popup-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .popup-card.holiday .popup-badge { background: var(--holiday-bg); color: var(--holiday-color); border: 1px solid var(--holiday-border); }
+        .popup-card.special .popup-badge { background: var(--special-bg); color: var(--special-color); border: 1px solid var(--special-border); }
+        .popup-card.weekend .popup-badge { background: var(--weekend-bg); color: #cbd5e1; border: 1px solid var(--weekend-border); }
+
+        .popup-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .popup-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .popup-close {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .popup-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .status-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .status-icon {
+            font-size: 1.5rem;
+        }
+
+        .status-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .status-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .popup-description {
+            font-size: 0.88rem;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+
+        .popup-footer {
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            body { padding: 16px 10px; }
+            header { padding: 16px; border-radius: 16px; }
+            .brand-title { font-size: 1.25rem; }
+            .header-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .controls { width: 100%; justify-content: space-between; }
+            .legend { padding: 12px; flex-direction: column; align-items: flex-start; gap: 10px; }
+            .calendar-grid { grid-template-columns: 1fr; }
+            .popup-card { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER DASHBOARD -->
+        <header>
+            <div class="header-top">
+                <div class="brand">
+                    <div class="flag-strip">
+                        <span class="flag-blue"></span>
+                        <span class="flag-red"></span>
+                        <span class="flag-green"></span>
+                    </div>
+                    <div>
+                        <div class="brand-title">AZERBAIJAN CALENDAR</div>
+                        <div class="brand-subtitle">Official Public Holidays & Special Days</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn" id="prevYearBtn" title="Previous Year">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"></path></svg>
+                        <span id="prevYearLabel">2026</span>
+                    </button>
+                    
+                    <div class="year-display" id="currentYearDisplay">2026</div>
+
+                    <button class="btn" id="nextYearBtn" title="Next Year">
+                        <span id="nextYearLabel">2027</span>
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+
+                    <button class="btn btn-primary" id="todayBtn">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Today
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span>Non-Working Days:</span>
+                    <span class="stat-badge holiday" id="statHolidays">0 Days</span>
+                </div>
+                <div class="stat-item">
+                    <span>Special Working Days:</span>
+                    <span class="stat-badge special" id="statSpecial">0 Days</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MONTH QUICK JUMP BAR -->
+        <div class="month-nav" id="monthNav"></div>
+
+        <!-- LEGEND -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-swatch swatch-workday"></div>
+                <span>Normal Working Day</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-swatch swatch-weekend"></div>
+                <span>Weekend Day</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-swatch swatch-holiday"></div>
+                <span>Official Non-Working Day</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-swatch swatch-special"></div>
+                <span>Special Day (Working)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-swatch swatch-today"></div>
+                <span>Today</span>
+            </div>
+        </div>
+
+        <!-- CALENDAR MAIN GRID -->
+        <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+
+    <!-- POPUP MODAL -->
+    <div class="modal-overlay" id="popupModal">
+        <div class="popup-card" id="popupCard">
+            <div class="popup-header">
+                <div>
+                    <div class="popup-badge" id="popupBadge">Category</div>
+                    <div class="popup-title" id="popupTitle">Date Name</div>
+                    <div class="popup-date" id="popupDate">Full Date</div>
+                </div>
+                <button class="popup-close" id="popupCloseBtn" aria-label="Close">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div class="status-box">
+                    <div class="status-icon" id="popupStatusIcon">📅</div>
+                    <div class="status-info">
+                        <span class="status-label">Work Status</span>
+                        <span class="status-value" id="popupStatusValue">Official Non-Working Day</span>
+                    </div>
+                </div>
+                <div class="popup-description" id="popupDescription"></div>
+            </div>
+            <div class="popup-footer">
+                <button class="btn" id="popupOkBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VANILLA JAVASCRIPT LOGIC -->
+    <script>
+        /* ==========================================================================
+           1. DATA STRUCTURES (AZERBAIJAN HOLIDAYS & SPECIAL DAYS)
+           ========================================================================== */
+        
+        // Category 1: Official Public Holidays & Transferred Non-Working Days
+        const HOLIDAYS = {
+            2026: {
+                "2026-01-01": { name: "New Year's Day", nonWorking: true, description: "Official non-working celebration of the New Year." },
+                "2026-01-02": { name: "New Year Holiday", nonWorking: true, description: "Official non-working New Year celebration day." },
+                "2026-03-08": { name: "International Women's Day", nonWorking: true, description: "Honoring women's rights and achievements." },
+                "2026-03-09": { name: "Women's Day (Transferred Off-Day)", nonWorking: true, description: "Off-day transferred from Sunday, March 8." },
+                "2026-03-20": { name: "Novruz Holiday / Ramadan Bayram", nonWorking: true, description: "Traditional spring celebration and Ramadan Bayram." },
+                "2026-03-21": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Vernal Equinox and Spring Festival." },
+                "2026-03-22": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Spring Festival celebration." },
+                "2026-03-23": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Spring Festival celebration." },
+                "2026-03-24": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Spring Festival celebration." },
+                "2026-03-25": { name: "Novruz Transferred Off-Day", nonWorking: true, description: "Official non-working day transferred for Novruz." },
+                "2026-03-26": { name: "Novruz Transferred Off-Day", nonWorking: true, description: "Official non-working day transferred for Novruz." },
+                "2026-05-09": { name: "Victory over Fascism Day", nonWorking: true, description: "Commemorating victory in World War II." },
+                "2026-05-11": { name: "Victory Day (Transferred Off-Day)", nonWorking: true, description: "Off-day transferred from Saturday, May 9." },
+                "2026-05-27": { name: "Gurban Bayram", nonWorking: true, description: "Feast of Sacrifice (Gurban Bayram)." },
+                "2026-05-28": { name: "Independence Day & Gurban Bayram", nonWorking: true, description: "Declaration of the Democratic Republic of Azerbaijan (1918) & Gurban Bayram." },
+                "2026-06-15": { name: "National Salvation Day", nonWorking: true, description: "Commemorating the return of Heydar Aliyev to power in 1993." },
+                "2026-06-26": { name: "Armed Forces Day", nonWorking: true, description: "Honoring the Military Forces of Azerbaijan." },
+                "2026-11-08": { name: "Victory Day (Zəfər Günü)", nonWorking: true, description: "Celebrating victory in the 2020 Patriotic War." },
+                "2026-11-09": { name: "State Flag Day", nonWorking: true, description: "Honoring the Tricolor State Flag of Azerbaijan." },
+                "2026-11-10": { name: "Victory Day (Transferred Off-Day)", nonWorking: true, description: "Off-day transferred from Sunday, Nov 8." },
+                "2026-12-31": { name: "Solidarity Day of World Azerbaijanis", nonWorking: true, description: "Fostering unity among Azerbaijanis worldwide." }
+            },
+            2027: {
+                "2027-01-01": { name: "New Year's Day", nonWorking: true, description: "Official non-working celebration of the New Year." },
+                "2027-01-02": { name: "New Year Holiday", nonWorking: true, description: "Official non-working New Year celebration day." },
+                "2027-01-04": { name: "New Year (Transferred Off-Day)", nonWorking: true, description: "Off-day transferred from Saturday, Jan 2." },
+                "2027-03-08": { name: "International Women's Day", nonWorking: true, description: "Honoring women's rights and achievements." },
+                "2027-03-10": { name: "Ramadan Bayram", nonWorking: true, description: "Islamic holiday marking the end of Ramadan." },
+                "2027-03-11": { name: "Ramadan Bayram", nonWorking: true, description: "Islamic holiday marking the end of Ramadan." },
+                "2027-03-20": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Vernal Equinox and Spring Festival." },
+                "2027-03-21": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Vernal Equinox celebration." },
+                "2027-03-22": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Spring Festival celebration." },
+                "2027-03-23": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Spring Festival celebration." },
+                "2027-03-24": { name: "Novruz Holiday", nonWorking: true, description: "Traditional Spring Festival celebration." },
+                "2027-03-25": { name: "Novruz Transferred Off-Day", nonWorking: true, description: "Official non-working day transferred for Novruz." },
+                "2027-03-26": { name: "Novruz Transferred Off-Day", nonWorking: true, description: "Official non-working day transferred for Novruz." },
+                "2027-05-09": { name: "Victory over Fascism Day", nonWorking: true, description: "Commemorating victory in World War II." },
+                "2027-05-10": { name: "Victory Day (Transferred Off-Day)", nonWorking: true, description: "Off-day transferred from Sunday, May 9." },
+                "2027-05-17": { name: "Gurban Bayram", nonWorking: true, description: "Feast of Sacrifice (Gurban Bayram)." },
+                "2027-05-18": { name: "Gurban Bayram", nonWorking: true, description: "Feast of Sacrifice (Gurban Bayram)." },
+                "2027-05-28": { name: "Independence Day", nonWorking: true, description: "Declaration of the Democratic Republic of Azerbaijan (1918)." },
+                "2027-06-15": { name: "National Salvation Day", nonWorking: true, description: "Commemorating the return of Heydar Aliyev to power in 1993." },
+                "2027-06-26": { name: "Armed Forces Day", nonWorking: true, description: "Honoring the Military Forces of Azerbaijan." },
+                "2027-06-28": { name: "Armed Forces Day (Transferred Off-Day)", nonWorking: true, description: "Off-day transferred from Saturday, June 26." },
+                "2027-11-08": { name: "Victory Day (Zəfər Günü)", nonWorking: true, description: "Celebrating victory in the 2020 Patriotic War." },
+                "2027-11-09": { name: "State Flag Day", nonWorking: true, description: "Honoring the Tricolor State Flag of Azerbaijan." },
+                "2027-12-31": { name: "Solidarity Day of World Azerbaijanis", nonWorking: true, description: "Fostering unity among Azerbaijanis worldwide." }
+            }
+        };
+
+        // Category 2: Special Days THAT REMAIN NORMAL WORKING DAYS
+        // CRITICAL REQUIREMENT: 20 January is strictly a SPECIAL DAY but NOT a non-working day!
+        const SPECIAL_DAYS = {
+            2026: {
+                "2026-01-20": { name: "20 January - National Day of Mourning", nonWorking: false, description: "Martyrs' Day commemorating victims of Black January 1990 Soviet military crackdown. Official Day of Commemoration (Working Day)." },
+                "2026-02-26": { name: "Khojaly Genocide Commemoration Day", nonWorking: false, description: "Solemn memorial day honoring victims of the 1992 Khojaly tragedy (Working Day)." },
+                "2026-09-27": { name: "Remembrance Day (Anım Günü)", nonWorking: false, description: "Honoring soldiers and martyrs of the 44-day Patriotic War (Working Day)." },
+                "2026-11-12": { name: "Constitution Day", nonWorking: false, description: "Adoption of the Constitution of independent Azerbaijan in 1995 (Working Day)." },
+                "2026-11-17": { name: "National Revival Day", nonWorking: false, description: "Commemorating the 1988 mass political demonstrations in Baku (Working Day)." }
+            },
+            2027: {
+                "2027-01-20": { name: "20 January - National Day of Mourning", nonWorking: false, description: "Martyrs' Day commemorating victims of Black January 1990 Soviet military crackdown. Official Day of Commemoration (Working Day)." },
+                "2027-02-26": { name: "Khojaly Genocide Commemoration Day", nonWorking: false, description: "Solemn memorial day honoring victims of the 1992 Khojaly tragedy (Working Day)." },
+                "2027-09-27": { name: "Remembrance Day (Anım Günü)", nonWorking: false, description: "Honoring soldiers and martyrs of the 44-day Patriotic War (Working Day)." },
+                "2027-11-12": { name: "Constitution Day", nonWorking: false, description: "Adoption of the Constitution of independent Azerbaijan in 1995 (Working Day)." },
+                "2027-11-17": { name: "National Revival Day", nonWorking: false, description: "Commemorating the 1988 mass political demonstrations in Baku (Working Day)." }
+            }
+        };
+
+        const MONTH_NAMES = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const WEEKDAYS_SHORT = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+
+        /* ==========================================================================
+           2. STATE & APPLICATION CONTROLLER
+           ========================================================================== */
+        let currentYear = 2026;
+        const todayDate = new Date();
+        const todayYear = todayDate.getFullYear();
+        const todayMonth = todayDate.getMonth();
+        const todayDay = todayDate.getDate();
+
+        // DOM Elements
+        const calendarGrid = document.getElementById('calendarGrid');
+        const currentYearDisplay = document.getElementById('currentYearDisplay');
+        const prevYearBtn = document.getElementById('prevYearBtn');
+        const nextYearBtn = document.getElementById('nextYearBtn');
+        const prevYearLabel = document.getElementById('prevYearLabel');
+        const nextYearLabel = document.getElementById('nextYearLabel');
+        const todayBtn = document.getElementById('todayBtn');
+        const monthNav = document.getElementById('monthNav');
+        const statHolidays = document.getElementById('statHolidays');
+        const statSpecial = document.getElementById('statSpecial');
+
+        // Modal Elements
+        const popupModal = document.getElementById('popupModal');
+        const popupCard = document.getElementById('popupCard');
+        const popupBadge = document.getElementById('popupBadge');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupDate = document.getElementById('popupDate');
+        const popupStatusIcon = document.getElementById('popupStatusIcon');
+        const popupStatusValue = document.getElementById('popupStatusValue');
+        const popupDescription = document.getElementById('popupDescription');
+        const popupCloseBtn = document.getElementById('popupCloseBtn');
+        const popupOkBtn = document.getElementById('popupOkBtn');
+
+        /* ==========================================================================
+           3. CORE FUNCTIONS & LOGIC
+           ========================================================================== */
+
+        function initApp() {
+            setupMonthNav();
+            renderCalendar(currentYear);
+            setupEventListeners();
+        }
+
+        function setupMonthNav() {
+            monthNav.innerHTML = '';
+            MONTH_NAMES.forEach((month, index) => {
+                const chip = document.createElement('div');
+                chip.className = 'month-chip';
+                chip.textContent = month.substring(0, 3);
+                chip.addEventListener('click', () => {
+                    const monthCard = document.getElementById(`month-${index}`);
+                    if (monthCard) {
+                        monthCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+                monthNav.appendChild(chip);
+            });
+        }
+
+        function updateYearControls() {
+            currentYearDisplay.textContent = currentYear;
+            prevYearLabel.textContent = currentYear - 1;
+            nextYearLabel.textContent = currentYear + 1;
+
+            // Enable/Disable year buttons if beyond 2026-2027 bounds
+            prevYearBtn.style.opacity = currentYear <= 2026 ? "0.5" : "1";
+            prevYearBtn.style.pointerEvents = currentYear <= 2026 ? "none" : "auto";
+
+            nextYearBtn.style.opacity = currentYear >= 2027 ? "0.5" : "1";
+            nextYearBtn.style.pointerEvents = currentYear >= 2027 ? "none" : "auto";
+
+            // Calculate stats
+            const hCount = Object.keys(HOLIDAYS[currentYear] || {}).length;
+            const sCount = Object.keys(SPECIAL_DAYS[currentYear] || {}).length;
+            statHolidays.textContent = `${hCount} Days`;
+            statSpecial.textContent = `${sCount} Days`;
+        }
+
+        function getDayType(year, month, day, dayOfWeek) {
+            const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // 0 = Sun, 6 = Sat
+
+            // PRIORITY 1: Official Non-Working Holiday
+            if (HOLIDAYS[year] && HOLIDAYS[year][formattedDate]) {
+                return {
+                    type: 'holiday',
+                    data: HOLIDAYS[year][formattedDate],
+                    formattedDate
+                };
+            }
+
+            // PRIORITY 2: Special Day (STAYS WORKING DAY!)
+            if (SPECIAL_DAYS[year] && SPECIAL_DAYS[year][formattedDate]) {
+                return {
+                    type: 'special',
+                    data: SPECIAL_DAYS[year][formattedDate],
+                    formattedDate
+                };
+            }
+
+            // PRIORITY 3: Weekend
+            if (isWeekend) {
+                return {
+                    type: 'weekend',
+                    data: { name: dayOfWeek === 6 ? 'Saturday' : 'Sunday', nonWorking: true },
+                    formattedDate
+                };
+            }
+
+            // PRIORITY 4: Normal Workday
+            return {
+                type: 'workday',
+                data: { name: 'Working Day', nonWorking: false },
+                formattedDate
+            };
+        }
+
+        function renderCalendar(year) {
+            // Animate transition out
+            calendarGrid.classList.add('animating');
+
+            setTimeout(() => {
+                calendarGrid.innerHTML = '';
+                updateYearControls();
+
+                for (let month = 0; month < 12; month++) {
+                    const monthCard = createMonthCard(year, month);
+                    calendarGrid.appendChild(monthCard);
+                }
+
+                // Animate transition in
+                calendarGrid.classList.remove('animating');
+            }, 150);
+        }
+
+        function createMonthCard(year, month) {
+            const card = document.createElement('div');
+            card.className = 'month-card';
+            card.id = `month-${month}`;
+
+            // Header
+            const header = document.createElement('div');
+            header.className = 'month-header';
+            header.innerHTML = `
+                <span class="month-name">${MONTH_NAMES[month]}</span>
+                <span class="month-number">${String(month + 1).padStart(2, '0')} / ${year}</span>
+            `;
+            card.appendChild(header);
+
+            // Weekdays Header
+            const weekdaysGrid = document.createElement('div');
+            weekdaysGrid.className = 'weekdays-grid';
+            WEEKDAYS_SHORT.forEach(dayName => {
+                const wd = document.createElement('div');
+                wd.className = 'weekday';
+                wd.textContent = dayName;
+                weekdaysGrid.appendChild(wd);
+            });
+            card.appendChild(weekdaysGrid);
+
+            // Days Grid
+            const daysGrid = document.createElement('div');
+            daysGrid.className = 'days-grid';
+
+            // Calculations
+            const firstDayIndex = new Date(year, month, 1).getDay(); // 0 = Sun
+            // Shift so Monday is index 0
+            const mondayOffset = (firstDayIndex === 0 ? 6 : firstDayIndex - 1);
+            const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Empty Leading Cells
+            for (let i = 0; i < mondayOffset; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'day-cell empty';
+                daysGrid.appendChild(emptyCell);
+            }
+
+            // Month Day Cells
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+                const cellDate = new Date(year, month, day);
+                const dayOfWeek = cellDate.getDay();
+                const dayInfo = getDayType(year, month, day, dayOfWeek);
+
+                const cell = document.createElement('div');
+                cell.className = `day-cell ${dayInfo.type}`;
+                cell.textContent = day;
+
+                // Check Today
+                if (year === todayYear && month === todayMonth && day === todayDay) {
+                    cell.classList.add('today');
+                }
+
+                // Add indicator icon dot for holiday or special day
+                if (dayInfo.type === 'holiday' || dayInfo.type === 'special') {
+                    const iconDot = document.createElement('div');
+                    iconDot.className = 'day-icon';
+                    cell.appendChild(iconDot);
+                }
+
+                // Click Handler for Popups (Normal workdays do not open popups per specs)
+                cell.addEventListener('click', () => {
+                    if (dayInfo.type !== 'workday') {
+                        showPopup(dayInfo, year, month, day);
+                    }
+                });
+
+                daysGrid.appendChild(cell);
+            }
+
+            card.appendChild(daysGrid);
+            return card;
+        }
+
+        /* ==========================================================================
+           4. POPUP SYSTEM & MODAL INTERACTION
+           ========================================================================== */
+
+        function showPopup(dayInfo, year, month, day) {
+            const dateObj = new Date(year, month, day);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const fullDateString = dateObj.toLocaleDateString('en-US', options);
+
+            // Reset Card Classes
+            popupCard.className = `popup-card ${dayInfo.type}`;
+
+            if (dayInfo.type === 'holiday') {
+                popupBadge.textContent = "Official Holiday";
+                popupTitle.textContent = dayInfo.data.name;
+                popupDate.textContent = fullDateString;
+                popupStatusIcon.textContent = "🇦🇿";
+                popupStatusValue.textContent = "Official Non-Working Day";
+                popupDescription.textContent = dayInfo.data.description || "This is an official public non-working holiday in Azerbaijan.";
+            } 
+            else if (dayInfo.type === 'special') {
+                // EXPLICIT REQUIREMENT FOR SPECIAL WORKING DAYS (e.g., 20 January)
+                popupBadge.textContent = "Special Day";
+                popupTitle.textContent = dayInfo.data.name;
+                popupDate.textContent = fullDateString;
+                popupStatusIcon.textContent = "🕯️";
+                popupStatusValue.textContent = "Working Day (Commemoration)";
+                popupDescription.textContent = dayInfo.data.description || "Special date of national significance. This day remains an official working day.";
+            } 
+            else if (dayInfo.type === 'weekend') {
+                popupBadge.textContent = "Weekend";
+                popupTitle.textContent = dayInfo.data.name;
+                popupDate.textContent = fullDateString;
+                popupStatusIcon.textContent = "☕";
+                popupStatusValue.textContent = "Non-Working Weekend Day";
+                popupDescription.textContent = "Regular weekend day off.";
+            }
+
+            popupModal.classList.add('active');
+        }
+
+        function hidePopup() {
+            popupModal.classList.remove('active');
+        }
+
+        /* ==========================================================================
+           5. EVENT LISTENERS
+           ========================================================================== */
+
+        function setupEventListeners() {
+            prevYearBtn.addEventListener('click', () => {
+                if (currentYear > 2026) {
+                    currentYear--;
+                    renderCalendar(currentYear);
+                }
+            });
+
+            nextYearBtn.addEventListener('click', () => {
+                if (currentYear < 2027) {
+                    currentYear++;
+                    renderCalendar(currentYear);
+                }
+            });
+
+            todayBtn.addEventListener('click', () => {
+                if (todayYear === 2026 || todayYear === 2027) {
+                    if (currentYear !== todayYear) {
+                        currentYear = todayYear;
+                        renderCalendar(currentYear);
+                    }
+                    setTimeout(() => {
+                        const todayCell = document.querySelector('.day-cell.today');
+                        if (todayCell) {
+                            todayCell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }, 200);
+                } else {
+                    // Default to 2026 if current actual year is outside range
+                    currentYear = 2026;
+                    renderCalendar(currentYear);
+                }
+            });
+
+            // Close Modal Events
+            popupCloseBtn.addEventListener('click', hidePopup);
+            popupOkBtn.addEventListener('click', hidePopup);
+            popupModal.addEventListener('click', (e) => {
+                if (e.target === popupModal) hidePopup();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && popupModal.classList.contains('active')) {
+                    hidePopup();
+                }
+            });
+        }
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', initApp);
+
+        // Perashki view state; calendar data and original presentation stay intact.
+        document.addEventListener('DOMContentLoaded', () => {
+            let selectedMonth = todayMonth;
+            try {
+                const saved = JSON.parse(localStorage.getItem('perashki:calendar:v1') || 'null');
+                if (saved && saved.version === 1 && [2026, 2027].includes(saved.year)) {
+                    currentYear = saved.year;
+                    renderCalendar(currentYear);
+                    if (Number.isInteger(saved.month) && saved.month >= 0 && saved.month < 12) selectedMonth = saved.month;
+                }
+            } catch {}
+            const saveView = () => {
+                try { localStorage.setItem('perashki:calendar:v1', JSON.stringify({version: 1, year: currentYear, month: selectedMonth})); } catch {}
+            };
+            [prevYearBtn, nextYearBtn, todayBtn].forEach(button => button.addEventListener('click', saveView));
+            monthNav.addEventListener('click', event => {
+                const chip = event.target.closest('.month-chip');
+                if (chip) { selectedMonth = Array.from(monthNav.children).indexOf(chip); saveView(); }
+            });
+            window.addEventListener('perashki:before-backup', saveView);
+        });
+    </script>
+</body>
+</html>

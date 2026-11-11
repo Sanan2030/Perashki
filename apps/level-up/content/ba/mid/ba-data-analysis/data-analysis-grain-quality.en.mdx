@@ -1,0 +1,109 @@
+---
+id: data-analysis-grain-quality
+locale: en
+title: 'Data analysis: questions, grain, denominators and quality'
+objectives:
+  - 'Specify the population, grain, time window and denominator of a metric.'
+  - 'Distinguish absent, zero, duplicate and invalid observations.'
+  - 'Explain why a join or a changed population can change a result without changing customer behavior.'
+---
+
+## Learning objectives
+
+- Specify the population, grain, time window and denominator of a metric.
+- Distinguish absent, zero, duplicate and invalid observations.
+- Explain why a join or a changed population can change a result without changing customer behavior.
+
+## Why this matters
+
+A team reports that “activation increased to 80%.” Before using this result, ask who was eligible, what action counted as activation, how long users had to act and which records were excluded. Without these details, a precise percentage can answer the wrong question. Analysis begins with a decision and a definition, then a dataset and a query.
+
+This lesson uses synthetic customers and orders shared with the SQL and Python lessons. The purpose is to make disagreements visible at the row level before they become confident dashboard claims.
+
+## Core theory
+
+**Grain** states what one row represents: one customer, one order, one item or one event. A key should identify that row at its declared grain. If an order has two items, joining its header to the item table produces two rows. Summing the header amount after that join counts the same order twice.
+
+A measurement contract records the question, owner, eligible population, numerator, denominator, event definition, observation window, timezone, exclusions, source and refresh time. An activation rate might be “February signups with a first paid order within seven complete days / February signups with seven complete days of observation.” This is different from “all paying customers / all accounts.”
+
+Quality has several dimensions. Completeness asks whether required observations are present. Validity checks permitted types and ranges. Uniqueness checks keys. Consistency checks contradictory facts. Timeliness checks whether the data is recent enough for the decision. Passing a type check does not establish business correctness.
+
+Treat missing values explicitly. A missing amount is unknown, whereas zero can be a valid measured amount. An absent order can mean no purchase, delayed ingestion or an extraction problem. Document what the available data can distinguish. Never silently substitute zero just to make a chart render.
+
+A full dataset from one channel can still be unrepresentative of all customers. Compare coverage by time, device, region and acquisition channel. Descriptive associations do not establish that a product change caused an outcome; controlled experiments require a separate design.
+
+## Worked example
+
+February has two signups, `u3` and `u5`. Only `u3` makes a paid order during February. Under the explicitly defined calendar-month activation measure, the result is `1 / 2 = 50%`. Starting from paid orders and counting distinct customers would drop `u5`, producing a misleading `1 / 1 = 100%`.
+
+The shared raw order file contains nine rows: seven valid unique orders, an exact duplicate of `o3` and one row with a missing amount. The cleaning policy removes the exact duplicate, quarantines the invalid row and reports both actions. Six of the seven retained orders have status `paid`; the cancelled order stays available for other questions but contributes no paid revenue.
+
+Record reconciliation:
+
+| Stage                     | Rows | Interpretation                             |
+| ------------------------- | ---: | ------------------------------------------ |
+| Raw input                 |    9 | Includes duplicate and invalid row         |
+| After exact deduplication |    8 | One duplicate removed                      |
+| Retained valid orders     |    7 | One missing amount quarantined             |
+| Paid orders               |    6 | Cancelled order excluded from paid revenue |
+
+This policy is an original teaching example, not a universal rule to delete records.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Decision and question] --> C[Measurement contract]\n C --> G[Grain and keys]\n G --> V[Quality checks]\n V --> R[Reconciled result]\n R --> D[Decision with limitations]'
+  }
+/>
+
+The quality stage can send the analysis back to the definition. A missing population cannot be repaired by making the chart more attractive.
+
+## Inspect the decision
+
+<details>
+<summary>Why can revenue rise after an order-to-item join?</summary>
+
+The join changes the output grain. An order with two items appears twice, so its header amount is repeated. Compare counts by order ID before and after joining. Aggregate item amounts at order grain or calculate header revenue before the one-to-many join.
+
+</details>
+
+## Common mistakes
+
+- Defining the denominator from people who already performed the desired action.
+- Treating every duplicate as an error without checking the intended grain.
+- Hiding exclusions so the cleaned dataset cannot be reconciled to the input.
+- Comparing a partially observed cohort with a fully observed one.
+- Reporting correlation as proof that a release caused an improvement.
+
+## Practice exercise
+
+A report has 120 signup rows but only 100 unique eligible accounts. Sixty of those accounts activate. A separate paid-orders extract contains 60 customers. State the activation rate, identify the correct population and describe two checks before publication. Assume each eligible account has the complete observation window.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+The account-grain rate is `60 / 100 = 60%`. The 120-row signup table contains repeated observations, not 120 eligible accounts. The paid-orders extract cannot supply the full denominator because non-paying accounts are absent. Check that the activation definition is applied once per account and that joins preserve all 100 eligible accounts. Also reconcile duplicate handling and verify complete observation windows.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Question                     | Evidence to retain                       |
+| ---------------------------- | ---------------------------------------- |
+| What does one row represent? | Grain and unique key                     |
+| Who could have succeeded?    | Eligible denominator                     |
+| What was removed?            | Exclusion and quarantine counts          |
+| Is the comparison fair?      | Same definitions and complete windows    |
+| Can someone reproduce it?    | Versioned query, source and refresh time |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [GOV.UK: Measuring performance](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): choose useful measures tied to service decisions.
+- [GOV.UK: Measuring the success of your service](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): measurement context and user outcomes.
+- [PostgreSQL 18: Joins between tables](https://www.postgresql.org/docs/18/tutorial-join.html): joined rows and unmatched records.
+- Original executable exercise: [the executable data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab) in this repository; all customer IDs and amounts are synthetic.

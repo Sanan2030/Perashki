@@ -1,0 +1,120 @@
+---
+id: data-sql-windows-cohorts
+locale: en
+title: 'Advanced SQL: window functions, retention and cohorts'
+objectives:
+  - 'Distinguish grouped aggregation from a window calculation.'
+  - 'Choose an explicit frame and stable ordering for a running total.'
+  - 'Calculate cohort retention while separating unobserved periods from zero activity.'
+---
+
+## Learning objectives
+
+- Distinguish grouped aggregation from a window calculation.
+- Choose an explicit frame and stable ordering for a running total.
+- Calculate cohort retention while separating unobserved periods from zero activity.
+
+## Why this matters
+
+A dashboard can show an apparently dramatic retention drop simply because its newest users have not had time to return. Advanced SQL is useful when it preserves this distinction. Window functions and cohorts extend the earlier SQL lesson, but their definitions still depend on grain, time and population.
+
+## Core theory
+
+A window function calculates across related rows while retaining each input row. `PARTITION BY` defines independent groups, such as customers. The window `ORDER BY` defines sequence within a group. The final query `ORDER BY` still controls display order.
+
+`ROW_NUMBER` assigns sequence numbers; give ties a deterministic secondary key when selecting one record. `LAG` accesses an earlier ordered row, not necessarily the previous calendar month. If February is absent, the preceding row for March may be January. Build a calendar spine when the business question needs every month.
+
+An ordered aggregate window has a frame. PostgreSQL's default frame includes peers through the current ordering value; equal timestamps may therefore share a cumulative result. Use an explicit `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` frame and an appropriate tie-breaker when you require a row-by-row running total. Frame and business ordering must agree.
+
+Window expressions are evaluated after the query's row and group filtering steps. Filter a computed row number in an outer query or CTE. Do not assume that a window alias is available in the same level's `WHERE` clause.
+
+A cohort groups people by a shared entry event and period. Signup cohorts answer questions about new accounts; first-paid cohorts answer questions about new paying customers. Their denominators differ. Retention at month one needs a definition such as “at least one paid order in the next calendar month,” a stable cohort size and a complete observation window.
+
+**Right censoring** occurs when later outcomes are not observable yet. With data complete only through March, April behavior for a March cohort is unknown. Display it as unobserved, not zero. Do not exclude inactive people from an observed cohort's denominator.
+
+## Worked example
+
+This query returns each paid order and its customer's cumulative paid cents:
+
+```sql
+SELECT order_id, customer_id, ordered_at, amount_cents,
+       SUM(amount_cents) OVER (
+         PARTITION BY customer_id
+         ORDER BY ordered_at, order_id
+         ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) AS customer_running_cents
+FROM orders
+WHERE status = 'paid'
+ORDER BY customer_id, ordered_at, order_id;
+```
+
+For `u1`, the cumulative values are `1000`, then `3000`. For `u3`, they are `4000`, then `10000`. The order ID supplies a stable tie-breaker within equal timestamps; a production contract may need an event sequence instead.
+
+Using first-paid-month cohorts and data complete through March:
+
+| Cohort   | Customers | Active next calendar month | Month-one retention |
+| -------- | --------: | -------------------------: | ------------------- |
+| January  |         2 |                          1 | 50%                 |
+| February |         1 |                          1 | 100%                |
+| March    |         1 |                 Unobserved | Unobserved          |
+
+`u2` has only a cancelled February order, so does not count as paid-active in February. Customer `u5` never paid and belongs to a signup population but not a first-paid cohort. These small synthetic cohorts illustrate logic; they are not reliable market estimates.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n E[Choose cohort entry event] --> B[Build one row per customer]\n B --> A[Map paid activity to calendar month]\n A --> O{Next month fully observed?}\n O -->|Yes| R[Active customers divided by fixed cohort size]\n O -->|No| U[Report unobserved]'
+  }
+/>
+
+Observation completeness is a branch in the calculation. A missing future period must never silently become evidence of churn.
+
+## Inspect the decision
+
+<details>
+<summary>Does LAG(monthly_revenue) always return last month's revenue?</summary>
+
+No. It returns the previous row in the ordered partition. When a month is absent, the previous row may be several calendar months earlier. Build the required month series and join observations to it before applying calendar-based comparisons. Decide whether an absent observation is a known zero or an unknown ingestion gap.
+
+</details>
+
+## Common mistakes
+
+- Treating a window ordering clause as a guarantee of final output order.
+- Using an implicit frame without considering duplicate ordering values.
+- Comparing signup-cohort and first-paid-cohort percentages as if they shared a population.
+- Dividing retained customers by only the customers who returned.
+- Displaying future periods as zero and calling the result churn.
+
+## Practice exercise
+
+With a complete-through date of March 31, calculate month-one first-paid retention for January, February and March. Then answer a different question: what fraction of February signups made a paid order in February? Explain why the two February percentages differ.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+January first-paid retention is `1/2=50%`. February first-paid retention is `1/1=100%`. March month-one retention is unobserved because April is outside the observation window. February signup activation is `1/2=50%`, since `u3` paid and `u5` did not. The 100% and 50% figures use different entry events and denominators; neither contradicts the other.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Requirement                        | Technique                                  |
+| ---------------------------------- | ------------------------------------------ |
+| Keep rows while calculating totals | Window aggregate                           |
+| Stable row-by-row accumulation     | Explicit ROWS frame and tie-breaker        |
+| Previous calendar period           | Calendar spine before LAG                  |
+| First record per entity            | ROW_NUMBER in CTE, filter outside          |
+| Honest recent-cohort result        | Observation cutoff and unobserved state    |
+| Comparable retention               | Same entry event, activity and denominator |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [PostgreSQL 18: Window functions](https://www.postgresql.org/docs/18/tutorial-window.html): partitioning, ordering, default frames and filtering in a subquery.
+- [PostgreSQL 18: Joins](https://www.postgresql.org/docs/18/tutorial-join.html): retaining non-matching records.
+- [the data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab): executable original cohort and running-total exercises. Cohort conventions are defined by this lesson, not prescribed by PostgreSQL.

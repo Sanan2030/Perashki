@@ -1,0 +1,87 @@
+---
+id: caching-redis
+locale: en
+title: 'Redis caching: TTL, invalidation and stampede control'
+objectives:
+  - 'Describe cache-aside reads and writes.'
+  - 'Distinguish expiration from correctness and source authority.'
+  - 'Handle stale refill races and synchronized cache misses.'
+---
+
+## Learning objectives
+
+- Describe cache-aside reads and writes.
+- Distinguish expiration from correctness and source authority.
+- Handle stale refill races and synchronized cache misses.
+
+## Why this matters
+
+A cache reduces repeated expensive reads, but a stale price or authorization decision can be more damaging than a slow response. The design needs a declared source of truth and a freshness contract. “Add Redis” is not a complete explanation of how an update reaches every reader.
+
+## Core theory
+
+In cache-aside, the application checks the cache, loads from the authoritative source on a miss and stores a derived entry. The database remains the source of truth for the stated record. Decide which data is safe to cache and how stale it may be; permissions, balances and inventory often need stronger treatment than a public product description.
+
+A time-to-live limits an entry's lifetime. Redis expiration does not establish that the value was fresh when inserted, nor does it coordinate a concurrent source update. Some commands replace a key and can change its expiration behavior, so use the documented command semantics and set TTL deliberately.
+
+Invalidation after a source commit reduces stale reads, but races remain. A reader can fetch an old value, a writer can update and invalidate, and the reader can then refill the cache with the old value. Depending on the required contract, use version-aware writes, invalidation events, appropriate coordination or bypass the cache for critical reads. A lock name alone is not a proof of cross-system atomicity.
+
+A cache stampede occurs when many requests miss together and all load the source. Techniques include request coalescing, bounded concurrency, varied expiration times and carefully defined stale-while-revalidate behavior. Serving stale data is a product decision with limits, not a universal optimization.
+
+Define behavior when Redis is unavailable. Falling back to the database can preserve function but overload the source; use timeouts, load limits and truthful degradation. Monitor hit rate alongside latency, stale responses, source load and errors. A high hit rate can describe a cache that serves the wrong version very efficiently.
+
+## Worked example
+
+A catalog entry uses key `catalog:v3:product:42`. The value includes the source version and a deliberate TTL. On a miss, one coalesced loader fetches the current public description while other requests await its result within a bounded budget.
+
+A price change commits to the source, then triggers invalidation. The team tests a paused old reader that resumes after invalidation; without version checks, it can repopulate stale data. Checkout therefore verifies the authoritative price under its purchase contract instead of trusting the catalog cache. A 60-second TTL is an example, not a guarantee that every read is at most 60 seconds behind a source change.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n R[Read request] --> C{Usable cache entry?}\n C -->|Yes| V[Return under freshness contract]\n C -->|No| L[Bounded coalesced load]\n L --> S[Authoritative source]\n S --> W[Version-aware cache fill]\n U[Source update] --> I[Invalidate or refresh under policy]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Does deleting a cache key immediately after a database commit eliminate every stale-read race?</summary>
+
+No. An earlier reader may still refill the key with a value fetched before the commit. Test that ordering and use a contract appropriate to the risk, such as source versions, deliberate coordination or an authoritative read. TTL is a fallback lifecycle control, not a universal consistency proof.
+
+</details>
+
+## Common mistakes
+
+- Caching authorization decisions without a revocation/freshness model.
+- Using hit rate as the only success measure.
+- Letting every cache miss start an expensive source request.
+- Calling a fallback safe without measuring source capacity.
+
+## Practice exercise
+
+Design a cache for public shipping estimates. Define key dimensions, TTL policy, stale behavior, invalidation trigger and what happens during a cache outage. Identify one value that should be checked authoritatively at purchase.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Include the dimensions that affect the estimate, such as destination region, service option and model version. Choose a TTL based on measured change frequency and acceptable staleness. Coalesce loads and bound fallback traffic. Invalidate or version entries when the underlying policy changes, and label uncertainty if stale estimates may be served. Confirm the actual offered shipping terms under the authoritative checkout contract.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Source authority + key dimensions + version + TTL + invalidation + miss coordination + outage policy. Expiration limits entry life; it does not prove fresh business truth.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Redis official documentation source: EXPIRE](https://github.com/redis/docs/blob/main/content/commands/expire.md): expiration semantics and command interactions. The public Redis page returned a minimal non-document body, so the official repository source was read instead.
+- [Microsoft: Cache-Aside pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside): source/cache behavior and consistency considerations. Examples are original and no Redis service is provisioned.

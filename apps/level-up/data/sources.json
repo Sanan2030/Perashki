@@ -1,0 +1,1166 @@
+[
+  {
+    "id": "scrum-2020",
+    "title": "The Scrum Guide — Ken Schwaber & Jeff Sutherland (November 2020)",
+    "url": "https://scrumguides.org/scrum-guide.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "İstifadəçinin PDF faylı və paylaşdığı mətn oxunub. Scrum qaydaları üçün əsas mənbə. Uyğunlaşdırılmış izahlar: CC BY-SA 4.0.",
+      "en": "User-supplied PDF and pasted text read. Primary authority for Scrum rules. Adapted explanations: CC BY-SA 4.0."
+    }
+  },
+  {
+    "id": "kanban-2021",
+    "title": "The Kanban Guide for Scrum Teams — Scrum.org, Daniel Vacanti & Yuval Yeret (January 2021)",
+    "url": "https://www.scrum.org/resources/kanban-guide-scrum-teams",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "Yüklənmiş 9 səhifəlik PDF: axın metrikləri, WIP, SLE və Scrum tədbirləri. Bu, Scrum komandaları üçün bələdçidir. Uyğunlaşdırmalar: CC BY-SA 4.0.",
+      "en": "Uploaded nine-page PDF: flow metrics, WIP, SLE and Scrum events. Specifically the guide for Scrum Teams. Adaptations: CC BY-SA 4.0."
+    }
+  },
+  {
+    "id": "ebm-2024",
+    "title": "Evidence-Based Management Guide — Scrum.org (2024)",
+    "url": "https://www.scrum.org/resources/evidence-based-management-guide",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "İstifadəçinin PDF faylı oxunub: məqsədlər, eksperimentlər, CV, UV, T2M və A2I. Dərslərdə öz sözlərimizlə izah və yeni nümunələr verilir. Uyğunlaşdırılmış izahlar CC BY-SA 4.0 ilə paylaşılır; müəllif: Scrum.org, may 2024.",
+      "en": "User-supplied PDF read: goals, experiments, CV, UV, T2M and A2I. Lessons use original explanations and new examples. Adapted explanations are shared under CC BY-SA 4.0; attribution: Scrum.org, May 2024."
+    }
+  },
+  {
+    "id": "professional-po-2018",
+    "title": "The Professional Product Owner — Don McGreal & Ralph Jocham (2018), ISBN 9780134686479",
+    "url": "https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479",
+    "kind": "book",
+    "status": "read",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "Yüklənmiş kitabdan fəsillər 1–5, 7–8 üzrə məhsul düşüncəsi, Vision/Value/Validation, sıralama və proqnozlaşdırma işlənib. Kitabın Scrum terminləri 2020 Guide ilə yenilənib; EBM üçün 2024 Guide əsasdır. Kitabın mətni və testləri köçürülmür.",
+      "en": "Uploaded book consulted, chapters 1–5 and 7–8: product mindset, Vision/Value/Validation, ordering and forecasting. Scrum terminology follows the 2020 Guide; EBM follows the 2024 Guide. Book text and quizzes are not reproduced."
+    }
+  },
+  {
+    "id": "po-open",
+    "title": "Scrum.org — Product Owner Open",
+    "url": "https://www.scrum.org/open-assessments/product-owner-open",
+    "kind": "assessment",
+    "status": "challenge",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "az": "2026-11-02 təkrar yoxlama: HTTP 202 və boş cavab (saytın giriş yoxlaması). Cari suallar və say oxunmayıb. Rəsmi əsas Product Ownership məşqi kimi əlaqələndirilib; ödənişli sertifikasiya imtahanı və ya PSPO II sınağı deyil.",
+      "en": "2026-11-02 recheck: HTTP 202 with an empty response (website challenge). Current questions and count not read. Linked as official foundational Product Ownership practice; not the paid certification exam or a PSPO II mock."
+    }
+  },
+  {
+    "id": "classmarker",
+    "title": "ClassMarker — user-shared quiz",
+    "url": "https://www.classmarker.com/online-test/start/?quiz=krm5fac7bab6cc20",
+    "kind": "assessment",
+    "status": "blocked",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "2026-10-21: şəbəkə proksisi girişi bloklayır. Testin məzmunu və rəsmi statusu yoxlanmayıb.",
+      "en": "2026-10-21: access blocked by network proxy. Test content and official status have not been verified."
+    }
+  },
+  {
+    "id": "pspo1-forum",
+    "title": "Scrum.org community forum — PSPO I curriculum",
+    "url": "https://www.scrum.org/node/28848",
+    "kind": "community",
+    "status": "challenge",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "Forum tövsiyəsi; rəsmi imtahan planı deyil. Paylaşımın mətni avtomatik giriş yoxlaması səbəbindən oxunmayıb.",
+      "en": "Community recommendation, not an official exam blueprint. Post text unavailable behind an automated access challenge."
+    }
+  },
+  {
+    "id": "pspo2-forum",
+    "title": "Scrum.org community forum — PSPO II / Kanban Guide",
+    "url": "https://www.scrum.org/node/85094",
+    "kind": "community",
+    "status": "challenge",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "Forum mətni açılmayıb. Kanban dərsi ayrıca yüklənmiş 2021 bələdçisinə əsaslanır.",
+      "en": "Forum text unavailable. The Kanban lesson uses the separately uploaded 2021 guide."
+    }
+  },
+  {
+    "id": "babok-announcement",
+    "title": "Modern Analyst — IIBA launches BABOK Guide v3",
+    "url": "https://www.modernanalyst.com/Resources/News/tabid/177/ID/3243/IIBA-LAUNCHES-THE-ESSENTIAL-STANDARD-FOR-BUSINESS-ANALYSIS.aspx",
+    "kind": "announcement",
+    "status": "blocked",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "Buraxılış xəbəri tam BABOK məzmununu əvəz etmir. Səhifəyə giriş bloklanıb.",
+      "en": "A release announcement does not replace the BABOK text. Page access blocked."
+    }
+  },
+  {
+    "id": "babok-listing",
+    "title": "AbeBooks — BABOK Guide description",
+    "url": "https://www.abebooks.com/Guide-Business-Analysis-Body-Knowledge-BABOK/32132225230/bd",
+    "kind": "listing",
+    "status": "blocked",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "Satış təsviri; tam kitab oxunmayıb. Bu mənbədən BABOK-a əsaslanan yeni dərs yazıldığı iddia edilmir.",
+      "en": "Book listing; full book not read. No new BABOK-based lessons are attributed to this listing."
+    }
+  },
+  {
+    "id": "iiba-official",
+    "title": "IIBA — certification information and ECBA blueprint",
+    "url": "https://www.iiba.org/business-analysis-certifications/",
+    "kind": "exam",
+    "status": "read",
+    "checkedAt": "2026-10-20",
+    "notes": {
+      "az": "Əvvəlki yoxlama: 2026-10-20. ECBA, CCBA və CBAP formatları ayrıca imtahan konfiqurasiyalarında sənədləşdirilib.",
+      "en": "Previous verification: 2026-10-20. ECBA, CCBA and CBAP formats are documented in the separate exam configurations."
+    }
+  },
+  {
+    "id": "babok-v3",
+    "title": "A Guide to the Business Analysis Body of Knowledge (BABOK Guide), v3 — IIBA (2015)",
+    "url": "https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/",
+    "kind": "book",
+    "status": "read",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "İstifadəçinin göndərdiyi BABOK v3 PDF-dən dərslərə aid seçilmiş bölmələr oxunub. Fəsil və bölmə nömrələri dərslərdə göstərilir. Kitabın PDF-i və uzun mətn parçaları yayımlanmır. Cari ECBA imtahan planı ayrıca 2026 IIBA sənədləri ilə yoxlanır.",
+      "en": "Selected sections of the user-supplied BABOK v3 PDF were read for these lessons. Chapters and section locators appear in lessons. The member PDF and extended book passages are not redistributed. Current ECBA exam coverage is verified separately against IIBA documents."
+    }
+  },
+  {
+    "id": "scrum-competencies-2026",
+    "title": "Scrum.org — The Professional Scrum Competencies (user-supplied page text)",
+    "url": "https://www.scrum.org/professional-scrum-competencies",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-21",
+    "notes": {
+      "az": "İstifadəçinin paylaşdığı rəsmi səhifə mətni oxunub: 5 kompetensiya qrupu və 28 fokus sahəsi. Canlı səhifə HTTP 202 giriş yoxlaması qaytarır. Kompetensiya xəritəsi şəxsi inkişaf üçündür; hər PSPO səviyyəsinin dəqiq imtahan çəkilərini müəyyən etmir.",
+      "en": "Read the official page text pasted by the user: five competency groups and 28 focus areas. Live requests return an HTTP 202 access challenge. The framework guides professional development; it does not define exact exam weights for every PSPO level."
+    }
+  },
+  {
+    "id": "community-pspo2-notes",
+    "title": "ShoSaito — PSPO II preparation notes (community study notes)",
+    "url": "https://github.com/ShoSaito/PSPO-II",
+    "kind": "community",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Read the public README: it recommends primary guides, immediate answer explanations, category-level review and revisiting weak areas. It is a preparation note, not a first-hand exam-result report or official blueprint. Its assessment numbers are unverified and internally inconsistent; they are not used as exam facts.",
+      "az": "İctimai README oxunub: əsas bələdçilər, dərhal izah, mövzu üzrə nəticə və zəif sahələrin təkrarı tövsiyə edilir. Bu, hazırlıq qeydidir, şəxsi imtahan nəticəsi hesabatı və ya rəsmi plan deyil. İmtahan rəqəmləri yoxlanmayıb və bir-biri ilə uyğun gəlmir; rəsmi fakt kimi istifadə edilmir."
+    }
+  },
+  {
+    "id": "http-semantics-9110",
+    "title": "IETF RFC 9110 — HTTP Semantics",
+    "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Sections 9.2.1–9.2.2, 9.3, 13.1.1 and 15: method semantics, idempotence, conditional requests and status codes.",
+      "az": "9.2.1–9.2.2, 9.3, 13.1.1 və 15-ci bölmələr: method semantikası, idempotence, conditional request-lər və status code-lar."
+    }
+  },
+  {
+    "id": "oauth-6749",
+    "title": "IETF RFC 6749 — The OAuth 2.0 Authorization Framework",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Sections 1.4–1.5 and 6: access tokens, refresh tokens and refreshing an access token. Security advice is updated by RFC 9700.",
+      "az": "1.4–1.5 və 6-cı bölmələr: access token-lər, refresh token-lər və access token-in yenilənməsi. Təhlükəsizlik tövsiyələri RFC 9700 ilə yenilənir."
+    }
+  },
+  {
+    "id": "oauth-security-9700",
+    "title": "IETF RFC 9700 — Best Current Practice for OAuth 2.0 Security",
+    "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Sections 2.1–2.4, 4.10 and 4.14 read: PKCE, audience restrictions and refresh-token replay detection. January 2025 BCP; do not substitute informal OAuth 2.1 claims.",
+      "az": "2.1–2.4, 4.10 və 4.14-cü bölmələr oxunub: PKCE, audience məhdudiyyətləri və refresh token replay detection. Yanvar 2025 BCP sənədidir; qeyri-rəsmi OAuth 2.1 iddiaları ilə əvəz edilməməlidir."
+    }
+  },
+  {
+    "id": "pkce-7636",
+    "title": "IETF RFC 7636 — Proof Key for Code Exchange",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Section 4 and Appendix B: transaction-specific verifier, S256 challenge and token-endpoint verification.",
+      "az": "4-cü bölmə və Appendix B: transaction-a məxsus verifier, S256 challenge və token endpoint yoxlaması."
+    }
+  },
+  {
+    "id": "jwt-security-8725",
+    "title": "IETF RFC 8725 — JSON Web Token Best Current Practices",
+    "url": "https://www.rfc-editor.org/rfc/rfc8725.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Sections 3.1–3.2 and 3.8–3.12: algorithm allowlists, issuer/audience validation, key lookup and token confusion.",
+      "az": "3.1–3.2 və 3.8–3.12-ci bölmələr: algorithm allowlist-ləri, issuer/audience validation, key lookup və token confusion."
+    }
+  },
+  {
+    "id": "http-problems-9457",
+    "title": "IETF RFC 9457 — Problem Details for HTTP APIs",
+    "url": "https://www.rfc-editor.org/rfc/rfc9457.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Sections 3, 3.1 and 5: application/problem+json, stable problem types and avoiding sensitive implementation detail.",
+      "az": "3, 3.1 və 5-ci bölmələr: application/problem+json, sabit problem type-ları və həssas implementation detallarından yayınmaq."
+    }
+  },
+  {
+    "id": "oidc-core-10",
+    "title": "OpenID Foundation — OpenID Connect Core 1.0",
+    "url": "https://openid.net/specs/openid-connect-core-1_0.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Authorization Code Flow and ID Token validation sections read. ID Tokens authenticate to the client; they are not interchangeable with API access tokens.",
+      "az": "Authorization Code Flow və ID Token validation bölmələri oxunub. ID Token-lər client qarşısında authentication təmin edir; API access token-lərini əvəz etmir."
+    }
+  },
+  {
+    "id": "owasp-rest-security",
+    "title": "OWASP — REST Security Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Official OWASP GitHub Markdown read: HTTPS, JWT validation, endpoint authorization, input validation, CORS and safe errors.",
+      "az": "OWASP-ın rəsmi GitHub Markdown mənbəyi oxunub: HTTPS, JWT validation, endpoint authorization, input validation, CORS və təhlükəsiz error-lar."
+    }
+  },
+  {
+    "id": "owasp-oauth-security",
+    "title": "OWASP — OAuth 2.0 Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Official OWASP GitHub Markdown read: terminology, PKCE, token replay and privilege restriction. RFC 9700 supplies exact normative wording.",
+      "az": "OWASP-ın rəsmi GitHub Markdown mənbəyi oxunub: terminologiya, PKCE, token replay və privilege restriction. Dəqiq normativ ifadələri RFC 9700 müəyyən edir."
+    }
+  },
+  {
+    "id": "owasp-csrf-prevention",
+    "title": "OWASP — Cross-Site Request Forgery Prevention Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Selected official GitHub sections read: synchronizer tokens, custom headers/CORS, SameSite limitations and defense in depth.",
+      "az": "Rəsmi GitHub mənbəyinin seçilmiş bölmələri oxunub: synchronizer token-lər, custom header-lər/CORS, SameSite məhdudiyyətləri və defense in depth."
+    }
+  },
+  {
+    "id": "owasp-authorization",
+    "title": "OWASP — Authorization Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Selected official GitHub sections read: least privilege, deny by default, object-level access checks, server enforcement and safe failure.",
+      "az": "Rəsmi GitHub mənbəyinin seçilmiş bölmələri oxunub: least privilege, deny by default, object-level access check-lər, server enforcement və təhlükəsiz failure."
+    }
+  },
+  {
+    "id": "openapi-311",
+    "title": "OpenAPI Initiative — OpenAPI Specification 3.1.1",
+    "url": "https://spec.openapis.org/oas/v3.1.1.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Versioned official GitHub specification read selectively: Schema, Security Scheme and Security Requirement objects. This is the 3.1.1 edition, not a claim about the latest release.",
+      "az": "Rəsmi GitHub specification-ın konkret versiyası seçmə şəkildə oxunub: Schema, Security Scheme və Security Requirement obyektləri. Bu, 3.1.1 nəşridir; ən son release haqqında iddia deyil."
+    }
+  },
+  {
+    "id": "azure-microservices-patterns",
+    "title": "Microsoft Azure Architecture Center — Design patterns for microservices",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Official MicrosoftDocs source read: service boundaries, BFF, bulkheads, CQRS, sagas and incremental migration. These are engineering patterns, not Scrum requirements.",
+      "az": "Rəsmi MicrosoftDocs mənbəyi oxunub: service sərhədləri, BFF, bulkhead-lər, CQRS, saga-lar və incremental migration. Bunlar engineering pattern-ləridir, Scrum tələbləri deyil."
+    }
+  },
+  {
+    "id": "azure-transactional-outbox",
+    "title": "Microsoft Azure Architecture Center — Transactional Outbox pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Problem, transactional write boundary and publisher/consumer behavior read. Cosmos DB example requires the same logical partition; the lesson distinguishes relational transactions.",
+      "az": "Problem, transactional write sərhədi və publisher/consumer davranışı oxunub. Cosmos DB nümunəsi eyni logical partition tələb edir; dərsdə relational transaction-lar ayrıca fərqləndirilir."
+    }
+  },
+  {
+    "id": "azure-saga-pattern",
+    "title": "Microsoft Azure Architecture Center — Saga distributed transactions pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/saga",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Official saga-content.md read: local transactions, compensations, choreography/orchestration, concurrency anomalies and limitations.",
+      "az": "Rəsmi saga-content.md oxunub: lokal transaction-lar, compensation-lar, choreography/orchestration, concurrency anomaliyaları və məhdudiyyətlər."
+    }
+  },
+  {
+    "id": "azure-retry-pattern",
+    "title": "Microsoft Azure Architecture Center — Retry pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/retry",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Official retry-content.md read: transient faults, retry delays, idempotency, nested retry amplification and time budgets.",
+      "az": "Rəsmi retry-content.md oxunub: transient fault-lar, retry gecikmələri, idempotency, iç-içə retry-lərin yaratdığı artım və vaxt budget-ləri."
+    }
+  },
+  {
+    "id": "azure-circuit-breaker",
+    "title": "Microsoft Azure Architecture Center — Circuit Breaker pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Official source read selectively: closed/open/half-open states, fast failure and limited recovery probes.",
+      "az": "Rəsmi mənbə seçmə şəkildə oxunub: closed/open/half-open vəziyyətləri, fast failure və məhdud recovery probe-ları."
+    }
+  },
+  {
+    "id": "github-webhook-validation",
+    "title": "GitHub Docs — Validating webhook deliveries",
+    "url": "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Signature-validation instructions read: HMAC-SHA256 over original payload bytes, protected shared secret and timing-safe comparison. GitHub-specific headers are not universal webhook standards.",
+      "az": "Signature validation təlimatları oxunub: ilkin payload byte-ları üzərində HMAC-SHA256, qorunan shared secret və timing-safe müqayisə. GitHub-a məxsus header-lər universal webhook standartları deyil."
+    }
+  },
+  {
+    "id": "agile-manifesto-principles",
+    "title": "Agile Manifesto — Principles behind the Agile Manifesto",
+    "url": "https://agilemanifesto.org/principles.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "The twelve original principles read online. They complement Scrum without overriding the November 2020 Scrum Guide.",
+      "az": "On iki orijinal prinsip onlayn oxunub. Onlar noyabr 2020 Scrum Guide-ı ləğv etmədən Scrum-u tamamlayır."
+    }
+  },
+  {
+    "id": "govuk-performance-metrics",
+    "title": "GOV.UK Service Manual — How to set performance metrics for your service",
+    "url": "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Purpose, benefits, hypotheses, data quality, segmentation and baseline sections read. Government service-design guidance provides supplementary examples, not an official PSPO syllabus.",
+      "az": "Məqsəd, faydalar, hypothesis-lər, data quality, segmentation və baseline bölmələri oxunub. Dövlət service design qaydaları əlavə nümunələr verir, rəsmi PSPO syllabus deyil."
+    }
+  },
+  {
+    "id": "govuk-service-success",
+    "title": "GOV.UK Service Manual — Measuring the success of your service",
+    "url": "https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Service measurement guidance read online. Used as supplementary product-outcome material, not Scrum rules or an official PSPO blueprint.",
+      "az": "Service measurement qaydaları onlayn oxunub. Scrum qaydaları və ya rəsmi PSPO blueprint kimi deyil, əlavə product outcome materialı kimi istifadə olunub."
+    }
+  },
+  {
+    "id": "fowler-feature-toggles",
+    "title": "Pete Hodgson on MartinFowler.com — Feature Toggles",
+    "url": "https://martinfowler.com/articles/feature-toggles.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-22",
+    "notes": {
+      "en": "Release, Experiment, Ops and Permissioning Toggles and carrying-cost sections read. Expert engineering article; not an official Scrum.org publication. Flagged unfinished work does not become a Done Increment.",
+      "az": "Release, Experiment, Ops və Permissioning Toggles, eləcə də carrying cost bölmələri oxunub. Ekspert engineering məqaləsidir; rəsmi Scrum.org nəşri deyil. Flag arxasındakı yarımçıq iş Done Increment olmur."
+    }
+  },
+  {
+    "id": "git-branching",
+    "title": "Pro Git — Branches in a Nutshell",
+    "url": "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Branches, commits and HEAD read. Git branches are pointers to commits, not separate runtime environments.",
+      "az": "Branch-lər, commit-lər və HEAD oxunub. Git branch-ləri ayrıca runtime mühiti deyil, commit-lərə pointer-lərdir."
+    }
+  },
+  {
+    "id": "linux-user-commands",
+    "title": "Linux man-pages — intro(1), user commands",
+    "url": "https://man7.org/linux/man-pages/man1/intro.1.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected introduction read: Linux manual section 1 covers user commands. The short page does not document every shell, filesystem or networking command in the original lesson examples.",
+      "az": "Seçilmiş giriş hissəsi oxunub: Linux manual-ın 1-ci bölməsi istifadəçi command-larını əhatə edir. Bu qısa səhifə orijinal dərs nümunələrindəki bütün shell, filesystem və networking command-larını sənədləşdirmir."
+    }
+  },
+  {
+    "id": "github-actions-secure-use",
+    "title": "GitHub Docs — Secure use of GitHub Actions",
+    "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Least privilege, secrets, untrusted input/code checkout, full action commit pinning and short-lived cloud credential guidance read.",
+      "az": "Least privilege, secret-lər, etibarsız input/code checkout, action-ların tam commit-ə pin edilməsi və qısamüddətli cloud credential qaydaları oxunub."
+    }
+  },
+  {
+    "id": "docker-build-practices",
+    "title": "Docker Docs — Building best practices",
+    "url": "https://docs.docker.com/build/building/best-practices/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Multi-stage builds, base image selection, cache, .dockerignore and image digest pinning sections read. No claim of executing a Docker build.",
+      "az": "Multi-stage build-lər, base image seçimi, cache, .dockerignore və image digest pinning bölmələri oxunub. Docker build-in icra edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "kubernetes-deployments",
+    "title": "Kubernetes Docs — Deployments",
+    "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Desired state, rollouts, revision rollback and progress deadline sections read. A deadline reports failure; it is not automatic application/data rollback.",
+      "az": "Desired state, rollout-lar, revision rollback və progress deadline bölmələri oxunub. Deadline failure bildirir; avtomatik application/data rollback deyil."
+    }
+  },
+  {
+    "id": "kubernetes-probes",
+    "title": "Kubernetes Docs — Liveness, readiness and startup probes",
+    "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Probe purposes, startup gating, readiness traffic and liveness restart behavior read. Cluster commands remain illustrative, not a tested deployment.",
+      "az": "Probe məqsədləri, startup gating, readiness traffic və liveness restart davranışı oxunub. Cluster command-ları izahlı nümunələrdir, sınaqdan keçmiş deployment deyil."
+    }
+  },
+  {
+    "id": "terraform-state-purpose",
+    "title": "HashiCorp Terraform — Purpose of state",
+    "url": "https://developer.hashicorp.com/terraform/language/state/purpose",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Resource mapping, metadata and performance sections read. State is protected operational data, not just a disposable cache.",
+      "az": "Resource mapping, metadata və performance bölmələri oxunub. State sadəcə silinə bilən cache deyil, qorunan əməliyyat məlumatıdır."
+    }
+  },
+  {
+    "id": "terraform-sensitive-data",
+    "title": "HashiCorp Terraform — Manage sensitive data",
+    "url": "https://developer.hashicorp.com/terraform/language/manage-sensitive-data",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "State/plan exposure, sensitive redaction and version/provider-dependent ephemeral/write-only values read. Sensitive does not universally omit values from state.",
+      "az": "State/plan ifşası, sensitive redaction və versiya/provider-dən asılı ephemeral/write-only dəyərlər oxunub. Sensitive bütün hallarda dəyəri state-dən çıxarmır."
+    }
+  },
+  {
+    "id": "google-sre-slos",
+    "title": "Google SRE Workbook — Implementing SLOs",
+    "url": "https://sre.google/workbook/implementing-slos/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "User-centered SLIs, SLO measurement windows and error-budget decision guidance read. Request-based budgets are distinct from time-based downtime.",
+      "az": "İstifadəçi yönümlü SLI-lər, SLO ölçmə müddətləri və error budget qərar qaydaları oxunub. Request əsaslı budget-lər vaxt əsaslı downtime-dan fərqlidir."
+    }
+  },
+  {
+    "id": "google-sre-incidents",
+    "title": "Google SRE Workbook — Incident Response",
+    "url": "https://sre.google/workbook/incident-response/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Command/operations/communication roles, mitigation, coordination and learning sections read.",
+      "az": "Command, operations və communication rolları, mitigation, koordinasiya və öyrənmə bölmələri oxunub."
+    }
+  },
+  {
+    "id": "azure-recovery-targets",
+    "title": "Microsoft Well-Architected — Reliability metrics",
+    "url": "https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Recovery target/RTO/RPO sections read. Backup schedules alone do not establish demonstrated recovery capability.",
+      "az": "Bərpa hədəfi/RTO/RPO bölmələri oxunub. Təkcə backup cədvəli bərpa imkanının nümayiş etdirildiyini sübut etmir."
+    }
+  },
+  {
+    "id": "postgres18-joins",
+    "title": "PostgreSQL 18 — Joins between tables",
+    "url": "https://www.postgresql.org/docs/18/tutorial-join.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Join conditions and inner/outer join examples read. The executable local lab separately identifies its SQLite dialect.",
+      "az": "Join şərtləri və inner/outer join nümunələri oxunub. İcra edilə bilən lokal lab öz SQLite dialect-ini ayrıca göstərir."
+    }
+  },
+  {
+    "id": "postgres18-windows",
+    "title": "PostgreSQL 18 — Window functions",
+    "url": "https://www.postgresql.org/docs/18/tutorial-window.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "PARTITION BY, ORDER BY, frames, peer behavior and subquery filtering read. Explicit frames avoid an accidental cumulative-sum assumption.",
+      "az": "PARTITION BY, ORDER BY, frame-lər, peer davranışı və subquery filtering oxunub. Açıq frame-lər təsadüfi cumulative sum fərziyyəsinin qarşısını alır."
+    }
+  },
+  {
+    "id": "pandas-missing-data",
+    "title": "pandas — Working with missing data",
+    "url": "https://pandas.pydata.org/docs/user_guide/missing_data.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Missing sentinels, isna/notna, nullable dtypes and filling/dropping distinctions read. Current documentation is not a promise of every older pandas release.",
+      "az": "Missing sentinel-lər, isna/notna, nullable dtype-lar və fill/drop fərqləri oxunub. Cari sənədlər bütün köhnə pandas release-ləri üçün vəd deyil."
+    }
+  },
+  {
+    "id": "pandas-merge-validation",
+    "title": "pandas — Merge, join, concatenate and compare",
+    "url": "https://pandas.pydata.org/docs/user_guide/merging.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Key cardinality, validate, merge indicators and duplicate expansion sections read.",
+      "az": "Key cardinality, validate, merge indicator-ları və duplicate expansion bölmələri oxunub."
+    }
+  },
+  {
+    "id": "powerbi-star-schema",
+    "title": "Microsoft Power BI — Star schema guidance",
+    "url": "https://learn.microsoft.com/en-us/power-bi/guidance/star-schema",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Fact/dimension grain, relationships, measures and filter propagation sections read. No claim of executing Power BI Desktop in this environment.",
+      "az": "Fact/dimension grain-i, relationship-lər, measure-lər və filter propagation bölmələri oxunub. Bu mühitdə Power BI Desktop-un icra edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "powerquery-data-types",
+    "title": "Microsoft Power Query — Data types",
+    "url": "https://learn.microsoft.com/en-us/power-query/data-types",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Explicit types, conversions, locale and detection behavior read. Excel and Power BI transformations share Power Query concepts.",
+      "az": "Açıq data type-lar, conversion-lar, locale və detection davranışı oxunub. Excel və Power BI transformasiyaları ortaq Power Query anlayışlarından istifadə edir."
+    }
+  },
+  {
+    "id": "nist-experiment-design",
+    "title": "NIST/SEMATECH Handbook — Choosing an experimental design",
+    "url": "https://www.itl.nist.gov/div898/handbook/pri/section3/pri33.htm",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Comparative objectives, randomized designs, resources and Type I/II error considerations read. Numerical examples are original, not measured research results.",
+      "az": "Müqayisə məqsədləri, randomized design-lar, resource-lar və Type I/II error məsələləri oxunub. Rəqəm nümunələri orijinaldır, ölçülmüş araşdırma nəticələri deyil."
+    }
+  },
+  {
+    "id": "wcag22-use-of-color",
+    "title": "W3C — Understanding WCAG 2.2, Use of Color",
+    "url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Success criterion and explanation read: color must not be the sole visual means of conveying information.",
+      "az": "Success criterion və izahı oxunub: rəng məlumatı çatdırmağın yeganə vizual vasitəsi olmamalıdır."
+    }
+  },
+  {
+    "id": "pg-explain",
+    "title": "PostgreSQL 18 — Using EXPLAIN",
+    "url": "https://www.postgresql.org/docs/18/using-explain.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "pg-isolation",
+    "title": "PostgreSQL 18 — Transaction Isolation",
+    "url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "pg-locking",
+    "title": "PostgreSQL 18 — Explicit Locking",
+    "url": "https://www.postgresql.org/docs/18/explicit-locking.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "pg-createindex",
+    "title": "PostgreSQL 18 — CREATE INDEX",
+    "url": "https://www.postgresql.org/docs/18/sql-createindex.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "kafka-design",
+    "title": "Apache Kafka 4.1 — Design",
+    "url": "https://kafka.apache.org/41/design/design/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "rabbit-ack",
+    "title": "RabbitMQ — Consumer Acknowledgements and Publisher Confirms",
+    "url": "https://www.rabbitmq.com/docs/confirms",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "rabbit-dlx",
+    "title": "RabbitMQ — Dead Letter Exchanges",
+    "url": "https://www.rabbitmq.com/docs/dlx",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "redis-expire",
+    "title": "Redis official documentation repository — EXPIRE",
+    "url": "https://raw.githubusercontent.com/redis/docs/main/content/commands/expire.md",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Official Redis documentation source read from redis/docs because the public page returned a tiny non-document body. Selected EXPIRE semantics support original cache-design scenarios.",
+      "az": "Açıq səhifə sənəd əvəzinə çox kiçik məzmun qaytardığı üçün rəsmi Redis documentation mənbəyi redis/docs-dan oxunub. Seçilmiş EXPIRE semantikası orijinal cache design ssenarilərinə əsas verir."
+    }
+  },
+  {
+    "id": "azure-cache-aside",
+    "title": "Microsoft Azure Architecture — Cache-Aside pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "playwright-practices",
+    "title": "Playwright — Best Practices",
+    "url": "https://playwright.dev/docs/best-practices",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "postman-tests",
+    "title": "Postman — Write Post-Response Scripts",
+    "url": "https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-scripts/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "fowler-tests",
+    "title": "The Practical Test Pyramid — Ham Vocke, MartinFowler.com",
+    "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "dbt-tests",
+    "title": "dbt — Data Tests",
+    "url": "https://docs.getdbt.com/docs/build/data-tests",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "dbt-ref",
+    "title": "dbt — ref function",
+    "url": "https://docs.getdbt.com/reference/dbt-jinja-functions/ref",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "airflow-dags",
+    "title": "Apache Airflow — DAGs",
+    "url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "airflow-practices",
+    "title": "Apache Airflow — Best Practices",
+    "url": "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "aws-iam",
+    "title": "AWS IAM — Security Best Practices",
+    "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "aws-vpc",
+    "title": "Amazon VPC — Overview",
+    "url": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "aws-alb",
+    "title": "AWS Application Load Balancer — Overview",
+    "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "aws-cost",
+    "title": "AWS Well-Architected — Cost Optimization pillar overview",
+    "url": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Cost Optimization pillar overview read selectively; numerical costs and unit-economics examples are original synthetic teaching cases, not current provider prices.",
+      "az": "Cost Optimization pillar icmalı seçmə şəkildə oxunub; rəqəmli xərc və unit economics nümunələri orijinal süni tədris hallarıdır, provider-in cari qiymətləri deyil."
+    }
+  },
+  {
+    "id": "aws-cost-tags",
+    "title": "AWS Billing — Cost Allocation Tags",
+    "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "aws-etl-elt",
+    "title": "AWS — ETL versus ELT",
+    "url": "https://aws.amazon.com/compare/the-difference-between-etl-and-elt/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "fabric-warehouse",
+    "title": "Microsoft Fabric — Data Warehousing",
+    "url": "https://learn.microsoft.com/en-us/fabric/data-warehouse/data-warehousing",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "owasp-threat",
+    "title": "OWASP — Threat Modeling Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "owasp-ssrf",
+    "title": "OWASP — SSRF Prevention Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "owasp-secrets",
+    "title": "OWASP — Secrets Management Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "govuk-interviews",
+    "title": "GOV.UK — Using In-Depth Interviews",
+    "url": "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "jtbd-theory",
+    "title": "Christensen Institute — Jobs to Be Done",
+    "url": "https://www.christenseninstitute.org/theory/jobs-to-be-done/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "story-mapping",
+    "title": "Agile Alliance — Story Mapping",
+    "url": "https://agilealliance.org/glossary/story-mapping/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Selected sections read on 2026-10-23 for original educational explanations and scenarios. Scope and unavailable requests are recorded in docs/RESEARCH-COURSES-2026-10-23.md; no entire-site reading or production deployment is claimed.",
+      "az": "Orijinal tədris izahları və ssenariləri üçün seçilmiş bölmələr 2026-10-23 tarixində oxunub. Scope və əlçatmaz request-lər docs/RESEARCH-COURSES-2026-10-23.md faylında qeyd edilib; bütün saytın oxunduğu və ya production deployment edildiyi iddia olunmur."
+    }
+  },
+  {
+    "id": "omg-bpmn",
+    "title": "OMG — BPMN 2.0.2 specification index",
+    "url": "https://www.omg.org/spec/BPMN/2.0.2",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Specification index, version and normative-reference links read only. The full normative PDF was not read online; lesson diagrams are simplified teaching models, not notation conformance validation.",
+      "az": "Yalnız specification index-i, versiya və normativ reference link-ləri oxunub. Tam normativ PDF onlayn oxunmayıb; dərs diagram-ları sadələşdirilmiş tədris modelləridir, notation uyğunluq yoxlaması deyil."
+    }
+  },
+  {
+    "id": "omg-uml",
+    "title": "OMG — UML 2.5.1 specification index",
+    "url": "https://www.omg.org/spec/UML/2.5.1",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-23",
+    "notes": {
+      "en": "Specification index, version and normative-reference links read only. The full normative PDF was not read online; lesson diagrams are simplified teaching models, not notation conformance validation.",
+      "az": "Yalnız specification index-i, versiya və normativ reference link-ləri oxunub. Tam normativ PDF onlayn oxunmayıb; dərs diagram-ları sadələşdirilmiş tədris modelləridir, notation uyğunluq yoxlaması deyil."
+    }
+  },
+  {
+    "id": "kubernetes-core-objects",
+    "title": "Kubernetes Docs — Pods, ReplicaSets, labels and namespaces",
+    "url": "https://kubernetes.io/docs/concepts/workloads/pods/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-27",
+    "notes": {
+      "en": "Read the official Kubernetes website repository: content/en/docs/concepts/workloads/pods/_index.md, workloads/controllers/replicaset.md, overview/working-with-objects/labels.md and namespaces.md on 2026-10-27 via raw.githubusercontent.com/kubernetes/website/main/. Reviewed shared Pod resources, ownership, controller selectors and namespace scope.",
+      "az": "Kubernetes-in rəsmi website repository-sində content/en/docs/concepts/workloads/pods/_index.md, workloads/controllers/replicaset.md, overview/working-with-objects/labels.md və namespaces.md faylları 2026-10-27 tarixində raw.githubusercontent.com/kubernetes/website/main/ vasitəsilə oxunub. Ortaq Pod resource-ları, ownership, controller selector-ları və namespace scope-u yoxlanıb."
+    }
+  },
+  {
+    "id": "kubernetes-configmaps",
+    "title": "Kubernetes Docs — ConfigMaps",
+    "url": "https://kubernetes.io/docs/concepts/configuration/configmap/",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-27",
+    "notes": {
+      "en": "Read official source content/en/docs/concepts/configuration/configmap.md at raw.githubusercontent.com/kubernetes/website/main/ on 2026-10-27. Reviewed non-confidential data, namespace references, environment snapshots, eventual volume updates and subPath exceptions.",
+      "az": "Rəsmi content/en/docs/concepts/configuration/configmap.md mənbəyi 2026-10-27 tarixində raw.githubusercontent.com/kubernetes/website/main/ ünvanında oxunub. Məxfi olmayan məlumatlar, namespace reference-ləri, environment snapshot-ları, gecikmə ilə volume update-ləri və subPath istisnaları yoxlanıb."
+    }
+  },
+  {
+    "id": "vault-kubernetes-auth",
+    "title": "HashiCorp Vault — Kubernetes auth method",
+    "url": "https://developer.hashicorp.com/vault/docs/auth/kubernetes",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-27",
+    "notes": {
+      "en": "Read official documentation source website/content/docs/auth/kubernetes.mdx at raw.githubusercontent.com/hashicorp/vault/v1.19.0/ on 2026-10-27. Reviewed ServiceAccount JWT authentication, TokenReview and role bindings. Versioned source used for durable concepts; no claim of verifying latest version defaults.",
+      "az": "Rəsmi website/content/docs/auth/kubernetes.mdx documentation mənbəyi 2026-10-27 tarixində raw.githubusercontent.com/hashicorp/vault/v1.19.0/ ünvanında oxunub. ServiceAccount JWT authentication, TokenReview və role binding-lər yoxlanıb. Sabit anlayışlar üçün konkret versiyanın mənbəyi istifadə olunub; ən son versiyanın default-larının yoxlandığı iddia olunmur."
+    }
+  },
+  {
+    "id": "vault-agent-injector",
+    "title": "HashiCorp Vault — Vault Agent Injector",
+    "url": "https://developer.hashicorp.com/vault/docs/platform/k8s/injector",
+    "kind": "guide",
+    "status": "read",
+    "checkedAt": "2026-10-27",
+    "notes": {
+      "en": "Read official documentation source website/content/docs/platform/k8s/injector/index.mdx at raw.githubusercontent.com/hashicorp/vault/v1.19.0/ on 2026-10-27. Reviewed admission injection, Pod template annotations, ServiceAccount roles, init/sidecar containers and shared memory files. Examples are illustrative, not executed against a cluster.",
+      "az": "Rəsmi website/content/docs/platform/k8s/injector/index.mdx documentation mənbəyi 2026-10-27 tarixində raw.githubusercontent.com/hashicorp/vault/v1.19.0/ ünvanında oxunub. Admission injection, Pod template annotation-ları, ServiceAccount rolları, init/sidecar container-lər və shared memory faylları yoxlanıb. Nümunələr izah üçündür, cluster-də icra edilməyib."
+    }
+  },
+  {
+    "id": "kwestio-pspo2",
+    "title": "Kwestio — PSPO II free practice and timed mock",
+    "url": "https://kwestio.jad2advisory.com/certifications/pspo-ii",
+    "kind": "assessment",
+    "status": "read",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "en": "160 accessible questions, answer keys and source explanations imported into a separate attributed collection. The user confirmed permission to use and republish in this chat on 2026-11-02. English wording is preserved; Azerbaijani translations are provided. This does not verify official exam facts. Public practice-bank asset read.",
+      "az": "160 əlçatan sual, cavab açarı və mənbə izahı ayrıca, mənbə adı göstərilən kolleksiyaya əlavə edilib. İstifadəçi 2026-11-02 tarixində bu çatda istifadə və yayımlama icazəsini təsdiqləyib. İngilis mətnləri saxlanılıb, AZ tərcümələri verilib. Bu, rəsmi imtahan faktlarını təsdiqləmir. Açıq practice-bank faylı oxunub."
+    }
+  },
+  {
+    "id": "scrumprep-pspo2",
+    "title": "ScrumPrep — PSPO II free quiz",
+    "url": "https://scrumprep.com/product/pspo-ii-free-quiz/",
+    "kind": "assessment",
+    "status": "read",
+    "checkedAt": "2026-11-01",
+    "notes": {
+      "az": "Açıq məhsul səhifəsi oxunub: dəyər, strategiya və maraqlı tərəflər üzrə 12 təsadüfi pulsuz sual; tam vaxtlı sınaqlar ödənişlidir. Start Free Quiz tələbə mağazasının səbətinə aparır. Test sualları oxunmayıb, hesab və alış yaradılmayıb. 2026-11-02 idxal yoxlaması: tələbə portalı giriş tələb edir. Test sualları əlavə edilməyib.",
+      "en": "Public product page read: 12 random free questions on value, strategy and stakeholders; full timed mocks are paid. Start Free Quiz leads to the student storefront/cart. Quiz questions were not read and no account or purchase was created. Import recheck on 2026-11-02: student portal requires login. No actual questions imported."
+    }
+  },
+  {
+    "id": "examdeck-pspo2",
+    "title": "ExamDeck — PSPO II public practice samples",
+    "url": "https://examdeck.pro/pspo2-practice-questions",
+    "kind": "assessment",
+    "status": "read",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "en": "45 accessible questions, answer keys and source explanations imported into a separate attributed collection. The user confirmed permission to use and republish in this chat on 2026-11-02. English wording is preserved; Azerbaijani translations are provided. This does not verify official exam facts. Only the public samples were imported.",
+      "az": "45 əlçatan sual, cavab açarı və mənbə izahı ayrıca, mənbə adı göstərilən kolleksiyaya əlavə edilib. İstifadəçi 2026-11-02 tarixində bu çatda istifadə və yayımlama icazəsini təsdiqləyib. İngilis mətnləri saxlanılıb, AZ tərcümələri verilib. Bu, rəsmi imtahan faktlarını təsdiqləmir. Yalnız açıq nümunələr əlavə edilib."
+    }
+  },
+  {
+    "id": "kwestio-pspo1",
+    "title": "Kwestio — PSPO I Mock Exam",
+    "url": "https://kwestio.jad2advisory.com/en/certifications/pspo-i",
+    "kind": "assessment",
+    "status": "read",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "en": "361 accessible questions, answer keys and source explanations imported into a separate attributed collection. The user confirmed permission to use and republish in this chat on 2026-11-02. English wording is preserved; Azerbaijani translations are provided. This does not verify official exam facts. Public practice-bank asset read.",
+      "az": "361 əlçatan sual, cavab açarı və mənbə izahı ayrıca, mənbə adı göstərilən kolleksiyaya əlavə edilib. İstifadəçi 2026-11-02 tarixində bu çatda istifadə və yayımlama icazəsini təsdiqləyib. İngilis mətnləri saxlanılıb, AZ tərcümələri verilib. Bu, rəsmi imtahan faktlarını təsdiqləmir. Açıq practice-bank faylı oxunub."
+    }
+  },
+  {
+    "id": "scrumprep-pspo1",
+    "title": "ScrumPrep — PSPO I",
+    "url": "https://scrumprep.com/product/pspo-i-free-quiz/",
+    "kind": "assessment",
+    "status": "read",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "az": "2026-11-02 tarixində açıq məhsul səhifəsi oxunub: on dörd təsadüfi pulsuz sual; tam bank və vaxtlı sınaqlar ödənişlidir. Test sualları oxunmayıb, qeydiyyat və alış aparılmayıb. 2026-11-02 idxal yoxlaması: tələbə portalı giriş tələb edir. Test sualları əlavə edilməyib.",
+      "en": "Public product page read on 2026-11-02: fourteen random free questions; full bank and timed mocks paid. Actual quiz questions not read; no registration or purchase performed. Import recheck on 2026-11-02: student portal requires login. No actual questions imported."
+    }
+  },
+  {
+    "id": "mplaza-pspo1",
+    "title": "Management Plaza — PSPO I Exam Simulator",
+    "url": "https://mplaza.training/exam-simulators/pspo/",
+    "kind": "assessment",
+    "status": "read",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "en": "12 accessible questions, answer keys and source explanations imported into a separate attributed collection. The user confirmed permission to use and republish in this chat on 2026-11-02. English wording is preserved; Azerbaijani translations are provided. This does not verify official exam facts. Only the free demo was imported; no paid bank was accessed.",
+      "az": "12 əlçatan sual, cavab açarı və mənbə izahı ayrıca, mənbə adı göstərilən kolleksiyaya əlavə edilib. İstifadəçi 2026-11-02 tarixində bu çatda istifadə və yayımlama icazəsini təsdiqləyib. İngilis mətnləri saxlanılıb, AZ tərcümələri verilib. Bu, rəsmi imtahan faktlarını təsdiqləmir. Yalnız pulsuz demo əlavə edilib; ödənişli bank açılmayıb."
+    }
+  },
+  {
+    "id": "scrum-open",
+    "title": "Scrum.org — Scrum Open",
+    "url": "https://www.scrum.org/open-assessments/scrum-open",
+    "kind": "assessment",
+    "status": "blocked",
+    "checkedAt": "2026-11-02",
+    "notes": {
+      "az": "Son yoxlamada HTTP 403: giriş rədd edildi. Suallar köçürülməyib.",
+      "en": "Latest check returned HTTP 403: access denied. No questions imported."
+    }
+  }
+]

@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "business-analysis",
+    "term": {
+      "az": "Biznes analizi",
+      "en": "Business analysis"
+    },
+    "definition": {
+      "az": "Ehtiyacları anlamaq və kontekstdə dəyər yarada biləcək dəyişiklikləri tövsiyə etmək fəaliyyəti.",
+      "en": "A practice of understanding needs and recommending changes that can create value in context."
+    },
+    "relatedLessonId": "ba-role"
+  },
+  {
+    "id": "stakeholder",
+    "term": {
+      "az": "Maraqlı tərəf",
+      "en": "Stakeholder"
+    },
+    "definition": {
+      "az": "Dəyişikliklə marağı, ona təsir gücü və ya ondan təsirlənməsi olan insan və ya qrup.",
+      "en": "A person or group with an interest in, influence over or exposure to a change."
+    },
+    "relatedLessonId": "stakeholder-mapping"
+  },
+  {
+    "id": "elicitation",
+    "term": {
+      "az": "Ehtiyacların toplanması",
+      "en": "Elicitation"
+    },
+    "definition": {
+      "az": "İnsanlar, sübut və müşahidə vasitəsilə məlumat, ehtiyac və fərziyyələri üzə çıxaran fəaliyyətlər.",
+      "en": "Activities that uncover information, needs and assumptions through people, evidence and observation."
+    },
+    "relatedLessonId": "elicitation"
+  },
+  {
+    "id": "requirement",
+    "term": {
+      "az": "Tələb",
+      "en": "Requirement"
+    },
+    "definition": {
+      "az": "Biznes və ya maraqlı tərəf nəticəsini dəstəkləyən ehtiyacın və ya şərtin təsviri.",
+      "en": "A representation of a need or condition that supports a business or stakeholder outcome."
+    },
+    "relatedLessonId": "requirement-types"
+  },
+  {
+    "id": "functional-requirement",
+    "term": {
+      "az": "Funksional tələb",
+      "en": "Functional requirement"
+    },
+    "definition": {
+      "az": "Həllin təmin etməli olduğu davranış və ya imkan haqqında bəyanat.",
+      "en": "A statement of a behavior or capability the solution must provide."
+    },
+    "relatedLessonId": "requirement-types"
+  },
+  {
+    "id": "quality-requirement",
+    "term": {
+      "az": "Keyfiyyət tələbi",
+      "en": "Quality requirement"
+    },
+    "definition": {
+      "az": "Həllin necə işləməli olduğuna dair əlçatanlıq və ya cavab vaxtı kimi ölçülən şərt.",
+      "en": "A measurable condition about how well a solution should operate, such as accessibility or response time."
+    },
+    "relatedLessonId": "requirement-types"
+  },
+  {
+    "id": "acceptance-criteria",
+    "term": {
+      "az": "Qəbul meyarları",
+      "en": "Acceptance criteria"
+    },
+    "definition": {
+      "az": "Konkret işin razılaşdırılmış ehtiyacı ödəyib-ödəmədiyini müəyyən edən müşahidə edilən şərtlər.",
+      "en": "Observable conditions used to judge whether a specific item meets the agreed need."
+    },
+    "relatedLessonId": "stories-gherkin"
+  },
+  {
+    "id": "gherkin",
+    "term": {
+      "az": "Gherkin",
+      "en": "Gherkin"
+    },
+    "definition": {
+      "az": "Kontekst, addım və nəticəni təsvir etmək üçün adətən Given, When və Then işlədən strukturlaşdırılmış nümunə yazılışı.",
+      "en": "A structured example notation commonly using Given, When and Then to describe context, action and result."
+    },
+    "relatedLessonId": "stories-gherkin"
+  },
+  {
+    "id": "use-case",
+    "term": {
+      "az": "İstifadə halı",
+      "en": "Use case"
+    },
+    "definition": {
+      "az": "Məqsədə çatmaq üçün aktor və sistemin alternativ və istisnalar daxil olmaqla qarşılıqlı fəaliyyətinin təsviri.",
+      "en": "A description of how an actor and a system interact to achieve a goal, including alternatives and exceptions."
+    },
+    "relatedLessonId": "use-cases"
+  },
+  {
+    "id": "traceability",
+    "term": {
+      "az": "İzlənilmə",
+      "en": "Traceability"
+    },
+    "definition": {
+      "az": "Ehtiyac, tələb, dizayn, test və digər sübutları bağlayan qeyd edilmiş əlaqələr.",
+      "en": "Recorded relationships that connect needs, requirements, designs, tests and other evidence."
+    },
+    "relatedLessonId": "traceability"
+  },
+  {
+    "id": "scope",
+    "term": {
+      "az": "Əhatə",
+      "en": "Scope"
+    },
+    "definition": {
+      "az": "Problem, həll və ya işin xaricdə qalanlar daxil olmaqla razılaşdırılmış sərhədi.",
+      "en": "The agreed boundary of a problem, solution or work effort, including what is outside it."
+    },
+    "relatedLessonId": "scope-change"
+  },
+  {
+    "id": "bpmn",
+    "term": {
+      "az": "BPMN",
+      "en": "BPMN"
+    },
+    "definition": {
+      "az": "Hadisə, fəaliyyət, qərar və qarşılıqlı əlaqələri çatdırmaq üçün biznes prosesi modelləşdirmə yazılışı.",
+      "en": "A business process modeling notation for communicating events, activities, decisions and interactions."
+    },
+    "relatedLessonId": "bpmn-process"
+  },
+  {
+    "id": "uml",
+    "term": {
+      "az": "UML",
+      "en": "UML"
+    },
+    "definition": {
+      "az": "Sistemlərin müxtəlif struktur və davranış görünüşlərini təsvir edən modelləşdirmə yazılışları ailəsi.",
+      "en": "A family of modeling notations used to describe different structural and behavioral views of systems."
+    },
+    "relatedLessonId": "uml-models"
+  },
+  {
+    "id": "erd",
+    "term": {
+      "az": "Obyekt–əlaqə diaqramı",
+      "en": "Entity–relationship diagram"
+    },
+    "definition": {
+      "az": "Məlumat obyektləri, atributları və əlaqə sayı daxil olmaqla əlaqələrinin modeli.",
+      "en": "A model of data entities, their attributes and relationships, including cardinality."
+    },
+    "relatedLessonId": "data-modeling"
+  },
+  {
+    "id": "api",
+    "term": {
+      "az": "API",
+      "en": "API"
+    },
+    "definition": {
+      "az": "Proqram hissələrinin imkan və məlumat istədiyi və ya mübadilə etdiyi müəyyən edilmiş interfeys.",
+      "en": "A defined interface through which software components request or exchange capabilities and data."
+    },
+    "relatedLessonId": "rest-apis"
+  },
+  {
+    "id": "idempotency",
+    "term": {
+      "az": "İdempotentlik",
+      "en": "Idempotency"
+    },
+    "definition": {
+      "az": "Eyni əməliyyatın təkrarının onu bir dəfə etməklə eyni nəzərdə tutulan təsir yaratması xüsusiyyəti.",
+      "en": "A property in which repeating the same operation has the same intended effect as performing it once."
+    },
+    "relatedLessonId": "integration-basics"
+  },
+  {
+    "id": "uat",
+    "term": {
+      "az": "İstifadəçi qəbul testi",
+      "en": "User acceptance testing"
+    },
+    "definition": {
+      "az": "Həllin razılaşdırılmış real ehtiyac və qəbul şərtlərini dəstəkləməsinin biznes yönümlü yoxlanılması.",
+      "en": "Business-oriented validation that a solution supports agreed real-world needs and acceptance conditions."
+    },
+    "relatedLessonId": "uat"
+  },
+  {
+    "id": "rice",
+    "term": {
+      "az": "RICE",
+      "en": "RICE"
+    },
+    "definition": {
+      "az": "Əhatə, təsir, inam və səyi nəzərə alan prioritetləşdirmə üsulu; qiymətləndirmə və fərziyyələr aydın qalmalıdır.",
+      "en": "A prioritization heuristic considering reach, impact, confidence and effort; estimates and assumptions should remain explicit."
+    },
+    "relatedLessonId": "prioritization"
+  },
+  {
+    "id": "moscow",
+    "term": {
+      "az": "MoSCoW",
+      "en": "MoSCoW"
+    },
+    "definition": {
+      "az": "Razılaşdırılmış vaxt və ya əhatədə mütləq, vacib, mümkün və olmayacaq prioritetləri müzakirə üsulu.",
+      "en": "A way to discuss must, should, could and will-not-have priorities within an agreed time or scope boundary."
+    },
+    "relatedLessonId": "prioritization"
+  },
+  {
+    "id": "product-goal",
+    "term": {
+      "az": "Məhsul Məqsədi",
+      "en": "Product Goal"
+    },
+    "definition": {
+      "az": "Scrum Komandasına planlama istiqaməti verən və Məhsul İş Siyahısının öhdəliyi olan gələcək məhsul vəziyyəti.",
+      "en": "A future state of the product that gives the Scrum Team a direction for planning and is a commitment for the Product Backlog."
+    },
+    "relatedLessonId": "product-goal"
+  },
+  {
+    "id": "sprint-goal",
+    "term": {
+      "az": "Sprint Məqsədi",
+      "en": "Sprint Goal"
+    },
+    "definition": {
+      "az": "Seçilmiş işin niyə vacib olduğunu izah edən Sprint üçün vahid istiqamət.",
+      "en": "A single coherent objective for a Sprint that explains why the selected work matters."
+    },
+    "relatedLessonId": "product-goal"
+  },
+  {
+    "id": "product-backlog",
+    "term": {
+      "az": "Məhsul İş Siyahısı",
+      "en": "Product Backlog"
+    },
+    "definition": {
+      "az": "Məhsulu yaxşılaşdırmaq üçün lazım olanların inkişaf edən və sıralanmış siyahısı.",
+      "en": "An emergent, ordered list of what is needed to improve the product."
+    },
+    "relatedLessonId": "product-backlog"
+  },
+  {
+    "id": "increment",
+    "term": {
+      "az": "İnkrement",
+      "en": "Increment"
+    },
+    "definition": {
+      "az": "Bitmişlik Tərifinə cavab verən və əvvəlki inkrementlərlə birləşən istifadəyə yararlı məhsul əlavəsi.",
+      "en": "A usable addition to the product that meets the Definition of Done and combines with previous increments."
+    },
+    "relatedLessonId": "scrum-accountabilities"
+  },
+  {
+    "id": "definition-of-done",
+    "term": {
+      "az": "Bitmişlik Tərifi",
+      "en": "Definition of Done"
+    },
+    "definition": {
+      "az": "İşin nə vaxt istifadəyə yararlı İnkrementin hissəsi olduğunu müəyyən edən ortaq keyfiyyət təsviri.",
+      "en": "A shared quality description that establishes when work is part of a usable Increment."
+    },
+    "relatedLessonId": "scrum-accountabilities"
+  },
+  {
+    "id": "product-owner",
+    "term": {
+      "az": "Məhsul Sahibi",
+      "en": "Product Owner"
+    },
+    "definition": {
+      "az": "Məhsul dəyərinin maksimumlaşdırılması və Məhsul İş Siyahısının səmərəli idarəsinə yönələn Scrum məsuliyyəti.",
+      "en": "The Scrum accountability focused on maximizing product value and effective Product Backlog management."
+    },
+    "relatedLessonId": "scrum-accountabilities"
+  },
+  {
+    "id": "scrum-master",
+    "term": {
+      "az": "Scrum Master",
+      "en": "Scrum Master"
+    },
+    "definition": {
+      "az": "Scrum-un müəyyən edildiyi kimi qurulması və komanda səmərəliliyinin dəstəklənməsinə yönələn məsuliyyət.",
+      "en": "The Scrum accountability focused on establishing Scrum as defined and supporting team effectiveness."
+    },
+    "relatedLessonId": "scrum-accountabilities"
+  },
+  {
+    "id": "developers",
+    "term": {
+      "az": "Tərtibatçılar",
+      "en": "Developers"
+    },
+    "definition": {
+      "az": "Scrum Komandasında yararlı İnkrement yaratmağa və planı Sprint Məqsədinə uyğunlaşdırmağa cavabdeh insanlar.",
+      "en": "People in a Scrum Team accountable for creating a usable Increment and adapting their plan toward the Sprint Goal."
+    },
+    "relatedLessonId": "scrum-accountabilities"
+  },
+  {
+    "id": "empiricism",
+    "term": {
+      "az": "Empirizm",
+      "en": "Empiricism"
+    },
+    "definition": {
+      "az": "Şəffaflıq, yoxlama və uyğunlaşma ilə təcrübədən öyrənmək və müşahidə olunan sübuta əsasən qərar vermək.",
+      "en": "Learning from experience and making decisions using observed evidence, with transparency, inspection and adaptation."
+    },
+    "relatedLessonId": "scrum-framework"
+  },
+  {
+    "id": "refinement",
+    "term": {
+      "az": "İş siyahısının dəqiqləşdirilməsi",
+      "en": "Backlog refinement"
+    },
+    "definition": {
+      "az": "İş elementlərini daha yaxşı anlamaq üçün hissələrə ayırmaq və aydınlaşdırmaq üzrə davamlı iş.",
+      "en": "Ongoing work to break down and clarify backlog items so they are better understood."
+    },
+    "relatedLessonId": "product-backlog"
+  },
+  {
+    "id": "jtbd",
+    "term": {
+      "az": "Görülməli işlər yanaşması",
+      "en": "Jobs to Be Done"
+    },
+    "definition": {
+      "az": "İnsanın müəyyən vəziyyətdə istədiyi irəliləyişi və istifadə etdiyi alternativləri araşdırmaq üçün baxış.",
+      "en": "A lens for investigating the progress a person seeks in a particular situation and the alternatives they use."
+    },
+    "relatedLessonId": "jtbd-research"
+  },
+  {
+    "id": "okr",
+    "term": {
+      "az": "Məqsədlər və Açar Nəticələr",
+      "en": "Objectives and Key Results"
+    },
+    "definition": {
+      "az": "Nəticəni təşəbbüsdən ayıraraq istiqaməti ölçülən nəticələrə bağlayan məqsədqoyma yanaşması.",
+      "en": "A goal-setting approach that connects a direction with measurable results, separating results from initiatives."
+    },
+    "relatedLessonId": "okrs"
+  },
+  {
+    "id": "north-star",
+    "term": {
+      "az": "Əsas İstiqamət göstəricisi",
+      "en": "North Star metric"
+    },
+    "definition": {
+      "az": "Məhsul qərarlarını əlaqələndirən təkrarlanan müştəri dəyəri ölçüsü; qoruyucu göstəricilər yenə lazımdır.",
+      "en": "A candidate measure of recurring customer value that helps coordinate product decisions; it still needs guardrails."
+    },
+    "relatedLessonId": "product-metrics"
+  },
+  {
+    "id": "guardrail",
+    "term": {
+      "az": "Qoruyucu göstərici",
+      "en": "Guardrail metric"
+    },
+    "definition": {
+      "az": "Əsas nəticəni izləyərkən qəbuledilməz yan təsirləri müşahidə etmək üçün ölçü.",
+      "en": "A measure used to observe unacceptable side effects while pursuing a primary outcome."
+    },
+    "relatedLessonId": "product-goal"
+  },
+  {
+    "id": "ebm",
+    "term": {
+      "az": "Sübuta əsaslanan idarəetmə",
+      "en": "Evidence-Based Management"
+    },
+    "definition": {
+      "az": "Məqsəd, eksperiment, nəticə və təşkilati qabiliyyət sübutu ilə dəyəri yaxşılaşdıran yanaşma.",
+      "en": "An approach to improving value through goals, experiments and evidence about outcomes and organizational capability."
+    },
+    "relatedLessonId": "ebm"
+  },
+  {
+    "id": "forecast",
+    "term": {
+      "az": "Proqnoz",
+      "en": "Forecast"
+    },
+    "definition": {
+      "az": "Qeyri-müəyyənlik və fərziyyələri görünən etməli olan gələcək nəticənin sübut əsaslı qiymətləndirilməsi.",
+      "en": "An evidence-based estimate of a future outcome that should make uncertainty and assumptions visible."
+    },
+    "relatedLessonId": "forecast-release"
+  },
+  {
+    "id": "opportunity-cost",
+    "term": {
+      "az": "Fürsət xərci",
+      "en": "Opportunity cost"
+    },
+    "definition": {
+      "az": "Məhdud resursdan istifadə seçimi ediləndə imtina olunan ən yaxşı alternativin dəyəri.",
+      "en": "The value of the best alternative forgone when choosing how to use limited resources."
+    },
+    "relatedLessonId": "portfolio-lifecycle"
+  },
+  {
+    "id": "accessibility",
+    "term": {
+      "az": "Əlçatanlıq",
+      "en": "Accessibility"
+    },
+    "definition": {
+      "az": "Fərqli qabiliyyətli insanların xidməti qavraya, anlaya və istifadə edə bilməsi üçün dizayn və qiymətləndirmə.",
+      "en": "Designing and evaluating a service so people with different abilities can perceive, understand and use it."
+    },
+    "relatedLessonId": "product-ethics"
+  },
+  {
+    "id": "hypothesis",
+    "term": {
+      "az": "Fərziyyə",
+      "en": "Hypothesis"
+    },
+    "definition": {
+      "az": "Yeni sübutla sorğulana bilən, yoxlanıla bilən izah və ya proqnoz.",
+      "en": "A testable explanation or prediction that could be challenged by new evidence."
+    },
+    "relatedLessonId": "jtbd-research"
+  },
+  {
+    "id": "readiness",
+    "term": {
+      "az": "Öyrənmə hazırlığı",
+      "en": "Learning readiness"
+    },
+    "definition": {
+      "az": "İzlənilən məşq və ya özünüqiymətləndirməyə əsaslanan tədris göstəricisi; imtahan uğuru və ya uyğunluq zəmanəti deyil.",
+      "en": "An educational indicator based on tracked practice or self-assessment, not a guarantee of exam success or eligibility."
+    },
+    "relatedLessonId": "product-goal"
+  },
+  {
+    "id": "access-token",
+    "term": {
+      "en": "Access token",
+      "az": "Resursa giriş tokeni"
+    },
+    "definition": {
+      "en": "A credential presented to an intended resource server under defined authorization, audience and validity constraints.",
+      "az": "API-yə giriş üçün istifadə edilir. Tokenin olması bütün istifadəçilərin bütün məlumatlarına icazə vermir."
+    },
+    "relatedLessonId": "access-refresh-tokens"
+  },
+  {
+    "id": "refresh-token",
+    "term": {
+      "en": "Refresh token",
+      "az": "Giriş tokenini yeniləmə etimadnaməsi"
+    },
+    "definition": {
+      "en": "A credential submitted to an authorization server to obtain new access tokens within an existing grant.",
+      "az": "Access token bitəndə yenisini almaq üçün avtorizasiya serverinə göndərilir; adi sifariş API-sinə göndərilmir."
+    },
+    "relatedLessonId": "access-refresh-tokens"
+  },
+  {
+    "id": "jwt",
+    "term": {
+      "en": "JWT",
+      "az": "JSON formatlı token standartı"
+    },
+    "definition": {
+      "en": "A format for representing claims with supported cryptographic protection; a common signed form has three encoded parts.",
+      "az": "JWT bir formatdır. Payload-u oxumaq imzanı və icazəni yoxlamaq demək deyil; imzalanmış JWT adətən şifrələnmiş olmur."
+    },
+    "relatedLessonId": "jwt-validation-authorization"
+  },
+  {
+    "id": "jwks",
+    "term": {
+      "en": "JWKS",
+      "az": "JSON açar dəsti"
+    },
+    "definition": {
+      "en": "A structured set of cryptographic keys, often published by a trusted issuer for token verification.",
+      "az": "Etibarlı issuer token imzalarını yoxlamaq üçün açarlarını dərc edə bilər. Tokenin özündəki istənilən URL avtomatik etibarlı sayılmır."
+    },
+    "relatedLessonId": "jwt-validation-authorization"
+  },
+  {
+    "id": "pkce",
+    "term": {
+      "en": "PKCE",
+      "az": "Authorization code mübadiləsinin əlavə qorunması"
+    },
+    "definition": {
+      "en": "An OAuth mechanism binding authorization code redemption to a transaction-specific verifier retained by the client.",
+      "az": "Proqram əvvəlcə təsadüfi verifier yaradır, onun challenge dəyərini göndərir, kodu dəyişəndə isə verifier-i təqdim edir."
+    },
+    "relatedLessonId": "oauth-pkce-oidc"
+  },
+  {
+    "id": "bff",
+    "term": {
+      "en": "BFF",
+      "az": "İnterfeysə uyğun arxa xidmət"
+    },
+    "definition": {
+      "en": "A backend tailored to a client experience; some designs keep OAuth credentials there and give the browser a session cookie.",
+      "az": "Veb və ya mobil interfeysin ehtiyaclarına uyğun backend-dir. Tokenləri serverdə saxlamaq variantlardan biridir, bütün BFF-lər üçün məcburi qayda deyil."
+    },
+    "relatedLessonId": "browser-bff-csrf-cors"
+  },
+  {
+    "id": "csrf",
+    "term": {
+      "en": "CSRF",
+      "az": "Saytlararası saxta sorğu"
+    },
+    "definition": {
+      "en": "An attack causing a browser to send an unwanted authenticated request using credentials it attaches automatically.",
+      "az": "Brauzerin cookie-ni avtomatik göndərməsindən istifadə edib istifadəçinin istəmədiyi əməliyyatı etdirmək cəhdidir."
+    },
+    "relatedLessonId": "browser-bff-csrf-cors"
+  },
+  {
+    "id": "outbox",
+    "term": {
+      "en": "Transactional outbox",
+      "az": "Tranzaksiyalı çıxış hadisələri jurnalı"
+    },
+    "definition": {
+      "en": "A pattern that commits business data and an outgoing event together before a separate publisher sends the event.",
+      "az": "Biznes məlumatı və göndəriləcək hadisə eyni lokal tranzaksiyada saxlanır; ayrıca worker hadisəni göndərir. Təkrar göndəriş yenə mümkündür."
+    },
+    "relatedLessonId": "integration-basics"
+  },
+  {
+    "id": "saga",
+    "term": {
+      "en": "Saga",
+      "az": "Paylanmış lokal tranzaksiyalar axını"
+    },
+    "definition": {
+      "en": "A workflow coordinating local transactions across services with compensations and recovery rather than one global rollback.",
+      "az": "Hər xidmət lokal commit edir. Sonrakı xəta üçün kompensasiya və bərpa əməliyyatları planlaşdırılır; bunlar da uğursuz ola bilər."
+    },
+    "relatedLessonId": "architecture-boundaries-sagas"
+  },
+  {
+    "id": "optimistic-locking",
+    "term": {
+      "en": "Optimistic locking",
+      "az": "Versiya müqayisəsi ilə paralel yeniləmə nəzarəti"
+    },
+    "definition": {
+      "en": "A concurrency approach that applies a change only if the state still matches the version previously observed.",
+      "az": "Yeniləmədən əvvəl oxunmuş versiya hələ dəyişməyibsə əməliyyat edilir; dəyişibsə konflikt həll olunmalıdır."
+    },
+    "relatedLessonId": "api-idempotency-concurrency"
+  },
+  {
+    "id": "feature-flag",
+    "term": {
+      "en": "Feature flag",
+      "az": "Funksiyanın işləməsini idarə edən bayraq"
+    },
+    "definition": {
+      "en": "A mechanism that selects whether or how a capability is exposed or executed under an explicit configuration.",
+      "az": "Funksiyanı müəyyən istifadəçilərə açmaq və ya söndürmək üçün işlədilir. Gizlədilmiş yarımçıq iş avtomatik Done olmur."
+    },
+    "relatedLessonId": "pspo2-release-feature-flags"
+  },
+  {
+    "id": "cursor-pagination",
+    "term": {
+      "en": "Cursor pagination",
+      "az": "İstinad nöqtəsi ilə səhifələmə"
+    },
+    "definition": {
+      "en": "A pagination approach that continues a result traversal using a cursor under a defined ordering and consistency policy.",
+      "az": "Nəticələrin davamını cursor ilə alır. Cursor təkbaşına snapshot sabitliyi və ya giriş icazəsi vermir."
+    },
+    "relatedLessonId": "api-contracts-evolution"
+  },
+  {
+    "id": "devops",
+    "term": {
+      "en": "DevOps",
+      "az": "Proqram təminatının hazırlanması və istismarının birgə təşkili"
+    },
+    "definition": {
+      "en": "A collaborative approach to developing, delivering and operating software with shared responsibility and feedback.",
+      "az": "Proqramı hazırlayan və işlək saxlayan tərəflərin çatdırılma, etibarlılıq və geribildirim üçün birgə məsuliyyət daşıdığı yanaşmadır."
+    },
+    "relatedLessonId": "devops-linux-git-networking"
+  },
+  {
+    "id": "container",
+    "term": {
+      "en": "Container",
+      "az": "İzolyasiya olunmuş tətbiq prosesi mühiti"
+    },
+    "definition": {
+      "en": "A runtime environment that isolates application processes while sharing the host operating system kernel.",
+      "az": "Tətbiq proseslərini müəyyən sərhədlərlə ayıran, adətən host sistemin kernelini paylaşan işləmə mühitidir; ayrıca virtual maşınla eyni deyil."
+    },
+    "relatedLessonId": "devops-docker-containers"
+  },
+  {
+    "id": "image-digest",
+    "term": {
+      "en": "Image digest",
+      "az": "Image məzmununun kriptoqrafik identifikatoru"
+    },
+    "definition": {
+      "en": "A cryptographic content identifier for a container image or manifest.",
+      "az": "Image məzmununu müəyyən edən identifikatordur. Dəyişən tag-dən fərqli olaraq konkret məzmuna işarə edir, amma özlüyündə təhlükəsizliyə zəmanət vermir."
+    },
+    "relatedLessonId": "devops-docker-containers"
+  },
+  {
+    "id": "infrastructure-as-code",
+    "term": {
+      "en": "Infrastructure as code",
+      "az": "İnfrastrukturun kodla təsviri və idarəsi"
+    },
+    "definition": {
+      "en": "Managing infrastructure through versioned, reviewable configuration rather than undocumented manual changes.",
+      "az": "İnfrastrukturun versiyalanan və icmal edilə bilən konfiqurasiya ilə idarə edilməsidir; əl ilə edilən dəyişikliklərdən yaranan fərqlər ayrıca yoxlanır."
+    },
+    "relatedLessonId": "devops-terraform-iac"
+  },
+  {
+    "id": "terraform-state",
+    "term": {
+      "en": "Terraform state",
+      "az": "Terraform-un resurs xəritəsi və idarəetmə məlumatı"
+    },
+    "definition": {
+      "en": "Stored data mapping Terraform-managed resource instances to real objects and retaining management information.",
+      "az": "Terraform-un təsvir etdiyi resursları real obyektlərlə əlaqələndirən məlumatdır. Həssas dəyərlər saxlaya bildiyi üçün adi log kimi paylaşılmamalıdır."
+    },
+    "relatedLessonId": "devops-terraform-iac"
+  },
+  {
+    "id": "readiness-probe",
+    "term": {
+      "en": "Readiness probe",
+      "az": "Sorğu qəbul etməyə hazırlıq yoxlaması"
+    },
+    "definition": {
+      "en": "A Kubernetes probe that indicates whether a container is ready to serve traffic through normal Service routing.",
+      "az": "Container-in trafik qəbul etməyə hazır olub-olmadığını yoxlayır. Uğursuzluq adətən onu Service trafikindən çıxarır; bu, avtomatik restart yoxlaması ilə eyni deyil."
+    },
+    "relatedLessonId": "devops-kubernetes-delivery"
+  },
+  {
+    "id": "liveness-probe",
+    "term": {
+      "en": "Liveness probe",
+      "az": "Canlılıq və restart ehtiyacı yoxlaması"
+    },
+    "definition": {
+      "en": "A Kubernetes probe whose repeated failure can cause the container to be restarted.",
+      "az": "Container-in işləkliyini qiymətləndirən yoxlamadır; təkrar uğursuzluq restart-a səbəb ola bilər. Hər xarici asılılıq xətasını buna bağlamaq restart dövrü yarada bilər."
+    },
+    "relatedLessonId": "devops-kubernetes-delivery"
+  },
+  {
+    "id": "error-budget",
+    "term": {
+      "en": "Error budget",
+      "az": "SLO daxilində icazə verilən uğursuzluq payı"
+    },
+    "definition": {
+      "en": "The allowed amount of unreliability implied by a service-level objective over its defined measurement window.",
+      "az": "SLO-nun müəyyən etdiyi vaxt pəncərəsində qəbul edilən uğursuzluq həddidir. Sorğu əsaslı büdcə avtomatik olaraq dayanma dəqiqələrinə çevrilmir."
+    },
+    "relatedLessonId": "devops-sre-incidents"
+  },
+  {
+    "id": "recovery-time-objective",
+    "term": {
+      "en": "Recovery time objective",
+      "az": "Bərpa vaxtı hədəfi"
+    },
+    "definition": {
+      "en": "The target maximum duration for restoring the required service after a disruption.",
+      "az": "Nasazlıqdan sonra tələb olunan xidməti bərpa etmək üçün hədəflənən maksimum müddətdir. Backup-un uğurlu olması bu müddətə çatıldığını sübut etmir."
+    },
+    "relatedLessonId": "devops-sre-incidents"
+  },
+  {
+    "id": "recovery-point-objective",
+    "term": {
+      "en": "Recovery point objective",
+      "az": "Məlumatın bərpa nöqtəsi hədəfi"
+    },
+    "definition": {
+      "en": "The target maximum amount of data loss expressed as time before a disruption.",
+      "az": "Nasazlıqdan əvvəl hansı vaxtadək olan məlumat itkisinə dözmək mümkün olduğunu göstərən hədəfdir. RTO-dan fərqli olaraq bərpanın nə qədər çəkdiyini ölçmür."
+    },
+    "relatedLessonId": "devops-sre-incidents"
+  },
+  {
+    "id": "data-grain",
+    "term": {
+      "en": "Data grain",
+      "az": "Bir sətrin təmsil etdiyi səviyyə"
+    },
+    "definition": {
+      "en": "The precise business entity or event represented by one row in a dataset.",
+      "az": "Bir sətrin nəyi təmsil etdiyini bildirir: müştəri, sifariş, məhsul sətri və ya hadisə. Bu səviyyə dəyişəndə toplamanın mənası da dəyişə bilər."
+    },
+    "relatedLessonId": "data-analysis-grain-quality"
+  },
+  {
+    "id": "denominator",
+    "term": {
+      "en": "Denominator",
+      "az": "Nisbətin məxrəci və uyğun əhali"
+    },
+    "definition": {
+      "en": "The base quantity or eligible population by which a numerator is divided to calculate a rate.",
+      "az": "Nisbəti hesablamaq üçün bölünən əsas kəmiyyətdir. Aktivasiya ölçüsündə yalnız uğurlu müştərilər deyil, uyğun bütün istifadəçilər daxil olmalıdır."
+    },
+    "relatedLessonId": "data-analysis-grain-quality"
+  },
+  {
+    "id": "join-fanout",
+    "term": {
+      "en": "Join fanout",
+      "az": "Join nəticəsində sətirlərin çoxalması"
+    },
+    "definition": {
+      "en": "Multiplication of rows when a join matches one input row to multiple rows on the other side.",
+      "az": "Bir sətir qarşı tərəfdə bir neçə sətrə uyğun gəldikdə yaranan çoxalmadır. Təkrarlanan sifariş məbləğini toplamaq gəliri şişirdə bilər."
+    },
+    "relatedLessonId": "data-analysis-grain-quality"
+  },
+  {
+    "id": "window-function",
+    "term": {
+      "en": "Window function",
+      "az": "Sətirləri saxlayaraq əlaqəli sətirlər üzrə hesablama"
+    },
+    "definition": {
+      "en": "A SQL function that calculates across a related set of rows while retaining the individual result rows.",
+      "az": "Adi GROUP BY kimi sətirləri birləşdirmədən əlaqəli sətirlər üzrə hesablayır; partition, sıralama və frame hesabın sərhədlərini müəyyən edir."
+    },
+    "relatedLessonId": "data-sql-windows-cohorts"
+  },
+  {
+    "id": "right-censoring",
+    "term": {
+      "en": "Right censoring",
+      "az": "Sonrakı nəticələrin hələ müşahidə olunmaması"
+    },
+    "definition": {
+      "en": "A situation in which later outcomes cannot yet be observed because follow-up ends before they occur.",
+      "az": "Müşahidə müddəti sonrakı nəticədən əvvəl bitdiyi üçün həmin nəticə haqqında məlumatın olmamasıdır. Gələcək ayı sıfır retention kimi göstərmək olmaz."
+    },
+    "relatedLessonId": "data-sql-windows-cohorts"
+  },
+  {
+    "id": "star-schema",
+    "term": {
+      "en": "Star schema",
+      "az": "Ulduz sxemli analitik məlumat modeli"
+    },
+    "definition": {
+      "en": "An analytical model with fact tables linked to descriptive dimension tables at explicitly defined grains.",
+      "az": "Ölçülən hadisələri saxlayan fact cədvəllərini onları təsvir edən dimension cədvəlləri ilə əlaqələndirən modeldir. Hər cədvəlin səviyyəsi dəqiq olmalıdır."
+    },
+    "relatedLessonId": "data-excel-powerbi-models"
+  },
+  {
+    "id": "filter-context",
+    "term": {
+      "en": "Filter context",
+      "az": "Ölçünün hesablandığı filtr konteksti"
+    },
+    "definition": {
+      "en": "The set of filters that determines which data contributes to a DAX measure evaluation.",
+      "az": "DAX ölçüsü hesablananda hansı məlumatların nəzərə alınacağını müəyyən edən filtrlər toplusudur. Tarix və ölkə seçimi nəticəni dəyişə bilər."
+    },
+    "relatedLessonId": "data-excel-powerbi-models"
+  },
+  {
+    "id": "p-value",
+    "term": {
+      "en": "P-value",
+      "az": "Null model altında müşahidənin quyruq ehtimalı"
+    },
+    "definition": {
+      "en": "Under a specified null model, the probability of results at least as incompatible with that model as the observed result.",
+      "az": "Müəyyən null model doğru sayıldıqda müşahidə qədər və ya daha uyğunsuz nəticənin ehtimalıdır. Null fərziyyənin doğru olma ehtimalı demək deyil."
+    },
+    "relatedLessonId": "data-experiments-statistics"
+  },
+  {
+    "id": "percentage-point",
+    "term": {
+      "en": "Percentage point",
+      "az": "Faiz bəndi"
+    },
+    "definition": {
+      "en": "The arithmetic difference between two percentages, expressed on the percentage scale.",
+      "az": "İki faiz göstəricisi arasındakı sadə fərqdir. 10%-dən 12%-ə artım 2 faiz bəndidir, nisbi artım isə 20%-dir."
+    },
+    "relatedLessonId": "data-experiments-statistics"
+  },
+  {
+    "id": "randomization-unit",
+    "term": {
+      "en": "Randomization unit",
+      "az": "Təsadüfi variant bölgüsünün vahidi"
+    },
+    "definition": {
+      "en": "The independently assigned entity in an experiment, such as a user, account or organization.",
+      "az": "Eksperimentdə variantın ayrıca təyin edildiyi vahiddir. Hesab üzrə bölgüdə eyni hesabın müxtəlif baxışlarda variant dəyişməsi nəticəni poza bilər."
+    },
+    "relatedLessonId": "data-experiments-statistics"
+  },
+  {
+    "id": "brd",
+    "term": {
+      "en": "BRD",
+      "az": "Biznes tələbləri sənədi"
+    },
+    "definition": {
+      "en": "A document view describing a business problem, intended outcomes, scope and related requirements for an agreed audience.",
+      "az": "Biznes problemini, məqsədləri və əhatəni təsvir edən sənəd görünüşüdür. Hər layihədə məcburi standart şablon deyil; təşkilatın qərar ehtiyacına uyğunlaşdırılır."
+    },
+    "relatedLessonId": "requirements-documents"
+  },
+  {
+    "id": "srs",
+    "term": {
+      "en": "SRS",
+      "az": "Proqram təminatı tələblərinin spesifikasiyası"
+    },
+    "definition": {
+      "en": "A structured specification of software behavior, interfaces, data, quality attributes and constraints within a defined boundary.",
+      "az": "Müəyyən sərhəd daxilində proqramın davranışını, interfeyslərini və keyfiyyət tələblərini təşkil edən təsviridir. Sənədin adı onun avtomatik düzgün və ya təsdiqli olduğunu göstərmir."
+    },
+    "relatedLessonId": "requirements-documents"
+  },
+  {
+    "id": "impact-analysis",
+    "term": {
+      "en": "Impact analysis",
+      "az": "Təsir analizi"
+    },
+    "definition": {
+      "en": "An assessment of how a proposed change affects value, costs, risks, dependencies and related information or systems.",
+      "az": "Təklif edilən dəyişikliyin dəyərə, riskə, xərcə və əlaqəli sistemlərə təsirinin araşdırılmasıdır. Ekranda kiçik görünən dəyişiklik geniş nəticələr yarada bilər."
+    },
+    "relatedLessonId": "scope-change"
+  },
+  {
+    "id": "query-plan",
+    "term": {
+      "en": "Query plan",
+      "az": "Sorğunun icra planı"
+    },
+    "definition": {
+      "en": "A database plan describing the operations and access paths chosen to produce a query result.",
+      "az": "Verilənlər bazasının nəticəni əldə etmək üçün seçdiyi əməliyyat və giriş yollarının təsviridir. Planın qiymətləndirmələri ölçülmüş icra vaxtı ilə eyni deyil."
+    },
+    "relatedLessonId": "db-indexes-explain"
+  },
+  {
+    "id": "deadlock",
+    "term": {
+      "en": "Deadlock",
+      "az": "Dairəvi kilid gözləməsi"
+    },
+    "definition": {
+      "en": "A cycle in which transactions hold resources and wait for incompatible resources held by one another.",
+      "az": "Tranzaksiyaların bir-birinin saxladığı resursları dairəvi şəkildə gözləməsidir. Adi uzun gözləmə mütləq deadlock deyil; ardıcıl kilid sırası riski azalda bilər."
+    },
+    "relatedLessonId": "db-transactions-locks"
+  },
+  {
+    "id": "expand-contract",
+    "term": {
+      "en": "Expand-contract migration",
+      "az": "Genişləndir, köçür və sonra daralt miqrasiyası"
+    },
+    "definition": {
+      "en": "A staged evolution approach that introduces compatible structures before migrating consumers and removing old representations.",
+      "az": "Əvvəl uyğun yeni struktur əlavə edən, sonra məlumat və istifadəçiləri keçirən, köhnə hissəni isə gec mərhələdə çıxaran yanaşmadır. Kodun geri qaytarılması silinmiş məlumatı bərpa etmir."
+    },
+    "relatedLessonId": "db-safe-migrations"
+  },
+  {
+    "id": "consumer-group",
+    "term": {
+      "en": "Consumer group",
+      "az": "Consumer qrupu"
+    },
+    "definition": {
+      "en": "A coordinated set of Kafka consumers that shares partition assignments for a reading purpose.",
+      "az": "Eyni oxuma məqsədi üçün partition tapşırıqlarını bölüşən consumer-lər qrupudur. Qrup üzvləri dəyişəndə tapşırıqlar yenidən paylana bilər."
+    },
+    "relatedLessonId": "messaging-kafka"
+  },
+  {
+    "id": "dead-letter-queue",
+    "term": {
+      "en": "Dead-letter queue",
+      "az": "Uğursuz mesajlar üçün ayrıca növbə"
+    },
+    "definition": {
+      "en": "A queue used to hold messages routed into a failure-handling path for investigation or controlled recovery.",
+      "az": "Uğursuz mesajların araşdırma və nəzarətli bərpa üçün yönəldildiyi növbədir. Mesajın ora köçməsi biznes probleminin həll olunduğunu göstərmir."
+    },
+    "relatedLessonId": "messaging-rabbitmq"
+  },
+  {
+    "id": "cache-stampede",
+    "term": {
+      "en": "Cache stampede",
+      "az": "Eyni vaxtlı cache miss yük sıçrayışı"
+    },
+    "definition": {
+      "en": "A burst of source requests when many callers miss the cache at the same time.",
+      "az": "Çoxlu sorğunun eyni vaxtda cache-də nəticə tapmayıb əsas mənbəyə yönəlməsidir. Sorğuları birləşdirmək və yükləməni məhdudlaşdırmaq təzyiqi azalda bilər."
+    },
+    "relatedLessonId": "caching-redis"
+  },
+  {
+    "id": "contract-test",
+    "term": {
+      "en": "Contract test",
+      "az": "Qarşılıqlı interfeys müqaviləsinin testi"
+    },
+    "definition": {
+      "en": "A test checking agreed interactions between a consumer and provider at a defined interface boundary.",
+      "az": "Consumer və provider arasında razılaşdırılmış qarşılıqlı əlaqəni yoxlayan testdir. Təkcə mock nəticəsi real provider uyğunluğunu sübut etmir."
+    },
+    "relatedLessonId": "testing-strategy-contracts"
+  },
+  {
+    "id": "data-lineage",
+    "term": {
+      "en": "Data lineage",
+      "az": "Məlumatın mənşə və çevrilmə əlaqələri"
+    },
+    "definition": {
+      "en": "The recorded relationships showing where data originates and how transformations and consumers depend on it.",
+      "az": "Məlumatın haradan gəldiyini və çevirmələrin bir-birinə necə bağlı olduğunu göstərən əlaqələrdir. Deklarativ qraf bütün gizli xarici istehlakçıları avtomatik tapmır."
+    },
+    "relatedLessonId": "data-dbt-quality-lineage"
+  },
+  {
+    "id": "directed-acyclic-graph",
+    "term": {
+      "en": "Directed acyclic graph",
+      "az": "İstiqamətli dövrsüz qraf"
+    },
+    "definition": {
+      "en": "A graph of directed dependencies without a cycle, used by orchestrators to organize task relationships.",
+      "az": "Tapşırıq asılılıqlarını dövr yaratmadan istiqamətli əlaqələrlə göstərən qrafdır. Tapşırıqların uğurlu olması məlumatın bütün biznes qaydalarına uyğunluğunu avtomatik sübut etmir."
+    },
+    "relatedLessonId": "data-airflow-orchestration"
+  },
+  {
+    "id": "iam",
+    "term": {
+      "en": "IAM",
+      "az": "İdentifikasiya və giriş səlahiyyətlərinin idarəsi"
+    },
+    "definition": {
+      "en": "Policies and mechanisms governing which identities may perform which actions on resources under stated conditions.",
+      "az": "Kimliyin hansı resursda hansı əməliyyatı hansı şərtlə edə biləcəyini idarə edir. Şəbəkədə əlçatan olmaq həmin əməliyyata icazə verildiyini göstərmir."
+    },
+    "relatedLessonId": "cloud-iam-vpc-balancing"
+  },
+  {
+    "id": "ssrf",
+    "term": {
+      "en": "SSRF",
+      "az": "Serverin sorğu imkanından icazəsiz istifadə"
+    },
+    "definition": {
+      "en": "An abuse of server-side request behavior that lets untrusted input direct requests beyond the intended authority.",
+      "az": "Etibarsız girişin serveri nəzərdə tutulmayan ünvana sorğu göndərməyə yönəltməsidir. HTTPS və sadə domen mətni yoxlaması bütün riski aradan qaldırmır."
+    },
+    "relatedLessonId": "security-threat-modeling-ssrf"
+  },
+  {
+    "id": "key-rotation",
+    "term": {
+      "en": "Key rotation",
+      "az": "Açar və secret materialının nəzarətli yenilənməsi"
+    },
+    "definition": {
+      "en": "A controlled replacement of key or credential material with consumer migration, verification and retirement rules.",
+      "az": "Açar və ya credential-ın istifadəçilərin keçirilməsi, yoxlama və köhnə materialın çıxarılması qaydaları ilə yenilənməsidir. Şifrələmə və imzalama açarlarının bərpa ehtiyacları fərqlənir."
+    },
+    "relatedLessonId": "security-secrets-rotation"
+  },
+  {
+    "id": "kubernetes-deployment",
+    "term": {
+      "en": "Kubernetes Deployment",
+      "az": "Kubernetes-də Pod versiyalarını idarə edən obyekt"
+    },
+    "definition": {
+      "en": "A workload object that manages ReplicaSets to maintain and update application Pods declaratively.",
+      "az": "ReplicaSet-ləri idarə edərək tətbiqin Pod sayını və versiya yeniləmələrini arzu olunan vəziyyətə uyğunlaşdıran obyektdir; ümumi deployment fəaliyyəti ilə qarışdırma."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "replicaset",
+    "term": {
+      "en": "ReplicaSet",
+      "az": "Arzu olunan Pod sayını saxlayan obyekt"
+    },
+    "definition": {
+      "en": "A Kubernetes controller-backed resource that maintains a desired count of matching Pods.",
+      "az": "Uyğun label-lərə sahib Pod-ların sayını hədəfə çatdırır. Adətən Deployment tərəfindən idarə olunur; silinən Pod-un yerinə yeni Pod yaradır."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "kubernetes-label",
+    "term": {
+      "en": "Kubernetes label",
+      "az": "Kubernetes obyektinin açar-dəyər etiketi"
+    },
+    "definition": {
+      "en": "An identifying key/value pair attached to a Kubernetes object and queryable with a label selector.",
+      "az": "Obyektləri qruplaşdırmaq və seçmək üçün metadata daxilində yazılan açar-dəyər cütüdür. Deployment etiketi avtomatik Pod etiketi olmur."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "label-selector",
+    "term": {
+      "en": "Label selector",
+      "az": "Etiketə görə seçim qaydası"
+    },
+    "definition": {
+      "en": "A query that matches Kubernetes objects using their label keys and values within the applicable resource scope.",
+      "az": "Obyektləri label-lərinə əsasən seçən qaydadır. Service selector-u öz namespace-ində uyğun və hazır Pod-ları tapır."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "kubernetes-namespace",
+    "term": {
+      "en": "Kubernetes namespace",
+      "az": "Klasterdə resursların məntiqi ad sahəsi"
+    },
+    "definition": {
+      "en": "A logical scope for namespaced Kubernetes resources within a cluster, separate from node placement.",
+      "az": "Pod, Deployment, Service kimi resursların adlarını və əhatəsini ayırır. Öz-özünə şəbəkə trafikinə qadağa qoymur; node namespace daxilində olmur."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "configmap",
+    "term": {
+      "en": "ConfigMap",
+      "az": "Məxfi olmayan konfiqurasiya obyekti"
+    },
+    "definition": {
+      "en": "A Kubernetes object for non-confidential configuration consumed through environment variables, files or other supported methods.",
+      "az": "Log səviyyəsi kimi məxfi olmayan parametrləri koddan ayırır. Məxfiliyi təmin etmir; environment kimi verilən dəyər işləyən prosesdə avtomatik dəyişmir."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "kubernetes-secret",
+    "term": {
+      "en": "Kubernetes Secret",
+      "az": "Kubernetes-də həssas məlumat obyekti"
+    },
+    "definition": {
+      "en": "A Kubernetes object for sensitive data that still requires configured access control and protection at rest.",
+      "az": "Parol və token kimi məlumatlar üçündür. Base64 şifrələmə deyil; giriş səlahiyyətləri və yaddaşda şifrələmə ayrıca qurulmalıdır."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "vault",
+    "term": {
+      "en": "HashiCorp Vault",
+      "az": "Məxfi məlumatların idarəetmə xidməti"
+    },
+    "definition": {
+      "en": "A separate service for identity-based secret access, policies and secrets-engine-dependent credential lifecycle management.",
+      "az": "Məxfi məlumatlara şəxsiyyət və policy əsasında giriş verir. Kubernetes-in daxili obyekt növü deyil; dinamik credential üçün uyğun secrets engine qurulmalıdır."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "vault-agent",
+    "term": {
+      "en": "Vault Agent",
+      "az": "Məxfi məlumatı tətbiqə çatdıran köməkçi agent"
+    },
+    "definition": {
+      "en": "A client agent that can authenticate to Vault and render permitted secrets into files for application use.",
+      "az": "Vault-a autentifikasiya olub icazəli məxfi məlumatı fayla yaza bilər. Fayl yenilənəndə tətbiq onu yenidən oxumalı və lazım olduqda bağlantılarını yeniləməlidir."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  },
+  {
+    "id": "service-account",
+    "term": {
+      "en": "ServiceAccount",
+      "az": "Kubernetes iş yükünün xidmət kimliyi"
+    },
+    "definition": {
+      "en": "A namespaced Kubernetes identity that a workload can use when authenticating to the API or configured external services.",
+      "az": "Pod-un API və uyğun xarici xidmətlərə autentifikasiyada istifadə etdiyi namespace-ə aid kimlikdir; Vault rolu bu kimliyi yoxlayıb policy təyin edə bilər."
+    },
+    "relatedLessonId": "docker-kubernetes-masterclass"
+  }
+]

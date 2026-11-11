@@ -1,0 +1,72 @@
+---
+id: pspo2-discovery
+locale: en
+title: 'From assumptions to market evidence'
+objectives:
+  - 'Turn a product assumption into a test and outcome criterion.'
+  - 'Inspect learning, quality and potential user harm together.'
+---
+
+## Concept
+
+A product idea is an assumption about an outcome. EBM 2024 makes that assumption explicit and tests progress through small steps toward a goal. Discovery is used here as a teaching term for learning about users, problems and potential value; Scrum does not require a separate Discovery Sprint or Discovery Team. Research and experimentation are part of the Scrum Team’s product-related work.
+
+## Why it matters
+
+Chapter 4 of the book distinguishes stakeholder feedback from market validation. Sponsor approval at Review is information, but does not prove that users can achieve a better outcome. An MVP approach selects a small step sufficient to test a critical technical or market assumption; it need not contain every planned feature. Prototypes and interviews can examine some assumptions. State what they cannot establish as well.
+
+## Decision principles
+
+Before testing, state the audience, baseline, expected change, observation window and decision rule. EBM supports measurable outcomes and adaptation; the comparison-group, sampling-bias and harm-guardrail questions here are editorial experiment-design advice. Weak evidence does not justify a precise causal claim. Raising one local metric while damaging user trust may fail to create sustainable value.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["User problem"] --> B["Explicit hypothesis"]\n B --> C["Small test"]\n C --> D["Outcome and guardrail evidence"]\n D --> E["Continue adapt or stop"]\n E --> B'
+  }
+/>
+
+This original teaching model is a summary, not a reproduction of a source figure.
+
+## Worked scenario
+
+In a learning product, half of new users never start a first practice session. A sponsor requests more reminders. The team plans a large notification system, while some users report not understanding how to choose a topic.
+
+## Decision reasoning
+
+Observe the problem and separate competing explanations: users cannot find a topic, do not understand practice value, or genuinely need reminders. A smaller topic-selection screen and a limited reminder are different test options. Changing everything at once makes learning harder. Inspect practice completion and complaints as well as starts after testing.
+
+## Common pitfalls
+
+Pitfalls include treating the requested feature as the underlying problem, presenting internal applause as market benefit, generalizing from a few enthusiastic users, ignoring harm because clicks increased, and continuing a disproved assumption because of past spending.
+
+## Application exercise
+
+Write a one-sentence hypothesis: for whom will which change produce what outcome? Add an observation that could refute it and a condition limiting possible user harm.
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+One hypothesis: simpler topic selection helps new users finish their first practice. Compare comparable users with the baseline and verify measurement quality. If completion does not improve and confusion complaints rise, do not expand the solution. The purpose is to make a better decision about the need, not to defend a favored implementation.
+
+</details>
+
+## Check understanding and remember
+
+Problem → explicit hypothesis → small test → outcome and harm → adaptation. Output, customer outcome and organizational impact are distinct observations.
+
+<LessonCheck />
+
+## Sources and scope
+
+The Professional Product Owner: chapter 4, Stakeholder Feedback, Marketplace Feedback, Minimum Viable Product, Pivot or Persevere. EBM Guide 2024: Understanding What is Valuable and Experiment Loop, pp. 5–7. Scrum Guide 2020: Scrum Team, p. 5; Sprint Review, p. 9. Editorially connected to Product Value, Stakeholder & Customers and Business Strategy in the supplied competencies; not an official PSPO blueprint.
+
+- [The Professional Product Owner — McGreal & Jocham, 2018](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [Evidence-Based Management Guide — 2024](https://www.scrum.org/resources/evidence-based-management-guide)
+- [The Scrum Guide — November 2020](https://scrumguides.org/scrum-guide.html)
+- [The Professional Scrum Competencies — user-supplied page text](https://www.scrum.org/professional-scrum-competencies)
+
+Explanations, scenarios and any example numbers are teaching material; official questions are not reproduced. Scrum Guide 2020 and EBM 2024 take precedence over older terminology.

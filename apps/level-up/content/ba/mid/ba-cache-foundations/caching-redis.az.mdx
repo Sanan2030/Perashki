@@ -1,0 +1,87 @@
+---
+id: caching-redis
+locale: az
+title: 'Redis cache: TTL, invalidation və yük sıçrayışı'
+objectives:
+  - 'Cache-aside read və write axınını təsvir et.'
+  - 'Expiration-u correctness və source authority-dən ayır.'
+  - 'Stale refill race və eyniandakı cache miss-ləri idarə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Cache-aside read və write axınını təsvir et.
+- Expiration-u correctness və source authority-dən ayır.
+- Stale refill race və eyniandakı cache miss-ləri idarə et.
+
+## Bu mövzu niyə vacibdir
+
+Cache təkrarlanan bahalı read-i azaldır, amma köhnə price və authorization qərarı slow response-dan zərərli ola bilər. Dizayna aydın source of truth və freshness contract lazımdır. “Redis əlavə et” update-in hər reader-ə necə çatdığını tam izah etmir.
+
+## Əsas anlayışlar
+
+Cache-aside-da tətbiq cache-i yoxlayır, miss-də əsas source-dan yükləyir və törəmə entry saxlayır. Record üçün DB source of truth qalır. Hansı data-nın cache edilə biləcəyini və nə qədər köhnəlməsinin məqbul olduğunu seç; permission, balance və inventory çox vaxt açıq product description-dan güclü nəzarət tələb edir.
+
+Time-to-live entry ömrünü məhdudlaşdırır. Redis expiration əlavə olunan value-nun əvvəlcədən fresh olduğunu göstərmir və concurrent source update-i əlaqələndirmir. Bəzi əmrlər key-i əvəz edib expiration davranışını dəyişir; sənədləşdirilmiş command semantikasına əməl et və TTL-i məqsədli təyin et.
+
+Source commit-dən sonrakı invalidation stale read-i azaldır, amma race qalır. Reader köhnə value alır, writer update və invalidate edir, reader isə sonra köhnə value ilə cache-i yenidən doldurur. Contract-a görə version-aware write, invalidation event, uyğun coordination istifadə et və ya critical read-də cache-i keç. Tək lock adı cross-system atomicity sübutu deyil.
+
+Bir çox request eyni anda miss edib source-u yükləyəndə cache stampede yaranır. Request coalescing, bounded concurrency, fərqli expiration vaxtları və diqqətlə müəyyən edilmiş stale-while-revalidate istifadə edilə bilər. Stale data vermək universal optimizasiya deyil, sərhədləri olan məhsul qərarıdır.
+
+Redis əlçatmaz olanda davranışı müəyyən et. DB-yə fallback funksiyanı saxlasa da source-u yükləyə bilər; timeout, load limit və dürüst degradation istifadə et. Hit rate-i latency, stale response, source load və error ilə yanaşı izlə. Yüksək hit rate yanlış version-u çox səmərəli verən cache-i də təsvir edə bilər.
+
+## İşlənmiş nümunə
+
+Catalog entry-si `catalog:v3:product:42` key-ini istifadə edir. Value source version və məqsədli TTL saxlayır. Miss-də bir coalesced loader cari public description-u alır, digər request-lər məhdud büdcədə nəticəni gözləyir.
+
+Price dəyişikliyi source-a commit olur, sonra invalidation yaradır. Komanda invalidation-dan sonra davam edən köhnə reader-i sınaqdan keçirir: version yoxlaması olmadan stale data-nı cache-ə qaytara bilər. Buna görə checkout catalog cache-ə güvənmir, alış contract-ına görə authoritative price yoxlayır. 60 saniyə TTL nümunədir; hər read-in source dəyişikliyindən ən çox 60 saniyə geri olduğuna zəmanət deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n R[Read request] --> C{Usable cache entry?}\n C -->|Yes| V[Return under freshness contract]\n C -->|No| L[Bounded coalesced load]\n L --> S[Authoritative source]\n S --> W[Version-aware cache fill]\n U[Source update] --> I[Invalidate or refresh under policy]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>DB commit-dən dərhal sonra cache key-i silmək bütün stale read race-lərini aradan qaldırırmı?</summary>
+
+Xeyr. Əvvəlki reader key-i commit-dən əvvəl alınan value ilə yenə doldura bilər. Bu sıranı sına; riskə uyğun source version, məqsədli coordination və ya authoritative read contract-ı istifadə et. TTL lifecycle üçün fallback control-dur, universal consistency sübutu deyil.
+
+</details>
+
+## Tipik səhvlər
+
+- Revocation/freshness modeli olmadan authorization qərarını cache etmək.
+- Hit rate-i yeganə success ölçüsü saymaq.
+- Hər cache miss-in bahalı source request başlatmasına imkan vermək.
+- Source tutumunu ölçmədən fallback-i təhlükəsiz adlandırmaq.
+
+## Praktik tapşırıq
+
+Açıq shipping estimate üçün cache qur. Key dimension, TTL policy, stale davranış, invalidation trigger və cache outage zamanı davranışı göstər. Alışda əsas source-dan yoxlanmalı bir dəyər seç.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Destination region, service option və model version kimi estimate-ə təsir edən dimension-ları daxil et. TTL-i ölçülmüş change frequency və məqbul staleness-ə görə seç. Load-ları coalesce et, fallback trafiki məhdudlaşdır. Əsas policy dəyişəndə entry-ni invalidate və ya version et; stale estimate verilirsə qeyri-müəyyənliyi göstər. Real shipping şərtlərini authoritative checkout contract-da təsdiqlə.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Source authority + key dimension + version + TTL + invalidation + miss coordination + outage policy. Expiration entry ömrünü məhdudlaşdırır; fresh biznes həqiqətini sübut etmir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Redis official documentation source: EXPIRE](https://github.com/redis/docs/blob/main/content/commands/expire.md): expiration semantikası və command əlaqələri. Açıq Redis səhifəsi sənəd əvəzinə minimal məzmun verdiyindən rəsmi repository source-u oxunub.
+- [Microsoft: Cache-Aside pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside): source/cache davranışı və consistency. Nümunələr orijinaldır; Redis xidməti qurulmur.

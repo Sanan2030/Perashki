@@ -1,0 +1,124 @@
+---
+id: sql-basics
+locale: en
+title: 'SQL for business questions'
+objectives:
+  - 'Write a filtered and grouped business query with an explicit output grain.'
+  - 'Preserve unmatched customers with LEFT JOIN and count the intended entity.'
+  - 'Diagnose one-to-many fanout and reconcile a revenue total.'
+---
+
+## Learning objectives
+
+- Write a filtered and grouped business query with an explicit output grain.
+- Preserve unmatched customers with LEFT JOIN and count the intended entity.
+- Diagnose one-to-many fanout and reconcile a revenue total.
+
+## Why this matters
+
+SQL translates a question into a precise selection of rows and calculations. A query can execute successfully while answering the wrong question. Analysts must check row grain, join cardinality and missing values as carefully as syntax. This lesson upgrades the existing SQL outline into a complete exercise using a small reproducible dataset.
+
+## Core theory
+
+`SELECT` chooses expressions, `FROM` identifies the input and `WHERE` filters individual rows. `GROUP BY` creates groups; aggregate functions calculate a value per group. `HAVING` filters those groups. `ORDER BY` controls the presentation order; do not assume that storage or insertion order is guaranteed.
+
+An inner join returns matching row combinations. A left join also retains unmatched left-side rows with nulls for the missing right-side values. A right-table filter in `WHERE` can remove those null-extended rows. Put the qualification in `ON` when you intend to retain all left-side customers while matching only qualified orders.
+
+`COUNT(*)` counts result rows. `COUNT(expression)` counts non-null expression values. After a customer-to-order left join, count the order identifier to count matching orders. Counting rows would give a customer with no orders a count of one.
+
+SQL null represents missing or unknown information. Use `IS NULL`, not `= NULL`. In an ordinary equality comparison, null does not act like a normal value. Aggregate behavior also matters: `SUM` ignores null inputs, and an aggregate over no matching rows may return null. Apply `COALESCE` only after deciding whether absence really means zero for this measure.
+
+One-to-many joins change grain. Joining order headers to items repeats the header amount for every item. `SUM(DISTINCT amount)` is not a repair: two different orders may have the same amount. Aggregate at the entity key or use the correct additive item measure.
+
+The examples store money as integer cents in a single teaching currency. Real multi-currency analysis needs currency and conversion policy, and real financial definitions must specify refunds, tax and recognition timing.
+
+## Worked example
+
+The cleaned fixture has seven orders, six paid, totaling **16,500 cents**. This SQLite-compatible query uses ISO date strings; a PostgreSQL application can use typed dates and its own date functions.
+
+```sql
+SELECT substr(ordered_at, 1, 7) AS month,
+       COUNT(*) AS paid_orders,
+       SUM(amount_cents) AS paid_revenue_cents
+FROM orders
+WHERE status = 'paid'
+GROUP BY substr(ordered_at, 1, 7)
+ORDER BY month;
+```
+
+Expected results are January `4000`, February `6000`, March `6500`. Together they reconcile to `16500`.
+
+To retain customers with no paid orders:
+
+```sql
+SELECT c.customer_id, COUNT(o.order_id) AS paid_orders
+FROM customers AS c
+LEFT JOIN orders AS o
+  ON o.customer_id = c.customer_id
+ AND o.status = 'paid'
+GROUP BY c.customer_id
+ORDER BY c.customer_id;
+```
+
+Customer `u5` remains with a count of zero. Moving `o.status = 'paid'` into `WHERE` removes this customer.
+
+If you join the paid orders to `order_items` and sum the header amount, order `o1` appears twice. The incorrect result is `17500`, exactly `1000` too high.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[Five customers] --> J[LEFT JOIN qualified orders]\n O[Six paid orders] --> J\n J --> G[Group by customer ID]\n G --> R[Five customer results including zero]'
+  }
+/>
+
+The left side supplies the complete customer population. Qualification in the join limits matching orders without removing customers who have no match.
+
+## Inspect the decision
+
+<details>
+<summary>Would SUM(DISTINCT amount_cents) reliably fix join fanout?</summary>
+
+No. It deduplicates equal amounts, not order IDs. Two valid orders for 1000 cents should contribute 2000 cents, but a distinct sum would count only 1000. Preserve order grain or pre-aggregate the item table to one row per order before joining.
+
+</details>
+
+## Common mistakes
+
+- Filtering a right-side column in `WHERE` and unintentionally turning a left join into matching-only results.
+- Counting rows when the question asks for unique customers or matching orders.
+- Using `DISTINCT` to conceal an unexplained join cardinality problem.
+- Adding amounts across different currencies without a conversion policy.
+- Treating successful query execution as evidence that the metric is valid.
+
+## Practice exercise
+
+Use the [SQL lab below](#practice-lab) to run a query on the same synthetic dataset. Predict paid revenue before running it. The separate [data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab) also remains available locally. Then write a query returning every customer and their total paid amount, including `u5` with zero. Explain where you would apply a paid-status filter and why.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+The revenue is 16500 cents. Start from customers and put the paid-status condition in the join. Group by the stable customer identifier and use `COALESCE(SUM(o.amount_cents), 0)` because this contract defines no matching paid order as zero paid revenue. Expected totals are `u1=3000`, `u2=3000`, `u3=10000`, `u4=500`, `u5=0`. A missing amount on an existing order is a separate data-quality issue and was quarantined before this calculation.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Intent                     | SQL check                            |
+| -------------------------- | ------------------------------------ |
+| Retain the full population | LEFT JOIN with match filters in ON   |
+| Count matching orders      | COUNT(order_id)                      |
+| Find missing values        | IS NULL                              |
+| Filter aggregated groups   | HAVING                               |
+| Avoid inflated money       | Verify one row per additive entity   |
+| Reproduce results          | Explicit filters, units and ORDER BY |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [PostgreSQL 18: Joins between tables](https://www.postgresql.org/docs/18/tutorial-join.html): inner and outer joins and qualified column names.
+- [PostgreSQL 18: Window functions](https://www.postgresql.org/docs/18/tutorial-window.html): contrast ordinary aggregation with calculations that retain rows.
+- [the data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab): original SQLite queries and reconciliation tests. PostgreSQL and SQLite date syntax are not interchangeable; the fixture uses ISO text dates deliberately.

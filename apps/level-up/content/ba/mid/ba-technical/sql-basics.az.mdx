@@ -1,0 +1,124 @@
+---
+id: sql-basics
+locale: az
+title: 'Biznes sualları üçün SQL'
+objectives:
+  - 'Aydın output grain ilə filtered/grouped biznes query yaz.'
+  - 'LEFT JOIN ilə unmatched customer saxla və doğru entity-ni say.'
+  - 'One-to-many fanout-u tap və revenue total-ı reconcile et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Aydın output grain ilə filtered/grouped biznes query yaz.
+- LEFT JOIN ilə unmatched customer saxla və doğru entity-ni say.
+- One-to-many fanout-u tap və revenue total-ı reconcile et.
+
+## Bu mövzu niyə vacibdir
+
+SQL sualı dəqiq row seçimi və hesablamaya çevirir. Query uğurla işləyib yanlış suala cavab verə bilər. Analyst row grain, join cardinality və missing value-nu sintaksis qədər diqqətlə yoxlamalıdır. Dərs əvvəlki SQL outline-ını kiçik təkrarlana bilən dataset-lə tam tapşırığa çevirir.
+
+## Əsas anlayışlar
+
+`SELECT` expression seçir, `FROM` input-u müəyyən edir, `WHERE` ayrı row filtrləyir. `GROUP BY` group yaradır, aggregate function group üzrə value hesablayır. `HAVING` group filtrləyir. `ORDER BY` presentation sırasını idarə edir; storage/insertion sırasını zəmanət sayma.
+
+Inner join matching row kombinasiyalarını qaytarır. Left join sağ tərəfdə missing value üçün null əlavə edərək unmatched sol row-u saxlayır. Sağ table üçün `WHERE` filter bu null row-u çıxara bilər. Bütün sol customer-i saxlayıb yalnız uyğun order-i match etmək istəyirsənsə şərti `ON`-a qoy.
+
+`COUNT(*)` result row sayır. `COUNT(expression)` non-null expression sayır. Customer-to-order left join-dən sonra matching order üçün order identifier say. Row saymaq order-i olmayan customer-ə bir nəticəsi verər.
+
+SQL null missing/unknown məlumatdır. `= NULL` deyil, `IS NULL` istifadə et. Adi equality-də null normal value kimi davranmır. Aggregate da vacibdir: `SUM` null input-u saymır; matching row olmayan aggregate null qaytara bilər. Yalnız absence-in bu metric üçün zero olduğunu seçəndən sonra `COALESCE` istifadə et.
+
+One-to-many join grain-i dəyişir. Header-i item-ə join etmək header amount-u hər item-də təkrar edir. `SUM(DISTINCT amount)` həll deyil: fərqli order-lərin eyni amount-u ola bilər. Entity key-də aggregate et və ya düzgün additive item measure istifadə et.
+
+Nümunə pulu bir tədris currency-sində integer cent saxlayır. Real multi-currency üçün currency/conversion policy, maliyyə tərifi üçün refund, tax və recognition timing lazımdır.
+
+## İşlənmiş nümunə
+
+Cleaned fixture-də yeddi order, altı paid, cəmi **16 500 cent** var. SQLite-compatible query ISO date string istifadə edir; PostgreSQL typed date və öz date function-larını seçə bilər.
+
+```sql
+SELECT substr(ordered_at, 1, 7) AS month,
+       COUNT(*) AS paid_orders,
+       SUM(amount_cents) AS paid_revenue_cents
+FROM orders
+WHERE status = 'paid'
+GROUP BY substr(ordered_at, 1, 7)
+ORDER BY month;
+```
+
+Expected nəticə yanvar `4000`, fevral `6000`, mart `6500`-dir; birlikdə `16500` edir.
+
+Paid order-i olmayan customer-i saxlamaq üçün:
+
+```sql
+SELECT c.customer_id, COUNT(o.order_id) AS paid_orders
+FROM customers AS c
+LEFT JOIN orders AS o
+  ON o.customer_id = c.customer_id
+ AND o.status = 'paid'
+GROUP BY c.customer_id
+ORDER BY c.customer_id;
+```
+
+`u5` zero count ilə qalır. `o.status = 'paid'` şərtini `WHERE`-ə köçürmək bu customer-i çıxarır.
+
+Paid order-i `order_items` ilə join edib header amount cəmləsən `o1` iki dəfə görünür. Yanlış nəticə `17500`, yəni dəqiq `1000` artıqdır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[Five customers] --> J[LEFT JOIN qualified orders]\n O[Six paid orders] --> J\n J --> G[Group by customer ID]\n G --> R[Five customer results including zero]'
+  }
+/>
+
+Sol tərəf tam customer population verir. Join-də qualification matching order-i məhdudlaşdırır, match-i olmayan customer-i silmir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>SUM(DISTINCT amount_cents) join fanout-u etibarlı düzəldərmi?</summary>
+
+Xeyr. Order ID-ni deyil, bərabər amount-u deduplicate edir. 1000 cent-lik iki düzgün order 2000 verməlidir; distinct sum yalnız 1000 sayar. Order grain-i qoru və ya join-dən əvvəl item table-ı order-ə bir row-a aggregate et.
+
+</details>
+
+## Tipik səhvlər
+
+- Sağ column-u `WHERE`-də filter edib left join-i bilmədən matching-only etmək.
+- Sual unique customer və ya matching order istəyəndə row saymaq.
+- İzahsız join cardinality-ni gizlətmək üçün `DISTINCT` istifadə etmək.
+- Conversion policy olmadan fərqli currency məbləğini toplamaq.
+- Query success-i metric validity sübutu saymaq.
+
+## Praktik tapşırıq
+
+Eyni süni dataset-də query üçün [aşağıdakı SQL laboratoriyasını](#practice-lab) istifadə et. İcradan əvvəl paid revenue təxmin et. Ayrı [data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab) da yerli işlədilə bilər. Sonra `u5` zero daxil hər customer və total paid amount-u qaytaran query yaz. Paid status filter-ini harada və niyə verəcəyini izah et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Revenue 16500 cent-dir. Customer-dən başla, paid şərtini join-ə qoy. Sabit customer identifier üzrə group et; bu contract matching paid order olmamasını zero revenue saydığı üçün `COALESCE(SUM(o.amount_cents), 0)` istifadə et. Total-lar `u1=3000`, `u2=3000`, `u3=10000`, `u4=500`, `u5=0`-dır. Mövcud order-də missing amount ayrı quality problemidir və hesablamadan əvvəl quarantine edilib.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+| Məqsəd                     | SQL yoxlaması                      |
+| -------------------------- | ---------------------------------- |
+| Full population saxlamaq   | ON-da match filter ilə LEFT JOIN   |
+| Matching order saymaq      | COUNT(order_id)                    |
+| Missing value tapmaq       | IS NULL                            |
+| Aggregate group filtrləmək | HAVING                             |
+| Pulun şişməsini önləmək    | Additive entity üçün bir row yoxla |
+| Nəticəni təkrarlamaq       | Aydın filter, unit və ORDER BY     |
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [PostgreSQL 18: Joins between tables](https://www.postgresql.org/docs/18/tutorial-join.html): inner/outer join və qualified column adı.
+- [PostgreSQL 18: Window functions](https://www.postgresql.org/docs/18/tutorial-window.html): ordinary aggregation və row saxlayan hesablama fərqi.
+- [Data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab): orijinal SQLite query/reconciliation test. PostgreSQL/SQLite date sintaksisi bir-birini əvəz etmir; fixture qəsdən ISO text date istifadə edir.

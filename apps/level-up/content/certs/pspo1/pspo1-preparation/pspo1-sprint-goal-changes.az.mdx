@@ -1,0 +1,97 @@
+---
+id: pspo1-sprint-goal-changes
+locale: az
+title: 'Sprint Goal, Sprint daxilində dəyişiklik və buraxılış qərarları'
+objectives:
+  - 'Seçilmiş işin dəyişməsini Sprint Goal-u təhlükəyə atan dəyişiklikdən ayır.'
+  - 'Sprint Goal köhnələndə Product Owner-in səlahiyyətini müəyyən et.'
+  - 'Done Increment-in niyə Sprint Review-dan əvvəl çatdırıla bildiyini izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Seçilmiş işin dəyişməsini Sprint Goal-u təhlükəyə atan dəyişiklikdən ayır.
+- Sprint Goal köhnələndə Product Owner-in səlahiyyətini müəyyən et.
+- Done Increment-in niyə Sprint Review-dan əvvəl çatdırıla bildiyini izah et.
+
+## Bu mövzu niyə vacibdir
+
+Sponsor Sprint-in ortasında yeni reporting feature istəyir. Bir Product Owner bütün dəyişikliklərin qadağan olduğunu deyir; digəri dərhal Developers-dən işlərini əvəz etməyi tələb edir. Hər ikisi eyni sualları buraxır: Sprint Goal nədir, nə öyrənilib və hansı dəyişiklik faydalı outcome-a çatmağı qoruyur? PSPO əsaslandırması qaydanı onun məqsədi və verilmiş şəraitlə bağlamalıdır.
+
+## Əsas anlayışlar
+
+Sprint Goal Sprint üçün vahid məqsəddir. Uyğunluq yaradır və dəqiq görüləcək işdə çeviklik verir. Developers Sprint Backlog-u öz planı kimi yaradır; Product Owner məhsul istiqamətini, dəyəri və Product Backlog ordering-i aydınlaşdırır. Scrum Team planı nə dəyişməz müqavilə, nə də Product Owner-in təkbaşına yenidən yaza biləcəyi siyahı sayır; əməkdaşlıq edir.
+
+Sprint ərzində Sprint Goal-u təhlükəyə atan dəyişiklik edilmir və keyfiyyət azalmaz. Öyrənmə artdıqca scope Product Owner ilə dəqiqləşdirilib yenidən razılaşdırıla bilər. Bu, faydalı adaptation-a imkan verir; goal-u görməzdən gəlməyə, Developers planını əmrlə əvəz etməyə və ya əlavə iş sığdırmaq üçün Definition of Done-u zəiflətməyə yox.
+
+Sprint Goal köhnələrsə Sprint ləğv edilə bilər; bunu yalnız Product Owner edə bilər. “Item gözləniləndən çətindir”, “stakeholder narazıdır” və “yeni məlumat məqsədi mənasız edir” fərqli vəziyyətlərdir. İlk ikisi avtomatik goal-un köhnəlməsi deyil. Ciddi operational incident şəffaf idarə tələb edir, amma Scrum universal incident workflow və hər incident üçün bir avtomatik cancellation qaydası vermir.
+
+Agile Manifesto prinsipləri dəyişikliklərə cavabı, əməkdaşlığı və technical excellence-i dəstəkləyir. Scrum Guide-ın konkret commitment və accountability-lərini əvəz etmir. Dəyişikliyi qarşılamaq nəticəsindən asılı olmayaraq hər yeni request-in cari işi dayandırması demək deyil.
+
+Increment istifadə edilə bilən olmalı və Definition of Done-u ödəməlidir. Bir Sprint-də bir neçə Increment yarana bilər. Sprint Review inspection/adaptation event-idir; dəyəri release etmək üçün məcburi approval gate deyil. Çatdırılma Review-dan əvvəl ola bilər. Usable Increment-i release etmək və Review keçirmək ayrı qərarlardır; nə stakeholder demo-su, nə son Sprint günü yarımçıq işi Done edir.
+
+## İşlənmiş nümunə
+
+Komandanın Sprint Goal-u “müştəri support çağırışı olmadan girişini təhlükəsiz bərpa edə bilir” şəklindədir. Developers üç recovery təkmilləşdirməsi seçib. Mid-Sprint araşdırma bir ekranın istifadəçini çaşdırdığını, daha kiçik dəyişikliklə eyni goal-a çatmağın mümkünlüyünü göstərir. Product Owner və Developers sübutu yoxlayıb seçilmiş scope-u yenidən razılaşdırır. Developers planını uyğunlaşdırır; keyfiyyət sərhədi qalır.
+
+Sonra hüquqi dəyişiklik planlaşdırılmış recovery mexanizmini həmişəlik qadağan edir. Komanda goal-un hələ mənalı olub-olmadığını araşdırır. Köhnəlibsə Product Owner Sprint-i ləğv edə bilər. Bu, goal-u saxlayaraq bir ekranı dəyişməkdən fərqli qərardır.
+
+Recovery imkanı yeddinci gün usable və Done-dursa, yalnız planlaşdırılmış inspection event-i olduğu üçün onuncu günün Sprint Review-unu gözləmək lazım deyil. Real security, regulatory və operational məhdudiyyətlər qalır; bunları Scrum-un öz tələbi kimi uydurmaq olmaz.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n A["New information during Sprint"] --> B{"Goal still valuable and achievable?"}\n B -->|Yes| C["Collaborate and adapt scope or plan"]\n C --> D["Preserve quality and Sprint Goal"]\n B -->|Obsolete| E["Product Owner may cancel"]\n D --> F["Usable Done Increment"]\n F --> G["Release when appropriate; inspect at Review"]'
+  }
+/>
+
+Əsas sual sadəcə kimsənin dəyişiklik istəməsi deyil, yeni məlumatın goal və keyfiyyətə təsiridir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Stakeholder Sprint Review-da üç yarımçıq item-i qəbul edir. Onlar artıq Increment-dirmi?</summary>
+
+Xeyr. Stakeholder acceptance Definition of Done-u əvəz etmir. Onu ödəməyən iş Increment-in hissəsi sayıla bilməz. İrəliləyiş görüntüsü üçün etiket dəyişmək əvəzinə real vəziyyəti şəffaf yoxla və Product Backlog-u uyğunlaşdır.
+
+</details>
+
+## Tipik səhvlər
+
+- Seçilmiş Product Backlog Item-ları dondurulmuş scope commitment saymaq faydalı çevikliyi itirir.
+- Product Owner-in bütün Developers tapşırıqlarını təyin etdiyini demək product accountability-ni implementasiya nəzarəti ilə qarışdırır.
+- Təkcə forecast dəyişdiyi üçün cancellation etmək goal-un köhnəlib-köhnəlmədiyini nəzərə almır.
+- Sprint Review-u məcburi release approval saymaq Scrum-da olmayan gate əlavə edir.
+- İstənilən tarixə çatmaq üçün keyfiyyəti azaltmaq usable value yaratmır, riski gizlədir.
+
+## Praktik tapşırıq
+
+Üç halı təsnif et və növbəti söhbəti izah et: yeni vergi qaydası Sprint Goal-u əhəmiyyətsiz edir; seçilmiş item böyükdür, amma kiçik hissə eyni goal-a çatır; Done təkmilləşdirmə Review-dan üç gün əvvəl hazırdır. Əsas qərarın sahibini və vacib sübutu göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Köhnəlmiş vergi goal-u üçün hüquqi sübutu açıq göstər və Sprint-in ləğvinə Product Owner qərar versin. Cancellation səlahiyyətini komandanın nəticələri müzakirə etməsinin qadağan olması ilə qarışdırma.
+
+Böyük item üçün Product Owner və Developers Sprint Goal və keyfiyyəti qoruyaraq scope-u dəqiqləşdirib yenidən razılaşdırır. Developers Sprint Backlog planını uyğunlaşdırır. Erkən Done təkmilləşdirmə məhsul məhdudiyyətlərinə uyğundursa Review-dan əvvəl release edilə bilər. Review yenə Sprint outcome-unu və dəyişmiş şəraiti yoxlayır. Son günün acceptance görüşünü gözləmək tələbi yoxdur.
+
+Əsaslandırılan cavab uyğun goal-u, accountability-ni və keyfiyyət sərhədini göstərməlidir; qeyri-müəyyən “agile ol” göstərişi kifayət etmir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Sprint Goal = vahid məqsəd. Seçilmiş iş dəqiqləşdirilib yenidən razılaşdırıla bilər. Developers öz planının, Product Owner dəyər və ordering-in sahibidir. Goal köhnələndə yalnız Product Owner cancellation edə bilər. Done keyfiyyət sərhədidir. Sprint Review release gate deyil.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Scrum Guide, November 2020](https://scrumguides.org/scrum-guide.html): The Sprint; Sprint Planning; Sprint Backlog; Increment; Definition of Done.
+- [Agile Manifesto principles](https://agilemanifesto.org/principles.html): dəyişikliklərə cavab, gündəlik əməkdaşlıq və technical excellence.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): təqdim edilmiş kitab, Sprint və release müzakirələri; cari Scrum terminləri üçün Scrum Guide 2020 əsasdır.
+
+Ssenari və suallar orijinal məşqdir; rəsmi exam item deyil. Bu əlavə oxulardan cari assessment formatı və məcburi mövzu çəkisi nəticəsi çıxarılmır.

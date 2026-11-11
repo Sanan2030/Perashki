@@ -1,0 +1,87 @@
+---
+id: pspo2-backlog-economics
+locale: az
+title: 'Product Backlog iqtisadiyyatı və yenilənməsi'
+objectives:
+  - Sıralamada gecikmə xərcini, qeyri-müəyyənliyi, asılılıqları və gözlənilən dəyəri müqayisə et.
+  - Yaxın işləri dəqiqləşdir və vacib sübutu itirmədən köhnə istəkləri çıxar.
+  - Product Backlog sırasını Developers-in Sprint planından fərqləndir.
+---
+
+## Öyrənmə məqsədləri
+
+Ən yüksək proqnozlaşdırılan gəlirli işin niyə həmişə birinci olmadığını izah et. Köhnəlmiş backlog-u yenilə, faydalı vertical slice seç və işi həvalə edərkən cavabdehliyi aydın saxla.
+
+## Niyə vacibdir
+
+İndiyədək gəlmiş bütün istəkləri saxlayan backlog gələcək öhdəlik təsəvvürü yaradır. Maraqlı tərəflər artıq Product Goal-a xidmət etməyən işləri gözləyir, bahalı asılılıqlar isə gizli qalır. Məqsəd daimi istək arxivi deyil, məhsul işinin inkişaf edən və sıralanmış mənbəyidir.
+
+## Əsas nəzəriyyə
+
+Product Owner Product Backlog-un effektiv idarəsi, sıralanması və şəffaflığı üçün cavabdehdir. Başqaları təsvir, araşdırma və sıralamaya kömək edə bilər; işi həvalə etmək cavabdehliyi ötürmür. İşin ölçüsünə və Sprint Backlog daxilində plana Developers cavabdehdir.
+
+**Cost of Delay** müəyyən dövrdə gözləməyin nəticələrini göstərir. İtirilən imkan, əlavə əməliyyat xərci və ya yoxlanmış hüquqi cərimə buna daxil ola bilər. Bu, Scrum-un məcburi düsturu deyil, seçim üçün iqtisadi yanaşmadır. Hüquqi son tarix uyğun ekspertlə yoxlanmalıdır; maraqlı tərəfin bir istəyə “məcburidir” deməsi kifayət etmir.
+
+Gözlənilən faydanı, vaxt həssaslığını, riski, səyi, asılılığı və öyrənməni müqayisə et. Kiçik eksperiment böyük investisiyadan əvvəl qeyri-müəyyənliyi azalda bilər. Xarici xidmət dəyişmədən istifadə edilə bilməyən yüksək gəlirli iş indi kiçik, tam işləyən yaxşılaşdırmadan az faydalı ola bilər. Yalnız ROI ilə sıralamaq vaxtı və qeyri-müəyyənliyi gizlədə bilər. Girişlər təxmindirsə dəqiq görünən rəqəm yaratma.
+
+Refinement faydalı detal, sıra və ölçü əlavə edən davamlı fəaliyyətdir; sabit timebox-lı məcburi tədbir deyil. Yaxın iş adətən uzaq seçimdən daha çox detal tələb edir. Müəyyən sayda Sprint-i tam təsvir etmək üçün universal qayda yoxdur. Köhnəlmiş istəyi səbəbini qeyd etməklə çıxar, birləşdir və ya arxivlə; mühüm sübutu bərpa etmək mümkün qalsın. İstəyi arxivləmək müqavilə öhdəliyindən gizlicə imtina etmək deyil.
+
+Mümkün olduqda işi istifadəçiyə fayda verən vertical slice-lara böl. Əvvəl bütün database, sonra bütün ekranlar üzərində işləmək inteqrasiya olunmuş feedback-i gecikdirir. Kiçik, tam istifadəçi yolu Definition of Done-u ödəyərək daha erkən sübut verə bilər. İstifadəçi görməsə də texniki iş təhlükəsizlik və gələcək dəyər üçün vacib ola bilər.
+
+## İşlənmiş nümunə
+
+Rezervasiya məhsulunda üç seçim var: gələn həftə üçün hüquqi son tarixi yoxlanmış kiçik razılıq düzəlişi, vaxt təzyiqi olmayan cəlbedici hesabat və riskli xarici identity asılılığının ucuz yoxlaması. Backlog-da sahibi və yeni sübutu olmayan 300 köhnə istək də var.
+
+PO əvvəl son tarixi və nəticələri görünən edir, Developers ilə uyğun və istifadə edilə bilən kiçik həlli müzakirə edir, asılılığı sonrakı seçimlərə təsir edə biləcək qədər erkən araşdırır. Hesabat seçim kimi qalır. Komanda köhnə istəkləri cari məqsədə görə yoxlayır, vacib sübutu saxlayır, bütün 300 işə vəd vermir. Rəqəmlər nümunənin fərziyyəsidir, universal sıra qaydası deyil.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n G[Product Goal] --> E[Fayda vaxt risk ve asililiq]\n E --> O[Faydali secimleri sirala]\n O --> S[Kicik Done netice]\n S --> L[Neticeni yoxla]\n L --> E\n L --> R[Deqiqlesdir birlesdir ve ya cixar]'
+  }
+/>
+
+Sübut dəyişdikcə sıra dəyişir. Çıxarma və refinement seçimləri faydalı saxlayır; diaqram orijinal tədris modelidir.
+
+## Qərarı yoxla
+
+<details>
+<summary>PO Sprint daxilində hər texniki tapşırığın sırasını təsdiqləməlidirmi?</summary>
+
+Xeyr. Developers Sprint Goal-a çatmaq üçün Sprint Backlog planını uyğunlaşdırır. Texniki ardıcıllığın dəyişməsi özü Product Backlog cavabdehliyinin pozulması deyil. Yeni məlumat lazım olan əhatəni dəyişirsə Developers və PO əməkdaşlıq edir; Sprint Goal və keyfiyyət sərhədi qorunur.
+
+</details>
+
+## Tipik səhvlər
+
+- Yalnız istəyin yaşına və ya rəhbərin vəzifəsinə görə sıralamaq.
+- Növbəti faydalı hissəni diqqətdən qaçırıb illərlə uzaq detalları dəqiqləşdirmək.
+- Texniki riskin azaldılmasını avtomatik dəyərsiz və ya avtomatik birinci saymaq.
+- Çıxarılmış istəyi bitmiş iş göstərmək və ya həqiqi öhdəliyi gizlətmək.
+
+## Praktik tapşırıq
+
+Komanda ya on günə hüquqi son tarixi olan kiçik düzəlişi, ya da faydası qeyri-müəyyən böyük artım funksiyasını verə bilər. Hər ikisinə eyni məhdud ekspert lazımdır. Sıralamadan əvvəl lazım olan sübutu yaz, sonra artım ideyası üçün daha kiçik öyrənmə addımı təklif et.
+
+## İzah edilmiş həll
+
+<details>
+<summary>Qərarın izahını aç</summary>
+
+Öhdəliyi, tarixi, təsirlənən istifadəçiləri, nəticəni, səyi və asılılığı yoxla. Hər seçimin gecikməsinin alternativ dəyərini müqayisə et. Ən kiçik uyğun end-to-end düzəlişi və artım fərziyyəsinin ucuz testini araşdır. Səbəbi izah et, sübut dəyişəndə yenidən bax. Naməlum girişlərdən rəqəmli reytinq düzəltmə və hər iki işi sığışdırmaq üçün məcburi keyfiyyətdən imtina etmə.
+
+</details>
+
+## Mini-test və yaddaş vərəqi
+
+Məqsəd → vaxt və dəyər sübutu → asılılıq/risk → faydalı hissə → yoxlama. Product Backlog inkişaf edir. Delegation zamanı PO cavabdeh qalır; Sprint planı Developers-ə aiddir. Seçimi saxlamaq onu detallandırmaq və ya vəd etmək tələb etmir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Owner, Product Backlog, Sprint Backlog və refinement. Uyğunlaşdırılmış izahlar: CC BY-SA 4.0, Schwaber və Sutherland.
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): 3, 7 və 8-ci fəsillərdən seçilmiş sıralama, dəyər və proqnozlaşdırma materialı.
+- [Kwestio PSPO II practice](https://kwestio.jad2advisory.com/certifications/pspo-ii/practice): köhnə istəklər və qeyri-müəyyənlikdən öyrənmə daxil olmaqla backlog mövzuları nəzərdən keçirilib.
+- [ExamDeck backlog nümunələri](https://examdeck.pro/pspo2-practice-questions/product-value-and-backlog-management-at-scale): əlavə iqtisadi seçim mövzuları. Platformanın sualları köçürülməyib; dərs və sualları orijinal məşqdir.

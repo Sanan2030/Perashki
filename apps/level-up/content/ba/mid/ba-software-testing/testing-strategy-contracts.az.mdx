@@ -1,0 +1,90 @@
+---
+id: testing-strategy-contracts
+locale: az
+title: 'Test strategiyası: unit, integration və contract'
+objectives:
+  - 'Konkret failure riski üçün test sərhədi seç.'
+  - 'Test double-ı real dependency sübutundan ayır.'
+  - 'Contract test-in nəyi təsdiqləyib nəyi təsdiqləmədiyini izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Konkret failure riski üçün test sərhədi seç.
+- Test double-ı real dependency sübutundan ayır.
+- Contract test-in nəyi təsdiqləyib nəyi təsdiqləmədiyini izah et.
+
+## Bu mövzu niyə vacibdir
+
+Mock edilmiş payment client hər testdə success qaytarır, amma real provider required field-i dəyişib. Başqa suite yalnız slow end-to-end test istifadə edir və xətanın yerini tapa bilmir. Test strategiyası faydalı sübutu, feedback vaxtını və maintenance-i real risklərə görə balanslaşdırır.
+
+## Əsas anlayışlar
+
+Unit test müəyyən sərhəddə kiçik davranışı təcrid olunmuş yoxlayır. Sərhəd dizayn seçimidir; mütləq bir function deyil. Hər internal method çağırışı barədə assertion əvəzinə observable behavior və mənalı invariant seç.
+
+Integration test seçilmiş scope daxilində real komponentlərin, məsələn repository və DB-nin əməkdaşlığını işlədir. Dar integration test tam production-a bənzər sistem tələb etmədən interface-də fokuslu sübut verə bilər. Hansı dependency-nin real, hansının simulated olduğunu göstər.
+
+Contract test consumer və provider arasında razılaşdırılmış interaction-u yoxlayır. Hər iki tərəf uyğun yoxlananda incompatible request, response və fərziyyəni aşkar edir. Tək schema check bütün biznes qaydasını, security property və production konfiqurasiyasını təsdiqləmir. Provider də müvafiq contract-la yoxlanmırsa, mock-a qarşı consumer test provider compatibility sübutu deyil.
+
+End-to-end test seçilmiş sistem sərhədində user-visible journey-ni işlədir. Kiçik testin buraxdığı wiring və interaction xətasını tapır, amma çox vaxt ləng və diaqnostikası çətindir. Kritik journey və təmsilçi istisnaları saxla; hər aşağı səviyyəli kombinasiyanı brauzer testinə köçürmə.
+
+Test double-a fərqli məqsədli stub, fake və mock daxildir. Double şəraiti idarə edib failure-ı təkrarlana bilən edə bilər, amma real dependency-dən uzaqlaşa bilər. Şüurlu istifadə et və ayrıca sərhəd sübutu saxla. Pyramid feedback balansı üçün heuristic-dir; test növlərinə universal məcburi faiz deyil.
+
+Testi risk inventarından seç: authorization, pul, data integrity, compatibility, accessibility və recovery. Code coverage icra olunan kodu göstərir; assertion keyfiyyətini və biznes halının tamlığını yox. Yaşıl suite öz scope-unda sübutdur, heç xəta qalmadığının sübutu deyil.
+
+## İşlənmiş nümunə
+
+Refund üçün unit test amount həddini və state transition-u yoxlayır. DB integration test refund record ilə operation identifier-in birlikdə commit olmasını yoxlayır. Provider contract test request/response razılaşmasını təsdiqləyir. Kiçik E2E journey icazəli user-in refund istəyib pending/confirmed outcome görməsini yoxlayır.
+
+Timeout stub fokuslu recovery testinə kömək edir, amma komanda real provider-in unknown outcome davranışını ayrıca araşdırır. Payment mock-un bir dəfə çağırılmasını yoxlayan test proses crash-dən sonra davamlı no-duplicate-money invariant-ını təsdiqləmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n R[Failure risks] --> U[Focused logic tests]\n R --> I[Real boundary integration]\n R --> C[Consumer and provider contracts]\n R --> E[Critical user journeys]\n U --> F[Complementary feedback]\n I --> F\n C --> F\n E --> F'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Bütün testlər mocked provider-lə keçir. Canlı provider-lə compatibility təsdiqlənibmi?</summary>
+
+Xeyr. Suite double-a qarşı davranışı təsdiqləyir. Nəzarətli şəraitdə provider contract və uyğun real integration yoxla, version/configuration fərqinə bax. Mock-u faydalı saxla, amma sübutunu şişirtmə.
+
+</details>
+
+## Tipik səhvlər
+
+- Coverage faizini correctness saymaq.
+- Outcome əvəzinə private implementation detalını test etmək.
+- Bütün edge case üçün yalnız browser test istifadə etmək.
+- Stubbed interaction-u real provider integration adlandırmaq.
+
+## Praktik tapşırıq
+
+Tenant scope-lu orders API üçün test seç. Yanlış amount, cross-tenant access, concurrent duplicate operation və user-visible outcome daxil et. Hansının real datastore sərhədi tələb etdiyini göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Yanlış amount üçün fokuslu validation, tenant yoxlaması üçün policy test istifadə et. Concurrent deduplication və transaction-u təmsilçi real datastore-da sına; sequential in-memory fake həmin zəmanətləri vermir. External interface-də contract sübutu, user-visible nəticə üçün kiçik browser journey əlavə et. Simulated qalan hissələri yaz.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Risk → behavior → boundary → assertion → sübut sərhədi. Unit, integration, contract və E2E bir-birini tamamlayır; heç bir səviyyə bütün property-ləri sübut etmir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [The Practical Test Pyramid, Ham Vocke](https://martinfowler.com/articles/practical-test-pyramid.html): test scope, double və contract/integration fərqi.
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): interface contract-ları.
+- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): server-side permission yoxlaması və testing. Sabit test nisbəti və certification qaydası nəticəsi çıxarılmır.

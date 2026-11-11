@@ -1,0 +1,9 @@
+item_id,order_id,item_amount_cents
+i1,o1,600
+i2,o1,400
+i3,o2,2000
+i4,o3,3000
+i5,o4,5000
+i6,o5,4000
+i7,o6,6000
+i8,o7,500

@@ -1,0 +1,111 @@
+---
+id: devops-ci-cd-artifacts
+locale: en
+title: 'CI/CD pipelines, immutable artifacts and deployment trust'
+objectives:
+  - 'Distinguish integration checks, delivery readiness and deployment decisions.'
+  - 'Trace the same immutable artifact from testing through promotion.'
+  - 'Identify unsafe trust transitions involving third-party actions, PR code and deployment credentials.'
+---
+
+## Learning objectives
+
+- Distinguish integration checks, delivery readiness and deployment decisions.
+- Trace the same immutable artifact from testing through promotion.
+- Identify unsafe trust transitions involving third-party actions, PR code and deployment credentials.
+
+## Why this matters
+
+A pull request passes tests, but production rebuilds the source against a newer dependency and deploys a different binary. In another pipeline, a privileged job checks out untrusted PR code before obtaining a deployment secret. Both failures are about trust and artifact identity rather than a missing green checkmark.
+
+## Core theory
+
+Continuous integration provides frequent integration feedback through automated checks. Continuous delivery keeps a releasable artifact available under the chosen process; continuous deployment automates deployment to the target environment when its conditions are met. Names alone do not establish what was tested or who may change production.
+
+A useful pipeline identifies source revision, resolved dependencies, build environment, test results and artifact digest. Build the release artifact once where feasible, test that artifact appropriately and promote its immutable identity. Rebuilding later creates a new artifact whose equivalence needs evidence. A checksum identifies bytes; it does not prove the builder or dependency was trustworthy.
+
+Separate untrusted validation jobs from privileged release jobs. Untrusted pull-request text can become shell input if interpolated directly. Untrusted code can read available credentials when executed in the same privileged context. A job name such as security-check does not change its actual permissions.
+
+GitHub recommends least-privilege GITHUB_TOKEN permissions and pinning third-party actions to a full commit SHA for an immutable reference. Verify the chosen reference and maintain a deliberate update process. A version tag can move. Avoid copying an arbitrary SHA from an unreviewed source and assuming that makes an action trustworthy.
+
+For supported cloud integrations, short-lived federated credentials can reduce reliance on long-lived secrets, but the trust policy must bind the expected repository, workflow, branch/environment and intended audience. Merely enabling OIDC is not a permission model. Protect release environments and ensure the authorized job deploys the artifact it was approved to release.
+
+## Worked example
+
+A proposed pipeline has three trust stages: unprivileged validation on proposed changes, a trusted build that records the source/digest, and a constrained deployment of that exact artifact. This validation-job fragment assumes a reviewed, full-SHA-pinned checkout action and Node.js 24 setup have already run. It uses the repository’s actual check commands:
+
+```yaml
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate content and run tests
+        run: |
+          npm run validate:content
+          npm test
+      - name: Lint and build
+        run: |
+          npm run lint
+          npm run build
+```
+
+The fragment is not a standalone workflow: it omits the trigger, checkout and Node setup, and does not deploy anything. A release pipeline also needs artifact-specific tests after building, not only source-level checks. This lesson does not install a placeholder workflow into the project. Discuss release authority, artifact retention and rollback references before giving the deployment job more privileges.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Proposed source"] --> B["Unprivileged checks"]\n B --> C["Trusted build and artifact identity"]\n C --> D["Artifact tests and release decision"]\n D --> E["Constrained deployment of same digest"]\n E --> F["Production evidence"]'
+  }
+/>
+
+Permissions and artifact identity must survive every transition. A successful test on one artifact is not proof about a later rebuilt artifact.
+
+## Inspect the decision
+
+<details>
+<summary>A release job is manually approved, then rebuilds source using floating dependencies. Did the approval identify exactly what will run?</summary>
+
+Not necessarily. The rebuild can change the bytes after the reviewed evidence. Approve and promote a recorded artifact identity, or explicitly validate the new build under the release policy.
+
+</details>
+
+## Common mistakes
+
+- Giving every job write permissions expands the impact of untrusted code.
+- Using a mutable action tag while claiming full supply-chain immutability overstates protection.
+- Passing PR titles directly into shell source can create command injection.
+- Printing transformed secrets can escape simple log masking.
+- Storing only a branch name as a rollback target loses exact artifact identity.
+
+## Practice exercise
+
+A privileged deployment job runs tests from a forked PR, exposes a cloud token, rebuilds latest and deploys. Redesign its trust boundaries and list the evidence needed to prove production received the tested artifact.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Run untrusted validation without deployment credentials and with minimum permissions. Build/release only under an authorized trusted context. Review and pin actions, constrain any federated identity policy and protect environment changes. Record source, dependency resolution, test evidence, artifact digest and deployment identity.
+
+Promote the selected artifact rather than silently rebuilding it. Retain the previous known-good artifact and define a rollback or forward-recovery process that also considers data compatibility. Do not confuse approval of a workflow run with permission for every possible code path inside it.
+
+</details>
+
+## Check understanding and cheat sheet
+
+CI feedback ≠ release authority. Build once/test/promote the same identity where feasible. Untrusted PR code must not inherit release credentials. Pin and review action references. OIDC needs a constrained trust policy. Rollback needs a known artifact and compatible state.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [GitHub Actions secure use](https://docs.github.com/en/actions/reference/security/secure-use): least privilege, untrusted inputs/code, action pinning and credential handling.
+- [Docker build practices](https://docs.docker.com/build/building/best-practices/): content identity and image updates.
+
+Pipeline examples are original teaching sketches, not production changes or proof of a successful deployment.

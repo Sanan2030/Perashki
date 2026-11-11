@@ -1,0 +1,98 @@
+---
+id: db-transactions-locks
+locale: az
+title: 'Tranzaksiya, izolyasiya, kilid və deadlock'
+objectives:
+  - 'Atomicity-ni isolation və durability-dən ayır.'
+  - 'PostgreSQL statement snapshot və row lock davranışını izah et.'
+  - 'Təhlükəli side effect-ləri təkrarlamadan deadlock və serialization failure idarə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Atomicity-ni isolation və durability-dən ayır.
+- PostgreSQL statement snapshot və row lock davranışını izah et.
+- Təhlükəli side effect-ləri təkrarlamadan deadlock və serialization failure idarə et.
+
+## Bu mövzu niyə vacibdir
+
+İki request son bir oturacağı oxuyur və ikisi də satmağa çalışır. Hər ayrıca SQL statement düzgün ola, ümumi nəticə isə biznes qaydasını poza bilər. Concurrency düzgünlüyü tək transaction keyword deyil, müəyyən invariant və transaction strategiyası tələb edir.
+
+## Əsas anlayışlar
+
+Transaction işi commit/rollback sərhədində qruplaşdırır. Atomicity transactional dəyişikliyin hamısının və ya heç birinin tətbiqinə, isolation paralel işlərin əlaqəsinə, durability isə DB-nin qurulmuş zəmanətləri daxilində commit olunmuş dataya aiddir. ACID ixtiyari application workflow və external service-in bir transaction paylaşması vədi deyil.
+
+PostgreSQL-in default Read Committed səviyyəsi hər adi statement üçün yeni snapshot istifadə edir. Eyni transaction-da iki read buna görə fərqli committed data görə bilər. Repeatable Read PostgreSQL-ə aid zəmanətlərlə transaction snapshot verir, amma tək snapshot consistency bütün multi-row biznes invariant-larını təmin etmir. Serializable uyğunsuz paralel davranışı aşkarlayıb transaction abort və retry tələb edə bilər.
+
+Uyğundursa sadə invariant-ı constraint və ya atomik conditional update ilə ifadə et. Şərt yalnız memory-də yoxlanırsa read-then-write application ardıcıllığında race yaranır. Qayıdan row count nəticənin hissəsidir: sıfır uyğun update uğurlu reservation kimi göstərilməməlidir.
+
+`FOR UPDATE` kimi row lock-lar konfliktli writer və locker-ləri əlaqələndirir. Adətən köhnə committed version-un adi snapshot read-ini bloklamır. Transaction-u qısa saxla, lock tutarkən user input və remote call gözləmə, ortaq resursları sabit ardıcıllıqla əldə et.
+
+Deadlock uyğunsuz gözləmələrin dövrəsidir. PostgreSQL onu tapıb iştirakçılardan birini abort edir; tətbiq xətanı idarə etməlidir. Lock wait özü mütləq deadlock deyil. Serialization failure da bütün transaction üçün məqsədli retry policy tələb edir. Retry-ni məhdudlaşdır, external effect-i təhlükəli replay-dən kənarda saxla və ya outbox kimi davamlı pattern ilə əlaqələndir.
+
+## İşlənmiş nümunə
+
+Tək inventory row üçün orijinal PostgreSQL nümunəsi yalnız stock qaldıqda reservation edir:
+
+```sql
+BEGIN;
+UPDATE inventory
+SET available = available - 1
+WHERE sku = 'seat-A' AND available > 0
+RETURNING available;
+COMMIT;
+```
+
+Tətbiq bir qayıdan row-u reservation, sıfır row-u əlçatmaz nəticə sayır. DB-yə yenə uyğun schema constraint və aydın business contract lazımdır.
+
+İki hesablı transfer-də A transaction-u əvvəl 1, sonra 2-ni lock edərsə, əvvəl 2, sonra 1-i lock edən B ilə deadlock ola bilər. Sabit sıra riski azaldır. Cəhd abort olarsa transaction-u retry policy ilə yenidən başlat; payment notification-u kor-koranə yenidən göndərmə. Bunlar icra edilmiş DB əməliyyatı deyil, tədris statement-ləridir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n I[Business invariant] --> T[Transaction and isolation choice]\n T --> L[Constraints conditional writes or locks]\n L --> C{Commit succeeds?}\n C -->|Yes| E[Publish reliable outcome]\n C -->|Retryable abort| R[Bounded whole-transaction retry]\n R --> T'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Transaction Serializable səviyyəsindədir. Tətbiq failure handling-i buraxa bilərmi?</summary>
+
+Xeyr. Serializable təhlükəsiz birlikdə commit edilə bilməyən icraları rədd edə bilər. Tətbiq retryable xətanı tanımalı, bütün unit-i məhdud policy ilə təkrarlamalı və external effect duplicate-inin qarşısını almalıdır. Güclü isolation failure modelini dəyişir; aradan qaldırmır.
+
+</details>
+
+## Tipik səhvlər
+
+- Tək BEGIN-in bütün race-lərin qarşısını aldığını düşünmək.
+- Sıfır row-luq conditional update-i uğur sübutu saymaq.
+- Slow network call boyunca lock saxlamaq.
+- Transaction abort-dan sonra yalnız son statement-i təkrarlamaq.
+
+## Praktik tapşırıq
+
+İki alıcı son məhsul vahidi üçün rəqabət aparır. Təhlükəsiz single-row reservation contract-ını, unavailable nəticəni və invariant-ı paralel request-lə necə test edəcəyini təsvir et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Uyğun transaction daxilində DB-nin məcbur etdiyi şərt və ya ekvivalent locking strategiyası istifadə et. Heç bir row uyğun deyilsə açıq unavailable nəticə qaytar. Təmsilçi real DB-də paralel cəhdlər işlət: uğurlu reservation stock-u keçməsin, available mənfi olmasın, retryable failure idarə edilsin. Sequential unit test real lock davranışını sübut etmir.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Əvvəl invariant-ı müəyyən et. Atomicity ≠ isolation. Snapshot read ≠ writer lock. Affected row-ları yoxla. Sabit lock sırası və məhdud whole-transaction retry vacibdir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [PostgreSQL 18: Transaction isolation](https://www.postgresql.org/docs/18/transaction-iso.html): snapshot, anomaly və retry tələbləri.
+- [PostgreSQL 18: Explicit locking](https://www.postgresql.org/docs/18/explicit-locking.html): table/row lock, deadlock və sabit acquisition sırası. PostgreSQL davranışı bütün DB engine-lərə ümumiləşdirilmir.

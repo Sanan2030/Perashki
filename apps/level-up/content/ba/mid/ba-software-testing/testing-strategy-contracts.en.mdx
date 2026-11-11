@@ -1,0 +1,90 @@
+---
+id: testing-strategy-contracts
+locale: en
+title: 'Testing strategy: unit, integration and contract evidence'
+objectives:
+  - 'Choose a test boundary for a concrete failure risk.'
+  - 'Distinguish a test double from real dependency evidence.'
+  - 'Explain what a contract test can and cannot establish.'
+---
+
+## Learning objectives
+
+- Choose a test boundary for a concrete failure risk.
+- Distinguish a test double from real dependency evidence.
+- Explain what a contract test can and cannot establish.
+
+## Why this matters
+
+A mocked payment client returns success in every test, but the real provider has changed a required field. Another suite uses only slow end-to-end tests and cannot localize failures. A testing strategy balances useful evidence, feedback time and maintenance around actual risks.
+
+## Core theory
+
+A unit test examines a small behavior in isolation under a defined boundary. That boundary is a design choice, not necessarily exactly one function. Prefer observable behavior and meaningful invariants to assertions about every internal method call.
+
+Integration tests exercise the collaboration of real components within a chosen scope, such as a repository and database. A narrow integration test can provide focused evidence at an interface without requiring an entire production-like estate. State which dependencies are real and which are simulated.
+
+Contract tests check agreed interactions between consumers and providers. They can expose incompatible requests, responses or assumptions when both sides are verified appropriately. A schema check alone cannot establish every business rule, security property or production configuration. A consumer test against a mock is not provider compatibility evidence unless the provider is also verified against the relevant contract.
+
+End-to-end tests exercise a user-visible journey through the selected system boundary. They catch wiring and interaction failures that smaller tests miss, but are often slower and harder to diagnose. Keep critical journeys and representative exceptions; avoid copying every lower-level permutation into a browser test.
+
+Test doubles include stubs, fakes and mocks with different purposes. A double controls conditions and can make a failure reproducible, but can drift from the real dependency. Use it consciously and retain separate boundary evidence. A pyramid is a heuristic for feedback balance, not a mandatory universal percentage of test types.
+
+Choose tests from a risk inventory: authorization, money, data integrity, compatibility, accessibility and recovery. Code coverage describes executed code, not the quality of assertions or completeness of business cases. A green suite is evidence within its scope, not a proof that no defects exist.
+
+## Worked example
+
+For a refund operation, unit tests cover amount bounds and state transitions. A database integration test checks that the refund record and operation identifier commit together. A provider contract test verifies the request/response agreement. A small end-to-end journey checks that an authorized user can request a refund and see the pending or confirmed outcome.
+
+A timeout stub supports a focused recovery test, but the team separately investigates the real provider's unknown-outcome behavior. A test that merely expects the payment mock to be called once cannot establish a durable no-duplicate-money invariant after a process crash.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n R[Failure risks] --> U[Focused logic tests]\n R --> I[Real boundary integration]\n R --> C[Consumer and provider contracts]\n R --> E[Critical user journeys]\n U --> F[Complementary feedback]\n I --> F\n C --> F\n E --> F'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Every test passes against a mocked provider. Is compatibility with the live provider established?</summary>
+
+No. The suite establishes behavior against the double. Verify the provider contract and relevant real integration under controlled conditions, and review version/configuration differences. Keep the mock useful without overstating its evidence.
+
+</details>
+
+## Common mistakes
+
+- Treating coverage percentage as correctness.
+- Testing private implementation details instead of outcomes.
+- Using only browser tests for all edge cases.
+- Calling a stubbed interaction a real-provider integration.
+
+## Practice exercise
+
+Choose tests for a tenant-scoped order API. Include an invalid amount, cross-tenant access, concurrent duplicate operation and the visible user outcome. Identify which requires a real datastore boundary.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use focused validation tests for invalid amounts and policy tests for tenant checks. Exercise concurrent deduplication and transaction behavior against a representative real datastore because a sequential in-memory fake cannot establish those guarantees. Add contract evidence at the external interface and a small browser journey for the user-visible result. Record which parts remain simulated.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Risk → behavior → boundary → assertions → evidence limits. Unit, integration, contract and E2E tests complement one another; no single level proves every property.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [The Practical Test Pyramid, Ham Vocke](https://martinfowler.com/articles/practical-test-pyramid.html): test scope, doubles and contract/integration distinctions.
+- [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html): interface contracts.
+- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): server-side permission checks and testing. No fixed test-ratio or certification rule is inferred.

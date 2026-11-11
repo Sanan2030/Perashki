@@ -1,0 +1,190 @@
+import { canonicalProtectedTerm } from './protected-terminology';
+
+// Foreign technical vocabulary must not be interpreted as Azerbaijani homographs.
+// Canonical product/acronym spelling is shared with the protected terminology registry.
+const foreign = new Set(`agile scrum sprint backlog demo transactional responsive
+dynamic hashing unit zero downtime deployment retry roll-back framework startup
+database backend frontend deploy commit open data veri beta server optimum cache branch production
+token tag site change merge rebase cherry checkout cookie session request response header payload`.split(/\s+/));
+export function isForeignTechnicalStem(word: string): boolean { return foreign.has(word.toLocaleLowerCase('en-US')); }
+
+export function isForeignTechnicalInflection(word: string): boolean {
+  const lower = word.toLowerCase();
+  return ['i', 'in', 'ini', 'e', 'a', 'de', 'da', 'den', 'dan', 'ler', 'lar'].some(ending =>
+    lower.endsWith(ending) && foreign.has(lower.slice(0, -ending.length)));
+}
+
+const technicalCaseSuffixes = [
+  ['den', '-dən'], ['dan', '-dan'], ['de', '-də'], ['da', '-da'], ['e', '-ə'], ['a', '-a'],
+] as const;
+
+const hyphenatedTechnicalBases = new Map<string, string>([
+  ['vercel', 'Vercel'],
+  ['frontend', 'frontend'],
+  ['cache', 'cache'],
+  ['branch', 'branch'],
+  ['production', 'production'],
+  ['workflow', 'workflow'],
+  ['staging', 'staging'],
+]);
+
+function technicalBase(word: string): string | undefined {
+  return hyphenatedTechnicalBases.get(word.toLowerCase());
+}
+
+export function technicalSpelling(word: string): string | undefined {
+  const canonical = canonicalProtectedTerm(word);
+  if (canonical !== undefined) return canonical;
+  const lower = word.toLowerCase();
+
+  // Foreign/technical stems take Azerbaijani case suffixes with a hyphen.
+  // Resolve only known technical bases so ordinary Azerbaijani words ending in
+  // -de/-da are never rewritten accidentally.
+  for (const [rawSuffix, canonicalSuffix] of technicalCaseSuffixes) {
+    if (!lower.endsWith(rawSuffix) || lower.length <= rawSuffix.length + 1) continue;
+    const baseRaw = lower.slice(0, -rawSuffix.length);
+    const base = technicalBase(baseRaw);
+    if (base !== undefined) return base + canonicalSuffix;
+  }
+
+  if (foreign.has(lower)) return word;
+  return undefined;
+}
+
+export const technicalWords = `
+tərəfdaşımız həllər şərtnaməsi tələbləri keçirilmişdir olunmuş hədəflər
+memarlığını təcrübəsini səviyyəyə işlərinə başlanılmışdır mərhələləri
+rəqabətqabiliyyətli çıxarmaqdır proseslərinizin avtomatlaşdırılması fəaliyyətinizin
+köçürülməsi resurslarımız metodologiyalarına əsaslanaraq ediləcək sprintlər
+şəklində bölünmüşdür həftəlik layihədəki ehtiyaclarınıza tənzimləmələr aparılacaqdır
+siyahısındakı tapşırıqlar sırasına düzülmüşdür komandamız növbədə funksiyalarını
+tamamlamağa ayıracaqdır biləcəyik platformanın konsepsiyasına layihələndirilmişdir
+digərindən mürəkkəbləşmədən genişlənməsinə idarəetməsi servisləri konteynerlərdə
+göstərəcəkdir konteynerlərin orkestrasiyası yüklənməyə ölçəklənməsini vaxtlarında
+sürəti səviyyədə servislərin gecikmələrini endirəcəkdir bazasının dəstəkləmək
+hissələrə sistemlərinin əsasında qurulmuşdur əməliyyatlar sistemindən
+əməliyyatlarını yükünü keşləmə düzgündür sahələrin altına alınır sorğularının
+optimallaşdırılması indeksləmə strategiyaları yazının olduğu cədvəllərdə sürətini
+millisaniyələrə dizaynı sistemlərarası standartlarından sistemlərlə mübadiləsi
+əməliyyatların növbələri texnologiyası tapşırıqları faylların yüklənməsi
+göndərişləri donmasının xidmətlərinin yaradılacaq jurnalları arxivləşdiriləcəkdir
+bölməsində dizaynerlərimiz rahatlığını götürmüşdür fərqindən keyfiyyətdə sürətdə
+komponentlər davranışlarının xəritələri axtardığı tapmasına filtrləmə imkanı
+konfidensiallığı dayaqlarından şifrələnərək bazasında şifrələr mənfəət
+qorunacaqdır sınaqları qaldırılacaqdır yetkiləri imkanını sıfıra hesablarının
+xətləri dövrünə serverinə yüklənməzdən xətaların mühitə düşməsinin versiyaların
+serverə buraxılması üsullarından dəyişdirilməsi versiyanın kopiyası saxlanılacaq
+anında sistemlərdən miqrasiyası skriptlər prosesindən təmizlənməsi
+strukturlaşdırılması çıxarılacaqdır mühitdə aktivliyinin kəsiyində
+əməliyyatlarına miqrasiyanı tutulmuşdur heyətinə təminatından qaydaları
+inzibatçılar təlimatları dərsliklər sənədləşdirilmiş cavablandırılacaqdır
+amilindən fikirlərini yaradılacaqdır tamamlandıqdan dəstəyi əsası etdiriləcəkdir
+vasitələri serverlərin izləniləcəkdir göstəricilər artdıqda heyətə göndərəcəkdir
+problemləri şirkətiniz suallarınızı cavablandırmağa biləcək etməyə şərtnaməsinə
+hazırlanmışdır versiyasının həftə istifadəyə verilməsi tamamlanacaqdır
+əməkdaşlığa inanırıq qatacağına təklifləriniz xidmətinizdədir
+həlləri testlər testlərdən tamamlanmasına standartları başlayacaq növbələr
+`.trim().split(/\s+/);
+
+export const technicalAliases: Record<string, string> = {
+  olmamisdir: 'olmamışdır',
+  muvite: 'mühitə', gidisatini: 'gedişatını', qiymatlendirmeye: 'qiymətləndirməyə',
+  pikey: 'pik', hacmini: 'həcmini', hacmli: 'həcmli', relasiyali: 'relyasiyalı',
+  releysnl: 'relational', edileceqdir: 'ediləcəkdir', getirilecekdir: 'gətiriləcəkdir',
+  omemli: 'önəmli', oturulecekdir: 'ötürüləcəkdir',
+  kecirileceyidir: 'keçiriləcəkdir', adii: 'adi', yirmi: 'iyirmi',
+  taklifleriniz: 'təklifləriniz', sorqu: 'sorğu',
+  hefde: 'həftə', hefdelik: 'həftəlik', menfeat: 'mənfəət',
+  sinaglari: 'sınaqları', kopyasi: 'kopiyası', integrasiyasi: 'inteqrasiyası',
+  uzmanlarimiz: 'mütəxəssislərimiz', muesse: 'müəssisə',
+  tehsillendirme: 'təlimləndirmə',
+  ofise: 'ofisə', backlogdaki: 'backlogdakı', taskin: 'taskın', taski: 'taskı',
+  yukleyirler: 'yükləyirlər', backendde: 'backenddə', responseun: 'response-un',
+  arasdirdiq: 'araşdırdıq', sorgusunda: 'sorğusunda', etdikden: 'etdikdən',
+  isledi: 'işlədi', elinin: 'Əlinin', gonderdiyi: 'göndərdiyi',
+  requesti: 'request-i', endpointi: 'endpoint-i', yazisi: 'yazısı', zeyif: 'zəif', catandan: 'çatandan',
+  duzelisi: 'düzəlişi', stagingde: 'stagingdə', planimdir: 'planımdır', planim: 'planım',
+  gorduk: 'gördük', saxlayirlar: 'saxlayırlar', serverlerde: 'serverlərdə',
+  edilmelidir: 'edilməlidir',
+  optimallasdirilir: 'optimallaşdırılır', avtomatlasdirir: 'avtomatlaşdırır',
+  lokaldaki: 'lokaldakı', olunmamalidir: 'olunmamalıdır',
+};
+
+// Called only after code/URLs have been replaced with protected placeholders.
+export function prepareTechnicalPhrases(text: string): string {
+  return text
+    .replace(/(?<!\p{L})vpn\s+(e|ə)(?=\s|$)/giu, 'VPN-ə')
+    .replace(/(?<!\p{L})(rsd|srs|api)\s+(de|də|da)(?=\s+(?:sənəd|sened|qeydiyyat|müraciət|muraciet|istifadəçi|istifadeci|funksiya|xəta|xeta|yeni|\p{L}+(?:in|ın|un|ün|i|ı|u|ü|lər|lar))(?=$|[^\p{L}]))/giu,
+      (_, acronym: string, suffix: string) => acronym.toUpperCase() + '-' + (suffix === 'da' ? 'da' : 'də'))
+    .replace(/(?<!\p{L})workflow\s+(dan|dən)(?!\p{L})/giu, 'workflow-dan')
+    .replace(/(^|[^\p{L}\p{N}_])open api(?=$|[^\p{L}\p{N}_])/giu, '$1OpenAPI')
+    .replace(/(^|[^\p{L}\p{N}_])no sql(?=$|[^\p{L}\p{N}_])/giu, '$1NoSQL')
+    .replace(/(^|[^\p{L}\p{N}_])ci cd(?=$|[^\p{L}\p{N}_])/giu, '$1CI/CD')
+    .replace(/(^|[^\p{L}\p{N}_])ux ui(?=$|[^\p{L}\p{N}_])/giu, '$1UX/UI')
+    .replace(/(^|[^\p{L}\p{N}_])oauth2(?=$|[^\p{L}\p{N}_])/giu, '$1OAuth2')
+    .replace(/(^|[^\p{L}\p{N}_])2fa(?=$|[^\p{L}\p{N}_])/giu, '$12FA')
+    .replace(/(^|[^\p{L}\p{N}_])multipart form data(?=$|[^\p{L}\p{N}_])/giu, '$1multipart/form-data')
+    .replace(/(^|[^\p{L}\p{N}_])github action(?=$|[^\p{L}\p{N}_])/giu, '$1GitHub Action')
+    .replace(/(^|[^\p{L}\p{N}_])vercel function(?=$|[^\p{L}\p{N}_])/giu, '$1Vercel Function')
+    .replace(/(^|[^\p{L}\p{N}_])callback url(?=$|[^\p{L}\p{N}_])/giu, '$1callback URL');
+}
+
+export function technicalPhrases(text: string): string {
+  return text
+    .replace(/(^|[^\p{L}])üçün ise(?=$|[^\p{L}])/giu, '$1üçün isə')
+    .replace(/(^|[^\p{L}])verilməsi ise(?=$|[^\p{L}])/giu, '$1verilməsi isə')
+    .replace(/(^|[^\p{L}])(backend|frontend) ise(?=$|[^\p{L}])/giu, '$1$2 isə')
+    .replace(/(?<!\p{L})(staging-də|production-da|RSD-də) ise(?=$|[^\p{L}])/giu, '$1 isə')
+    .replace(/(React ilə) +(backend isə)/giu, '$1, $2')
+    .replace(/(Vercel-də) +de(?=$|[^\p{L}])/giu, '$1 də')
+    .replace(/(limiti) +asılıb(?=$|[^\p{L}])/giu, '$1 aşılıb')
+    .replace(/(^|[^\p{L}])proqram koda(?=$|[^\p{L}])/giu, '$1proqram koduna')
+    .replace(/(düşməsinin) qarşısına alır/giu, '$1 qarşısını alır')
+    .replace(/(^|[^\p{L}])addım addım(?=$|[^\p{L}])/giu, '$1addım-addım')
+    .replace(/(^|[^\p{L}])bölünmüş və relational həm də/giu, '$1bölünmüş və həm relational, həm də')
+    .replace(/(^|[^\p{L}])api keys oauth2/giu, '$1API keys və OAuth2')
+    .replace(/(^|[^\p{L}])olasi problemləri(?=$|[^\p{L}])/giu, '$1ehtimal olunan problemləri')
+    .replace(/(^|[^\p{L}])tespit edib(?=$|[^\p{L}])/giu, '$1müəyyən edib')
+    .replace(/(^|[^\p{L}])saat əsası ilə(?=$|[^\p{L}])/giu, '$1saat əsasında')
+    .replace(/(gördük) +ki +/giu, '$1 ki, ')
+    .replace(/(şəbəkə üzərindən) +oturulur(?=$|[^\p{L}])/giu, '$1 ötürülür')
+    .replace(/(gecikirdim) +(ona görə)/giu, '$1, $2');
+}
+
+const finite = `salamlayırıq keçirilmişdir başlanılmışdır çıxarmaqdır bölünmüşdür
+olunacaqdır aparılacaqdır ayıracaqdır biləcəyik layihələndirilmişdir yaradır
+göstərəcəkdir edəcəkdir qalacaqdır keçiriləcək qurulmuşdur olunacaq ediləcəkdir
+alınır alır götürmüşdür gətiriləcəkdir biridir ötürüləcəkdir qorunacaqdır
+qaldırılacaqdır endirir edilmişdir keçiriləcəkdir tutur saxlanılacaq çıxarılacaqdır
+tənzimlənəcəkdir yaradacaqdır izləniləcəkdir göndərəcəkdir verir olacaqdır
+hazırlanmışdır planlaşdırılır tamamlanacaqdır bildiririk olacaq
+  cavablandırılacaqdır etdiriləcəkdir tələsdim edirdi soruşdum dedi yükləyirlər
+  araşdırdıq gördük yoxdur işlədi yoxladım keçirdi davam etdirdim saxlayırlar
+  edilməlidir ötürülür optimallaşdırılır edilir avtomatlaşdırır`.trim().split(/\s+/).join('|');
+const starts = [
+  'təqdim etdiyiniz', 'müəyyən olunmuş', 'bu məktubda', 'biznes proseslərinizin',
+  'hər bir sprint', 'bu üsul', 'backlog', 'sprint qiymətləndirmə', 'hər sprintin',
+  'bu yanaşma', 'istifadəçi', 'konteynerlərin', 'nəticədə', 'servislərin', 'bu da',
+  'relyasiyalı', 'analitik', 'cəld giriş-çıxış', 'baza sorğularının', 'kənar sistemlərlə',
+  'sistemdəki', 'RabbitMQ', 'bu funksionallıq', 'üçüncü tərəf', 'mobil uyğunluq',
+  'brauzer', 'adaptiv', 'daxili axtarış', 'bütün məxfi', 'veri bazasında', 'mütəmadi',
+  'xətalar', 'bu model', 'habelə', 'hər bir kod', 'yeni versiyaların', 'kodun',
+  'köçürülmə prosesindən', 'duplikasiya', 'miqrasiya sınaqları', 'keçid gecə',
+  'bu addım', 'inzibatçılar', 'sistemin istifadə', 'təlim keçmiş', 'Prometheus',
+  'kritik səviyyədə', 'şirkətiniz üçün', 'texniki dəstək', 'məhsulun ilkin',
+  'yekun məhsulun', 'biz sizinlə', 'əlavə suallarınız', 'ofisə', 'mən',
+  'product owner', 'sonra', 'gördük', 'Redis', 'günortadan sonra', 'kodun', 'axşam',
+  'serverlərdə', 'şifrələnmiş',
+  'API', 'CI/CD',
+].join('|');
+const boundaries = new RegExp(`(^|[^\\p{L}])(${finite}) +(?=(?:${starts})(?:\\s|$))`, 'giu');
+
+export function punctuateTechnical(text: string): string {
+  return text.replace(boundaries, '$1$2. ')
+    .replace(/(icra mərhələləri) +(funksional modulların strukturu) +(texniki xarakteristikalar)/giu, '$1, $2, $3')
+    .replace(/(istifadəçi idarəetməsi) +(ödəniş inteqrasiyaları) +(bildiriş servisləri)/giu, '$1, $2, $3')
+    .replace(/(panelləri sadə) +aydın/giu, '$1, aydın')
+    .replace(/(unit testlər) +inteqrasiya testləri/giu, '$1, inteqrasiya testləri')
+    .replace(/(serverlərin yüklənməsi) +yaddaş istifadəsi/giu, '$1, yaddaş istifadəsi')
+    .replace(/(yeddi gün) +iyirmi dörd saat/giu, '$1, iyirmi dörd saat');
+}

@@ -1,0 +1,91 @@
+---
+id: cloud-iam-vpc-balancing
+locale: en
+title: 'Cloud foundations: IAM, VPC and load balancing'
+objectives:
+  - 'Explain workload roles and least-privilege permissions.'
+  - 'Trace requests through a VPC, load balancer and application tier.'
+  - 'Identify what a health check and network boundary do not prove.'
+---
+
+## Learning objectives
+
+- Explain workload roles and least-privilege permissions.
+- Trace requests through a VPC, load balancer and application tier.
+- Identify what a health check and network boundary do not prove.
+
+## Why this matters
+
+A service can be reachable but unauthorized, authorized but unreachable, or healthy at a load balancer while its business workflow fails. Cloud architecture becomes easier to reason about when identity, networking, routing and application policy are treated as separate boundaries.
+
+## Core theory
+
+IAM governs which identities may perform which actions on which resources under specified conditions. Prefer appropriate temporary credentials and workload roles over embedded long-lived access keys. Scope permissions to the required actions and resources, review actual use and protect powerful administrative paths. A role name is not evidence that its policy is minimal.
+
+A VPC is a logically isolated network with subnets, addresses, route tables and connectivity choices. A subnet is not public merely because its name contains public. Internet reachability depends on routes, addressing, gateways and controls. A private network does not automatically provide application-level authorization.
+
+Security groups control permitted traffic for associated resources and are stateful in AWS. Network ACLs have a different subnet-level, stateless model. Avoid copying a rule between those mechanisms without understanding return traffic and scope. Network rules constrain reachability; they do not establish that a request may access a particular tenant's object.
+
+An application load balancer routes HTTP/HTTPS requests to target groups according to listeners and rules. Targets may be selected using health evidence, but a passing health endpoint is not proof of every customer journey. Define readiness and failure behavior appropriately and preserve useful request correlation.
+
+TLS termination and forwarding require a clear trust model. Know where encryption ends, how the next hop is protected and which component is trusted to supply identity-related headers. Do not let a caller forge a privileged proxy header by bypassing the intended entry point.
+
+Review the complete request path and operational dependencies, including DNS, certificates, routing, IAM access to data and application permissions. Multi-zone placement and scaling are design choices with cost and failure implications, not magic properties obtained by naming a deployment cloud-native.
+
+## Worked example
+
+An original booking architecture uses a public HTTPS load balancer and an application tier without direct public inbound access. Network rules allow the intended load-balancer-to-application path. The application's workload role may read only the required secret and data resources.
+
+A customer request still undergoes authentication and object-level authorization in the service. The database is not exposed to the public caller. If the health endpoint returns 200 but booking writes fail because the role lacks an action, the team investigates the identity boundary instead of opening every network port. No AWS resource is created by this exercise.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n U[Customer request] --> L[HTTPS listener and routing]\n L --> N[Constrained application network path]\n N --> A[Authentication and object authorization]\n A --> D[Data access under workload role]\n H[Health evidence] --> L'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>The database is in a private subnet. Can the application omit tenant authorization?</summary>
+
+No. Network placement limits reachability, not which authenticated user may access a business object. A reachable application can still expose another tenant’s data unless server-side policy enforces the boundary.
+
+</details>
+
+## Common mistakes
+
+- Embedding long-lived keys in an image or repository.
+- Treating subnet names as actual routing evidence.
+- Opening broad network rules to fix an IAM denial.
+- Assuming a load-balancer health check is an end-to-end business test.
+
+## Practice exercise
+
+Trace a request that reaches the load balancer but receives an application authorization error. Identify four distinct checks and explain which evidence would justify changing each layer.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Inspect listener/routing and target health, the network path, application identity/object policy and workload access to downstream resources. A received application denial is different from a network timeout. Change only the layer implicated by evidence, under the appropriate authority; do not broaden IAM and network controls together without knowing the cause.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Identity permission ≠ network reachability ≠ TLS trust ≠ user/object authorization. Follow the request path and use temporary scoped workload credentials.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [AWS IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html): federation, temporary credentials and least privilege.
+- [AWS VPC overview](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html): networking components.
+- [AWS Application Load Balancer overview](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html): request routing and target groups.
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): server-side policy. Provider-specific terms are not generalized to every cloud.

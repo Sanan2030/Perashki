@@ -1,0 +1,119 @@
+---
+id: data-excel-powerbi-models
+locale: en
+title: 'Excel, Power Query and Power BI: models and measures'
+objectives:
+  - 'Describe a repeatable spreadsheet and Power Query preparation flow.'
+  - 'Design a star schema with consistent fact grain and unique dimension keys.'
+  - 'Explain how a DAX measure changes with filter context.'
+---
+
+## Learning objectives
+
+- Describe a repeatable spreadsheet and Power Query preparation flow.
+- Design a star schema with consistent fact grain and unique dimension keys.
+- Explain how a DAX measure changes with filter context.
+
+## Why this matters
+
+A workbook can be a useful analysis tool, but a manually edited total is hard to reproduce. Power Query records transformations, while Power BI models relationships and measures. These tools still require the same grain, key and reconciliation discipline as SQL and Python. This lesson gives an original modeling exercise; it does not claim to provide an executed Power BI file.
+
+## Core theory
+
+In Excel, keep a raw-data table separate from calculations and presentation. Use stable column names, explicit types and a repeatable refresh process. A PivotTable summarizes the data available to it; it does not prove that the input is deduplicated or that refresh included the newest rows.
+
+Power Query performs data preparation before loading: select required columns, assign types, handle errors and document cleaning rules. Text dates and decimal separators depend on locale. The text `01/02/2026` can mean different dates under different conventions; choose the intended locale explicitly rather than accepting a plausible but wrong conversion. An error should be inspected or quarantined under a stated rule.
+
+A **star schema** separates facts, which record measurable events at a consistent grain, from dimensions, which describe entities used to filter and group facts. In the exercise, FactOrders has one row per order; DimCustomer has one row per customer; DimDate has one row per date. The dimension side of a one-to-many relationship must have unique keys.
+
+Do not mix order-level revenue with item-level rows without adjusting the model. If the business needs item analysis, use a fact at item grain with an appropriate additive amount, or aggregate deliberately. A relationship does not repair a table's inconsistent grain.
+
+A calculated column is computed per row during model processing and stored in the model. A measure is evaluated in the report's current filter context. Filtering a month or country therefore changes which fact rows contribute to a measure. Relationship direction and active relationships influence that context. Bidirectional filtering should be a deliberate modeling decision because it can create ambiguity.
+
+A ratio measure should usually divide the aggregated numerator by the aggregated denominator under the intended context. Averaging already-computed subgroup percentages can give a different, misleading result. Define behavior when the denominator is zero or absent.
+
+## Worked example
+
+Create a teaching model with `FactOrders`, `DimCustomer` and `DimDate`. Load the seven cleaned orders, not the nine raw rows. Relate `DimCustomer[customer_id]` one-to-many to `FactOrders[customer_id]`. Ensure every fact key has a valid dimension match.
+
+Original DAX measure examples:
+
+```text
+Paid Revenue Cents :=
+CALCULATE(
+    SUM(FactOrders[amount_cents]),
+    FactOrders[status] = "paid"
+)
+
+Paid Orders :=
+CALCULATE(
+    COUNTROWS(FactOrders),
+    FactOrders[status] = "paid"
+)
+
+Average Paid Order Cents :=
+DIVIDE([Paid Revenue Cents], [Paid Orders])
+```
+
+With no report filters, paid revenue is 16500 cents, paid orders are six and the mean paid order is 2750 cents. A February date filter yields 6000 cents over two paid orders, or 3000 cents per paid order. A cancelled order contributes to neither paid measure.
+
+In Excel, reproduce the monthly paid revenue using a PivotTable filtered to `paid`. Confirm January 4000, February 6000 and March 6500. These are expected reconciliation values, not claims that Excel or Power BI was executed in this cloud environment.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n C[DimCustomer unique customer key] --> F[FactOrders one row per order]\n D[DimDate unique date key] --> F\n F --> M[DAX measures in filter context]\n M --> V[Report visuals and reconciliation]'
+  }
+/>
+
+The diagram represents filter relationships, not a physical row-multiplying join that should be exported and summed indiscriminately.
+
+## Inspect the decision
+
+<details>
+<summary>Why is averaging regional conversion percentages risky?</summary>
+
+Regions may have different denominators. A region with 1 success out of 2 and another with 90 out of 100 have rates of 50% and 90%. Their simple average is 70%, but the combined rate is `91/102`, approximately 89.2%. Calculate the intended aggregate numerator divided by the aggregate denominator.
+
+</details>
+
+## Common mistakes
+
+- Refreshing a chart while leaving its source table range unchanged.
+- Accepting a locale-dependent date conversion without checking ambiguous values.
+- Putting duplicate keys on the dimension side of a relationship.
+- Using a row-level calculated percentage as if it were an additive fact.
+- Making every relationship bidirectional to hide a model problem.
+
+## Practice exercise
+
+Sketch the three-table model, state each grain and identify the unique keys. Predict the unfiltered and February-only average paid order amounts. Explain what should happen when no paid orders exist under a selected filter.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Customer and date dimensions have one row per key; the order fact has one row per order ID. Unfiltered average paid order is `16500/6=2750` cents; February is `6000/2=3000` cents. `DIVIDE` without an alternate result returns blank for a zero denominator. Label no eligible orders clearly rather than showing an invented 0% or dividing by zero. Keep unknown input amounts distinct from no matching orders.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Layer           | Responsibility                                 |
+| --------------- | ---------------------------------------------- |
+| Raw Excel table | Preserve source data and schema                |
+| Power Query     | Repeatable cleaning and type conversion        |
+| Star schema     | Consistent facts, dimensions and relationships |
+| DAX measure     | Context-aware aggregation                      |
+| Report          | Visible units, filters and refresh time        |
+| Reconciliation  | Match trusted SQL or source totals             |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Microsoft: Understand star schema and its importance for Power BI](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema): facts, dimensions, relationships and measures.
+- [Microsoft: Data types in Power Query](https://learn.microsoft.com/en-us/power-query/data-types): explicit types and locale-aware conversions.
+- The Excel workflow and DAX snippets are original instructional applications of those concepts. No workbook or Power BI service deployment is claimed.

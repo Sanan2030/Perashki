@@ -1,0 +1,101 @@
+---
+id: pspo2-outcome-experiments
+locale: az
+title: 'Məhsul eksperimentləri, seqment metrikləri və yanıltıcı ortalamalar'
+objectives:
+  - 'Population, baseline, gözlənilən outcome və qərar qaydası ilə məhsul fərziyyəsi qur.'
+  - 'User mix dəyişikliyinin ümumi metrikanın mənasını necə tərsinə çevirə bildiyini izah et.'
+  - 'Dashboard-u avtomatik qərarverən saymadan outcome və guardrail sübutu istifadə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Population, baseline, gözlənilən outcome və qərar qaydası ilə məhsul fərziyyəsi qur.
+- User mix dəyişikliyinin ümumi metrikanın mənasını necə tərsinə çevirə bildiyini izah et.
+- Dashboard-u avtomatik qərarverən saymadan outcome və guardrail sübutu istifadə et.
+
+## Bu mövzu niyə vacibdir
+
+Product Owner checkout completion-un 40%-dən 50%-ə qalxmasına sevinir. Halbuki completion həm mobile, həm desktop üçün düşüb. Auditoriya əvvəlcədən completion-u yüksək olan desktop-a doğru dəyişib. Ümumi orta riyazi düzgündür, amma yanlış məhsul nəticəsini dəstəkləyə bilər. Yetkin məhsul qərarı metrikanın necə qurulduğunu və nəyi sübut etdiyini yoxlamağı tələb edir.
+
+## Əsas anlayışlar
+
+Evidence-Based Management goal, experiment və müşahidə edilmiş outcome-u bağlayır. Hypothesis yanlış ola bilən inamı ifadə edir: müəyyən qrup üçün konkret təcrübə dəyişikliyi göstərilən mexanizmə görə müşahidə edilən fayda verəcək. Feature siyahısı nə qurulacağını deyir; dəyərin necə sübut ediləcəyini izah etmir.
+
+GOV.UK service guidance user need və service purpose-dan başlayıb benefit, hypothesis, measurement və data source çıxarır. Metrikanı user research ilə birləşdirməyi, data quality-ni yoxlamağı, baseline qurmağı, segment və trend istifadə etməyi tövsiyə edir. Bunlar əlavə product practice-dir; yeni Scrum event-i və ya rəsmi PSPO exam blueprint deyil.
+
+Faydalı experiment plan nəticəyə baxmamış population, comparison, allocation, observation period, outcome tərifi və qərar qaydasını müəyyən edir. Düzgün qurulmuş randomized comparison causal inference-i gücləndirə bilər. Before/after faydalı ola bilər, amma seasonality, traffic mix, instrumentation dəyişikliyi və başqa release-ləri də əks etdirə bilər. İki faiz fərqlidir deyə dəqiq causal effect elan etmə.
+
+Guardrail əsas outcome-la yanaşı əhəmiyyətli zərəri və məhdudiyyəti izləyir: uğursuz payment, accessibility maneəsi, complaint, fraud loss və support əməyi. Yerli conversion artımı başqa yerdə məqbul olmayan zərər yaradarsa dəyəri məhv edə bilər. Metrika qərar üçün sübutdur, məhsul mühakiməsindən azadlıq deyil.
+
+Təşkilatın necə öyrənəcəyini seçərkən Current Value-ni Unrealized Value-dən ayır, Time-to-Market və Ability-to-Innovate-i yoxla. Tamamlanmış item kimi output müştəri outcome-unu sübut etmir. Dörd EBM Key Value Area fərqli baxış verir; universal KPI toplusu və ya rəqəmsal readiness score tələb etmir.
+
+## İşlənmiş nümunə
+
+Aşağıdakı bütün rəqəmlər süni nümunədir.
+
+| Dövr  | Mobile completion | Desktop completion | Ümumi completion |
+| ----- | ----------------- | ------------------ | ---------------- |
+| Əvvəl | 20 / 80 = 25%     | 20 / 20 = 100%     | 40 / 100 = 40%   |
+| Sonra | 4 / 20 = 20%      | 46 / 80 = 57,5%    | 50 / 100 = 50%   |
+
+Hər iki segment-də nisbət düşsə də ümumi nisbət artdı. Population əsasən mobile-dan əsasən desktop-a keçdi. Bu, çox vaxt Simpson’s paradox kimi müzakirə olunan aggregation reversal nümunəsidir; real məhsul haqqında sübut deyil.
+
+Dəyişikliyi genişləndirməzdən əvvəl segment təriflərinin uyğunluğunu, tracking keyfiyyətini, acquisition dəyişikliyini və uyğun comparison-u yoxla. Desktop-un ilkin kiçik sample-ı da güclü ümumiləşdirməni təhlükəli edir. Növbəti qərar dərhal daha çox release etmək deyil, measurement-i düzəltmək, daha yaxşı test təkrarlamaq və ya segment-in real problemini araşdırmaq ola bilər.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["User need and goal"] --> B["Hypothesis and decision rule"]\n B --> C["Comparison and measurement"]\n C --> D["Segment outcomes and guardrails"]\n D --> E["Continue adapt or stop"]\n E --> B'
+  }
+/>
+
+Sübut zəif və ya ziddiyyətlidirsə learning loop hypothesis-ə qayıdır. Əlverişli aggregate nəticə inspection-un sonu deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Velocity 20% artıb, müştərinin tapşırıq completion-u dəyişməyib. Product Owner nə nəticə çıxara bilər?</summary>
+
+Yalnız seçilmiş delivery ölçüsünün öz fərziyyələri daxilində dəyişdiyini. Bu, customer value artımını sübut etmir. Daha çox output-u faydalı irəliləyiş saymazdan əvvəl customer outcome-u, xərci və həll edilən məhdudiyyəti yoxla.
+
+</details>
+
+## Tipik səhvlər
+
+- Nəticələri gördükdən sonra outcome tərifini dəyişmək sevilən feature-i əsaslandırmağı asanlaşdırır.
+- User segment-lərini nəzərə almamaq kiçik və ya az təsirli qrupa zərəri gizlədə bilər.
+- Bayram promotion-unu adi həftə ilə müqayisə etmək acquisition/seasonality-ni product effect ilə qarışdırır.
+- İlk əlverişli rəqəmdə experiment-i dayandırmaq çaşdırıcı qərar riskini artırır.
+- Prototype müsahibəsini davamlı real davranış sübutu saymaq müşahidəni şişirdir.
+
+## Praktik tapşırıq
+
+Yeni onboarding flow ilk session start-ını artırır, amma mobile istifadəçilərin ilk session completion-unu azaldır. Sponsor dərhal genişləndirmə istəyir. Hypothesis, primary outcome, iki guardrail, segmentation planı və genişləndirmə üçün lazım olan sübutu yaz. Dayandırmağa və ya uyğunlaşdırmağa səbəb olacaq bir müşahidə göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Yeni mobile istifadəçi üçün belə hypothesis qur: daha qısa mövzu seçimi flow-u navigation qarışıqlığını azaltdığı üçün müəyyən pəncərədə tamamlanmış ilk məşq session-larını artıracaq. Primary user outcome kimi start deyil, completion seç. Aydın məqbul şərtlərlə abandonment/error və bildirilən accessibility/support problemlərini guardrail kimi izlə.
+
+Uyğun cohort və ya yaxşı qurulmuş experiment müqayisə et, instrumentation-u yoxla, lazım olduqda mobile/desktop və yeni/qayıdan user-i ayır. Kiçik sample-dan universal 95% həddi uydurmaq əvəzinə sample, observation və stopping rule-u statistik expertise ilə müəyyən et. Completion pisləşirsə, guardrail pozulursa və ya data iddia olunan yaxşılaşmanı dəstəkləmirsə dayandır və ya uyğunlaşdır. Sponsor-a qeyri-müəyyənliyi izah edib qərarı aydınlaşdıran ən kiçik test təklif et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Ehtiyac → benefit → yanlışlığı yoxlanıla bilən hypothesis → measurement → qərar. Output ≠ outcome. Aggregate artım segment pisləşməsini gizlədə bilər. Baseline, data quality və comparison dizaynı vacibdir. Guardrail zərəri açır. EBM empirik mühakiməni dəstəkləyir, avtomatik feature approval-u yox.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [EBM Guide 2024](https://www.scrum.org/resources/evidence-based-management-guide): təqdim edilmiş PDF, goal, experiment loop və dörd Key Value Area.
+- [GOV.UK performance metrics](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): benefit, hypothesis, data quality, segmentation və baseline.
+- [GOV.UK service success](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): transaction ölçməsini, end-to-end journey və research-i birləşdirmək.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): empiricism və Sprint Review.
+
+Cədvəl, experiment design əsaslandırması və suallar orijinal əlavə materialdır. GOV.UK Scrum accountability və rəsmi PSPO syllabus müəyyən etmir.

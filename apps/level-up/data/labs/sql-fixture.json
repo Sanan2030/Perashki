@@ -1,0 +1,89 @@
+{
+  "tables": [
+    {
+      "name": "customers",
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "TEXT PRIMARY KEY"
+        },
+        {
+          "name": "joined_at",
+          "type": "TEXT NOT NULL"
+        },
+        {
+          "name": "country",
+          "type": "TEXT NOT NULL"
+        }
+      ],
+      "rows": [
+        ["u1", "2026-01-02", "AZ"],
+        ["u2", "2026-01-05", "GB"],
+        ["u3", "2026-02-03", "AZ"],
+        ["u4", "2026-03-02", "DE"],
+        ["u5", "2026-02-08", "AZ"]
+      ]
+    },
+    {
+      "name": "orders",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT PRIMARY KEY"
+        },
+        {
+          "name": "customer_id",
+          "type": "TEXT NOT NULL"
+        },
+        {
+          "name": "ordered_at",
+          "type": "TEXT NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "TEXT NOT NULL"
+        },
+        {
+          "name": "amount_cents",
+          "type": "INTEGER NOT NULL"
+        }
+      ],
+      "rows": [
+        ["o1", "u1", "2026-01-10", "paid", 1000],
+        ["o2", "u1", "2026-02-10", "paid", 2000],
+        ["o3", "u2", "2026-01-15", "paid", 3000],
+        ["o4", "u2", "2026-02-15", "cancelled", 5000],
+        ["o5", "u3", "2026-02-20", "paid", 4000],
+        ["o6", "u3", "2026-03-20", "paid", 6000],
+        ["o7", "u4", "2026-03-25", "paid", 500]
+      ]
+    },
+    {
+      "name": "order_items",
+      "columns": [
+        {
+          "name": "item_id",
+          "type": "TEXT PRIMARY KEY"
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT NOT NULL"
+        },
+        {
+          "name": "item_amount_cents",
+          "type": "INTEGER NOT NULL"
+        }
+      ],
+      "rows": [
+        ["i1", "o1", 600],
+        ["i2", "o1", 400],
+        ["i3", "o2", 2000],
+        ["i4", "o3", 3000],
+        ["i5", "o4", 5000],
+        ["i6", "o5", 4000],
+        ["i7", "o6", 6000],
+        ["i8", "o7", 500]
+      ]
+    }
+  ]
+}

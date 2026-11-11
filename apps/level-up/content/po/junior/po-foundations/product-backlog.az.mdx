@@ -1,0 +1,147 @@
+---
+id: product-backlog
+locale: az
+title: 'Product Backlog-a sahiblik və dəqiqləşdirmə'
+objectives:
+  - 'İşi Product Goal-a uyğun sırala və əməkdaşlıqla dəqiqləşdir.'
+  - 'Dəstək sübutu ciddi müştəri saxlama problemini göstərdikdə backlog-u yenidən sırala.'
+---
+
+## 1. Öyrənmə məqsədləri
+
+Product Backlog üzrə cavabdehliyi izah et, seçimləri Product Goal-a uyğun sırala, dəqiqləşdirməni Sprint Planning-dən ayır və sübut dəyişdikdə sıralamanı yenilə. Üsulun hesabını obyektiv həqiqət saymadan qərarı izah etməyi məşq edəcəksən.
+
+## 2. Niyə vacibdir
+
+Onlayn mağazanın backlog-unda loyallıq vidceti, sürətli ödəniş, geri ödəniş statusu və ciddi ödəniş xətası var. Hər sorğu sahibi öz işini təcili adlandırır. Komanda siyahını vədlər növbəsi saysa, çox işi çatdırıb müştəri etimadını yenə itirə bilər.
+
+Faydalı backlog seçimləri görünən edir. İnsanlar növbəti vacib işi, qalan qeyri-müəyyənliyi və bəzi cəlbedici ideyaların niyə indi edilmədiyini anlayır.
+
+## 3. Əsas nəzəriyyə
+
+Product Backlog məhsulu yaxşılaşdırmaq üçün lazım olan işlərin inkişaf edən, sıralanmış siyahısıdır. Product Owner onun səmərəli idarəsinə cavabdehdir. Buraya Product Goal-u aydın çatdırmaq, elementləri başadüşülən etmək, sıralama və şəffaflıq daxildir. Başqaları töhfə verə və həvalə olunan işi görə bilər; cavabdehlik Product Owner-də qalır.
+
+Sıralama yalnız prioritet etiketi verməkdən genişdir. Bir neçə “yüksək” etiket hansı işin birinci gələcəyini göstərmir. Gözlənilən dəyəri, riski, təcililiyi, asılılıqları, öyrənmə imkanını və səyi nəzərə al. Qeyri-müəyyənliyi hesabda gizlətmək əvəzinə fərziyyələri izah et.
+
+Refinement elementlərin hissələrə ayrılması və aydınlaşdırılması üzrə davamlı işdir. Ayrı məcburi Scrum tədbiri deyil. Yuxarıdakı işlər faydalı müzakirə və seçim üçün yetərincə aydın olmalıdır; uzaqdakı seçimlər ümumi qala bilər. Hər elementin user story template-i, story point və ya müəyyən ticket aləti istifadə etməsi universal tələb deyil.
+
+Sprint Planning-də Developers Product Owner ilə müzakirə edərək iş seçir və Sprint Goal-a çatmaq planı qurur. Sprint Backlog onların planıdır və Product Backlog-dan fərqlidir. Maraqlı tərəf sorğusu planlaşdırılmış işi gizlicə əvəz etmək əvəzinə görünən və müzakirə olunan olmalıdır.
+
+## 4. İşlənmiş nümunə: müştəri saxlama sübutu sıralamanı dəyişir
+
+Xəyali mağazanın cari Product Goal-u təkrar müştərilərin etibarlı alış etməsidir. Dəstək qeydləri vaxt aşımından sonra bəzi müştərilərdən iki dəfə pul tutulduğunu göstərir. Geri ödəniş statusu da təkrar zəng yaradır. Vidcetin güclü sponsoru var, amma müştəri sübutu azdır.
+
+| Seçim                           | Sübut və qeyri-müəyyənlik                                            | Mümkün növbəti addım                                                    |
+| ------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| İkiqat pul tutulmasını dayandır | Zərər təsdiqlənib; təsirlənən əməliyyatların əhatəsi aydın deyil     | Texniki və əməliyyat ekspertləri ilə tez araşdır və zərəri məhdudlaşdır |
+| Geri ödəniş statusunu izah et   | Təkrar dəstək sübutu var; mətn və inteqrasiya boşluqları məlum deyil | Kiçik yararlı hissəni dəqiqləşdir və dili yoxla                         |
+| Ödəniş addımlarını azalt        | Mümkün fayda var; əsas tərk səbəbi diaqnoz edilməyib                 | Böyük yenidən dizayna söz verməzdən əvvəl axın və müsahibə sübutuna bax |
+| Loyallıq vidceti əlavə et       | Sponsor həvəslidir; cari məqsədlə əlaqə zəifdir                      | Ümumi seçim kimi saxla və ya əsası qalmayıbsa sil                       |
+
+Bu, ssenariyə əsaslanan qərardır, universal sıra qaydası deyil. Təcili hüquqi öhdəlik və ya ciddi əlçatanlıq maneəsi haqqında yeni sübut sıralamanı dəyişə bilər. Product Owner işin niyə yer dəyişdiyini və hansı sübutun yenidən baxış yaradacağını qeyd edir.
+
+## 5. Diaqram
+
+<Diagram
+  chart={
+    'flowchart LR; A[Product Goal] --> B[Seçim və sübut topla]; B --> C[Sırala və seçim təsirini izah et]; C --> D[Yaxın işləri dəqiqləşdir]; D --> E[Vahid Sprint planla]; E --> F[Çatdır və yoxla]; F --> B;'
+  }
+/>
+
+Bunu geribildirim dövrü kimi oxu. Dəqiqləşdirmə seçimləri aydınlaşdırır; yoxlama yalnız yeni tiket əlavə etmir, seçimləri dəyişə və ya silə bilər.
+
+## 6. İnteraktiv sıralama qərarı
+
+Satış direktoru loyallıq vidcetini ödəniş xətasından yuxarı qoymağı istəyir. İzahı açmazdan əvvəl cavab seç.
+
+<details>
+<summary>İstənilən nəticəni soruş və zərər və məqsəd sübutu ilə müqayisə et</summary>
+
+Bu, qərarı kontekstə bağlayır. Təsdiqlənmiş ikiqat ödəniş riskini izah et, vidceti təcili edən səbəbi soruş, uyğun ekspertləri cəlb et və qərarı şəffaf et. Cavabdeh olmaq maraqlı tərəfləri görməzdən gəlmək demək deyil.
+
+</details>
+
+<details>
+<summary>Sorğu sahibi rəhbər olduğu üçün avtomatik qəbul et</summary>
+
+Vəzifə təsir gücü barədə məlumatdır, məhsul dəyərinin sübutu deyil. Riski yoxlamadan qəbul etmək seçimin təsirini gizlədir. Digər tərəfdən, hər maraqlı tərəf sorğusunu müzakirəsiz rədd etmək də öyrənməni və etimadı zəiflədir.
+
+</details>
+
+## 7. Tipik səhvlər və yaxşı təcrübələr
+
+- **Siyahını müqavilə saymaq:** saxlanmış ideya avtomatik çatdırılma vədi deyil. Köhnəlmiş seçimləri yoxla və sil.
+- **Hər şey təcilidir:** real sıra və səbəbi göstər.
+- **Product Owner tək yazır:** istifadəçi, texnologiya və riski bilənlərlə əməkdaşlıq et.
+- **Hər şeyi əvvəlcədən detallandırmaq:** detalları yaxın qərar üçün lazım olduğu yerə yönəlt.
+- **Hesabı səlahiyyət saymaq:** fərziyyəni, qeyri-müəyyənliyi və hesabın gizlətdiyi qruplara təsiri göstər.
+- **Siyahıları qarışdırmaq:** məhsul sıralaması və Developers-in Sprint planı fərqli cavabdehlikdir.
+
+## 8. Praktik tapşırıq və nümunə həll
+
+**Tapşırıq:** Çatdırılma tətbiqinin Product Goal-u etibarlı çatma proqnozudur. Seçimlər: kənd ünvanında işləməyən proqnozu düzəltmək, animasiyalı izləmə, bildiriş gecikməsini azaltmaq və sürücülərin yenilənmiş marşrutu niyə rədd etdiyini araşdırmaq. İlkin sıra, hər seçim üçün bir dəqiqləşdirmə sualı və sıranı dəyişə biləcək sübut təklif et.
+
+<details>
+<summary>Nümunə həlli aç</summary>
+
+Əvvəl kənd ünvanı problemini yoxla və məhdudlaşdır: məqsədi pozur və bir qrupu kənarda qoya bilər. Yayılmasını və təhlükəsiz alternativi soruş. Zaman qeydləri köhnə proqnozu izah edirsə bildiriş gecikməsini araşdır; gecikmənin yerini tap. Marşrut rəddi daha böyük səbəb ola bilərsə kiçik sürücü araşdırmasını erkən apar; istənilən funksiyanı deyil, real son qərarları soruş. Animasiyanın anlayışı yaxşılaşdırdığına sübut yoxdursa təxirə sal. Araşdırma və diaqnostika zərərin məhdudlaşdırılması ilə yanaşı gedə bilər. Yeni təhlükəsizlik problemi ilkin sıradan üstün ola bilər. Bu sıranı yeganə düzgün saymaq əvəzinə qeyri-müəyyənliyi izah et.
+
+</details>
+
+## 9. Mini-test
+
+**1. Product Owner dəqiqləşdirmə işini həvalə etdikdə cavabdehlik kimdə qalır?**
+
+A. Tiketi redaktə edən şəxsdə. B. Product Owner-də. C. Bütün maraqlı tərəflərdə bərabər.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Tapşırıq həvalə oluna bilər, Product Owner cavabdehliyi qalır. A işi görməklə cavabdehliyi qarışdırır. C vahid məsuliyyəti qeyri-müəyyən komitəyə çevirir.
+
+</details>
+
+**2. Refinement haqqında hansı düzgündür?**
+
+A. İş elementlərinin davamlı aydınlaşdırılması və bölünməsidir. B. Mütləq ayrıca təyin edilmiş Scrum tədbiri olmalıdır. C. Gələcək bütün işlər dərhal tam yazılmalıdır.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**A.** Dəqiqləşdirmə ehtiyaca görə ortaq anlayışı artırır. B məcburi tədbir uydurur. C öyrənmə əsas vermədən erkən detal yaradır.
+
+</details>
+
+**3. Yeni sübut ciddi müştəri zərərini göstərir. Sıralama necə olmalıdır?**
+
+A. Bir dəfə təsdiqləndiyi üçün sabit qalmalıdır. B. Ən çox danışan tərəf Sprint işini gizlicə əvəz etməlidir. C. Sübut yoxlanmalı, cavabdeh və şəffaf uyğunlaşma edilməlidir.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**C.** Sıralama öyrənmə və riski əks etdirməlidir. A köhnə qərarı dondurur. B təsiri gizlədir və məhsul sıralamasını Sprint planı ilə qarışdırır.
+
+</details>
+
+**4. Developers-in Sprint planını hansı göstərir?**
+
+A. Sprint Backlog. B. Product Backlog-dakı bütün ideyalar. C. Təşkilatın tam portfeli.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**A.** Sprint Backlog-a Sprint Goal, seçilən elementlər və tətbiq olunan plan daxildir. B məhsul seçimlərini bir Sprint planı ilə qarışdırır. C başqa əhatədir.
+
+</details>
+
+## 10. Bir səhifəlik yaddaş vərəqi
+
+**Məqsəd:** məhsul təkmilləşdirmə seçimlərini görünən et. **Cavabdeh:** backlog-un səmərəli idarəsinə Product Owner; Sprint planına Developers. **Sıralama:** məqsədə töhfə, sübut, dəyər, risk, təcililik, asılılıq və səy. **Dəqiqləşdir:** qərarı dəstəkləyən yerdə aydınlaşdır və böl. **Yoxla:** nəticə və dəyişən fərziyyə. **Sil:** köhnəlmiş seçim. **Sual:** bunu ən yaxşı növbəti sərmayə edən nədir və fikrimizi nə dəyişər?
+
+## 11. Əlavə oxu
+
+- [Scrum Guide, rəsmi 2020 bələdçisi](https://scrumguides.org/scrum-guide.html)
+- [Scrum.org: Scrum çərçivəsini anlamaq və tətbiq etmək](https://www.scrum.org/resources/understanding-and-applying-scrum-framework)
+- [Scrum.org: Evidence-Based Management Guide](https://www.scrum.org/resources/evidence-based-management-guide)
+
+Bütün ssenari və suallar orijinal məşq materialıdır, rəsmi imtahan sualları deyil.

@@ -1,0 +1,88 @@
+---
+id: story-mapping
+locale: en
+title: 'Story mapping and discovery loops'
+objectives:
+  - 'Separate the journey backbone from detailed tasks.'
+  - 'Slice a usable outcome across the journey.'
+  - 'Use a map to discuss gaps, risks and learning rather than freeze scope.'
+---
+
+## Learning objectives
+
+- Separate the journey backbone from detailed tasks.
+- Slice a usable outcome across the journey.
+- Use a map to discuss gaps, risks and learning rather than freeze scope.
+
+## Why this matters
+
+A flat backlog can contain hundreds of items while hiding how a user completes a goal. A story map makes the journey visible and helps people discuss a coherent release. Its value comes from shared understanding and slicing, not from arranging colorful cards.
+
+## Core theory
+
+Start with a user goal and a concrete journey. Identify major activities in an approximate narrative order, then place more detailed tasks beneath them. The backbone gives context; lower-level tasks expose alternatives, exceptions and implementation questions. A map is not a claim that every user follows one rigid sequence.
+
+Separate the order of activities from the priority of work. A task appears early in the journey because the user does it early, not necessarily because it should be built first. Discuss dependencies and risk while preserving the overall goal.
+
+A release slice crosses enough of the journey to deliver a usable outcome. A small booking release might let a customer find an available slot, reserve it and receive confirmation. Delivering only a database layer or only a search screen may provide engineering progress without a usable booking outcome.
+
+Include quality, exception handling and operational work needed for the selected outcome. A release label does not excuse violating the Definition of Done. A “walking skeleton” is useful only if the team defines what is usable and what the exercise can actually demonstrate.
+
+Keep assumptions visible: which user situation is represented, which alternatives are omitted, which policy rules remain unresolved and what evidence would change the slice. Translate selected work into appropriately refined Product Backlog items. The map supports the Product Owner's ordering and collaboration; it does not replace the Product Backlog or prescribe a new mandatory Scrum artifact.
+
+## Worked example
+
+For appointment booking, the backbone is Discover, Choose, Reserve and Manage. Tasks include filter locations, inspect availability, submit details, receive confirmation and cancel. The first proposed release includes one location, a limited schedule, a reservation and accessible confirmation, plus the essential failure and cancellation behavior.
+
+Multi-location comparison and loyalty rewards remain outside that slice. The team discovers that confirmation delivery is unreliable, so it includes a visible reservation status and recovery path. It does not call an unconfirmed reservation successful merely to keep the slice small.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n D[Discover availability] --> C[Choose slot]\n C --> R[Reserve safely]\n R --> F[Confirm and manage]\n H[One coherent release slice] -.-> D\n H -.-> C\n H -.-> R\n H -.-> F'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Does a release containing every search feature but no reservation flow complete the booking goal?</summary>
+
+Not under this stated goal. It may test a search hypothesis, but it does not deliver a usable booking journey. Label the learning purpose honestly or choose a smaller end-to-end slice that supports reservation and confirmation with required quality.
+
+</details>
+
+## Common mistakes
+
+- Confusing journey order with backlog priority.
+- Choosing horizontal technical layers as the only release slices.
+- Hiding necessary accessibility or recovery work below a release line.
+- Treating the map as fixed scope after new evidence appears.
+
+## Practice exercise
+
+Create a story map for a refund journey. Choose a first usable slice, two deferred capabilities and one assumption to test before committing to the slice.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Use activities such as Find payment, Check eligibility, Request refund and Track outcome. A first slice can support one payment method and a limited eligible population while preserving authorization, duplicate protection and unresolved-status handling. Defer additional payment methods and advanced reporting if they are not essential to the outcome. Test whether customers can understand the pending state and find their outcome.
+
+</details>
+
+## Check understanding and cheat sheet
+
+User goal → activities → tasks and exceptions → end-to-end slice → evidence and adaptation. Story mapping is a practice, not an additional mandatory Scrum artifact.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Agile Alliance: Story Mapping](https://agilealliance.org/glossary/story-mapping/): journey organization and release discussion.
+- [The Professional Product Owner, McGreal and Jocham (2018)](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479): selected product-discovery, value and backlog passages from the user-supplied book. Explanations, cases and exercises are original; book prose and figures are not republished. Selected chapter 7 story-mapping passage, pp. 232–236.
+- [Scrum Guide 2020](https://scrumguides.org/scrum-guide.html): Product Backlog, usable Increment and Definition of Done. Scrum adaptations: CC BY-SA 4.0, Schwaber and Sutherland.

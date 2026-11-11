@@ -1,0 +1,89 @@
+---
+id: cloud-cost-engineering
+locale: en
+title: 'Cloud cost engineering: allocation, unit cost and trade-offs'
+objectives:
+  - 'Calculate a defined unit cost and interpret changing scale.'
+  - 'Separate allocation, budgets and actual spending controls.'
+  - 'Compare cost options with reliability and performance consequences.'
+---
+
+## Learning objectives
+
+- Calculate a defined unit cost and interpret changing scale.
+- Separate allocation, budgets and actual spending controls.
+- Compare cost options with reliability and performance consequences.
+
+## Why this matters
+
+A monthly bill can rise while the cost of each useful transaction falls. It can also fall because the service became unavailable. Cost engineering needs a workload and outcome context, not just a rule that every smaller bill is an improvement.
+
+## Core theory
+
+Start with the business unit the infrastructure supports: successful booking, active tenant-month, processed gigabyte or another defined outcome. Specify the time window, numerator costs and denominator eligibility. Failed work may still incur cost, so include it in the spending picture while deciding how to interpret useful-unit efficiency.
+
+Allocate direct costs to services or teams and document how shared costs are distributed. Tags can support allocation when they are consistently applied and activated for the relevant billing features. They do not automatically allocate every historical or shared charge. Keep unallocated costs visible instead of forcing a precise but arbitrary split.
+
+Inspect major cost drivers: compute shape and utilization, storage class and retention, network transfer, managed-service usage, logging volume and support needs. Region, commitment, architecture and pricing terms affect the result. A rate from a teaching example is not a current cloud price quotation.
+
+Compare options under a representative workload. Rightsizing, scheduling nonessential environments and lifecycle policies can reduce waste, but preserve required capacity and recoverability. Long-term commitments can trade flexibility for discounts; do not commit merely because a forecast appears precise. Data egress and operational labor may reverse an apparent saving from moving one component.
+
+Budgets and alerts provide visibility and action triggers. A budget notification is not automatically a hard spending cap. Define ownership, response time and which automated controls are safe. Blindly stopping a production database when a threshold is crossed can cause a larger business loss.
+
+Review cost alongside reliability, latency, security and customer outcomes. Record the baseline, proposed change, expected benefit, risks and rollback conditions. Measure realized savings with the same scope and time basis rather than comparing unrelated bills.
+
+## Worked example
+
+In an original monthly example, total in-scope cost is 12000 units and the service completes 200000 eligible successful bookings. Unit cost is `12000 / 200000 = 0.06` per booking. Later, cost is 24000 and eligible bookings are 800000, giving `0.03` per booking.
+
+Total cost doubled while unit cost halved. That does not establish profitability or acceptable service quality; check revenue, excluded costs and reliability. If a storage deletion policy saves 500 but removes required recovery data, it is not justified by the bill reduction alone. The amounts are synthetic and make no claim about current provider rates.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n B[Business unit and scope] --> A[Allocated and shared costs]\n A --> U[Unit cost and workload trend]\n U --> O[Optimization options]\n O --> R[Reliability security and performance review]\n R --> M[Measure realized effects]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>An alert says the monthly budget is exceeded. Has the provider necessarily stopped further spending?</summary>
+
+No. Alerts and enforcement are different mechanisms. Inspect the configured actions and service behavior. Assign an owner and choose a proportionate response that considers customer and recovery impact.
+
+</details>
+
+## Common mistakes
+
+- Comparing bills with different scope or observation windows.
+- Treating tags as complete historical allocation.
+- Calling lower spend a success when the service processed less useful work.
+- Ignoring egress, commitments or operational labor.
+
+## Practice exercise
+
+A service spends 9000 on 300000 useful transactions, then 11000 on 500000. Calculate unit costs, identify the missing profitability information and propose one safely measurable optimization.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+The unit costs are 0.03 and 0.022 respectively. Revenue, excluded/shared costs and service-quality outcomes are still required for a profitability assessment. A possible experiment is rightsizing a noncritical component under representative load with capacity, latency and recovery guardrails. Compare realized cost under the same allocation and workload definition.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Cost scope / useful unit / time window. Allocate transparently. Budget alert ≠ hard cap. Optimize with workload, reliability, security and flexibility evidence.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [AWS Well-Architected Cost Optimization pillar](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html): overview of cost-aware architecture and operations. Only selected overview material is claimed as read.
+- [AWS: Cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html): activation and allocation context. Arithmetic and recommendations are original educational examples, not pricing or financial advice for a specific deployment.

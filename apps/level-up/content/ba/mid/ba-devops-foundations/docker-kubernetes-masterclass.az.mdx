@@ -1,0 +1,508 @@
+---
+id: docker-kubernetes-masterclass
+locale: az
+title: 'Docker və Kubernetes: container-dən Vault-a'
+objectives:
+  - 'Docker image yaradıb işə sal və Kubernetes-in həmin artifact-ı necə işlətdiyini izah et.'
+  - 'Control plane, node, Deployment, ReplicaSet, Pod və container arasındakı əlaqələri izlə.'
+  - 'Label, readiness və namespace əsasında Service-in hansı Pod-ları seçəcəyini müəyyən et.'
+  - 'Məxfi olmayan ConfigMap-ləri Kubernetes Secret və Vault ilə idarə olunan credential-lardan ayır.'
+  - 'Tam manifest-i oxu, selector xətasını tap, rollout və konfiqurasiya yeniləmələrini izah et.'
+---
+
+## Bu dərsdə öyrənmə ardıcıllığın
+
+Bu, Dockerfile-dan işləyən Kubernetes tətbiqinədək bütün yolu əhatə edən vahid dərsdir. Əvvəl vizual xəritəyə bax, interaktiv bələdçidə sınaqlar et, sonra kiçik onlayn mağaza nümunəsini yerləşdir. Tapşırıqlarla birlikdə təxminən iki saat ayır. Əvvəlki Kubernetes təcrübəsi tələb olunmur; terminal və HTTP üzrə ilkin bilik kömək edir.
+
+Dərsin sonunda **Dockerfile → image → registry → Deployment → ReplicaSet → Pod → container** əlaqəsini çəkə, hər işi hansı komponentin gördüyünü izah edə və tətbiq parametrləri ilə credential-ların harada saxlanmalı olduğunu seçə bilməlisən.
+
+## Container və orchestration niyə lazımdır
+
+Onlayn mağazanın sifariş tətbiqi developer-in noutbukunda işləyir. Test server-də başqa dependency versiyası olduğuna görə tətbiq orada sıradan çıxır. Tətbiq container image şəklində paketləndikdən sonra komanda eyni artifact-ı hər iki yerdə işlədə bilir. Amma yetərli sayda nüsxəni başlatmaq, nasazları əvəzləmək, trafiki yönəltmək, versiyaları yeniləmək və konfiqurasiyanı çatdırmaq yenə lazımdır.
+
+**Docker** container-ləri paketləmək və işlətmək üçün alətlər verir. **Kubernetes** elan edilmiş desired state əsasında container workload-larını cluster daxilində əlaqələndirir. **Vault** həssas credential-ları və giriş policy-lərini idarə edir. Bunlar bir-biri ilə əlaqəli problemləri fərqli layer-lərdə həll edir.
+
+Faydalı bənzətmə: image qablaşdırılmış resept və ərzaqdır; container həmin reseptin bir dəfə hazırlanmasıdır; Kubernetes çoxsaylı hazırlığı əlaqələndirir və tələb olunan tutumu əlçatan saxlayır. Bu bənzətmə storage və təhlükəsizliyi izah etmir: tətbiqlər üçün məlumat idarəsi, icazələr və recovery planı yenə ayrıca qurulmalıdır.
+
+## Ümumi vizual xəritə
+
+![Dockerfile registry-də saxlanılan image yaradır. Kubernetes control plane Deployment, ReplicaSet və Pod-ları idarə edir. Service Ready Pod-ları seçir, ConfigMap parametrləri, Vault Agent isə credential fayllarını çatdırır.](/lessons/docker-kubernetes/architecture-az.svg)
+
+Şəkli üç ayrı əlaqə kimi oxu: **ownership** Deployment-dən ReplicaSet-ə, oradan Pod-a keçir; **trafik** Service-dən uyğun Ready Pod-lara gedir; **konfiqurasiya** environment variable və ya fayllarla tətbiqə çatır. Namespace node-lar arasında məntiqi əhatə yaradır. O, fiziki maşın deyil.
+
+<Diagram
+  chart={
+    'flowchart TB\n  F[Dockerfile] -->|build| I[Container image]\n  I --> R[Registry]\n  R -->|node pulls image| C[Container in Pod]\n  D[Deployment] -->|manages| RS[ReplicaSet]\n  RS -->|maintains count| P[Pods]\n  P --> C\n  S[Service] -->|same namespace and matching labels and ready| P\n  CM[ConfigMap] -->|settings| C\n  V[Vault] -->|scoped credentials| A[Vault Agent]\n  A -->|shared file| C'
+  }
+/>
+
+## İnteraktiv bələdçi: sistemi dəyişdir
+
+Aşağıdakı dörd görünüşü yoxla. **Image-dən cluster-ə** görünüşündə çatdırılma axınını addımla izlə və ya animasiyanı başlat. **Pod-lar və rollout** hissəsində replica sayını dəyiş, bir Pod sil və v2 rollout-u addımlarla irəlilət. **Label və namespace** görünüşündə selector-a qəsdən yazılış xətası əlavə et. **ConfigMap və Vault** hissəsində konfiqurasiyanı dəyiş və credential rotation-u simulyasiya et.
+
+Hər klikdən əvvəl nəticəni təxmin et: arzu olunan say dəyişəcəkmi, Service backend tapacaqmı, işləyən proses yeni dəyəri görəcəkmi?
+
+<KubernetesExplorer />
+
+Bu bələdçi brauzerdə işləyən tədris simulyasiyasıdır. Docker-i başlatmır, Kubernetes-ə qoşulmur və Vault-a müraciət etmir. Animasiya reduced-motion seçiminə hörmət edir; bütün addımlar düymələrlə də əlçatandır.
+
+## Docker: Dockerfile, image, container və registry
+
+| Anlayış      | Nədir                                                       | Mağaza nümunəsi                                           |
+| ------------ | ----------------------------------------------------------- | --------------------------------------------------------- |
+| Dockerfile   | Image yaratmaq üçün build təlimatları                       | Web server seç və səhifəni köçür                          |
+| Image        | Paketlənmiş filesystem və runtime metadata-sı               | `orders-web:1.0`                                          |
+| Container    | Image-in ayrıca writable layer-i olan işləyən nüsxəsi       | Bir web server prosesi                                    |
+| Registry     | Image-ləri saxlamaq və əldə etmək xidməti                   | Daxili registry və ya Docker Hub                          |
+| Volume       | Container-in writable layer-indən ayrı idarə olunan storage | Davamlı tətbiq məlumatları                                |
+| Port mapping | Host portunu container portuna yönəltmək                    | `8080:80`: host-un 8080 portundan container-in 80 portuna |
+
+Linux container-ləri işlədikləri host-un kernel-ini paylaşır; tam virtual machine deyillər. Docker Desktop adətən Linux container-lərini Linux VM daxilində işlədir. Container ayrıca kernel deyil, userspace dependency-lərini paketləyir.
+
+`index.html`, `Dockerfile` və `.dockerignore` olan qovluq yarat:
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Orders demo</title>
+  </head>
+  <body>
+    <h1>Orders storefront v1</h1>
+  </body>
+</html>
+```
+
+```dockerfile
+FROM nginx:stable-alpine
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+```
+
+```text
+# .dockerignore
+.git
+.env
+.env.*
+node_modules
+```
+
+Build et, işə sal və yoxla:
+
+```bash
+docker build -t orders-web:1.0 .
+docker run --name orders-local --rm -d -p 8080:80 orders-web:1.0
+curl http://localhost:8080
+docker logs orders-local
+docker stop orders-local
+```
+
+`EXPOSE 80` container portunu sənədləşdirir; onu host-a açmır. Port mapping-i `-p 8080:80` yaradır. `--rm` seçimi container dayandıqda onu silir. Image-i yenidən build etmək köhnə image-dən artıq işləyən container-ləri yeniləmir.
+
+Tag başqa məzmuna yönəldilə bilən rahat addır. Digest konkret artifact-ı müəyyən edir. Nümunədə oxunaqlılıq üçün tag işlədilir; yoxlanmış production release-lərdə təsdiqlənmiş digest, minimal etibarlı base image, uyğun non-root execution, resource limit-lər və image scanning istifadə edilməlidir. Parolları `COPY`, `ARG`, `ENV` və ya image layer-lərinə yazma. Faylı sonrakı layer-də silmək onu əvvəlki layer-dən çıxarmır.
+
+Ortaq cluster üçün image-ə tag verib əlçatan registry-yə push et; `REGISTRY` yerinə öz registry ünvanını yaz və image-pull girişini konfiqurasiya et. Aşağıdakı yerli laboratoriyada bunun əvəzinə Minikube-un image yükləmə mexanizmi istifadə olunur.
+
+```bash
+docker tag orders-web:1.0 REGISTRY/orders-web:1.0
+docker push REGISTRY/orders-web:1.0
+```
+
+## Kubernetes daxilində: cluster, control plane və node
+
+**Cluster** control plane və worker node-lardan ibarətdir. Node Pod işlədə bilən fiziki və ya virtual maşındır. Control plane cluster-i əlaqələndirir; tətbiq container-ləri node-larda icra olunur.
+
+| Komponent          | Vəzifəsi                                                               | Nə etmir                                     |
+| ------------------ | ---------------------------------------------------------------------- | -------------------------------------------- |
+| API server         | Kubernetes API-ni təqdim edir və sorğuları yoxlayır                    | Tətbiq image-ini build etmir                 |
+| etcd               | Kubernetes API state-ini saxlayır                                      | Tətbiqin ümumi təyinatlı DB-si deyil         |
+| Scheduler          | Hələ yerləşdirilməmiş Pod üçün uyğun node seçir                        | Container proseslərini özü başlatmır         |
+| Controller manager | Actual state-i desired state-ə uyğunlaşdıran controller-ləri işlədir   | Nasaz tətbiq məntiqini düzəltmir             |
+| kubelet            | Ona verilmiş Pod-ların işləməsini təmin edən node agent-idir           | Ümumi tətbiq replica sayını müəyyən etmir    |
+| Container runtime  | CRI — Container Runtime Interface vasitəsilə container-ləri işlədir    | Deployment rollout strategiyasını şərh etmir |
+| Cluster networking | Pod-ları əlaqələndirir və uyğun komponentlərlə Service routing yaradır | Təkcə namespace yaratmaqla təhlükəsiz olmur  |
+
+`kubectl apply` obyekti API server-ə göndərir. Controller-lər saxlanılan state-i izləyib fərqlərə uyğun tədbir görür. Scheduler yeni Pod-ları node-lara təyin edir; kubelet containerd və ya CRI-O kimi CRI-compatible runtime vasitəsilə icranı əlaqələndirir. Docker ilə hazırlanmış OCI-compatible image də orada işləyə bilər: **Kubernetes hər node-da Docker Engine olmasını tələb etmir**.
+
+<Diagram
+  chart={
+    'sequenceDiagram\n  participant U as kubectl\n  participant API as API server\n  participant CT as Controllers\n  participant SC as Scheduler\n  participant K as Node kubelet\n  participant RT as CRI runtime\n  U->>API: Apply Deployment with replicas 3\n  CT->>API: Create ReplicaSet and Pods\n  SC->>API: Bind unscheduled Pods to nodes\n  K->>API: Watch assigned Pods\n  K->>RT: Pull image and start containers\n  K->>API: Report Pod status'
+  }
+/>
+
+Ardıcıllıq komponentlərin vəzifələrini göstərir; `kubectl`-in hər əməliyyatı gözlədiyi sinxron zəncir deyil. `apply` əmrinin uğurla qayıtması API-nin obyekti qəbul etdiyini bildirir; rollout və readiness-i ayrıca yoxla.
+
+## Pod: yerləşdirilə bilən ən kiçik vahid
+
+**Pod** birlikdə schedule olunan bir və ya bir neçə container-i qruplaşdırır. Daxilindəki container-lər Pod IP-si və port sahəsi də daxil olmaqla eyni network namespace-i paylaşır. `localhost` vasitəsilə əlaqə saxlaya bilirlər; həmin network namespace-də iki container eyni portu eyni anda tuta bilməz. Hər biri mount etdikdə elan edilmiş volume-u paylaşa bilirlər, amma bütün filesystem yollarını avtomatik paylaşmırlar.
+
+Əksər tətbiq Pod-larında bir əsas container olur. Vault Agent kimi köməkçi **sidecar** eyni Pod-da sıx bağlı işi görə bilər. Əlaqəsiz xidmətləri yalnız hər ikisi container istifadə etdiyinə görə bir Pod-a qoyma: scheduling və lifecycle məhdudiyyətlərini paylaşar, müstəqil scale ola bilməzlər.
+
+Container crash edərsə, kubelet restart policy-yə uyğun onu eyni Pod daxilində yenidən başlada bilər. Pod silinər və ya itərsə, controller **yeni kimliyə malik başqa Pod** yarada bilər. IP-si dəyişə bilər. Container-in writable layer-indəki məlumat davamlı deyil; `emptyDir` həmin Pod-da ayrı-ayrı container restart-larından sonra qalır, amma Pod silinəndə itir. Davamlı məlumat üçün uyğun PersistentVolume dizaynı və ya xarici data service istifadə et.
+
+`Running` status-u `Ready` olmağa zəmanət vermir. Readiness Pod-un adi Service trafikini qəbul edib-etməməli olduğunu müəyyən edir. Liveness container restart-ı tələb edən vəziyyətləri aşkarlayır. Startup probe liveness və readiness başlamazdan əvvəl ləng initialization-a imkan verir.
+
+## Deployment və ReplicaSet: desired state və yeniləmələr
+
+**ReplicaSet** selector-una uyğun Pod-ların arzu olunan sayını saxlayır. **Deployment** ReplicaSet-ləri və tətbiqin deklarativ yeniləmələrini idarə edir. Adətən Deployment yaradır və ReplicaSet-ləri onun yaratmasına imkan verirsən.
+
+`replicas: 3` olduqda ReplicaSet sayı izləyir və üçə çatmaq üçün Pod yaradır və ya silir. İdarə olunan bir Pod-u silmək desired state-i azaltmır: controller əvəzedici yaradır. Deployment-i ikiyə scale etmək desired state-i dəyişir və hədəf iki olur. Node tutumunun çatmaması, image-in tapılmaması və ya yanlış konfiqurasiya hədəfə çatmağa mane ola bilər.
+
+Pod template, məsələn, onun image-i dəyişəndə Deployment uyğun ReplicaSet yaradır və ya mövcudunu yenidən istifadə edir, replica-ları ona keçirir. Tipik rolling update yeni ReplicaSet-in sayını tədricən artırır, köhnəninkini azaldır.
+
+<Diagram
+  chart={
+    'flowchart LR\n  D[Deployment orders] --> O[Old ReplicaSet v1]\n  D --> N[New ReplicaSet v2]\n  O -->|scale down| P1[Old Pods]\n  N -->|scale up| P2[New ready Pods]\n  S[Stable Service] --> P1\n  S --> P2'
+  }
+/>
+
+`maxSurge: 1` və `maxUnavailable: 0` ilə controller əlçatan köhnə Pod-u silməzdən əvvəl əlavə Pod yarada bilər. Cluster-də bu surge üçün yer olmalıdır. Silinməsi davam edən Pod-lar real resurs istifadəsini bu sadələşdirilmiş modeldən yüksək edə bilər. Readiness probe xətası rollout-u dayandıra bilər; Kubernetes tətbiqi avtomatik düzəltmir və DB migration-larını geri qaytarmır.
+
+Təkcə replica sayını dəyişmək yeni tətbiq revision-u yaratmır. ConfigMap-i yeniləmək də öz-özlüyündə Deployment-in Pod template-ini dəyişmir və rollout başlatmır.
+
+## Label və selector: obyektlər bir-birini necə tapır
+
+**Label** obyektin metadata-sına əlavə olunan key/value cütüdür. **Selector** label-lər üzrə sorğudur. Ad obyekti müəyyənləşdirir; avtomatik label və ya seçim qaydası olmur.
+
+```yaml
+# Labels on the Pods created from the template:
+metadata:
+  labels:
+    app: orders
+    tier: frontend
+```
+
+Aşağıdakı selector-a sahib Service öz namespace-ində label-ləri **hər iki** şərtə uyğun gələn Pod-ları tapır:
+
+```yaml
+selector:
+  app: orders
+  tier: frontend
+```
+
+Deployment üçün `.spec.selector.matchLabels` Pod template-in `.spec.template.metadata.labels` dəyərlərinə uyğun olmalıdır. Deployment-in yuxarı səviyyəli metadata label-ləri onun Pod-larının label-lərindən ayrıdır. `apps/v1` daxilində Deployment selector-u yaradıldıqdan sonra dəyişməzdir; onu diqqətlə seç.
+
+Deployment-in yaratdığı ReplicaSet-lər revision-ları ayırmaq üçün `pod-template-hash` label-i də istifadə edir. Onu əl ilə dəyişmə. Service adətən sabit tətbiq label-i seçir ki, rollout zamanı hər iki revision-un Ready Pod-larına sorğu yönəldə bilsin. Workload controller selector-larının üst-üstə düşməsindən qaç.
+
+Yalnız oxuma aparan faydalı yoxlamalar:
+
+```bash
+kubectl -n demo get pods --show-labels
+kubectl -n demo get pods -l app=orders,tier=frontend
+kubectl -n demo get service orders -o yaml
+kubectl -n demo get endpointslices -l kubernetes.io/service-name=orders
+```
+
+Selector-dakı yazılış xətası sağlam Deployment-in yanında uyğun backend-i olmayan Service yarada bilər. Nəyisə restart etməzdən əvvəl yazılışı, namespace-i və readiness-i yoxla.
+
+## Namespace: məntiqi əhatə
+
+**Namespace** cluster daxilində namespaced resursların əhatəsini müəyyən edir. `demo/orders` və `production/orders` eyni adlı fərqli Deployment-lər ola bilər. Namespace node-ları öz daxilində saxlamır; müxtəlif namespace-lərin Pod-ları eyni node-da işləyə bilər.
+
+Pod, Deployment, ReplicaSet, Service, ConfigMap, Secret və ServiceAccount namespaced resurslardır. Node, PersistentVolume və Namespace obyektlərinin özü cluster-scoped resurslardır. Adi selector əsaslı Service Pod-ları yalnız öz namespace-ində seçir.
+
+```bash
+kubectl get namespaces
+kubectl -n demo get pods
+kubectl -n production get pods
+kubectl get pods --all-namespaces
+```
+
+Laboratoriyada `-n demo` parametrini ardıcıl istifadə et. Yanlış namespace çox vaxt çaşdırıcı “not found” nəticəsinin səbəbidir. Pod adətən ConfigMap və Secret-lərə öz namespace-ində istinad edir. `orders.demo.svc.cluster.local` kimi Service DNS adı başqa namespace-ə ünvanlana bilər; namespace-lərarası DNS girişi Service selector-unun başqa namespace-dəki Pod-u seçməsi ilə eyni deyil.
+
+Namespace təkbaşına şəbəkə və icazə izolyasiyası yaratmır. Ehtiyaca uyğun RBAC, quota və şəbəkə implementasiyasının dəstəklədiyi NetworkPolicy qaydalarını istifadə et.
+
+## ConfigMap, Secret və Vault: düzgün yeri seç
+
+| Mexanizm          | Uyğun məlumat                                                                            | Tətbiq necə istifadə edir                               | Vacib məhdudiyyət                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| ConfigMap         | Log səviyyəsi və feature parametrləri kimi məxfi olmayan konfiqurasiya                   | Environment variable, argument və ya mount edilmiş fayl | Məxfilik və encryption təmin etmir                                                   |
+| Kubernetes Secret | Kubernetes obyekti kimi idarə olunan parol, token və key                                 | Environment variable və ya mount edilmiş fayl           | Base64 encoding-dir; encryption at rest və least-privilege giriş ayrıca qurulmalıdır |
+| HashiCorp Vault   | Mərkəzlə idarə olunan secret-lər; uyğun secrets engine qurulduqda dynamic credential-lar | Agent, CSI integration, operator və ya birbaşa API      | Authentication, policy, əlçatanlıq və tətbiqin yenilənmə dizaynı tələb olunur        |
+
+ConfigMap konfiqurasiyanı image-dən ayırır. Kubernetes bir ConfigMap-in məlumatını 1 MiB ilə məhdudlaşdırır. Məsələn, eyni image production-da `LOG_LEVEL=info`, müvəqqəti debugging mühitində isə `LOG_LEVEL=debug` ala bilər.
+
+**Environment variable-lar başlanğıc anının surətidir.** ConfigMap dəyişikliyi mövcud prosesin environment-ini yenidən yazmır. Pod-ları adətən nəzarətli rollout vasitəsilə yenidən yarat. Volume kimi mount edilmiş ConfigMap-i kubelet müəyyən gecikmə ilə yeniləyir; `subPath` mount buna istisnadır. Tətbiq yenə faylı yenidən oxumalıdır. Heç bir üsul tətbiqin parametrləri avtomatik reload edəcəyinə zəmanət vermir.
+
+Vault ayrıca məhsuldur; Kubernetes-in daxili object kind-ı deyil. ConfigMap Vault Agent-in məxfi olmayan parametrlərini saxlaya bilər, amma həmin parametrlərlə əldə edilən credential-ları saxlamamalıdır. Kubernetes Secret inteqrasiyanın bir hissəsi ola bilər; sadəcə adında `vault` yazıldığına görə Vault-a çevrilmir.
+
+## Praktik laboratoriya: sifariş mağazasını yerləşdir
+
+Bu könüllü laboratoriya üçün Docker, `kubectl`, Minikube və işləyən yerli container/VM driver lazımdır. O, production mühiti deyil, yerli tədris cluster-i yaradır. Yuxarıdakı brauzer simulyasiyası bu alətlərsiz də işləyir. Aşağıdakı əmrlər tədris üçündür; dərs yayımlanarkən real cluster-də icra edilməyib.
+
+Minikube-u başlat, əvvəlki Docker nümunəsini build et və image-i onun node-larına yüklə:
+
+```bash
+minikube start
+docker build -t orders-web:1.0 .
+minikube image load orders-web:1.0
+```
+
+Bu tam manifest-i `orders.yaml` kimi saxla. Dörd sənəd namespace, ConfigMap, Deployment və Service yaradır:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orders-config
+  namespace: demo
+data:
+  LOG_LEVEL: 'info'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: orders
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: orders
+        tier: frontend
+    spec:
+      containers:
+        - name: web
+          image: orders-web:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: orders-config
+                  key: LOG_LEVEL
+          resources:
+            requests:
+              cpu: '50m'
+              memory: '32Mi'
+            limits:
+              cpu: '250m'
+              memory: '128Mi'
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders
+  namespace: demo
+spec:
+  selector:
+    app: orders
+    tier: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+```
+
+Deployment selector-u template-dəki `app: orders` ilə uyğunlaşır; Service əlavə olaraq `tier: frontend` tələb edir. ConfigMap istinadı işləyir, çünki o və Pod `demo` daxilindədir. Image yerli yükləndiyinə görə `IfNotPresent` node-ların ondan istifadəsinə imkan verir. Uzaq cluster-də real, əlçatan registry və uyğun image-pull credential-ları istifadə et.
+
+Bu Nginx nümunəsi `LOG_LEVEL` environment variable-ını yalnız injection-u göstərmək üçün alır. Əlavə konfiqurasiya olmadan Nginx bu dəyişənə görə log səviyyəsini dəyişmir. Statik səhifə sifariş emal edən backend deyil.
+
+```bash
+kubectl apply -f orders.yaml
+kubectl -n demo rollout status deployment/orders
+kubectl -n demo get deployment,replicaset,pods,service
+kubectl -n demo get pods -l app=orders --show-labels
+kubectl -n demo exec deployment/orders -- printenv LOG_LEVEL
+kubectl -n demo port-forward service/orders 8080:80
+```
+
+Port-forward işləyərkən `http://localhost:8080` ünvanını aç. Davam etməzdən əvvəl Ctrl+C ilə dayandır. Port-forward nümunəyə yerli giriş verir; xarici LoadBalancer deyil və production Service trafik bölgüsünü sübut etmir.
+
+### Əvəzetməni və scaling-i müşahidə et
+
+```bash
+# Copy ONE Pod name from the output, replacing POD_NAME below.
+kubectl -n demo get pods -l app=orders
+kubectl -n demo delete pod POD_NAME
+kubectl -n demo get pods -w
+# Ctrl+C stops watching; the ReplicaSet keeps reconciling.
+kubectl -n demo scale deployment/orders --replicas=2
+```
+
+Sildikdən sonra fərqli adlı əvəzedici Pod gözlə. Scaling arzu olunan sayı ikiyə dəyişir. Sonradan orijinal manifest-i yenidən tətbiq etmək orada göstərilən `replicas: 3` dəyərini bərpa edəcək.
+
+### Konfiqurasiyanı və image rollout-u müşahidə et
+
+```bash
+kubectl -n demo patch configmap orders-config --type merge -p '{"data":{"LOG_LEVEL":"debug"}}'
+kubectl -n demo exec deployment/orders -- printenv LOG_LEVEL
+# Existing Pods still report info.
+kubectl -n demo rollout restart deployment/orders
+kubectl -n demo rollout status deployment/orders
+kubectl -n demo exec deployment/orders -- printenv LOG_LEVEL
+# New Pods report debug.
+```
+
+Səhifənin mətnini `Orders storefront v2` et, sonra fərqli image tag-i ilə build edib yüklə:
+
+```bash
+docker build -t orders-web:2.0 .
+minikube image load orders-web:2.0
+kubectl -n demo set image deployment/orders web=orders-web:2.0
+kubectl -n demo rollout status deployment/orders
+kubectl -n demo get replicasets
+kubectl -n demo rollout history deployment/orders
+```
+
+Yeni template rollout yaradır. Əvvəlki template-ə qayıtmaq lazımdırsa, tarixçəyə baxıb `kubectl -n demo rollout undo deployment/orders` istifadə et, sonra rollout status-u yoxla. Bu, ConfigMap patch-ini və ya tətbiq məlumatlarının dəyişməsini geri qaytarmır. Rollout restart da revision yaradır; hansı revision-u bərpa etmək istədiyini dəqiq bil.
+
+Bu nümunənin resurslarını silmək üçün `kubectl delete -f orders.yaml` istifadə et. `demo` namespace-i silinəndə oraya yerləşdirdiyin başqa resurslar da silinir; buna görə namespace-i yalnız bu tapşırığa ayır.
+
+## Vault integration: identity, policy və fayllar
+
+DB credential-ları tələb edən real sifariş API-sini düşün. Məqsəd workload identity ilə authentication aparmaq, yalnız lazım olan secret path-ə giriş vermək və manifest-ə uzunömürlü Vault root token yazmamaqdır.
+
+Vault-un Kubernetes auth metodu ilə workload authentication üçün **ServiceAccount JWT** istifadə edir. Vault həmin identity-ni TokenReview də daxil olmaqla konfiqurasiya olunmuş Kubernetes integration vasitəsilə yoxlayır. Vault role icazə verilən ServiceAccount adlarını və namespace-ləri Vault policy-lərinə bağlayır. Verilən Vault token-in scope-u həmin policy-lərlə məhdudlaşır. Authentication çağıranın kimliyini müəyyən edir; policy isə nəyi oxuya biləcəyini idarə edir.
+
+<Diagram
+  chart={
+    'sequenceDiagram\n  participant P as Pod ServiceAccount\n  participant A as Vault Agent\n  participant V as Vault\n  participant K as Kubernetes API\n  participant APP as Application\n  P->>A: Workload JWT\n  A->>V: Login with JWT and role\n  V->>K: TokenReview\n  K-->>V: Validated identity\n  V-->>A: Policy-scoped Vault token\n  A->>V: Read permitted credentials\n  V-->>A: Secret data\n  A->>APP: Render shared file\n  Note over A,APP: Application must reload updated credentials'
+  }
+/>
+
+**Vault Agent Injector** admission webhook-dur. Deployment-in **Pod template** hissəsində uyğun annotation-lar olduqda Agent init/sidecar container-ləri əlavə edir. Init container tətbiq başlamazdan əvvəl secret fayllarını hazırlaya bilər; sidecar isə secret növünə və Agent konfiqurasiyasına uyğun authentication-u və fayl yeniləməsini davam etdirə bilər. Fayllar çox vaxt `/vault/secrets` ünvanında memory-backed volume ilə paylaşılır.
+
+Tətbiq Deployment-inə nümunə əlavə belə görünür. Bu, tam işlədilə bilən manifest deyil, **Pod template hissəsidir**:
+
+```yaml
+spec:
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'orders-demo'
+        vault.hashicorp.com/agent-inject-secret-db.json: 'secret/data/demo/orders'
+        vault.hashicorp.com/agent-inject-template-db.json: |
+          {{- with secret "secret/data/demo/orders" -}}
+          {{ .Data.data | toJSON }}
+          {{- end }}
+    spec:
+      serviceAccountName: orders-app
+```
+
+Nümunə bu şərtləri nəzərdə tutur: Injector quraşdırılıb; Vault Kubernetes auth etibarlı TLS və reviewer icazələri ilə qurulub; `demo` daxilində `orders-app` ServiceAccount mövcuddur; `orders-demo` Vault role həmin identity-ni bağlayır; `secret` ünvanında KV v2 engine mount edilib; göstərilən path-də uyğun secret var; least-privilege policy `secret/data/demo/orders` yolunu oxumağa icazə verir. Tətbiq `/vault/secrets/db.json` faylını məqsədli şəkildə oxumalıdır. Bu annotation-ları statik Nginx nümunəsinə əlavə etmək onu DB tətbiqinə çevirmir.
+
+Həmin KV v2 path-i üçün policy nümunəsi:
+
+```hcl
+path "secret/data/demo/orders" {
+  capabilities = ["read"]
+}
+```
+
+KV-də saxlanılan parol avtomatik dinamik yaradılmış DB credential-ı deyil. Konfiqurasiya olunmuş database secrets engine lease ilə credential verə bilər; renewal/revocation davranışı engine və role-dan asılıdır. Rotation-u başdan sona layihələndir: yenilənmiş fayl tətbiqin cache-dəki parolunu və mövcud DB connection-larını yeniləmir. Vault əlçatmaz olduqda, credential vaxtı bitdikdə və ya initialization lazım olan secret-i ala bilmədikdə davranışı planlaşdır. Root token-i image, ConfigMap və ya commit edilən YAML-a yazma.
+
+## Tipik səhvlər və daha yaxşı seçimlər
+
+| Səhv                                                  | Nəticə                                                    | Daha yaxşı seçim                                               |
+| ----------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- |
+| Image-i işləyən container saymaq                      | Yeni build-i yerləşdirilmiş release ilə qarışdırmaq       | Image kimliyini və işləyən workload-u ayrıca yoxla             |
+| Daim işləməli web app üçün bare Pod yaratmaq          | Silinən Pod-u əvəz edən workload controller olmur         | Bu stateless workload üçün Deployment istifadə et              |
+| Yaradılmış ReplicaSet-i əl ilə dəyişmək               | Deployment reconciliation dəyişikliyi əvəz edə bilər      | Deployment template-ini və ya replica sayını dəyiş             |
+| Label-i yalnız Deployment metadata-sına yazmaq        | Service Pod-ları yenə tapa bilmir                         | Workload label-lərini template metadata-sına yaz               |
+| Sabit Service selector-una `version: v1` daxil etmək  | Yeni v2 Pod-lar trafik almır                              | Versiyaya görə routing məqsədli deyilsə, sabit app label-i seç |
+| Namespace-i firewall saymaq                           | Gözlənilməyən cross-namespace giriş qalır                 | RBAC və dəstəklənən NetworkPolicy qaydaları qur                |
+| Parolu ConfigMap-də saxlamaq                          | Secret adi konfiqurasiya kimi oxuna bilir                 | Düzgün qorunan Secret və ya Vault integration seç              |
+| Faylın yenilənməsinin prosesi yenilədiyini düşünmək   | Tətbiq köhnə konfiqurasiya və ya credential istifadə edir | Reload/reconnect davranışını qur və sına                       |
+| Sifarişləri container-in writable layer-ində saxlamaq | Əvəzetmə biznes məlumatını itirir                         | DB və ya məqsədli persistent storage istifadə et               |
+| Rollback-in DB state-ini düzəltdiyini düşünmək        | Əvvəlki image yenə uyğunsuz məlumatla üzləşə bilər        | Uyğun migration və recovery-ni ayrıca planlaşdır               |
+
+## Praktik tapşırıq: mağazanı düzəlt
+
+Komandanın məlumatı belədir: “Üç Pod Ready-dır, amma orders Service onlara çata bilmir. Logging-i debug etdik, tətbiq hələ info göstərir. Vault Agent yeni credential faylı hazırlayıb, amma tətbiq köhnə paroldan istifadə edir.”
+
+Deployment `demo` daxilində `app: orders` və `tier: frontend` label-li Pod-lar yaradır. Service `production` daxilindədir və `app: order` seçir. `LOG_LEVEL` ConfigMap-dən environment variable kimi gəlir. Tətbiq credential faylını yalnız başlanğıcda oxuyur.
+
+1. Service discovery ilə bağlı hər iki müstəqil problemi tap və düzəldilmiş Service təklif et.
+2. ConfigMap dəyişikliyinin işləyən prosesi niyə yeniləmədiyini izah et. Dəyəri tətbiq etmək üçün təhlükəsiz üsul seç.
+3. Credential rotation-un niyə tamamlanmadığını və tətbiqin nə etməli olduğunu izah et.
+4. Ownership zəncirini təsvir et və idarə olunan bir Pod silinəndə nə baş verəcəyini proqnozlaşdır.
+5. İnteraktiv bələdçidə yazılış xətasını, environment snapshot-ını və credential reload davranışını yenidən yarat.
+
+<details>
+<summary>Nümunə həll və əsaslandırma</summary>
+
+Bu adi selector əsaslı dizaynda Service-in namespace-i hədəf Pod-larla eyni olmalıdır; onu `demo` daxilinə yerləşdir. `app: order` dəyərini `app: orders` et; routing contract tələb edirsə, `tier: frontend` də seç. Pod-un Ready olması namespace və yazılış uyğunsuzluğunu aradan qaldırmır.
+
+Environment başlanğıc anının surətidir. Nəzarətli Deployment rollout ilə yenidən başlat və yeni Pod-ların `debug` aldığını yoxla. ConfigMap-i təkcə yeniləmək nə environment-i yenidən yazır, nə də rollout başlatır.
+
+Agent-in faylı hazırlaması və tətbiqin onu istifadə etməsi ayrı addımlardır. Tətbiqə dəstəklənən reload mexanizmi və ya nəzarətli restart lazımdır; DB client credential-ı cache edirsə, connection-lar da yenilənməlidir. Engine-in rotation policy-sinə uyğun əvvəlki credential-ı istifadədən çıxarmazdan qabaq yenisinin işlədiyini yoxla.
+
+Ownership zənciri Deployment → ReplicaSet → Pod-lar → container-lər şəklindədir. İdarə olunan bir Pod silinəndə hədəf say üç qalır; cluster spesifikasiyanı təmin edə bilirsə, ReplicaSet əvəzedici yaradır. Bu əməliyyat tətbiqin müvəqqəti məlumatlarını bərpa etmir.
+
+</details>
+
+## Mini-test: anlayışlarını yoxla
+
+İzahlı bu dörd orijinal suala cavab ver. Onlar dərsin ayrıca məşq sessiyasında da var.
+
+<LessonCheck />
+
+## Yaddaş vərəqi
+
+| Sual                                                          | Yadda saxla                                                                       |
+| ------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Docker nə build edir?                                         | Image; onu işə salmaq container yaradır                                           |
+| Kubernetes nəyi schedule edir?                                | Pod-ları node-lara yerləşdirir                                                    |
+| Kim nəyi idarə edir?                                          | Deployment → ReplicaSet → Pod; container-ləri kubelet/runtime işlədir             |
+| Replica sayını nə saxlayır?                                   | Desired state əsasında ReplicaSet controller                                      |
+| Deployment rollout-u nə başladır?                             | Pod template dəyişikliyi                                                          |
+| Service backend-i necə tapır?                                 | Öz namespace-ində uyğun label-li Ready Pod-larla                                  |
+| Namespace nəyi ayırır?                                        | Obyekt adlarını və resurs əhatəsini; networking ayrıca nəzarət tələb edir         |
+| ConfigMap-də nə saxlanılır?                                   | Məxfi olmayan konfiqurasiya                                                       |
+| Secret-in base64 dəyəri şifrələnibmi?                         | Xeyr; encoding və encryption fərqlidir                                            |
+| Vault nə əlavə edir?                                          | Identity əsaslı policy, secret çatdırılması və engine-dən asılı lifecycle idarəsi |
+| Environment avtomatik yenilənirmi?                            | Xeyr; yeni snapshot üçün Pod-ları əvəz et                                         |
+| Credential faylının yenilənməsi tətbiqin yaddaşını dəyişirmi? | Yalnız tətbiq onu yenidən oxuyarsa                                                |
+
+```bash
+kubectl -n demo get deploy,rs,pods,svc
+kubectl -n demo describe deployment orders
+kubectl -n demo get pods --show-labels
+kubectl -n demo describe pod POD_NAME
+kubectl -n demo logs POD_NAME -c web
+kubectl -n demo get events --sort-by=.metadata.creationTimestamp
+kubectl -n demo rollout status deployment/orders
+```
+
+## Əlavə oxu və növbəti addımlar
+
+Burada öyrəndiyin anlayışları dərinləşdirmək üçün rəsmi sənədlərdən istifadə et:
+
+- [Docker build best practices](https://docs.docker.com/build/building/best-practices/): build context, base image, layer və reproducibility.
+- [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/): ortaq resurslar və Pod lifecycle-ı.
+- [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/): desired state, ReplicaSet, rolling update və rollback.
+- [Kubernetes ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/): ownership, selector və replica sayının saxlanması.
+- [Labels and selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/): equality/set selector-ları və workload uyğunluğu.
+- [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/): namespaced və cluster-scoped resurslar.
+- [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/): istifadə üsulları və yeniləmə davranışı.
+- [Container probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/): startup, readiness və liveness.
+- [Vault Kubernetes authentication](https://developer.hashicorp.com/vault/docs/auth/kubernetes): identity, TokenReview və role bağlamaları.
+- [Vault Agent Injector](https://developer.hashicorp.com/vault/docs/platform/k8s/injector): annotation, ortaq fayllar və Agent container-ləri.
+
+Kubernetes core object sənədləri rəsmi website repository-sindən oxunub; Vault anlayışları rəsmi v1.19.0 sənəd mənbəyi ilə yoxlanıb. Integration istifadə etməzdən əvvəl versiyaya aid default-ları quraşdırdığın versiyalarla tutuşdur. Daha dərin izah üçün [Docker image-ləri və təhlükəsiz build](/az/lessons/devops-docker-containers) və [Kubernetes delivery və probe-lar](/az/lessons/devops-kubernetes-delivery) dərslərinə keç.

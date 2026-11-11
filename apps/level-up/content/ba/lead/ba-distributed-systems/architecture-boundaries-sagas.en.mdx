@@ -1,0 +1,106 @@
+---
+id: architecture-boundaries-sagas
+locale: en
+title: 'Architecture boundaries, modular monoliths and sagas'
+objectives:
+  - 'Compare a local transaction boundary with cross-service workflow coordination.'
+  - 'Justify a modular monolith or service split using concrete quality and ownership needs.'
+  - 'Design saga states, compensations and recovery for a partially completed business process.'
+---
+
+## Learning objectives
+
+- Compare a local transaction boundary with cross-service workflow coordination.
+- Justify a modular monolith or service split using concrete quality and ownership needs.
+- Design saga states, compensations and recovery for a partially completed business process.
+
+## Why this matters
+
+A team splits checkout, inventory, payment and order management into services to “be more agile.” A reservation succeeds, the payment response is lost, and the order service marks the purchase failed. Inventory remains held while the customer may already have been charged. Deployment independence moved complexity into consistency, observability and recovery. The architecture needs an explicit business state model.
+
+## Core theory
+
+Architecture allocates responsibilities and defines allowed dependencies and operational boundaries. A modular monolith can keep clear domain modules while deploying one unit and using a local transaction where appropriate. A microservice split can allow independent deployment, scaling and ownership, but adds network failures, version coordination and distributed state. Neither label guarantees good modularity or product agility.
+
+Draw boundaries around cohesive domain responsibilities and data ownership. A bounded context is a boundary within which a domain model and its language have a coherent meaning. It is not automatically one process, one team, one database or one Scrum product. Model the actual invariants before mapping deployment units.
+
+Ask where an invariant must hold immediately. If a rule requires two writes to be atomic and both live in one transactional database, a local transaction may be simplest. Splitting those writes across services requires a deliberate alternative. Shared direct database writes between supposedly independent services often recreate coupling without preserving the benefits of one clear owner.
+
+A saga coordinates local transactions across participants. Each participant commits locally. When a later step fails, compensating actions try to restore an acceptable business condition. A refund is not a database rollback of a completed charge: fees, customer messages and external observations may remain. Compensation can itself fail, requiring retries, explicit pending states and operational recovery.
+
+| Approach      | Coordination                        | Main trade-off                                                         |
+| ------------- | ----------------------------------- | ---------------------------------------------------------------------- |
+| Choreography  | Participants react to events        | Less central control; global behavior can become hard to trace         |
+| Orchestration | A durable coordinator directs steps | Explicit workflow; coordinator state and availability must be designed |
+
+A saga does not supply transaction isolation across all participants. Concurrent workflows can see intermediate state. Use appropriate reservations, version checks, semantic locks or reconciliation based on the business risk. CQRS separates command/write and query/read models; it does not require event sourcing, microservices or a separate database for every screen.
+
+## Worked example
+
+A travel purchase reserves a seat, authorizes payment, and confirms the booking. The team models states such as SeatHeld, PaymentOutcomeUnknown, Confirmed, ReleasePending and ManualReview. If payment outcome is unknown, it queries the provider using the original operation identity instead of immediately charging again or releasing everything.
+
+```text
+reserve seat -> authorize payment -> confirm booking
+     |                |
+     |                +-- uncertain -> reconcile provider state
+     +-- compensation may be release reservation
+payment success but booking cannot complete -> explicit compensation policy
+```
+
+The team documents the reservation expiry, which actions are reversible, what the user sees while pending, and who handles a stuck compensation. The Product Owner helps make user outcomes and cost visible; Developers own implementation decisions within agreed constraints.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Local reservation"] --> B["Payment operation"]\n B --> C["Local confirmation"]\n B --> D["Outcome unknown"]\n D --> E["Reconciliation"]\n C --> F["Business complete"]\n E --> C\n E --> G["Compensation or manual review"]'
+  }
+/>
+
+The unknown-outcome state is a first-class business condition. Compensation and reconciliation are explicit work, not an assumption that the whole distributed operation can roll back invisibly.
+
+## Inspect the decision
+
+<details>
+<summary>The team has three Developers and no independent scaling requirement. Should four microservices be the default?</summary>
+
+Not from that information alone. Compare the benefits with operational cost, deployment capability, failure recovery and data invariants. A modular monolith may preserve clear boundaries with less distributed coordination. Record the forces and conditions that would justify a later split.
+
+</details>
+
+## Common mistakes
+
+- Equating one microservice with one Scrum Team or one product confuses software deployment with product accountability.
+- Calling compensation “rollback” hides irreversible business effects.
+- Performing cross-service joins through shared database writes weakens ownership and independent change.
+- Adopting CQRS solely to draw more boxes increases complexity without a clear need.
+- Modeling only success and failure omits unknown, pending and recovery states that users actually experience.
+
+## Practice exercise
+
+A marketplace wants to split a well-running checkout module into three services. It processes 5,000 orders per day and has one delivery team. Write an architecture decision record covering expected benefits, consistency invariants, operational prerequisites and a reversible migration. Add a recovery plan for payment success followed by order-confirmation failure.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+State the concrete force first: independent scale, ownership, deployment or an external boundary. If none is demonstrated, retain the modular structure and measure the current constraint. If a split is justified, identify the owner of each state, prohibit uncontrolled shared writes, define contracts and provide tracing, durable workflow state, idempotent operations and an on-call/reconciliation process.
+
+Migrate one boundary incrementally behind a stable interface, observe production behavior and retain a rollback route for traffic while respecting committed business events. For a successful payment without confirmation, record the uncertainty and original provider identity, reconcile whether confirmation can safely complete, and apply an explicit refund/compensation policy if it cannot. Track incomplete compensations instead of reporting a fictitious atomic rollback.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Domain boundary ≠ deployment boundary ≠ Scrum product. Prefer the simplest boundary that meets proven needs. Local ACID does not extend across arbitrary services. Saga = local commits + explicit coordination + compensation/recovery. CQRS does not imply event sourcing. Unknown outcomes require reconciliation.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): BFF, CQRS, Saga and Strangler Fig summaries.
+- [Microsoft Saga pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/saga): local transactions, orchestration/choreography, anomalies and compensations.
+- [Microsoft Transactional Outbox](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos): coordinating business state and events locally.
+
+The modular-monolith comparison, travel workflow and decision record are original architecture teaching examples, not a mandate to adopt one architecture style.

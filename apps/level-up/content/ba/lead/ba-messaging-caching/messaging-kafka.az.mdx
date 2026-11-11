@@ -1,0 +1,87 @@
+---
+id: messaging-kafka
+locale: az
+title: 'Kafka: partition, offset, ardıcıllıq və bərpa'
+objectives:
+  - 'Partition order və consumer group assignment-ı izah et.'
+  - 'Event emalını offset commit-dən ayır.'
+  - 'External side effect sərhədində təhlükəsiz replay qur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Partition order və consumer group assignment-ı izah et.
+- Event emalını offset commit-dən ayır.
+- External side effect sərhədində təhlükəsiz replay qur.
+
+## Bu mövzu niyə vacibdir
+
+Consumer DB-ni yeniləyib Kafka offset-ini commit etməzdən əvvəl crash edir. Restart zamanı event-i yenidən alır. Bu, mütləq broker korlanması deyil: tətbiq processing/checkpoint sərhədini keçib. Message pul, stock və ya notification yaradanda həmin sərhədi anlamaq vacibdir.
+
+## Əsas anlayışlar
+
+Kafka topic partition-lara bölünür. Hər partition daxilində mövqeləri offset-lə göstərilən sıralı log-dur. Offset bütün partition və topic-lər üzrə qlobal sıra deyil. Partition key-i tələb olunan ordering və distribution-a görə seç; key və partition sayının dəyişməsinin tətbiqə təsirini yoxla.
+
+Eyni group-dakı consumer-lər partition ownership-ini bölüşür; müstəqil group-lar eyni event-i ayrı məqsədlə oxuya bilər. Group üzvlüyü dəyişəndə partition-lar yenidən təyin oluna bilər; processing interruption və replay-ə dözməlidir. Faydalı parallelism sadəcə proses sayından deyil, partition assignment və workload distribution-dan asılıdır.
+
+Committed offset group və partition üçün recovery irəliləyişini saxlayır. Adi next-position qaydasında offset 43 commit etmək recovery-nin 43-dən başlamasıdır. Offset 42-ni business effect-dən əvvəl commit etmək crash-dən sonra işin atlanması riskini yaradır. Effect-dən sonra commit isə tamamlanmasa replay-ə imkan verir. Tətbiq seçilmiş semantikanı idarə etməlidir.
+
+Producer idempotence və Kafka transaction konfiqurasiya fərziyyələri daxilində müəyyən broker-side və Kafka-to-Kafka sərhədlərini qoruyur. Ayrı DB, payment provider və email service-i avtomatik eyni exactly-once transaction-a daxil etmir. External effect üçün uyğun idempotency/inbox contract və ya davamlı coordination istifadə et.
+
+Slow consumer-i dayanmış consumer-dən ayıraraq lag, processing failure və event age-i izlə. Poison event idarəsini, retry limit-i, schema compatibility və replay authorization-u müəyyən et. Retention record-un nə qədər əlçatan qaldığını məhdudlaşdırır; committed offset event data-sının və external consumer state-in backup-ı deyil.
+
+## İşlənmiş nümunə
+
+Partition 0-da order event-ləri 41 və 42 offset-lərindədir. Billing consumer event 42-ni emal edir, DB effect ilə idempotency key-i saxlayır, sonra next offset 43-ü commit etməyə çalışır. Commit təsdiqlənməmiş crash edir.
+
+Restart-dan sonra 42 replay ola bilər. DB sərhədi event-in sabit business identifier-ini tanıyıb ikinci charge record yaratmır. Consumer irəliləməzdən əvvəl əvvəlki operation outcome-unu yenə yoxlayır. Başqa partition paralel emal edilə bilər, amma aydın dizayn olmadan hər iki partition üzrə tam customer event sırası çıxarmaq olmaz.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n P[Partition record and offset] --> C[Consumer group assignment]\n C --> B[Durable business effect]\n B --> O[Commit recovery position]\n B -.-> D[Idempotency and replay evidence]\n O --> N[Next record after restart]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Producer idempotence aktivdir. Consumer-in xarici HTTP payment çağırışı indi exactly once-dırmı?</summary>
+
+Xeyr. Producer duplicate qorunması consumer-i remote payment xidməti ilə əlaqələndirmir. Payment sərhədinə ayrıca sabit operation identity, davamlı nəticə idarəsi və reconciliation lazımdır. Zəmanətin hansı transaction sərhədini əhatə etdiyini dəqiq de.
+
+</details>
+
+## Tipik səhvlər
+
+- Offset-i qlobal sequence number adlandırmaq.
+- Mümkün itkini qəbul etmədən lazım olan effect-dən əvvəl progress commit etmək.
+- Hər əlavə consumer-in parallelism-i artırdığını düşünmək.
+- Davamlı atomik idarə olmadan event ID-ni deduplication saymaq.
+
+## Praktik tapşırıq
+
+DB effect-dən əvvəl və sonra, amma offset commit-dən qabaq crash recovery-ni təsvir et. Həm duplicate charge-ı, həm səhvən atlanmış event-i önləmək üçün lazım olan sübutu göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Effect-dən əvvəl replay işi təhlükəsiz görməlidir. Davamlı effect-dən sonra, commit-dən qabaq replay həmin effect ilə atomik yazılmış davamlı identifier vasitəsilə tamamlanmış operation-u tanımalıdır. Remote payment provider operation contract və unknown outcome reconciliation tələb edir. Offset-i yalnız seçilmiş processing policy ilə irəlilət; tək happy-path loop deyil, crash sərhədlərini test et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Order partition daxilindədir. Group ownership dəyişə bilər. Processing ≠ checkpointing. Kafka zəmanəti external effect-ə səssiz yayılmır. Replay və retention-u məqsədli qur.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Apache Kafka 4.1: Design](https://kafka.apache.org/41/design/design/): partition, consumer position, delivery semantikası və transaction sərhədi. Nəşr göstərilib; ən yeni versiya iddiası yoxdur.
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): HTTP idempotent semantikası; application/provider operation contract ayrıdır. Nümunələr orijinaldır; broker və payment sistemi deploy edilmir.

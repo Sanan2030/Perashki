@@ -1,0 +1,141 @@
+{
+  "id": "po-mid",
+  "trackId": "po",
+  "level": "mid",
+  "title": {
+    "az": "Mid səviyyəli məhsul sahibi",
+    "en": "Mid-level Product Owner"
+  },
+  "responsibilities": [
+    {
+      "az": "Kəşf və çatdırılma boyunca məhsul qərarlarına sahib çıx.",
+      "en": "Own product decisions across discovery and delivery."
+    },
+    {
+      "az": "Strategiyanı məqsəd, göstərici və backlog seçiminə bağla.",
+      "en": "Connect strategy to goals, metrics and backlog choices."
+    },
+    {
+      "az": "Maraqlı tərəf gözləntilərini sübut və proqnozla idarə et.",
+      "en": "Manage stakeholder expectations with evidence and forecasts."
+    }
+  ],
+  "hardSkills": [
+    {
+      "az": "Nəticə yol xəritələri, OKR və məhsul göstəriciləri",
+      "en": "Outcome roadmaps, OKRs and product metrics"
+    },
+    {
+      "az": "Sübuta əsaslanan idarəetmə və eksperiment quruluşu",
+      "en": "Evidence-Based Management and experiment design"
+    },
+    {
+      "az": "Proqnozlaşdırma, qiymət və buraxılış fərziyyələri",
+      "en": "Forecasting, pricing and launch hypotheses"
+    }
+  ],
+  "softSkills": [
+    {
+      "az": "Maraqlı tərəf danışıqları və qərar aydınlığı",
+      "en": "Stakeholder negotiation and decision clarity"
+    },
+    {
+      "az": "Məhsul və mühəndislik arasında fasilitasiya",
+      "en": "Facilitation across product and engineering"
+    }
+  ],
+  "tools": [
+    {
+      "az": "Məhsul analitikası və eksperiment jurnalı",
+      "en": "Product analytics and experiment logs"
+    },
+    {
+      "az": "Nəticə yol xəritəsi və axın göstəriciləri paneli",
+      "en": "Outcome roadmap and throughput dashboards"
+    }
+  ],
+  "deliverables": [
+    {
+      "az": "Məhsul strategiyası və nəticə yol xəritəsi",
+      "en": "Product strategy and outcome roadmap"
+    },
+    {
+      "az": "Ölçü və qoruyucu sərhədlərlə eksperiment planı",
+      "en": "Experiment brief with measures and guardrails"
+    },
+    {
+      "az": "Proqnoz və maraqlı tərəf qərar qeydi",
+      "en": "Forecast and stakeholder decision record"
+    }
+  ],
+  "changes": {
+    "az": "İşi sıralamaqdan dəyər, qeyri-müəyyənlik, risk və iqtisadiyyatı müstəqil tarazlaşdırmağa keçirsən.",
+    "en": "You move from ordering work to independently balancing value, uncertainty, risk and economics."
+  },
+  "checklist": [
+    {
+      "id": "po-mid-skill-1",
+      "text": {
+        "az": "Məhsul strategiyasının arxasındakı seçimləri izah edə bilirəm.",
+        "en": "I can explain the choices behind a product strategy."
+      }
+    },
+    {
+      "id": "po-mid-skill-2",
+      "text": {
+        "az": "Yanlışlığı sübut oluna bilən məhsul eksperimenti qura bilirəm.",
+        "en": "I can design a falsifiable product experiment."
+      }
+    },
+    {
+      "id": "po-mid-skill-3",
+      "text": {
+        "az": "Nəticə, çıxış və qoruyucu ölçüləri ayıra bilirəm.",
+        "en": "I can separate outcomes, outputs and guardrails."
+      }
+    },
+    {
+      "id": "po-mid-skill-4",
+      "text": {
+        "az": "Proqnoz qeyri-müəyyənliyini izah edə bilirəm.",
+        "en": "I can communicate forecast uncertainty."
+      }
+    },
+    {
+      "id": "po-mid-skill-5",
+      "text": {
+        "az": "Sübutla prioritet danışıqları apara bilirəm.",
+        "en": "I can negotiate priorities using evidence."
+      }
+    },
+    {
+      "id": "po-mid-skill-6",
+      "text": {
+        "az": "Qiymət fərziyyəsini və risklərini izah edə bilirəm.",
+        "en": "I can explain a pricing hypothesis and its risks."
+      }
+    }
+  ],
+  "interviews": [
+    {
+      "question": {
+        "az": "Rəhbər maraqlı tərəf təcili funksiya tələb edir. Nə edərsən?",
+        "en": "A senior stakeholder demands an urgent feature. What do you do?"
+      },
+      "answer": {
+        "az": "Əsas nəticə və təcililiyi aydınlaşdıraram, Product Goal və sübutla müqayisə edərəm, seçim təsirini açıb cavabdeh sıralama qərarı verər və paylaşaram.",
+        "en": "I clarify the underlying outcome and urgency, compare it with the Product Goal and current evidence, expose trade-offs, then make and communicate an accountable ordering decision."
+      }
+    },
+    {
+      "question": {
+        "az": "Kəşf eksperimentini necə ölçərsən?",
+        "en": "How would you measure a discovery experiment?"
+      },
+      "answer": {
+        "az": "İcra etməzdən əvvəl riskli fərziyyəni, müşahidə edilən davranışı, hədəf seqmenti, qərar həddini və qoruyucu ölçüləri müəyyən edərəm. Həm dəstəkləyən, həm zidd sübutu yoxlayaram.",
+        "en": "I specify the risky assumption, observable behavior, target segment, decision threshold and safeguards before running it. I inspect both supporting and contradictory evidence."
+      }
+    }
+  ]
+}

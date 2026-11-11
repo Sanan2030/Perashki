@@ -1,0 +1,90 @@
+---
+id: data-etl-warehouse
+locale: en
+title: 'ETL, ELT and data warehouse delivery contracts'
+objectives:
+  - 'Distinguish ETL and ELT placement of transformations.'
+  - 'Define source, staging and curated data contracts.'
+  - 'Handle re-runs and late records without silently duplicating facts.'
+---
+
+## Learning objectives
+
+- Distinguish ETL and ELT placement of transformations.
+- Define source, staging and curated data contracts.
+- Handle re-runs and late records without silently duplicating facts.
+
+## Why this matters
+
+A dashboard depends on more than its SQL query. A pipeline can load yesterday twice, miss a late correction or publish half a partition. Data engineering makes those boundaries explicit so consumers know what is complete, reproducible and suitable for decisions.
+
+## Core theory
+
+ETL extracts data, transforms it and then loads the target representation. ELT extracts and loads before performing transformations in the target environment. The distinction concerns placement and execution, not an automatic ranking of quality. Privacy, available compute, latency and operational constraints influence the choice.
+
+Separate raw evidence, staging/standardization and curated consumer models where useful. Preserve source identifiers, ingestion metadata and schema versions. A warehouse organizes analytical data; it is not merely a copy of every operational table. Define the fact grain and dimension keys before aggregating.
+
+Choose full or incremental loading with explicit change detection. A timestamp watermark needs rules for equal timestamps, clock behavior, updates and late records. Change-data capture has its own ordering, deletion and recovery contracts. A checkpoint records progress, not proof that every external source event was complete.
+
+Make re-runs deterministic for the intended interval. Use a stable business key and an appropriate merge/upsert or partition-replacement policy. Do not append the same batch blindly after a retry. Preserve corrections and deletion semantics according to the source and governance requirements.
+
+Publish only after the required quality and completeness checks. Reconcile source counts and money where meaningful, inspect invalid keys and record quarantine reasons. A successful ingestion job can still contain stale or incomplete upstream data. Give consumers both the processing timestamp and an event-completeness statement.
+
+Protect sensitive data through minimization, access control and retention decisions. Raw storage is not permission to retain every field forever. Schema evolution and downstream lineage help determine who must review a changed or removed source column.
+
+## Worked example
+
+A daily orders pipeline reads a source interval, stores immutable batch evidence and standardizes IDs, amounts and dates. It merges one current order record per business key into staging, then builds a paid-orders fact with a declared order grain.
+
+A correction for an earlier order arrives today. A naive “only records with yesterday's creation date” filter misses it. The team instead uses the agreed source change contract and a controlled reprocessing window, records which periods changed and reconciles the published totals. Re-running the same interval does not create a second copy of each order.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n S[Source and change contract] --> R[Raw batch evidence]\n R --> T[Typed staging and stable keys]\n T --> Q[Quality and reconciliation]\n Q --> W[Curated warehouse models]\n W --> P[Published interval and freshness]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>The scheduled pipeline succeeded. Can the dashboard label its data complete through now?</summary>
+
+No. Job success establishes that the configured steps completed under their checks. Source completeness, late arrivals and observation cutoff require separate evidence. Publish the actual supported completeness boundary and retain uncertainty.
+
+</details>
+
+## Common mistakes
+
+- Treating ELT as permission to skip source validation.
+- Appending on every retry without stable keys.
+- Using creation time as a universal update watermark.
+- Publishing a half-loaded partition to consumers.
+
+## Practice exercise
+
+Design a daily payment fact pipeline with late refunds. State the fact grain, source change mechanism, retry behavior, quality gates and how corrected periods are communicated.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Choose the intended event or transaction grain explicitly, including how refunds relate to original payments. Use the source’s supported change or correction contract, not an assumed creation-time filter. Re-run with stable keys or controlled partition replacement, verify counts/amounts and isolate invalid records. Publish only validated intervals and label restated periods and completeness so dashboard readers can interpret changed historical totals.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Source contract → immutable evidence → typed grain → idempotent transformation → quality gates → published completeness. ETL versus ELT does not decide correctness.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [AWS: ETL versus ELT](https://aws.amazon.com/compare/the-difference-between-etl-and-elt/): transformation placement and workload considerations.
+- [Microsoft Fabric: Data warehousing](https://learn.microsoft.com/en-us/fabric/data-warehouse/data-warehousing): analytical warehouse context.
+- [Microsoft: Star schema guidance](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema): consistent facts and dimensions. The pipeline and correction policy are original design exercises, not a deployed platform.

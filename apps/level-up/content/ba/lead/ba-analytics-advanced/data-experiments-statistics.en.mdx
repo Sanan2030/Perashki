@@ -1,0 +1,116 @@
+---
+id: data-experiments-statistics
+locale: en
+title: 'A/B testing: randomization, uncertainty and decision rules'
+objectives:
+  - 'Define an experiment hypothesis, randomization unit and primary outcome.'
+  - 'Calculate absolute and relative differences without overstating certainty.'
+  - 'Explain uncertainty, peeking, guardrails and limitations of causal claims.'
+---
+
+## Learning objectives
+
+- Define an experiment hypothesis, randomization unit and primary outcome.
+- Calculate absolute and relative differences without overstating certainty.
+- Explain uncertainty, peeking, guardrails and limitations of causal claims.
+
+## Why this matters
+
+Two conversion rates are different in almost every finite sample. The product decision is whether the difference is credible, meaningful and worth its costs. An experiment needs a design before results are inspected. This lesson links product decisions to statistical discipline without pretending that one simple formula covers every experiment.
+
+## Core theory
+
+Start with a falsifiable hypothesis: changing a particular experience will improve a specified outcome for an eligible population. Choose the assignment unit, such as account, and keep that unit stable across repeated visits. Randomizing each page view can expose the same person to both variants and violate the intended comparison.
+
+Specify the primary metric, eligibility, exclusions, duration or sample-size plan, analysis method and decision rule in advance. Include guardrails such as payment failures, support load or accessibility failures. A conversion increase does not automatically justify a release that damages another critical outcome.
+
+Random assignment helps separate treatment effects from confounding factors in expectation. It does not guarantee perfect balance in a small sample or repair broken logging. Check assignment counts, exposure records, missing outcomes and whether one variant was delivered differently. A suspicious allocation imbalance should trigger investigation rather than immediate celebration.
+
+An absolute difference subtracts rates; a relative lift divides the difference by the baseline rate. A change from 10% to 12% is **2 percentage points** and **20% relative lift**. Neither statement alone describes uncertainty or proves business value. Consider expected benefit, implementation cost and downside risk.
+
+A confidence interval describes the behavior of an interval procedure under repeated sampling assumptions. Avoid claiming that a frequentist 95% interval gives a 95% probability that the fixed true value lies inside this particular interval. A p-value is the probability, under a specified null model, of a result at least as incompatible with that model as the observed result. It is not the probability that the null hypothesis is true.
+
+Repeatedly checking for significance and stopping at the first favorable result changes error behavior unless the design uses an appropriate sequential method. Testing many metrics or segments also changes the chance of a false positive. Account for these choices. For clustered assignments, rare events or ratio metrics, use methods suited to their structure rather than blindly applying independent-observation formulas.
+
+## Worked example
+
+Consider an original simplified fixed-horizon exercise with independent account assignments and complete outcomes:
+
+| Variant | Accounts | Converted | Conversion |
+| ------- | -------: | --------: | ---------: |
+| A       |     1000 |       100 |        10% |
+| B       |     1000 |       120 |        12% |
+
+Absolute difference is `0.12 - 0.10 = 0.02`, or 2 percentage points. Relative lift is `0.02 / 0.10 = 20%`.
+
+For a teaching approximation, the unpooled standard error of the rate difference is:
+
+```text
+SE = sqrt((0.10 * 0.90 / 1000) + (0.12 * 0.88 / 1000))
+   ≈ 0.01399
+Approximate 95% interval = 0.02 ± 1.96 * SE
+                         ≈ [-0.0074, 0.0474]
+```
+
+That is roughly **-0.74 to +4.74 percentage points**. The interval includes no difference; these data do not support a confident positive effect under this approximation. This is not proof of equivalence or proof of no benefit. The lab reproduces the arithmetic. The formula is an original pedagogical calculation, not a quotation from the NIST page or a recommendation for every production experiment.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n H[Hypothesis and outcome] --> P[Predeclared design]\n P --> R[Stable random assignment]\n R --> Q[Check exposure and data quality]\n Q --> E[Estimate effect and uncertainty]\n E --> D[Decision with guardrails and costs]'
+  }
+/>
+
+The design precedes the observed difference. A decision can be to continue the planned experiment, repair instrumentation or decline a risky release.
+
+## Inspect the decision
+
+<details>
+<summary>Does a 20% relative lift prove the new variant is better?</summary>
+
+No. The baseline, sample size, uncertainty, validity of assignment and business consequences still matter. Here, 20% relative lift corresponds to only two percentage points, and the approximate interval includes a small negative difference. Report both effect scales and the limitations.
+
+</details>
+
+## Common mistakes
+
+- Calling percentage points and relative percent change the same quantity.
+- Interpreting a p-value as the probability a hypothesis is true.
+- Stopping when a repeatedly refreshed dashboard first looks favorable.
+- Changing the primary metric after seeing results without labeling the analysis exploratory.
+- Ignoring repeated users, cluster assignment or incomplete follow-up.
+- Calling a non-significant result proof that the variants are identical.
+
+## Practice exercise
+
+A treatment improves conversion from 5% to 6%. Calculate the absolute and relative changes. List the information missing before recommending a rollout. Then explain why a support-ticket guardrail could alter the decision even if the primary result were statistically persuasive.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+The change is one percentage point and 20% relative lift. Missing information includes sample sizes, assignment unit, observation completeness, uncertainty, predeclared stopping rule, eligibility, logging quality and practical costs. A harmful increase in serious support incidents can outweigh the conversion gain. Statistical evidence informs a decision; it does not choose the acceptable trade-off for stakeholders.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Concept              | Interpretation                                         |
+| -------------------- | ------------------------------------------------------ |
+| Absolute change      | Difference in rates, often percentage points           |
+| Relative lift        | Difference divided by baseline                         |
+| Randomization unit   | Entity independently assigned                          |
+| Uncertainty interval | Range from a procedure with stated assumptions         |
+| P-value              | Tail probability under a specified null model          |
+| Guardrail            | Outcome that constrains an otherwise attractive change |
+| Exploratory result   | Finding that needs confirmation under a new design     |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [NIST/SEMATECH: Choosing an experimental design](https://www.itl.nist.gov/div898/handbook/pri/section3/pri33.htm): experimental objectives, comparative designs and design selection.
+- [GOV.UK: Measuring performance](https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service): useful outcome measures.
+- The binomial interval example is original supplemental instruction with explicitly simplified assumptions. The selected NIST overview is not presented as a complete treatment of online experimentation or sequential inference.

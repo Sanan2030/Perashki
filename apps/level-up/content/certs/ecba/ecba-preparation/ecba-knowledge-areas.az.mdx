@@ -1,0 +1,79 @@
+---
+id: ecba-knowledge-areas
+locale: az
+title: 'Analiz işinə əlaqəli baxış'
+objectives:
+  - 'Altı bilik sahəsini ssenaridəki qərarlara uyğunlaşdır.'
+  - 'Bilik sahələrini dəyişməz mərhələ ardıcıllığından ayır.'
+---
+
+## Əsas anlayış
+
+BABOK v3-də bilik sahəsi əlaqəli tapşırıqları birləşdirir. O, “bunu yalnız bir dəfə və yalnız bu ayda et” göstərişi deyil. Eyni dəyişiklikdə planlaşdırma, məlumat toplama, tələb analizi və dəyərin qiymətləndirilməsi təkrar-təkrar bir-birini məlumatlandıra bilər. Tapşırığı düzgün tanımaq üçün sənəd adına yox, hazırkı qərarın məqsədinə bax.
+
+## Niyə vacibdir
+
+Bir komanda müsahibələri “analiz mərhələsi bitib” deyə dayandırırsa, gec tapılan ehtiyacı gözdən qaçıra bilər. Digər komanda isə bütün fikirləri dərhal tələb siyahısına çevirib qərar sahibini unuda bilər. Bilik sahələrinə əlaqəli baxış həm itmiş işi, həm də lazımsız təkrarı görməyə kömək edir. Məsələn, istifadəçi sınağında yeni problem aşkarlananda həm məlumat toplamaq, həm tələbi dəyişmək, həm də əvvəlki dəyər fərziyyəsini yoxlamaq lazım ola bilər.
+
+## Nəzəriyyə və fərqlər
+
+**Planning and Monitoring** analiz yanaşmasını, əməkdaşlığı, qərarları, məlumat idarəsini və işin təkmilləşdirilməsini təşkil edir. **Elicitation and Collaboration** məlumatı toplamaq, dəqiqləşdirmək, paylaşmaq və birgə anlaşmanı saxlamaq üçündür. **Requirements Life Cycle Management** tələblərin və dizaynların yaranmadan istifadədən çıxmaya qədər əlaqəsini, saxlanmasını, prioritetini və dəyişikliklərini idarə edir.
+
+**Strategy Analysis** ehtiyacı, cari və gələcək vəziyyəti, riski və dəyişiklik yolunu araşdırır. **Requirements Analysis and Design Definition** məlumatı modelləşdirir, keyfiyyət və dəyərə uyğunluğu yoxlayır, dizayn seçimlərini və potensial dəyəri müqayisə edir. **Solution Evaluation** istifadə edilən həllin faktiki nəticəsini və dəyər maneələrini qiymətləndirir. Həll yalnız tam buraxılış olmaya bilər: işləyən pilot və ya prototype də qiymətləndirilə bilər.
+
+Bunlar müxtəlif baxışlardır. Dəyişiklik strategiyası yenilənəndə plan da dəyişə bilər; təsdiqlənmiş məlumatdan yeni risk çıxa bilər; əməliyyat ölçüləri yeni ehtiyac yarada bilər. Metodologiya tapşırıqların vaxtını və formallığını dəyişir, lakin dəyər və məlumat keyfiyyəti ehtiyacını aradan qaldırmır.
+
+Analiz və dizaynda verification təsvirin keyfiyyətini və istifadəyə yararlılığını, validation isə ehtiyac və dəyərlə uyğunluğu yoxlayır. Düzgün yazılmış tələb yanlış imkanı təsvir edə bilər. Təsdiq ayrıca səlahiyyətli qərardır.
+
+## İşlənmiş nümunə
+
+Bələdiyyə onlayn müraciət xidməti qurur. Əvvəl analitik qərar sahiblərini və məlumatın saxlanmasını razılaşdırır. Mövcud işi müşahidə edib vətəndaşların ünvanı niyə səhv yazdığını araşdırır. Daha sadə müraciət prosesi üçün gələcək nəticəni müəyyən edir, forma və əlaqə mərkəzi dəstəyi kimi variantları müqayisə edir.
+
+Pilotda müraciət sayı artır, amma səhv ünvanlar azalmır. Bu nəticə bütün layihənin əvvəlki mərhələyə “geri qayıtması” demək deyil. Analitik ölçünü şərh edir, real maneəni araşdırır, yenidən məlumat toplayır və əlaqəli tələblərin dəyişməsini qiymətləndirir. Müvafiq qərarlar mövcud idarəetmə qaydası ilə verilir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n P["Plan and coordinate"] --> E["Elicit and confirm"]\n E --> A["Analyze requirements and options"]\n S["Analyze strategy"] --> A\n A --> L["Manage relationships and changes"]\n L --> V["Evaluate actual solution"]\n V --> E\n V --> S\n V --> P'
+  }
+/>
+
+Oxlar məlumatın bir sahədən digərinə təsir edə biləcəyini göstərir. Bu, BABOK-un rəsmi proses diaqramının surəti deyil və məcburi sıra müəyyən etmir.
+
+## Qərar məşqi
+
+“Pilotda vaxt azalmayıb” müşahidəsi üçün əvvəlcə doğru sualı seç: ölçü etibarlıdırmı, həllin daxilində maneə varmı, yoxsa təşkilat onu başqa cür istifadə edir? Solution Evaluation bu yoxlamanı yönləndirir. Yeni tələb yaranarsa onun təsirini Life Cycle Management ilə qiymətləndir. Yeni məlumatı toplamaq Elicitation-dır; bunlar eyni məqsədin fərqli işləridir.
+
+## Səhvlər və düzgün yanaşma
+
+- Altı sahəni məcburi altı mərhələ saymaqdan çəkin.
+- Elicitation nəticəsinin toplanmasını onun dəqiqliyinin təsdiqi ilə qarışdırma.
+- Texniki testin keçməsini istifadəçi dəyərinin sübutu sayma.
+- Həll buraxıldıqdan sonra tələb məlumatını köhnəlmiş sayma.
+- Hər sual üçün yeni sənəd yaratma; lazım olan məlumatı və istifadəçisini müəyyən et.
+
+## Tətbiq tapşırığı və izahlı həll
+
+**Tapşırıq:** “Təsdiq səlahiyyəti kimdədir?”, “Müsahibə qeydləri düzgün yazılıbmı?”, “Bu dəyişiklik hansı testlərə təsir edir?”, “İşləyən həll niyə fayda vermir?” suallarını sahələrə uyğunlaşdır.
+
+**İzahlı həll:** Birincisi planlaşdırma daxilində governance, ikincisi elicitation nəticələrinin təsdiqi, üçüncüsü life cycle təsir analizi, dördüncüsü solution evaluation ilə bağlıdır. Üçüncü suala cavab vermək üçün tələblərin əlaqələri və tətbiq mütəxəssisinin biliyi lazım ola bilər. Sahəni düzgün seçmək digər sahələrin məlumatından istifadə etməyi qadağan etmir.
+
+## Mini-quiz
+
+Hər ssenaridə çatışmayan işin məqsədini bir cümlə ilə de, sonra uyğun sahəni seç. Bir neçə sahə əlaqəli ola bilər, amma sual konkret tapşırıq istəyirsə ən birbaşa cavabı seç.
+
+<LessonCheck />
+
+## Xülasə
+
+Plan işi təşkil edir; elicitation məlumatı əldə edib anlaşmanı yoxlayır; lifecycle əlaqə və dəyişiklikləri idarə edir; strategy ehtiyacı və dəyişiklik yolunu müəyyən edir; analysis/design tələbləri və variantları dəqiqləşdirir; evaluation faktiki dəyəri yoxlayır.
+
+## Mənbələr və əhatə
+
+BABOK Guide v3, 2015: bilik sahələrinin girişləri, səh. 21–22, 53–54, 75–76, 99–100, 133–134, 163–164; §4.3, səh. 65–66; §5.4, səh. 91–93. Bu bölgü kitabın peşə çərçivəsidir; cari ECBA blueprint-i ayrıca yoxlanır. Verification/validation fərqi: §7.2–7.3, səh. 141–146.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+İzahlar və nümunələr bu platforma üçün yenidən yazılıb. Yüklənmiş üzv PDF-i saytda yayımlanmır. Buradakı suallar orijinal tədris məşqidir və rəsmi imtahan sualları deyil.

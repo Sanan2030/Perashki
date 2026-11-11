@@ -1,0 +1,108 @@
+---
+id: api-idempotency-concurrency
+locale: az
+title: 'Idempotency key, paralel sorğular və optimistik kilidləmə'
+objectives:
+  - 'Təkrar əməliyyatdan qorunmanı köhnə update-dən qorunmadan ayır.'
+  - 'Scope-u müəyyən idempotency record, request fingerprint və atomik state dəyişikliyi təsvir et.'
+  - 'Yeni biznes əməliyyatı yaratmadan naməlum nəticəni bərpa et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Təkrar əməliyyatdan qorunmanı köhnə update-dən qorunmadan ayır.
+- Scope-u müəyyən idempotency record, request fingerprint və atomik state dəyişikliyi təsvir et.
+- Yeni biznes əməliyyatı yaratmadan naməlum nəticəni bərpa et.
+
+## Bu mövzu niyə vacibdir
+
+İstifadəçi Pay basır; provider charge-ı commit etdikdən sonra response timeout olur. Yeni operation identifier ilə retry iki dəfə pul tuta bilər. Başqa ekranda iki qanuni istifadəçi bir-birinin düzəlişini əvəz edir. Hər ikisi təkrar və ya üst-üstə düşən request-lə bağlıdır, amma biri operation deduplication, digəri concurrency control tələb edir. Bir header hər ikisini həll etmir.
+
+## Əsas anlayışlar
+
+Idempotency key eyni məntiqi əməliyyatın cəhdlərini tanımaq üçün application contract-dır. Bu dərsin POST əməliyyatında xidmət key-i authenticated actor/tenant, operation, canonical request fingerprint və qeydə alınmış outcome ilə əlaqələndirir. Eyni key və ekvivalent request nəticəni təkrar qaytarır; eyni key ilə əhəmiyyətli dərəcədə fərqli request sənədləşdirilmiş conflict yaradır.
+
+Bir universal key header-i, expiry müddətini və ya response code-u HTTP tələbi kimi təqdim etmə. RFC 9110 method idempotence müəyyən edir; bu dizayn isə ayrıca biznes operation policy əlavə edir. API key sintaksisini, scope-u, retry horizon-u, nəticənin saxlanma müddətini, in-progress davranışını və failure semantikasını sənədləşdirməlidir.
+
+İki worker hər hansı qeydi yazmamış “key yoxdur” yoxlaması aparanda race mümkündür. Scope-lu key üçün DB uniqueness constraint və biznes təsirini idempotency outcome ilə əlaqələndirən transaction istifadə et. Tək cache itə bilər; process-local lock bir neçə server-i əlaqələndirmir. Xarici payment provider üçün yerli transaction remote charge-ı atomik commit edə bilməz; provider-in idempotency mexanizmini, davamlı operation state-ini və reconciliation-u əlaqələndir.
+
+Fingerprint-i gələn JSON-un ixtiyari byte-larından deyil, yoxlanmış biznes mənasından qur. Contract onları ekvivalent sayırsa, whitespace və property order yeni əməliyyat yaratmamalıdır. Default və göndərilməyən optional field-lərin ekvivalentliyə təsirini müəyyən et. Saxlanmış nəticəyə girişdən əvvəl authorization yoxlaması saxla ki, hücumçu təxmin edilən key ilə başqa actor-un məlumatını almasın.
+
+Optimistic locking başqa invariant-ı qoruyur: yalnız caller-in həqiqətən baxdığı version-u yenilə. Strong ETag və If-Match bu şərti HTTP sərhədində görünən edə bilər. DB version müqayisəsi və update-i atomik tətbiq etməlidir. Seçilmiş HTTP contract-da köhnə precondition 412 qaytarır. Business state conflict 409 ola bilər; onu uğursuz representation precondition ilə qarışdırma.
+
+## İşlənmiş nümunə
+
+Orders API T-1 tenant-ının U-1 actor-u üçün checkout-81 key-ini və BOOK SKU-sundan iki vahidlik yoxlanmış request-i qəbul edir. O-81 order-ini və outcome record-u birlikdə commit edir. Client 201 almamış connection kəsilir. Eyni scope-lu key və ekvivalent payload ilə retry O-81 qaytarır; O-82 yaratmır.
+
+```sql
+-- Conceptual transaction; adapt to the chosen database.
+BEGIN;
+INSERT INTO operation_keys (tenant_id, actor_id, operation, key, fingerprint)
+VALUES ('T-1', 'U-1', 'create-order', 'checkout-81', 'hash-of-validated-input');
+INSERT INTO orders (id, tenant_id, quantity, version)
+VALUES ('O-81', 'T-1', 2, 1);
+UPDATE operation_keys SET result_order_id = 'O-81', state = 'completed'
+WHERE tenant_id = 'T-1' AND actor_id = 'U-1'
+  AND operation = 'create-order' AND key = 'checkout-81';
+COMMIT;
+```
+
+Uniqueness conflict üçün aydın duplicate/in-progress idarəsi lazımdır. Conflict-dən sonra order INSERT-i təkrarlama. Ayrı olaraq, başqa update artıq version 2 yaradıbsa, O-81-i version 1 əsasında dəyişmək uğursuz olmalıdır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n A["Authenticated request and operation key"] --> B{"Scoped key already recorded?"}\n B -->|No| C["Atomic claim and business write"]\n B -->|Yes| D{"Equivalent payload?"}\n D -->|Yes| E["Return recorded outcome"]\n D -->|No| F["Documented conflict"]\n C --> E'
+  }
+/>
+
+Key lookup atomiklik zəmanəti deyil. Write sərhədi və unique scoped claim rəqabət aparan request-lərin eyni məntiqi əməliyyatı iki dəfə yaratmasının qarşısını alır.
+
+## Qərarı təhlil et
+
+<details>
+<summary>PUT idempotent-dir. Bu, iki istifadəçinin bir-birinin işini əvəz etməyəcəyinə zəmanətdirmi?</summary>
+
+Xeyr. Method idempotence eyni nəzərdə tutulan əməliyyatın təkrarına aiddir. Ayrı istifadəçilər köhnə state əsasında fərqli əvəzetmələr göndərə bilər. Lost update məqbul deyilsə, version precondition və ya başqa uyğun concurrency policy istifadə et.
+
+</details>
+
+## Tipik səhvlər
+
+- Outcome qeyri-müəyyən olduqdan sonra yeni key istifadə etmək recovery-ni yeni operation-a çevirir.
+- Aydın policy olmadan key-i qlobal scope-da saxlamaq nəticə sızmasına və ya əlaqəsiz actor-ların toqquşmasına səbəb ola bilər.
+- Business effect commit-dən sonra key-i yazmaq duplicate üçün boşluq saxlayır.
+- Key-i dəstəklənən retry/reconciliation müddətindən əvvəl expire etmək gec gələn duplicate-ə yol verə bilər.
+- Yenidən oxumadan və uzlaşdırmadan stale PATCH-i avtomatik retry etmək məqsədli dəyişikliyi əvəz edə bilər.
+
+## Praktik tapşırıq
+
+Simulyasiya orders request-lərini göndərmək, response-u araşdırmaq və tapşırığı yoxlamaq üçün [aşağıdakı API laboratoriyasından](#practice-lab) istifadə et. Contract panel-i fixture identity-lərini və limit-ləri izah edir.
+
+Refund request 20 saniyə çəkə bilər, client-lər 48 saat retry edə bilər və iki API nüsxəsi paralel işləyir. Eyni duplicate, dəyişmiş payload, in-progress operation və external provider timeout üçün outcome müəyyən et. Finance officer refund qərarını dəyişəndə If-Match-in harada olmalı olduğunu göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Operation key-i tenant, actor və refund operation-a bağla; biznes request-i validate/fingerprint et və uniqueness-i davamlı yaddaşda qoru. 48 saatlıq retry contract-ını və sonrakı reconciliation ehtiyacını təmin edən operation state saxla. Eyni tamamlanmış əməliyyat üçün mövcud nəticəni qaytar. Eyni key ilə fərqli payload-u rədd et. Client-in yeni refund yaratmadan tamamlanmanı izləməsi üçün aydın in-progress response/status resource müəyyən et.
+
+External provider timeout zamanı əsaslıdırsa “outcome unknown/pending reconciliation” vəziyyətini saxla, provider-in ilkin operation identity-sini təkrar istifadə edib əsas state-ni soruş. Yalnız transport timeout-dan uğurlu və ya uğursuz charge nəticəsi uydurma. Əvvəl oxunmuş qərarı dəyişən officer version/If-Match precondition təqdim edir; server atomik müqayisə və update aparır. Idempotency və version check fərqli invariant-ları qoruduğundan birgə işləyə bilər.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Eyni operation → eyni scope-lu key və ekvivalent biznes payload. Naməlum outcome → yeni key deyil, reconciliation. Duplicate prevention → davamlı unique claim və düzgün atomik sərhəd. Lost update prevention → atomik version müqayisəsi. Heç biri authorization-u əvəz etmir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html): §§9.2.2 və 13.1.1.
+- [Microsoft Retry pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry): idempotency və transaction consistency.
+- [Microsoft Transactional Outbox](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos): yerli transaction sərhədləri.
+
+Operation key schema-sı, conflict policy və retention ssenarisi orijinal application design nümunələridir; universal idempotency protokolu deyil.

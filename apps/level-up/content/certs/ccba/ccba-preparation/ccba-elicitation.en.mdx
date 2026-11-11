@@ -1,0 +1,77 @@
+---
+id: ccba-elicitation
+locale: en
+title: 'Elicit and confirm evidence'
+objectives:
+  - 'Separate information gathering, confirmation of accuracy and approval authority.'
+  - 'Investigate conflicting sources and communicate to establish shared understanding.'
+---
+
+## Core concept
+
+Elicitation draws information from people and other sources, investigates what is already available and, when necessary, discovers information through experiments. It is not merely a list of interviews or an initial project phase. BABOK v3 distinguishes preparation, conducting elicitation, confirming results, communicating information and managing collaboration. Those distinctions make the status of evidence visible and prevent a conversation from becoming an unexamined commitment.
+
+## Why it matters
+
+Accurately recording one employee’s statement does not establish that it is universally true. Two departments may use one term differently, and a procedure may lag behind actual practice. Confirming elicitation results checks inaccuracies, conflicts and omissions. It does not replace later work to verify requirement quality, validate business relevance or obtain approval. Fast decisions based on misunderstood information can create costly rework and stakeholder distrust.
+
+## Theory and distinctions
+
+**Prepare:** identify the decision to inform, participants, techniques and supporting material. Stakeholder knowledge and collaboration needs influence the choice. **Conduct:** collaborative activities, research and experiments can be combined. A plan supplies focus without requiring the analyst to ignore unexpected information.
+
+**Confirm results:** compare captured information with its source and with other elicitation results. Stakeholder corrections, historical records and additional activities can explain discrepancies. Confirmed means accurately represented and checked for consistency, not that every business decision has been approved. If a conflict remains, investigate further and preserve the unresolved point explicitly.
+
+**Communicate:** choose language, detail, timing and format for the audience, then check understanding. An email being sent does not establish that its implications are understood. **Manage collaboration:** roles, attitudes and interests may change. Maintain relationships, discover missing stakeholders and make disagreements visible without undermining trust. Facilitation supports shared understanding; it does not automatically give the analyst authority to make all decisions.
+
+## Worked example
+
+In a loan service, branch staff say an application can be saved without documents; central operations say it cannot. An old manual only describes complete applications. The analyst does not immediately choose a winner. They examine examples, statuses and system versions.
+
+Branch staff mean a draft; operations mean a formally submitted application. The analyst separates the terms, confirms the revised findings with both groups and reviews a status model together. Any proposed business-rule change then receives separate impact analysis and an authorized decision. Resolving a terminology conflict is different from changing policy.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n P["Prepare: purpose and participants"] --> E["Elicit: collaboration, research, experiment"]\n E --> U["Unconfirmed findings"]\n U --> C["Compare sources and clarify"]\n C --> F["Confirmed findings"]\n C -. "Unresolved discrepancy" .-> E\n F --> M["Communicate and check understanding"]'
+  }
+/>
+
+The status of findings stays visible. An unresolved conflict can trigger more elicitation; sending information does not finish communication until understanding is checked.
+
+## Decision practice
+
+A participant confirms that notes are accurate but later rejects the proposed solution. This is not necessarily a contradiction: they confirmed the representation of their input, not an investment decision. Separate confirmed findings, open options and approval authority. Do not close the disagreement with “everyone already approved” when the earlier confirmation addressed a different question.
+
+## Common mistakes and better practice
+
+- Do not generalize one expert’s view to all users.
+- Do not turn an informal conversation into an immutable, source-free requirement.
+- A majority vote does not replace relevant legal or safety authority.
+- Investigate differences in terms and circumstances before blaming people.
+- Preserve when information was obtained and from whom.
+
+## Application exercise and explained answer
+
+**Exercise:** Write two open questions, one confirmation step and one communication method for the branch and operations groups.
+
+**Explained answer:** “Show how you last saved an application without documents” and “When does an application count as formally submitted?” focus on actual work. Compare the same example’s status history with the notes. A simple status model can expose the distinction both groups intended. Asking each group to explain the model in their own words checks understanding more effectively than merely sending it. These are example techniques; privacy and access constraints still apply.
+
+## Mini-quiz
+
+Identify the required outcome: new information, accurate capture, shared understanding, or authorized approval. They are different purposes and may require different actions.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Prepare → elicit → confirm against sources → communicate appropriately → check understanding. Collaboration continues throughout and adapts as participants and information change.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: §§4.1–4.5, pp. 56–73; particularly §4.2 description, p. 61; §4.3, pp. 65–66; §4.4 description, p. 68; §4.5 description, pp. 71–72. Distinctions concerning confirmation, checking and approval also refer to §5.5, pp. 95–96 and §§7.2–7.3, pp. 141–147.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

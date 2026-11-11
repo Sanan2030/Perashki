@@ -1,0 +1,105 @@
+---
+id: access-refresh-tokens
+locale: az
+title: 'Access token, refresh token və rotasiya yarışları'
+objectives:
+  - 'Hansı token-in resource server-ə, hansının authorization server-ə aid olduğunu müəyyən et.'
+  - 'Rotation, reuse detection və paralel refresh xətalarını izah et.'
+  - 'Universal lifetime uydurmadan expiration, revocation, logout və client storage tələblərini müəyyən et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Hansı token-in resource server-ə, hansının authorization server-ə aid olduğunu müəyyən et.
+- Rotation, reuse detection və paralel refresh xətalarını izah et.
+- Universal lifetime uydurmadan expiration, revocation, logout və client storage tələblərini müəyyən et.
+
+## Bu mövzu niyə vacibdir
+
+Mobil bank tətbiqi eyni anda beş 401 cavabı alır. Hər request eyni refresh token ilə session-u yeniləməyə çalışır. İlk refresh token-i rotation edir; başqa request artıq etibarsızlaşdırılmış dəyəri göndərir. Server bunu oğurluq kimi qiymətləndirib aktiv grant-ı ləğv edə bilər. Etibarlı session üçün həm təhlükəsiz protokol, həm əlaqələndirilmiş client davranışı lazımdır.
+
+## Əsas anlayışlar
+
+Access token qorunan resource-a verilmiş authorization-u təmsil edir; adətən audience, scope və lifetime ilə məhdudlaşır. Opaque və ya JWT daxil olmaqla structured ola bilər. JWT formatdır, OAuth tələbi deyil. Bearer token-i istifadə etmək üçün onun authorization məhdudiyyətləri daxilində token-ə sahib olmaq kifayətdir; transit və storage zamanı onu qoru.
+
+Refresh token authorization server-dən yeni access token almaq üçün credential-dır. Orders, payments və user profile API-ləri üçün token deyil. Onun verilməsi məcburi deyil. RFC 6749 eyni və ya daha dar scope ilə refresh-ə icazə verir; refresh gizlicə səlahiyyəti artırmaq fürsəti deyil. Hər tətbiqin refresh token aldığını və ya hər refresh token-in JWT olduğunu fərz etmə.
+
+RFC 9700 public client refresh token-lərinin sender-constrained olmasını və ya rotation ilə qorunmasını tələb edir. Rotation zamanı authorization server əvəzedici verərkən əvvəlki refresh token-i etibarsızlaşdırır və aralarındakı əlaqəni saxlayır. Etibarsızlaşdırılmış token-in təkrar istifadəsi mümkün komprometasiya siqnalıdır. Server hansı tərəfin qanuni olduğunu etibarlı ayıra bilmədiyindən həmin grant-ın aktiv refresh token-ini ləğv edir və yeni authorization grant tələb olunur.
+
+| Credential    | Nəzərdə tutulan alıcı                    | Vacib məhdudiyyət                                |
+| ------------- | ---------------------------------------- | ------------------------------------------------ |
+| Access token  | Səlahiyyət verilmiş resource server      | Düzgün audience, scope və validity               |
+| Refresh token | Authorization server-in token endpoint-i | Düzgün client/grant binding və replay protection |
+| ID Token      | OpenID Connect client                    | Həmin client üçün identity/authentication sübutu |
+
+Token family əlaqəli rotating token-lər üçün faydalı implementasiya terminidir; müəyyən DB schema-sının məcburiliyi deyil. High-entropy opaque refresh credential-larını qorunan şəkildə saxla: məsələn, seçilmiş dizayn orijinalı bərpa etmədən müqayisəyə imkan verirsə, server-də yalnız hash saxla. Application secret-lərini ayrıca qoru.
+
+Qısa access token lifetime-ı ifşa müddətini azaldır, amma dərhal revocation demək deyil. Brauzer cookie-sini silmək və ya refresh imkanını ləğv etmək əvvəl verilmiş self-contained access token-i bütün API-lərdə avtomatik etibarsızlaşdırmır. Dərhal yoxlama üçün introspection, revocation/session lookup və ya başqa dəstəklənən policy lazım ola bilər. Universal beş dəqiqəlik və ya otuz günlük standart lifetime yoxdur: riskə əsaslanan policy seçib sənədləşdir.
+
+## İşlənmiş nümunə
+
+Nümunə kimi beş dəqiqəlik access token və rotation olunan R1 refresh token götür. Bunlar tövsiyə olunan standart deyil, tədris dəyərləridir. Vaxt bitəndə client bir refresh əməliyyatı başladır. Paralel request-lər həmin ortaq əməliyyatı gözləyir. Authorization server R1-i atomik istehlak edib A2 və R2 verir. Client uyğun API request-lərini təkrarlamazdan əvvəl əvəzedicini saxlayır.
+
+```text
+A1 expired -> one refresh using R1 -> receive A2 + R2
+                 other requests wait
+retry safe/appropriately deduplicated requests using A2
+```
+
+Refresh cavabı itərsə, R1-i kor-koranə retry etmək reuse kimi görünə bilər. Düzgün cavabı identity provider-in protokolu və sənədləşdirilmiş recovery policy-si müəyyən edir. Client race-i gizlətmək üçün geniş reuse grace period yaratma; bu, replay threat modelini də dəyişir. Non-idempotent ödəniş request-ində A2 əldə etmək təkbaşına kor-koranə replay-i təhlükəsiz etmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Access token expires"] --> B["One coordinated refresh"]\n B --> C["Consume old refresh token"]\n C --> D["Issue replacement pair"]\n D --> E["Resume eligible requests"]\n C --> F["Reuse detected: revoke grant"]'
+  }
+/>
+
+Uğurlu axın köhnə refresh credential-ını istehlak edir. Sonrakı reuse uğurlu axının adi davamı deyil, ayrıca security event-dir.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Developer deyir: “Logout cookie-ni silir, ona görə bütün verilmiş JWT-lər dərhal dayanır.” Nə çatışmır?</summary>
+
+API-nin validation və revocation modeli. API yalnız signature və claim-ləri yoxlayırsa, self-contained token expiration-a qədər etibarlı qala bilər. Logout yerli session state-ini bitirməli və dəstəkləndiyi qədər refresh imkanını ləğv etməlidir. Tələblər artıq verilmiş access token-lərin dərhal rədd edilməli olub-olmadığını ayrıca göstərməlidir.
+
+</details>
+
+## Tipik səhvlər
+
+- Refresh token-i resource API-yə göndərmək credential exposure-u artırır və nəzərdə tutulan rolunu pozur.
+- Hər uğursuz request üçün ayrıca refresh başlatmaq qarşısı alına bilən rotation race yaradır.
+- Hər 401-i sonsuz retry etmək ləğv olunmuş session-u gizlədir və identity provider-i yükləyə bilər.
+- Client secret-i brauzer bundle-ında saxlamaq brauzeri confidential client etmir.
+- Bearer credential-ı URL-ə yazmaq log, history və referrer vasitəsilə ifşa edə bilər.
+
+## Praktik tapşırıq
+
+Brauzer əsaslı xərc sistemi üçün session recovery policy yaz. On request eyni anda uğursuz ola bilər, istifadəçi cihazı revoke edə bilər, refresh cavabı itə bilər. Concurrency davranışını, bir retry sərhədini, invalid_grant idarəsini və mövcud access token-lər üçün logout mənasını müəyyən et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Refresh-i session-un sahibi olan komponentdə əlaqələndir; bu arxitekturada ideal olaraq server-side session/BFF-də. On request bir refresh-i gözləsin, rotated credential atomik saxlanılsın, yalnız biznes replay policy-si icazə verən request-lər təkrarlansın. Orijinal request-i bir recovery cəhdi ilə məhdudlaşdır; yeni authentication xətası idarəni istifadəçiyə qaytarsın.
+
+invalid_grant-ı köhnə token-i yenə göndərmək siqnalı deyil, uğursuz grant say. Cavab itəndə provider-in recovery qaydasını izlə; təhlükəsiz recovery təsdiqlənmirsə, yeni authorization flow tələb et. Cihazın grant/session-unu ləğv et və API-lərin hər çağırışda revocation yoxladığını, yoxsa mövcud access token-ləri expiration-a qədər qəbul edə bildiyini sənədləşdir. Paralel refresh, itmiş cavab, clock skew, revoked cihaz və sonradan qayıdan offline client-i test et.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Access token → resource server. Refresh token → authorization server. Rotation → köhnə token-i etibarsızlaşdır, əlaqəni saxla. Reuse detection → aktiv grant-ı ləğv et. Paralel refresh-i əlaqələndir, retry-ni məhdudlaşdır. Logout və access token-in dərhal etibarsızlaşdırılması ayrı tələblərdir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749.html): §§1.4, 1.5 və 6.
+- [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html): §§2.2.2 və 4.14.
+- [OWASP OAuth guidance](https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html): terminlər və replay-in qarşısının alınması.
+
+Single-flight coordination, DB seçimi və beş dəqiqəlik nümunə orijinal implementasiya tövsiyəsidir; əlavə OAuth protokol tələbi deyil.

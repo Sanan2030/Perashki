@@ -1,0 +1,107 @@
+---
+id: devops-kubernetes-delivery
+locale: az
+title: 'Kubernetes çatdırılması: Deployment, Service və probe'
+objectives:
+  - 'Çatdırılma axınında Pod, Deployment və Service-i fərqləndir.'
+  - 'Fərqli nasazlıqlar üçün readiness, liveness və startup yoxlamaları seç.'
+  - 'Rollout xətasını və məlumatlarla uyğun recovery-ni izah et.'
+---
+
+## Öyrənmə məqsədləri
+
+- Çatdırılma axınında Pod, Deployment və Service-i fərqləndir.
+- Fərqli nasazlıqlar üçün readiness, liveness və startup yoxlamaları seç.
+- Rollout xətasını və məlumatlarla uyğun recovery-ni izah et.
+
+## Bu mövzu niyə vacibdir
+
+Yeni versiya ləng başlayır. Liveness yoxlaması initialization bitməmiş onu yenidən başladır; başqa bir deployment isə konfiqurasiyanı hələ yükləməmiş nüsxələrə trafik göndərir. Kubernetes göstərilən konfiqurasiyaya uyğunlaşır, amma spesifikasiyanın özü yanlış işləmə fərziyyələrinə əsaslanır.
+
+## Əsas anlayışlar
+
+Pod ortaq scheduling və network kontekstinə malik container-ləri qruplaşdırır. Deployment replica şəklində işləyən Pod-ları ReplicaSet-lər və desired-state controller vasitəsilə idarə edir. Service seçilmiş backend-lər üçün sabit xidmət abstraksiyası yaradır; nasaz tətbiqi düzəltmir. Label və selector-lar nəzərdə tutulan workload-ları birləşdirməlidir, əks halda trafik heç bir endpoint-ə və ya yanlış endpoint-ə çata bilər.
+
+Readiness container-in həmin routing axınında trafik qəbul etməyə hazır olub-olmadığını yoxlayır. Readiness xətası öz-özlüyündə container-in restart edilməli olduğunu göstərmir. Liveness restart-ın uyğun həll olduğu sağlam olmayan vəziyyəti aşkarlayır. Startup probe liveness/readiness yoxlamaları başlamazdan əvvəl ləng initialization-a vaxt verir. Ortaq, nasaz DB-ni yoxlayan pis layihələndirilmiş liveness probe başqa cəhətdən işlək bütün tətbiq nüsxələrini restart edib outage-i böyüdə bilər.
+
+Rolling update nüsxələri tədricən əvəzləyir. maxUnavailable və maxSurge rollout zamanı icazə verilən əlçatmaz və əlavə tutumu idarə edir. Bunlar cluster-də boş tutumun sübutu və ya istifadəçiyə sıfır təsirin avtomatik zəmanəti deyil. Readiness, connection draining, tətbiq uyğunluğu və tutumun hamısı vacibdir.
+
+Requests scheduling və resurs uçotuna istiqamət verir; limits isə runtime qaydaları daxilində resurs istifadəsini məhdudlaşdırır. CPU limit throttling-ə, həddindən artıq yaddaş istifadəsi prosesin dayandırılmasına səbəb ola bilər. Əsassız böyük request scheduling-ə mane ola, qeyri-real kiçik dəyərlər isə qeyri-sabitlik yarada bilər. Bir manifest-i bütün xidmətlər üçün köçürmək əvəzinə, parametrləri ölçmələrə əsasən seç.
+
+Progress deadline Deployment-ə dayanmış rollout haqqında məlumat verməyə imkan yaradır. Deadline bitəndə Kubernetes tətbiqin və ya DB-nin tam rollback-ini avtomatik həyata keçirmir. Əvvəlki Pod template-i bərpa etmək dağıdıcı schema migration-u və ya xarici ödənişi geri qaytarmır. Dəyişməz image kimliyini qeydə al və rollout-un data/API uyğunluğunu açıq göstər.
+
+## İşlənmiş nümunə
+
+API-nin initialization-u 90 saniyəyədək çəkir və /livez, /readyz endpoint-ləri var. Aşağıdakı hissə container spesifikasiyası daxilində yerləşir; threshold-lar nümunədir və ölçülməlidir:
+
+```yaml
+ports:
+  - containerPort: 8080
+startupProbe:
+  httpGet: { path: /livez, port: 8080 }
+  periodSeconds: 5
+  failureThreshold: 24
+livenessProbe:
+  httpGet: { path: /livez, port: 8080 }
+  periodSeconds: 10
+readinessProbe:
+  httpGet: { path: /readyz, port: 8080 }
+  periodSeconds: 5
+```
+
+Startup üçün ayrılmış vaxt nümunə büdcədir; hər başlanğıcın tamamlanacağının sübutu deyil. Readiness endpoint-i bu nüsxənin nəzərdə tutulan trafiki qəbul edə bilməsini əks etdirməlidir; liveness endpoint-i downstream sistemin hər keçici xətasını restart-a çevirməməlidir. Threshold-u dəyişməzdən əvvəl rollout status-u, event-ləri və resurs göstəricilərini yoxla.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Deployment desired state"] --> B["ReplicaSet and Pods"]\n B --> C["Startup completes"]\n C --> D["Readiness permits traffic"]\n D --> E["Service routes requests"]\n C --> F["Liveness detects restartable failure"]'
+  }
+/>
+
+Trafikə uyğunluq və restart qərarı ayrı siqnallara əsaslanır. Controller tətbiq üçün yanlış yoxlamalar olan konfiqurasiyaya da düzgün əməl edə bilər.
+
+## Qərarı təhlil et
+
+<details>
+<summary>DB 30 saniyə əlçatmazdır. Bütün API nüsxələrinin liveness yoxlaması dərhal uğursuz olmalıdırmı?</summary>
+
+Yalnız restart həqiqətən uyğun həll olduqda. Əks halda dizayn DB-ni düzəltmədən restart storm yarada bilər. Müvəqqəti trafik qəbul edə bilməməyi yerli prosesin bərpaolunmaz vəziyyətindən ayır.
+
+</details>
+
+## Tipik səhvlər
+
+- Readiness xətasını avtomatik container restart-ı saymaq probe məqsədlərini qarışdırır.
+- Startup üçün vaxt ayırmamaq ləng, amma sağlam initialization-u təkrar dayandıra bilər.
+- Selector uyğunsuzluğu Pod-lar işləyərkən belə routing-i poza bilər.
+- Rolling update icazə verilən surge üçün real tutum tələb edir.
+- Template rollback bütün biznes məlumatı dəyişikliklərini bərpa etmir.
+
+## Praktik tapşırıq
+
+Köhnə replica-lar Ready olduğu, yeniləri isə təkrar restart etdiyi üçün rollout dayanıb. Startup müddətini, liveness/readiness-i, resursları, image kimliyini və uyğunluğu əhatə edən araşdırma planlaşdır. Pod template-i geri qaytarmağın nə zaman kifayət etməyəcəyini göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Event-ləri və məhdud həcmdə log-ları araşdır, real image/digest-i yoxla və startup davranışını probe threshold-ları ilə müqayisə et. Resource request/limit-ləri, OOM termination və çatışmayan konfiqurasiya kimi xətaları yoxla. Readiness endpoint-lərinin və selector-ların istənilən trafik axınına uyğun olduğunu təsdiqlə. Mitigation hazırlayarkən sağlam tutumu saxla.
+
+Əvvəlki template uyğun tətbiq kodunu bərpa edə bilər; migration və ya xarici sistemdə artıq tamamlanmış təsir isə ayrıca recovery strategiyası tələb edir. Uğursuz progress condition tədbir görmək üçün sübutdur, avtomatik rollback sübutu deyil. Mitigation-dan sonra real istifadəçi axınını yenidən yoxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Pod ≠ Deployment ≠ Service. Startup initialization-u qoruyur; readiness trafikə uyğunluğu müəyyən edir; liveness restart başlada bilər. Rollout məhdudiyyətləri real tutum tələb edir. Dayanmış rollout avtomatik data rollback demək deyil.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/): yeniləmə, rollback və deployment status-u.
+- [Kubernetes probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/): liveness, readiness və startup davranışı.
+
+YAML hissəsi orijinal tədris nümunəsidir; bu tapşırıqda real cluster-ə tətbiq edilməyib.

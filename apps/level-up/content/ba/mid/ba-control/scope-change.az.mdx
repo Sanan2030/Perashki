@@ -1,0 +1,89 @@
+---
+id: scope-change
+locale: az
+title: 'Əhatə sərhədləri və dəyişiklik nəzarəti'
+objectives:
+  - 'Scope sərhədini və decision authority-ni müəyyən et.'
+  - 'Proposed change-i alternativ və impact ilə qiymətləndir.'
+  - 'Approved decision-u saxla və əlaqəli sübutu yenilə.'
+---
+
+## Öyrənmə məqsədləri
+
+- Scope sərhədini və decision authority-ni müəyyən et.
+- Proposed change-i alternativ və impact ilə qiymətləndir.
+- Approved decision-u saxla və əlaqəli sübutu yenilə.
+
+## Bu mövzu niyə vacibdir
+
+Yeni customer type əlavə etmək kimi kiçik request eligibility, billing, privacy, reporting və support-u dəyişir. “Sadəcə dropdown option” demək real scope-u gizlədir. Yaxşı change control bütün change-i pis saymadan və hər request-i qəbul etmədən trade-off-u açır.
+
+## Əsas anlayışlar
+
+Scope intended outcome, daxil capability və exclusion ilə change/solution sərhədini göstərir. Assumption və interface-i yaz: xarici görünən dependency feasibility-ni müəyyən edə bilər. Baseline qiymətləndirmə reference state-idir; öyrənmənin onu heç dəyişməyəcəyi vədi deyil.
+
+Change-i, rationale, source, urgency və affected requirement version-u saxla. Need, business rule, design, constraint və ya implementation detail dəyişdiyini müəyyən et. Kateqoriya iştirakçını yönəldir, amma authority-ni actual risk və governance seçir.
+
+Value, cost, timing, risk, dependency və mövcud user/operations impact-ını qiymətləndir. Trace link-i data, interface, test, training və support-a izlə. İndi qəbul, defer, split, experiment, alternativ və əsaslı decline müqayisə et. Estimate zəmanət kimi görünməməli; fərziyyə və uncertainty-ni göstərməlidir.
+
+Recommendation-u qərardan ayır. Analyst sübutu təşkil edib seçim tövsiyə edə bilər; approval agreed governance-da səlahiyyətli rola aiddir. Outcome, condition, owner və communication yaz. Requirement, baseline, plan və verification-u ardıcıl yenilə.
+
+Adaptive delivery açıq trade-off tələb edir. Scrum-da Product Owner Product Backlog-u sıralayır; öyrənmə artdıqca Sprint Goal təhlükəyə düşmədən Developers ilə scope dəqiqləşdirilib yenidən razılaşdırılır. Stakeholder request avtomatik əlavə Sprint işi icazəsi deyil; generic change board məcburi Scrum event kimi uydurulmamalıdır.
+
+## İşlənmiş nümunə
+
+Aktiv Sprint-də checkout komandasından business account dəstəyi istənir. Cari Sprint Goal individual customer payment completion-unu artırmaqdır. Analyst yeni tax field, invoicing rule və support ehtiyacını tapır. Product Owner və Developers kiçik dəqiqləşdirmənin goal-a uyğunluğunu yoxlayır; tam business account capability ayrıca qiymətləndirilir.
+
+Qərar geniş işi discovery üçün defer edir, cari goal-u dəstəkləyən dar correction-u saxlayır. Qeyddə value hypothesis, affected rule, assumption və next review var. UI field kiçik göründüyünə görə heç kim yeni account type-ı “pulsuz” adlandırmır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n Q[Change request and rationale] --> B[Baseline and scope]\n B --> I[Value risk cost and dependencies]\n I --> O[Compare options]\n O --> D[Authorized decision]\n D --> U[Update links plans and evidence]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Senior requester change-in kiçik olduğunu deyir. Impact assessment keçilə bilərmi?</summary>
+
+Vəzifə və ölçü iddiası shared rule/interface təsirini göstərmir. Riskə uyğun assessment et, real authority-ni tap, critical dependency-ni aç. Low-risk clarification üçün qısa review yetə bilər, amma səbəb sübutdan gəlməlidir.
+
+</details>
+
+## Tipik səhvlər
+
+- Hər change-i planning failure saymaq.
+- Yerini dəyişən işi nəzərə almadan yeni commitment almaq.
+- Analiz tövsiyəsini authorized approval saymaq.
+- Test/operational prosedur uyğunsuz qalarkən yalnız backlog yeniləmək.
+
+## Praktik tapşırıq
+
+Release-dən iki gün əvvəl yeni refund rule istənir. Accept-now, defer və limited experiment müqayisə et, səlahiyyətli qərar üçün sübutu müəyyənləşdir.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Rule-u payment behavior, data, reporting, test və customer communication-a bağla. Impact/uncertainty-ni qiymətləndir, məcburi deadline-ı tap, hansı işin çıxacağını soruş. Accept-now real verification/recovery sübutu, defer razılaşdırılmış nəticə və next decision point tələb edir; experiment policy-ni qoruyub exposure-u məhdudlaşdırmalıdır. Qərar sahibini yaz, controlled requirement və artifact-ları yenilə.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Request → rationale → baseline → impact və variant → authority → recorded decision → uyğun yeniləmə. Trade-off-u açıq saxlayaraq review-u riskə görə ölçüləndir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Təqdim edilmiş kitabın seçilmiş bölmələri orijinal izah və ssenariləri dəstəkləyir; mənbə mətni və üzvlər üçün PDF yayılmır.
+
+- BABOK §3.3 governance, §5.4 change assessment, §5.5 approval.
+- [Scrum Guide, November 2020](https://scrumguides.org/scrum-guide.html): Sprint Goal, Product Backlog və Sprint scope. Scrum əsasında uyğunlaşdırmalar: CC BY-SA 4.0, Ken Schwaber və Jeff Sutherland.

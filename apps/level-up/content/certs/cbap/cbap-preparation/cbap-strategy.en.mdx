@@ -1,0 +1,78 @@
+---
+id: cbap-strategy
+locale: en
+title: 'Strategic analysis under uncertainty'
+objectives:
+  - 'Analyze the current state and define a future state without prematurely fixing the solution.'
+  - 'Compare change strategies, risks, capability gaps and transition states.'
+---
+
+## Core concept
+
+Strategy Analysis connects an important need with a defensible approach to change. The unit of analysis may be an enterprise, business area, product or smaller initiative. BABOK v3 distinguishes understanding the current state, defining the future state, assessing risks and recommending a change strategy. These activities give context to requirements and design choices. A strategy is not just a technology selection or a more detailed delivery schedule.
+
+## Why it matters
+
+A sponsor may request a new platform when the real limitation is a policy, missing skill or handoff. Starting with the platform can narrow the alternatives before the need is understood. At the other extreme, documenting every feature of the enterprise may consume time without improving the decision. Investigate the current state in enough detail to understand why change is needed, what is affected and how progress could be assessed. Scope the investigation around the need rather than an arbitrary organizational chart.
+
+## Theory and distinctions
+
+**Current state:** Examine relevant capabilities, processes, people, technology, information, policies and external influences. Test assumptions hidden inside a proposed solution. Needs can emerge from strategic goals, operational problems, management information gaps or external drivers. Existing conditions may change while analysis continues.
+
+**Future state:** Describe necessary conditions and outcomes that would meet the need, with sufficient detail to compare approaches and assess value. Do not assume it must be an implementation-ready design. When value is uncertain, define useful measures and allow exploration of options. **Risk:** Examine possible adverse consequences, impact, likelihood and timing. The assessment may concern the existing state, transition or future operation. The task’s treatment focuses on uncertain negative outcomes; opportunities are addressed as needs.
+
+**Change strategy:** Compare alternative approaches using current state, future state, risks and stakeholder engagement. Identify capability gaps, investment, resources, scope and transition states. A transition may deliver only some capabilities and benefits; make that limitation explicit. A smaller change, exploratory pilot, phased implementation or no change may be defensible depending on evidence. The strategy should explain why the recommended path fits, not merely announce its name.
+
+## Worked example
+
+A regional insurer wants faster claim settlement. Leadership proposes replacing its claims platform. Initial investigation finds that software lookup is slow, but a major delay comes from duplicated approval rules across departments. Some branches also lack trained staff for an existing capability.
+
+The future state is described through reliable, shorter settlement with acceptable error exposure, not through “platform installed.” Analysis compares a process-and-training intervention, a phased platform change and a broad replacement. A process pilot may generate early evidence but leave integration limitations unresolved. A platform pilot may test a high-risk dependency but not yet deliver the complete service benefit. These examples use fictional conditions and no prescribed BABOK target percentages.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n N["Need: reliable faster settlement"] --> C["Understand current capabilities"]\n C --> F["Define future outcomes"]\n F --> G["Find capability gaps"]\n G --> R["Assess risks and alternatives"]\n R --> S["Select change strategy"]\n S --> T["Inspect transition value"]\n T --> C'
+  }
+/>
+
+The model connects needs, capability gaps and alternative strategies. Feedback is included because a change strategy can be revised when evidence or context changes. The diagram is an original teaching representation, not a copied figure from the guide.
+
+## Decision practice
+
+Leadership says the platform budget is already approved, so the strategy should not be questioned. Clarify the actual decision boundary: funding may authorize investigation rather than commit every design choice. Present the need, alternative consequences and remaining uncertainty within that boundary. If a constraint truly is fixed, analyze how value could be achieved under it and expose any contradiction with the desired outcome. Do not silently invent authority to overturn the decision or conceal evidence to preserve a preferred approach.
+
+## Common mistakes and better practice
+
+- Do not define success only as installing the selected technology.
+- Avoid treating every current-state detail as necessary before making any progress.
+- Do not describe a transition state as delivering benefits its incomplete capabilities cannot yet support.
+- Consider risks of transition and operation, not only delivery completion.
+- Do not make the existing investment the sole reason to continue.
+- Revisit assumptions when the context changes rather than preserving a strategy through habit.
+
+## Application exercise and explained answer
+
+**Exercise:** For the insurer, compare a process pilot and phased platform change. Specify one capability gap, one important risk, one transition-state limitation and one observation that would change your recommendation.
+
+**Explained answer:** A gap might be consistent approval rules; a risk might be incorrect routing after responsibilities change. A process pilot could improve one branch while leaving cross-branch integration unresolved. A phased platform change could test integration while delaying broader settlement benefits. If reliable observations show the approval problem dominates delay and can be addressed safely, that supports an initial process intervention. If an essential platform limitation prevents any useful process change, the recommendation may differ. The answer should preserve these conditional relationships instead of declaring one strategy universally superior.
+
+## Mini-quiz
+
+In the questions, distinguish the desired outcome from the chosen approach. Ask what is known about the current state, which necessary condition is missing and what risk or evidence makes one strategy more suitable. A longer plan is not automatically a better strategy.
+
+<LessonCheck />
+
+## Cheat sheet
+
+Need → relevant current state → desired future conditions → capability gap → risks and alternatives → recommended transition path. Explain value, investment, uncertainty and what each transition actually delivers. Keep the reasoning open to new information.
+
+## Sources and scope
+
+BABOK Guide v3, 2015: §6.1, pp. 103–110; §6.2, pp. 110–119; §6.3, pp. 120–124; §6.4, pp. 124–131. Principal passages consulted: purposes/descriptions on 103, 105, 110–111, 120, 124–125, and solution scope/gap analysis on 127. Page numbers are printed book pages. Current CBAP exam rules remain a separate source.
+
+- [IIBA — BABOK Guide and business analysis resources](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/)
+- [IIBA — certification information](https://www.iiba.org/business-analysis-certifications/)
+
+Explanations and examples are original teaching material. The uploaded member PDF is not distributed on this site. Practice questions are independently authored and are not official exam questions.

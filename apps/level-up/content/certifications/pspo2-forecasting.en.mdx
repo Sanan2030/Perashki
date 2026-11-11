@@ -1,0 +1,74 @@
+---
+id: pspo2-forecasting
+locale: en
+title: 'Forecasting, release and uncertainty'
+objectives:
+  - 'Check when historical data is comparable.'
+  - 'Separate release forecasts from outcome value and Sprint timing.'
+---
+
+## Concept
+
+A forecast estimates the future using current evidence and assumptions. Commitments and contracts do not make the future fully knowable. The book’s Forecasting Basics section recommends using historical Done work and communicating uncertainty. The Scrum Guide notes that burndowns, burnups and cumulative flows can help, while not replacing empiricism. No particular chart is mandated by Scrum.
+
+## Why it matters
+
+Turning a simple average into a promised date without checking comparability is risky. Changes in item size, team composition, dependencies, availability or Definition of Done weaken historical comparisons. Kanban defines Throughput as completed items per unit of time; it is not a sum of story points. Do not create a universal productivity score by adding different teams’ points. State the data, system boundary and limitations behind the forecast.
+
+## Decision principles
+
+If a date is fixed, compare smaller useful scope, dependency exposure and release options. Lowering quality or calling unfinished work Done does not improve a forecast. Sprint Review is not permission to release: a Done Increment can be delivered before the Sprint ends when operational conditions permit. Conversely, frequent release does not prove customer benefit. Delivery predictability and user outcomes require different evidence.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Done history"] --> B["Comparability and limits"]\n B --> C["Scope options"]\n C --> D["Forecast"]\n E["New evidence"] --> B'
+  }
+/>
+
+## Worked scenario
+
+An event is six weeks away. Across four comparable weeks the team finished 3, 4, 3 and 6 items. Twenty-four remain, including one larger item dependent on an external provider. The sponsor says “four per week, so exactly six weeks.”
+
+## Decision reasoning
+
+The average of four items per week starts a planning conversation; it is not a guarantee. Four observations are limited history, and the larger dependent item undermines comparability. Identify the smallest end-to-end outcome needed for the event, inspect the dependency and separate optional scope into another release. Update as new Done evidence arrives. These are teaching numbers; no statistical confidence interval is claimed.
+
+## Common pitfalls
+
+### Release strategy depends on the adoption context
+
+Being Done does not force immediate exposure to every user. A customer needing coordinated training or an operational transition may benefit from a predictable release cadence. Another product may benefit from release on demand. Inspect waiting cost, adoption readiness, quality and feedback speed. Sprint Review remains an inspection/adaptation event, not a compulsory release gate. Scrum prescribes neither continuous public release nor quarterly release windows.
+
+For simulation percentiles, inconclusive experiment intervals and evidence limitations, continue to [Probability, experiments and evidence quality](/en/lessons/pspo2-evidence-uncertainty).
+
+Treating an average as a precise deadline; confusing completed components with integrated work; rewarding teams for velocity; equating release speed with product value; updating a forecast only when management asks. An SLE is not an individual-item guarantee and does not automatically forecast completion of an entire backlog.
+
+## Application exercise
+
+Write four sentences for the sponsor: history, uncertainty, scope option and next update. Then distinguish “more points completed” from “users complete bookings independently” as evidence of product outcomes.
+
+## Explained solution
+
+<details>
+<summary>Show explained solution</summary>
+
+“Comparable history averages four items per week. The larger item and external dependency mean twenty-four items in six weeks is not guaranteed. We are evaluating release of the essential booking journey first, with optional reports later. We will update after the next Done evidence and provider information.” Point volume is a planning signal; a user successfully completing a task is closer to an outcome.
+
+</details>
+
+## Check understanding and remember
+
+History + comparability + limitations + options + update. A forecast is not proof of value; Done and quality boundaries remain.
+
+<LessonCheck />
+
+## Sources and scope
+
+The Professional Product Owner: chapter 8, Forecasting Basics and Forecasting Across Multiple Products; chapter 3, Perversion of Metrics. Scrum Guide 2020: The Sprint, pp. 7–8; Increment, pp. 11–12. Kanban Guide for Scrum Teams 2021: Basic Metrics, p. 4; SLE, p. 6. Competencies: Forecasting & Release Planning, Product Value and Optimizing Flow. Older Development Team terminology is updated to Developers for current Scrum rules.
+
+- [The Professional Product Owner](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [Scrum Guide](https://scrumguides.org/scrum-guide.html)
+- [Kanban Guide for Scrum Teams](https://www.scrum.org/resources/kanban-guide-scrum-teams)
+- [Professional Scrum Competencies](https://www.scrum.org/professional-scrum-competencies)

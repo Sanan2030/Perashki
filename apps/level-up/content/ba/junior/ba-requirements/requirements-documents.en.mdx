@@ -1,0 +1,88 @@
+---
+id: requirements-documents
+locale: en
+title: 'BRD, FRD and SRS without duplication'
+objectives:
+  - 'Separate business outcomes, behavior and solution constraints.'
+  - 'Choose document views for an audience and decision.'
+  - 'Write traceable requirements with verification evidence.'
+---
+
+## Learning objectives
+
+- Separate business outcomes, behavior and solution constraints.
+- Choose document views for an audience and decision.
+- Write traceable requirements with verification evidence.
+
+## Why this matters
+
+A BRD promises a business outcome, an FRD describes a workflow and an SRS specifies a performance constraint. If the same refund rule is copied into all three and later changed in only one, the organization has three contradictory promises. Document structure should support decisions and controlled change.
+
+## Core theory
+
+Document names vary across organizations. BABOK does not mandate that every initiative produce a BRD, FRD and SRS. Agree the analysis approach, required approvals and information architecture before selecting templates.
+
+A business requirements document commonly describes the problem, objectives, scope, stakeholders, expected value and constraints. A functional requirements view describes observable capabilities and behavior, including ordinary and exceptional paths. A software or system requirements specification can organize behavior, interfaces, data, quality attributes and constraints for a particular solution boundary. Their contents may overlap; their purpose and ownership must be explicit.
+
+Give requirements stable identifiers, a source, rationale, status and acceptance or verification criteria. Separate a need from a proposed design. “Reduce manual reconciliation effort” is a desired outcome; “show a button on the top right” is a design choice that needs justification. A design can be documented without pretending that it is the only way to meet the need.
+
+Use measurable language. “Fast and secure” is not a testable contract. State the operation, conditions, eligible population, metric and threshold where justified. Avoid inventing performance targets merely to fill a template; record unconfirmed targets as open decisions.
+
+Keep one controlled requirement record where possible and link document views to it. Version a baseline for a specific review, retain changes and establish who may approve them. Verification asks whether the requirement is expressed with adequate quality; validation asks whether it supports the intended need; approval records the authorized decision. A signed document does not automatically establish that the solution will realize value.
+
+## Worked example
+
+Requirement `REF-014` states that an eligible settled payment can be refunded once up to the remaining refundable amount, subject to the approved policy. The business view links it to reduced duplicate-refund loss. The functional view describes the request, authorization, provider interaction and unresolved-outcome path. The solution view specifies the API contract and reconciliation evidence.
+
+Instead of copying the amount rule into three independent paragraphs, each view links to `REF-014` and its current baseline. A change to eligibility triggers impact analysis of the policy, interface, tests, support procedure and existing customers. Reviewers can see what changed and which evidence will confirm the behavior.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n N[Business need] --> R[Controlled requirement record]\n R --> B[Business view]\n R --> F[Functional view]\n R --> S[Solution and interface view]\n R --> T[Acceptance and verification evidence]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A stakeholder signs the BRD. Does that prove the API meets its latency requirement?</summary>
+
+No. The signature records approval within an agreed authority and scope. Meeting a latency requirement needs an operational definition and representative measurement evidence. Keep the approval decision, requirement-quality review and solution verification separate.
+
+</details>
+
+## Common mistakes
+
+- Treating document titles as universally standardized deliverables.
+- Copying requirements without stable IDs and ownership.
+- Mixing confirmed rules with assumptions without status labels.
+- Using a completed template as proof of business value.
+
+## Practice exercise
+
+Write one business objective, one functional requirement and one measurable quality requirement for a refund service. Identify which values still need stakeholder confirmation and how the three records relate.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+An objective could reduce avoidable reconciliation effort in a defined population. A functional requirement could provide an authorized refund request with a visible pending state for unknown provider outcomes. A quality requirement should define a particular operation, workload, metric and agreed threshold; leave an unconfirmed threshold as an explicit decision. Link each to its source and the acceptance evidence rather than inventing a universal response-time target.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Purpose and audience first. Stable IDs and one controlled record. Separate need, design, quality, assumptions and approval. Link requirements to evidence.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the user-supplied book support these original explanations; the PDF and source prose are not republished.
+
+Selected sections: §3.4 information management, §5.1 traceability, §7.1 specification/modelling, §§7.2–7.3 verification and validation. The BRD/FRD/SRS arrangement is an original example of organizational document views, not a mandatory BABOK template.

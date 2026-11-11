@@ -1,0 +1,625 @@
+[
+  {
+    "id": "ba-001",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 1,
+    "text": {
+      "en": "A new analyst receives only a senior manager’s view of the call-center process. What should they do to understand the people affected?",
+      "az": "Yeni analitik zəng mərkəzi prosesi barədə yalnız rəhbərin rəyini alır. Təsirlənən insanları anlamaq üçün nə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Map affected stakeholders, their influence, and their needs.",
+          "az": "Təsirlənən maraqlı tərəfləri, təsirlərini və ehtiyaclarını xəritələmək."
+        },
+        "explanation": {
+          "en": "A stakeholder map reveals whose input and participation are needed.",
+          "az": "Maraqlı tərəflərin xəritəsi kimin rəyinə və iştirakına ehtiyac olduğunu göstərir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Use only the sponsor’s opinion and exclude affected users.",
+          "az": "Yalnız sponsorun rəyindən istifadə edib təsirlənən istifadəçiləri kənarda saxlamaq."
+        },
+        "explanation": {
+          "en": "One opinion cannot establish all affected needs, workflows, or impacts.",
+          "az": "Bir rəy bütün təsirlənən ehtiyacları, iş axınlarını və təsirləri müəyyən edə bilməz."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat a manager’s signature as sufficient proof that the need is satisfied.",
+          "az": "Rəhbərin imzasını ehtiyacın ödənilməsinin kifayət qədər sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Authorization alone does not demonstrate observable business behavior or achieved value.",
+          "az": "Təkcə icazə müşahidə olunan biznes davranışını və ya əldə olunan dəyəri göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A stakeholder map reveals whose input and participation are needed.",
+      "az": "Maraqlı tərəflərin xəritəsi kimin rəyinə və iştirakına ehtiyac olduğunu göstərir."
+    },
+    "lessonId": "stakeholder-mapping",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-002",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 1,
+    "text": {
+      "en": "A team writes “easy checkout” as its only acceptance condition. How can a Junior BA improve this?",
+      "az": "Komanda yeganə qəbul şərti kimi “asan ödəniş” yazır. Junior BA bunu necə yaxşılaşdıra bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Describe observable examples of acceptable behavior.",
+          "az": "Qəbul edilən davranışı müşahidə olunan nümunələrlə təsvir etmək."
+        },
+        "explanation": {
+          "en": "Acceptance criteria make the intended behavior testable without prescribing every implementation detail.",
+          "az": "Acceptance criteria bütün texniki detalları diktə etmədən davranışı yoxlanılan edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Write “the system must be fast and user-friendly.”",
+          "az": "“Sistem sürətli və istifadəsi rahat olmalıdır” yazmaq."
+        },
+        "explanation": {
+          "en": "Undefined adjectives provide no agreed threshold or observable acceptance evidence.",
+          "az": "Müəyyən edilməmiş sifətlər razılaşdırılmış hədd və müşahidə olunan qəbul sübutu vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Count delivered features as proof of customer benefit.",
+          "az": "Təqdim olunan funksiyaların sayını müştəri faydasının sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Output volume does not establish adoption, benefit, or a changed business outcome.",
+          "az": "Çıxış həcmi qəbul, fayda və ya dəyişmiş biznes nəticəsini sübut etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Acceptance criteria make the intended behavior testable without prescribing every implementation detail.",
+      "az": "Acceptance criteria bütün texniki detalları diktə etmədən davranışı yoxlanılan edir."
+    },
+    "lessonId": "stories-gherkin",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-003",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 1,
+    "text": {
+      "en": "Users can cancel an order before dispatch but not afterward. Which representation clarifies this rule?",
+      "az": "İstifadəçilər sifarişi göndərilməzdən əvvəl ləğv edə bilərlər, sonra isə yox. Hansı təsvir bu qaydanı aydınlaşdırır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Model allowed states and the events that cause transitions.",
+          "az": "İcazə verilən vəziyyətləri və keçid yaradan hadisələri modelləşdirmək."
+        },
+        "explanation": {
+          "en": "A state model clarifies lifecycle rules, including transitions that must be rejected.",
+          "az": "Vəziyyət modeli rədd edilməli keçidlər daxil olmaqla həyat dövrü qaydalarını aydınlaşdırır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Describe only the successful path and ignore failures.",
+          "az": "Yalnız uğurlu yolu təsvir edib xətaları nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "Important business rules and recovery needs often appear in alternative and failure paths.",
+          "az": "Vacib biznes qaydaları və bərpa ehtiyacları çox vaxt alternativ və xəta yollarında görünür."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Measure success only by the number of documents produced.",
+          "az": "Uğuru yalnız hazırlanan sənədlərin sayı ilə ölçmək."
+        },
+        "explanation": {
+          "en": "Document volume does not establish understanding, business outcomes, or solution fitness.",
+          "az": "Sənəd həcmi anlayışı, biznes nəticəsini və ya həllin uyğunluğunu sübut etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A state model clarifies lifecycle rules, including transitions that must be rejected.",
+      "az": "Vəziyyət modeli rədd edilməli keçidlər daxil olmaqla həyat dövrü qaydalarını aydınlaşdırır."
+    },
+    "lessonId": "uml-models",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-004",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "A fraud rule change may affect several integration partners. What should a Mid BA establish before recommending approval?",
+      "az": "Dələduzluq qaydasının dəyişikliyi bir neçə inteqrasiya tərəfdaşına təsir edə bilər. Mid BA təsdiq tövsiyəsindən əvvəl nə qurmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Assess effects on value, scope, dependencies, cost, and risk.",
+          "az": "Dəyərə, əhatəyə, asılılıqlara, xərcə və riskə təsiri qiymətləndirmək."
+        },
+        "explanation": {
+          "en": "Impact analysis makes a change decision informed rather than automatic.",
+          "az": "Təsir təhlili dəyişiklik qərarını avtomatik deyil, məlumatlı edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Reject every change because the requirements were previously approved.",
+          "az": "Tələblər əvvəldən təsdiqləndiyi üçün bütün dəyişiklikləri rədd etmək."
+        },
+        "explanation": {
+          "en": "Previous approval does not remove the need to evaluate a legitimate change and its consequences.",
+          "az": "Əvvəlki təsdiq əsaslı dəyişiklik və nəticələrini qiymətləndirmək ehtiyacını aradan qaldırmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Give the loudest stakeholder permanent priority.",
+          "az": "Ən çox israr edən tərəfə daimi üstünlük vermək."
+        },
+        "explanation": {
+          "en": "Influence alone is not evidence of customer value, urgency, or alignment with the product goal.",
+          "az": "Təsir gücü təkbaşına müştəri dəyəri, təcililik və ya məhsul məqsədinə uyğunluq sübutu deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Impact analysis makes a change decision informed rather than automatic.",
+      "az": "Təsir təhlili dəyişiklik qərarını avtomatik deyil, məlumatlı edir."
+    },
+    "lessonId": "scope-change",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-005",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "en": "A loan journey has repeated delays at departmental boundaries. What should a Mid BA make visible before proposing automation?",
+      "az": "Kredit yolunda bölmə sərhədlərində təkrar gecikmələr var. Mid BA avtomatlaşdırma təklifindən əvvəl nəyi görünən etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Model the current flow, handoffs, and exception paths.",
+          "az": "Cari axını, ötürmələri və istisna yollarını modelləşdirmək."
+        },
+        "explanation": {
+          "en": "A process model makes delays and responsibility boundaries visible.",
+          "az": "Proses modeli gecikmələri və məsuliyyət sərhədlərini görünən edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Implement the requested interface before investigating the need.",
+          "az": "Ehtiyacı araşdırmadan istənilən interfeysi hazırlamaq."
+        },
+        "explanation": {
+          "en": "This commits to a solution before evidence establishes which problem should be solved.",
+          "az": "Bu, hansı problemin həll edilməli olduğu sübut edilmədən həllə öhdəlik yaradır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Copy a competitor’s feature without checking the customer problem.",
+          "az": "Müştəri problemini yoxlamadan rəqibin funksiyasını təkrarlamaq."
+        },
+        "explanation": {
+          "en": "Competitor behavior does not establish whether the same solution addresses this product’s users or strategy.",
+          "az": "Rəqibin davranışı eyni həllin bu məhsulun istifadəçilərinə və ya strategiyasına uyğun olduğunu sübut etmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A process model makes delays and responsibility boundaries visible.",
+      "az": "Proses modeli gecikmələri və məsuliyyət sərhədlərini görünən edir."
+    },
+    "lessonId": "bpmn-process",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-006",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "en": "A delivered self-service portal has not reduced calls as expected. Which analysis should the BA perform?",
+      "az": "Təqdim olunan özünəxidmət portalı zəngləri gözlənildiyi qədər azaltmayıb. BA hansı təhlili aparmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compare observed outcomes with the agreed success measures.",
+          "az": "Müşahidə olunan nəticələri razılaşdırılmış uğur göstəriciləri ilə müqayisə etmək."
+        },
+        "explanation": {
+          "en": "Solution evaluation looks for achieved value and limitations after a solution is used.",
+          "az": "Həllin qiymətləndirilməsi istifadə zamanı əldə olunan dəyəri və məhdudiyyətləri araşdırır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Count delivered features as proof of customer benefit.",
+          "az": "Təqdim olunan funksiyaların sayını müştəri faydasının sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Output volume does not establish adoption, benefit, or a changed business outcome.",
+          "az": "Çıxış həcmi qəbul, fayda və ya dəyişmiş biznes nəticəsini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat a manager’s signature as sufficient proof that the need is satisfied.",
+          "az": "Rəhbərin imzasını ehtiyacın ödənilməsinin kifayət qədər sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Authorization alone does not demonstrate observable business behavior or achieved value.",
+          "az": "Təkcə icazə müşahidə olunan biznes davranışını və ya əldə olunan dəyəri göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Solution evaluation looks for achieved value and limitations after a solution is used.",
+      "az": "Həllin qiymətləndirilməsi istifadə zamanı əldə olunan dəyəri və məhdudiyyətləri araşdırır."
+    },
+    "lessonId": "solution-evaluation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-007",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 3,
+    "text": {
+      "en": "Executives support a costly platform replacement but cannot name the capabilities it must improve. What should a Lead BA clarify?",
+      "az": "Rəhbərlər bahalı platforma əvəzlənməsini dəstəkləyirlər, amma yaxşılaşdırılmalı imkanları deyə bilmirlər. Lead BA nəyi dəqiqləşdirməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compare the current capabilities with the capabilities required for the desired state.",
+          "az": "Cari imkanları arzu olunan vəziyyət üçün lazım olan imkanlarla müqayisə etmək."
+        },
+        "explanation": {
+          "en": "Gap analysis identifies what must change between the current and desired situations.",
+          "az": "Boşluq təhlili cari və arzu olunan vəziyyət arasında nəyin dəyişməli olduğunu göstərir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Implement the requested interface before investigating the need.",
+          "az": "Ehtiyacı araşdırmadan istənilən interfeysi hazırlamaq."
+        },
+        "explanation": {
+          "en": "This commits to a solution before evidence establishes which problem should be solved.",
+          "az": "Bu, hansı problemin həll edilməli olduğu sübut edilmədən həllə öhdəlik yaradır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Continue because the organization has already spent heavily.",
+          "az": "Təşkilat artıq çox xərc çəkdiyi üçün davam etmək."
+        },
+        "explanation": {
+          "en": "Past spending cannot be recovered by making an additional poor investment.",
+          "az": "Əlavə zəif sərmayə keçmiş xərci geri qaytara bilməz."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Gap analysis identifies what must change between the current and desired situations.",
+      "az": "Boşluq təhlili cari və arzu olunan vəziyyət arasında nəyin dəyişməli olduğunu göstərir."
+    },
+    "lessonId": "gap-root-cause",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-008",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 3,
+    "text": {
+      "en": "Several projects compete for the same scarce specialist and obscure each other’s delivery risk. What should a Lead BA surface?",
+      "az": "Bir neçə layihə eyni məhdud mütəxəssis üçün rəqabət aparır və bir-birinin çatdırılma riskini gizlədir. Lead BA nəyi üzə çıxarmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compare the best alternative use of the same capacity.",
+          "az": "Eyni imkanların ən yaxşı alternativ istifadəsini müqayisə etmək."
+        },
+        "explanation": {
+          "en": "Opportunity cost recognizes value forgone when one option consumes constrained capacity.",
+          "az": "Fürsət xərci məhdud imkanları bir seçimə ayırarkən itirilən alternativ dəyəri nəzərə alır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Keep every specialist fully busy even if work accumulates unfinished.",
+          "az": "Bitməmiş iş yığılsa da hər mütəxəssisi tam məşğul saxlamaq."
+        },
+        "explanation": {
+          "en": "Local utilization can increase queues and delay the completion of valuable work.",
+          "az": "Yerli məşğulluq növbələri artıra və dəyərli işin tamamlanmasını gecikdirə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Label every request as mandatory without comparing consequences.",
+          "az": "Nəticələri müqayisə etmədən hər istəyi məcburi saymaq."
+        },
+        "explanation": {
+          "en": "If everything is essential, the classification offers no useful basis for trade-offs.",
+          "az": "Hər şey zəruridirsə, təsnifat seçimlər üçün faydalı əsas vermir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Opportunity cost recognizes value forgone when one option consumes constrained capacity.",
+      "az": "Fürsət xərci məhdud imkanları bir seçimə ayırarkən itirilən alternativ dəyəri nəzərə alır."
+    },
+    "lessonId": "prioritization",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-009",
+    "trackId": "ba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 3,
+    "text": {
+      "en": "A powerful stakeholder asks the BA team to omit unfavorable pilot results from the steering pack. What response supports professional leadership?",
+      "az": "Nüfuzlu tərəf BA komandasından mənfi pilot nəticələrini idarəetmə paketindən çıxarmağı istəyir. Hansı reaksiya peşəkar liderliyi dəstəkləyir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Disclose the uncertainty and protect sensitive participant information.",
+          "az": "Qeyri-müəyyənliyi açıqlamaq və iştirakçıların həssas məlumatlarını qorumaq."
+        },
+        "explanation": {
+          "en": "Honest evidence and appropriate data handling are necessary for trustworthy analysis.",
+          "az": "Dürüst sübut və düzgün məlumat emalı etibarlı təhlil üçün zəruridir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Remove conflicting evidence from the report to simplify the decision.",
+          "az": "Qərarı sadələşdirmək üçün ziddiyyətli sübutu hesabatdan silmək."
+        },
+        "explanation": {
+          "en": "Hiding evidence misleads decision makers and conceals uncertainty.",
+          "az": "Sübutu gizlətmək qərar verənləri yanıltmaqla qeyri-müəyyənliyi ört-basdır edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat a manager’s signature as sufficient proof that the need is satisfied.",
+          "az": "Rəhbərin imzasını ehtiyacın ödənilməsinin kifayət qədər sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Authorization alone does not demonstrate observable business behavior or achieved value.",
+          "az": "Təkcə icazə müşahidə olunan biznes davranışını və ya əldə olunan dəyəri göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Honest evidence and appropriate data handling are necessary for trustworthy analysis.",
+      "az": "Dürüst sübut və düzgün məlumat emalı etibarlı təhlil üçün zəruridir."
+    },
+    "lessonId": "analysis-governance",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-010",
+    "trackId": "ba",
+    "type": "ordering",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "For this small refund change, the team agreed to trace one business need through a requirement, its implementation, and acceptance evidence. Arrange those four records in the order that explains the trace from why to verified behavior. This is a trace walkthrough, not a rule that all analysis must be sequential.",
+      "az": "Bu kiçik geri ödəniş dəyişikliyi üçün komanda bir biznes ehtiyacını tələbə, tətbiqinə və qəbul sübutuna bağlamağa razılaşıb. Dörd qeydi səbəbdən yoxlanılmış davranışa doğru izi izah edən sıra ilə düzün. Bu, izlənəbilənlik nümunəsidir; bütün təhlilin ardıcıl olması qaydası deyil."
+    },
+    "options": [
+      {
+        "id": "need",
+        "text": {
+          "en": "State the refund-delay problem and the desired business outcome.",
+          "az": "Geri ödəniş gecikməsi problemini və arzu olunan biznes nəticəsini göstərmək."
+        },
+        "explanation": {
+          "en": "The need explains why this change is being considered.",
+          "az": "Ehtiyac bu dəyişikliyin niyə nəzərdən keçirildiyini izah edir."
+        }
+      },
+      {
+        "id": "requirement",
+        "text": {
+          "en": "Describe the refund behavior and link it to that need.",
+          "az": "Geri ödəniş davranışını təsvir edib həmin ehtiyaca bağlamaq."
+        },
+        "explanation": {
+          "en": "The requirement expresses the behavior expected to address the need.",
+          "az": "Tələb ehtiyacı qarşılaması gözlənilən davranışı ifadə edir."
+        }
+      },
+      {
+        "id": "implementation",
+        "text": {
+          "en": "Link the implemented change to the agreed requirement.",
+          "az": "Tətbiq olunan dəyişikliyi razılaşdırılmış tələblə əlaqələndirmək."
+        },
+        "explanation": {
+          "en": "The implementation link shows which solution work realizes the requirement.",
+          "az": "Tətbiq əlaqəsi hansı həll işinin tələbi gerçəkləşdirdiyini göstərir."
+        }
+      },
+      {
+        "id": "evidence",
+        "text": {
+          "en": "Record the result of an acceptance check linked to the requirement and implementation.",
+          "az": "Tələbə və tətbiqə bağlı qəbul yoxlamasının nəticəsini qeyd etmək."
+        },
+        "explanation": {
+          "en": "Acceptance evidence indicates whether the implemented behavior meets the stated expectation.",
+          "az": "Qəbul sübutu tətbiq edilən davranışın göstərilən gözləntiyə uyğun olub-olmadığını bildirir."
+        }
+      }
+    ],
+    "correct": ["need", "requirement", "implementation", "evidence"],
+    "explanation": {
+      "en": "The trace reads need → requirement → implementation → acceptance evidence. Tests and models may be designed earlier and refined iteratively; this question orders the explanation of one trace, not the entire project lifecycle.",
+      "az": "İz ehtiyac → tələb → tətbiq → qəbul sübutu kimi oxunur. Testlər və modellər daha əvvəl hazırlana və iterativ dəqiqləşdirilə bilər; bu sual bütün layihə həyat dövrünü deyil, bir izin izahını sıralayır."
+    },
+    "lessonId": "traceability",
+    "practiceOnly": true
+  },
+  {
+    "id": "ba-011",
+    "trackId": "ba",
+    "type": "matching",
+    "domain": "requirements-design",
+    "difficulty": 1,
+    "text": {
+      "en": "Match each statement to the requirement type it most directly expresses. Use each type once.",
+      "az": "Hər ifadəni birbaşa ifadə etdiyi tələb növü ilə uyğunlaşdırın. Hər növdən bir dəfə istifadə edin."
+    },
+    "prompts": [
+      {
+        "en": "Reduce the operational cost of refund handling by 20%.",
+        "az": "Geri ödəniş emalının əməliyyat xərcini 20% azaltmaq."
+      },
+      {
+        "en": "A support agent needs to understand why a refund was rejected.",
+        "az": "Dəstək əməkdaşı geri ödənişin niyə rədd edildiyini anlamalıdır."
+      },
+      {
+        "en": "The system shall display the rejection reason to an authorized agent.",
+        "az": "Sistem səlahiyyətli əməkdaşa rədd səbəbini göstərməlidir."
+      },
+      {
+        "en": "The reason shall appear within two seconds under the agreed load.",
+        "az": "Razılaşdırılmış yük altında səbəb iki saniyə ərzində görünməlidir."
+      }
+    ],
+    "options": [
+      {
+        "id": "business",
+        "text": {
+          "en": "Business requirement",
+          "az": "Biznes tələbi"
+        },
+        "explanation": {
+          "en": "An organizational outcome states why the change matters.",
+          "az": "Təşkilati nəticə dəyişikliyin niyə vacib olduğunu göstərir."
+        }
+      },
+      {
+        "id": "stakeholder",
+        "text": {
+          "en": "Stakeholder requirement",
+          "az": "Maraqlı tərəf tələbi"
+        },
+        "explanation": {
+          "en": "A stakeholder requirement expresses what a particular person or group needs.",
+          "az": "Maraqlı tərəf tələbi konkret şəxsin və ya qrupun ehtiyacını ifadə edir."
+        }
+      },
+      {
+        "id": "functional",
+        "text": {
+          "en": "Functional solution requirement",
+          "az": "Funksional həll tələbi"
+        },
+        "explanation": {
+          "en": "A functional requirement describes observable solution behavior.",
+          "az": "Funksional tələb həllin müşahidə olunan davranışını təsvir edir."
+        }
+      },
+      {
+        "id": "quality",
+        "text": {
+          "en": "Non-functional solution requirement",
+          "az": "Qeyri-funksional həll tələbi"
+        },
+        "explanation": {
+          "en": "A non-functional requirement gives a measurable quality or operating constraint.",
+          "az": "Qeyri-funksional tələb ölçülə bilən keyfiyyət və ya iş məhdudiyyəti verir."
+        }
+      }
+    ],
+    "correct": ["business", "stakeholder", "functional", "quality"],
+    "explanation": {
+      "en": "The cost reduction is the business outcome; understanding the reason is the agent’s need; displaying it is solution behavior; the response-time condition specifies quality. These can be traced to one another.",
+      "az": "Xərcin azalması biznes nəticəsidir; səbəbi anlamaq əməkdaşın ehtiyacıdır; onu göstərmək həll davranışıdır; cavab vaxtı şərti keyfiyyəti müəyyən edir. Bunlar bir-birinə bağlana bilər."
+    },
+    "lessonId": "requirement-types",
+    "practiceOnly": true
+  }
+]

@@ -1,0 +1,125 @@
+---
+id: data-python-pandas-cleaning
+locale: en
+title: 'Python and pandas: cleaning, validation and safe merges'
+objectives:
+  - 'Load data with explicit types and report cleaning outcomes.'
+  - 'Distinguish exact duplicates, conflicting identifiers and missing required values.'
+  - 'Use merge cardinality checks and reconcile an aggregate with SQL.'
+---
+
+## Learning objectives
+
+- Load data with explicit types and report cleaning outcomes.
+- Distinguish exact duplicates, conflicting identifiers and missing required values.
+- Use merge cardinality checks and reconcile an aggregate with SQL.
+
+## Why this matters
+
+A notebook that produces a plausible number is not enough. Another analyst needs to know which rows were retained, why others were excluded and whether joins introduced duplication. Python makes repeatable analysis convenient when assumptions become explicit checks rather than hidden edits in a spreadsheet.
+
+## Core theory
+
+Treat raw files as immutable evidence. Write derived outputs separately and retain source version, schema, run time and reconciliation counts. Use synthetic or appropriately authorized data in exercises; a convenient CSV is not a reason to copy personal data into a repository.
+
+At ingestion, declare required columns and types. IDs are identifiers, not quantities: preserve leading zeros. Parse dates with an explicit format and policy for timezone and failures. Store teaching money in integer cents to avoid binary floating-point rounding; real financial work may require decimal arithmetic and a currency field.
+
+Missing values are represented differently across pandas dtypes. Use `isna()` and `notna()` rather than equality to `NaN`. Nullable integer and boolean types preserve missingness without inventing a numeric zero or a true/false answer. Decide what a missing value means before using `fillna`.
+
+Exact duplicate rows and conflicting rows with the same key need different policies. The fixture removes exact repeats. It rejects contradictory versions of the same order ID because it has no reliable ordering or correction contract. It quarantines a row missing an amount and reports the reason. Another domain might retain versions instead; document the rule.
+
+A merge can multiply records. With one customer row per ID and many orders per customer, use `validate='many_to_one'` when adding customer attributes to orders. `indicator=True` reveals unmatched keys. pandas can match null join keys to one another, unlike ordinary SQL equality joins; explicitly reject or separate missing keys if SQL-like non-matching behavior is required.
+
+Reconcile at boundaries: input rows, exact duplicates, invalid rows, retained rows, paid rows and total money. Inspect unexpected matches before publishing an aggregate. A large row count and a fast notebook do not compensate for an incorrect grain.
+
+## Worked example
+
+The repository includes a standard-library implementation and an optional pandas version of the same synthetic exercise. The cleaning stage reports nine raw rows, one exact duplicate, one quarantined missing amount and seven valid unique orders.
+
+After cleaning, the pandas enrichment uses a cardinality check:
+
+```python
+import pandas as pd
+
+orders = pd.read_csv('clean_orders.csv', dtype={
+    'order_id': 'string', 'customer_id': 'string',
+    'amount_cents': 'Int64',
+})
+customers = pd.read_csv('customers.csv', dtype={
+    'customer_id': 'string',
+})
+if orders['customer_id'].isna().any():
+    raise ValueError('Missing customer key')
+if customers['customer_id'].isna().any():
+    raise ValueError('Missing customer key')
+enriched = orders.merge(
+    customers, on='customer_id', how='left',
+    validate='many_to_one', indicator=True,
+)
+if not enriched['_merge'].eq('both').all():
+    raise ValueError('Unmatched customer key')
+paid = enriched.loc[enriched['status'].eq('paid')]
+assert int(paid['amount_cents'].sum()) == 16500
+```
+
+The snippet assumes cleaned input. The lab's `pandas_analysis.py` performs the cleaning too, writes no personal data and compares its result with the SQLite reference. A duplicate customer dimension key makes the merge fail instead of silently inflating revenue.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n R[Immutable raw CSV] --> S[Schema and type checks]\n S --> D[Exact duplicate policy]\n D --> Q[Quarantine invalid rows]\n Q --> M[Validated merge]\n M --> T[Reconcile with SQL]'
+  }
+/>
+
+Each boundary has a measurable output. Preserve rejection reasons so a lower row count can be explained.
+
+## Inspect the decision
+
+<details>
+<summary>Can fillna(0) be applied to the whole table safely?</summary>
+
+No. It can turn an unknown amount into an asserted zero, a missing identifier into a fake key and a missing category into an unexplained numeric value. Apply a field-specific rule only after agreeing its meaning. A valid zero-revenue customer and an invalid missing order amount require different treatment.
+
+</details>
+
+## Common mistakes
+
+- Inferring identifier types and losing leading zeros.
+- Dropping duplicate IDs before investigating conflicting values.
+- Merging without verifying dimension-key uniqueness.
+- Treating pandas null-key matching as identical to a SQL equality join.
+- Editing the input file until an expected number appears.
+- Publishing a result without exclusion counts or a reproducible environment.
+
+## Practice exercise
+
+Run both lab implementations when pandas is installed. Compare paid revenue and monthly totals. Then duplicate a customer row in a temporary copy and predict whether a many-to-one merge should pass. Explain how you would report a missing amount without misrepresenting it as a free order.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Both implementations should return 16500 paid cents and monthly totals 4000, 6000 and 6500. A duplicated customer key violates the many-to-one merge contract and must fail or be resolved before enrichment. Report the missing-amount record in the quarantine count with its reason; do not silently put zero into revenue. Keep the input unchanged and record the cleaning policy with the output.
+
+</details>
+
+## Check understanding and cheat sheet
+
+| Risk                            | Python/pandas check                        |
+| ------------------------------- | ------------------------------------------ |
+| IDs lose formatting             | Explicit string dtype                      |
+| Unknown becomes a fake zero     | isna plus field-specific policy            |
+| Contradictory order versions    | Duplicate-key conflict check               |
+| Dimension join multiplies money | merge(validate='many_to_one')              |
+| Missing relation is hidden      | indicator and unmatched-key check          |
+| Notebook result drifts          | Reconcile totals with an independent query |
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [pandas: Working with missing data](https://pandas.pydata.org/docs/user_guide/missing_data.html): missing-value detection, nullable dtypes and fill operations.
+- [pandas: Merge, join, concatenate and compare](https://pandas.pydata.org/docs/user_guide/merging.html): cardinality validation, indicators and null-key behavior.
+- [the executable data analysis lab](https://github.com/Sanan2030/level_up/tree/main/examples/data-analysis-lab): executable original cleaning and reconciliation exercise; pandas is an optional lab dependency, not an application dependency.

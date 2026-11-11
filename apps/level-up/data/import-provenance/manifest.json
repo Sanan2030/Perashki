@@ -1,0 +1,38 @@
+[
+  {
+    "providerId": "kwestio-pspo1",
+    "url": "https://kwestio.jad2advisory.com/en/certifications/pspo-i",
+    "accessedAt": "2026-11-02",
+    "count": 361,
+    "englishSha256": "640275235423186d0e92391b9f1f15a96159cf8bae085b7585d61cccefb0c21e",
+    "rights": "User confirmed permission to use and republish these banks in this chat on 2026-11-02.",
+    "normalization": "Kwestio strings preserved verbatim. ExamDeck visible text extracted from HTML; answer heading/source citation excluded from the explanation. Management Plaza feedback HTML converted to visible text; no wording rewritten."
+  },
+  {
+    "providerId": "kwestio-pspo2",
+    "url": "https://kwestio.jad2advisory.com/certifications/pspo-ii",
+    "accessedAt": "2026-11-02",
+    "count": 160,
+    "englishSha256": "79f8e260e46202bbae36c4a0d60aa62a4a97d546d4f6323dbf7fee41c94903f9",
+    "rights": "User confirmed permission to use and republish these banks in this chat on 2026-11-02.",
+    "normalization": "Kwestio strings preserved verbatim. ExamDeck visible text extracted from HTML; answer heading/source citation excluded from the explanation. Management Plaza feedback HTML converted to visible text; no wording rewritten."
+  },
+  {
+    "providerId": "examdeck-pspo2",
+    "url": "https://examdeck.pro/pspo2-practice-questions",
+    "accessedAt": "2026-11-02",
+    "count": 45,
+    "englishSha256": "17f6ab4be4a2935dbf72d804476086d0de3491a5462e6e1ea459607a6216b448",
+    "rights": "User confirmed permission to use and republish these banks in this chat on 2026-11-02.",
+    "normalization": "Kwestio strings preserved verbatim. ExamDeck visible text extracted from HTML; answer heading/source citation excluded from the explanation. Management Plaza feedback HTML converted to visible text; no wording rewritten."
+  },
+  {
+    "providerId": "mplaza-pspo1",
+    "url": "https://mplaza.training/exam-simulators/pspo/",
+    "accessedAt": "2026-11-02",
+    "count": 12,
+    "englishSha256": "146c13710af1c3b42e2db81c8f3662c95a243c378f57b51918b95ad0bb37678f",
+    "rights": "User confirmed permission to use and republish these banks in this chat on 2026-11-02.",
+    "normalization": "Kwestio strings preserved verbatim. ExamDeck visible text extracted from HTML; answer heading/source citation excluded from the explanation. Management Plaza feedback HTML converted to visible text; no wording rewritten."
+  }
+]

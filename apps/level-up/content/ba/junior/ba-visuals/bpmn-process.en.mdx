@@ -1,0 +1,89 @@
+---
+id: bpmn-process
+locale: en
+title: 'BPMN-style process modeling'
+objectives:
+  - 'Define a process trigger, outcome and scope.'
+  - 'Distinguish activities, decisions, parallel work and participant messages.'
+  - 'Use an as-is model to test a proposed process change.'
+---
+
+## Learning objectives
+
+- Define a process trigger, outcome and scope.
+- Distinguish activities, decisions, parallel work and participant messages.
+- Use an as-is model to test a proposed process change.
+
+## Why this matters
+
+A process diagram is useful when it exposes a decision or exception that prose hides. Drawing more boxes does not establish that a process works. The analyst must agree where the process starts, which outcome ends it and which participants own the work. A model should make disagreements reviewable.
+
+## Core theory
+
+BPMN provides a standardized language for business processes. This lesson teaches selected concepts through simplified Mermaid flowcharts; the rendered diagrams are not BPMN-conformant executable models. Use a BPMN-aware tool and the normative specification when notation conformance or execution matters.
+
+An event represents something that happens, an activity represents work, and a gateway controls branching or synchronization. Name activities with a verb and object. Define the start trigger and meaningful end states, including rejection, timeout or cancellation where relevant.
+
+An exclusive decision selects an alternative path according to conditions. Make conditions understandable and address what happens when no ordinary condition applies. Parallel branching starts work that can proceed independently; a corresponding synchronization must fit the paths that can actually arrive. Waiting for a branch that was never activated can prevent completion.
+
+A pool represents a participant; lanes organize responsibility within a participant. Sequence flow describes the order of work inside a process. Message flow represents communication across participants; do not draw a cross-organization interaction as if it were one shared sequence of internal tasks.
+
+Model the current process before assuming a proposed automation is correct. Distinguish the as-is description from the to-be option, and attach disputed rules to an issue list. Validate paths with representative cases: ordinary success, missing data, refusal, duplicate request and timeout. A beautiful diagram is still wrong if the actual owner cannot explain an exception.
+
+## Worked example
+
+A retailer sends a refund request to a payment provider. Internally, support checks eligibility and finance reviews the amount. These checks may run in parallel if neither depends on the other's result. The retailer submits an approved refund, then receives either confirmation or a failure message.
+
+The payment provider is a separate participant. Its internal settlement steps are outside the retailer's process scope. A timeout does not establish that no refund occurred, so the exception path checks status before attempting another payment action. The model records a responsible role for that reconciliation instead of ending the process at “error.”
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart TD\n S[Refund requested] --> E{Eligible?}\n E -->|No| R[Explain rejection]\n E -->|Yes| C[Complete required checks]\n C --> M[Send request to provider]\n M --> O{Confirmed outcome?}\n O -->|Success| D[Record refund]\n O -->|Unknown| Q[Reconcile provider status]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>Can a timeout path simply retry a refund and then mark it complete?</summary>
+
+No. A timeout can leave the remote outcome unknown. The process needs an explicit reconciliation or safe deduplication contract before repeating a money-changing operation. State who investigates, how the result is established and what the customer sees while it is unresolved.
+
+</details>
+
+## Common mistakes
+
+- Using lanes as decorative labels without assigning responsibility.
+- Mixing as-is behavior with proposed changes in an unlabeled model.
+- Treating every decision as parallel work.
+- Omitting waiting, timeout and reconciliation paths.
+
+## Practice exercise
+
+Sketch a purchase approval process with a clear trigger, approval/rejection outcomes and an external supplier interaction. Add a timeout path and walk it through with the operational owner.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Start from a submitted purchase request. Check completeness, route it to the authorized approver and separate approved and rejected outcomes. Treat communication with the supplier as crossing a participant boundary. If acknowledgement times out, record an unresolved state and check the supplier status before repeating the order. Validate each path using a concrete request and retain any disputed rule for follow-up.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Specify trigger, participant, activity, condition and outcome. Review every exception. Simplified flowcharts teach the reasoning; BPMN conformance requires the actual notation and tool.
+
+<LessonCheck />
+
+## Sources and further reading
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Selected sections of the user-supplied book support these original explanations; the PDF and source prose are not republished.
+
+- BABOK §10.35: process modelling purpose, scope and limitations.
+- [OMG BPMN 2.0.2 specification index](https://www.omg.org/spec/BPMN/2.0.2): standard identity and normative-document links. Only the index was read online; the full normative PDF is not claimed as reviewed.

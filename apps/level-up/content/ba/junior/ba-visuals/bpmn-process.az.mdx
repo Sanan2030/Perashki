@@ -1,0 +1,89 @@
+---
+id: bpmn-process
+locale: az
+title: 'BPMN üslubunda proses modelləşdirməsi'
+objectives:
+  - 'Process trigger, outcome və scope müəyyən et.'
+  - 'Activity, decision, parallel work və participant message-i ayır.'
+  - 'Proposed process change-i as-is model ilə yoxla.'
+---
+
+## Öyrənmə məqsədləri
+
+- Process trigger, outcome və scope müəyyən et.
+- Activity, decision, parallel work və participant message-i ayır.
+- Proposed process change-i as-is model ilə yoxla.
+
+## Bu mövzu niyə vacibdir
+
+Process diagram prose-da gizlənən decision və exception-u açanda faydalıdır. Çox qutu prosesin işlədiyini sübut etmir. Analyst başlanğıcı, bitirən outcome-u və işin sahibi participant-i razılaşdırmalıdır. Model fikir ayrılığını baxılıb müzakirə edilən etməlidir.
+
+## Əsas anlayışlar
+
+BPMN business process üçün standart dildir. Dərs seçilmiş anlayışları sadə Mermaid flowchart-la öyrədir; render olunan diaqram BPMN-conformant executable model deyil. Notasiya uyğunluğu və execution vacibdirsə BPMN-aware alət və normative specification istifadə et.
+
+Event baş verəni, activity işi, gateway branching/synchronization-u göstərir. Activity-ni fel və object ilə adlandır. Start trigger və mənalı end state-i, uyğun yerdə rejection, timeout və cancellation-u göstər.
+
+Exclusive decision şərtə görə alternativ path seçir. Şərti başadüşülən et, heç biri uyğun gəlməyəndə davranışı müəyyən et. Parallel branching müstəqil görülə bilən işi başladır; synchronization həqiqətən gələ bilən path-lərə uyğun olmalıdır. Başlamamış branch-i gözləmək tamamlanmanı dayandıra bilər.
+
+Pool participant-i, lane participant daxilində məsuliyyəti təşkil edir. Sequence flow bir process daxilində işi sıralayır. Message flow participant-lərarası ünsiyyətdir; təşkilatlararası interaction-u ortaq daxili task ardıcıllığı kimi çəkmə.
+
+Automation-u düzgün fərz etməzdən əvvəl cari prosesi modelləşdir. As-is təsviri to-be variantdan ayır, mübahisəli qaydanı issue list-ə yaz. Təmsilçi case-lə path yoxla: success, missing data, refusal, duplicate request və timeout. Real sahib exception-u izah edə bilmirsə gözəl diaqram yenə yanlışdır.
+
+## İşlənmiş nümunə
+
+Retailer payment provider-ə refund request göndərir. Daxildə support eligibility, finance amount yoxlayır. Nəticələr asılı deyilsə paralel gedə bilər. Retailer approved refund-u göndərir, confirmation və ya failure message alır.
+
+Payment provider ayrı participant-dir; daxili settlement addımları retailer scope-undan kənardır. Timeout refund olmadığını sübut etmir; exception path yeni payment addımından əvvəl status yoxlayır. Model “error”da bitmək əvəzinə reconciliation üçün məsul rol yazır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart TD\n S[Refund requested] --> E{Eligible?}\n E -->|No| R[Explain rejection]\n E -->|Yes| C[Complete required checks]\n C --> M[Send request to provider]\n M --> O{Confirmed outcome?}\n O -->|Success| D[Record refund]\n O -->|Unknown| Q[Reconcile provider status]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Timeout path refund-u sadəcə retry edib complete işarələyə bilərmi?</summary>
+
+Xeyr. Timeout remote outcome-u naməlum qoya bilər. Pul dəyişən operation-u təkrarlamadan əvvəl aydın reconciliation və ya təhlükəsiz deduplication contract lazımdır. Araşdıran şəxsi, nəticə sübutunu və pending vaxtı customer-in gördüyünü göstər.
+
+</details>
+
+## Tipik səhvlər
+
+- Lane-i məsuliyyət verməyən dekorativ label saymaq.
+- As-is ilə proposed change-i labelsiz qarışdırmaq.
+- Hər decision-u parallel work saymaq.
+- Waiting, timeout və reconciliation path-i buraxmaq.
+
+## Praktik tapşırıq
+
+Aydın trigger, approval/rejection outcome və external supplier interaction olan purchase approval prosesi çək. Timeout əlavə et, operational owner ilə addımla yoxla.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Submitted purchase request-dən başla. Completeness yoxla, səlahiyyətli approver-ə göndər, approved/rejected outcome-u ayır. Supplier ünsiyyətini participant boundary keçidi say. Ack timeout olarsa unresolved state saxla, order-i təkrarlamamış supplier status yoxla. Hər path-i konkret request-lə yoxla, mübahisəli rule-u follow-up üçün saxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Trigger, participant, activity, condition və outcome müəyyən et. Hər exception-a bax. Sadə flowchart məntiqi öyrədir; BPMN conformance real notation/alət tələb edir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+[BABOK Guide v3, IIBA (2015)](https://www.iiba.org/career-resources/a-business-analysis-professionals-foundation-for-success/babok/). Təqdim edilmiş kitabın seçilmiş bölmələri orijinal izah və ssenariləri dəstəkləyir; mənbə mətni və üzvlər üçün PDF yayılmır.
+
+- BABOK §10.35: process modeling purpose, scope və limit.
+- [OMG BPMN 2.0.2 specification index](https://www.omg.org/spec/BPMN/2.0.2): standard identity və normative document keçidləri. Onlayn yalnız index oxunub; tam normative PDF-in yoxlandığı iddia edilmir.

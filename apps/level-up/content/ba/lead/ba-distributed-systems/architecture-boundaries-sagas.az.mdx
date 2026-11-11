@@ -1,0 +1,106 @@
+---
+id: architecture-boundaries-sagas
+locale: az
+title: 'Arxitektura sərhədləri, modul monolit və saga'
+objectives:
+  - 'Yerli transaction sərhədini cross-service workflow coordination ilə müqayisə et.'
+  - 'Modular monolith və ya service split seçimini konkret keyfiyyət və ownership ehtiyacı ilə əsaslandır.'
+  - 'Qismən tamamlanmış biznes prosesi üçün saga state, compensation və recovery qur.'
+---
+
+## Öyrənmə məqsədləri
+
+- Yerli transaction sərhədini cross-service workflow coordination ilə müqayisə et.
+- Modular monolith və ya service split seçimini konkret keyfiyyət və ownership ehtiyacı ilə əsaslandır.
+- Qismən tamamlanmış biznes prosesi üçün saga state, compensation və recovery qur.
+
+## Bu mövzu niyə vacibdir
+
+Komanda “daha agile olmaq” üçün checkout, inventory, payment və order management-i service-lərə ayırır. Reservation uğurlu olur, payment cavabı itir, orders service alışı uğursuz sayır. Inventory saxlanılmış qalır, müştəridən isə artıq pul tutulmuş ola bilər. Deployment müstəqilliyi mürəkkəbliyi consistency, observability və recovery-yə keçirdi. Arxitekturaya aydın business state modeli lazımdır.
+
+## Əsas anlayışlar
+
+Arxitektura vəzifələri bölür, icazəli asılılıqları və əməliyyat sərhədlərini müəyyən edir. Modular monolith bir unit deploy edib uyğun yerdə yerli transaction istifadə etməklə aydın domain module-larını saxlaya bilər. Microservice split müstəqil deployment, scaling və ownership verə bilər, amma network failure, version coordination və distributed state əlavə edir. Heç bir ad yaxşı modularity və product agility-yə zəmanət vermir.
+
+Sərhədləri əlaqəli domain məsuliyyəti və data ownership ətrafında çək. Bounded context domain modelinin və dilinin ardıcıl məna daşıdığı sərhəddir. Avtomatik bir proses, bir komanda, bir DB və ya bir Scrum product deyil. Deployment unit-lərini seçməzdən əvvəl real invariant-ları modelləşdir.
+
+Invariant-ın harada dərhal ödənməli olduğunu soruş. Qayda iki write-ın atomik olmasını tələb edir və hər ikisi bir transactional DB-dədirsə, local transaction ən sadə yol ola bilər. Bu write-ları service-lərə ayırmaq məqsədli alternativ tələb edir. Guya müstəqil service-lərin ortaq DB-yə birbaşa yazması çox vaxt aydın vahid sahibin faydasını saxlamadan coupling-i geri yaradır.
+
+Saga iştirakçılar arasında local transaction-ları əlaqələndirir. Hər iştirakçı yerli commit edir. Sonrakı addım uğursuz olanda compensation məqbul biznes vəziyyətini bərpa etməyə çalışır. Refund tamamlanmış charge-ın DB rollback-i deyil: fee, müştəri mesajı və xarici müşahidə qala bilər. Compensation özü də uğursuz ola bilər; retry, aydın pending state və operational recovery tələb edir.
+
+| Yanaşma       | Coordination                           | Əsas seçim təsiri                                                               |
+| ------------- | -------------------------------------- | ------------------------------------------------------------------------------- |
+| Choreography  | İştirakçılar event-lərə reaksiya verir | Mərkəzi nəzarət azdır; ümumi davranışı izləmək çətinləşə bilər                  |
+| Orchestration | Davamlı coordinator addımları yönəldir | Workflow aydındır; coordinator state-i və availability-si layihələndirilməlidir |
+
+Saga bütün iştirakçılar arasında transaction isolation vermir. Paralel workflow aralıq state-i görə bilər. Biznes riskinə görə reservation, version check, semantic lock və ya reconciliation istifadə et. CQRS command/write və query/read modellərini ayırır; event sourcing, microservice və ya hər ekran üçün ayrıca DB tələb etmir.
+
+## İşlənmiş nümunə
+
+Səyahət alışı oturacaq saxlayır, ödənişi authorize edir və booking-i təsdiqləyir. Komanda SeatHeld, PaymentOutcomeUnknown, Confirmed, ReleasePending və ManualReview state-lərini modelləşdirir. Payment outcome naməlumdursa, dərhal yenidən charge etmək və ya hər şeyi buraxmaq əvəzinə ilkin operation identity ilə provider-i sorğulayır.
+
+```text
+reserve seat -> authorize payment -> confirm booking
+     |                |
+     |                +-- uncertain -> reconcile provider state
+     +-- compensation may be release reservation
+payment success but booking cannot complete -> explicit compensation policy
+```
+
+Komanda reservation expiry-ni, hansı addımların geri çevrildiyini, pending vaxtı istifadəçinin nə gördüyünü və ilişmiş compensation-a kimin baxdığını sənədləşdirir. Product Owner istifadəçi outcome-unu və xərci görünən etməyə kömək edir; razılaşdırılmış sərhədlərdə implementasiya qərarları Developers-ə aiddir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Local reservation"] --> B["Payment operation"]\n B --> C["Local confirmation"]\n B --> D["Outcome unknown"]\n D --> E["Reconciliation"]\n C --> F["Business complete"]\n E --> C\n E --> G["Compensation or manual review"]'
+  }
+/>
+
+Unknown outcome ayrıca əhəmiyyətli business state-dir. Compensation və reconciliation aydın işdir; bütün distributed operation-un görünmədən rollback olacağı fərziyyəsi deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Komandada üç Developer var və müstəqil scaling ehtiyacı yoxdur. Default seçim dörd microservice olmalıdırmı?</summary>
+
+Yalnız bu məlumata görə yox. Faydanı əməliyyat xərci, deployment imkanı, failure recovery və data invariant-ları ilə müqayisə et. Modular monolith az distributed coordination ilə aydın sərhədlər saxlaya bilər. Sonrakı split-i əsaslandıracaq amil və şərtləri qeydə al.
+
+</details>
+
+## Tipik səhvlər
+
+- Bir microservice-i bir Scrum Team və ya bir məhsulla eyniləşdirmək software deployment-i product accountability ilə qarışdırır.
+- Compensation-u “rollback” adlandırmaq geri çevrilməyən biznes təsirini gizlədir.
+- Ortaq DB write-ları ilə cross-service join qurmaq ownership-i və müstəqil dəyişikliyi zəiflədir.
+- Sadəcə daha çox qutu çəkmək üçün CQRS seçmək ehtiyac olmadan mürəkkəblik yaradır.
+- Yalnız success/failure modelləşdirmək istifadəçinin yaşadığı unknown, pending və recovery vəziyyətlərini buraxır.
+
+## Praktik tapşırıq
+
+Marketplace yaxşı işləyən checkout module-unu üç service-ə ayırmaq istəyir. Gündə 5 000 order emal edir və bir delivery team-i var. Faydanı, consistency invariant-larını, operational şərtləri və geri çevrilə bilən migration-u əhatə edən architecture decision record yaz. Payment uğurundan sonra order confirmation xətası üçün recovery planı əlavə et.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Əvvəl konkret səbəbi göstər: müstəqil scale, ownership, deployment və ya external boundary. Sübut olunmursa, modular quruluşu saxla və cari məhdudiyyəti ölç. Split əsaslıdırsa, hər state-in sahibini tap, nəzarətsiz shared write-ı qadağan et, contract müəyyən et; tracing, davamlı workflow state, idempotent operation və on-call/reconciliation prosesi təmin et.
+
+Sabit interface arxasında bir sərhədi mərhələlərlə köçür, production davranışını izlə, commit edilmiş business event-lərə hörmətlə trafik üçün rollback yolu saxla. Confirmation-sız uğurlu payment üçün qeyri-müəyyənliyi və ilkin provider identity-ni qeydə al, confirmation-un təhlükəsiz tamamlana bilməsini reconcile et; mümkün deyilsə aydın refund/compensation policy tətbiq et. Uydurma atomik rollback bildirmək əvəzinə natamam compensation-ları izlə.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Domain boundary ≠ deployment boundary ≠ Scrum product. Sübut olunmuş ehtiyacı ödəyən ən sadə sərhədi seç. Local ACID ixtiyari service-lərə yayılmır. Saga = local commit + aydın coordination + compensation/recovery. CQRS event sourcing demək deyil. Unknown outcome reconciliation tələb edir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [Microsoft microservices patterns](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/patterns): BFF, CQRS, Saga və Strangler Fig icmalı.
+- [Microsoft Saga pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/saga): local transaction, orchestration/choreography, anomaly və compensation.
+- [Microsoft Transactional Outbox](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos): business state və event-ləri yerli əlaqələndirmək.
+
+Modular monolith müqayisəsi, travel workflow və decision record orijinal tədris nümunəsidir; bir arxitektura üslubunu məcburi etmir.

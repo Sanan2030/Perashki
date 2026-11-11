@@ -1,0 +1,87 @@
+---
+id: messaging-rabbitmq
+locale: en
+title: 'RabbitMQ: acknowledgements, retries and dead-letter queues'
+objectives:
+  - 'Explain what confirms and acknowledgements each establish.'
+  - 'Handle redelivery without duplicating durable business effects.'
+  - 'Define a dead-letter route and an owned recovery process.'
+---
+
+## Learning objectives
+
+- Explain what confirms and acknowledgements each establish.
+- Handle redelivery without duplicating durable business effects.
+- Define a dead-letter route and an owned recovery process.
+
+## Why this matters
+
+A publisher receives a confirm, but the customer never receives their notification. The confirm concerns the broker's handling of the publication, not completion of every downstream business action. Reliable messaging requires evidence at each boundary and a response to work that repeatedly fails.
+
+## Core theory
+
+Publisher confirms and consumer acknowledgements serve different directions of responsibility. A publisher confirm concerns the broker's acceptance of a publication under the configured queue and durability behavior. A consumer acknowledgement tells the broker that a delivered message has been handled according to the application's contract. Neither automatically proves that a customer's external outcome occurred.
+
+With manual acknowledgements, acknowledge after the required durable processing boundary. A crash after processing but before acknowledgement can cause redelivery, so consumers need appropriate duplicate handling. Delivery tags are scoped to a channel; acknowledging on the wrong channel or treating tags as global business identifiers is incorrect.
+
+A negative acknowledgement or rejection can request requeueing or discard/dead-letter behavior. Immediate repeated requeueing can create a costly loop when the underlying condition has not changed. Classify transient and permanent failures, apply bounded delay/retry policy and preserve useful evidence for exhausted work.
+
+A dead-letter exchange routes messages that become dead letters under supported conditions, such as rejection without requeue or expiration. It is an exchange, not automatically the final queue. Bind an appropriate dead-letter queue, review routing keys and policies, and establish who monitors and resolves its contents. A policy can be easier to change than hardcoded declaration arguments.
+
+Dead-lettering is not an unconditional no-loss guarantee. Safety depends on queue type, configuration, permissions and availability of the destination. Cycles, missing routes and retry limits need explicit review. Preserve stable business identifiers and audit a replay decision; moving a poison message back into the main queue without correction can repeat the same failure.
+
+## Worked example
+
+A worker receives `invoice-generated:evt-81`. It writes a durable notification request keyed by the event ID and then acknowledges. If it crashes after the write, redelivery finds the existing record and does not create a second request. The actual email provider outcome is tracked separately.
+
+An invalid recipient format is treated as a permanent validation failure and routed for review rather than immediately requeued forever. A temporary provider outage follows the bounded retry policy. The dead-letter queue has an owner, a reason code, alerting and a correction/replay procedure. A growing queue is treated as unresolved work, not a successful completion metric.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n P[Publisher] --> B[Broker publication]\n B --> C[Consumer delivery]\n C --> E[Durable effect]\n E --> A[Acknowledge on delivery channel]\n C --> F[Failure classification]\n F --> R[Bounded retry]\n F --> D[Dead-letter route and owner]'
+  }
+/>
+
+Trace the decision and its evidence across each boundary. The diagram is an original teaching model; it is not a formal notation validator.
+
+## Inspect the decision
+
+<details>
+<summary>A message is in a dead-letter queue. Has the business problem been solved?</summary>
+
+No. The message has been moved to a failure-handling path. Someone must inspect the reason, determine whether any partial effect occurred, correct the cause and authorize safe replay or disposition. Retain identifiers and recovery evidence.
+
+</details>
+
+## Common mistakes
+
+- Treating publisher confirms as customer-outcome confirmation.
+- Acknowledging before a required durable effect.
+- Using immediate requeue as an unlimited retry strategy.
+- Creating a dead-letter exchange without a usable binding and owner.
+
+## Practice exercise
+
+Design handling for an inventory consumer that can encounter malformed events, temporary database failures and crashes after a committed update. State acknowledgement, retry and replay rules.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Reject or quarantine malformed events under an explicit permanent-failure policy. Retry temporary database failures with bounded delay. Record a stable event identifier atomically with the inventory effect so a crash before acknowledgement can be replayed safely. Acknowledge only after the required durable result. Monitor exhausted work and verify partial effects before replaying a corrected event.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Confirm ≠ consumer ack ≠ external outcome. Channel-scoped tags. Durable duplicate handling. Bounded retry. Dead-letter route + monitoring + accountable recovery.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [RabbitMQ: Consumer acknowledgements and publisher confirms](https://www.rabbitmq.com/docs/confirms): direction, delivery tags, redelivery and requeue loops.
+- [RabbitMQ: Dead-letter exchanges](https://www.rabbitmq.com/docs/dlx): policies, routing, cycles and safety limitations. The scenario is original and does not claim a deployed broker or universal loss-free configuration.

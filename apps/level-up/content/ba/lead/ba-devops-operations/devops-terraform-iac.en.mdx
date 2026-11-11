@@ -1,0 +1,103 @@
+---
+id: devops-terraform-iac
+locale: en
+title: 'Terraform infrastructure as code, state and safe change review'
+objectives:
+  - 'Distinguish desired configuration, recorded state and actual remote infrastructure.'
+  - 'Identify destructive or unexpected actions in a reviewed plan.'
+  - 'Protect sensitive state/plan values and explain backend-dependent coordination.'
+---
+
+## Learning objectives
+
+- Distinguish desired configuration, recorded state and actual remote infrastructure.
+- Identify destructive or unexpected actions in a reviewed plan.
+- Protect sensitive state/plan values and explain backend-dependent coordination.
+
+## Why this matters
+
+Two engineers apply independent changes to the same infrastructure. A renamed configuration block is interpreted as a replacement, and a state file containing credentials is committed to Git. Treating Terraform as “just some text files” misses both its coordination model and the confidentiality of operational metadata.
+
+## Core theory
+
+Infrastructure as code describes resources and their intended relationships. Terraform state records the mapping between configuration and managed remote objects, along with required metadata. State is not merely a disposable cache: losing or editing it carelessly can make Terraform misinterpret ownership or propose unintended changes.
+
+Three views can diverge: configuration says what is desired, state records managed relationships, and the remote system has its actual current condition. Drift occurs when reality changes outside the expected configuration process. Refresh/plan behavior can reveal differences, but a plan is not a permanent guarantee: credentials, provider behavior and remote resources can change before execution.
+
+Read the proposed actions at the resource level. A replacement can destroy and recreate an object; that may change identifiers, interrupt service or lose unmanaged state. A larger plan with many unexpected deletions is a reason to investigate the selected environment, workspace/backend and resource mapping, not simply click approve faster.
+
+Use appropriate remote-state access controls, encryption and backup/versioning. Coordination and locking depend on the selected backend and configuration; do not assume every backend prevents concurrent writes. A Terraform workspace or naming convention is not automatically an authorization boundary between environments.
+
+The sensitive marker generally redacts supported CLI/UI output; it does not universally omit a value from state or plan files. Version/provider-dependent ephemeral and write-only mechanisms solve different persistence problems where supported. Protect the files and backend themselves, and avoid committing state, saved plans or credentials to source control.
+
+An approved plan should have a known configuration revision, provider/dependency versions, environment, identity and expected effects. Applying a saved plan is still an authorized operational change, not a read-only review. This course does not run apply against any user's infrastructure.
+
+## Worked example
+
+A review sequence for a controlled training environment can include:
+
+```sh
+terraform fmt -check
+terraform validate
+terraform plan -out=reviewed.plan
+terraform show reviewed.plan
+```
+
+A real environment requires initialization and a deliberately selected backend/provider configuration. A plan may read remote systems and requires appropriate credentials. Treat reviewed.plan as potentially sensitive. These commands are explanatory; no infrastructure was initialized or changed here.
+
+If an address rename proposes database replacement, inspect resource identity and supported refactoring/move mechanisms before accepting destruction. The exact remedy depends on the configuration, backend and provider; do not invent a universal state-edit command.
+
+## Visual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Versioned desired configuration"] --> B["Compare state and remote objects"]\n B --> C["Review proposed plan"]\n C --> D["Authorized controlled execution"]\n D --> E["Updated remote state and evidence"]\n F["Protected backend and coordination"] --> B'
+  }
+/>
+
+The plan sits between a comparison and an authorized mutation. Configuration review does not remove the need to verify environment, state ownership and actual effects.
+
+## Inspect the decision
+
+<details>
+<summary>A variable is marked sensitive. Can the team commit the generated state file?</summary>
+
+No. Redaction and omission are different properties. State can still contain the value or other sensitive attributes. Protect and exclude state/plan material according to the backend and credential policy.
+
+</details>
+
+## Common mistakes
+
+- Treating plan output as valid forever ignores remote changes and execution context.
+- Assuming all workspaces are security isolation can expose another environment.
+- Editing state to hide an unexpected plan can corrupt ownership understanding.
+- Applying concurrently without backend-supported coordination can conflict.
+- Reverting source text does not automatically undo every already-applied resource effect.
+
+## Practice exercise
+
+A plan for staging proposes deleting a production-looking database and shows a secret as redacted. Write a stop-and-investigate checklist and a safe review record. Explain why a source revert alone may be insufficient after an accidental apply.
+
+## Worked solution
+
+<details>
+<summary>Show worked solution</summary>
+
+Verify backend, workspace/environment, authenticated identity, configuration revision, state-to-resource mapping and provider versions. Compare expected resource addresses with the actual remote identifiers. Investigate replacement/deletion causes before authorizing execution. Protect the saved plan even when displayed values are redacted.
+
+Record the approved scope, expected changes, recovery prerequisites and who owns execution. After an accidental apply, inspect actual state and data, then follow the recovery plan; a configuration revert may propose new changes but cannot recover deleted business data without suitable backups or other supported recovery.
+
+</details>
+
+## Check understanding and cheat sheet
+
+Configuration ≠ state ≠ reality. Plan = proposed effects under a context. Sensitive redaction ≠ omission from files. Backend capabilities govern coordination. Review replacements, environment and identity before execution. Recovery needs more than a Git revert.
+
+<LessonCheck />
+
+## Sources and further reading
+
+- [Terraform state purpose](https://developer.hashicorp.com/terraform/language/state/purpose): object mapping and metadata.
+- [Terraform sensitive data](https://developer.hashicorp.com/terraform/language/manage-sensitive-data): state/plan exposure, redaction and supported ephemeral values.
+
+Commands and review scenarios are educational. No cloud credentials, Terraform state or production resources are created by these lessons.

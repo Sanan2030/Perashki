@@ -1,0 +1,147 @@
+---
+id: product-backlog
+locale: en
+title: 'Product Backlog ownership and refinement'
+objectives:
+  - 'Order work toward a Product Goal and refine it collaboratively.'
+  - 'Reorder a backlog when support evidence reveals a severe retention problem.'
+---
+
+## 1. Learning objectives
+
+Explain Product Backlog accountability, order options toward a Product Goal, distinguish refinement from Sprint planning, and revise the order when evidence changes. You will practice explaining a decision without presenting a framework score as objective truth.
+
+## 2. Why it matters
+
+An online retailer has a backlog containing a loyalty widget, faster checkout, refund-status information and a critical payment defect. Every requester calls their item urgent. If the team treats the backlog as a queue of promises, it may deliver many requests while customers continue losing trust.
+
+A useful backlog makes choices visible. It helps people understand what matters next, what remains uncertain and why some attractive ideas are not being pursued now.
+
+## 3. Core theory
+
+The Product Backlog is an evolving, ordered list of work needed to improve a product. The Product Owner is accountable for effective Product Backlog management, including clear communication of the Product Goal, understandable items, ordering and transparency. Others can contribute and perform delegated work; the accountability remains with the Product Owner.
+
+Ordering is broader than assigning a priority label. Several items marked “high” do not reveal which choice should come first. Consider expected value, risk, urgency, dependencies, learning opportunities and effort. Explain assumptions rather than hiding uncertainty inside a score.
+
+Refinement is ongoing work to break down and clarify items. It is not a separate mandatory Scrum event. Items nearer the top usually need enough detail to support useful discussion and selection; distant options can remain coarse. There is no universal requirement that every item use a user-story template, story points or a particular ticket tool.
+
+During Sprint Planning, Developers select work through discussion with the Product Owner and create a plan toward the Sprint Goal. The Sprint Backlog is their plan; it is different from the Product Backlog. A stakeholder request should become visible and be discussed rather than silently replacing planned work.
+
+## 4. Worked example: retention evidence changes the order
+
+The fictional retailer’s current Product Goal is to help repeat customers complete purchases reliably. Support reports show that some customers are charged twice after a timeout. Refund-status questions also cause repeated calls. The widget has a vocal sponsor but little customer evidence.
+
+| Option                 | Evidence and uncertainty                                                 | Plausible next step                                                     |
+| ---------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| Stop duplicate charges | Confirmed harmful behavior; scope of affected transactions still unclear | Investigate and contain promptly with technical and operational experts |
+| Explain refund status  | Repeated support evidence; exact wording and integration gaps unknown    | Refine a small usable slice and validate language                       |
+| Reduce checkout steps  | Possible benefit; no diagnosis of the main abandonment cause yet         | Review funnel and interview evidence before committing a large redesign |
+| Add loyalty widget     | Sponsor enthusiasm; weak link to the current goal                        | Keep as a coarse option or remove if no longer justified                |
+
+This is a reasoned scenario decision, not a universal ordering rule. New evidence of an immediate legal obligation or a severe accessibility barrier could change the order. The Product Owner records why work moved and what evidence would trigger another review.
+
+## 5. Diagram
+
+<Diagram
+  chart={
+    'flowchart LR; A[Product Goal] --> B[Collect options and evidence]; B --> C[Order and explain trade-offs]; C --> D[Refine near-term items]; D --> E[Plan a coherent Sprint]; E --> F[Deliver and inspect]; F --> B;'
+  }
+/>
+
+Read this as a feedback loop. Refinement helps make options understandable; inspection may change or remove them rather than merely adding more tickets.
+
+## 6. Interactive ordering decision
+
+A sales director asks you to put the loyalty widget above the payment defect. Choose a response before opening the explanation.
+
+<details>
+<summary>Ask about the desired outcome and compare it with harm and goal evidence</summary>
+
+This keeps the decision grounded in context. Explain the confirmed duplicate-charge risk, ask what makes the widget time-sensitive, involve appropriate experts and make the ordering decision transparent. Being accountable does not mean ignoring stakeholders.
+
+</details>
+
+<details>
+<summary>Automatically accept because the requester is senior</summary>
+
+Seniority is information about influence, not evidence of product value. Accepting without examining risk hides the trade-off. Conversely, refusing every stakeholder request without discussion would also weaken learning and trust.
+
+</details>
+
+## 7. Common mistakes and best practices
+
+- **Backlog as a contract:** a stored idea is not automatically a delivery promise. Review and remove stale options.
+- **Everything is urgent:** state an actual order and the reason behind it.
+- **Product Owner writes alone:** refine collaboratively with people who understand users, technology and risk.
+- **Detail everything early:** focus detail where it enables a near-term decision; avoid premature specification.
+- **Use a score as authority:** expose assumptions, uncertainty and effects on groups the score may hide.
+- **Confuse backlogs:** product ordering and Developers’ Sprint plan have different accountabilities.
+
+## 8. Practice exercise and sample solution
+
+**Exercise:** A delivery app’s Product Goal is reliable arrival estimates. Options include fixing an estimate that fails for rural addresses, adding animated tracking, reducing notification delays and researching why drivers reject updated routes. Propose an initial order, one refinement question for each option and evidence that could change your order.
+
+<details>
+<summary>Reveal a sample solution</summary>
+
+First inspect and contain the rural-address failure because it undermines the stated goal and may exclude a customer group. Ask how widespread it is and which fallback is safe. Investigate notification delays next if timestamps show they explain stale estimates; ask where latency occurs. Run a small driver research activity early if route rejection may be a larger cause; ask about real recent decisions rather than preferred features. Defer animation until there is evidence it improves understanding. The research and diagnostic work may happen alongside containment. A newly discovered safety issue would outrank this initial plan. Explain uncertainty rather than claiming this order is uniquely correct.
+
+</details>
+
+## 9. Mini-quiz
+
+**1. Who retains accountability when a Product Owner delegates backlog refinement work?**
+
+A. The person editing the ticket. B. The Product Owner. C. Every stakeholder equally.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**B.** Tasks can be delegated while Product Owner accountability remains. A confuses doing work with accountability. C turns the single accountability into an undefined committee.
+
+</details>
+
+**2. Which statement about refinement is correct?**
+
+A. It is ongoing clarification and breakdown of backlog items. B. It must be a separately prescribed Scrum event. C. Every future item must be fully specified immediately.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** Refinement improves shared understanding as needed. B invents a mandatory event. C creates premature detail before learning justifies it.
+
+</details>
+
+**3. New evidence reveals serious customer harm. What should happen to backlog order?**
+
+A. Keep it fixed because it was once approved. B. Let the loudest stakeholder secretly replace Sprint work. C. Inspect the evidence and make an accountable, transparent adaptation.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**C.** Ordering should reflect learning and risk. A freezes an outdated decision. B hides impact and confuses product ordering with the team’s Sprint plan.
+
+</details>
+
+**4. Which item represents the Developers’ plan for a Sprint?**
+
+A. Sprint Backlog. B. Every idea in the Product Backlog. C. The organization’s full portfolio.
+
+<details>
+<summary>Answer and explanation</summary>
+
+**A.** The Sprint Backlog includes the Sprint Goal, selected items and an actionable delivery plan. B mixes the product’s options with one Sprint’s plan. C operates at a different scope.
+
+</details>
+
+## 10. One-page cheat sheet
+
+**Purpose:** make product improvement options and choices visible. **Accountable:** Product Owner for effective Product Backlog management; Developers for the Sprint plan. **Order by:** goal contribution, evidence, value, risk, urgency, dependencies and effort. **Refine:** clarify and split where it supports a decision. **Inspect:** outcomes and changed assumptions. **Remove:** obsolete options. **Useful question:** what makes this the best next investment, and what would change our mind?
+
+## 11. Further reading
+
+- [The Scrum Guide, official 2020 guide](https://scrumguides.org/scrum-guide.html)
+- [Scrum.org: understanding and applying the Scrum framework](https://www.scrum.org/resources/understanding-and-applying-scrum-framework)
+- [Scrum.org: Evidence-Based Management Guide](https://www.scrum.org/resources/evidence-based-management-guide)
+
+All scenarios and questions are original practice material, not official examination questions.

@@ -1,0 +1,80 @@
+---
+id: pspo2-shared-quality
+locale: az
+title: 'Məhsul üzrə ortaq keyfiyyət və texniki risk'
+objectives:
+  - 'Done, acceptance criterion, inteqrasiya və buraxılışı fərqləndir.'
+  - 'Texniki riskin məhsul dəyərinə təsirini görünən et.'
+---
+
+## Anlayış
+
+Scrum-da Increment yalnız ayrı-ayrı komponentlərin hazır olması deyil. Yeni iş əvvəlki Increment-lərlə birlikdə yoxlanmalı və istifadə edilə bilməlidir. Definition of Done məhsul üçün ortaq keyfiyyət anlayışı yaradır. Eyni məhsul üzərində bir neçə Scrum Team işləyirsə, onlar ortaq Done tərifini birlikdə müəyyən edib ona əməl edir. Təşkilat minimum standart müəyyən edibsə, komanda həmin sərhədi zəiflədə bilməz.
+
+## Niyə vacibdir
+
+Product Owner texniki həlli tapşırmır, amma keyfiyyət probleminin istifadəçi və gələcək investisiya üzərində təsirini anlamalıdır. Acceptance criterion konkret elementin gözlənilən davranışını göstərə bilər; ortaq Done tərifini əvəz etmir. Məsələn, ixrac faylı düzgün yaransa da, məcburi təhlükəsizlik yoxlaması keçilməyibsə element Done deyil. Scrum Team hər Sprint dəyərli, faydalı Increment-ə hesabatlıdır; keyfiyyət üçün ayrıca sonrakı mərhələ yaratmaq bu problemi həll etmir.
+
+## Qərar qaydaları
+
+Kitabın 3-cü fəslində texniki borcun gələcək dəyişiklikləri çətinləşdirə biləcəyi izah edilir. Done olmaq heç bir texniki borcun qalmaması demək deyil; ancaq razılaşdırılmış keyfiyyəti pozan işi Done saymaq olmaz. EBM 2024-də A2I yeni imkan yaratmağa mane olan amilləri, T2M isə dəyəri çatdırıb öyrənmə sürətini yoxlamağa kömək edir. Davamlı inteqrasiya və avtomatlaşdırılmış yoxlamalar faydalı təcrübələrdir; Scrum konkret alət, pipeline və ya proqramlaşdırma üsulu tələb etmir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n A["Shared Definition of Done"] --> B["Small integrated change"]\n B --> C["Verified usable Increment"]\n C --> D["Customer outcome and learning"]\n D --> E["Inspect quality and capability"]\n E --> A'
+  }
+/>
+
+Bu model mənbənin şəklinin surəti deyil, dərs üçün hazırlanmış xülasədir.
+
+## Praktik vəziyyət
+
+Üç komanda ödəniş məhsulunun interfeysini, hesablamasını və audit hissəsini hazırlayır. Hər komanda öz işini hazır sayır, lakin birgə sınaqda məbləğlər fərqlənir. Sponsor tarixə çatmaq üçün audit yoxlamasını sonraya saxlamağı istəyir.
+
+## Qərarın əsaslandırılması
+
+Əvvəl məhsulun faktiki vəziyyətini şəffaf et: ayrı hissələrin tamamlanması inteqrasiya olunmuş Done Increment demək deyil. Keyfiyyət meyarını tarixə uyğun dəyişmə. Developers ilə problemin səbəbini və daha kiçik istifadə edilə bilən əhatəni araşdır. Product Owner dəyər və sıralama güzəştini izah edir; texniki planı Developers hazırlayır. Qarşıdakı Sprint-lərdə daha erkən inteqrasiya və kiçik hissələr barədə eksperiment seçmək olar.
+
+## Yayılmış səhvlər
+
+Keyfiyyəti yalnız tester-in işi saymaq; hər komandaya uyğun gəlməyən ayrı Done tərifi vermək; texniki borcun həmişə yarımçıq iş olduğunu düşünmək; daha çox lokal çıxışı məhsul dəyərinin sübutu saymaq. Texniki təklif də öz təsiri ilə əsaslandırılmalıdır: hər refaktorinq avtomatik ən dəyərli iş deyil.
+
+## Tətbiq məşqi
+
+Ssenari üçün üç müşahidə və bir kiçik yaxşılaşdırma eksperimenti yaz. Müşahidələrin ən az biri məhsulun keyfiyyətini, biri gələcək dəyişiklik qabiliyyətini göstərsin. Hansı nəticə eksperimentin faydalı olmadığını göstərəcək?
+
+## İzahlı həll
+
+<details>
+<summary>İzahlı həlli aç</summary>
+
+Mümkün cavab: inteqrasiya xətalarının sayı, inteqrasiya gözləmə müddəti və təhlükəsizlik yoxlamasından keçən istifadə edilə bilən dəyişikliklər görünən edilir. Bir məhsul axını üçün daha kiçik dəyişiklikləri gündəlik inteqrasiya etmək sınanır. Bu tezlik tədris nümunəsidir, Scrum qaydası deyil. Gözləmə azalmır və ya istehsal xətaları artırsa, avtomatlaşdırmanı uğur elan etmək əvəzinə səbəbi araşdır.
+
+</details>
+
+## Özünü yoxla və yadda saxla
+
+Ortaq Done → inteqrasiya olunmuş sübut → istifadə edilə bilən Increment. Acceptance criterion ortaq keyfiyyəti ləğv etmir. Texniki investisiyanı gələcək dəyər yaratmaq qabiliyyəti ilə əsaslandır.
+
+### Eyni məhsulda bir neçə komanda və əlavə Nexus nümunəsi
+
+Bir neçə Scrum Team eyni məhsula fokuslanırsa eyni Product Goal, Product Backlog və Product Owner-i paylaşır. Refinement-i komanda nümayəndələrinə həvalə etmək müstəqil Product Owner-lər və rəqabət aparan komponent prioritetləri yaratmır. Qaydanı tətbiq etməzdən əvvəl məhsul sərhədini yoxla: ayrı məhsulların vahid backlog paylaşması tələb olunmur.
+
+Nəzərdən keçirilmiş ExamDeck portfolio nümunəsi ayrıca miqyaslama çərçivəsi olan **Nexus**-u da təqdim edir. Bu nümunədə Nexus Daily Scrum Nexus Sprint Goal-a irəliləyişi yoxlayır, komandalararası asılılıq və inteqrasiya problemlərini görünən edir. Hər komandanın Daily Scrum-u öz Sprint Goal-una xidmət etməyə davam edir. Komandalararası tədbir rəhbərliyə status hesabatı, işçi bölgüsü və ya PO-nun gündəlik sıralama sessiyası deyil. Nexus əlavə seçimdir; tədbirlərini Scrum Guide tələb etmir. Bu məhdud izah açıq üçüncü tərəf nümunəsinə əsaslanır; bu yoxlamada rəsmi Nexus səhifəsi açılmayıb və tam çərçivə dərsin əhatəsində deyil.
+
+[Mənbə nümunəsinə bax](https://examdeck.pro/pspo2-practice-questions/portfolio-planning); tam çərçivə üçün [rəsmi Nexus Guide](https://www.scrum.org/resources/online-nexus-guide) ilə tanış ol.
+
+<LessonCheck />
+
+## Mənbələr və əhatə
+
+Scrum Guide 2020: Scrum Team və Developers, səh. 5; Increment və Definition of Done, səh. 11–12. The Professional Product Owner: fəsil 3, Negative Value və Technical Debt. EBM Guide 2024: A2I və T2M, səh. 10–11. Göndərilən Scrum kompetensiyalarında Managing Technical Risk, Continuous Quality, Continuous Integration və Continuous Delivery mövzuları var. Bu dərsin PSPO II-yə yerləşdirilməsi tədris seçimidir; rəsmi imtahan çəkisi deyil.
+
+- [The Scrum Guide — November 2020](https://scrumguides.org/scrum-guide.html)
+- [Evidence-Based Management Guide — 2024](https://www.scrum.org/resources/evidence-based-management-guide)
+- [The Professional Product Owner — McGreal & Jocham, 2018](https://www.informit.com/store/professional-product-owner-leveraging-scrum-as-a-competitive-9780134686479)
+- [The Professional Scrum Competencies — user-supplied page text](https://www.scrum.org/professional-scrum-competencies)
+
+İzahlar, ssenarilər və rəqəmlər tədris üçündür; rəsmi suallar köçürülməyib. Mənbə versiyaları arasında Scrum Guide 2020 və EBM 2024 qaydaları əsas götürülür.

@@ -1,0 +1,89 @@
+---
+id: security-threat-modeling-ssrf
+locale: az
+title: 'Threat modeling, etibar sərhədləri və SSRF'
+objectives:
+  - 'Asset və flow-a bağlı threat model qur.'
+  - 'Server-side URL funksiyasının niyə SSRF sərhədi yaratdığını izah et.'
+  - 'Destination, DNS, redirect və egress üçün çoxqatlı control seç.'
+---
+
+## Öyrənmə məqsədləri
+
+- Asset və flow-a bağlı threat model qur.
+- Server-side URL funksiyasının niyə SSRF sərhədi yaratdığını izah et.
+- Destination, DNS, redirect və egress üçün çoxqatlı control seç.
+
+## Bu mövzu niyə vacibdir
+
+URL-dən document import edən funksiya server-i user adından HTTP client edir. Server user-də olmayan network access-ə malik ola bilər. Destination contract olmadan zərərsiz görünən import internal service və həssas infrastruktura yol aça bilər.
+
+## Əsas anlayışlar
+
+Threat modeling nə qurulduğunu, nə pis gedə biləcəyini, riskin necə qarşılanacağını və nəticənin yetərli olub-olmadığını müəyyən edir. Asset, actor, data flow, entry point və trust boundary-dən başla. Diaqram yalnız deployment qutuları deyil, səlahiyyətin dəyişdiyi yerləri açmalıdır.
+
+Spoofing, tampering, repudiation, information disclosure, denial of service və elevation of privilege kimi strukturlaşdırılmış başlıqlarla risk araşdır. Kateqoriya coverage-ə kömək edir, amma tam assessment vermir və acceptable risk seçmir. Ssenari, təsir, fərziyyə, mitigation və verification sahibini yaz.
+
+Server-Side Request Forgery hücumçu server-in request-lərinə nəzərdə tutulan səlahiyyətdən kənar təsir edəndə yaranır. Risk fetch komponentinin hansı destination, protocol, method, header və credential istifadə edə bilməsindən asılıdır. Tək URL parser və HTTPS təhlükəsiz destination sübutu deyil.
+
+Funksiya məlum trusted destination-larla məhdudlaşa bilirsə dar allowlist seç. Məqsədli parse/normalize et, scheme və port-u məhdudlaşdır, arzuolunmaz userinfo-nu rədd et, DNS resolution-u yoxla. Lazımsız redirect-i söndür; lazımdırsa hər hop-u yenidən yoxla. Sonradan müstəqil resolution-dan əvvəl hostname yoxlaması time-of-check/time-of-use boşluğu saxlaya bilər.
+
+Network egress control əlavə sərhəddir. Address representation və IPv6-nı nəzərə alaraq uyğun halda qadağan private, loopback, link-local və metadata destination-a girişi önlə. Production dizayn validation-u real connection-a bağlayan və gözlənilən TLS host verification-u saxlayan möhkəm implementasiya tələb edir. Sadə string-prefix check köçürüb tam SSRF qorunması adlandırma.
+
+Resource abuse-u azaltmaq üçün response size, vaxt, content handling və concurrency-ni məhdudlaşdır. Mövcud credential-ları etibarsız destination-a ötürmə. Import edilmiş private content-i lazımsız saxlamadan təhlükəsiz diaqnostik sübut yaz. İcazəli şəraitdə rejected destination, redirect, DNS dəyişikliyi və operational failure state-i test et.
+
+## İşlənmiş nümunə
+
+Document import xidməti yalnız bir partner-in konkret HTTPS export endpoint-inə ehtiyac duyur. Komanda host, port və method-u məhdud fetcher, ixtiyari caller header-lərinin qadağası, size/time həddi və yalnız təsdiqlənmiş yola network egress seçir.
+
+Threat model credential leakage, internal endpoint access və böyük response riskini tapır. Mümkündürsə generic full URL əvəzinə partner document identifier istifadə edilir. Test gözlənilməyən destination və redirect-in təhlükəsiz fail etdiyini yoxlayır. Dərs yoxlanmamış universal URL validator deyil, məqsədli policy dizaynı verir.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n U[Untrusted import request] --> P[Restricted destination contract]\n P --> D[Validated resolution and connection]\n D --> E[Constrained network egress]\n E --> R[Bounded response processing]\n T[Threat scenarios and tests] --> P'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Input https ilə başlayır və təsdiqlənmiş domain string-ini ehtiva edir. Fetch təhlükəsizdirmi?</summary>
+
+Xeyr. Substring parsed authority check deyil; tək scheme internal destination, unsafe redirect və resolution dəyişikliyini önləmir. Defense in depth ilə tam destination/connection policy tətbiq et.
+
+</details>
+
+## Tipik səhvlər
+
+- HTTPS-i bütün destination-lara authorization saymaq.
+- Hostname yoxlayıb unrestricted redirect izləmək.
+- Alternativ representation və DNS davranışına baxmadan denylist-ə güvənmək.
+- Service credential-ını caller-in seçdiyi URL-ə ötürmək.
+
+## Praktik tapşırıq
+
+User link-ini yükləyən preview funksiyası üçün threat model qur. Asset-i, trust boundary-ni, üç abuse ssenarisini və səlahiyyəti azaldan daha dar product design-ı göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Asset-lər internal network access, credential və service tutumudur. Sərhəd etibarsız caller ilə səlahiyyətli server-side HTTP client arasındadır. Internal destination access, secret forwarding və resource exhaustion-u düşün. Mümkündürsə funksiyanı approved provider və ya opaque identifier ilə məhdudlaşdır, credential/egress-i daralt, processing-ə hədd qoy, cavabdehi olan security review ilə real connection/redirect davranışını yoxla.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Asset → flow → trust boundary → abuse ssenarisi → çoxqatlı mitigation → verification. URL syntax validation server-side fetch security-nin yalnız bir hissəsidir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [OWASP Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html): modeling sualları, flow və review.
+- [OWASP SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html): allowlist/denylist halları, DNS, redirect və network müdafiəsi. Nümunələr müdafiə dizaynıdır; real xidmət yoxlanılmır.

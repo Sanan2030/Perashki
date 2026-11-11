@@ -1,0 +1,3212 @@
+[
+  {
+    "id": "ccba-001",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "az": "Ödəniş layihəsində filial əməkdaşları növbəli işləyir, mühəndislər isə başqa saat qurşağındadır. Tələblərin baxışlarında yetərsay alınmır. BA əvvəlcə nəyi dəyişməlidir?",
+      "en": "A payments project has branch staff on shifts and engineers in another time zone. Requirements reviews keep failing to reach a quorum. What should the BA change first?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Görüş vaxtını saxlayıb susmanı təsdiq saymaq.",
+          "en": "Keep the meeting time and treat silence as approval."
+        },
+        "explanation": {
+          "az": "İştirak etməmək məlumatlı razılaşma və ya etibarlı təsdiq demək deyil.",
+          "en": "Absence is not evidence of informed agreement or valid approval."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Bütün biznes tələblərini mühəndislərə təsdiqlətmək.",
+          "en": "Let the engineering team approve every business requirement."
+        },
+        "explanation": {
+          "az": "Texniki bilik biznes qərarı səlahiyyətini əvəz etmir.",
+          "en": "Technical expertise does not replace business decision authority."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Baxış kanallarını və vaxtını maraqlı tərəflərə uyğunlaşdırıb cavab müddətlərini razılaşdırmaq.",
+          "en": "Tailor review channels and timing to stakeholder availability, then agree response deadlines."
+        },
+        "explanation": {
+          "az": "Kommunikasiya planı məlumatı verən və təsdiqləyən insanların şəraitinə uyğun olmalıdır.",
+          "en": "Communication planning must fit the people who supply and approve the information."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Kommunikasiya planı məlumatı verən və təsdiqləyən insanların şəraitinə uyğun olmalıdır.",
+      "en": "Communication planning must fit the people who supply and approve the information."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-002",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "az": "Kredit təşkilatı hər normativ tələbi kimin təsdiqlədiyini sübut etməlidir. Dəyişikliklər hazırda qeyri-rəsmi çatda təsdiqlənir. Hansı planlaşdırma addımı boşluğu aradan qaldırar?",
+      "en": "A lender must prove who approved each regulatory requirement. The team currently approves changes in informal chats. Which planning action closes the gap?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Yalnız son istifadəçi interfeysinin görüntülərini arxivləşdirmək.",
+          "en": "Archive only the final user interface screenshots."
+        },
+        "explanation": {
+          "az": "Görüntülər tələb qərarının səlahiyyətini və əsasını göstərmir.",
+          "en": "Screenshots cannot establish the authority or rationale behind requirement decisions."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Təsdiq səlahiyyətini, qərar qeydlərini və tapıla bilən audit izini müəyyənləşdirmək.",
+          "en": "Define approval authority, decision records, and a retrievable audit trail."
+        },
+        "explanation": {
+          "az": "İdarəetmə qaydaları qərarların məsuliyyətini və audit sübutlarının əlçatanlığını təmin edir.",
+          "en": "Governance makes decisions accountable and their evidence available for audit."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Proqramçıdan təsdiqləyənlərin adlarını yadda saxlamasını istəmək.",
+          "en": "Ask a developer to remember the approver names."
+        },
+        "explanation": {
+          "az": "Şəxsi yaddaş etibarlı və davamlı təsdiq sübutu deyil.",
+          "en": "Personal memory is not reliable, durable approval evidence."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "İdarəetmə qaydaları qərarların məsuliyyətini və audit sübutlarının əlçatanlığını təmin edir.",
+      "en": "Governance makes decisions accountable and their evidence available for audit."
+    },
+    "lessonId": "analysis-governance",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-003",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "az": "Xarici identifikasiya provayderi ilk buraxılışda əlçatan olmayacaq. BA bunu sprint planlaşdırmasından sonra öyrənir. Təhlil planında nə yaxşılaşdırılmalıdır?",
+      "en": "An external identity provider will not be available during the first release. The BA discovers this after sprint planning. What should improve the analysis plan?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Xarici asılılıqları müəyyənləşdirib öhdəlik götürməzdən əvvəl birgə yoxlama planlaşdırmaq.",
+          "en": "Identify external dependencies and schedule joint validation before commitments."
+        },
+        "explanation": {
+          "az": "Asılılıqların erkən aşkarlanması real ardıcıllığa və vaxtında risk qərarlarına kömək edir.",
+          "en": "Dependency discovery supports feasible sequencing and earlier risk decisions."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Yalnız daxili komandaların işini sənədləşdirmək.",
+          "en": "Document only work performed by internal teams."
+        },
+        "explanation": {
+          "az": "Xarici asılılıqlar daxili işin istifadəyə yararlı həll yaradıb-yaratmadığını müəyyən edə bilər.",
+          "en": "External dependencies can determine whether internal work produces a usable solution."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Çatışmayan provayderi yalnız retrospektivə əlavə etmək.",
+          "en": "Add the missing provider to the retrospective only."
+        },
+        "explanation": {
+          "az": "Təkcə retrospektiv müzakirə cari asılılığı və gələcək plan boşluğunu həll etmir.",
+          "en": "Retrospective discussion alone does not resolve the current dependency or future planning gap."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Asılılıqların erkən aşkarlanması real ardıcıllığa və vaxtında risk qərarlarına kömək edir.",
+      "en": "Dependency discovery supports feasible sequencing and earlier risk decisions."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-004",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "az": "Baxış iştirakçıları əsas terminləri fərqli anladığı üçün tələblər dəfələrlə yenidən açılır. Məqsədli yaxşılaşdırmanı hansı ölçü daha yaxşı yoxlayar?",
+      "en": "Requirements are repeatedly reopened because reviewers interpret key terms differently. Which measure would best test a targeted improvement?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "BA-nın həftədə yazdığı səhifələrin sayını hesablamaq.",
+          "en": "Count how many pages the BA writes each week."
+        },
+        "explanation": {
+          "az": "Sənəd həcmi maraqlı tərəflərin ortaq anlayışa gəlib-gəlmədiyini göstərmir.",
+          "en": "Document volume does not reveal whether stakeholders share an understanding."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Yalnız görüşlərdə ümumi iştirak sayını ölçmək.",
+          "en": "Measure only total meeting attendance."
+        },
+        "explanation": {
+          "az": "İştirak arta bilər, amma fərqli şərhlər azalmaya bilər.",
+          "en": "Attendance can increase without reducing ambiguous interpretations."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Razılaşdırılmış nümunələr və lüğət tətbiqindən əvvəl və sonra anlaşılmazlıqla bağlı təkrar işi müqayisə etmək.",
+          "en": "Compare misunderstanding-related rework before and after introducing agreed examples and a glossary."
+        },
+        "explanation": {
+          "az": "Ölçü konkret müdaxiləni müşahidə olunan təkrar iş səbəbinə bağlayır.",
+          "en": "The measure connects a specific intervention to the observed source of rework."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Ölçü konkret müdaxiləni müşahidə olunan təkrar iş səbəbinə bağlayır.",
+      "en": "The measure connects a specific intervention to the observed source of rework."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-005",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "az": "Pərakəndə şirkət aylıq buraxılış edir, maliyyə nəzarətləri üçün isə rəsmi təsdiq tələb olunur. BA üçün ən uyğun yanaşma hansıdır?",
+      "en": "A retailer uses monthly releases but must obtain formal approval for financial controls. What is the most appropriate BA approach?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Bütün tələbləri il ərzində dəyişməz saxlamaq.",
+          "en": "Freeze every requirement for the entire year."
+        },
+        "explanation": {
+          "az": "Ümumi dondurma göstərilən nəzarətin tələb etmədiyi halda faydalı öyrənməni dayandırır.",
+          "en": "A blanket freeze prevents useful learning without being required by the stated control."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Zəruri nəzarət təsdiqi nöqtələrini müəyyənləşdirərək iterativ təhlil aparmaq.",
+          "en": "Use iterative analysis while defining the necessary control approval checkpoints."
+        },
+        "explanation": {
+          "az": "Yanaşma həm çatdırılma ritminə, həm də məcburi idarəetmə qaydalarına uyğunlaşdırıla bilər.",
+          "en": "The approach can be tailored to delivery cadence and mandatory governance together."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Buraxılışlar iterativ olduğuna görə maliyyə təsdiqlərini ləğv etmək.",
+          "en": "Remove financial approvals because releases are iterative."
+        },
+        "explanation": {
+          "az": "İterativ metod məcburi nəzarətləri aradan qaldırmır.",
+          "en": "An iterative method does not eliminate mandatory controls."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Yanaşma həm çatdırılma ritminə, həm də məcburi idarəetmə qaydalarına uyğunlaşdırıla bilər.",
+      "en": "The approach can be tailored to delivery cadence and mandatory governance together."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-006",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "az": "Anbar seminarında bir rəhbər bütün suallara cavab verir, operatorlar isə iştirakını dayandırır. Fasilitator nə etməlidir?",
+      "en": "During a warehouse workshop, one manager answers every question and operators stop contributing. What should the facilitator do?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Səssiz fikir toplama, sonra növbəli çıxış tətbiq edib əməliyyat nümunələri istəmək.",
+          "en": "Use silent idea capture followed by structured turns and invite operational examples."
+        },
+        "explanation": {
+          "az": "Strukturlaşdırılmış iştirak dominantlığı azaldır və gündəlik işdən məlumat çıxarır.",
+          "en": "Structured participation reduces dominance and exposes information from frontline work."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Rəhbərin izahını prosesin tam təsviri saymaq.",
+          "en": "Use the manager’s account as the complete process description."
+        },
+        "explanation": {
+          "az": "Bir baxış bucağı istisnaları və operatorların faktiki işini ötürə bilər.",
+          "en": "One perspective may omit exceptions and the actual work performed by operators."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Bütün seminarları ləğv edib rəhbərə yekun spesifikasiya göndərmək.",
+          "en": "Cancel all workshops and send the manager a final specification."
+        },
+        "explanation": {
+          "az": "Bu addım biliyi çatışmayan insanların iştirakını daha da məhdudlaşdırır.",
+          "en": "This further excludes the people whose knowledge is missing."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Strukturlaşdırılmış iştirak dominantlığı azaldır və gündəlik işdən məlumat çıxarır.",
+      "en": "Structured participation reduces dominance and exposes information from frontline work."
+    },
+    "lessonId": "facilitation-conflict",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-007",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "az": "Müştəri deyir: “Hesab axtarışı sürətli olmalıdır.” Hansı əlavə sual tələbi daha çox yaxşılaşdırar?",
+      "en": "A customer says, “The account search must be fast.” Which follow-up most improves the requirement?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "“Ani” sözündən istifadə cümləni aydınlaşdırarmı?",
+          "en": "Would using the word “instant” make the statement clearer?"
+        },
+        "explanation": {
+          "az": "Bir subyektiv sözü digəri ilə əvəz etmək performansı ölçülən etmir.",
+          "en": "Replacing one subjective word with another does not make performance measurable."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Dərhal hansı verilənlər bazası təchizatçısını seçək?",
+          "en": "Which database vendor should we buy immediately?"
+        },
+        "explanation": {
+          "az": "Vaxtından əvvəl dizayn seçimi biznesin performans ehtiyacını müəyyən etmir.",
+          "en": "A premature design choice does not establish the business performance need."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Hansı əməliyyat həcmi və persentil üçün hansı cavab müddəti qəbul ediləndir?",
+          "en": "What response time is acceptable for which transaction volume and percentile?"
+        },
+        "explanation": {
+          "az": "Performansın yoxlanması üçün ölçülən hədlər və iş şəraiti lazımdır.",
+          "en": "Performance needs measurable thresholds and operating conditions to be testable."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Performansın yoxlanması üçün ölçülən hədlər və iş şəraiti lazımdır.",
+      "en": "Performance needs measurable thresholds and operating conditions to be testable."
+    },
+    "lessonId": "requirement-types",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-008",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "az": "Proses təlimatına görə qaytarmalar avtomatikdir, dəstək əməkdaşları isə cədvəldə əl yoxlamalarından danışır. Hansı məlumat toplama kombinasiyası ziddiyyəti daha yaxşı həll edər?",
+      "en": "A process manual says refunds are automatic, but support staff describe manual spreadsheet checks. Which elicitation combination best resolves the discrepancy?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Avtomatlaşdırılması daha asan olan təsviri seçmək.",
+          "en": "Choose whichever description is easier to automate."
+        },
+        "explanation": {
+          "az": "Avtomatlaşdırma rahatlığı cari prosesin sübutu deyil.",
+          "en": "Ease of automation is not evidence of the current process."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Tipik qaytarma hallarını müşahidə edib nəticələri proses sahibləri və əməkdaşlarla təsdiqləmək.",
+          "en": "Observe representative refund cases and validate findings with both process owners and staff."
+        },
+        "explanation": {
+          "az": "Birbaşa sübut və maraqlı tərəf təsdiqi sənədləşdirilmiş niyyəti faktiki davranışdan ayırır.",
+          "en": "Direct evidence plus stakeholder validation distinguishes documented intent from actual behavior."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Təlimatı yeganə əsas sayıb əməliyyat hesabatlarına məhəl qoymamaq.",
+          "en": "Treat the manual as authoritative and ignore operational reports."
+        },
+        "explanation": {
+          "az": "Təsdiqlənmiş sənəd də köhnəlmiş və ya natamam ola bilər.",
+          "en": "An approved document can still be outdated or incomplete."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Birbaşa sübut və maraqlı tərəf təsdiqi sənədləşdirilmiş niyyəti faktiki davranışdan ayırır.",
+      "en": "Direct evidence plus stakeholder validation distinguishes documented intent from actual behavior."
+    },
+    "lessonId": "elicitation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-009",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "az": "Müsahibələrdən sonra BA satıcıların hesablaşmaları həmişə gündəlik tutuşdurduğunu güman edir. Bu qəbul edilmiş tələbə çevrilməzdən əvvəl nə edilməlidir?",
+      "en": "After interviews, the BA infers that merchants always reconcile settlements daily. What should happen before this becomes an accepted requirement?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Fərziyyəni təsdiqlənmiş tapıntılardan ayırıb təmsilçi satıcılarla yoxlamaq.",
+          "en": "Separate the inference from confirmed findings and validate it with representative merchants."
+        },
+        "explanation": {
+          "az": "Məlumat toplama təhlili fərziyyələri sübutdan ayırmalı və vacib nəticələri təsdiqləməlidir.",
+          "en": "Elicitation analysis must distinguish assumptions from evidence and confirm important conclusions."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Əlavə müzakirənin qarşısını almaq üçün tələbə “həmişə” yazmaq.",
+          "en": "Write “always” in the requirement to avoid further discussion."
+        },
+        "explanation": {
+          "az": "Qəti ifadə yoxlanmamış fərziyyəni fakta çevirmir.",
+          "en": "Strong wording cannot turn an untested inference into a fact."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Yalnız icra təchizatçısından fərziyyənin rahat olub-olmadığını soruşmaq.",
+          "en": "Ask only the implementation vendor whether the assumption is convenient."
+        },
+        "explanation": {
+          "az": "İcra rahatlığı satıcının davranışını təsdiqləmir.",
+          "en": "Implementation convenience does not validate merchant behavior."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Məlumat toplama təhlili fərziyyələri sübutdan ayırmalı və vacib nəticələri təsdiqləməlidir.",
+      "en": "Elicitation analysis must distinguish assumptions from evidence and confirm important conclusions."
+    },
+    "lessonId": "ccba-elicitation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-010",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "az": "Əməkdaşlar həssas pozuntu bildirişlərini müzakirə etməlidir. Rəhbərləri birgə müsahibə istəyir. Etibarlı tapıntıları hansı yanaşma daha yaxşı dəstəkləyər?",
+      "en": "Employees must discuss sensitive misconduct reporting. Their managers request a joint interview. Which approach best supports trustworthy findings?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Təşkilat təmin edə bilməsə də tam anonimlik vəd etmək.",
+          "en": "Promise absolute anonymity even when the organization cannot guarantee it."
+        },
+        "explanation": {
+          "az": "Təmin edilməyən məxfilik vədləri məlumatlı razılığı və etibarı zəiflədir.",
+          "en": "Unsupported privacy promises undermine informed consent and trust."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Müsahibədə hər əməkdaş fikrini rəhbərə təsdiqlətmək.",
+          "en": "Require managers to approve every employee statement during the interview."
+        },
+        "explanation": {
+          "az": "Rəhbərin dərhal təsdiqi müsahibə üçün lazım olan sübutları boğa bilər.",
+          "en": "Real-time managerial approval can suppress the evidence the interview needs."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Məxfiliyin sərhədlərini izah etmək, məlumatlı razılıq almaq və təhlükəsiz ayrıca kanal yaratmaq.",
+          "en": "Explain confidentiality limits, obtain informed consent, and provide a safe separate channel."
+        },
+        "explanation": {
+          "az": "Səlahiyyət fərqləri və məxfilik iştirakçıların real narahatlıqları deyə bilməsinə təsir edir.",
+          "en": "Power differences and confidentiality affect whether participants can describe real concerns."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Səlahiyyət fərqləri və məxfilik iştirakçıların real narahatlıqları deyə bilməsinə təsir edir.",
+      "en": "Power differences and confidentiality affect whether participants can describe real concerns."
+    },
+    "lessonId": "elicitation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-011",
+    "trackId": "ccba",
+    "type": "multiple",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "az": "Ödəniş tələbləri təsdiqləndikdən sonra vergi dərəcəsi qaydası dəyişir. Buraxılışa söz verməzdən əvvəl hansı iki addım dəyişikliyi qiymətləndirər?",
+      "en": "A tax-rate rule changes after checkout requirements were approved. Which two actions help assess the change before committing to a release?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Yalnız görünən vergi etiketini dəyişib hesablamaları etibarlı saymaq.",
+          "en": "Change only the visible tax label and assume calculations remain valid."
+        },
+        "explanation": {
+          "az": "Yalnız görünüş dəyişikliyi faktiki biznes qaydasını səhv saxlaya bilər.",
+          "en": "A presentation-only change can leave the actual business rule incorrect."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Qaydanı təsirlənən hesablamalara, interfeyslərə və testlərə izləmək.",
+          "en": "Trace the rule to affected calculations, interfaces, and tests."
+        },
+        "explanation": {
+          "az": "İzlənəbilənlik dəyişikliyin sonrakı təsirlərini üzə çıxarır.",
+          "en": "Traceability reveals the change’s downstream effects."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Müvafiq qərarverənlərlə xərc, risk, vaxt və təsdiq ehtiyacını qiymətləndirmək.",
+          "en": "Assess cost, risk, timing, and approval needs with the relevant decision makers."
+        },
+        "explanation": {
+          "az": "Təsir təhlili avtomatik öhdəlik əvəzinə məlumatlı qərarı dəstəkləyir.",
+          "en": "An impact assessment supports an informed decision rather than an automatic commitment."
+        }
+      }
+    ],
+    "correct": ["a", "b"],
+    "explanation": {
+      "az": "Təsirlənən artifact-ları izlənəbilənliklə tapın, sonra təsirləri qiymətləndirib uyğun qərarı alın.",
+      "en": "Use traceability to identify affected artifacts, then assess impacts and seek the appropriate decision."
+    },
+    "lessonId": "traceability",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-012",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "az": "Satış anonim ödəniş istəyir, uyğunluq bölməsi isə bəzi tənzimlənən məhsullar üçün alıcının müəyyənləşdirilməsini tələb edir. BA nə etməlidir?",
+      "en": "Sales wants anonymous checkout while compliance requires identifying buyers for certain regulated items. What should the BA do?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Siyasətin sərhədini dəqiqləşdirib təsirlənən alışlar üçün şərtli tələblər razılaşdırmaq.",
+          "en": "Clarify the policy boundary and negotiate conditional requirements for the affected purchases."
+        },
+        "explanation": {
+          "az": "Əsas məhdudiyyəti anlamaq zahirən tam ziddiyyəti şərtli həllə çevirə bilər.",
+          "en": "Understanding the underlying constraint can resolve an apparent all-or-nothing conflict."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Əməkdaş sayı çox olan bölmənin istəyini qəbul etmək.",
+          "en": "Accept the request from the department with more staff."
+        },
+        "explanation": {
+          "az": "Bölmənin ölçüsü normativ tələb ziddiyyətini həll etmək üçün əsas deyil.",
+          "en": "Department size is not a sound basis for resolving regulatory requirements."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər iki tələbi şərtsiz yazıb qərarı testçilərə saxlamaq.",
+          "en": "Record both requirements as unconditional and let testers decide later."
+        },
+        "explanation": {
+          "az": "Həll edilməyən ziddiyyətlər yoxlanmayan və ya uyğunsuz həll yaradır.",
+          "en": "Unresolved contradictions create an untestable or inconsistent solution."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Əsas məhdudiyyəti anlamaq zahirən tam ziddiyyəti şərtli həllə çevirə bilər.",
+      "en": "Understanding the underlying constraint can resolve an apparent all-or-nothing conflict."
+    },
+    "lessonId": "facilitation-conflict",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-013",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "az": "Komanda yerli xidmətdəki ünvan yoxlama tələblərini yeni beynəlxalq məhsulda təkrar istifadə etmək istəyir. Əvvəlcə nə yoxlanmalıdır?",
+      "en": "A team wants to reuse address-validation requirements from a domestic service in a new international product. What must be checked first?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Köhnə sənədin peşəkar üz qabığının olub-olmaması.",
+          "en": "Whether the old document has a professional cover page."
+        },
+        "explanation": {
+          "az": "Təqdimat məzmun və normativ uyğunluğu sübut etmir.",
+          "en": "Presentation does not establish semantic or regulatory suitability."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Eyni proqramçının mətni dəyişmədən köçürə bilməsi.",
+          "en": "Whether the same developer can copy the text unchanged."
+        },
+        "explanation": {
+          "az": "Köçürmə səyi tələblərin etibarlı qalmasına nisbətən ikinci dərəcəlidir.",
+          "en": "Copying effort is secondary to whether the requirements remain valid."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Fərziyyələrin, ölkələrin, məxfilik məhdudiyyətlərinin və yoxlama qaydalarının hələ uyğun olub-olmaması.",
+          "en": "Whether assumptions, countries, privacy constraints, and validation rules still apply."
+        },
+        "explanation": {
+          "az": "Təkrar istifadə ilkin kontekst və məhdudiyyətlərin yeni ehtiyaca uyğunluğunu təsdiqləməyi tələb edir.",
+          "en": "Reuse requires confirming that the original context and constraints fit the new need."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Təkrar istifadə ilkin kontekst və məhdudiyyətlərin yeni ehtiyaca uyğunluğunu təsdiqləməyi tələb edir.",
+      "en": "Reuse requires confirming that the original context and constraints fit the new need."
+    },
+    "lessonId": "ccba-lifecycle",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-014",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "az": "Qiymətləndirmə modeli kosmetik funksiyanı buraxılış üçün məcburi əlçatanlıq tələbindən üstün sıralayır. BA nə tövsiyə etməlidir?",
+      "en": "A scoring model ranks a cosmetic feature above an accessibility requirement that is mandatory for launch. What should the BA recommend?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər tələbə mümkün ən yüksək bal vermək.",
+          "en": "Assign every requirement the highest possible score."
+        },
+        "explanation": {
+          "az": "Hamıya ən yüksək bal vermək seçimləri dəstəkləmək əvəzinə gizlədir.",
+          "en": "Equal maximum scores hide trade-offs rather than support a decision."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Məcburi məhdudiyyətləri ayrıca nəzərə alıb seçimə bağlı işləri mümkün variantlar daxilində sıralamaq.",
+          "en": "Treat mandatory constraints explicitly and prioritize discretionary work within the feasible set."
+        },
+        "explanation": {
+          "az": "Çəkili bal məcburi buraxılış məhdudiyyətini səssizcə üstələməməlidir.",
+          "en": "A weighted score should not silently override a binding launch constraint."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Rəqəmsal bal həmişə obyektiv olduğuna görə məhdudiyyətə məhəl qoymamaq.",
+          "en": "Ignore the constraint because a numerical score is always objective."
+        },
+        "explanation": {
+          "az": "Ballar seçilmiş girişləri və fərziyyələri əks etdirir, öhdəlikləri aradan qaldırmır.",
+          "en": "Scores reflect chosen inputs and assumptions; they do not remove obligations."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Çəkili bal məcburi buraxılış məhdudiyyətini səssizcə üstələməməlidir.",
+      "en": "A weighted score should not silently override a binding launch constraint."
+    },
+    "lessonId": "prioritization",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-015",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "az": "Vaxta həssas tələb təsdiq gözləyərkən təyin edilmiş təsdiqləyən məzuniyyətdədir. Ən əsaslandırılmış addım hansıdır?",
+      "en": "The named approver is on leave when a time-critical requirement needs authorization. What is the most defensible action?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Razılaşdırılmış səlahiyyət ötürmə və ya eskalasiya yolundan istifadə edib faktiki qərarverəni qeyd etmək.",
+          "en": "Use the agreed delegation or escalation path and record the actual decision maker."
+        },
+        "explanation": {
+          "az": "Təsdiq etibarlı səlahiyyətdən gəlməli və məsuliyyəti göstərən sübut saxlanmalıdır.",
+          "en": "Approval must come from valid authority while retaining accountable evidence."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Heç kimlə əlaqə saxlamadan qeydə məzuniyyətdə olan şəxsin adını yazmaq.",
+          "en": "Put the absent approver’s name on the record without contacting anyone."
+        },
+        "explanation": {
+          "az": "Bu, səlahiyyəti saxtalaşdırır və qərar qeydini etibarsız edir.",
+          "en": "This fabricates authorization and invalidates the decision record."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Təcililiyin BA-ya məhdudiyyətsiz təsdiq səlahiyyəti verdiyini düşünmək.",
+          "en": "Assume urgency grants the BA unlimited approval authority."
+        },
+        "explanation": {
+          "az": "Təcililik idarəetmə səlahiyyətini avtomatik dəyişmir.",
+          "en": "Urgency does not automatically change governance authority."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Təsdiq etibarlı səlahiyyətdən gəlməli və məsuliyyəti göstərən sübut saxlanmalıdır.",
+      "en": "Approval must come from valid authority while retaining accountable evidence."
+    },
+    "lessonId": "analysis-governance",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-016",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "az": "Distribütor gecikən çatdırılmaları düzəltmək üçün yeni izləmə paneli istəyir. BA paneli tövsiyə etməzdən əvvəl nəyi müəyyənləşdirməlidir?",
+      "en": "A distributor requests a new tracking dashboard to fix late deliveries. What should the BA establish before recommending the dashboard?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Sponsorun hansı qrafik rənglərini sevdiyini.",
+          "en": "Which chart colors the sponsor prefers."
+        },
+        "explanation": {
+          "az": "Vizual üstünlüklər panelin gecikmələri həll edəcəyini göstərmir.",
+          "en": "Visual preferences do not establish whether a dashboard addresses delivery delays."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Rəqib panelinin bütün funksiyalarını necə təkrarlamağı.",
+          "en": "How to replicate every feature of a competitor’s dashboard."
+        },
+        "explanation": {
+          "az": "Rəqibin funksiyaları bu distribütorun kök səbəbinin sübutu deyil.",
+          "en": "A competitor’s feature set is not evidence of this distributor’s root cause."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Gecikmələrin harada yarandığını, biznes təsirini və görünürlük çatışmazlığının səbəb olub-olmadığını.",
+          "en": "Where delays occur, their business impact, and whether missing visibility is a contributing cause."
+        },
+        "explanation": {
+          "az": "Cari vəziyyət və kök səbəb sübutu istənən həlli problemin özü saymağın qarşısını alır.",
+          "en": "Current-state and root-cause evidence prevents treating a requested solution as the problem itself."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Cari vəziyyət və kök səbəb sübutu istənən həlli problemin özü saymağın qarşısını alır.",
+      "en": "Current-state and root-cause evidence prevents treating a requested solution as the problem itself."
+    },
+    "lessonId": "gap-root-cause",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-017",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "az": "Bank qeydiyyatdan imtinanı aydın təlimat, dəstəkli xidmət və ya yeni tətbiqlə azalda bilər. BA bunları necə müqayisə etməlidir?",
+      "en": "A bank can reduce onboarding abandonment through clearer instructions, assisted service, or a new application. How should the BA compare these?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Biznes təhlili yalnız sistemlərə aid olduğuna görə proses dəyişikliklərini çıxarmaq.",
+          "en": "Exclude process changes because business analysis only concerns systems."
+        },
+        "explanation": {
+          "az": "Biznes ehtiyacları insan, proses, siyasət və ya texnologiya dəyişikliyi ilə həll edilə bilər.",
+          "en": "Business needs can be addressed through people, process, policy, or technology changes."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Gözlənən nəticələri, xərci, riski və məhdudiyyətləri razılaşdırılmış meyarlarla qiymətləndirmək.",
+          "en": "Evaluate expected outcomes, cost, risk, and constraints against agreed criteria."
+        },
+        "explanation": {
+          "az": "Alternativləri ortaq meyarlarla müqayisə etmək seçimdən əvvəl güzəştləri görünən edir.",
+          "en": "Comparing alternatives by common criteria makes trade-offs visible before choosing a solution."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Proqram hissəsi ən böyük olan variantı seçmək.",
+          "en": "Select the option with the largest software component."
+        },
+        "explanation": {
+          "az": "Daha çox proqram təminatı mütləq daha çox biznes dəyəri yaratmır.",
+          "en": "More software does not necessarily deliver more business value."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Alternativləri ortaq meyarlarla müqayisə etmək seçimdən əvvəl güzəştləri görünən edir.",
+      "en": "Comparing alternatives by common criteria makes trade-offs visible before choosing a solution."
+    },
+    "lessonId": "gap-root-cause",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-018",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "az": "Sponsorun məqsədi “xidməti yaxşılaşdırmaq”dır. Hansı dəqiqləşdirmə uğuru daha ölçülən edər?",
+      "en": "The sponsor’s objective is “improve service.” Which refinement makes success most assessable?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Altı ayda median iddia həllini 8 iş günündən 5 günə salmaq və əsaslı şikayətləri artırmamaq.",
+          "en": "Reduce median claim resolution from 8 to 5 working days within six months, without increasing upheld complaints."
+        },
+        "explanation": {
+          "az": "Başlanğıc göstərici, hədəf, müddət və tarazlaşdırıcı ölçü müşahidə olunan uğuru müəyyən edir.",
+          "en": "A baseline, target, time frame, and balancing measure define observable success."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Keçən ildən daha çox ekran hazırlamaq.",
+          "en": "Deliver more screens than last year."
+        },
+        "explanation": {
+          "az": "Ekran sayı göstərilən xidmət nəticəsinə bağlı olmayan istehsal ölçüsüdür.",
+          "en": "Screen count is an output measure unrelated to the stated service outcome."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər maraqlı tərəfin layihəni müasir hesab etməsini təmin etmək.",
+          "en": "Ensure every stakeholder feels the project is modern."
+        },
+        "explanation": {
+          "az": "Müəyyənləşdirilməmiş təəssürat praktik xidmət performansı hədəfi vermir.",
+          "en": "An undefined sentiment does not provide a practical service-performance target."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Başlanğıc göstərici, hədəf, müddət və tarazlaşdırıcı ölçü müşahidə olunan uğuru müəyyən edir.",
+      "en": "A baseline, target, time frame, and balancing measure define observable success."
+    },
+    "lessonId": "solution-evaluation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-019",
+    "trackId": "ccba",
+    "type": "multiple",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "az": "Köhnə hesablaşma platforması dəyişdiriləcək. Hansı iki ehtiyac konkret olaraq cari vəziyyətdən gələcək vəziyyətə keçidlə bağlıdır?",
+      "en": "A legacy billing platform will be replaced. Which two needs are specifically associated with moving from the current state to the future state?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Əməliyyat heyətini keçid və müvəqqəti paralel iş üçün hazırlamaq.",
+          "en": "Train operations staff for cutover and temporary dual running."
+        },
+        "explanation": {
+          "az": "Təlim və müvəqqəti iş qaydaları vəziyyətlər arasında keçidi mümkün edir.",
+          "en": "Training and temporary operating arrangements enable the move between states."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Məhsulun bütün ömrü boyu aylıq abunə haqqını hesablamaq.",
+          "en": "Calculate the monthly subscription charge throughout the product’s lifetime."
+        },
+        "explanation": {
+          "az": "Daimi məhsul imkanı xüsusi olaraq müvəqqəti keçid ehtiyacı deyil.",
+          "en": "An ongoing product capability is not specifically a temporary transition need."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Müştəriləri yeni platformaya keçirməzdən əvvəl köçürülmüş qalıqları tutuşdurmaq.",
+          "en": "Reconcile migrated balances before switching customers to the new platform."
+        },
+        "explanation": {
+          "az": "Miqrasiya tutuşdurması keçidin təhlükəsiz olması üçün lazımdır.",
+          "en": "Migration reconciliation is needed to make the transition safe."
+        }
+      }
+    ],
+    "correct": ["a", "b"],
+    "explanation": {
+      "az": "Keçid ehtiyaclarına müvəqqəti miqrasiya, keçid, təlim və fasiləsizlik işləri daxildir; onları daimi imkanlardan ayırın.",
+      "en": "Transition needs include temporary migration, cutover, training, and continuity activities; distinguish them from ongoing capabilities."
+    },
+    "lessonId": "requirement-types",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-020",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "az": "Təklif olunan özünəxidmət funksiyası əksər müştərilərin etibarlı sənəd yükləyə biləcəyi yoxlanmamış fərziyyədən asılıdır. Ən yaxşı növbəti addım hansıdır?",
+      "en": "A proposed self-service feature depends on an untested assumption that most customers can upload valid documents. What is the best next step?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Müştəri ilə əlaqədən əvvəl tam tətbiqə öhdəlik götürmək.",
+          "en": "Commit to full rollout before any customer contact."
+        },
+        "explanation": {
+          "az": "Tam öhdəlik hələ yoxlanmamış qeyri-müəyyənliyə məruz qalmanı artırır.",
+          "en": "Full commitment increases exposure to the very uncertainty that has not been tested."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Kiçik təmsilçi istifadə rahatlığı təcrübəsi aparıb nəticə ilə dəyişiklik strategiyasını yeniləmək.",
+          "en": "Run a small representative usability experiment and use the results to update the change strategy."
+        },
+        "explanation": {
+          "az": "Məqsədli təcrübə böyük sərmayədən əvvəl vacib qeyri-müəyyənliyi azaldır.",
+          "en": "A focused experiment reduces a critical uncertainty before broad investment."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Funksiya başqa məhsullarda yayğın olduğuna görə fərziyyəni qəti saymaq.",
+          "en": "Treat the assumption as certain because the feature is common in other products."
+        },
+        "explanation": {
+          "az": "Yayğın funksiya bu istifadəçi qrupu və kontekstdə yenə uğursuz ola bilər.",
+          "en": "A common feature may still fail for this user population and context."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Məqsədli təcrübə böyük sərmayədən əvvəl vacib qeyri-müəyyənliyi azaldır.",
+      "en": "A focused experiment reduces a critical uncertainty before broad investment."
+    },
+    "lessonId": "wireframes",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-021",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "az": "Hekayədə deyilir: “Alıcı kimi sifarişi ləğv etmək istəyirəm.” Hansı acceptance criterion vacib biznes qaydasını yoxlanılan edər?",
+      "en": "A story says, “As a buyer, I want to cancel an order.” Which acceptance criterion makes an important business rule testable?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Sifariş artıq göndərilibsə, ləğv istənəndə ləğvi rədd edib qaytarma yolunu izah etmək.",
+          "en": "Given an order is already dispatched, when cancellation is requested, then reject cancellation and explain the return route."
+        },
+        "explanation": {
+          "az": "Nümunə vacib qayda sərhədində şərti, əməli və müşahidə edilən nəticəni göstərir.",
+          "en": "The example specifies a condition, action, and observable result at a meaningful rule boundary."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Ləğv səhifəsi yaxşı görünməlidir.",
+          "en": "The cancellation page must look good."
+        },
+        "explanation": {
+          "az": "Subyektiv görünüş ləğv qaydasını və gözlənən nəticəni müəyyən etmir.",
+          "en": "Subjective appearance does not specify the cancellation rule or expected outcome."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Ləğvi komandanın sevdiyi freymvorkla qurmaq.",
+          "en": "Implement cancellation using the team’s favorite framework."
+        },
+        "explanation": {
+          "az": "Freymvork üstünlüyü qəbul olunan biznes davranışını müəyyən etmir.",
+          "en": "A framework preference does not define acceptable business behavior."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Nümunə vacib qayda sərhədində şərti, əməli və müşahidə edilən nəticəni göstərir.",
+      "en": "The example specifies a condition, action, and observable result at a meaningful rule boundary."
+    },
+    "lessonId": "stories-gherkin",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-022",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "az": "Hər müştəri çoxlu sifariş verə bilər, hər sifariş isə dəqiq bir müştəriyə aiddir. Hansı məlumat əlaqəsi bu qaydanı göstərir?",
+      "en": "Each customer can place many orders, and every order belongs to exactly one customer. Which data relationship represents this rule?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Müştəri və Sifariş bir-bir əlaqəsində olmalıdır.",
+          "en": "Customer and Order must be one-to-one."
+        },
+        "explanation": {
+          "az": "Bir-bir əlaqəsi müştərinin bir neçə sifarişinə səhvən mane olar.",
+          "en": "One-to-one would incorrectly prevent a customer from having several orders."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Hər iki varlığın identifikatoru olduğuna görə əlaqəni çıxarmaq.",
+          "en": "Remove the relationship because both entities have identifiers."
+        },
+        "explanation": {
+          "az": "Ayrı identifikatorlar sifarişin hansı müştəriyə aid olduğunu göstərmir və təmin etmir.",
+          "en": "Separate identifiers do not describe or enforce which customer owns an order."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Müştəridən Sifarişə əlaqə bir-çoxdur və hər sifarişdə məcburi müştəri istinadı var.",
+          "en": "Customer to Order is one-to-many, with a required customer reference on each order."
+        },
+        "explanation": {
+          "az": "Kardinallıq və məcburi istinad həm çoxluğu, həm də aidiyyəti ifadə edir.",
+          "en": "The cardinality and required reference express both multiplicity and ownership."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Kardinallıq və məcburi istinad həm çoxluğu, həm də aidiyyəti ifadə edir.",
+      "en": "The cardinality and required reference express both multiplicity and ownership."
+    },
+    "lessonId": "data-modeling",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-023",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "az": "Ödəniş sorğusu provayder müştəridən pul tutmuş ola biləcəyi anda vaxt aşımına düşür. Təkrar cəhddə ikiqat tutulmadan qaçmaq üçün BA hansı tələbi dəqiqləşdirməlidir?",
+      "en": "A payment request times out after the provider may have charged the customer. What requirement should the BA clarify to avoid duplicate charges on retry?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Şəbəkə yavaş olanda həmişə uğur mesajı göstərmək.",
+          "en": "Show a success message whenever the network is slow."
+        },
+        "explanation": {
+          "az": "İstifadəçi mesajı maliyyə əməliyyatının həqiqətən tamamlandığını müəyyən etmir.",
+          "en": "A user message cannot establish whether a financial transaction actually completed."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Qeyri-müəyyən nəticələr üçün idempotentlik açarlarını, status tutuşdurmasını və təkrar cəhd davranışını müəyyənləşdirmək.",
+          "en": "Define idempotency keys, status reconciliation, and retry behavior for uncertain outcomes."
+        },
+        "explanation": {
+          "az": "Açıq təkrarın qarşısını alma və tutuşdurma qaydaları vaxtı aşmış xarici çağırışın qeyri-müəyyənliyini idarə edir.",
+          "en": "Explicit duplicate prevention and reconciliation handle the ambiguity of a timed-out external call."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Hər dəfə yeni əməliyyat identifikatoru ilə sonsuz təkrar etmək.",
+          "en": "Retry indefinitely with a new transaction identifier each time."
+        },
+        "explanation": {
+          "az": "Yeni identifikatorlar təkrarları ayrıca ödəniş kimi göstərə bilər.",
+          "en": "New identifiers can make retries look like separate charges."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Açıq təkrarın qarşısını alma və tutuşdurma qaydaları vaxtı aşmış xarici çağırışın qeyri-müəyyənliyini idarə edir.",
+      "en": "Explicit duplicate prevention and reconciliation handle the ambiguity of a timed-out external call."
+    },
+    "lessonId": "integration-basics",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-024",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "az": "Xidmət tələbində “99,9% əlçatanlıq” yazılıb. Mənalı yoxlama üçün hansı əlavə məlumat vacibdir?",
+      "en": "A service requirement says “99.9% availability.” What additional information is essential for a meaningful test?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Ölçmə dövrünü, izlənən xidmət sərhədini və planlı dayanmanın necə hesablandığını müəyyənləşdirmək.",
+          "en": "Define the measurement window, monitored service boundary, and treatment of planned downtime."
+        },
+        "explanation": {
+          "az": "Ölçmə əsası və dayanmanın razılaşdırılmış tərifi olmadan əlçatanlıq faizi qeyri-müəyyəndir.",
+          "en": "Availability percentages are ambiguous without a denominator and an agreed definition of downtime."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Yalnız dayanma zamanı göstərilən loqonu müəyyən etmək.",
+          "en": "Specify only the logo shown during an outage."
+        },
+        "explanation": {
+          "az": "Brend görünüşü əlçatanlığın ölçülməsini müəyyən etmir.",
+          "en": "Branding does not define availability measurement."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Bütün monitorinq alətlərinin əlçatanlığı eyni hesabladığını düşünmək.",
+          "en": "Assume every monitoring tool calculates availability identically."
+        },
+        "explanation": {
+          "az": "Fərqli sərhədlər və istisnalar fərqli qiymətlər yarada bilər.",
+          "en": "Different boundaries and exclusions can produce different values."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Ölçmə əsası və dayanmanın razılaşdırılmış tərifi olmadan əlçatanlıq faizi qeyri-müəyyəndir.",
+      "en": "Availability percentages are ambiguous without a denominator and an agreed definition of downtime."
+    },
+    "lessonId": "requirement-types",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-025",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "az": "RICE tipli müqayisə əhatə təxmini böyük olduğu üçün bir funksiyanı üstün tutur, amma təxmin sadəcə gümandır. BA nə etməlidir?",
+      "en": "A RICE-style comparison favors a feature because its reach estimate is huge, but the estimate is a guess. What should the BA do?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Model qəti görünsün deyə əhatəni yuxarı yuvarlaqlaşdırmaq.",
+          "en": "Round the reach upward so the model looks decisive."
+        },
+        "explanation": {
+          "az": "Əsassız girişi şişirtmək qərarın etibarlılığını azaldır.",
+          "en": "Inflating an unsupported input makes the decision less reliable."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Qərar qeydindən bütün fərziyyələri çıxarmaq.",
+          "en": "Remove all assumptions from the decision record."
+        },
+        "explanation": {
+          "az": "Gizli fərziyyələr maraqlı tərəflərin əminliyi və riski qiymətləndirməsinə mane olur.",
+          "en": "Hidden assumptions prevent stakeholders from assessing confidence and risk."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Qeyri-müəyyənliyi açıq göstərmək, sübut toplamaq və mümkün təxminlərlə sıralamanın dəyişməsini yoxlamaq.",
+          "en": "Make the uncertainty explicit, seek evidence, and test how the ranking changes under plausible estimates."
+        },
+        "explanation": {
+          "az": "Həssaslıq təhlili və sübut saxta dəqiqliyin prioritetləşdirməni idarə etməsinə mane olur.",
+          "en": "Sensitivity analysis and evidence prevent false precision from dominating prioritization."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Həssaslıq təhlili və sübut saxta dəqiqliyin prioritetləşdirməni idarə etməsinə mane olur.",
+      "en": "Sensitivity analysis and evidence prevent false precision from dominating prioritization."
+    },
+    "lessonId": "prioritization",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-026",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "az": "Yenilənmiş kredit müraciətində səhifə baxışları artır, amma tamamlanmış uyğun müraciətlər azalır. Hansı nəticə daha əsaslıdır?",
+      "en": "A redesigned loan application increases page views, but completed eligible applications fall. Which conclusion is best supported?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "Tamamlanma məlumatını buraxılış elanına zidd olduğuna görə çıxarmaq.",
+          "en": "Discard completion data because it conflicts with the launch announcement."
+        },
+        "explanation": {
+          "az": "Qiymətləndirmə gözləntilərə zidd olsa da uyğun sübutdan istifadə etməlidir.",
+          "en": "Evaluation should use relevant evidence even when it challenges expectations."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Daha çox fəaliyyət nəzərdə tutulan nəticəni sübut etmir; çevrilməni və istifadəçi çətinliklərini araşdırmaq lazımdır.",
+          "en": "Higher engagement activity has not established the intended outcome; investigate conversion and user difficulties."
+        },
+        "explanation": {
+          "az": "Nəticə ölçüləri cəlbedici fəaliyyət göstəricilərinə zidd ola və əlavə diaqnostika tələb edə bilər.",
+          "en": "Outcome measures can contradict attractive activity metrics and require further diagnosis."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Çox səhifə baxışı həmişə daha çox müştəri dəyəri demək olduğu üçün uğur elan etmək.",
+          "en": "Declare success because more page views always mean greater customer value."
+        },
+        "explanation": {
+          "az": "Əlavə baxışlar çaşqınlığı və təkrar uğursuz cəhdləri göstərə bilər.",
+          "en": "Extra page views may reflect confusion or repeated failed attempts."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Nəticə ölçüləri cəlbedici fəaliyyət göstəricilərinə zidd ola və əlavə diaqnostika tələb edə bilər.",
+      "en": "Outcome measures can contradict attractive activity metrics and require further diagnosis."
+    },
+    "lessonId": "solution-evaluation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-027",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "az": "Yeni dəstək aləti tələbə uyğun işləyir, amma əməkdaşların qaytarmaya səlahiyyəti olmadığından həll müddəti yüksək qalır. Ən aydın məhdudiyyət hansıdır?",
+      "en": "A new support tool works as specified, but resolution time stays high because staff cannot authorize refunds. What limitation is most evident?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Təşkilati səlahiyyət məhdudiyyəti həllin reallaşan dəyərini azaldır.",
+          "en": "An organizational authority constraint limits the solution’s realized value."
+        },
+        "explanation": {
+          "az": "Düzgün proqram təminatı ətraf təşkilatdakı siyasət maneəsini təkbaşına aradan qaldırmır.",
+          "en": "Correct software cannot by itself remove a policy bottleneck in the surrounding organization."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Alətdə mütləq kod qüsuru var.",
+          "en": "The tool must necessarily contain a coding defect."
+        },
+        "explanation": {
+          "az": "Verilən sübut icra qüsuruna deyil, səlahiyyət siyasətinə işarə edir.",
+          "en": "The stated evidence points to authorization policy, not a demonstrated implementation defect."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Spesifikasiya ödəndiyi üçün bütün təhlil lazımsız idi.",
+          "en": "All analysis was unnecessary because the specification was met."
+        },
+        "explanation": {
+          "az": "Tələblərin ödənməsi faktiki biznes nəticələrini qiymətləndirmə ehtiyacını aradan qaldırmır.",
+          "en": "Meeting requirements does not remove the need to evaluate actual business outcomes."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Düzgün proqram təminatı ətraf təşkilatdakı siyasət maneəsini təkbaşına aradan qaldırmır.",
+      "en": "Correct software cannot by itself remove a policy bottleneck in the surrounding organization."
+    },
+    "lessonId": "solution-evaluation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-028",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "az": "Tövsiyə funksiyası buraxıldıqdan sonra satış artır, amma eyni həftə böyük endirim kampaniyası başlayıb. BA təsiri necə qiymətləndirməlidir?",
+      "en": "Sales increased after a recommendation feature launched, but a major discount campaign started the same week. How should the BA assess impact?"
+    },
+    "options": [
+      {
+        "id": "b",
+        "text": {
+          "az": "Həmin səhər ilk o buraxıldığı üçün bütün artımı funksiyaya aid etmək.",
+          "en": "Attribute the full sales increase to the feature because it launched first that morning."
+        },
+        "explanation": {
+          "az": "Təkcə zaman ardıcıllığı rəqib izahları ayırmaq üçün kifayət deyil.",
+          "en": "Timing alone is not enough to separate competing explanations."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "İki dəyişiklik bütün qiymətləndirməni mümkünsüz etdiyindən ölçməni dayandırmaq.",
+          "en": "Stop measuring because two changes make all evaluation impossible."
+        },
+        "explanation": {
+          "az": "Müqayisə və qeyri-müəyyənliyi açıq bildirməklə qiymətləndirməni yaxşılaşdırmaq olar.",
+          "en": "Evaluation can still improve by using comparisons and explicitly reporting uncertainty."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Etibarlı müqayisə və ya nəzarətli təcrübə istifadə edib kampaniyanı nəzərə almaq.",
+          "en": "Use a credible comparison or controlled experiment and account for the campaign."
+        },
+        "explanation": {
+          "az": "Eyni vaxtlı dəyişikliklər qarışdırıcı təsir yaradır; sadə əvvəl-sonra müqayisəsi səbəbiyyəti ayırmır.",
+          "en": "Concurrent changes create confounding; a simple before-and-after comparison cannot isolate causality."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Eyni vaxtlı dəyişikliklər qarışdırıcı təsir yaradır; sadə əvvəl-sonra müqayisəsi səbəbiyyəti ayırmır.",
+      "en": "Concurrent changes create confounding; a simple before-and-after comparison cannot isolate causality."
+    },
+    "lessonId": "solution-evaluation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-029",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "az": "İddia sistemi texniki testlərdən keçir. Biznes qəbulundan əvvəl hansı əlavə sübut daha faydalıdır?",
+      "en": "Technical tests pass for a claims system. Before business acceptance, what additional evidence is most useful?"
+    },
+    "options": [
+      {
+        "id": "c",
+        "text": {
+          "az": "İstifadəçi yoxlamasını daha böyük təqdimatla əvəz etmək.",
+          "en": "Replace user validation with a larger launch presentation."
+        },
+        "explanation": {
+          "az": "Təqdimat istifadəçilərin tələb olunan işi bacardığının sübutu deyil.",
+          "en": "A presentation is not evidence that users can achieve the required tasks."
+        }
+      },
+      {
+        "id": "a",
+        "text": {
+          "az": "Təmsilçi biznes istifadəçiləri istisnalar daxil real tam ssenariləri razılaşdırılmış acceptance criteria ilə yerinə yetirirlər.",
+          "en": "Representative business users complete realistic end-to-end scenarios, including exceptions, against agreed acceptance criteria."
+        },
+        "explanation": {
+          "az": "Biznes qəbulu həllin faktiki işi və nəzərdə tutulan nəticələri dəstəklədiyini yoxlayır.",
+          "en": "Business acceptance tests whether the solution supports actual work and intended outcomes."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Proqramçının uğurlu lokal yığım sayını hesablamaq.",
+          "en": "Count the developer’s successful local compilations."
+        },
+        "explanation": {
+          "az": "Yığım biznes iş axınlarının istifadəyə yararlılığını göstərmir.",
+          "en": "Compilation does not show that business workflows are fit for use."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Biznes qəbulu həllin faktiki işi və nəzərdə tutulan nəticələri dəstəklədiyini yoxlayır.",
+      "en": "Business acceptance tests whether the solution supports actual work and intended outcomes."
+    },
+    "lessonId": "uat",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-030",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "az": "Buraxılışdan üç ay sonra səhv göstəricisi yaxşılaşıb, amma bazar pozuntusu səbəbindən əməliyyat həcmi yarıya düşüb. Qiymətləndirmə hesabatında nə olmalıdır?",
+      "en": "Three months after launch, error rates improve but transaction volume has halved because of a market disruption. What should the evaluation report include?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "az": "Müqayisə edilən normallaşdırılmış ölçülər, ilkin başlanğıc göstərici və dəyişmiş iş konteksti.",
+          "en": "Comparable normalized measures, the original baseline, and the changed operating context."
+        },
+        "explanation": {
+          "az": "Performansın həqiqətən yaxşılaşıb-yaxşılaşmadığını anlamaqda kontekst və ölçmə əsası vacibdir.",
+          "en": "Context and denominators matter when interpreting whether performance truly improved."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "az": "Əməliyyat həcmləri olmadan yalnız azalmış mütləq səhv sayı.",
+          "en": "Only the smaller absolute error count, without transaction volumes."
+        },
+        "explanation": {
+          "az": "Səhvlərin azalması sadəcə səhv imkanlarının azalmasından yarana bilər.",
+          "en": "Fewer errors may simply result from fewer opportunities for errors."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "az": "Xarici şərait dəyişdiyinə görə başlanğıc göstəricini silmək.",
+          "en": "Delete the baseline because external conditions changed."
+        },
+        "explanation": {
+          "az": "Məhdudiyyətlər və müqayisə edilə bilmə izah ediləndə başlanğıc göstərici faydalı qalır.",
+          "en": "The baseline remains useful when limitations and comparability are explained."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "az": "Performansın həqiqətən yaxşılaşıb-yaxşılaşmadığını anlamaqda kontekst və ölçmə əsası vacibdir.",
+      "en": "Context and denominators matter when interpreting whether performance truly improved."
+    },
+    "lessonId": "solution-evaluation",
+    "practiceOnly": true
+  },
+  {
+    "id": "ccba-babok-031",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "en": "A regulator requires an audit trail, while the team uses short delivery cycles. What is the best analysis approach?",
+      "az": "Tənzimləyici audit izi tələb edir, komanda isə qısa çatdırılma dövrləri ilə işləyir. Hansı analiz yanaşması uyğundur?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Tailor adaptive analysis while retaining required evidence and controls.",
+          "az": "Tələb olunan sübut və nəzarəti saxlayaraq adaptiv analizi uyğunlaşdırmaq."
+        },
+        "explanation": {
+          "en": "An approach can fit uncertainty without ignoring applicable standards.",
+          "az": "Yanaşma qüvvədəki standartları pozmadan qeyri-müəyyənliyə uyğunlaşa bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Remove audit evidence because the work is adaptive.",
+          "az": "İş adaptiv olduğu üçün audit sübutunu çıxarmaq."
+        },
+        "explanation": {
+          "en": "Adaptive delivery does not remove regulatory constraints.",
+          "az": "Adaptiv çatdırılma tənzimləyici məhdudiyyətləri aradan qaldırmır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Require complete detail for every future item before any learning.",
+          "az": "Öyrənmədən əvvəl bütün gələcək elementlərin tam detalını tələb etmək."
+        },
+        "explanation": {
+          "en": "A control requirement does not imply all uncertainty can be eliminated upfront.",
+          "az": "Nəzarət tələbi bütün qeyri-müəyyənliyin əvvəlcədən aradan qalxacağını göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "An approach can fit uncertainty without ignoring applicable standards. Source: BABOK Guide v3, section 3.1.",
+      "az": "Yanaşma qüvvədəki standartları pozmadan qeyri-müəyyənliyə uyğunlaşa bilər. Mənbə: BABOK Guide v3, bölmə 3.1."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-032",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "en": "Three teams assume different people approve requirement changes. What should the BA establish?",
+      "az": "Üç komanda tələb dəyişikliklərini fərqli şəxslərin təsdiqlədiyini düşünür. BA nəyi müəyyən etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Decision roles, change criteria and an escalation path.",
+          "az": "Qərar rollarını, dəyişiklik meyarlarını və eskalasiya yolunu."
+        },
+        "explanation": {
+          "en": "Governance resolves ambiguity about how and by whom decisions are made.",
+          "az": "İdarəetmə qərarın kim tərəfindən və necə verildiyi barədə qeyri-müəyyənliyi aradan qaldırır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "A rule that every reviewer automatically approves changes.",
+          "az": "Hər baxışçının dəyişiklikləri avtomatik təsdiqləməsi qaydasını."
+        },
+        "explanation": {
+          "en": "Review and approval authority are distinct.",
+          "az": "Baxış və təsdiq səlahiyyəti fərqlidir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A longer requirements document without naming decision makers.",
+          "az": "Qərar verənləri göstərmədən daha uzun tələb sənədini."
+        },
+        "explanation": {
+          "en": "Document length does not resolve decision ownership.",
+          "az": "Sənədin uzunluğu qərar sahibliyini aydınlaşdırmır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Governance resolves ambiguity about how and by whom decisions are made. Source: BABOK Guide v3, section 3.3.",
+      "az": "İdarəetmə qərarın kim tərəfindən və necə verildiyi barədə qeyri-müəyyənliyi aradan qaldırır. Mənbə: BABOK Guide v3, bölmə 3.3."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-033",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "en": "A stakeholder who supported the initiative now refuses review sessions after their department’s role changes. What should the BA do?",
+      "az": "Təşəbbüsü dəstəkləyən tərəf şöbəsinin rolu dəyişəndən sonra baxış görüşlərindən imtina edir. BA nə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Reassess their interests, influence and engagement needs.",
+          "az": "Onun maraqlarını, təsirini və iştirak ehtiyacını yenidən qiymətləndirmək."
+        },
+        "explanation": {
+          "en": "Stakeholder characteristics and collaboration needs can change.",
+          "az": "Tərəfin xüsusiyyətləri və əməkdaşlıq ehtiyacı dəyişə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Rely permanently on the original stakeholder analysis.",
+          "az": "İlkin tərəf təhlilinə həmişəlik əsaslanmaq."
+        },
+        "explanation": {
+          "en": "An initial plan may no longer fit the changed context.",
+          "az": "İlkin plan dəyişmiş kontekstə uyğun olmaya bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Classify absence as unconditional approval.",
+          "az": "İştirak etməməyi şərtsiz təsdiq saymaq."
+        },
+        "explanation": {
+          "en": "Absence does not establish informed agreement.",
+          "az": "İştirak etməmək məlumatlı razılaşmanı göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Stakeholder characteristics and collaboration needs can change. Source: BABOK Guide v3, section 3.2.",
+      "az": "Tərəfin xüsusiyyətləri və əməkdaşlıq ehtiyacı dəyişə bilər. Mənbə: BABOK Guide v3, bölmə 3.2."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-034",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "en": "Two initiatives reuse a customer definition but maintain conflicting copies. Which improvement is most useful?",
+      "az": "İki təşəbbüs müştəri tərifini təkrar istifadə edir, amma zidd nüsxələr saxlayır. Hansı təkmilləşdirmə faydalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Agree ownership, versioning, access and reuse relationships.",
+          "az": "Sahibliyi, versiyalaşdırmanı, girişi və təkrar istifadə əlaqələrini razılaşdırmaq."
+        },
+        "explanation": {
+          "en": "Information management supports consistent access and reuse across initiatives.",
+          "az": "Məlumat idarəçiliyi təşəbbüslər arasında uyğun giriş və təkrar istifadəni dəstəkləyir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Let every team silently edit the shared definition.",
+          "az": "Hər komandanın ortaq tərifi xəbərsiz dəyişməsinə icazə vermək."
+        },
+        "explanation": {
+          "en": "Uncontrolled edits increase inconsistency.",
+          "az": "Nəzarətsiz dəyişiklik uyğunsuzluğu artırır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Delete the history so only the latest opinion remains.",
+          "az": "Yalnız son fikir qalsın deyə tarixçəni silmək."
+        },
+        "explanation": {
+          "en": "Removing history can hide the rationale and affected consumers.",
+          "az": "Tarixçəni silmək əsaslandırmanı və təsirlənən istifadəçiləri gizlədə bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Information management supports consistent access and reuse across initiatives. Source: BABOK Guide v3, section 3.4.",
+      "az": "Məlumat idarəçiliyi təşəbbüslər arasında uyğun giriş və təkrar istifadəni dəstəkləyir. Mənbə: BABOK Guide v3, bölmə 3.4."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-035",
+    "trackId": "ccba",
+    "type": "multiple",
+    "domain": "planning-monitoring",
+    "difficulty": 2,
+    "text": {
+      "en": "Requirements rework rises despite more analysis meetings. Which two actions support improvement? Select two.",
+      "az": "Analiz görüşləri artsa da tələblərə təkrar iş artır. Hansı iki addım təkmilləşdirməni dəstəkləyir? İkisini seç."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compare observed analysis performance with agreed objectives.",
+          "az": "Müşahidə olunan analiz performansını razılaşdırılmış məqsədlərlə müqayisə etmək."
+        },
+        "explanation": {
+          "en": "Performance objectives provide a basis for evaluating the work.",
+          "az": "Performans məqsədləri işi qiymətləndirmək üçün əsas verir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Identify causes and adjust the approach, then monitor the effect.",
+          "az": "Səbəbləri tapıb yanaşmanı dəyişmək və təsiri izləmək."
+        },
+        "explanation": {
+          "en": "Improvements are informed by analysis and reviewed during the initiative.",
+          "az": "Təkmilləşdirmələr analizə əsaslanır və təşəbbüs zamanı yoxlanır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Treat meeting count alone as evidence of analysis effectiveness.",
+          "az": "Görüş sayını analiz effektivliyinin yeganə sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Activity volume does not demonstrate reduced rework or useful outcomes.",
+          "az": "Fəaliyyət həcmi təkrar işin azalmasını və ya faydalı nəticəni göstərmir."
+        }
+      }
+    ],
+    "correct": ["a", "b"],
+    "explanation": {
+      "en": "Performance objectives provide a basis for evaluating the work. Improvements are informed by analysis and reviewed during the initiative. Source: BABOK Guide v3, section 3.5.",
+      "az": "Performans məqsədləri işi qiymətləndirmək üçün əsas verir. Təkmilləşdirmələr analizə əsaslanır və təşəbbüs zamanı yoxlanır. Mənbə: BABOK Guide v3, bölmə 3.5."
+    },
+    "lessonId": "ccba-planning",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-036",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "en": "A workshop is booked, but participants do not know its purpose or what information to bring. What was missed?",
+      "az": "Seminar təyin edilib, amma iştirakçılar məqsədi və hansı məlumatı gətirməli olduqlarını bilmir. Nə çatışmır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Preparation covering desired outcomes, people, materials and logistics.",
+          "az": "Gözlənilən nəticə, insanlar, materiallar və təşkilati məsələləri əhatə edən hazırlıq."
+        },
+        "explanation": {
+          "en": "Preparation connects the elicitation activity to needs and useful outputs.",
+          "az": "Hazırlıq məlumat toplama fəaliyyətini ehtiyac və faydalı çıxışlarla bağlayır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Formal approval of an unexamined solution.",
+          "az": "Yoxlanmamış həllin rəsmi təsdiqi."
+        },
+        "explanation": {
+          "en": "Solution approval cannot replace elicitation planning.",
+          "az": "Həllin təsdiqi məlumat toplama planını əvəz etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "More participants regardless of relevance.",
+          "az": "Uyğunluğundan asılı olmayaraq daha çox iştirakçı."
+        },
+        "explanation": {
+          "en": "The right contributors matter more than attendance volume.",
+          "az": "İştirakçı sayı deyil, uyğun töhfə verənlər vacibdir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Preparation connects the elicitation activity to needs and useful outputs. Source: BABOK Guide v3, section 4.1.",
+      "az": "Hazırlıq məlumat toplama fəaliyyətini ehtiyac və faydalı çıxışlarla bağlayır. Mənbə: BABOK Guide v3, bölmə 4.1."
+    },
+    "lessonId": "ccba-elicitation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-037",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "en": "Transaction logs contain patterns nobody recalls in interviews. How may the BA obtain this information?",
+      "az": "Əməliyyat jurnallarında heç kimin müsahibədə xatırlamadığı nümunələr var. BA bu məlumatı necə əldə edə bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Use research-based elicitation by analyzing historical records.",
+          "az": "Tarixi qeydləri təhlil edən araşdırma əsaslı məlumat toplamaq."
+        },
+        "explanation": {
+          "en": "Elicitation can use research, not only facilitated discussion.",
+          "az": "Məlumat toplama yalnız müzakirə deyil, araşdırma ilə də aparıla bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Reject records because only spoken statements count.",
+          "az": "Yalnız şifahi fikir sayıldığı üçün qeydləri rədd etmək."
+        },
+        "explanation": {
+          "en": "Documents and data can provide relevant analysis information.",
+          "az": "Sənəd və məlumatlar uyğun analiz informasiyası verə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Rewrite logs to match the interview narrative.",
+          "az": "Jurnalları müsahibə hekayəsinə uyğun dəyişmək."
+        },
+        "explanation": {
+          "en": "Changing evidence destroys the ability to investigate the discrepancy.",
+          "az": "Sübutu dəyişmək fərqi araşdırmaq imkanını aradan qaldırır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Elicitation can use research, not only facilitated discussion. Source: BABOK Guide v3, section 4.2.",
+      "az": "Məlumat toplama yalnız müzakirə deyil, araşdırma ilə də aparıla bilər. Mənbə: BABOK Guide v3, bölmə 4.2."
+    },
+    "lessonId": "ccba-elicitation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-038",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "en": "Workshop notes and policy documents conflict about when an account is closed. What is the appropriate next step?",
+      "az": "Seminar qeydləri ilə siyasət sənədi hesabın nə vaxt bağlanması barədə ziddir. Növbəti uyğun addım hansıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compare sources, clarify the conflict and confirm the corrected results.",
+          "az": "Mənbələri müqayisə etmək, ziddiyyəti aydınlaşdırmaq və düzəldilmiş nəticəni təsdiqləmək."
+        },
+        "explanation": {
+          "en": "Confirmation may require further elicitation before information is used.",
+          "az": "Məlumatdan istifadə etməzdən əvvəl təsdiqləmə əlavə məlumat toplama tələb edə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Approve the most recently typed note automatically.",
+          "az": "Ən son yazılan qeydi avtomatik təsdiqləmək."
+        },
+        "explanation": {
+          "en": "Recency does not establish accuracy or authority.",
+          "az": "Yenilik düzgünlük və ya səlahiyyət demək deyil."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Keep both rules without explaining when each applies.",
+          "az": "Hər qaydanın nə vaxt tətbiqini izah etmədən ikisini saxlamaq."
+        },
+        "explanation": {
+          "en": "An unresolved contradiction can misdirect later analysis.",
+          "az": "Həll edilməmiş ziddiyyət sonrakı analizi yanlış yönəldə bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Confirmation may require further elicitation before information is used. Source: BABOK Guide v3, section 4.3.",
+      "az": "Məlumatdan istifadə etməzdən əvvəl təsdiqləmə əlavə məlumat toplama tələb edə bilər. Mənbə: BABOK Guide v3, bölmə 4.3."
+    },
+    "lessonId": "ccba-elicitation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-039",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "en": "Experienced operators omit routine exception handling when describing their work. Which technique can expose it?",
+      "az": "Təcrübəli operatorlar işlərini danışanda adi istisna emalını demirlər. Hansı üsul bunu göstərə bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Observe work in context and clarify the exceptions noticed.",
+          "az": "İşi yerində müşahidə edib görünən istisnaları dəqiqləşdirmək."
+        },
+        "explanation": {
+          "en": "Observation can reveal tacit practices not recalled in interviews.",
+          "az": "Müşahidə müsahibədə xatırlanmayan gizli iş üsullarını üzə çıxara bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Ask only whether the written process looks attractive.",
+          "az": "Yalnız yazılı prosesin yaxşı görünüb-görünmədiyini soruşmaq."
+        },
+        "explanation": {
+          "en": "Aesthetic approval does not reveal actual exception behavior.",
+          "az": "Görünüşü bəyənmək real istisna davranışını göstərmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Assume undocumented work never occurs.",
+          "az": "Sənədləşməyən işin baş vermədiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "Absence from a document is not proof of absence in practice.",
+          "az": "Sənəddə olmamaq praktikada olmamağın sübutu deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Observation can reveal tacit practices not recalled in interviews. Source: BABOK Guide v3, section 10.31.",
+      "az": "Müşahidə müsahibədə xatırlanmayan gizli iş üsullarını üzə çıxara bilər. Mənbə: BABOK Guide v3, bölmə 10.31."
+    },
+    "lessonId": "ccba-elicitation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-040",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "elicitation-collaboration",
+    "difficulty": 2,
+    "text": {
+      "en": "A report has been emailed to every stakeholder, yet departments implement different rules. What is missing?",
+      "az": "Hesabat bütün tərəflərə göndərilib, amma şöbələr fərqli qayda tətbiq edir. Nə çatışmır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Two-way communication to confirm understanding and resolve differences.",
+          "az": "Anlaşmanı təsdiqləyən və fərqləri həll edən ikitərəfli kommunikasiya."
+        },
+        "explanation": {
+          "en": "Distribution is not equivalent to shared understanding.",
+          "az": "Yayım ortaq anlayışla eyni deyil."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Proof that a message was sent.",
+          "az": "Məktubun göndərildiyinin sübutu."
+        },
+        "explanation": {
+          "en": "Transmission evidence already exists and does not resolve interpretation.",
+          "az": "Göndərilmə sübutu artıq var və şərh fərqini həll etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "A ban on stakeholder questions.",
+          "az": "Tərəflərin sual verməsinə qadağa."
+        },
+        "explanation": {
+          "en": "Questions can expose misunderstandings that require clarification.",
+          "az": "Suallar aydınlaşdırılmalı anlaşılmazlığı göstərə bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Distribution is not equivalent to shared understanding. Source: BABOK Guide v3, section 4.4; 4.5.",
+      "az": "Yayım ortaq anlayışla eyni deyil. Mənbə: BABOK Guide v3, bölmə 4.4; 4.5."
+    },
+    "lessonId": "ccba-elicitation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-041",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "A rule changes and the BA must identify affected processes, requirements and tests. What helps most?",
+      "az": "Qayda dəyişir və BA təsirlənən proses, tələb və testləri tapmalıdır. Nə daha çox kömək edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Traceability relationships connecting the affected analysis items.",
+          "az": "Təsirlənən analiz elementlərini bağlayan izlənmə əlaqələri."
+        },
+        "explanation": {
+          "en": "Traceability supports impact analysis across levels and relationships.",
+          "az": "İzlənmə səviyyə və əlaqələr üzrə təsir analizini dəstəkləyir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Only an alphabetical list of document names.",
+          "az": "Yalnız sənəd adlarının əlifba siyahısı."
+        },
+        "explanation": {
+          "en": "Names do not identify dependencies or coverage.",
+          "az": "Adlar asılılıq və əhatəni göstərmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Assume all tests are affected equally.",
+          "az": "Bütün testlərin eyni təsirləndiyini fərz etmək."
+        },
+        "explanation": {
+          "en": "Impact should be examined rather than assigned uniformly.",
+          "az": "Təsir hamıya eyni verilməli deyil, yoxlanmalıdır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Traceability supports impact analysis across levels and relationships. Source: BABOK Guide v3, section 5.1.",
+      "az": "İzlənmə səviyyə və əlaqələr üzrə təsir analizini dəstəkləyir. Mənbə: BABOK Guide v3, bölmə 5.1."
+    },
+    "lessonId": "ccba-lifecycle",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-042",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "A reusable eligibility requirement remains in use after a policy change. What should maintenance ensure?",
+      "az": "Təkrar istifadə edilən uyğunluq tələbi siyasət dəyişikliyindən sonra da işlədilir. Baxım nəyi təmin etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Its meaning, attributes and related uses remain accurate and consistent.",
+          "az": "Mənanın, atributların və əlaqəli istifadələrin dəqiq və uyğun qalmasını."
+        },
+        "explanation": {
+          "en": "Requirements can require maintenance beyond the original initiative.",
+          "az": "Tələblərin ilkin təşəbbüsdən sonra da saxlanmasına ehtiyac ola bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Freeze it permanently because it was once approved.",
+          "az": "Bir dəfə təsdiqləndiyi üçün onu həmişəlik dəyişməz saxlamaq."
+        },
+        "explanation": {
+          "en": "Earlier approval does not guarantee ongoing validity.",
+          "az": "Əvvəlki təsdiq daimi düzgünlüyə zəmanət vermir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Change every copy independently without coordination.",
+          "az": "Hər nüsxəni əlaqələndirmədən ayrı dəyişmək."
+        },
+        "explanation": {
+          "en": "Uncoordinated maintenance can increase inconsistency.",
+          "az": "Əlaqələndirilməyən baxım uyğunsuzluğu artıra bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Requirements can require maintenance beyond the original initiative. Source: BABOK Guide v3, section 5.2.",
+      "az": "Tələblərin ilkin təşəbbüsdən sonra da saxlanmasına ehtiyac ola bilər. Mənbə: BABOK Guide v3, bölmə 5.2."
+    },
+    "lessonId": "ccba-lifecycle",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-043",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "A high-benefit requirement depends on a lower-benefit enabling requirement. What should prioritization consider?",
+      "az": "Yüksək faydalı tələb daha aşağı faydalı təminedici tələbdən asılıdır. Prioritetləşdirmə nəyi nəzərə almalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Dependency and implementation sequence as well as relative value.",
+          "az": "Nisbi dəyərlə yanaşı asılılıq və həyata keçirmə ardıcıllığını."
+        },
+        "explanation": {
+          "en": "Prioritization may use dependencies to make valuable delivery possible.",
+          "az": "Prioritetləşdirmə dəyərli çatdırılmanı təmin etmək üçün asılılıqları nəzərə ala bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Rank only by isolated benefit and ignore feasibility.",
+          "az": "Yalnız ayrıca faydaya görə sıralayıb mümkünlüyü nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "An isolated ranking may not produce an implementable plan.",
+          "az": "Ayrı sıralama həyata keçirilə bilən plan yaratmaya bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Always remove enabling work because its direct benefit is smaller.",
+          "az": "Birbaşa faydası az olduğu üçün təminedici işi həmişə silmək."
+        },
+        "explanation": {
+          "en": "Removing an enabler can prevent the higher-value outcome.",
+          "az": "Təminedici işi silmək yüksək dəyərli nəticəyə mane ola bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Prioritization may use dependencies to make valuable delivery possible. Source: BABOK Guide v3, section 5.3.",
+      "az": "Prioritetləşdirmə dəyərli çatdırılmanı təmin etmək üçün asılılıqları nəzərə ala bilər. Mənbə: BABOK Guide v3, bölmə 5.3."
+    },
+    "lessonId": "ccba-lifecycle",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-044",
+    "trackId": "ccba",
+    "type": "multiple",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "A proposed change saves time in one branch but may break a shared service. What two checks are needed? Select two.",
+      "az": "Təklif olunan dəyişiklik bir filialda vaxt qazandırır, amma ortaq xidməti poza bilər. Hansı iki yoxlama lazımdır? İkisini seç."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Trace the proposal to a need and assess its value.",
+          "az": "Təklifi ehtiyacla əlaqələndirib dəyərini qiymətləndirmək."
+        },
+        "explanation": {
+          "en": "A change should have a reason and an understood value effect.",
+          "az": "Dəyişikliyin səbəbi və anlaşılan dəyər təsiri olmalıdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assess conflicts, dependencies, risk and delivery consequences.",
+          "az": "Ziddiyyət, asılılıq, risk və çatdırılma nəticələrini qiymətləndirmək."
+        },
+        "explanation": {
+          "en": "Local benefit can coexist with wider negative impact.",
+          "az": "Yerli fayda daha geniş mənfi təsirlə birlikdə ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Approve solely because one branch benefits.",
+          "az": "Yalnız bir filial faydalandığı üçün təsdiqləmək."
+        },
+        "explanation": {
+          "en": "Local benefit alone does not establish net value or safe implementation.",
+          "az": "Yerli fayda xalis dəyəri və təhlükəsiz tətbiqi təkbaşına göstərmir."
+        }
+      }
+    ],
+    "correct": ["a", "b"],
+    "explanation": {
+      "en": "A change should have a reason and an understood value effect. Local benefit can coexist with wider negative impact. Source: BABOK Guide v3, section 5.4.",
+      "az": "Dəyişikliyin səbəbi və anlaşılan dəyər təsiri olmalıdır. Yerli fayda daha geniş mənfi təsirlə birlikdə ola bilər. Mənbə: BABOK Guide v3, bölmə 5.4."
+    },
+    "lessonId": "ccba-lifecycle",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-045",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-life-cycle",
+    "difficulty": 2,
+    "text": {
+      "en": "An adaptive team prepares to implement a requirement. How should approval work?",
+      "az": "Adaptiv komanda tələbi həyata keçirməyə hazırlaşır. Təsdiq necə aparılmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Obtain the appropriate agreement through the defined governance approach.",
+          "az": "Müəyyən edilmiş idarəetmə yanaşması üzrə uyğun razılaşma almaq."
+        },
+        "explanation": {
+          "en": "Approval may be formal or informal; adaptive work still needs clear agreement.",
+          "az": "Təsdiq rəsmi və ya qeyri-rəsmi ola bilər; adaptiv işdə də aydın razılaşma lazımdır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assume adaptive approaches prohibit approvals.",
+          "az": "Adaptiv yanaşmanın təsdiqi qadağan etdiyini düşünmək."
+        },
+        "explanation": {
+          "en": "Adaptiveness does not eliminate agreement and decision roles.",
+          "az": "Adaptivlik razılaşma və qərar rollarını ləğv etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Require all future requirements to be approved at the same moment.",
+          "az": "Bütün gələcək tələblərin eyni anda təsdiqini tələb etmək."
+        },
+        "explanation": {
+          "en": "Approval timing should fit the approach rather than a universal rule.",
+          "az": "Təsdiq vaxtı universal qaydaya deyil, yanaşmaya uyğun olmalıdır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Approval may be formal or informal; adaptive work still needs clear agreement. Source: BABOK Guide v3, section 5.5.",
+      "az": "Təsdiq rəsmi və ya qeyri-rəsmi ola bilər; adaptiv işdə də aydın razılaşma lazımdır. Mənbə: BABOK Guide v3, bölmə 5.5."
+    },
+    "lessonId": "ccba-lifecycle",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-046",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A sponsor wants automation, but teams disagree about which current delays matter. What analysis is most useful?",
+      "az": "Sponsor avtomatlaşdırma istəyir, amma komandalar hansı cari gecikmələrin vacib olduğu barədə razılaşmır. Hansı analiz faydalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Explore the current state in enough detail to understand the need and affected areas.",
+          "az": "Ehtiyacı və təsirlənən sahələri anlamaq üçün cari vəziyyəti yetərli detallılıqda araşdırmaq."
+        },
+        "explanation": {
+          "en": "Current-state analysis is driven by the change need rather than exhaustive documentation.",
+          "az": "Cari vəziyyət təhlili hər şeyi sənədləşdirməkdən deyil, dəyişiklik ehtiyacından çıxış edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Model every enterprise process before discussing the problem.",
+          "az": "Problemi müzakirə etməzdən əvvəl müəssisənin bütün proseslərini modelləşdirmək."
+        },
+        "explanation": {
+          "en": "The analysis should be sufficient for the need and strategy, not automatically exhaustive.",
+          "az": "Analiz avtomatik tam deyil, ehtiyac və strategiya üçün yetərli olmalıdır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Pick the easiest software feature to demonstrate activity.",
+          "az": "Fəaliyyət göstərmək üçün ən asan proqram funksiyasını seçmək."
+        },
+        "explanation": {
+          "en": "Activity does not establish that the change addresses the actual need.",
+          "az": "Fəaliyyət dəyişikliyin real ehtiyacı ödədiyini göstərmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Current-state analysis is driven by the change need rather than exhaustive documentation. Source: BABOK Guide v3, section 6.1.",
+      "az": "Cari vəziyyət təhlili hər şeyi sənədləşdirməkdən deyil, dəyişiklik ehtiyacından çıxış edir. Mənbə: BABOK Guide v3, bölmə 6.1."
+    },
+    "lessonId": "cbap-strategy",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-047",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "The team can describe the new screens but cannot say what business conditions will improve. Which work is needed?",
+      "az": "Komanda yeni ekranları təsvir edir, amma hansı biznes şərtlərinin yaxşılaşacağını deyə bilmir. Hansı iş lazımdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Define the future state and measurable success conditions.",
+          "az": "Gələcək vəziyyəti və ölçülən uğur şərtlərini müəyyən etmək."
+        },
+        "explanation": {
+          "en": "The future state expresses conditions needed to meet the business need.",
+          "az": "Gələcək vəziyyət biznes ehtiyacını ödəyən şərtləri ifadə edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Count screens as the definition of success.",
+          "az": "Ekran sayını uğur tərifi saymaq."
+        },
+        "explanation": {
+          "en": "A design inventory does not define the desired outcome.",
+          "az": "Dizayn siyahısı arzulanan nəticəni müəyyən etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Avoid discussing outcomes until all construction finishes.",
+          "az": "Bütün hazırlama bitənədək nəticələri müzakirə etməmək."
+        },
+        "explanation": {
+          "en": "Without a success definition, alternatives cannot be evaluated coherently.",
+          "az": "Uğur tərifi olmadan alternativləri uyğun qiymətləndirmək olmaz."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "The future state expresses conditions needed to meet the business need. Source: BABOK Guide v3, section 6.2.",
+      "az": "Gələcək vəziyyət biznes ehtiyacını ödəyən şərtləri ifadə edir. Mənbə: BABOK Guide v3, bölmə 6.2."
+    },
+    "lessonId": "cbap-strategy",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-048",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A low-probability outage could cause major harm during migration. What is a defensible risk response?",
+      "az": "Miqrasiya zamanı aşağı ehtimallı dayanma böyük zərər vura bilər. Hansı risk cavabı əsaslandırıla bilər?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Consider impact, timing, likelihood and tolerance before selecting a response.",
+          "az": "Cavab seçməzdən əvvəl təsir, vaxt, ehtimal və tolerantlığı nəzərə almaq."
+        },
+        "explanation": {
+          "en": "Low likelihood does not make consequences irrelevant.",
+          "az": "Aşağı ehtimal nəticələri əhəmiyyətsiz etmir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Ignore it automatically because it is unlikely.",
+          "az": "Az ehtimallı olduğu üçün avtomatik nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "High consequences may warrant treatment despite low probability.",
+          "az": "Aşağı ehtimala baxmayaraq ağır nəticə tədbir tələb edə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Reject every possible change until all risk is zero.",
+          "az": "Bütün risk sıfır olanadək hər dəyişikliyi rədd etmək."
+        },
+        "explanation": {
+          "en": "Risk decisions consider tolerance and feasible responses, not assumed zero risk.",
+          "az": "Risk qərarı fərz olunan sıfır riskə deyil, tolerantlıq və mümkün cavablara baxır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Low likelihood does not make consequences irrelevant. Source: BABOK Guide v3, section 6.3.",
+      "az": "Aşağı ehtimal nəticələri əhəmiyyətsiz etmir. Mənbə: BABOK Guide v3, bölmə 6.3."
+    },
+    "lessonId": "cbap-strategy",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-049",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "Two migration strategies meet the same future-state objective. What should the recommendation explain?",
+      "az": "İki miqrasiya strategiyası eyni gələcək vəziyyət məqsədinə çatır. Tövsiyə nəyi izah etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The selected approach, alternatives, resources, transition states and value rationale.",
+          "az": "Seçilmiş yanaşmanı, alternativləri, resursları, keçid vəziyyətlərini və dəyər əsaslandırmasını."
+        },
+        "explanation": {
+          "en": "A change strategy explains how the enterprise will move and realize value.",
+          "az": "Dəyişiklik strategiyası müəssisənin necə keçəcəyini və dəyəri necə reallaşdıracağını izah edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Only the preferred vendor’s name.",
+          "az": "Yalnız üstün tutulan təchizatçının adını."
+        },
+        "explanation": {
+          "en": "A vendor name does not describe the change strategy.",
+          "az": "Təchizatçı adı dəyişiklik strategiyasını təsvir etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "That alternatives must be identical in every cost and risk.",
+          "az": "Alternativlərin bütün xərc və risklərdə eyni olmalı olduğunu."
+        },
+        "explanation": {
+          "en": "Alternatives are compared precisely because their trade-offs can differ.",
+          "az": "Alternativlər məhz fərqli güzəştlərə malik olduqları üçün müqayisə edilir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "A change strategy explains how the enterprise will move and realize value. Source: BABOK Guide v3, section 6.4.",
+      "az": "Dəyişiklik strategiyası müəssisənin necə keçəcəyini və dəyəri necə reallaşdıracağını izah edir. Mənbə: BABOK Guide v3, bölmə 6.4."
+    },
+    "lessonId": "cbap-strategy",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-050",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "strategy-analysis",
+    "difficulty": 2,
+    "text": {
+      "en": "A change improves one process but creates work in another department. What belongs in analysis?",
+      "az": "Dəyişiklik bir prosesi yaxşılaşdırır, amma başqa şöbədə əlavə iş yaradır. Analiz nəyi əhatə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Direct and indirect impacts on the current state and change strategy.",
+          "az": "Cari vəziyyətə və dəyişiklik strategiyasına birbaşa və dolayı təsirləri."
+        },
+        "explanation": {
+          "en": "Enterprise change can affect processes and stakeholders outside the initial focus.",
+          "az": "Dəyişiklik ilkin fokusdan kənar proses və tərəflərə də təsir edə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Only the department that requested the change.",
+          "az": "Yalnız dəyişikliyi istəyən şöbəni."
+        },
+        "explanation": {
+          "en": "A narrow boundary may conceal transferred cost or risk.",
+          "az": "Dar sərhəd ötürülən xərc və riski gizlədə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Assume extra work elsewhere proves the entire change has no value.",
+          "az": "Başqa yerdə əlavə işin bütün dəyişikliyin dəyərsizliyini sübut etdiyini düşünmək."
+        },
+        "explanation": {
+          "en": "The net effect requires comparison rather than an automatic conclusion.",
+          "az": "Xalis təsir avtomatik nəticə deyil, müqayisə tələb edir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Enterprise change can affect processes and stakeholders outside the initial focus. Source: BABOK Guide v3, section 6.1; 6.4.",
+      "az": "Dəyişiklik ilkin fokusdan kənar proses və tərəflərə də təsir edə bilər. Mənbə: BABOK Guide v3, bölmə 6.1; 6.4."
+    },
+    "lessonId": "cbap-strategy",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-051",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "en": "A requirements model uses inconsistent notation and cannot be interpreted by its intended users. What task addresses this?",
+      "az": "Tələb modeli uyğunsuz işarələrdən istifadə edir və nəzərdə tutulan istifadəçilər onu anlaya bilmir. Hansı tapşırıq bunu həll edir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Verify Requirements.",
+          "az": "Tələbləri verifikasiya etmək."
+        },
+        "explanation": {
+          "en": "Verification checks specification/model quality and fitness for use.",
+          "az": "Verifikasiya təsvir və model keyfiyyətini, istifadəyə yararlılığı yoxlayır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Assume approval automatically fixes notation.",
+          "az": "Təsdiqin işarə uyğunsuzluğunu avtomatik həll etdiyini düşünmək."
+        },
+        "explanation": {
+          "en": "Agreement does not correct an unusable representation.",
+          "az": "Razılaşma istifadəyə yararsız təsviri düzəltmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Declare realized value from model length.",
+          "az": "Modelin uzunluğuna görə reallaşmış dəyər elan etmək."
+        },
+        "explanation": {
+          "en": "Document size is not evidence of solution value.",
+          "az": "Sənəd ölçüsü həll dəyərinin sübutu deyil."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Verification checks specification/model quality and fitness for use. Source: BABOK Guide v3, section 7.2.",
+      "az": "Verifikasiya təsvir və model keyfiyyətini, istifadəyə yararlılığı yoxlayır. Mənbə: BABOK Guide v3, bölmə 7.2."
+    },
+    "lessonId": "cbap-design",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-052",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "en": "A well-written feature is requested, but nobody can link it to business requirements or needed value. What is the concern?",
+      "az": "Yaxşı yazılmış funksiya istənilir, amma onu biznes tələbi və lazım olan dəyərlə heç kim bağlaya bilmir. Problem nədir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "The requirement may fail validation despite good specification quality.",
+          "az": "Təsvir keyfiyyəti yaxşı olsa da tələb validasiyadan keçməyə bilər."
+        },
+        "explanation": {
+          "en": "Validation checks alignment and value, not just writing quality.",
+          "az": "Validasiya yalnız yazı keyfiyyətini deyil, uyğunluq və dəyəri yoxlayır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Clear wording proves the feature is necessary.",
+          "az": "Aydın ifadə funksiyanın zəruri olduğunu sübut edir."
+        },
+        "explanation": {
+          "en": "A requirement can be clearly stated yet irrelevant to the objective.",
+          "az": "Tələb aydın yazılsa da məqsədə uyğun olmaya bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "The only remedy is a longer feature description.",
+          "az": "Yeganə həll funksiya təsvirini uzatmaqdır."
+        },
+        "explanation": {
+          "en": "More description does not establish value alignment.",
+          "az": "Daha çox təsvir dəyərlə uyğunluğu təsdiqləmir."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Validation checks alignment and value, not just writing quality. Source: BABOK Guide v3, section 7.3.",
+      "az": "Validasiya yalnız yazı keyfiyyətini deyil, uyğunluq və dəyəri yoxlayır. Mənbə: BABOK Guide v3, bölmə 7.3."
+    },
+    "lessonId": "cbap-design",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-053",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "en": "Individual requirements look reasonable, but their models conflict when assembled. What should the BA examine?",
+      "az": "Tələblər ayrı-ayrılıqda məntiqli görünür, amma modellər birləşəndə ziddiyyət yaranır. BA nəyi araşdırmalıdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Requirements architecture and how the parts support the overall objective.",
+          "az": "Tələb arxitekturasını və hissələrin ümumi məqsədi necə dəstəklədiyini."
+        },
+        "explanation": {
+          "en": "Architecture examines the coherent whole, not only isolated items.",
+          "az": "Arxitektura yalnız ayrı elementləri deyil, uyğun bütövlüyü araşdırır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Only whether every item has a unique identifier.",
+          "az": "Yalnız hər elementin unikal nömrəsinin olmasını."
+        },
+        "explanation": {
+          "en": "Identifiers alone do not ensure the requirements work together.",
+          "az": "Nömrələr tələblərin birlikdə işləməsini təmin etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Choose one model at random and discard the objective.",
+          "az": "Təsadüfi model seçib məqsədi kənara qoymaq."
+        },
+        "explanation": {
+          "en": "Model decisions should preserve support for business objectives.",
+          "az": "Model qərarları biznes məqsədlərinin dəstəyini qorumalıdır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Architecture examines the coherent whole, not only isolated items. Source: BABOK Guide v3, section 7.4.",
+      "az": "Arxitektura yalnız ayrı elementləri deyil, uyğun bütövlüyü araşdırır. Mənbə: BABOK Guide v3, bölmə 7.4."
+    },
+    "lessonId": "cbap-design",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-054",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "en": "A design fits most needs but consumes the only resource required by a higher-priority requirement. What should inform the decision?",
+      "az": "Dizayn ehtiyacların çoxunu ödəyir, amma daha vacib tələb üçün lazım olan yeganə resursu tutur. Qərarı nə yönləndirməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Evaluate allocation and trade-offs against validated, prioritized requirements.",
+          "az": "Bölgü və güzəştləri validasiya edilmiş, prioritetləşdirilmiş tələblərə görə yoxlamaq."
+        },
+        "explanation": {
+          "en": "Design options can allocate requirements differently and affect value.",
+          "az": "Dizayn variantları tələbləri fərqli bölüb dəyərə təsir edə bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Treat design choice as unrelated to requirement priority.",
+          "az": "Dizayn seçimini tələb prioritetindən əlaqəsiz saymaq."
+        },
+        "explanation": {
+          "en": "Priorities help evaluate reasonable design options.",
+          "az": "Prioritetlər uyğun dizayn variantlarını qiymətləndirməyə kömək edir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Assume every requirement can use the scarce resource simultaneously.",
+          "az": "Hər tələbin məhdud resursdan eyni anda istifadə edə biləcəyini fərz etmək."
+        },
+        "explanation": {
+          "en": "That ignores the stated constraint rather than analyzing it.",
+          "az": "Bu, verilən məhdudiyyəti təhlil etmək əvəzinə nəzərə almır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Design options can allocate requirements differently and affect value. Source: BABOK Guide v3, section 7.5.",
+      "az": "Dizayn variantları tələbləri fərqli bölüb dəyərə təsir edə bilər. Mənbə: BABOK Guide v3, bölmə 7.5."
+    },
+    "lessonId": "cbap-design",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-055",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "requirements-design",
+    "difficulty": 2,
+    "text": {
+      "en": "Options have uncertain benefits and different operating costs. What supports a sound recommendation?",
+      "az": "Variantların faydası qeyri-müəyyəndir və əməliyyat xərcləri fərqlidir. Əsaslı tövsiyəni nə dəstəkləyir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Compare potential value with explicit assumptions, costs and uncertainty.",
+          "az": "Potensial dəyəri açıq fərziyyə, xərc və qeyri-müəyyənliklə müqayisə etmək."
+        },
+        "explanation": {
+          "en": "Potential-value analysis includes both benefits and disadvantages under uncertainty.",
+          "az": "Potensial dəyər təhlili qeyri-müəyyənlikdə həm fayda, həm mənfi tərəflərə baxır."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Present the largest benefit estimate as guaranteed value.",
+          "az": "Ən böyük fayda qiymətini zəmanətli dəyər kimi göstərmək."
+        },
+        "explanation": {
+          "en": "An estimate remains uncertain and may not represent net value.",
+          "az": "Qiymətləndirmə qeyri-müəyyəndir və xalis dəyəri göstərməyə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Ignore operating cost because construction cost is known.",
+          "az": "Hazırlama xərci məlum olduğu üçün əməliyyat xərcini nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "Relevant costs can continue beyond construction.",
+          "az": "Müvafiq xərc hazırlamadan sonra da davam edə bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Potential-value analysis includes both benefits and disadvantages under uncertainty. Source: BABOK Guide v3, section 7.6.",
+      "az": "Potensial dəyər təhlili qeyri-müəyyənlikdə həm fayda, həm mənfi tərəflərə baxır. Mənbə: BABOK Guide v3, bölmə 7.6."
+    },
+    "lessonId": "cbap-design",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-056",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "en": "A deployed service has no measures showing whether the business objective improved. What should the BA do?",
+      "az": "İstifadəyə verilmiş xidmətdə biznes məqsədinin yaxşılaşmasını göstərən ölçü yoxdur. BA nə etməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Work with stakeholders to define and collect relevant performance measures.",
+          "az": "Uyğun performans ölçülərini müəyyən edib toplamaq üçün tərəflərlə işləmək."
+        },
+        "explanation": {
+          "en": "Measures should reflect effectiveness and value in context.",
+          "az": "Ölçülər kontekstdə effektivlik və dəyəri əks etdirməlidir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Use installation completion as the only proof of benefit.",
+          "az": "Quraşdırmanın bitməsini faydanın yeganə sübutu saymaq."
+        },
+        "explanation": {
+          "en": "Deployment does not establish achieved business outcomes.",
+          "az": "İstifadəyə vermək biznes nəticələrinin əldə edildiyini sübut etmir."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Select whatever metric is easiest, regardless of the objective.",
+          "az": "Məqsəddən asılı olmayaraq ən asan metriki seçmək."
+        },
+        "explanation": {
+          "en": "An easy measure can be irrelevant to the intended value.",
+          "az": "Asan ölçü nəzərdə tutulan dəyərə aid olmaya bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Measures should reflect effectiveness and value in context. Source: BABOK Guide v3, section 8.1.",
+      "az": "Ölçülər kontekstdə effektivlik və dəyəri əks etdirməlidir. Mənbə: BABOK Guide v3, bölmə 8.1."
+    },
+    "lessonId": "cbap-evaluation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-057",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "en": "Average service time improved, but the intended customer segment still waits longer. What is needed?",
+      "az": "Orta xidmət vaxtı yaxşılaşıb, amma nəzərdə tutulan müştəri qrupu daha uzun gözləyir. Nə lazımdır?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Interpret the measures against objectives and relevant segment differences.",
+          "az": "Ölçüləri məqsəd və uyğun qrup fərqləri əsasında şərh etmək."
+        },
+        "explanation": {
+          "en": "Measures require analysis and synthesis before value conclusions.",
+          "az": "Dəyər nəticəsindən əvvəl ölçülər analiz və sintez tələb edir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Declare success solely from the average.",
+          "az": "Yalnız orta göstəriciyə görə uğur elan etmək."
+        },
+        "explanation": {
+          "en": "An aggregate can conceal important performance gaps.",
+          "az": "Ümumi göstərici vacib performans boşluğunu gizlədə bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Delete the segment data because it disagrees with the average.",
+          "az": "Orta göstərici ilə uyğun gəlmədiyi üçün qrup məlumatını silmək."
+        },
+        "explanation": {
+          "en": "Contrary evidence should be investigated, not removed.",
+          "az": "Zidd sübut silinməli deyil, araşdırılmalıdır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "Measures require analysis and synthesis before value conclusions. Source: BABOK Guide v3, section 8.2.",
+      "az": "Dəyər nəticəsindən əvvəl ölçülər analiz və sintez tələb edir. Mənbə: BABOK Guide v3, bölmə 8.2."
+    },
+    "lessonId": "cbap-evaluation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-058",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "en": "Within a clearly defined software solution, a calculation defect prevents correct invoices. What kind of limitation is described?",
+      "az": "Aydın müəyyən edilmiş proqram həllində hesablama qüsuru düzgün fakturaya mane olur. Hansı məhdudiyyət təsvir edilir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "A solution limitation internal to that solution.",
+          "az": "Həmin həllin daxilindəki həll məhdudiyyəti."
+        },
+        "explanation": {
+          "en": "The stated cause is within the solution boundary.",
+          "az": "Göstərilən səbəb həllin sərhədi daxilindədir."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Automatically an enterprise-culture limitation.",
+          "az": "Avtomatik olaraq təşkilati mədəniyyət məhdudiyyəti."
+        },
+        "explanation": {
+          "en": "No cultural cause is stated; classification depends on the boundary and cause.",
+          "az": "Mədəni səbəb verilməyib; təsnifat sərhəd və səbəbdən asılıdır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "No limitation because software was deployed.",
+          "az": "Proqram istifadəyə verildiyi üçün məhdudiyyət yoxdur."
+        },
+        "explanation": {
+          "en": "Deployment does not remove defects or value gaps.",
+          "az": "İstifadəyə vermək qüsur və dəyər boşluğunu aradan qaldırmır."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "The stated cause is within the solution boundary. Source: BABOK Guide v3, section 8.3.",
+      "az": "Göstərilən səbəb həllin sərhədi daxilindədir. Mənbə: BABOK Guide v3, bölmə 8.3."
+    },
+    "lessonId": "cbap-evaluation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-059",
+    "trackId": "ccba",
+    "type": "single",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "en": "The new service works, but a policy outside its defined scope forces users back to paper. What should be assessed?",
+      "az": "Yeni xidmət işləyir, amma onun müəyyən edilmiş əhatəsindən kənar siyasət istifadəçini kağıza qaytarır. Nə qiymətləndirilməlidir?"
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Enterprise limitations restricting realization of value.",
+          "az": "Dəyərin reallaşmasını məhdudlaşdıran təşkilat məhdudiyyətləri."
+        },
+        "explanation": {
+          "en": "External operational or policy conditions can constrain solution value.",
+          "az": "Xarici əməliyyat və siyasət şərtləri həll dəyərini məhdudlaşdıra bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Only source-code syntax.",
+          "az": "Yalnız mənbə kodunun sintaksisi."
+        },
+        "explanation": {
+          "en": "The described obstacle is outside the defined software scope.",
+          "az": "Təsvir olunan maneə müəyyən edilmiş proqram əhatəsindən kənardadır."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "That all user resistance must be a technical defect.",
+          "az": "Bütün istifadəçi müqavimətinin texniki qüsur olduğunu."
+        },
+        "explanation": {
+          "en": "Value restrictions can arise from enterprise conditions.",
+          "az": "Dəyər məhdudiyyətləri təşkilat şəraitindən yarana bilər."
+        }
+      }
+    ],
+    "correct": ["a"],
+    "explanation": {
+      "en": "External operational or policy conditions can constrain solution value. Source: BABOK Guide v3, section 8.4.",
+      "az": "Xarici əməliyyat və siyasət şərtləri həll dəyərini məhdudlaşdıra bilər. Mənbə: BABOK Guide v3, bölmə 8.4."
+    },
+    "lessonId": "cbap-evaluation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  },
+  {
+    "id": "ccba-babok-060",
+    "trackId": "ccba",
+    "type": "multiple",
+    "domain": "solution-evaluation",
+    "difficulty": 2,
+    "text": {
+      "en": "Analysis finds both a software defect and an approval-policy bottleneck. Which two recommendations may be appropriate? Select two.",
+      "az": "Analiz həm proqram qüsuru, həm təsdiq siyasətində tıxac tapır. Hansı iki tövsiyə uyğun ola bilər? İkisini seç."
+    },
+    "options": [
+      {
+        "id": "a",
+        "text": {
+          "en": "Enhance the solution to address the verified defect.",
+          "az": "Təsdiqlənmiş qüsuru həll etmək üçün həlli təkmilləşdirmək."
+        },
+        "explanation": {
+          "en": "Improving the solution can address an internal restriction on value.",
+          "az": "Həlli yaxşılaşdırmaq dəyərin daxili məhdudiyyətini aradan qaldıra bilər."
+        }
+      },
+      {
+        "id": "b",
+        "text": {
+          "en": "Change the relevant organizational process if justified by the assessment.",
+          "az": "Qiymətləndirmə əsaslandırırsa uyğun təşkilati prosesi dəyişmək."
+        },
+        "explanation": {
+          "en": "Recommendations may include organizational adjustments, not only system changes.",
+          "az": "Tövsiyə yalnız sistem dəyişikliyi deyil, təşkilati uyğunlaşdırma da ola bilər."
+        }
+      },
+      {
+        "id": "c",
+        "text": {
+          "en": "Ignore one limitation because recommendations can address only one category.",
+          "az": "Tövsiyə yalnız bir kateqoriyaya aid ola bildiyi üçün bir məhdudiyyəti nəzərə almamaq."
+        },
+        "explanation": {
+          "en": "The task synthesizes solution and enterprise limitations.",
+          "az": "Tapşırıq həll və təşkilat məhdudiyyətlərini birlikdə nəzərə alır."
+        }
+      }
+    ],
+    "correct": ["a", "b"],
+    "explanation": {
+      "en": "Improving the solution can address an internal restriction on value. Recommendations may include organizational adjustments, not only system changes. Source: BABOK Guide v3, section 8.5.",
+      "az": "Həlli yaxşılaşdırmaq dəyərin daxili məhdudiyyətini aradan qaldıra bilər. Tövsiyə yalnız sistem dəyişikliyi deyil, təşkilati uyğunlaşdırma da ola bilər. Mənbə: BABOK Guide v3, bölmə 8.5."
+    },
+    "lessonId": "cbap-evaluation",
+    "practiceOnly": true,
+    "sourceIds": ["babok-v3"]
+  }
+]

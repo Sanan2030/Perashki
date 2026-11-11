@@ -1,0 +1,176 @@
+---
+id: stories-gherkin
+locale: az
+title: 'User story-lər və acceptance criteria'
+objectives:
+  - 'İstifadəçi ehtiyacını xəta yolları daxil olmaqla müşahidə edilən qəbul nümunələrinə bağla.'
+  - 'Unudulmuş şifrənin bərpası üçün hekayə və Given/When/Then nümunələri yaz.'
+---
+
+## 1. Öyrənmə məqsədləri
+
+Həlli dəyər kimi göstərmədən istifadəçi ehtiyacını ifadə et. Given/When/Then nümunələri ilə müşahidə edilən acceptance criteria yaz, uğurlu, mənfi və sərhəd hallarını daxil et, hekayəni tam spesifikasiyadan və avtomatlaşdırılmış testdən fərqləndir.
+
+## 2. Niyə vacibdir
+
+Onlayn mağaza “bərpa düyməsi əlavə et” iş elementi alır. Komanda düyməni qurur, amma müştəri vaxtı keçmiş keçid alır və hesabını bərpa edə bilmir. İş elementi interfeys detalını təsvir edib, müştəri nəticəsini, təhlükəsizlik sərhədlərini və xəta yollarını gizlədib.
+
+Faydalı user story insan, istənilən imkan və dəyər haqqında söhbət başladır. Konkret qəbul nümunələri isə tətbiqdən əvvəl fərqli yozumları üzə çıxarır.
+
+## 3. Sadə dildə əsas nəzəriyyə
+
+Yayğın hekayə forması belədir: “Bu vəziyyətdə olan insan kimi bir imkanı istəyirəm ki, nəticəyə çata bilim.” Bu, məcburi sehrli ifadə deyil, düşünmə başlanğıcıdır. Scrum user story və ya Gherkin tələb etmir; komanda Product Backlog elementlərini başqa faydalı üsulla da təsvir edə bilər.
+
+Acceptance criteria konkret işin razılaşdırılmış ehtiyaca uyğunluğunu qiymətləndirmək üçün şərtlərdir. Ortaq Definition of Done-ı əvəz etmir, tamamlayır. Hekayə meyarı şifrə bərpasını təsvir edə bilər; Definition of Done isə Increment-in daha geniş keyfiyyət şərtlərini bildirir.
+
+Gherkin strukturlaşdırılmış nümunələr verir. **Given** uyğun başlanğıc kontekstini göstərir. **When** yoxlanılan addımı və ya hadisəni göstərir. **Then** müşahidə edilən nəticəni göstərir. Eyni hissəni aydınlaşdırmaq üçün əlavə **And** addımı istifadə et. Bir ssenaridə bir əsas davranış saxla, aydın ad ver və hər ekran klikini deyil, nəticəni təsvir et.
+
+Nümunələr müzakirəni və sonrakı avtomatlaşdırmanı dəstəkləyə bilər, amma Gherkin yazmaq testi avtomatik işə salmır. İcra üçün addım tərifləri, test icraçısı və etibarlı yoxlamalar lazımdır. Üç nümunə də bütün tələbləri əhatə etmir: keyfiyyət, təhlükəsizlik, əlçatanlıq və əməliyyat məhdudiyyətləri ayrıca diqqət istəyir.
+
+## 4. İşlənmiş nümunə: girişi təhlükəsiz bərpa etmək
+
+**Hekayə:** Şifrəsini unutmuş qeydiyyatlı müştəri kimi sifarişlərimi idarə etməyə davam etmək üçün təsdiqlənmiş bərpa yolu ilə hesabıma girişi qaytarmaq istəyirəm.
+
+Xəyali komanda razılaşır ki, bərpa keçidi 15 dəqiqə qüvvədədir, bir dəfə istifadə olunur və e-poçtun qeydiyyatda olub-olmadığını açıqlamır. Bunlar ssenari qərarlarıdır, universal təhlükəsizlik tövsiyəsi deyil. Real bərpa qaydaları təhlükəsizlik baxışı tələb edir.
+
+```gherkin
+Feature: Recover customer account access
+
+  Scenario: Use a valid recovery link once
+    Given a recovery link was issued 5 minutes ago
+    And that link has not been used
+    When the customer submits a new password meeting the agreed rules
+    Then the password is changed
+    And the recovery link cannot be used again
+
+  Scenario: Reject an expired link
+    Given a recovery link was issued 16 minutes ago
+    When the customer attempts to use that link
+    Then the password is not changed
+    And a safe route to request a new link is available
+
+  Scenario: Handle the expiry boundary
+    Given a recovery link reaches its agreed expiry instant
+    When the customer attempts to use that link
+    Then the link is rejected according to the agreed expiry rule
+```
+
+Kod nümunəsində alətlərin tanıdığı ingilis Gherkin açar sözləri saxlanılıb. Birinci ssenaridə 5 dəqiqəlik istifadə olunmamış keçid işləyir və təkrar istifadə bağlanır. İkinci ssenaridə 16 dəqiqəlik keçid rədd edilir, şifrə dəyişmir və yeni keçid üçün təhlükəsiz yol verilir. Üçüncü ssenari məhz qüvvədən düşmə anını yoxlayır.
+
+Sərhəd nümunəsi qəsdən qərara işarə edir: bitmə anı dəqiq nədir, hansı saat əsasdır və gecikmiş sorğu necə emal olunur? “15 dəqiqə”ni birmənalı saymadan mühəndislik və təhlükəsizliklə razılaşdır.
+
+Qeydiyyatsız e-poçt üçün əlavə nümunə xarici cavabın hesabın mövcudluğunu açıqlamadığını yoxlamalıdır. Müştəri mesajında həssas tətbiq detallarını paylaşma.
+
+## 5. Diaqram
+
+<Diagram
+  chart={
+    'flowchart LR; A[İstifadəçi ehtiyacı] --> B[Hekayə və söhbət]; B --> C[Konkret nümunələr]; C --> D[Uğurlu yol]; C --> E[Mənfi yol]; C --> F[Sərhəd yolu]; D --> G[Ortaq qəbul anlayışı]; E --> G; F --> G; G --> H[Qur və yoxla]; H --> A;'
+  }
+/>
+
+Diaqram çatdırılmadan əvvəl və çatdırılma boyu nümunələrin ortaq anlayışı necə dəqiqləşdirdiyini göstərir. Geri ox komandanı hazır davranışın həqiqətən istifadəçiyə kömək edib-etmədiyini yoxlamağa çağırır.
+
+## 6. İnteraktiv nümunə baxışı
+
+Təklif olunan meyar deyir: “Then bərpa düzgün işləyir.” Ən faydalı düzəlişi seç.
+
+<details>
+<summary>Müşahidə edilən nəticəni və uyğun xəta şərtini göstərmək</summary>
+
+Bu, meyarı yaxşılaşdırır. Etibarlı istifadə olunmamış keçiddə razılaşdırılmış şifrə dəyişir və təkrar istifadə rədd edilir. Vaxtı keçmiş keçiddə şifrə dəyişmir və təhlükəsiz bərpa yolu verilir. Şərtlər fikir ayrılığını görünən edir.
+
+</details>
+
+<details>
+<summary>“Then istifadəçi yaşıl düyməyə klikləyir” ilə əvəz etmək</summary>
+
+Klik qarşılıqlı hərəkətdir, istənilən davranışın baş verdiyinin sübutu deyil. Nümunəni görünüş seçiminə də bağlayır. Konkret hərəkət özü tələb deyilsə, nəticəni yoxla.
+
+</details>
+
+<details>
+<summary>“Çox düzgün” əlavə edib tətbiqi gözləmək</summary>
+
+Daha çox vurğu qeyri-müəyyənliyi silmir. Konkret nümunə ilə qısa söhbət yoxlanmayan ifadəni bəzəməkdən faydalıdır.
+
+</details>
+
+## 7. Tipik səhvlər və yaxşı təcrübələr
+
+- **Dəyərsiz hekayə:** yalnız ekranı deyil, istifadəçinin irəliləyişini izah et.
+- **Hər texniki addımı diktə edən meyar:** tətbiq seçimlərində əməkdaşlıq edərək lazım olan biznes davranışını və sərhədləri göstər.
+- **Yalnız uğurlu yol:** riskə uyğun səhv məlumat, icazəsizlik, təkrar cəhd, xəta və sərhədləri yoxla.
+- **Bir ssenaridə çox davranış:** uğursuzluğun mənası aydın olsun deyə nümunələri ayır.
+- **Gherkin-i avtomatlaşdırma saymaq:** davranışın işlədiyini deməzdən əvvəl real testləri icra et və yoxla.
+- **Hekayəni bütün müqavilə saymaq:** əlaqəli qayda, keyfiyyət tələbi və qərarları bağla.
+
+## 8. Praktik tapşırıq və nümunə həll
+
+**Tapşırıq:** Müştərinin sifarişi göndərişdən əvvəl ləğv etməsi üçün hekayə və üç qəbul nümunəsi yaz. Uğurlu ləğv, rədd və keçid sərhədi daxil olsun. Geri ödəniş barədə nəyi aydınlaşdırmalı olduğunu izah et.
+
+<details>
+<summary>Nümunə həlli aç</summary>
+
+**Hekayə:** Planı dəyişmiş müştəri kimi istəmədiyim çatdırılmadan qaçmaq üçün uyğun sifarişi ləğv etmək istəyirəm. **Uğurlu nümunə:** icazəli müştərinin hələ göndərilməmiş sifarişi var; ləğv qəbul ediləndə sifariş ləğv edilir və müştəri təsdiqli nəticəni görür. **Mənfi nümunə:** başqa müştərinin sifarişinə ləğv cəhdi ediləndə ləğv baş vermir və giriş təhlükəsiz emal edilir. **Sərhəd:** göndəriş və ləğv eyni anda gələndə sistem uyğunluğu razılaşdırılmış əsas ardıcıllıq qaydası ilə müəyyən edib nəticəni yazır. “Ləğv”i ani geri ödəniş saymadan ödəniş bloklaması ilə tutulmuş məbləği, geri ödəniş vaxtını, təkrar sorğunu və bildirişi aydınlaşdır.
+
+</details>
+
+## 9. Mini-test
+
+**1. Hekayədə “ki” ilə izah edilən fayda hissəsinin əsas məqsədi nədir?**
+
+A. Verilənlər bazası sütununu göstərmək. B. İstifadəçinin istədiyi dəyəri və ya irəliləyişi izah etmək. C. Hekayənin kifayət qədər kiçikliyini zəmanət etmək.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** İmkanı səbəblə bağlayır. A tətbiq detalıdır və ayrıca müzakirə lazım ola bilər. C cümlə şablonu ilə zəmanət edilmir.
+
+</details>
+
+**2. Given/When/Then-də “Then” adətən nəyi təsvir edir?**
+
+A. Müşahidə edilən nəticəni. B. Hər siçan hərəkətini. C. Komandanın işçi planını.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**A.** Gözlənilən davranışı yoxlanıla bilən edir. B dəyəri yoxlamadan hərəkəti çox detallandırır. C başqa planlama mövzusudur.
+
+</details>
+
+**3. Bərpa keçidi razılaşdırılmış müddətdən sonra bitir. Hansı əlavə nümunə faydalıdır?**
+
+A. Bitmədən çox əvvəl daha bir uğurlu istifadə. B. Eyni ssenarinin başqa adı. C. Razılaşdırılmış vaxt qaydası ilə dəqiq bitmə sərhədində davranış.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**C.** Sərhədlər gizli qayda fərqini göstərir. A riskin əhatəsini az artıra bilər. B sübut əlavə etmədən sözləri dəyişir.
+
+</details>
+
+**4. Gherkin faylı avtomatlaşdırılmış testlərin icra edildiyini sübut edirmi?**
+
+A. Bəli, çünki sintaksis strukturludur. B. Xeyr; icra üçün tətbiq, test icraçısı və mənalı yoxlamalar lazımdır. C. Bəli, hər ssenaridə “Then” varsa.
+
+<details>
+<summary>Cavab və izah</summary>
+
+**B.** Spesifikasiya və icra fərqlidir. A yazılışı işləyən testlə qarışdırır. C davranışı deyil, açar sözü yoxlayır.
+
+</details>
+
+## 10. Bir səhifəlik yaddaş vərəqi
+
+**Hekayə:** insan, imkan və dəyər. **Söhbət:** nümunə, fərziyyə və seçim təsiri. **Acceptance criterion:** işə məxsus müşahidə edilən şərt. **Given:** uyğun kontekst. **When:** bir addım və ya hadisə. **Then:** müşahidə edilən nəticə. **Əhatə:** riskə görə uğurlu, mənfi və sərhəd yolları. **Əlaqəli sübut:** keyfiyyət tələbi, təhlükəsizlik baxışı və Definition of Done. **Avtomatlaşdırma:** yalnız pozulmuş davranışı tapa bilən yoxlamalarla icra olunanda faydalıdır.
+
+## 11. Əlavə oxu
+
+- [Cucumber: Gherkin istinad sənədi](https://cucumber.io/docs/gherkin/reference/)
+- [Cucumber: davranış yönümlü hazırlama](https://cucumber.io/docs/bdd/)
+- [Scrum Guide: Product Backlog və Definition of Done](https://scrumguides.org/scrum-guide.html)
+- [OWASP: Forgot Password Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html)
+
+Dərs və test sualları orijinal məşq materialıdır. Xəyali nümunələr analiz üçündür və təhlükəsizlik dizayn baxışını əvəz etmir.

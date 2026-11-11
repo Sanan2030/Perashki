@@ -1,0 +1,90 @@
+---
+id: data-etl-warehouse
+locale: az
+title: 'ETL, ELT və data warehouse müqavilələri'
+objectives:
+  - 'ETL və ELT-də transformation-un yerini fərqləndir.'
+  - 'Source, staging və curated data contract-ları müəyyən et.'
+  - 'Fact-ları səssiz təkrarlamadan re-run və late record idarə et.'
+---
+
+## Öyrənmə məqsədləri
+
+- ETL və ELT-də transformation-un yerini fərqləndir.
+- Source, staging və curated data contract-ları müəyyən et.
+- Fact-ları səssiz təkrarlamadan re-run və late record idarə et.
+
+## Bu mövzu niyə vacibdir
+
+Dashboard yalnız SQL query-dən asılı deyil. Pipeline dünəni iki dəfə yükləyə, gecikmiş correction-u qaçıra və ya yarımçıq partition yayımlaya bilər. Data engineering bu sərhədləri aydın edir ki, consumer nəyin tam, təkrarlana bilən və qərara uyğun olduğunu bilsin.
+
+## Əsas anlayışlar
+
+ETL data-nı extract edir, transform edir, sonra hədəf representation-u load edir. ELT əvvəl extract/load edir, transformation-u hədəf mühitdə aparır. Fərq keyfiyyətin avtomatik sıralanması deyil, yerləşmə və icradır. Privacy, compute imkanı, latency və operational məhdudiyyət seçimi dəyişir.
+
+Faydalı olduqda raw evidence, staging/standardization və curated consumer model-i ayır. Source identifier, ingestion metadata və schema version saxla. Warehouse analytical data-nı təşkil edir; bütün operational table-ların sadəcə surəti deyil. Aggregation-dan əvvəl fact grain və dimension key müəyyən et.
+
+Aydın change detection ilə full və ya incremental load seç. Timestamp watermark üçün eyni timestamp, clock davranışı, update və late record qaydası lazımdır. Change Data Capture-ın ayrıca ordering, deletion və recovery contract-ı var. Checkpoint progress-i qeydə alır; hər external source event-in tamlığını sübut etmir.
+
+Re-run-u nəzərdə tutulan interval üçün deterministic et. Sabit business key ilə uyğun merge/upsert və ya partition replacement policy istifadə et. Retry-dən sonra eyni batch-i kor-koranə append etmə. Correction və deletion semantikasını source və governance tələblərinə uyğun saxla.
+
+Yalnız tələb olunan quality və completeness yoxlamasından sonra publish et. Mənalı yerdə source count və pul məbləğini reconcile et, invalid key-ləri yoxla, quarantine səbəbini yaz. Uğurlu ingestion job-da upstream data stale və natamam qala bilər. Consumer-ə processing timestamp ilə event completeness bəyanatını birlikdə ver.
+
+Həssas data-nı minimization, access control və retention qərarı ilə qoru. Raw storage hər field-i həmişə saxlamaq icazəsi deyil. Schema evolution və downstream lineage source column dəyişəndə/silinəndə kimin review etməli olduğunu tapmağa kömək edir.
+
+## İşlənmiş nümunə
+
+Gündəlik orders pipeline source interval oxuyur, dəyişməz batch evidence saxlayır, ID, amount və date-i standartlaşdırır. Hər business key üçün bir current order record-u staging-ə merge edir, sonra order grain-i müəyyən paid-orders fact qurur.
+
+Əvvəlki order-in correction-u bu gün gəlir. Sadə “yalnız dünən yaradılan record-lar” filter-i onu qaçırır. Komanda razılaşdırılmış source change contract və nəzarətli reprocessing window istifadə edir, dəyişən period-ları qeyd edib published total-ı reconcile edir. Eyni intervalın re-run-u hər order-dən ikinci surət yaratmır.
+
+## Vizual model
+
+<Diagram
+  chart={
+    'flowchart LR\n S[Source and change contract] --> R[Raw batch evidence]\n R --> T[Typed staging and stable keys]\n T --> Q[Quality and reconciliation]\n Q --> W[Curated warehouse models]\n W --> P[Published interval and freshness]'
+  }
+/>
+
+Hər sərhəddə qərarı və onu əsaslandıran sübutu izlə. Diaqram orijinal öyrənmə modelidir; formal notasiya validator-u deyil.
+
+## Qərarı təhlil et
+
+<details>
+<summary>Scheduled pipeline uğurlu bitib. Dashboard data-nı indiyədək tam göstərə bilərmi?</summary>
+
+Xeyr. Job success konfiqurasiya olunmuş addımların öz check-ləri daxilində tamamlandığını göstərir. Source completeness, late arrival və observation cutoff ayrıca sübut istəyir. Real dəstəklənən completeness sərhədini göstər və qeyri-müəyyənliyi saxla.
+
+</details>
+
+## Tipik səhvlər
+
+- ELT-ni source validation-u keçmək icazəsi saymaq.
+- Sabit key olmadan hər retry-də append etmək.
+- Creation time-ı universal update watermark saymaq.
+- Yarımçıq partition-u consumer-ə publish etmək.
+
+## Praktik tapşırıq
+
+Late refund-ları olan gündəlik payment fact pipeline qur. Fact grain, source change mexanizmi, retry davranışı, quality gate və düzələn period-ların necə bildiriləcəyini göstər.
+
+## Nümunə həll
+
+<details>
+<summary>Nümunə həlli göstər</summary>
+
+Refund-un ilkin payment-ə əlaqəsi daxil olmaqla event/transaction grain-i dəqiq seç. Güman edilmiş creation-time filter deyil, source-un dəstəklədiyi change/correction contract istifadə et. Sabit key və ya nəzarətli partition replacement ilə re-run et, count/amount yoxla, invalid record-u ayır. Yalnız yoxlanmış intervalı publish et; dashboard oxucusu dəyişən historical total-ı anlasın deyə restated period və completeness-i göstər.
+
+</details>
+
+## Bilik yoxlaması və yaddaş vərəqi
+
+Source contract → dəyişməz evidence → typed grain → idempotent transformation → quality gate → published completeness. ETL/ELT seçimi correctness-i müəyyən etmir.
+
+<LessonCheck />
+
+## Mənbələr və əlavə oxu
+
+- [AWS: ETL versus ELT](https://aws.amazon.com/compare/the-difference-between-etl-and-elt/): transformation yeri və workload seçimi.
+- [Microsoft Fabric: Data warehousing](https://learn.microsoft.com/en-us/fabric/data-warehouse/data-warehousing): analytical warehouse konteksti.
+- [Microsoft: Star schema guidance](https://learn.microsoft.com/en-us/power-bi/guidance/star-schema): uyğun fact/dimension. Pipeline və correction policy orijinal dizayn tapşırığıdır, deploy edilmiş platforma deyil.

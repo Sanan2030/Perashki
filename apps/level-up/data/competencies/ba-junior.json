@@ -1,0 +1,141 @@
+{
+  "id": "ba-junior",
+  "trackId": "ba",
+  "level": "junior",
+  "title": {
+    "az": "Junior biznes analitik",
+    "en": "Junior Business Analyst"
+  },
+  "responsibilities": [
+    {
+      "az": "Rəhbərliklə kiçik və sərhədli biznes problemini aydınlaşdır.",
+      "en": "Clarify a small, bounded business problem with guidance."
+    },
+    {
+      "az": "Təsirlənən insanlarla tələbləri hazırla və təsdiqlə.",
+      "en": "Prepare and confirm requirements with affected people."
+    },
+    {
+      "az": "Qəbul testinə dəstək ol və qərarları aydın saxla.",
+      "en": "Support acceptance testing and maintain clear decisions."
+    }
+  ],
+  "hardSkills": [
+    {
+      "az": "Maraqlı tərəflərin müəyyənləşdirilməsi və müsahibə hazırlığı",
+      "en": "Stakeholder identification and interview preparation"
+    },
+    {
+      "az": "Tələb növləri, user story-lər və qəbul nümunələri",
+      "en": "Requirement types, user stories and acceptance examples"
+    },
+    {
+      "az": "Sadə proses xəritələri, istifadə halları və vayrfreymlər",
+      "en": "Simple process maps, use cases and wireframes"
+    }
+  ],
+  "softSkills": [
+    {
+      "az": "Fəal dinləmə və dəqiq suallar",
+      "en": "Active listening and precise questions"
+    },
+    {
+      "az": "Aydın yazı və etibarlı izləmə",
+      "en": "Clear writing and reliable follow-up"
+    }
+  ],
+  "tools": [
+    {
+      "az": "İş izləmə sistemi və komanda bilik bazası",
+      "en": "Issue tracker and team knowledge base"
+    },
+    {
+      "az": "Diaqram və ilkin prototype alətləri",
+      "en": "Diagramming and basic prototyping tools"
+    }
+  ],
+  "deliverables": [
+    {
+      "az": "Maraqlı tərəflər siyahısı və əlaqə qeydləri",
+      "en": "Stakeholder list and engagement notes"
+    },
+    {
+      "az": "Acceptance criteria olan kiçik tələb paketi",
+      "en": "Small requirements pack with acceptance criteria"
+    },
+    {
+      "az": "Proses xəritəsi və UAT ssenariləri",
+      "en": "Process map and UAT scenarios"
+    }
+  ],
+  "changes": {
+    "az": "Termin öyrənməkdən baxış altında sərhədli analiz tapşırıqlarını tamamlamağa keçirsən.",
+    "en": "You move from learning terminology to completing bounded analysis tasks with review."
+  },
+  "checklist": [
+    {
+      "id": "ba-junior-skill-1",
+      "text": {
+        "az": "Problemi təklif edilən funksiyadan ayıra bilirəm.",
+        "en": "I can separate a problem from a proposed feature."
+      }
+    },
+    {
+      "id": "ba-junior-skill-2",
+      "text": {
+        "az": "Dəyişiklikdən təsirlənən istifadəçiləri müəyyən edə bilirəm.",
+        "en": "I can identify users affected by a change."
+      }
+    },
+    {
+      "id": "ba-junior-skill-3",
+      "text": {
+        "az": "Neytral müsahibə sualları hazırlaya bilirəm.",
+        "en": "I can prepare neutral interview questions."
+      }
+    },
+    {
+      "id": "ba-junior-skill-4",
+      "text": {
+        "az": "Müşahidə edilən acceptance criteria yaza bilirəm.",
+        "en": "I can write observable acceptance criteria."
+      }
+    },
+    {
+      "id": "ba-junior-skill-5",
+      "text": {
+        "az": "Qərar və istisnaları olan proses çəkə bilirəm.",
+        "en": "I can draw a process with decisions and exceptions."
+      }
+    },
+    {
+      "id": "ba-junior-skill-6",
+      "text": {
+        "az": "Razılıq fərz etmədən anlayışı təsdiqləyə bilirəm.",
+        "en": "I can confirm understanding without assuming agreement."
+      }
+    }
+  ],
+  "interviews": [
+    {
+      "question": {
+        "az": "Maraqlı tərəf idarə paneli istəyir. İlk nəyi soruşarsan?",
+        "en": "A stakeholder asks for a dashboard. What do you ask first?"
+      },
+      "answer": {
+        "az": "Bu gün hansı qərarın çətin olduğunu, kimin verdiyini və hansı yaxşılaşmanın vacib olduğunu soruşaram. Sonra idarə panelinin uyğun seçim olub-olmadığını yoxlayaram.",
+        "en": "I ask which decision is difficult today, who makes it and what improvement would matter. Then I test whether a dashboard is a useful option."
+      }
+    },
+    {
+      "question": {
+        "az": "Tələbin yoxlanıla bildiyini necə bilirsən?",
+        "en": "How do you know a requirement is testable?"
+      },
+      "answer": {
+        "az": "Tələb kontekst və sərhədlərlə müşahidə edilən davranış və ya ölçülən şərti təsvir edir. Komanda ilə uğurlu, mənfi və sərhəd nümunəsini nəzərdən keçirərəm.",
+        "en": "It describes an observable behavior or measurable condition, with context and boundaries. I walk through a positive, negative and boundary example with the team."
+      }
+    }
+  ]
+}
