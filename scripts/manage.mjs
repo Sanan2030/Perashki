@@ -1,7 +1,6 @@
 import { spawn } from 'node:child_process';
 import { mkdir } from 'node:fs/promises';
 import { projects, root } from './projects.mjs';
-import { createServer } from './server.mjs';
 
 const mode = process.argv[2];
 const children = new Set();
@@ -51,22 +50,7 @@ if (['install', 'build', 'typecheck'].includes(mode)) {
     children.delete(child);
     if (code !== 0) { process.exitCode = code || 1; break; }
   }
-} else if (['dev', 'start'].includes(mode)) {
-  const server = createServer();
-  const port = Number(process.env.PORT || 3000);
-  server.listen(port, '0.0.0.0', () => console.log(`Perashki listening on port ${port}`));
-  for (const project of projects) {
-    const child = launch(project, ['run', mode, '--', '--hostname', '127.0.0.1', '--port', String(project.port)]);
-    child.once('exit', code => {
-      children.delete(child);
-      if (!stopping) {
-        console.error(`[${project.id}] exited (${code}); stopping the platform.`);
-        server.close();
-        stop(code || 1);
-      }
-    });
-  }
 } else {
-  console.error('Usage: node scripts/manage.mjs install|dev|build|start|typecheck');
+  console.error('Usage: node scripts/manage.mjs install|build|typecheck');
   process.exitCode = 1;
 }

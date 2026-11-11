@@ -1,12 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { lessons } from '@/lib/catalog';
 import { locales } from '@/lib/i18n';
+import { publicSiteUrl } from '@/lib/site-url';
 export default function sitemap(): MetadataRoute.Sitemap {
-  const site =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'https://level-up.example');
+  const site = publicSiteUrl();
   return locales.flatMap((locale) =>
     [
       '',

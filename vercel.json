@@ -1,6 +1,53 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "installCommand": "npm ci --include=dev && npm run setup",
-  "buildCommand": "npm run build"
+  "services": {
+    "portal": {
+      "root": ".",
+      "framework": "nextjs",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "npm run build:portal",
+      "devCommand": "npm run dev:portal -- --port $PORT",
+      "bindings": [
+        { "type": "service", "service": "level-up", "format": "url", "env": "LEVEL_UP_URL" },
+        { "type": "service", "service": "overtimer", "format": "url", "env": "OVERTIMER_URL" },
+        { "type": "service", "service": "sloth-ai", "format": "url", "env": "SLOTH_AI_URL" },
+        { "type": "service", "service": "visio-generator", "format": "url", "env": "VISIO_GENERATOR_URL" }
+      ]
+    },
+    "level-up": {
+      "root": "apps/level-up",
+      "framework": "nextjs",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "npm run build",
+      "devCommand": "npm run dev -- --port $PORT"
+    },
+    "overtimer": {
+      "root": "apps/overtimer",
+      "framework": "nextjs",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "npm run build",
+      "devCommand": "npm run dev -- --port $PORT"
+    },
+    "sloth-ai": {
+      "root": "apps/sloth-ai",
+      "framework": "nextjs",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "npm run build",
+      "devCommand": "npm run dev -- --port $PORT"
+    },
+    "visio-generator": {
+      "root": "apps/visio-generator",
+      "framework": "nextjs",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "npm run build",
+      "devCommand": "npm run dev -- --port $PORT"
+    }
+  },
+  "rewrites": [
+    { "source": "/tools/level-up/:path*", "destination": { "service": "level-up" } },
+    { "source": "/tools/overtimer/:path*", "destination": { "service": "overtimer" } },
+    { "source": "/tools/sloth-ai/:path*", "destination": { "service": "sloth-ai" } },
+    { "source": "/tools/visio-generator/:path*", "destination": { "service": "visio-generator" } },
+    { "source": "/(.*)", "destination": { "service": "portal" } }
+  ]
 }

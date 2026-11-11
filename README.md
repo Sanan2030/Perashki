@@ -18,54 +18,61 @@ Başlıqdan Azure DevOps üçün **Description**, **Acceptance Criteria**, **Tec
 
 Bu versiya yerli şablon köməkçisidir: başlıqda API, ixrac, idxal, giriş, axtarış və digər mövzuları tanıyır. Generativ AI xidməti çağırılmır və API açarı tələb olunmur. Mətn və qiymətləndirmə layihə/komanda ilə dəqiqləşdirilməlidir. Azure DevOps-a avtomatik iş qeydi yaradılmır.
 
-## Vercel
+## Vercel Services
 
-Repozitoriyanı bir layihə kimi import et. Root Directory `./`, Node.js `24.x` olsun. [vercel.json](vercel.json) qalan parametrləri saxlayır:
+Kökdəki [vercel.json](vercel.json) bir Vercel layihəsində beş müstəqil Next.js servisi təyin edir. Repozitoriyanın Root Directory-si `./`, Node.js versiyası `24.x` olmalıdır. Build/install/dev əmrləri hər servisin öz konfiqurasiyasındadır; bu sahələri kök səviyyədə əlavə etmə.
 
-| Parametr | Dəyər |
-| --- | --- |
-| Framework Preset | Other |
-| Install Command | `npm ci --include=dev && npm run setup` |
-| Build Command | `npm run build` |
-| Output | Vercel Build Output API, `.vercel/output` |
-| Database / Secrets | Tələb olunmur |
+| Servis | Qovluq | Açıq yol |
+| --- | --- | --- |
+| `portal` | `.` | `/` və qalan portal ünvanları |
+| `level-up` | `apps/level-up` | `/tools/level-up` və alt yollar |
+| `overtimer` | `apps/overtimer` | `/tools/overtimer` və alt yollar |
+| `sloth-ai` | `apps/sloth-ai` | `/tools/sloth-ai` və alt yollar |
+| `visio-generator` | `apps/visio-generator` | `/tools/visio-generator` və alt yollar |
 
-Output Directory üçün ayrıca `.next`, `public` və ya `dist` override təyin etmə. Build rəsmi [Vercel Build Output API](https://vercel.com/docs/build-output-api) formatında bir deploy hazırlayır. Ayrı Vercel layihələri və daimi daxili serverlər lazım deyil. Buradan deploy və mühitin publish əməliyyatı edilməyib.
+Dörd konkret tətbiq rewrite-ı əvvəl, `portal` üçün catch-all isə axırdadır. Yol prefiksi silinmir: məsələn `/tools/level-up/api/labs/http` eyni yolla Level Up-a çatır. Next.js `basePath` və brauzerdəki API/Worker ünvanları bu yollara uyğundur. Qısa `/level-up`, `/calendar`, `/todo`, `/sprint-pointer` kimi ünvanlar portalı və onun menyusunu açır.
 
-Frontend-lər statik fayllara çevrilir. Level Up laboratoriya/tərcümə API-ləri və Sloth AI-nin mövcud HTTP endpoint-ləri eyni deploy daxilində Vercel Functions kimi paketlənir. Sloth AI redaktoru öz brauzer Worker-ləri ilə, SQL laboratoriyası isə brauzerdə SQLite/WASM ilə işləyir.
+Bu quruluşda beş servis də açıqdır; yalnız daxili servis yoxdur. Tətbiqlər bir-birinə server sorğusu etmir. Portalın `/api/health` funksiyası dörd tətbiqi daxili binding-lərlə yoxlayır:
 
-## Lokal iş
+| Çağıran | Hədəf | Vercel-in yaratdığı dəyişən |
+| --- | --- | --- |
+| `portal` | `level-up` | `LEVEL_UP_URL` |
+| `portal` | `overtimer` | `OVERTIMER_URL` |
+| `portal` | `sloth-ai` | `SLOTH_AI_URL` |
+| `portal` | `visio-generator` | `VISIO_GENERATOR_URL` |
+
+Bu dəyişənlərə özün dəyər vermə. Vercel onları yalnız servisin runtime funksiyasına daxil edir. Sağlamlıq yoxlaması onları hər sorğu zamanı oxuyur; build və middleware binding istifadə etmir. Dəyişən yoxdursa localhost və ya açıq domenə keçid edilmir, servis hazır deyil kimi göstərilir. Binding hədəfi açıq etmir; açıq yollar ayrıca rewrite-larla müəyyən olunur.
+
+Rəsmi sənədlər: [Services](https://vercel.com/docs/services), [routing](https://vercel.com/docs/services/routing), [bindings](https://vercel.com/docs/services/bindings).
+
+## Lokal iş və yoxlama
 
 Node.js 24 və npm:
 
 ```sh
-npm ci
+npm ci --include=dev
 npm run setup
-npm run dev
+npx vercel dev --local
 ```
 
-İnkişaf rejimi mövcud Next.js tətbiqlərinin canlı redaktəsini saxlayır. Deploy olunan quruluşu yoxlamaq üçün:
-
-```sh
-npm run build
-npm start
-```
-
-`npm start` yaradılmış Vercel çıxışını bir Node prosesi və bir portla təqdim edir; default 3000, dəyişmək üçün `PORT`. Lokal API adapteri eyni funksiya paketlərini işlədir.
+`vercel dev` bütün servisləri və binding-ləri birlikdə başladır. `--local` hesabla əlaqələndirmədən lokal yoxlama üçündür. Eyni əmr `npm run dev:services` ilə də mövcuddur. Bu script ayrıca adlanır: kök `dev` scriptinin `vercel dev` çağırması Vercel-in rekursiya qorumasına düşür. `npm run dev` yalnız portal üçün olan development əmridir; tam sayt üçün `dev:services` istifadə et.
 
 ```sh
 npm test
 npm run typecheck
-# npm start işləyərkən, ayrı terminalda:
+npm run build
+# vercel dev işləyərkən, ayrı terminalda:
 npm run test:browser
 ```
 
-Brauzer testləri `/usr/bin/chromium` istifadə edir. `CHROMIUM_PATH` və `PERASHKI_TEST_ORIGIN` ilə dəyişmək olar. Testlər təmiz brauzerdə bütün bölmələrin bir JSON-dan bərpasını, səhv idxalda məlumatın qorunmasını, StoryPointer-i, Sloth AI düzəlişini, Visio yaddaşını, Overtimer formasını, Level Up SQL/API laboratoriyalarını və mobil görünüşü yoxlayır. Şəkillər `.local/screenshots/` altındadır.
+`build:portal` yalnız ortaq brauzer yoxlayıcılarını və portalı build edir. O, digər servislərin quraşdırılmasından asılı deyil. `npm run build` lokal yoxlama üçün portalı və dörd tətbiqi ardıcıl build edir. Vercel hər servisi ayrıca build edir; əvvəlki müvəqqəti statik-export sistemi və əllə yazılmış funksiya adapterləri çıxarılıb.
+
+Brauzer testləri `/usr/bin/chromium` istifadə edir. `CHROMIUM_PATH` və `PERASHKI_TEST_ORIGIN` ilə dəyişmək olar. Onlar ortaq menyunu, bir JSON-dan bütün məlumatların bərpasını, StoryPointer-i, Sloth AI Worker-lərini, Visio yaddaşını, Overtimer-i, Level Up SQL/API laboratoriyalarını və mobil görünüşü yoxlayır. Binding yoxlamaları URL-lərin runtime-dan oxunmasını və prefikslərin qorunmasını da test edir.
 
 ## Mənbələr
 
 Orijinal tətbiqlərin kodu, sənədləri, testləri, bildirişləri və lockfile-ları `apps/` altında saxlanır. Mənbə commitləri [docs/sources.json](docs/sources.json) faylındadır. Mənbə repozitoriyalarına dəyişiklik göndərilməyib.
 
-Build yalnız `.local/static-build/` daxilindəki müvəqqəti nüsxələrdən frontend hazırlayır. Server API-ləri frontend nüsxəsindən çıxarılıb funksiya kimi paketlənir; orijinal tətbiqlərdə API və testlər yerindədir. `npm run typecheck` orijinal tətbiqləri də yoxlayır.
+Tətbiqlərin API-ləri və testləri öz servis qovluqlarında saxlanır. Hər tətbiq öz lockfile-ı ilə quraşdırılır. Ortaq JSON yoxlayıcıları portal build-i zamanı mənbə parserlərindən hazırlanır; portalın öz Zod asılılığı ayrıca sabitlənib.
 
 Təqvimin verilmiş məlumatları və dizaynı saxlanıb; görünüş vəziyyətinin ehtiyat nüsxəyə daxil edilməsi əlavə olunub. Bayram məlumatlarına ayrıca məzmun yoxlaması aparılmayıb.

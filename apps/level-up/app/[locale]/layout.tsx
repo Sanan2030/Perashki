@@ -4,13 +4,10 @@ import { ProgressProvider } from '@/components/providers';
 import { AppShell } from '@/components/app-shell';
 import { localeSchema } from '@/lib/types';
 import { locales } from '@/lib/i18n';
+import { publicSiteUrl } from '@/lib/site-url';
 import '../globals.css';
 import '../merhele.css';
-const site =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : 'https://level-up.example');
+const site = publicSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(site),
   title: { default: 'Mərhələ — Business Analysis & Product Ownership', template: '%s | Mərhələ' },

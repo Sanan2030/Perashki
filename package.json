@@ -8,15 +8,26 @@
   },
   "scripts": {
     "setup": "node scripts/manage.mjs install",
-    "dev": "node scripts/build-shared.mjs && node scripts/manage.mjs dev",
-    "build": "node scripts/build.mjs",
-    "start": "node scripts/serve.mjs",
+    "dev": "npm run dev:portal",
+    "build": "npm run build:portal && node scripts/manage.mjs build",
+    "start": "next start",
     "typecheck": "node scripts/manage.mjs typecheck",
     "pretest": "node scripts/build-shared.mjs",
     "test": "node --test tests/*.test.mjs",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs",
+    "dev:portal": "node scripts/build-shared.mjs && next dev",
+    "build:portal": "node scripts/build-shared.mjs && next build",
+    "start:portal": "next start",
+    "dev:services": "vercel dev --local"
   },
   "devDependencies": {
-    "esbuild": "0.28.2"
+    "esbuild": "0.28.2",
+    "vercel": "65.14.0"
+  },
+  "dependencies": {
+    "next": "16.4.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.7"
   }
 }

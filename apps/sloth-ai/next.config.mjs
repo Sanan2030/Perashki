@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  ...(process.env.PERASHKI_STATIC_EXPORT === '1' ? { output: 'export', trailingSlash: true, images: { unoptimized: true }, turbopack: { root: process.env.PERASHKI_REPO_ROOT } } : {}),
-  basePath: process.env.PERASHKI_BASE_PATH || '',
+  basePath: process.env.PERASHKI_BASE_PATH ?? '/tools/sloth-ai',
   poweredByHeader: false,
+  allowedDevOrigins: ['127.0.0.1', 'localhost'],
   reactStrictMode: true,
 };
 

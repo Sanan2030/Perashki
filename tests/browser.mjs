@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { mkdir, readFile } from 'node:fs/promises';
 const require = createRequire(new URL('../apps/sloth-ai/package.json', import.meta.url));
 const { chromium } = require('playwright');
-const { expect } = require('@playwright/test');
+const { expect: baseExpect } = require('@playwright/test');
+const expect = baseExpect.configure({ timeout: 30000 });
 const origin = process.env.PERASHKI_TEST_ORIGIN || 'http://127.0.0.1:3000';
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', headless: true, args: ['--no-sandbox'] });
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -88,11 +89,12 @@ try {
   const links = await level.locator('a[href]').evaluateAll(elements => elements.map(element => element.getAttribute('href')));
   assert(links.some(link => link.startsWith('/tools/level-up/')));
   await level.getByRole('link', { name: 'Lessons', exact: true }).click();
-  await expect.poll(() => levelFrame.url()).toMatch(/\/lessons\/?$/);
-  await expect(level.getByRole('searchbox')).toBeVisible();
+  // vercel dev compiles this route on the first navigation.
+  await expect.poll(() => levelFrame.url(), { timeout: 30000 }).toMatch(/\/lessons\/?$/);
+  await expect(level.getByRole('searchbox')).toBeVisible({ timeout: 30000 });
   await levelFrame.goto(`${origin}/tools/level-up/az/lessons`);
   await expect(level.locator('main')).toBeVisible();
-  assert.match(await level.locator('main').innerText(), /API|BA|dərs|Dərs/);
+  await expect(level.locator('main')).toContainText(/API|BA|dərs|Dərs/);
   const api = await context.request.post(`${origin}/tools/level-up/api/labs/http`, { data: { request: { method: 'GET', path: '/orders', headers: { Authorization: 'Bearer demo-alice' }, body: '' } } });
   assert.equal(api.status(), 200);
   assert.equal((await api.json()).response.status, 200);

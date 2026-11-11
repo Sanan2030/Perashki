@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
+const basePath = process.env.PERASHKI_BASE_PATH ?? '/tools/visio-generator';
 
 const config: NextConfig = {
-  ...(process.env.PERASHKI_STATIC_EXPORT === '1' ? { output: 'export' as const, trailingSlash: true, images: { unoptimized: true }, turbopack: { root: process.env.PERASHKI_REPO_ROOT } } : {}),
-  basePath: process.env.PERASHKI_BASE_PATH || '',
-  env: { NEXT_PUBLIC_BASE_PATH: process.env.PERASHKI_BASE_PATH || '' },
+  basePath,
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
   poweredByHeader: false,
   reactStrictMode: true,
   allowedDevOrigins: ["127.0.0.1"],

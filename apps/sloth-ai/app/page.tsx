@@ -454,7 +454,7 @@ export default function HomePage() {
                 type="button"
                 className={`workspace-run-btn ${loading ? 'is-loading' : ''}`}
                 onClick={transform}
-                disabled={loading || !inputValue.trim() || diffSource.length > MAX_TEXT_LENGTH}
+                disabled={!workspaceReady || loading || !inputValue.trim() || diffSource.length > MAX_TEXT_LENGTH}
               >
                 <span className="workspace-spinner" aria-hidden="true" />
                 {loading ? 'Emal olunur…' : 'Düzəlt'}
@@ -467,7 +467,7 @@ export default function HomePage() {
                 <select
                   id="mail-greeting"
                   value={mailGreeting}
-                  disabled={loading}
+                  disabled={!workspaceReady || loading}
                   onChange={(event) => {
                     setMailGreeting(event.target.value as EmailGreeting);
                     setMailOutput('');
@@ -502,7 +502,7 @@ export default function HomePage() {
                   aria-label={config.inputLabel}
                   placeholder={config.placeholder}
                   value={inputValue}
-                  disabled={loading}
+                  disabled={!workspaceReady || loading}
                   maxLength={Math.max(0, MAX_TEXT_LENGTH - (diffSource.length - inputValue.length))}
                   onCompositionStart={() => setComposing(true)}
                   onCompositionEnd={() => setComposing(false)}
