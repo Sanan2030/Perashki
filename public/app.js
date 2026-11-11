@@ -30,6 +30,18 @@ const tools = [
 ];
 
 const main = document.querySelector('main');
+const sidebar = document.querySelector('#workspace-sidebar');
+const sidebarToggle = document.querySelector('#toggle-sidebar');
+sidebarToggle.addEventListener('click', () => {
+  const expanded = sidebar.hidden;
+  sidebar.hidden = !expanded;
+  document.body.classList.toggle('sidebar-collapsed', !expanded);
+  sidebarToggle.setAttribute('aria-expanded', String(expanded));
+  const label = expanded ? 'Menyunu bağla' : 'Menyunu aç';
+  sidebarToggle.setAttribute('aria-label', label);
+  sidebarToggle.title = label;
+  if (expanded && window.matchMedia('(max-width:700px)').matches) window.scrollTo(0, 0);
+});
 const themeButton = document.querySelector('#workspace-theme');
 window.PerashkiTheme.subscribe(theme => {
   const label = theme === 'dark' ? 'Açıq rejim' : 'Tünd rejim';
