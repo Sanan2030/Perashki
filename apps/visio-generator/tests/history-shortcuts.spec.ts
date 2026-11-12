@@ -1,0 +1,33 @@
+import { expect, test } from "@playwright/test";
+
+test("history buttons and shortcuts work in forms and outside the canvas", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".save-status")).toHaveText("Saxlanılıb");
+  const name = page.getByRole("textbox", { name: "Prosesin adı", exact: true });
+  const undo = page.getByRole("button", { name: "Geri al", exact: true });
+  const redo = page.getByRole("button", { name: "İrəli qaytar", exact: true });
+  const original = await name.inputValue();
+  await expect(undo).toBeDisabled();
+  await expect(redo).toBeDisabled();
+  await name.fill("Yeni proses");
+  await name.press("Control+z");
+  await expect(name).toHaveValue(original);
+  await name.press("Control+y");
+  await expect(name).toHaveValue("Yeni proses");
+  await undo.click();
+  await expect(name).toHaveValue(original);
+  await redo.click();
+  await expect(name).toHaveValue("Yeni proses");
+  await page.locator(".brand").focus();
+  await page.keyboard.press("Control+z");
+  await expect(name).toHaveValue(original);
+  await page.keyboard.press("Control+Shift+z");
+  await expect(name).toHaveValue("Yeni proses");
+  await page.keyboard.press("Meta+z");
+  await expect(name).toHaveValue(original);
+  await page.keyboard.press("Meta+Shift+z");
+  await expect(name).toHaveValue("Yeni proses");
+  await undo.click();
+  await name.fill("Başqa proses");
+  await expect(redo).toBeDisabled();
+});

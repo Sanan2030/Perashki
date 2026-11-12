@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { ArrowDown, ArrowDownToLine, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, CircleHelp, ClipboardPaste, Copy, FileText, GitBranch, Layers3, LoaderCircle, Plus, Ruler, ShieldCheck, Trash2, X } from "lucide-react";
+import { ArrowDown, ArrowDownToLine, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, CircleHelp, ClipboardPaste, Copy, FileText, GitBranch, Layers3, LoaderCircle, Plus, Redo2, Ruler, Undo2, ShieldCheck, Trash2, X } from "lucide-react";
 import { STEP_METADATA_FIELDS, type DiagramSize, type Project, type Step, type StepMetadataKey, type StepType } from "@/lib/types";
 import { createId, createProject, SAMPLE_PROJECT, STEP_TYPES, validateProject } from "@/lib/process";
 import { clampNodePosition } from "@/lib/layout";
@@ -278,6 +278,24 @@ export default function Workspace() {
     redo();
   }
 
+  useEffect(() => {
+    function handleHistoryShortcut(event: KeyboardEvent) {
+      // Diagram shortcuts already cancel active gestures before applying history.
+      if (event.defaultPrevented || !ready || event.altKey || event.isComposing || !(event.ctrlKey || event.metaKey)) return;
+      const key = event.key.toLowerCase();
+      const isUndo = key === "z" && !event.shiftKey;
+      const isRedo = key === "y" || (key === "z" && event.shiftKey);
+      if (!isUndo && !isRedo) return;
+      event.preventDefault();
+      if (isUndo ? undoCount > 0 : redoCount > 0) {
+        clearEditorSelection();
+        if (isUndo) undo(); else redo();
+      }
+    }
+    document.addEventListener("keydown", handleHistoryShortcut);
+    return () => document.removeEventListener("keydown", handleHistoryShortcut);
+  });
+
   function resetLayout() {
     update(current => ({ ...current,
       pools: current.pools.map(({ position, ...pool }) => { void position; return pool; }),
@@ -521,6 +539,8 @@ export default function Workspace() {
         </div>
       </div>
       <div className="header-actions">
+        <button type="button" className="text-button" aria-label="Geri al" aria-keyshortcuts="Control+Z Meta+Z" title="Geri al (Ctrl+Z / ⌘Z)" disabled={!ready || !undoCount} onClick={undoEdit}><Undo2 size={16}/><span className="button-label">Geri al</span></button>
+        <button type="button" className="text-button" aria-label="İrəli qaytar" aria-keyshortcuts="Control+Y Control+Shift+Z Meta+Shift+Z" title="İrəli qaytar (Ctrl+Y / Ctrl+Shift+Z / ⌘⇧Z)" disabled={!ready || !redoCount} onClick={redoEdit}><Redo2 size={16}/><span className="button-label">İrəli qaytar</span></button>
         <button type="button" className="icon-button dimensions-button" aria-label="Diaqram ölçüləri" title="Diaqram, pool və fiqur ölçüləri" disabled={!ready} onClick={()=>setModal("dimensions")}><Ruler size={18}/></button>
         <button type="button" className="secondary-button word-export-button" aria-label="Word izahını yüklə" disabled={exportingWord || !ready} onClick={()=>void exportWord()}>
           {exportingWord ? <LoaderCircle size={16} className="spin"/> : <FileText size={16}/>}
