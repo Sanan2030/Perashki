@@ -28,8 +28,8 @@
     "name": "sprint-pointer",
     "source": "https://github.com/Sanan2030/SprintPointer",
     "branch": "main",
-    "commit": null,
-    "state": "source empty; local StoryPointer implemented in public/stories.js and public/story-view.js"
+    "commit": "a4e6a335676e5c385c8b122450634b058a21e8b9",
+    "importCommit": "a4e6a335676e5c385c8b122450634b058a21e8b9"
   },
   {
     "name": "calendar",

@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-export const syncableApps = ['sloth-ai', 'visio-generator', 'overtimer', 'level-up'];
+export const syncableApps = ['sloth-ai', 'visio-generator', 'overtimer', 'level-up', 'sprint-pointer'];
 
 function git(cwd, args, options = {}) {
   const result = spawnSync('git', args, { cwd, encoding: 'utf8', maxBuffer: 128 * 1024 * 1024, ...options });

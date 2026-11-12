@@ -12,6 +12,7 @@ on:
           - visio-generator
           - overtimer
           - level-up
+          - sprint-pointer
 
 permissions:
   contents: write

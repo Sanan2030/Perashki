@@ -9,12 +9,14 @@ import { parseReviewCorpus } from '../apps/sloth-ai/lib/editor/review-corpus';
 import { parseEditorDraft } from '../apps/sloth-ai/lib/editor/workspace-storage';
 import { parseTodos } from '../public/todos.js';
 import { validateStoryStore } from '../public/stories.js';
+import { parseHistory, HISTORY_KEY } from '../apps/sprint-pointer/src/history.js';
 
 const exactKeys = [
   'overtime-noter:v1', 'artisaat:theme', 'level-up.progress.v1', 'level-up.theme',
   'lazyai-theme', 'slothai-personal-lexicon-v1', 'slothai-transform-log-v1', 'slothai-expected-results-v1', 'slothai-reviewed-tests-v1', 'slothai-workspace-v1',
   'visioflow:diagram-clipboard:v1', 'visioflow:sidebar-width',
   'perashki:todos:v1', 'perashki:stories:v1', 'perashki:calendar:v1', 'perashki:workspace:v1', 'perashki:theme:v1',
+  HISTORY_KEY,
 ];
 export function ownedKey(key: string) { return exactKeys.includes(key) || /^visioflow:v1:[a-zA-Z0-9_-]{1,128}$/.test(key); }
 export function validateRecord(key: string, raw: string) {
@@ -37,6 +39,7 @@ export function validateRecord(key: string, raw: string) {
   else if (key === 'visioflow:diagram-clipboard:v1') parseDiagram(raw);
   else if (key === 'perashki:todos:v1') parseTodos(raw);
   else if (key === 'perashki:stories:v1') validateStoryStore(value);
+  else if (key === HISTORY_KEY) parseHistory(raw);
   else if (key === 'slothai-reviewed-tests-v1') parseReviewCorpus(raw);
   else if (key === 'slothai-workspace-v1') parseEditorDraft(raw);
   else if (key === 'slothai-personal-lexicon-v1') {
@@ -54,7 +57,7 @@ export function validateRecord(key: string, raw: string) {
   else if (key === 'perashki:workspace:v1') {
     if (!value || value.version !== 1 || typeof value.route !== 'string' || !/^\/(?:sloth-ai|visio-generator|sprint-pointer|overtimer|level-up|calendar|todo)?$/.test(value.route) || !value.frames || typeof value.frames !== 'object' || Array.isArray(value.frames)) throw new Error('İş məkanı uyğun deyil.');
     for (const [app, url] of Object.entries(value.frames)) {
-      if (!['sloth-ai', 'visio-generator', 'overtimer', 'level-up'].includes(app) || typeof url !== 'string' || url.length > 2000 || /[\\\x00-\x1f]/.test(url) || !url.startsWith(`/tools/${app}`)) throw new Error('Bölmə ünvanı uyğun deyil.');
+      if (!['sloth-ai', 'visio-generator', 'overtimer', 'level-up', 'sprint-pointer'].includes(app) || typeof url !== 'string' || url.length > 2000 || /[\\\x00-\x1f]/.test(url) || !url.startsWith(`/tools/${app}`)) throw new Error('Bölmə ünvanı uyğun deyil.');
       const parsed = new URL(url, 'https://perashki.invalid');
       if (parsed.origin !== 'https://perashki.invalid' || !(parsed.pathname === `/tools/${app}` || parsed.pathname.startsWith(`/tools/${app}/`))) throw new Error('Bölmə ünvanı uyğun deyil.');
     }

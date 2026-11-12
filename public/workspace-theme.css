@@ -151,3 +151,29 @@ html[data-app='level-up'] :is(.progress-track > div,.stepper-dots button.reached
 html[data-app='level-up'] :is(.knowledge-option,.roadmap-skill,.practice-unseen) input { accent-color:var(--ws-accent); }
 html[data-app='overtimer'] .empty-state h3 { color:var(--ws-ink); }
 html[data-app='overtimer'] .empty-state p { color:var(--ws-muted); }
+
+/* SprintPointer shares the workspace palette while retaining its own layout. */
+html:root[data-app='sprint-pointer'] {
+  --purple:var(--ws-accent);
+  --purple-dark:var(--ws-accent-hover);
+  --tint:var(--ws-accent-soft);
+  background:var(--ws-bg);
+  color:var(--ws-ink);
+}
+html[data-app='sprint-pointer'] :is(.sidebar,.card,.secondary,input:not([type='checkbox']),textarea,select,dialog,.rule-examples span,.illustration-bars,.illustration-clock) { background:var(--ws-surface); }
+html[data-app='sprint-pointer'] :is(.brand,.secondary,.factor,.chip,.metric strong,.history-entry,.help-card h2) { color:var(--ws-ink); }
+html[data-app='sprint-pointer'] :is(.secondary,input:not([type='checkbox']),textarea,select,.illustration-bars,.illustration-clock) { border-color:var(--ws-control-border); }
+html[data-app='sprint-pointer'] :is(input,textarea)::placeholder { color:var(--ws-muted); }
+html[data-app='sprint-pointer'] :is(.rule,.chip,.history-entry) { background:var(--ws-soft); }
+html[data-app='sprint-pointer'] :is(.rule,.rule-examples span,.metric.point,.factor:has(:checked)) { border-color:var(--ws-accent-border); }
+html[data-app='sprint-pointer'] .primary { background:var(--ws-action); color:#fff; }
+html[data-app='sprint-pointer'] .primary:hover:not(:disabled) { background:var(--ws-action-hover); }
+html[data-app='sprint-pointer'] :is(.secondary,.chip,.history-entry):hover { background:var(--ws-accent-soft); }
+html[data-app='sprint-pointer'] .brand-mark { background:var(--ws-action); box-shadow:0 4px 10px var(--ws-shadow); }
+html[data-app='sprint-pointer'] .sidebar-footer span { background:var(--ws-accent); }
+html[data-app='sprint-pointer'] .illustration { background:radial-gradient(ellipse,var(--ws-accent-soft),transparent 71%); }
+html[data-app='sprint-pointer'] .illustration-bars i { background:var(--ws-accent); }
+html[data-app='sprint-pointer'] .error { background:var(--ws-danger-soft); color:var(--ws-danger); border-color:var(--ws-danger); }
+html[data-app='sprint-pointer'] .warning { background:var(--ws-warning-soft); color:var(--ws-warning); border-color:var(--ws-warning); }
+html[data-app='sprint-pointer'] .toast { background:var(--ws-ink); color:var(--ws-surface); }
+html[data-app='sprint-pointer'] :focus-visible { outline-color:var(--ws-accent); }

@@ -22,7 +22,7 @@ const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths[name] 
 const tools = [
   { id: 'sloth-ai', name: 'Sloth AI', icon: 'spark', description: 'Azərbaycan dilində mətnlərini düzəlt, fikirlərini daha aydın ifadə et.', category: 'Mətn və yazı' },
   { id: 'visio-generator', name: 'Visio Generator', icon: 'flow', description: 'İş axınlarını diaqrama çevir, proseslərini vizual şəkildə qur.', category: 'Proses və diaqram' },
-  { id: 'sprint-pointer', name: 'StoryPointer', icon: 'cards', description: 'Başlıqdan Azure DevOps üçün iş təsviri və story point təklifi hazırla.', category: 'İşlərin hazırlanması' },
+  { id: 'sprint-pointer', name: 'SprintPointer', icon: 'cards', description: 'Azure DevOps üçün iş təsviri, qəbul meyarları, müddət və Story Point hazırla.', category: 'İşlərin hazırlanması' },
   { id: 'overtimer', name: 'Overtimer', icon: 'clock', description: 'Əlavə iş saatlarını qeyd et, vaxtını və qazancını izlə.', category: 'Vaxtın uçotu' },
   { id: 'level-up', name: 'Level Up', icon: 'learn', description: 'BA və PO bacarıqlarını inkişaf etdir, öz yol xəritənlə öyrən.', category: 'Öyrənmə və inkişaf' },
   { id: 'calendar', name: 'Təqvim', icon: 'calendar', description: 'Azərbaycanın bayram və xüsusi günlərinə bir yerdən bax.', category: '2026–2027' },
@@ -95,6 +95,22 @@ function renderFrame(panel, tool) {
   iframe.src = src;
   iframe.allow = 'clipboard-write; fullscreen';
   panel.append(iframe);
+  if (tool.id === 'sprint-pointer') {
+    try {
+      if (localStorage.getItem('perashki:stories:v1')) {
+        const archive = document.createElement('details');
+        archive.className = 'legacy-stories';
+        const summary = document.createElement('summary');
+        summary.textContent = 'Əvvəlki StoryPointer qeydləri';
+        const content = document.createElement('div');
+        archive.append(summary, content);
+        archive.addEventListener('toggle', () => {
+          if (archive.open && !content.hasChildNodes()) mountStories(content);
+        });
+        panel.append(archive);
+      }
+    } catch {}
+  }
 }
 
 function saveTasks(next) {
@@ -216,7 +232,6 @@ function showRoute() {
     panel = document.createElement('section'); panels.set(route, panel); main.append(panel);
     if (route === 'home') renderHome(panel);
     else if (route === 'todo') setupTodos(panel);
-    else if (route === 'sprint-pointer') mountStories(panel);
     else renderFrame(panel, tool);
   }
   panel.hidden = false;

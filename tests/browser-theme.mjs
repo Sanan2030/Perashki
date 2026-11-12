@@ -16,7 +16,7 @@ page.on('console', message => {
 });
 const shots = new URL('../.local/screenshots/themes/', import.meta.url);
 await mkdir(shots, { recursive: true });
-const apps = [['sloth-ai', 'Sloth AI'], ['visio-generator', 'Visio Generator'], ['overtimer', 'Overtimer'], ['level-up', 'Level Up'], ['calendar', 'Təqvim']];
+const apps = [['sloth-ai', 'Sloth AI'], ['visio-generator', 'Visio Generator'], ['overtimer', 'Overtimer'], ['level-up', 'Level Up'], ['sprint-pointer', 'SprintPointer'], ['calendar', 'Təqvim']];
 try {
   await page.goto(origin);
   await page.evaluate(() => window.PerashkiTheme.set('dark'));

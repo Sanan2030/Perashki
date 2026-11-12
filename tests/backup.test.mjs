@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { backupLocale, createBackup, parseBackup, restoreBackup, snapshotStorage } from '../public/backup.js';
 import { generateStory } from '../public/stories.js';
+import { normalizeWork } from '../apps/sprint-pointer/lib/work.js';
+import { localEstimate } from '../apps/sprint-pointer/server/estimator.js';
 
 class Storage {
   data = new Map();
@@ -25,8 +27,10 @@ function fixture() {
   storage.setItem('perashki:todos:v1', JSON.stringify({ version: 1, tasks: [{ id: 'todo-1', title: 'Məlumatı saxla', priority: 'high', completed: false, due: '2026-11-11', createdAt: '2026-11-11T08:00:00Z' }] }));
   const draft = generateStory({ title: 'Müştəri məlumatlarının Excel ixracı' });
   storage.setItem('perashki:stories:v1', JSON.stringify({ version: 1, draft, stories: [draft] }));
+  const form = normalizeWork({ title: 'Müştəri axtarışını əlavə et' });
+  storage.setItem('sprintpointer.history.v1', JSON.stringify([{ id: 'estimate-1', createdAt: '2026-11-12T08:00:00Z', form, result: localEstimate(form) }]));
   storage.setItem('perashki:calendar:v1', JSON.stringify({ version: 1, year: 2027, month: 5 }));
-  storage.setItem('perashki:workspace:v1', JSON.stringify({ version: 1, route: '/visio-generator', frames: { 'visio-generator': '/tools/visio-generator/#diagram-1' } }));
+  storage.setItem('perashki:workspace:v1', JSON.stringify({ version: 1, route: '/visio-generator', frames: { 'visio-generator': '/tools/visio-generator/#diagram-1', 'sprint-pointer': '/tools/sprint-pointer/' } }));
   storage.setItem('artisaat:theme', 'dark');
   storage.setItem('unrelated-app', 'must stay private');
   return storage;
@@ -61,6 +65,7 @@ test('invalid files, foreign keys, unsafe frame links and future versions do not
     data => { data.storage['perashki:todos:v1'] = '{"version":1,"tasks":[{}]}'; },
     data => { data.storage['perashki:workspace:v1'] = JSON.stringify({ version: 1, route: '/', frames: { 'sloth-ai': '/tools/sloth-ai/../../evil' } }); },
     data => { data.storage['level-up.progress.v1'] = '{}'; },
+    data => { data.storage['sprintpointer.history.v1'] = '[{"broken":true}]'; },
     data => { const draft = JSON.parse(data.storage['slothai-workspace-v1']); draft.textDocument = { blocks: [{ type: 'paragraph', children: [{ text: 'Unsafe mark', marks: ['script'] }] }] }; data.storage['slothai-workspace-v1'] = JSON.stringify(draft); },
   ]) {
     const backup = createBackup(storage); mutate(backup);

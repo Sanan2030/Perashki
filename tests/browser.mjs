@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 import { mkdir, readFile } from 'node:fs/promises';
+import { generateStory } from '../public/stories.js';
 const require = createRequire(new URL('../apps/sloth-ai/package.json', import.meta.url));
 const { chromium } = require('playwright');
 const { expect: baseExpect } = require('@playwright/test');
@@ -112,22 +113,25 @@ try {
   await expect(lab.getByRole('status')).toHaveText('200 OK');
   console.log('PASS single-deployment Level Up pages, SQL/WASM Worker, API lab and dictionary function');
 
-  await page.getByRole('navigation').getByRole('link', { name: 'StoryPointer', exact: true }).click();
-  await page.getByLabel('Tapşırığın başlığı').fill('Müştəri məlumatlarının Excel ixracı');
-  await page.getByLabel('Əlavə kontekst · istəyə bağlı').fill('Yalnız aktiv müştərilər daxil olsun.');
-  await page.getByRole('button', { name: 'İlkin mətn hazırla' }).click();
-  assert.match(await page.getByLabel('Description', { exact: true }).inputValue(), /Yalnız aktiv/);
-  await page.getByLabel('Story Points', { exact: true }).selectOption('5');
-  await page.getByLabel('Technical Notes', { exact: true }).fill('İxrac tarixi ayrıca sütunda göstərilsin.');
-  await page.getByRole('button', { name: 'Yadda saxla', exact: true }).click();
+  const legacyStory = generateStory({ title: 'Əvvəlki Excel ixracı işi' });
+  await page.evaluate(draft => localStorage.setItem('perashki:stories:v1', JSON.stringify({ version: 1, draft, stories: [draft] })), legacyStory);
+  await page.getByRole('navigation').getByRole('link', { name: 'SprintPointer', exact: true }).click();
+  await page.getByText('Əvvəlki StoryPointer qeydləri', { exact: true }).click();
   await expect(page.locator('.story-history-row')).toHaveCount(1);
+  await page.getByText('Əvvəlki StoryPointer qeydləri', { exact: true }).click();
+  const sprint = page.frameLocator('iframe[title="SprintPointer"]');
+  await sprint.getByLabel('Tapşırığın başlığı').fill('Müştərilər siyahısına axtarış filtri əlavə et');
+  await sprint.getByLabel('İşin əhatəsi').selectOption('frontend');
+  await sprint.getByRole('button', { name: 'İşi qiymətləndir' }).click();
+  await expect(sprint.getByText('6 saat × 0.1 = 0.6', { exact: true })).toBeVisible();
+  await sprint.getByLabel('İşin izahı').fill('Yalnız aktiv müştərilər üçün filtr əlavə edilsin.');
   await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
-  await page.getByRole('button', { name: 'Azure DevOps üçün kopyala', exact: true }).click();
-  await expect(page.locator('#story-status')).toContainText('mətn kopyalandı');
-  assert.match(await page.evaluate(() => navigator.clipboard.readText()), /## Acceptance Criteria/);
+  await sprint.getByRole('button', { name: 'Bütün nəticəni kopyala', exact: true }).click();
+  await expect(sprint.getByRole('status')).toHaveText('Kopyalandı.');
+  assert.match(await page.evaluate(() => navigator.clipboard.readText()), /Story Point — 0\.6/);
   await page.evaluate(() => { document.activeElement?.blur(); window.scrollTo(0, 0); });
   await page.screenshot({ path: new URL('../.local/screenshots/story-desktop.png', import.meta.url).pathname, fullPage: true });
-  console.log('PASS StoryPointer generation, editable Azure DevOps fields, points and saved history');
+  console.log('PASS SprintPointer API, editable Azure DevOps description, hours, points and saved history');
 
   await calendar.locator('#nextYearBtn').evaluate(button => button.click());
   await page.evaluate(() => window.PerashkiTheme.set('dark'));
@@ -148,7 +152,7 @@ try {
   assert.equal(backup.preferences.locale, 'en');
   assert.equal(backup.storage['perashki:theme:v1'], 'dark');
   assert.equal(backup.storage['unrelated-app'], undefined);
-  for (const key of ['overtime-noter:v1', 'level-up.progress.v1', 'slothai-workspace-v1', 'slothai-personal-lexicon-v1', 'perashki:todos:v1', 'perashki:stories:v1', 'perashki:calendar:v1']) assert(backup.storage[key], key);
+  for (const key of ['overtime-noter:v1', 'level-up.progress.v1', 'slothai-workspace-v1', 'slothai-personal-lexicon-v1', 'perashki:todos:v1', 'perashki:stories:v1', 'sprintpointer.history.v1', 'perashki:calendar:v1']) assert(backup.storage[key], key);
   assert(Object.keys(backup.storage).some(key => key.startsWith('visioflow:v1:')));
 
   const fresh = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -159,7 +163,9 @@ try {
   await restored.getByLabel('Ümumi ehtiyat nüsxəsini seç').setInputFiles(backupPath);
   await expect(restored).toHaveURL(`${origin}/sprint-pointer`);
   await expect(restored.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await expect(restored.locator('.story-history-row')).toHaveCount(1);
+  const restoredSprint = restored.frameLocator('iframe[title="SprintPointer"]');
+  await restoredSprint.getByRole('navigation').getByRole('button', { name: 'Tarixçə', exact: true }).click();
+  await expect(restoredSprint.locator('.history-entry')).toHaveCount(1);
   assert.deepEqual(await restored.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), Object.keys(backup.storage)), backup.storage);
   assert.equal(await restored.evaluate(() => localStorage.getItem('unrelated-app')), 'keep');
   await restored.getByRole('navigation').getByRole('link', { name: 'To-do list', exact: true }).click();

@@ -11,7 +11,8 @@
         { "type": "service", "service": "level-up", "format": "url", "env": "LEVEL_UP_URL" },
         { "type": "service", "service": "overtimer", "format": "url", "env": "OVERTIMER_URL" },
         { "type": "service", "service": "sloth-ai", "format": "url", "env": "SLOTH_AI_URL" },
-        { "type": "service", "service": "visio-generator", "format": "url", "env": "VISIO_GENERATOR_URL" }
+        { "type": "service", "service": "visio-generator", "format": "url", "env": "VISIO_GENERATOR_URL" },
+        { "type": "service", "service": "sprint-pointer", "format": "url", "env": "SPRINT_POINTER_URL" }
       ]
     },
     "level-up": {
@@ -35,6 +36,18 @@
       "buildCommand": "npm run build",
       "devCommand": "npm run dev -- --port $PORT"
     },
+    "sprint-pointer": {
+      "root": "apps/sprint-pointer",
+      "framework": "vite",
+      "installCommand": "npm ci --include=dev",
+      "buildCommand": "npm run build",
+      "outputDirectory": "dist",
+      "devCommand": "npm run dev",
+      "functions": { "api/index.js": { "maxDuration": 45 } },
+      "rewrites": [
+        { "source": "/api/:route", "destination": "/api/index?route=:route" }
+      ]
+    },
     "visio-generator": {
       "root": "apps/visio-generator",
       "framework": "nextjs",
@@ -44,6 +57,7 @@
     }
   },
   "rewrites": [
+    { "source": "/tools/sprint-pointer/:path*", "destination": { "service": "sprint-pointer", "path": "/:path*" } },
     { "source": "/tools/level-up/:path*", "destination": { "service": "level-up" } },
     { "source": "/tools/overtimer/:path*", "destination": { "service": "overtimer" } },
     { "source": "/tools/sloth-ai/:path*", "destination": { "service": "sloth-ai" } },

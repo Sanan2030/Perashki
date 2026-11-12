@@ -6,7 +6,7 @@
 
 1. Mənbə repozitoriyasında, məsələn `Sanan2030/SlothAI`, dəyişiklikləri `main`-ə push et.
 2. `Sanan2030/Perashki` daxilində **Actions → Sync imported app → Run workflow** aç.
-3. `sloth-ai`, `visio-generator`, `overtimer` və ya `level-up` seç.
+3. `sloth-ai`, `visio-generator`, `overtimer` və ya `level-up` və ya `sprint-pointer` seç.
 4. Yeni commit yoxdursa workflow heç nə dəyişmir. Yenilik varsa ayrıca budaqda birləşdirir və bütün iş məkanı üzrə unit testləri, typecheck və production build işlədir.
 5. Yoxlamalar uğurlu olduqda açılan PR-ni nəzərdən keçir və `main`-ə merge et. Vercel Git inteqrasiyası aktivdirsə yeni `main` commit-i deployment başladır.
 
@@ -42,4 +42,4 @@ GitHub-da bu budaqdan `main`-ə PR açıb merge et. Lokal əmr özü commit, pus
 
 Mənbədə force push/rebase nəticəsində əvvəlki commit yeni tarixçənin əcdadı deyilsə avtomatik yeniləmə dayandırılır. Bu halda mənbə tarixçəsi ayrıca yoxlanmalıdır.
 
-Təqvim yüklənmiş HTML-dən, to-do və StoryPointer isə bu repozitoriyada hazırlanıb. Onların ayrıca mənbə sinxronizasiyası yoxdur.
+SprintPointer də `npm run sync:app -- sprint-pointer` ilə mənbədən yenilənir. Təqvim yüklənmiş HTML-dən, to-do və əvvəlki StoryPointer isə bu repozitoriyada hazırlanıb; onların ayrıca mənbə sinxronizasiyası yoxdur.

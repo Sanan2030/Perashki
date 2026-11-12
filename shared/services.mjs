@@ -5,10 +5,11 @@ const bindings = {
   'visio-generator': 'VISIO_GENERATOR_URL',
   'overtimer': 'OVERTIMER_URL',
   'level-up': 'LEVEL_UP_URL',
+  'sprint-pointer': 'SPRINT_POINTER_URL',
 };
-export const services = ['sloth-ai', 'visio-generator', 'overtimer', 'level-up'].map(id => ({
+export const services = ['sloth-ai', 'visio-generator', 'overtimer', 'level-up', 'sprint-pointer'].map(id => ({
   id,
   basePath: `/tools/${id}`,
   binding: bindings[id],
-  healthPath: id === 'level-up' ? `/tools/${id}/en` : `/tools/${id}`,
+  healthPath: id === 'level-up' ? `/tools/${id}/en` : id === 'sprint-pointer' ? `/tools/${id}/api/health` : `/tools/${id}`,
 }));

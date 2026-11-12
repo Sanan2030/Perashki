@@ -6,7 +6,7 @@ import config from '../next.config.mjs';
 
 test('missing bindings never fall back to localhost or public URLs', async () => {
   const result = await checkServices({}, () => { throw new Error('No network request should run.'); });
-  assert.equal(result.length, 4);
+  assert.equal(result.length, 5);
   assert(result.every(service => !service.ready));
   assert.equal(boundServiceUrl(projects[0], {}), null);
 });

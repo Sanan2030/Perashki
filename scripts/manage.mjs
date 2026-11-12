@@ -44,7 +44,7 @@ process.on('SIGTERM', () => stop());
 if (['install', 'build', 'typecheck'].includes(mode)) {
   await mkdir(`${root}.local`, { recursive: true });
   for (const project of projects) {
-    const args = mode === 'install' ? ['ci', '--include=dev', '--no-audit', '--no-fund'] : ['run', mode];
+    const args = mode === 'install' ? ['ci', '--include=dev', '--no-audit', '--no-fund'] : ['run', mode, ...(mode === 'typecheck' ? ['--if-present'] : [])];
     const child = launch(project, args);
     const code = await new Promise(resolve => child.once('exit', resolve));
     children.delete(child);
